@@ -191,17 +191,19 @@ lintFile(`${__dirname}/README.md`).catch(function(error) {
 
 ### Migration to New API
 
-To migrate to the new API from the old API, you may need to make additional changes beyond just changing to a different method. Additionally, scripts may require switching from a `.js` file to a `.mjs` file and adding some helper methods from Node.
+To migrate to the new API from the old API, you may need to make additional changes beyond just changing to a different method.
+
+Old API:
 
 ```js
-// Old API
-
 const TextLintEngine = require("textlint").TextLintEngine;
 // Rely on textlint finding the config automatically.
-let engine = new TextLintEngine();
+const engine = new TextLintEngine();
+```
 
-// New API
+New API:
 
+```js
 // Import node helpers to get the config path.
 import path from "node:path";
 import { cwd } from "node:process";
@@ -220,12 +222,14 @@ const linter = createLinter({
 
 Replace with `linter.lintText()`:
 
+Old API:
 ```js
-// Old API
 const ruleText = "Tihs is my text.";
 const results = await engine.executeOnText(ruleText);
+```
 
-// New API -- dummy filename to determine content type.
+New API -- dummy filename to determine content type.
+```js
 const ruleText = "Tihs is my text.";
 const results = await linter.lintText(ruleText, 'dummy.txt');
 ```
