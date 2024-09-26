@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1727135575901,
+  "lastUpdate": 1727311153871,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -40740,6 +40740,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6486485351600001,
             "unit": "seconds",
             "range": "± 0.017366820000000005"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpfos@naver.com",
+            "name": "루밀LuMir",
+            "username": "lumirlumir"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a1e01ceb0c2419839b37dda4499557ce2ec29f0a",
+          "message": "docs(image): make the border of get-started-steps images transparent (#1425)",
+          "timestamp": "2024-09-26T09:36:44+09:00",
+          "tree_id": "9fae1a996eb5db3f904e548632e05b91ed709c40",
+          "url": "https://github.com/textlint/textlint/commit/a1e01ceb0c2419839b37dda4499557ce2ec29f0a"
+        },
+        "date": 1727311151397,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.08290456456,
+            "unit": "seconds",
+            "range": "± 0.07054285800000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.4225314095599995,
+            "unit": "seconds",
+            "range": "± 0.0844471630000001"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.65268792936,
+            "unit": "seconds",
+            "range": "± 0.007195428000000059"
           }
         ]
       }
