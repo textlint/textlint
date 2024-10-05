@@ -8,12 +8,7 @@ import debug0 from "debug";
 // @ts-expect-error
 import tryResolve from "try-resolve";
 import { pathToFileURL } from "node:url";
-
-// compats.ts
-// diff.ts
-// fixed-result.ts
-// json.ts
-// stylish.ts
+// formatters
 import diffFormatter from "./formatters/diff";
 import fixedResultFormatter from "./formatters/fixed-result";
 import jsonFormatter from "./formatters/json";
