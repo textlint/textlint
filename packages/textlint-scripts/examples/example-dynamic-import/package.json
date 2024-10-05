@@ -1,7 +1,7 @@
 {
   "name": "textlint-scripts-example-dynamic-import",
   "description": "Example of textlint-scripts with dynamic import",
-  "version": "14.2.0",
+  "version": "14.2.1",
   "private": true,
   "license": "MIT",
   "author": "azu",
@@ -11,6 +11,6 @@
     "test": "textlint-scripts test"
   },
   "devDependencies": {
-    "textlint-scripts": "^14.2.0"
+    "textlint-scripts": "^14.2.1"
   }
 }
