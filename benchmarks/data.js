@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1728135254966,
+  "lastUpdate": 1728135615408,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -41244,6 +41244,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7092837987600001,
             "unit": "seconds",
             "range": "± 0.009881388000000046"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f9599886f744e62d4cd667bf912b6e9f0994132e",
+          "message": "refactor(formatter): import formatter as static (#1426)\n\n* fix(formatter): import formatter as static\r\n\r\n- dynamic load is hard to build binary\r\n\r\n* fix\r\n\r\n* fix\r\n\r\n* fix",
+          "timestamp": "2024-10-05T22:37:46+09:00",
+          "tree_id": "21bb890185a7096815fa837333560f0d6b497bff",
+          "url": "https://github.com/textlint/textlint/commit/f9599886f744e62d4cd667bf912b6e9f0994132e"
+        },
+        "date": 1728135613162,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.2644160176600003,
+            "unit": "seconds",
+            "range": "± 0.05238849599999984"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.779088810660001,
+            "unit": "seconds",
+            "range": "± 0.11688427999999984"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.74824689886,
+            "unit": "seconds",
+            "range": "± 0.022257340000000014"
           }
         ]
       }
