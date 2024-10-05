@@ -10,14 +10,32 @@ import path from "path";
 import tryResolve from "try-resolve";
 import debug0 from "debug";
 import { pathToFileURL } from "node:url";
+// formatter
+import checkstyleFormatter from "./formatters/checkstyle";
+import compactFormatter from "./formatters/compact";
+import jslintXMLFormatter from "./formatters/jslint-xml";
+import jsonFormatter from "./formatters/json";
+import junitFormatter from "./formatters/junit";
+import prettyErrorFormatter from "./formatters/pretty-error";
+import stylishFormatter from "./formatters/stylish";
+import tableFormatter from "./formatters/table";
+import tapFormatter from "./formatters/tap";
+import unixFormatter from "./formatters/unix";
 
-const isFile = (filePath: string) => {
-    try {
-        return fs.statSync(filePath).isFile();
-    } catch {
-        return false;
-    }
-};
+const builtinFormatterList = {
+    checkstyle: checkstyleFormatter,
+    compact: compactFormatter,
+    "jslint-xml": jslintXMLFormatter,
+    json: jsonFormatter,
+    junit: junitFormatter,
+    "pretty-error": prettyErrorFormatter,
+    stylish: stylishFormatter,
+    table: tableFormatter,
+    tap: tapFormatter,
+    unix: unixFormatter
+} as const;
+type BuiltInFormatterName = keyof typeof builtinFormatterList;
+const builtinFormatterNames = Object.keys(builtinFormatterList);
 // import() can not load Window file path
 // convert file path to file URL before import()
 // https://github.com/nodejs/node/issues/31710
@@ -36,6 +54,13 @@ export interface FormatterConfig {
 export async function loadFormatter(formatterConfig: FormatterConfig) {
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);
+    if (builtinFormatterNames.includes(formatterName)) {
+        return {
+            format(results: TextlintResult[]) {
+                return builtinFormatterList[formatterName as BuiltInFormatterName](results, formatterConfig);
+            }
+        };
+    }
     let formatter: (results: TextlintResult[], formatterConfig: FormatterConfig) => string;
     let formatterPath;
     if (fs.existsSync(formatterName)) {
@@ -43,15 +68,9 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
     } else if (fs.existsSync(path.resolve(process.cwd(), formatterName))) {
         formatterPath = path.resolve(process.cwd(), formatterName);
     } else {
-        if (isFile(`${path.join(__dirname, "formatters/", formatterName)}.js`)) {
-            formatterPath = `${path.join(__dirname, "formatters/", formatterName)}.js`;
-        } else if (isFile(`${path.join(__dirname, "formatters/", formatterName)}.ts`)) {
-            formatterPath = `${path.join(__dirname, "formatters/", formatterName)}.ts`;
-        } else {
-            const pkgPath = tryResolve(`textlint-formatter-${formatterName}`) || tryResolve(formatterName);
-            if (pkgPath) {
-                formatterPath = pkgPath;
-            }
+        const pkgPath = tryResolve(`textlint-formatter-${formatterName}`) || tryResolve(formatterName);
+        if (pkgPath) {
+            formatterPath = pkgPath;
         }
     }
     try {
@@ -74,6 +93,11 @@ ${ex}`);
 export function createFormatter(formatterConfig: FormatterConfig) {
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);
+    if (builtinFormatterNames.includes(formatterName)) {
+        return function (results: TextlintResult[]) {
+            return builtinFormatterList[formatterName as BuiltInFormatterName](results, formatterConfig);
+        };
+    }
     let formatter: (results: TextlintResult[], formatterConfig: FormatterConfig) => string;
     let formatterPath;
     if (fs.existsSync(formatterName)) {
@@ -81,15 +105,9 @@ export function createFormatter(formatterConfig: FormatterConfig) {
     } else if (fs.existsSync(path.resolve(process.cwd(), formatterName))) {
         formatterPath = path.resolve(process.cwd(), formatterName);
     } else {
-        if (isFile(`${path.join(__dirname, "formatters/", formatterName)}.js`)) {
-            formatterPath = `${path.join(__dirname, "formatters/", formatterName)}.js`;
-        } else if (isFile(`${path.join(__dirname, "formatters/", formatterName)}.ts`)) {
-            formatterPath = `${path.join(__dirname, "formatters/", formatterName)}.ts`;
-        } else {
-            const pkgPath = tryResolve(`textlint-formatter-${formatterName}`) || tryResolve(formatterName);
-            if (pkgPath) {
-                formatterPath = pkgPath;
-            }
+        const pkgPath = tryResolve(`textlint-formatter-${formatterName}`) || tryResolve(formatterName);
+        if (pkgPath) {
+            formatterPath = pkgPath;
         }
     }
     try {
@@ -108,12 +126,9 @@ export interface FormatterDetail {
 }
 
 export function getFormatterList(): FormatterDetail[] {
-    return fs
-        .readdirSync(path.join(__dirname, "formatters"))
-        .filter((file: string) => {
-            return path.extname(file) === ".js";
-        })
-        .map((file: string) => {
-            return { name: path.basename(file, ".js") };
-        });
+    return builtinFormatterNames.map((name) => {
+        return {
+            name
+        };
+    });
 }
