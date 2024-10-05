@@ -93,6 +93,11 @@ ${ex}`);
 export function createFormatter(formatterConfig: FormatterConfig) {
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);
+    if (builtinFormatterNames.includes(formatterName)) {
+        return function (results: TextlintResult[]) {
+            return builtinFormatterList[formatterName as BuiltInFormatterName](results, formatterConfig);
+        };
+    }
     let formatter: (results: TextlintResult[], formatterConfig: FormatterConfig) => string;
     let formatterPath;
     if (fs.existsSync(formatterName)) {

@@ -9,12 +9,14 @@ import debug0 from "debug";
 import tryResolve from "try-resolve";
 import { pathToFileURL } from "node:url";
 // formatters
+import compatsFormatter from "./formatters/compats";
 import diffFormatter from "./formatters/diff";
 import fixedResultFormatter from "./formatters/fixed-result";
 import jsonFormatter from "./formatters/json";
 import stylishFormatter from "./formatters/stylish";
 
 const builtinFormatterList = {
+    compats: compatsFormatter,
     diff: diffFormatter,
     "fixed-result": fixedResultFormatter,
     json: jsonFormatter,
