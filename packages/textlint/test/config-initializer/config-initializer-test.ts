@@ -20,7 +20,7 @@ describe("config-initializer-test", function () {
     afterEach(function () {
         sh.rm("-r", configDir);
     });
-    context("when pacakge.json has textlint-rule-* packages", function () {
+    context("when package.json has textlint-rule-* packages", function () {
         beforeEach(function () {
             const packageFilePath = path.join(__dirname, "fixtures", "package.json");
             sh.cp(packageFilePath, configDir);
