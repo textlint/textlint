@@ -41,12 +41,12 @@
     },
     "dependencies": {
         "@textlint/ast-node-types": "^14.2.1",
-        "debug": "^4.3.4"
+        "debug": "^4.3.7"
     },
     "devDependencies": {
         "@types/mocha": "^9.1.1",
-        "@types/node": "^18.19.9",
-        "mocha": "^10.7.0",
+        "@types/node": "^18.19.54",
+        "mocha": "^10.7.3",
         "rimraf": "^3.0.2",
         "ts-node": "^10.9.2",
         "typescript": "~5.3.3"
