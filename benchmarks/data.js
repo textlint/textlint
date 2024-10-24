@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729753656889,
+  "lastUpdate": 1729754328349,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -42462,6 +42462,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7256663749200001,
             "unit": "seconds",
             "range": "± 0.018021861000000028"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "23535719bbe134bc880ed49fbca0052599f7905b",
+          "message": "feat(resolver): use @textlint/resolver instead of try-resolve (#1432)\n\n* feat(resolver): use @textlint/resolver instead of try-resolve\r\n\r\n* Update packages/@textlint/config-loader/tsconfig.json+5\r\n\r\n* fix\r\n\r\n* fix test\r\n\r\n* fix import\r\n\r\n* fix: Formater imports\r\n\r\n* fix import mod\r\n\r\n* fix(config-loader): export isTextlint* function\r\n\r\n* fix\r\n\r\n* update readme",
+          "timestamp": "2024-10-24T16:16:26+09:00",
+          "tree_id": "4e234e4484093ae2c3072349c52e16547c65b203",
+          "url": "https://github.com/textlint/textlint/commit/23535719bbe134bc880ed49fbca0052599f7905b"
+        },
+        "date": 1729754326806,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.09007893986,
+            "unit": "seconds",
+            "range": "± 0.021084618999999805"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.564031074660001,
+            "unit": "seconds",
+            "range": "± 0.1599174519999993"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.72869193306,
+            "unit": "seconds",
+            "range": "± 0.03013233500000001"
           }
         ]
       }
