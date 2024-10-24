@@ -45,7 +45,7 @@
     "string-width": "^4.2.3",
     "strip-ansi": "^6.0.1",
     "text-table": "^0.2.0",
-    "try-resolve": "^1.0.1"
+    "@textlint/resolver": "^14.2.1"
   },
   "devDependencies": {
     "@types/diff": "^4.0.2",

@@ -22,6 +22,9 @@
     },
     {
       "path": "../utils"
+    },
+    {
+      "path": "../resolver"
     }
   ]
 }

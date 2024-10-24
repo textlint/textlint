@@ -69,7 +69,7 @@
     "read-pkg": "^1.1.0",
     "read-pkg-up": "^3.0.0",
     "structured-source": "^4.0.0",
-    "try-resolve": "^1.0.1",
+    "@textlint/resolver": "^14.2.1",
     "unique-concat": "^0.2.2"
   },
   "devDependencies": {

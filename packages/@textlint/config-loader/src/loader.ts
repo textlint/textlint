@@ -4,9 +4,9 @@ import { TextlintRcConfig } from "./TextlintRcConfig";
 import { moduleInterop } from "@textlint/module-interop";
 import { TextlintConfigDescriptor } from "./TextlintConfigDescriptor";
 import { TextlintPluginCreator } from "@textlint/types";
-import { isPresetCreator, isTextlintFilterRuleReporter, isTextlintRuleModule } from "./is";
-import { dynamicImport } from "./import";
+import { isTextlintRulePresetCreator, isTextlintFilterRuleModule, isTextlintRuleModule } from "./is";
 import { normalizeTextlintPresetSubRuleKey } from "@textlint/utils";
+import { dynamicImport } from "@textlint/resolver";
 
 const isPluginCreator = (mod: any): mod is TextlintPluginCreator => {
     return typeof mod === "object" && Object.prototype.hasOwnProperty.call(mod, "Processor");
@@ -34,8 +34,10 @@ export const loadPlugins = async ({
         await Promise.all(
             pluginsObject.map(async (pluginId) => {
                 const resolvedModule = moduleResolver.resolvePluginPackageName(pluginId);
-                const mod = await dynamicImport(resolvedModule.filePath);
-                const plugin = moduleInterop(mod.default);
+                const mod = await dynamicImport(resolvedModule.filePath, {
+                    parentModule: "config-loader"
+                });
+                const plugin = moduleInterop(mod.exports?.default);
                 if (!isPluginCreator(plugin)) {
                     pluginErrors.push(
                         new Error(`Plugin should be object that has "Processor" property. But "${pluginId}" is not.
@@ -46,6 +48,7 @@ FilePath: ${resolvedModule.filePath}
 For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
 `)
                     );
+                    return;
                 }
                 plugins.push({
                     type: "Plugin",
@@ -73,8 +76,10 @@ For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs
                         plugins.push(replacedDefinition);
                     } else {
                         const resolvedPlugin = moduleResolver.resolvePluginPackageName(pluginId);
-                        const mod = await dynamicImport(resolvedPlugin.filePath);
-                        const plugin = moduleInterop(mod.default);
+                        const mod = await dynamicImport(resolvedPlugin.filePath, {
+                            parentModule: "config-loader"
+                        });
+                        const plugin = moduleInterop(mod.exports?.default);
                         if (!isPluginCreator(plugin)) {
                             pluginErrors.push(
                                 new Error(`Plugin should be object that has "Processor" property. But "${pluginId}" is not.
@@ -147,9 +152,11 @@ export const loadFilterRules = async ({
                     rules.push(replacedDefinition);
                 } else {
                     const resolvePackage = moduleResolver.resolveFilterRulePackageName(ruleId);
-                    const mod = await dynamicImport(resolvePackage.filePath);
-                    const ruleModule = moduleInterop(mod.default);
-                    if (!isTextlintFilterRuleReporter(ruleModule)) {
+                    const mod = await dynamicImport(resolvePackage.filePath, {
+                        parentModule: "config-loader"
+                    });
+                    const ruleModule = moduleInterop(mod.exports?.default);
+                    if (!isTextlintFilterRuleModule(ruleModule)) {
                         ruleErrors.push(
                             new Error(`Filter rule should be object that has "filter" property. But ${ruleId} is not.`)
                         );
@@ -229,8 +236,10 @@ export const loadRules = async ({
                     } else {
                         // load rule
                         const resolvePackage = moduleResolver.resolveRulePackageName(ruleId);
-                        const mod = await dynamicImport(resolvePackage.filePath);
-                        const ruleModule = moduleInterop(mod.default);
+                        const mod = await dynamicImport(resolvePackage.filePath, {
+                            parentModule: "config-loader"
+                        });
+                        const ruleModule = moduleInterop(mod.exports?.default);
                         if (!isTextlintRuleModule(ruleModule)) {
                             ruleErrors.push(
                                 new Error(`Rule should have "rules" and "rulesConfig" properties. But ${ruleId} is not.
@@ -282,9 +291,11 @@ export async function loadPreset({
     moduleResolver: TextLintModuleResolver;
 }): Promise<TextlintConfigDescriptor["rules"]> {
     const presetPackageName = moduleResolver.resolvePresetPackageName(presetName);
-    const mod = await dynamicImport(presetPackageName.filePath);
-    const preset = moduleInterop(mod.default);
-    if (!isPresetCreator(preset)) {
+    const mod = await dynamicImport(presetPackageName.filePath, {
+        parentModule: "config-loader"
+    });
+    const preset = moduleInterop(mod.exports?.default);
+    if (!isTextlintRulePresetCreator(preset)) {
         throw new Error(`preset should have rules and rulesConfig: ${presetName}`);
     }
     // we should use preset.rules → some preset use different name actual rule

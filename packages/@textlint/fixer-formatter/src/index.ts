@@ -5,9 +5,7 @@ import { moduleInterop } from "@textlint/module-interop";
 import fs from "fs";
 import path from "path";
 import debug0 from "debug";
-// @ts-expect-error
-import tryResolve from "try-resolve";
-import { pathToFileURL } from "node:url";
+import { tryResolve, dynamicImport } from "@textlint/resolver";
 // formatters
 import compatsFormatter from "./formatters/compats";
 import diffFormatter from "./formatters/diff";
@@ -22,16 +20,12 @@ const builtinFormatterList = {
     json: jsonFormatter,
     stylish: stylishFormatter
 } as const;
+type FormatterFunction = (results: TextlintFixResult[], formatterConfig: FormatterConfig) => string;
+const isFormatterFunction = (formatter: any): formatter is FormatterFunction => {
+    return typeof formatter === "function";
+};
 type BuiltInFormatterName = keyof typeof builtinFormatterList;
 const builtinFormatterNames = Object.keys(builtinFormatterList);
-// import() can not load Window file path
-// convert file path to file URL before import()
-// https://github.com/nodejs/node/issues/31710
-export async function dynamicImport(targetPath: string) {
-    const fileUrl = pathToFileURL(targetPath).href;
-    return import(fileUrl);
-}
-
 const debug = debug0("textlint:textfix-formatter");
 
 export type FormatterConfig = { color?: boolean; formatterName: string };
@@ -46,21 +40,39 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
             }
         };
     }
-    let formatter: (results: TextlintFixResult[], formatterConfig: FormatterConfig) => string;
+    let formatter: FormatterFunction;
     let formatterPath;
     if (fs.existsSync(formatterName)) {
         formatterPath = formatterName;
     } else if (fs.existsSync(path.resolve(process.cwd(), formatterName))) {
         formatterPath = path.resolve(process.cwd(), formatterName);
     } else {
-        const pkgPath = tryResolve(`textlint-formatter-${formatterName}`) || tryResolve(formatterName);
+        const pkgPath =
+            tryResolve(`textlint-formatter-${formatterName}`, {
+                parentModule: "fixer-formatter"
+            }) ||
+            tryResolve(formatterName, {
+                parentModule: "fixer-formatter"
+            });
         if (pkgPath) {
             formatterPath = pkgPath;
         }
     }
+    if (!formatterPath) {
+        throw new Error(`Could not find formatter ${formatterName}`);
+    }
     try {
-        const moduleExports = (await dynamicImport(formatterPath)).default;
-        formatter = moduleInterop(moduleExports);
+        const mod = moduleInterop(
+            (
+                await dynamicImport(formatterPath, {
+                    parentModule: "fixer-formatter"
+                })
+            ).exports
+        )?.default;
+        if (!isFormatterFunction(mod)) {
+            throw new Error(`formatter should export function, but ${formatterPath} exports ${typeof mod}`);
+        }
+        formatter = mod;
     } catch (ex) {
         throw new Error(`Could not find formatter ${formatterName}
 See https://github.com/textlint/textlint/issues/148
@@ -93,10 +105,19 @@ export function createFormatter(formatterConfig: FormatterConfig) {
     } else if (fs.existsSync(path.resolve(process.cwd(), formatterName))) {
         formatterPath = path.resolve(process.cwd(), formatterName);
     } else {
-        const pkgPath = tryResolve(`textlint-formatter-${formatterName}`) || tryResolve(formatterName);
+        const pkgPath =
+            tryResolve(`textlint-formatter-${formatterName}`, {
+                parentModule: "fixer-formatter"
+            }) ||
+            tryResolve(formatterName, {
+                parentModule: "fixer-formatter"
+            });
         if (pkgPath) {
             formatterPath = pkgPath;
         }
+    }
+    if (!formatterPath) {
+        throw new Error(`Could not find formatter ${formatterName}`);
     }
     try {
         formatter = moduleInterop(require(formatterPath));

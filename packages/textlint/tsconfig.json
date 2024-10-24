@@ -57,6 +57,9 @@
       "path": "../@textlint/utils"
     },
     {
+      "path": "../@textlint/resolver"
+    },
+    {
       "path": "../@textlint/legacy-textlint-core"
     }
   ]

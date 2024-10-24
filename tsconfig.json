@@ -47,6 +47,9 @@
       "path": "packages/@textlint/module-interop"
     },
     {
+      "path": "packages/@textlint/resolver"
+    },
+    {
       "path": "packages/@textlint/source-code-fixer"
     },
     {

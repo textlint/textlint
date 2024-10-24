@@ -1,0 +1,60 @@
+{
+  "name": "@textlint/resolver",
+  "version": "14.2.1",
+  "description": "Module Resolver Utility for textlint",
+  "keywords": [
+    "textlint",
+    "node",
+    "config",
+    "loader"
+  ],
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/resolver/",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "type": "commonjs",
+  "main": "lib/src/index.js",
+  "module": "module/src/index.js",
+  "types": "./module/src/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "bin/",
+    "module/",
+    "src/"
+  ],
+  "scripts": {
+    "build": "tsc -b && tsc -b tsconfig.module.json",
+    "clean": "tsc -b --clean && tsc -b tsconfig.module.json --clean",
+    "prepublishOnly": "npm run clean && npm run build",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "prepublish": "npm run --if-present build",
+    "test": "mocha",
+    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
+    "watch": "tsc --build --watch"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": false,
+    "tabWidth": 4
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.9",
+    "@types/node": "^20.16.12",
+    "mocha": "^10.7.3",
+    "prettier": "^2.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.1.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

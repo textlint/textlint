@@ -1,8 +1,7 @@
 import * as path from "path";
 import { PackageNamePrefix } from "./package-prefix";
 import { createFullPackageName } from "./textlint-package-name-util";
-// @ts-ignore
-import tryResolve from "try-resolve";
+import { tryResolve } from "@textlint/resolver";
 
 export interface ConfigModulePrefix {
     CONFIG_PACKAGE_PREFIX: string;
@@ -49,7 +48,9 @@ export class TextLintModuleResolver {
         if (cachedFilePath) {
             return cachedFilePath;
         }
-        const ret: string | undefined = tryResolve(modulePath);
+        const ret = tryResolve(modulePath, {
+            parentModule: "config-loader"
+        });
         if (ret) {
             this.moduleCache.set(modulePath, ret);
             return ret;
@@ -225,7 +226,13 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         const baseDir = this.baseDirectory;
         const fullPackageName = createFullPackageName(PackageNamePrefix.config, packageName);
         // <plugin-name> or textlint-config-<rule-name>
-        const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
+        const pkgPath =
+            tryResolve(path.join(baseDir, fullPackageName), {
+                parentModule: "config-loader"
+            }) ||
+            tryResolve(path.join(baseDir, packageName), {
+                parentModule: "config-loader"
+            });
         if (!pkgPath) {
             throw new ReferenceError(`Failed to load textlint's config module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
