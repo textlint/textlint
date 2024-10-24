@@ -74,7 +74,17 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
         throw new Error(`Could not find formatter ${formatterName}`);
     }
     try {
-        formatter = moduleInterop((await dynamicImport(formatterPath)).default);
+        const mod = moduleInterop(
+            (
+                await dynamicImport(formatterPath, {
+                    parentModule: "linter-formatter"
+                })
+            ).exports
+        );
+        if (typeof mod !== "function") {
+            throw new Error(`formatter should export function, but ${formatterPath} exports ${typeof mod}`);
+        }
+        formatter = mod;
     } catch (ex) {
         throw new Error(`Could not find formatter ${formatterName}
 ${ex}`);

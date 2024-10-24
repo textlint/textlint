@@ -58,8 +58,17 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
         throw new Error(`Could not find formatter ${formatterName}`);
     }
     try {
-        const moduleExports = (await dynamicImport(formatterPath)).default;
-        formatter = moduleInterop(moduleExports);
+        const mod = moduleInterop(
+            (
+                await dynamicImport(formatterPath, {
+                    parentModule: "fixer-formatter"
+                })
+            ).exports
+        );
+        if (typeof mod !== "function") {
+            throw new Error(`formatter should export function, but ${formatterPath} exports ${typeof mod}`);
+        }
+        formatter = mod;
     } catch (ex) {
         throw new Error(`Could not find formatter ${formatterName}
 See https://github.com/textlint/textlint/issues/148
