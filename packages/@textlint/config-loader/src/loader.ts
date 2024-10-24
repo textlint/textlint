@@ -4,7 +4,7 @@ import { TextlintRcConfig } from "./TextlintRcConfig";
 import { moduleInterop } from "@textlint/module-interop";
 import { TextlintConfigDescriptor } from "./TextlintConfigDescriptor";
 import { TextlintPluginCreator } from "@textlint/types";
-import { isPresetCreator, isTextlintFilterRuleReporter, isTextlintRuleModule } from "./is";
+import { isTextlintRulePresetCreator, isTextlintFilterRuleModule, isTextlintRuleModule } from "./is";
 import { normalizeTextlintPresetSubRuleKey } from "@textlint/utils";
 import { dynamicImport } from "@textlint/resolver";
 
@@ -156,7 +156,7 @@ export const loadFilterRules = async ({
                         parentModule: "config-loader"
                     });
                     const ruleModule = moduleInterop(mod.exports?.default);
-                    if (!isTextlintFilterRuleReporter(ruleModule)) {
+                    if (!isTextlintFilterRuleModule(ruleModule)) {
                         ruleErrors.push(
                             new Error(`Filter rule should be object that has "filter" property. But ${ruleId} is not.`)
                         );
@@ -295,7 +295,7 @@ export async function loadPreset({
         parentModule: "config-loader"
     });
     const preset = moduleInterop(mod.exports?.default);
-    if (!isPresetCreator(preset)) {
+    if (!isTextlintRulePresetCreator(preset)) {
         throw new Error(`preset should have rules and rulesConfig: ${presetName}`);
     }
     // we should use preset.rules → some preset use different name actual rule

@@ -16,3 +16,5 @@ export {
     TextlintConfigRule,
     TextlintConfigRulePreset
 } from "./TextlintConfigDescriptor";
+
+export { isTextlintRulePresetCreator, isTextlintRuleModule, isTextlintFilterRuleModule } from "./is";

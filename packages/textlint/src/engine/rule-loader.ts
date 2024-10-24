@@ -4,7 +4,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { TextlintKernelRule } from "@textlint/kernel";
 import { dynamicImport } from "@textlint/resolver";
-import { isTextlintRuleModule } from "@textlint/config-loader/src/is";
+import { isTextlintRuleModule } from "@textlint/config-loader";
 
 /**
  * Load all rule modules from specified directory.

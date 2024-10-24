@@ -26,27 +26,37 @@ export function hasLinter(ruleCreator: any): boolean {
  * @param {*} ruleCreator
  * @returns {boolean}
  */
-function hasFixer(ruleCreator: any): boolean {
+export function hasFixer(ruleCreator: any): boolean {
     if (!ruleCreator) {
         return false;
     }
     return typeof ruleCreator.fixer === "function" && hasLinter(ruleCreator);
 }
 
+/**
+ * is textlint rule module
+ * type guard
+ * @param mod
+ */
 export const isTextlintRuleModule = (mod: unknown): mod is TextlintRuleModule => {
     // it is same with isRuleModule() in @textlint/kernel
     return hasLinter(mod) || hasFixer(mod);
 };
+/**
+ * is textlint filter rule reporter
+ * type guard
+ * @param mod
+ */
+export const isTextlintFilterRuleModule = (mod: unknown): mod is TextlintFilterRuleReporter => {
+    return typeof mod === "function";
+};
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 /**
- * Check if the given value is a preset object
+ * is textlint rule preset
+ * type guard
  * @param mod
  */
-export const isPresetCreator = (mod: unknown): mod is TextlintConfigRulePreset["preset"] => {
+export const isTextlintRulePresetCreator = (mod: unknown): mod is TextlintConfigRulePreset["preset"] => {
     return hasOwnProperty.call(mod, "rules") && hasOwnProperty.call(mod, "rulesConfig");
-};
-
-export const isTextlintFilterRuleReporter = (mod: unknown): mod is TextlintFilterRuleReporter => {
-    return typeof mod === "function";
 };
