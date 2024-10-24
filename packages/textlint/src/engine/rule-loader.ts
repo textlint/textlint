@@ -67,7 +67,7 @@ export async function loadFromDirAsESM(
             const mod = await dynamicImport(path.join(rulesDirAbsolutePath, ruleFile), {
                 parentModule: "textlint"
             });
-            const ruleModule = moduleInterop(mod.exports)?.default;
+            const ruleModule = moduleInterop(mod.exports?.default);
             if (!isTextlintRuleModule(ruleModule)) {
                 throw new Error(`Module ${ruleFile} should export rule module`);
             }
