@@ -2,7 +2,7 @@ import * as url from "node:url";
 import path from "node:path";
 
 export type ResolverContext = {
-    parentModule: "config-loader" | "fixer-formatter" | "linter-formatter" | "textlint-legacy";
+    parentModule: "config-loader" | "fixer-formatter" | "linter-formatter" | "textlint" | "textlint-legacy";
 };
 type ResolverSkipResult = undefined;
 /**

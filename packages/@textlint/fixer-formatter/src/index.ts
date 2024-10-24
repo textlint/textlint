@@ -20,6 +20,10 @@ const builtinFormatterList = {
     json: jsonFormatter,
     stylish: stylishFormatter
 } as const;
+type FormatterFunction = (results: TextlintFixResult[], formatterConfig: FormatterConfig) => string;
+const isFormatterFunction = (formatter: any): formatter is FormatterFunction => {
+    return typeof formatter === "function";
+};
 type BuiltInFormatterName = keyof typeof builtinFormatterList;
 const builtinFormatterNames = Object.keys(builtinFormatterList);
 const debug = debug0("textlint:textfix-formatter");
@@ -36,7 +40,7 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
             }
         };
     }
-    let formatter: (results: TextlintFixResult[], formatterConfig: FormatterConfig) => string;
+    let formatter: FormatterFunction;
     let formatterPath;
     if (fs.existsSync(formatterName)) {
         formatterPath = formatterName;
@@ -64,8 +68,8 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
                     parentModule: "fixer-formatter"
                 })
             ).exports
-        );
-        if (typeof mod !== "function") {
+        )?.default;
+        if (!isFormatterFunction(mod)) {
             throw new Error(`formatter should export function, but ${formatterPath} exports ${typeof mod}`);
         }
         formatter = mod;

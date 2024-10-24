@@ -35,6 +35,10 @@ const builtinFormatterList = {
 type BuiltInFormatterName = keyof typeof builtinFormatterList;
 const builtinFormatterNames = Object.keys(builtinFormatterList);
 const debug = debug0("textlint:@textlint/linter-formatter");
+type FormatterFunction = (results: TextlintResult[], formatterConfig: FormatterConfig) => string;
+const isFormatterFunction = (formatter: any): formatter is FormatterFunction => {
+    return typeof formatter === "function";
+};
 
 export interface FormatterConfig {
     formatterName: string;
@@ -51,7 +55,7 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
             }
         };
     }
-    let formatter: (results: TextlintResult[], formatterConfig: FormatterConfig) => string;
+    let formatter: FormatterFunction;
     let formatterPath;
     if (fs.existsSync(formatterName)) {
         formatterPath = formatterName;
@@ -80,8 +84,8 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
                     parentModule: "linter-formatter"
                 })
             ).exports
-        );
-        if (typeof mod !== "function") {
+        )?.default;
+        if (!isFormatterFunction(mod)) {
             throw new Error(`formatter should export function, but ${formatterPath} exports ${typeof mod}`);
         }
         formatter = mod;
