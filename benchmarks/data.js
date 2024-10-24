@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729754402787,
+  "lastUpdate": 1729754806411,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -42546,6 +42546,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7029213419400001,
             "unit": "seconds",
             "range": "± 0.01269844099999995"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1e8c32bf80ce26f14da22d7151a643bf0fb6b5ca",
+          "message": "chore(release): v14.3.0 (#1433)\n\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2024-10-24T16:24:12+09:00",
+          "tree_id": "a44df90e346001c0d9d17e8851ae662f5956c758",
+          "url": "https://github.com/textlint/textlint/commit/1e8c32bf80ce26f14da22d7151a643bf0fb6b5ca"
+        },
+        "date": 1729754803702,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.0594053623,
+            "unit": "seconds",
+            "range": "± 0.06332944100000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.495241826899999,
+            "unit": "seconds",
+            "range": "± 0.06426103499999947"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7071158623,
+            "unit": "seconds",
+            "range": "± 0.007709783999999997"
           }
         ]
       }
