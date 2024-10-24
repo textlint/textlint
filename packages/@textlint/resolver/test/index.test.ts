@@ -7,7 +7,7 @@ import {
     ResolverContext,
     tryResolve,
     clearHooks,
-} from "../src/index.js";
+} from "../src/index";
 
 describe("@secretlint/resolver", () => {
     const myModuleURL = "file:///path/to/my-module.js";
@@ -39,13 +39,13 @@ describe("@secretlint/resolver", () => {
     describe("tryResolve", () => {
         it("should resolve my-module correctly", () => {
             const result = tryResolve("my-module", {
-                parentModule: "formatter",
+                parentModule: "linter-formatter",
             });
             assert.strictEqual(result, myModuleURL);
         });
         it("should not resolve other-module", () => {
             const result = tryResolve("other-module", {
-                parentModule: "formatter",
+                parentModule: "linter-formatter",
             });
             assert.ok(!result);
         });
@@ -53,7 +53,7 @@ describe("@secretlint/resolver", () => {
     describe("dynamicImport", () => {
         it("should resolve and import my-module correctly", async () => {
             const result = await dynamicImport("my-module", {
-                parentModule: "formatter",
+                parentModule: "linter-formatter",
             });
             assert.ok(result.exports);
             assert.strictEqual(result.exports.default, "My Module");
@@ -61,7 +61,7 @@ describe("@secretlint/resolver", () => {
         it("should not resolve and import other-module", async () => {
             await assert.rejects(async () => {
                 await dynamicImport("other-module", {
-                    parentModule: "formatter",
+                    parentModule: "linter-formatter",
                 });
             });
         });
