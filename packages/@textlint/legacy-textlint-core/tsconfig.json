@@ -19,10 +19,10 @@
       "path": "../kernel"
     },
     {
-      "path": "../textlint-plugin-text"
+      "path": "../textlint-plugin-markdown"
     },
     {
-      "path": "../textlint-plugin-markdown"
+      "path": "../textlint-plugin-text"
     }
   ]
 }
