@@ -1,22 +1,22 @@
-# @secretlint/resolver
+# @textlint/resolver
 
-Resolver/Dynamic Import helper for SecretLint
+Resolver/Dynamic Import helper for textlint
 
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
 
-    npm install @secretlint/resolver
+    npm install @textlint/resolver
 
 ## Feature
 
 - Try to resolve package name to file path
 - Resolver/Import Hooks
-  - Binary Compiler use this hooks to resolve dynamic import as statically
+  - UseCase: use this hooks to resolve dynamic import as statically for Bun
 
 ## Changelog
 
-See [Releases page](https://github.com/secretlint/secretlint/releases).
+See [Releases page](https://github.com/textlint/textlint/releases).
 
 ## Running tests
 
@@ -28,7 +28,7 @@ Install devDependencies and Run `npm test`:
 
 Pull requests and stars are always welcome.
 
-For bugs and feature requests, [please create an issue](https://github.com/secretlint/secretlint/issues).
+For bugs and feature requests, [please create an issue](https://github.com/textlint/textlint/issues).
 
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
