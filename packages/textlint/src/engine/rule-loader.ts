@@ -69,7 +69,7 @@ export async function loadFromDirAsESM(
             });
             const ruleModule = moduleInterop(mod.exports?.default);
             if (!isTextlintRuleModule(ruleModule)) {
-                throw new Error(`Module ${ruleFile} should export rule module`);
+                throw new Error(`Loaded Module ${ruleFile} should export rule module`);
             }
             const ret: TextlintKernelRule = {
                 rule: ruleModule,
