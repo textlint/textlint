@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729751025677,
+  "lastUpdate": 1729751663199,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -42168,6 +42168,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7105344629399999,
             "unit": "seconds",
             "range": "± 0.023951156999999945"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "7c383885eaeeac2cbf6289a08b08179a214a89cc",
+          "message": "fix: Formater imports",
+          "timestamp": "2024-10-24T15:32:44+09:00",
+          "tree_id": "fcbaa918ce85877691a89972abb90a866f1ffa34",
+          "url": "https://github.com/textlint/textlint/commit/7c383885eaeeac2cbf6289a08b08179a214a89cc"
+        },
+        "date": 1729751660611,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.62932044006,
+            "unit": "seconds",
+            "range": "± 0.015422642999999958"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.42544348826,
+            "unit": "seconds",
+            "range": "± 0.00476211700000001"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.42132569365999994,
+            "unit": "seconds",
+            "range": "± 0.008850941999999973"
           }
         ]
       }
