@@ -9,7 +9,7 @@ also completely [inconsistent][test] with regards to paragraphs in list items.
 A link. Not anymore.
 
 <aside>This will make me fail the test because
-markdown.js doesnt acknowledge arbitrary html blocks =/</aside>
+markdown.js doesn't acknowledge arbitrary html blocks =/</aside>
 
 * List Item 1
 

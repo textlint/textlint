@@ -100,7 +100,7 @@ export class TextlintRuleContextImpl implements TextlintRuleContext {
         );
         invariant(_shouldNotUsed === undefined, "3rd argument should not be used. Usage: `report(node, ruleError);`");
         if (ruleError instanceof TextlintRuleErrorImpl) {
-            // severity come from `.textlintrc` option like `{ "<rule-name>" : { serverity: "warning" } } `
+            // severity come from `.textlintrc` option like `{ "<rule-name>" : { severity: "warning" } } `
             this._report({ ruleId: this._ruleId, node, severity: this._severityLevel, ruleError });
         } else {
             const ruleReportedObject: TextlintRuleReportedObject = ruleError;
