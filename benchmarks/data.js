@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1733065558295,
+  "lastUpdate": 1733065811472,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -44142,6 +44142,48 @@ window.BENCHMARK_DATA = {
             "value": 0.71250824026,
             "unit": "seconds",
             "range": "± 0.01656991200000002"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f470a4875340113737f42e0923412cda71771a03",
+          "message": "feat(@textlint/legacy-textlint-core): add `fixFile` API (#1441)\n\n* feat(@textlint/legacy-textlint-core): add `fixFile` API\r\n\r\n* test: fix test\r\n\r\n* chore: update lerna",
+          "timestamp": "2024-12-02T00:07:50+09:00",
+          "tree_id": "d324c1e3ea4d3f5472b449bc21c90ead19317930",
+          "url": "https://github.com/textlint/textlint/commit/f470a4875340113737f42e0923412cda71771a03"
+        },
+        "date": 1733065808642,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.0450002652399997,
+            "unit": "seconds",
+            "range": "± 0.06613882100000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.4265542496400005,
+            "unit": "seconds",
+            "range": "± 0.09957916399999966"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.70629575284,
+            "unit": "seconds",
+            "range": "± 0.007338625999999904"
           }
         ]
       }
