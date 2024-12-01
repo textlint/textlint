@@ -1,9 +1,11 @@
 import type {
     TextlintFilterRuleReporter,
+    TextlintFixResult,
     TextlintKernelFilterRule,
     TextlintKernelPlugin,
     TextlintKernelRule,
     TextlintPluginCreator,
+    TextlintResult,
     TextlintRuleModule,
 } from "@textlint/kernel";
 import { TextlintKernel, TextlintKernelDescriptor } from "@textlint/kernel";
@@ -106,7 +108,7 @@ export class TextLintCore {
      * @param rules
      * @param rulesOption
      */
-    setupRules(rules = {}, rulesOption = {}) {
+    setupRules(rules = {}, rulesOption = {}): void {
         this.kernelDescriptor = this.kernelDescriptor.concat(
             new TextlintKernelDescriptor({
                 rules: rulesObjectToKernelRule(rules, rulesOption),
@@ -121,7 +123,7 @@ export class TextLintCore {
      * @param filterRules
      * @param filterRulesConfig
      */
-    setupFilterRules(filterRules = {}, filterRulesConfig = {}) {
+    setupFilterRules(filterRules = {}, filterRulesConfig = {}): void {
         this.kernelDescriptor = this.kernelDescriptor.concat(
             new TextlintKernelDescriptor({
                 rules: [],
@@ -135,7 +137,7 @@ export class TextLintCore {
      * reset defined rules
      * reset to initial state
      */
-    resetRules() {
+    resetRules(): void {
         this.kernelDescriptor = new TextlintKernelDescriptor({
             rules: [],
             filterRules: [],
@@ -164,7 +166,7 @@ export class TextLintCore {
      * @param text
      * @param ext
      */
-    async lintText(text: string, ext = ".txt") {
+    async lintText(text: string, ext = ".txt"): Promise<TextlintResult> {
         const kernel = new TextlintKernel();
         return kernel.lintText(text, {
             ext,
@@ -176,7 +178,7 @@ export class TextLintCore {
      * lint text as markdown and return results
      * @param text
      */
-    async lintMarkdown(text: string) {
+    async lintMarkdown(text: string): Promise<TextlintResult> {
         const kernel = new TextlintKernel();
         return kernel.lintText(text, {
             ext: ".md",
@@ -188,7 +190,7 @@ export class TextLintCore {
      * lint file and return results
      * @param filePath
      */
-    async lintFile(filePath: string) {
+    async lintFile(filePath: string): Promise<TextlintResult> {
         const content = await fs.readFile(filePath, "utf-8");
         const kernel = new TextlintKernel();
         return kernel.lintText(content, {
@@ -204,10 +206,23 @@ export class TextLintCore {
      * @param text
      * @param ext
      */
-    async fixText(text: string, ext = ".txt") {
+    async fixText(text: string, ext = ".txt"): Promise<TextlintFixResult> {
         const kernel = new TextlintKernel();
         return kernel.fixText(text, {
             ext,
+            ...this.kernelDescriptor.toKernelOptions(),
+        });
+    }
+
+    /**
+     * fix file and return results
+     */
+    async fixFile(filePath: string): Promise<TextlintFixResult> {
+        const content = await fs.readFile(filePath, "utf-8");
+        const kernel = new TextlintKernel();
+        return kernel.fixText(content, {
+            ext: path.extname(filePath),
+            filePath,
             ...this.kernelDescriptor.toKernelOptions(),
         });
     }
