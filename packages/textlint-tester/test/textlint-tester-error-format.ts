@@ -58,8 +58,9 @@ describe("Error format", () => {
                             ext: ".md"
                         });
                     },
-                    {
-                        message: errorMsg
+                    (err: Error) => {
+                        assert.ok(err.message.includes(errorMsg));
+                        return true;
                     }
                 );
             });
@@ -113,8 +114,9 @@ when valid it expects to raise an error.
                             description: "when valid it expects to raise an error."
                         });
                     },
-                    {
-                        message: errorMsg
+                    (err: Error) => {
+                        assert.ok(err.message.includes(errorMsg));
+                        return true;
                     }
                 );
             });
@@ -142,8 +144,9 @@ text
                             errors: [{ message: "Found TODO: '- [ ] string'", line: 1, column: 3 }]
                         });
                     },
-                    {
-                        message: errorMsg
+                    (err: Error) => {
+                        assert.ok(err.message.includes(errorMsg));
+                        return true;
                     }
                 );
             });
@@ -173,8 +176,9 @@ text
                             description: "when invalid it expects to raise an error."
                         });
                     },
-                    {
-                        message: errorMsg
+                    (err: Error) => {
+                        assert.ok(err.message.includes(errorMsg));
+                        return true;
                     }
                 );
             });
