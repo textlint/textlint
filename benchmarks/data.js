@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1733063395477,
+  "lastUpdate": 1733063414322,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -43890,6 +43890,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7140435572800001,
             "unit": "seconds",
             "range": "± 0.017887893999999904"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "ebb6d88b966a93db808176caaaadecad034912bd",
+          "message": "feat(@textlint/legacy-textlint-core): add `fixFile` API",
+          "timestamp": "2024-12-01T23:27:25+09:00",
+          "tree_id": "1473b65a0e49b2611a8b0b0ef5e0a7b164420d9b",
+          "url": "https://github.com/textlint/textlint/commit/ebb6d88b966a93db808176caaaadecad034912bd"
+        },
+        "date": 1733063411689,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.13458997574,
+            "unit": "seconds",
+            "range": "± 0.0593179479999999"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.58377178594,
+            "unit": "seconds",
+            "range": "± 0.20319507299999984"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7235439049400001,
+            "unit": "seconds",
+            "range": "± 0.019335571999999912"
           }
         ]
       }
