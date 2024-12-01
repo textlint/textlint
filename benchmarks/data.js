@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1733065447522,
+  "lastUpdate": 1733065558295,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -44100,6 +44100,48 @@ window.BENCHMARK_DATA = {
             "value": 0.70793672594,
             "unit": "seconds",
             "range": "± 0.011851881000000009"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "06359255cae07fc749f7bc8a84b50480b00d7f82",
+          "message": "Merge remote-tracking branch 'origin' into add-fix-file",
+          "timestamp": "2024-12-02T00:03:28+09:00",
+          "tree_id": "d324c1e3ea4d3f5472b449bc21c90ead19317930",
+          "url": "https://github.com/textlint/textlint/commit/06359255cae07fc749f7bc8a84b50480b00d7f82"
+        },
+        "date": 1733065555664,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.08925350006,
+            "unit": "seconds",
+            "range": "± 0.02795780700000039"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.51950272146,
+            "unit": "seconds",
+            "range": "± 0.14320715100000037"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.71250824026,
+            "unit": "seconds",
+            "range": "± 0.01656991200000002"
           }
         ]
       }
