@@ -44,7 +44,7 @@
         "@textlint/source-code-fixer": "^14.4.0",
         "@textlint/types": "^14.4.0",
         "@textlint/utils": "^14.4.0",
-        "debug": "^4.3.4",
+        "debug": "^4.4.0",
         "fast-equals": "^4.0.3",
         "structured-source": "^4.0.0"
     },
