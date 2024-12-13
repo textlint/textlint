@@ -47,7 +47,7 @@
     },
     "dependencies": {
         "@textlint/types": "^14.4.0",
-        "debug": "^4.3.4"
+        "debug": "^4.4.0"
     },
     "devDependencies": {
         "@types/mocha": "^9.1.1",
