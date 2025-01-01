@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1735733672068,
+  "lastUpdate": 1735734052146,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -45444,6 +45444,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7115671260800001,
             "unit": "seconds",
             "range": "± 0.019991021999999914"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5256f9c4c6d0a2e79927cd10ceb888e691047984",
+          "message": " fix(textlint): catch file-entry-cache exception  (#1449)\n\n* fix(textlint): catch file-entry-cache exception\n\n* fix(textlint): catch file-entry-cache exception",
+          "timestamp": "2025-01-01T21:17:36+09:00",
+          "tree_id": "45e79d647492562cd63b8f8074e05a9659bb8dfc",
+          "url": "https://github.com/textlint/textlint/commit/5256f9c4c6d0a2e79927cd10ceb888e691047984"
+        },
+        "date": 1735734048740,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.1302081547599996,
+            "unit": "seconds",
+            "range": "± 0.041231236000000226"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.45723599496,
+            "unit": "seconds",
+            "range": "± 0.06277225200000025"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.72070832176,
+            "unit": "seconds",
+            "range": "± 0.03123726799999993"
           }
         ]
       }
