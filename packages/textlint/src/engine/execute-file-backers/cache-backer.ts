@@ -47,13 +47,18 @@ export class CacheBacker implements AbstractBacker {
         if (!this.isEnabled) {
             return true;
         }
-        const descriptor = this.fileCache.getFileDescriptor(filePath);
-        const meta = descriptor.meta || {};
-        // if the config is changed or file is changed, should execute return true
-        const isChanged =
-            descriptor.changed || (meta.data as FileEntryCacheCustomData).hashOfConfig !== this.config.hash;
-        debug(`Skipping file since hasn't changed: ${filePath}`);
-        return isChanged;
+        try {
+            const descriptor = this.fileCache.getFileDescriptor(filePath);
+            const meta = descriptor.meta || {};
+            // if the config is changed or file is changed, should execute return true
+            const isChanged =
+                descriptor.changed || (meta.data as FileEntryCacheCustomData).hashOfConfig !== this.config.hash;
+            debug(`Skipping file since hasn't changed: ${filePath}`);
+            return isChanged;
+        } catch (error) {
+            debug(`shouldExecute: Failed to read cache file: ${filePath}`, error);
+            return true; // if cache file version is changed, it may throw an error
+        }
     }
 
     didExecute<R extends TextlintResult>({ result }: { result: R }) {
@@ -61,19 +66,23 @@ export class CacheBacker implements AbstractBacker {
             return;
         }
         const filePath = result.filePath;
-        const descriptor = this.fileCache.getFileDescriptor(filePath);
-        const meta = descriptor.meta || {};
-        /*
-         * if a file contains messages we don't want to store the file in the cache
-         * so we can guarantee that next execution will also operate on this file
-         */
-        if (result.messages.length > 0) {
-            debug(`File has problems, skipping it: ${filePath}`);
-            // remove the entry from the cache
-            this.fileCache.removeEntry(filePath);
-        } else {
-            // cache `config.hash`
-            meta.data = { hashOfConfig: this.config.hash };
+        try {
+            const descriptor = this.fileCache.getFileDescriptor(filePath);
+            const meta = descriptor.meta || {};
+            /*
+             * if a file contains messages we don't want to store the file in the cache
+             * so we can guarantee that next execution will also operate on this file
+             */
+            if (result.messages.length > 0) {
+                debug(`File has problems, skipping it: ${filePath}`);
+                // remove the entry from the cache
+                this.fileCache.removeEntry(filePath);
+            } else {
+                // cache `config.hash`
+                meta.data = { hashOfConfig: this.config.hash };
+            }
+        } catch (error) {
+            debug(`didExecute: Failed to read cache file: ${filePath}`, error);
         }
     }
 
