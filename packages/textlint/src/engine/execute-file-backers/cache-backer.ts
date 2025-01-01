@@ -1,26 +1,42 @@
 // MIT © 2016 azu
 "use strict";
-// @ts-expect-error
-import fileEntryCache from "file-entry-cache";
+import fileEntryCache, { FileEntryCache } from "file-entry-cache";
 import debug0 from "debug";
+import path from "node:path";
 import { AbstractBacker } from "./abstruct-backer";
-const debug = debug0("textlint:CacheBacker");
-
 import { TextlintResult } from "@textlint/kernel";
 
+const debug = debug0("textlint:CacheBacker");
+
+export type CacheBackerOptions = {
+    /**
+     * enable cache
+     */
+    cache: boolean;
+    /**
+     * path to cache file
+     */
+    cacheLocation: string;
+    /**
+     * Config hash value
+     */
+    hash: string;
+};
+type FileEntryCacheCustomData = {
+    hashOfConfig: string;
+};
+
 export class CacheBacker implements AbstractBacker {
-    private fileCache: any;
+    private fileCache: FileEntryCache;
     private isEnabled: boolean;
 
-    /**
-     * @param {Config} config
-     */
-    constructor(private config: { cache: boolean; cacheLocation: string; hash: string }) {
-        /**
-         * @type {boolean}
-         */
+    constructor(private config: CacheBackerOptions) {
         this.isEnabled = config.cache;
-        this.fileCache = fileEntryCache.create(config.cacheLocation);
+        const filename = path.basename(config.cacheLocation);
+        const cacheDir = path.dirname(config.cacheLocation);
+        // use the metadata for cache instead of the file content
+        // TODO: if we want to reuse the cache in CI, we should use the file content cache and save relative path into the cache
+        this.fileCache = fileEntryCache.create(filename, cacheDir, false);
     }
 
     /**
@@ -34,7 +50,8 @@ export class CacheBacker implements AbstractBacker {
         const descriptor = this.fileCache.getFileDescriptor(filePath);
         const meta = descriptor.meta || {};
         // if the config is changed or file is changed, should execute return true
-        const isChanged = descriptor.changed || meta.hashOfConfig !== this.config.hash;
+        const isChanged =
+            descriptor.changed || (meta.data as FileEntryCacheCustomData).hashOfConfig !== this.config.hash;
         debug(`Skipping file since hasn't changed: ${filePath}`);
         return isChanged;
     }
@@ -56,7 +73,7 @@ export class CacheBacker implements AbstractBacker {
             this.fileCache.removeEntry(filePath);
         } else {
             // cache `config.hash`
-            meta.hashOfConfig = this.config.hash;
+            meta.data = { hashOfConfig: this.config.hash };
         }
     }
 

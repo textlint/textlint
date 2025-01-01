@@ -59,7 +59,7 @@
     "@textlint/types": "^14.4.0",
     "@textlint/utils": "^14.4.0",
     "debug": "^4.4.0",
-    "file-entry-cache": "^5.0.1",
+    "file-entry-cache": "^10.0.5",
     "get-stdin": "^5.0.1",
     "glob": "^10.4.5",
     "md5": "^2.3.0",
