@@ -1,6 +1,6 @@
 {
   "name": "@textlint/fixer-formatter",
-  "version": "14.3.0",
+  "version": "14.4.0",
   "description": "textlint output formatter for fixer",
   "keywords": [
     "AST",
@@ -37,11 +37,11 @@
     "test": "mocha"
   },
   "dependencies": {
-    "@textlint/module-interop": "^14.3.0",
-    "@textlint/resolver": "^14.3.0",
-    "@textlint/types": "^14.3.0",
+    "@textlint/module-interop": "^14.4.0",
+    "@textlint/resolver": "^14.4.0",
+    "@textlint/types": "^14.4.0",
     "chalk": "^4.1.2",
-    "debug": "^4.3.4",
+    "debug": "^4.4.0",
     "diff": "^5.2.0",
     "string-width": "^4.2.3",
     "strip-ansi": "^6.0.1",
