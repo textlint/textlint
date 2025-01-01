@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1735731381861,
+  "lastUpdate": 1735731449126,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -45108,6 +45108,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7045878200200001,
             "unit": "seconds",
             "range": "± 0.019241763000000023"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "a2fa388853a43df049710cc74487d5681b4826fc",
+          "message": "Update package-lock.json",
+          "timestamp": "2025-01-01T20:34:55+09:00",
+          "tree_id": "4a9a5b58cbaf4916549f3810732c328e850fb062",
+          "url": "https://github.com/textlint/textlint/commit/a2fa388853a43df049710cc74487d5681b4826fc"
+        },
+        "date": 1735731446382,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.16572118918,
+            "unit": "seconds",
+            "range": "± 0.11093280999999999"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.463217141780001,
+            "unit": "seconds",
+            "range": "± 0.04210128699999949"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.71914276218,
+            "unit": "seconds",
+            "range": "± 0.02240046799999995"
           }
         ]
       }
