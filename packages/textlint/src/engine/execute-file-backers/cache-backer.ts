@@ -22,6 +22,9 @@ export type CacheBackerOptions = {
      */
     hash: string;
 };
+type FileEntryCacheCustomData = {
+    hashOfConfig: string;
+};
 
 export class CacheBacker implements AbstractBacker {
     private fileCache: FileEntryCache;
@@ -47,7 +50,8 @@ export class CacheBacker implements AbstractBacker {
         const descriptor = this.fileCache.getFileDescriptor(filePath);
         const meta = descriptor.meta || {};
         // if the config is changed or file is changed, should execute return true
-        const isChanged = descriptor.changed || meta.data !== this.config.hash;
+        const isChanged =
+            descriptor.changed || (meta.data as FileEntryCacheCustomData).hashOfConfig !== this.config.hash;
         debug(`Skipping file since hasn't changed: ${filePath}`);
         return isChanged;
     }
@@ -69,7 +73,7 @@ export class CacheBacker implements AbstractBacker {
             this.fileCache.removeEntry(filePath);
         } else {
             // cache `config.hash`
-            meta.data = this.config.hash;
+            meta.data = { hashOfConfig: this.config.hash };
         }
     }
 
