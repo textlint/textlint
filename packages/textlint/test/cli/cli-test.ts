@@ -364,6 +364,29 @@ describe("cli-test", function () {
                 assert.strictEqual(result, 0);
             });
         });
+        it("if invalid .textlitcache exists, it should not throw", function () {
+            return runWithMockLog(async () => {
+                // write old cache
+                fs.writeFileSync(
+                    cacheLocation,
+                    JSON.stringify([
+                        {
+                            "/path/to/file.md": "1"
+                        }
+                    ]),
+                    "utf-8"
+                );
+                // then, run textlint
+                const targetFile = path.join(__dirname, "fixtures/test.md");
+                const ruleModuleName = "textlint-rule-no-todo";
+                const result = await cli.execute(
+                    `--cache --cache-location "${cacheLocation}" --rule "${ruleModuleName}" ${targetFile}`
+                );
+                assert.strictEqual(fs.existsSync(cacheLocation), true);
+                // work fine
+                assert.strictEqual(result, 0);
+            });
+        });
     });
     describe("--print-config", function () {
         it("should print current descriptor.toJSON()", function () {

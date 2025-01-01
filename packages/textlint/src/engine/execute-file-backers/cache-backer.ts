@@ -3,6 +3,7 @@
 import fileEntryCache, { FileEntryCache } from "file-entry-cache";
 import debug0 from "debug";
 import path from "node:path";
+import fs from "node:fs";
 import { AbstractBacker } from "./abstruct-backer";
 import { TextlintResult } from "@textlint/kernel";
 
@@ -26,17 +27,33 @@ type FileEntryCacheCustomData = {
     hashOfConfig: string;
 };
 
+const createFileEntryCache = (cacheLocation: string): FileEntryCache => {
+    const filename = path.basename(cacheLocation);
+    const cacheDir = path.dirname(cacheLocation);
+    try {
+        // use the metadata for cache instead of the file content
+        // TODO: if we want to reuse the cache in CI, we should use the file content cache and save relative path into the cache
+
+        return fileEntryCache.create(filename, cacheDir, false);
+    } catch (error) {
+        debug(`Failed to create fileEntryCache, filename: ${filename}, cacheDir: ${cacheDir}`, error);
+        // remove old cache file and retry
+        try {
+            fs.unlinkSync(path.join(cacheDir, filename));
+        } catch (error) {
+            debug(`Failed to remove cache file, filename: ${filename}, cacheDir: ${cacheDir}`, error);
+        }
+        return fileEntryCache.create(filename, cacheDir, false);
+    }
+};
+
 export class CacheBacker implements AbstractBacker {
     private fileCache: FileEntryCache;
     private isEnabled: boolean;
 
     constructor(private config: CacheBackerOptions) {
         this.isEnabled = config.cache;
-        const filename = path.basename(config.cacheLocation);
-        const cacheDir = path.dirname(config.cacheLocation);
-        // use the metadata for cache instead of the file content
-        // TODO: if we want to reuse the cache in CI, we should use the file content cache and save relative path into the cache
-        this.fileCache = fileEntryCache.create(filename, cacheDir, false);
+        this.fileCache = createFileEntryCache(config.cacheLocation);
     }
 
     /**
