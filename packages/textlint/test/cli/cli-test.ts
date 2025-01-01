@@ -348,7 +348,7 @@ describe("cli-test", function () {
         const cacheLocation = path.join(__dirname, ".textlintcache");
         afterEach(() => {
             try {
-                // fs.unlinkSync(cacheLocation);
+                fs.unlinkSync(cacheLocation);
             } catch {
                 // nope
             }
