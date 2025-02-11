@@ -44,10 +44,10 @@
     },
     "devDependencies": {
         "@types/mocha": "^9.1.1",
-        "@types/node": "^18.19.9",
+        "@types/node": "^18.19.75",
         "analyze-desumasu-dearu": "^4.0.1",
         "match-index": "^1.0.3",
-        "mocha": "^10.8.1",
+        "mocha": "^10.8.2",
         "rimraf": "^3.0.2",
         "textlint-plugin-html": "^0.3.0",
         "textlint-rule-helper": "^2.3.1",
