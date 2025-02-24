@@ -41,14 +41,14 @@ export default class MessageProcessManager {
         if (this._preProcessors.length === 0) {
             throw new Error("pre process should be > 0");
         }
-        const preProcessedMesssages = this._preProcessors.reduce((messages, filter) => {
+        const preProcessedMessages = this._preProcessors.reduce((messages, filter) => {
             return filter(messages);
         }, originalMessages) as TextlintMessage[];
         if (this._processors.length === 0) {
-            return preProcessedMesssages;
+            return preProcessedMessages;
         }
         return this._processors.reduce((messages, filter) => {
             return filter(messages);
-        }, preProcessedMesssages);
+        }, preProcessedMessages);
     }
 }
