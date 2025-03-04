@@ -12,8 +12,11 @@ import type {
     TxtHorizontalRuleNode,
     TxtHtmlNode,
     TxtImageNode,
+    TxtImageReferenceNode,
+    TxtDefinitionNode,
     TxtCodeNode,
     TxtLinkNode,
+    TxtLinkReferenceNode,
     TxtListItemNode,
     TxtListNode,
     TxtParagraphNode,
@@ -75,6 +78,10 @@ export type TypeofTxtNode<T extends ASTNodeTypes | string> =
         ? TxtLinkNode
         : T extends ASTNodeTypes.LinkExit
         ? TxtLinkNode
+        : T extends ASTNodeTypes.LinkReference // [link][1]
+        ? TxtLinkReferenceNode
+        : T extends ASTNodeTypes.LinkReferenceExit
+        ? TxtLinkReferenceNode
         : T extends ASTNodeTypes.Delete // ~~Str~~
         ? TxtDeleteNode
         : T extends ASTNodeTypes.DeleteExit
@@ -95,6 +102,14 @@ export type TypeofTxtNode<T extends ASTNodeTypes | string> =
         ? TxtImageNode
         : T extends ASTNodeTypes.ImageExit
         ? TxtImageNode
+        : T extends ASTNodeTypes.ImageReference // ![alt][1]
+        ? TxtImageReferenceNode
+        : T extends ASTNodeTypes.ImageReferenceExit
+        ? TxtImageReferenceNode
+        : T extends ASTNodeTypes.Definition // [1]: https://example.com
+        ? TxtDefinitionNode
+        : T extends ASTNodeTypes.DefinitionExit
+        ? TxtDefinitionNode
         : T extends ASTNodeTypes.HorizontalRule // ----
         ? TxtHorizontalRuleNode
         : T extends ASTNodeTypes.HorizontalRuleExit

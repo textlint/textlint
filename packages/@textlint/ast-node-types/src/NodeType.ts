@@ -230,8 +230,23 @@ export interface TxtLinkNode extends TxtParentNode, TxtResource {
     children: StaticPhrasingContent[];
 }
 
+export interface TxtLinkReferenceNode extends TxtParentNode, TxtReference {
+    type: "LinkReference";
+    children: StaticPhrasingContent[];
+    referenceType: ReferenceType;
+}
+
 export interface TxtImageNode extends TxtNode, TxtResource, TxtAlternative {
     type: "Image";
+}
+
+export interface TxtImageReferenceNode extends TxtNode, TxtAlternative, TxtReference {
+    type: "ImageReference";
+    referenceType: ReferenceType;
+}
+
+export interface TxtDefinitionNode extends TxtNode, TxtResource, TxtReference {
+    type: "Definition";
 }
 
 // Mixin
@@ -242,4 +257,9 @@ export interface TxtResource {
 
 export interface TxtAlternative {
     alt?: string | null | undefined;
+}
+
+export interface TxtReference {
+    identifier: string;
+    label: string;
 }
