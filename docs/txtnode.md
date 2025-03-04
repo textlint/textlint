@@ -142,58 +142,58 @@ const nodeType = TypeofTxtNode<ASTNodeTypes.Str>; // TxtTextNode
 
 These types are defined in [`@textlint/ast-node-types`](https://github.com/textlint/textlint/tree/master/packages/%40textlint/ast-node-types).
 
-| Type name                       | Node type                        | Description                                 |
-|---------------------------------|----------------------------------|---------------------------------------------|
-| ASTNodeTypes.Document           | TxtDocumentNode(TxtParentNode)   | Root Node                                   |
-| ASTNodeTypes.DocumentExit       | TxtDocumentNode(TxtParentNode)   |                                             |
-| ASTNodeTypes.Paragraph          | TxtParagraphNode(TxtParentNode)  | Paragraph Node                              |
-| ASTNodeTypes.ParagraphExit      | TxtParagraphNode(TxtParentNode)  |                                             |
-| ASTNodeTypes.BlockQuote         | TxtBlockQuoteNode(TxtParentNode) | > Block Quote Node                          |
-| ASTNodeTypes.BlockQuoteExit     | TxtBlockQuoteNode(TxtParentNode) |                                             |
-| ASTNodeTypes.List               | TxtListNode(TxtParentNode)       | List Node                                   |
-| ASTNodeTypes.ListExit           | TxtListNode(TxtParentNode)       |                                             |
-| ASTNodeTypes.ListItem           | TxtListItemNode(TxtParentNode)   | List (each) item Node                       |
-| ASTNodeTypes.ListItemExit       | TxtListItemNode(TxtParentNode)   |                                             |
-| ASTNodeTypes.Header             | TxtHeaderNode(TxtParentNode)     | # Header Node                               |
-| ASTNodeTypes.HeaderExit         | TxtHeaderNode(TxtParentNode)     |                                             |
-| ASTNodeTypes.CodeBlock          | TxtCodeBlockNode(TxtParentNode)  | Code Block Node                             |
-| ASTNodeTypes.CodeBlockExit      | TxtCodeBlockNode(TxtParentNode)  |                                             |
-| ASTNodeTypes.HtmlBlock          | TxtHtmlBlockNode(TxtParentNode)  | HTML Block Node                             |
-| ASTNodeTypes.HtmlBlockExit      | TxtHtmlBlockNode(TxtParentNode)  |                                             |
-| ASTNodeTypes.Link               | TxtLinkNode(TxtParentNode)       | Link Node                                   |
-| ASTNodeTypes.LinkExit           | TxtLinkNode(TxtParentNode)       |                                             |
-| ASTNodeTypes.LinkReference      | TxtLinkReferenceNode             | Link Reference Node(`[link][1]`)            |
-| ASTNodeTypes.LinkReferenceExit  | TxtLinkReferenceNode             |                                             |
-| ASTNodeTypes.Delete             | TxtDeleteNode(TxtParentNode)     | Delete Node(`~Str~`)                        |
-| ASTNodeTypes.DeleteExit         | TxtDeleteNode(TxtParentNode)     |                                             |
-| ASTNodeTypes.Emphasis           | TxtEmphasisNode(TxtParentNode)   | Emphasis(`*Str*`)                           |
-| ASTNodeTypes.EmphasisExit       | TxtEmphasisNode(TxtParentNode)   |                                             |
-| ASTNodeTypes.Strong             | TxtStrongNode(TxtParentNode)     | Strong Node(`**Str**`)                      |
-| ASTNodeTypes.StrongExit         | TxtStrongNode(TxtParentNode)     |                                             |
-| ASTNodeTypes.Break              | TxtBreakNode                     | Hard Break Node(`Str<space><space>`)        |
-| ASTNodeTypes.BreakExit          | TxtBreakNode                     |                                             |
-| ASTNodeTypes.Image              | TxtImageNode                     | Image Node                                  |
-| ASTNodeTypes.ImageExit          | TxtImageNode                     |                                             |
-| ASTNodeTypes.ImageReference     | TxtImageReferenceNode            | Image Reference Node(`![alt][1]`)           |
-| ASTNodeTypes.ImageReferenceExit | TxtImageReferenceNode            |                                             |
-| ASTNodeTypes.Definition         | TxtDefinitionNode                | Definition Node(`[1]: https://example.com`) |
-| ASTNodeTypes.DefinitionExit     | TxtDefinitionNode                |                                             |
-| ASTNodeTypes.HorizontalRule     | TxtHorizontalRuleNode            | Horizontal Node(`---`)                      |
-| ASTNodeTypes.HorizontalRuleExit | TxtHorizontalRuleNode            |                                             |
-| ASTNodeTypes.Comment            | TxtCommentNode                   | Comment Node                                |
-| ASTNodeTypes.CommentExit        | TxtCommentNode                   |                                             |
-| ASTNodeTypes.Str                | TxtStrNode                       | Str Node                                    |
-| ASTNodeTypes.StrExit            | TxtStrNode                       |                                             |
-| ASTNodeTypes.Code               | TxtCodeNode                      | Inline Code Node                            |
-| ASTNodeTypes.CodeExit           | TxtCodeNode                      |                                             |
-| ASTNodeTypes.Html               | TxtHtmlNode                      | Inline HTML Node                            |
-| ASTNodeTypes.HtmlExit           | TxtHtmlNode                      |                                             |
-| ASTNodeTypes.Table              | TxtTableNode                     | Table Node. textlint 13+                    |
-| ASTNodeTypes.TableExit          | TxtTableNode                     |                                             |
-| ASTNodeTypes.TableRow           | TxtTableRowNode                  | Table row Node. textlint 13+                |
-| ASTNodeTypes.TableRowExit       | TxtTableRowNode                  |                                             |
-| ASTNodeTypes.TableCell          | TxtTableCellNode                 | Table cell Node. textlint 13+               |
-| ASTNodeTypes.TableCellExit      | TxtTableCellNode                 |                                             |
+| Type name                       | Node type                           | Description                                 |
+|---------------------------------|-------------------------------------|---------------------------------------------|
+| ASTNodeTypes.Document           | TxtDocumentNode(TxtParentNode)      | Root Node                                   |
+| ASTNodeTypes.DocumentExit       | TxtDocumentNode(TxtParentNode)      |                                             |
+| ASTNodeTypes.Paragraph          | TxtParagraphNode(TxtParentNode)     | Paragraph Node                              |
+| ASTNodeTypes.ParagraphExit      | TxtParagraphNode(TxtParentNode)     |                                             |
+| ASTNodeTypes.BlockQuote         | TxtBlockQuoteNode(TxtParentNode)    | > Block Quote Node                          |
+| ASTNodeTypes.BlockQuoteExit     | TxtBlockQuoteNode(TxtParentNode)    |                                             |
+| ASTNodeTypes.List               | TxtListNode(TxtParentNode)          | List Node                                   |
+| ASTNodeTypes.ListExit           | TxtListNode(TxtParentNode)          |                                             |
+| ASTNodeTypes.ListItem           | TxtListItemNode(TxtParentNode)      | List (each) item Node                       |
+| ASTNodeTypes.ListItemExit       | TxtListItemNode(TxtParentNode)      |                                             |
+| ASTNodeTypes.Header             | TxtHeaderNode(TxtParentNode)        | # Header Node                               |
+| ASTNodeTypes.HeaderExit         | TxtHeaderNode(TxtParentNode)        |                                             |
+| ASTNodeTypes.CodeBlock          | TxtCodeBlockNode(TxtParentNode)     | Code Block Node                             |
+| ASTNodeTypes.CodeBlockExit      | TxtCodeBlockNode(TxtParentNode)     |                                             |
+| ASTNodeTypes.HtmlBlock          | TxtHtmlBlockNode(TxtParentNode)     | HTML Block Node                             |
+| ASTNodeTypes.HtmlBlockExit      | TxtHtmlBlockNode(TxtParentNode)     |                                             |
+| ASTNodeTypes.Link               | TxtLinkNode(TxtParentNode)          | Link Node                                   |
+| ASTNodeTypes.LinkExit           | TxtLinkNode(TxtParentNode)          |                                             |
+| ASTNodeTypes.LinkReference      | TxtLinkReferenceNode(TxtParentNode) | Link Reference Node(`[link][1]`)            |
+| ASTNodeTypes.LinkReferenceExit  | TxtLinkReferenceNode(TxtParentNode) |                                             |
+| ASTNodeTypes.Delete             | TxtDeleteNode(TxtParentNode)        | Delete Node(`~Str~`)                        |
+| ASTNodeTypes.DeleteExit         | TxtDeleteNode(TxtParentNode)        |                                             |
+| ASTNodeTypes.Emphasis           | TxtEmphasisNode(TxtParentNode)      | Emphasis(`*Str*`)                           |
+| ASTNodeTypes.EmphasisExit       | TxtEmphasisNode(TxtParentNode)      |                                             |
+| ASTNodeTypes.Strong             | TxtStrongNode(TxtParentNode)        | Strong Node(`**Str**`)                      |
+| ASTNodeTypes.StrongExit         | TxtStrongNode(TxtParentNode)        |                                             |
+| ASTNodeTypes.Break              | TxtBreakNode                        | Hard Break Node(`Str<space><space>`)        |
+| ASTNodeTypes.BreakExit          | TxtBreakNode                        |                                             |
+| ASTNodeTypes.Image              | TxtImageNode                        | Image Node                                  |
+| ASTNodeTypes.ImageExit          | TxtImageNode                        |                                             |
+| ASTNodeTypes.ImageReference     | TxtImageReferenceNode               | Image Reference Node(`![alt][1]`)           |
+| ASTNodeTypes.ImageReferenceExit | TxtImageReferenceNode               |                                             |
+| ASTNodeTypes.Definition         | TxtDefinitionNode                   | Definition Node(`[1]: https://example.com`) |
+| ASTNodeTypes.DefinitionExit     | TxtDefinitionNode                   |                                             |
+| ASTNodeTypes.HorizontalRule     | TxtHorizontalRuleNode               | Horizontal Node(`---`)                      |
+| ASTNodeTypes.HorizontalRuleExit | TxtHorizontalRuleNode               |                                             |
+| ASTNodeTypes.Comment            | TxtCommentNode                      | Comment Node                                |
+| ASTNodeTypes.CommentExit        | TxtCommentNode                      |                                             |
+| ASTNodeTypes.Str                | TxtStrNode                          | Str Node                                    |
+| ASTNodeTypes.StrExit            | TxtStrNode                          |                                             |
+| ASTNodeTypes.Code               | TxtCodeNode                         | Inline Code Node                            |
+| ASTNodeTypes.CodeExit           | TxtCodeNode                         |                                             |
+| ASTNodeTypes.Html               | TxtHtmlNode                         | Inline HTML Node                            |
+| ASTNodeTypes.HtmlExit           | TxtHtmlNode                         |                                             |
+| ASTNodeTypes.Table              | TxtTableNode                        | Table Node. textlint 13+                    |
+| ASTNodeTypes.TableExit          | TxtTableNode                        |                                             |
+| ASTNodeTypes.TableRow           | TxtTableRowNode                     | Table row Node. textlint 13+                |
+| ASTNodeTypes.TableRowExit       | TxtTableRowNode                     |                                             |
+| ASTNodeTypes.TableCell          | TxtTableCellNode                    | Table cell Node. textlint 13+               |
+| ASTNodeTypes.TableCellExit      | TxtTableCellNode                    |                                             |
 
 Some node have additional properties.
 For example, `TxtHeaderNode` has `level` property.
