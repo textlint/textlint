@@ -115,7 +115,7 @@ If you want to clear the cache, you can use the `--no-cache` option or just remo
 - Not found lint error
 - --fix: found errors but fix all errors, so exit with 0
 - --output-file: Found lint error but --output-file is specified
-- --dryRun: Found lint error but --dryRun is specified
+- --dry-run: Found lint error but --dry-run is specified
 
 `1`: Lint Error
 
