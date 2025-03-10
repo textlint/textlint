@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1741634821681,
+  "lastUpdate": 1741646704849,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -47208,6 +47208,48 @@ window.BENCHMARK_DATA = {
             "value": 0.73813257346,
             "unit": "seconds",
             "range": "± 0.01576303000000001"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a66c1052d4cb929c3bbd8a2436497df794d7eb97",
+          "message": "chore(deps): update dependency lerna to ^8.2.1 (#1464)\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-03-10T22:42:36Z",
+          "tree_id": "8ff5908c00de24d4335c6cd4065bb28c97cecf35",
+          "url": "https://github.com/textlint/textlint/commit/a66c1052d4cb929c3bbd8a2436497df794d7eb97"
+        },
+        "date": 1741646701806,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.13723969414,
+            "unit": "seconds",
+            "range": "± 0.06450829399999991"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.501951460140001,
+            "unit": "seconds",
+            "range": "± 0.25656744600000003"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.72193134894,
+            "unit": "seconds",
+            "range": "± 0.018940924999999997"
           }
         ]
       }
