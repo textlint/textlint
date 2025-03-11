@@ -12,7 +12,10 @@ import {
     TxtHtmlNode,
     TxtCodeNode,
     TxtImageNode,
+    TxtImageReferenceNode,
+    TxtDefinitionNode,
     TxtLinkNode,
+    TxtLinkReferenceNode,
     TxtListItemNode,
     TxtListNode,
     TxtParagraphNode,
@@ -76,6 +79,12 @@ const report: TextlintRuleReporter = (context) => {
         [Syntax.LinkExit](node) {
             expectType<TxtLinkNode>(node);
         },
+        [Syntax.LinkReference](node) {
+            expectType<TxtLinkReferenceNode>(node);
+        },
+        [Syntax.LinkReferenceExit](node) {
+            expectType<TxtLinkReferenceNode>(node);
+        },
         [Syntax.Delete](node) {
             expectType<TxtDeleteNode>(node);
         },
@@ -105,6 +114,18 @@ const report: TextlintRuleReporter = (context) => {
         },
         [Syntax.ImageExit](node) {
             expectType<TxtImageNode>(node);
+        },
+        [Syntax.ImageReference](node) {
+            expectType<TxtImageReferenceNode>(node);
+        },
+        [Syntax.ImageReferenceExit](node) {
+            expectType<TxtImageReferenceNode>(node);
+        },
+        [Syntax.Definition](node) {
+            expectType<TxtDefinitionNode>(node);
+        },
+        [Syntax.DefinitionExit](node) {
+            expectType<TxtDefinitionNode>(node);
         },
         [Syntax.HorizontalRule](node) {
             expectType<TxtHorizontalRuleNode>(node);
