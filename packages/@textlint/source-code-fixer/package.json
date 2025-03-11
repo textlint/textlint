@@ -1,6 +1,6 @@
 {
     "name": "@textlint/source-code-fixer",
-    "version": "14.4.2",
+    "version": "14.5.0",
     "description": "Apply @textlint/kernel lint result to text.",
     "keywords": [
         "textlint",
@@ -46,7 +46,7 @@
         "trailingComma": "none"
     },
     "dependencies": {
-        "@textlint/types": "^14.4.2",
+        "@textlint/types": "^14.5.0",
         "debug": "^4.4.0"
     },
     "devDependencies": {
