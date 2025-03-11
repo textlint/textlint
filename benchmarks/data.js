@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1741700577169,
+  "lastUpdate": 1741737428684,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -47376,6 +47376,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7261588558,
             "unit": "seconds",
             "range": "± 0.006611405999999986"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpfos@naver.com",
+            "name": "루밀LuMir",
+            "username": "lumirlumir"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5e724d614746f41b082d455092763a575913d0cf",
+          "message": "feat(@textlint/ast-node-types): add missing `LinkReference`, `ImageReference` and `Definition` node types (#1459)\n\n* feat(@textlint/ast-node-types): add `LinkReference`, `ImageReference`, and `Definition` Node types\n\n* wip: add missing `TxtParentNode` in `txtnode.md`",
+          "timestamp": "2025-03-12T08:54:49+09:00",
+          "tree_id": "95f37f8321bff91f34cf7a613b387c4d7a1b0561",
+          "url": "https://github.com/textlint/textlint/commit/5e724d614746f41b082d455092763a575913d0cf"
+        },
+        "date": 1741737425645,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.12983422224,
+            "unit": "seconds",
+            "range": "± 0.03764241899999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.541652794239999,
+            "unit": "seconds",
+            "range": "± 0.22609711399999988"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7199803040400001,
+            "unit": "seconds",
+            "range": "± 0.017460421000000004"
           }
         ]
       }
