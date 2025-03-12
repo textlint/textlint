@@ -195,6 +195,9 @@ These types are defined in [`@textlint/ast-node-types`](https://github.com/textl
 | ASTNodeTypes.TableCell          | TxtTableCellNode                    | Table cell Node. textlint 13+               |
 | ASTNodeTypes.TableCellExit      | TxtTableCellNode                    |                                             |
 
+> 📝Note
+> `LinkReference`, `ImageReference` and `Definition` are introduced in textlint [v14.5.0](https://github.com/textlint/textlint/releases/tag/v14.5.0).
+
 Some node have additional properties.
 For example, `TxtHeaderNode` has `level` property.
 
