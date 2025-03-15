@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1742081316127,
+  "lastUpdate": 1742081367718,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -47838,6 +47838,48 @@ window.BENCHMARK_DATA = {
             "value": 0.71508486654,
             "unit": "seconds",
             "range": "± 0.015146749999999987"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a7323f0bc0fc73f499f392028d91bc7658bce7f7",
+          "message": "chore(deps): update dependency shelljs to ^0.9.0",
+          "timestamp": "2025-03-15T23:26:58Z",
+          "tree_id": "6231a7a80662bf2c1d9ce1ca7ea48a9c5c59337c",
+          "url": "https://github.com/textlint/textlint/commit/a7323f0bc0fc73f499f392028d91bc7658bce7f7"
+        },
+        "date": 1742081364669,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.14136634104,
+            "unit": "seconds",
+            "range": "± 0.060787511000000016"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.529360649839999,
+            "unit": "seconds",
+            "range": "± 0.10602954700000033"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.72329715264,
+            "unit": "seconds",
+            "range": "± 0.02355245099999992"
           }
         ]
       }
