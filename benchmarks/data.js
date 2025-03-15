@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1742081367718,
+  "lastUpdate": 1742081788637,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -47880,6 +47880,48 @@ window.BENCHMARK_DATA = {
             "value": 0.72329715264,
             "unit": "seconds",
             "range": "± 0.02355245099999992"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c849653e9b223386cd2db7bdc9043ddacb5fe467",
+          "message": "CI: pin actions's version (#1467)\n\nhttps://github.com/suzuki-shunsuke/pinact?tab=readme-ov-file",
+          "timestamp": "2025-03-16T08:34:07+09:00",
+          "tree_id": "f8b7065c94787a27dbfb20e5820a0c816faefcb8",
+          "url": "https://github.com/textlint/textlint/commit/c849653e9b223386cd2db7bdc9043ddacb5fe467"
+        },
+        "date": 1742081785562,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.16092697366,
+            "unit": "seconds",
+            "range": "± 0.020029742000000184"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.536373424660001,
+            "unit": "seconds",
+            "range": "± 0.21991825799999987"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7242410774600001,
+            "unit": "seconds",
+            "range": "± 0.02793857799999999"
           }
         ]
       }
