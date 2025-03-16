@@ -39,7 +39,7 @@
     "devDependencies": {
         "lint-staged": "^13.3.0",
         "prettier": "^2.2.1",
-        "shelljs": "^0.8.5"
+        "shelljs": "^0.9.1"
     },
     "dependencies": {
         "@babel/cli": "^7.26.4",
