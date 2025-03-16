@@ -83,7 +83,7 @@
     "clone": "^2.1.2",
     "mocha": "^10.8.1",
     "rimraf": "^3.0.2",
-    "shelljs": "^0.8.5",
+    "shelljs": "^0.9.1",
     "textlint-plugin-html": "^0.3.0",
     "textlint-rule-helper": "^2.3.1",
     "textlint-rule-no-todo": "^2.0.1",
