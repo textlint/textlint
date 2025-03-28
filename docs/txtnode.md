@@ -156,8 +156,8 @@ These types are defined in [`@textlint/ast-node-types`](https://github.com/textl
 | ASTNodeTypes.ListItemExit       | TxtListItemNode(TxtParentNode)      |                                             |
 | ASTNodeTypes.Header             | TxtHeaderNode(TxtParentNode)        | # Header Node                               |
 | ASTNodeTypes.HeaderExit         | TxtHeaderNode(TxtParentNode)        |                                             |
-| ASTNodeTypes.CodeBlock          | TxtCodeBlockNode(TxtParentNode)     | Code Block Node                             |
-| ASTNodeTypes.CodeBlockExit      | TxtCodeBlockNode(TxtParentNode)     |                                             |
+| ASTNodeTypes.CodeBlock          | TxtCodeBlockNode                    | Code Block Node                             |
+| ASTNodeTypes.CodeBlockExit      | TxtCodeBlockNode                    |                                             |
 | ASTNodeTypes.HtmlBlock          | TxtHtmlBlockNode(TxtParentNode)     | HTML Block Node                             |
 | ASTNodeTypes.HtmlBlockExit      | TxtHtmlBlockNode(TxtParentNode)     |                                             |
 | ASTNodeTypes.Link               | TxtLinkNode(TxtParentNode)          | Link Node                                   |
