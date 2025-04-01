@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1743485291737,
+  "lastUpdate": 1743485295645,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -49434,6 +49434,48 @@ window.BENCHMARK_DATA = {
             "value": 0.72341628666,
             "unit": "seconds",
             "range": "± 0.026608429000000045"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "52315048+3w36zj6@users.noreply.github.com",
+            "name": "3w36zj6",
+            "username": "3w36zj6"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b1b25571ec4bc2ec53a6a88ebd1f456a4b9b3ee4",
+          "message": "docs: correct `TxtCodeBlockNode` node type (#1471)\n\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2025-04-01T14:25:57+09:00",
+          "tree_id": "89309406d90e7140474195cd4ab1099db578b974",
+          "url": "https://github.com/textlint/textlint/commit/b1b25571ec4bc2ec53a6a88ebd1f456a4b9b3ee4"
+        },
+        "date": 1743485292155,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.14579074272,
+            "unit": "seconds",
+            "range": "± 0.017138206000000267"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.489736767319999,
+            "unit": "seconds",
+            "range": "± 0.03322803899999993"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.72126509452,
+            "unit": "seconds",
+            "range": "± 0.019688503000000024"
           }
         ]
       }
