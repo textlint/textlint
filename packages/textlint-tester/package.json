@@ -13,6 +13,7 @@
     },
     "license": "MIT",
     "author": "azu",
+    "type": "commonjs",
     "files": [
         "bin/",
         "lib/",
