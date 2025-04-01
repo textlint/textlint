@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1743484895604,
+  "lastUpdate": 1743485291737,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -49392,6 +49392,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7368673270000001,
             "unit": "seconds",
             "range": "± 0.02298494799999995"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "52315048+3w36zj6@users.noreply.github.com",
+            "name": "3w36zj6",
+            "username": "3w36zj6"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f2973518b240e8843aa3ce886b4427e2f7cdb908",
+          "message": "feat(config-loader): validate UTF-8 encoding for configuration file (#1472)\n\n* feat(config-loader): validate UTF-8 encoding for configuration file\n\n* test(config-loader): add tests for non-UTF-8 encoded configuration files\n\n* fix(config-loader): move UTF-8 encoding validation logic\n\n* test(config-loader): improve UTF-8 error message assertion",
+          "timestamp": "2025-04-01T14:25:45+09:00",
+          "tree_id": "8fb66148efd587fab60b3760118ee9177bffdc8c",
+          "url": "https://github.com/textlint/textlint/commit/f2973518b240e8843aa3ce886b4427e2f7cdb908"
+        },
+        "date": 1743485288112,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.2644930976599995,
+            "unit": "seconds",
+            "range": "± 0.09646232500000007"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.67981370206,
+            "unit": "seconds",
+            "range": "± 0.2879614850000003"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.72341628666,
+            "unit": "seconds",
+            "range": "± 0.026608429000000045"
           }
         ]
       }
