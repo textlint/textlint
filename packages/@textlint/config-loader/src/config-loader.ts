@@ -3,6 +3,8 @@ import { TextLintModuleResolver } from "./textlint-module-resolver";
 import { loadFilterRules, loadPlugins, loadRules } from "./loader";
 import { TextlintRcConfig } from "./TextlintRcConfig";
 import type { TextlintConfigDescriptor } from "./TextlintConfigDescriptor";
+import { isUtf8 } from "node:buffer";
+import fs from "node:fs";
 
 export type TextlintConfigLoaderOptions = {
     cwd?: string;
@@ -216,12 +218,15 @@ export const loadRawConfig = async (options: TextlintConfigLoaderOptions): Promi
                     message: "textlint config is not found",
                     errors: [
                         new Error(`textlint config is not found
-                
+
 textlint require .textlintrc config file.
 The config file define the use of rules.`)
                     ]
                 }
             };
+        }
+        if (results.filePath && fs.existsSync(results.filePath) && !isUtf8(fs.readFileSync(results.filePath))) {
+            throw new Error("textlint configuration file must be encoded in UTF-8");
         }
         return {
             ok: true,
