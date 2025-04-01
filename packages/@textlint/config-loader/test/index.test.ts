@@ -74,7 +74,7 @@ describe("@textlint/config-loader", () => {
                     );
 
                     const errorDetail = result.error.errors[0].message;
-                    assert.ok(errorDetail.includes("UTF-8"), "Error details should mention UTF-8 encoding");
+                    assert.match(errorDetail, /UTF-8/, "Error details should mention UTF-8 encoding");
                 }
             });
         });
