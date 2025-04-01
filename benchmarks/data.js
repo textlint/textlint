@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1743520370916,
+  "lastUpdate": 1743520820378,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -50148,6 +50148,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7413187478400001,
             "unit": "seconds",
             "range": "± 0.01438508500000002"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "32ac3305be22b815415bd34e9510eb6764867ebb",
+          "message": "docs: replace vscode-textlint link (#1477)",
+          "timestamp": "2025-04-02T00:15:43+09:00",
+          "tree_id": "8b832305c33ee0bc193293307d9e19f39cc05412",
+          "url": "https://github.com/textlint/textlint/commit/32ac3305be22b815415bd34e9510eb6764867ebb"
+        },
+        "date": 1743520816807,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.23255930918,
+            "unit": "seconds",
+            "range": "± 0.04238371199999991"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.69505705918,
+            "unit": "seconds",
+            "range": "± 0.1821485970000003"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.73637181438,
+            "unit": "seconds",
+            "range": "± 0.032124548000000086"
           }
         ]
       }
