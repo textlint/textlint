@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "no-todo": {
+      "SHift_JISのテキスト": true
+    }
+  }
+}

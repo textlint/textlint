@@ -55,4 +55,28 @@ describe("@textlint/config-loader", () => {
             );
         });
     });
+    context("when config file is not encoded in UTF-8", () => {
+        it("should validate UTF-8 encoding and reject non-UTF-8 files", () => {
+            const notUTF8Files = ["shift-jis.json", "euc-jp.json"];
+            notUTF8Files.forEach(async (notUTF8File) => {
+                const configFile = path.join(__dirname, "fixtures", notUTF8File);
+                const result = await loadRawConfig({
+                    configFilePath: configFile,
+                    node_modulesDir: modulesDir
+                });
+                assert.strictEqual(result.ok, false, "Result should be not ok for non-UTF-8 file");
+
+                if (!result.ok) {
+                    assert.strictEqual(
+                        result.error.message,
+                        "textlint configuration file must be encoded in UTF-8",
+                        "Error message should indicate UTF-8 encoding issue"
+                    );
+
+                    const errorDetail = result.error.errors[0].message;
+                    assert.ok(errorDetail.includes("UTF-8"), "Error details should mention UTF-8 encoding");
+                }
+            });
+        });
+    });
 });
