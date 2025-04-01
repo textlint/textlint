@@ -4,6 +4,7 @@
     },
     "author": "azu",
     "license": "MIT",
+    "type": "commonjs",
     "files": [
         "register.js",
         "register-ts.js",
