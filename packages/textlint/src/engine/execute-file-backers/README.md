@@ -9,7 +9,7 @@ Each backer should be implemented these methods.
 ## `shouldExecute({filePath}): boolean`
 
 Should the `filePath` be executed? 
-If anyone opposed(`return false`) backer exist, does't `executeFile`.
+If anyone opposed(`return false`) backer exist, doesn't `executeFile`.
 
 ## `didExecute({filePath, results}): results`
 
