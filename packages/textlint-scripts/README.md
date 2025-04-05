@@ -4,7 +4,7 @@ textlint scripts help you to create textlint rule.
 
 Documentation of creating a textlint rule:
 
-- [Creating Rules · textlint](https://textlint.github.io/docs/rule.html)
+- [Creating Rules · textlint](https://textlint.org/docs/rule.html)
 
 ## Install
 

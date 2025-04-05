@@ -13,9 +13,9 @@ textlint get a new website!
 - [@azu](https://github.com/azu) implement the design and deploy.
 
 
-If you have used textlint in your project or your office, please pull request to add your project to [Users](https://textlint.github.io/users.html)!
+If you have used textlint in your project or your office, please pull request to add your project to [Users](https://textlint.org/users.html)!
 
-- [textlint · users](https://textlint.github.io/users.html)
+- [textlint · users](https://textlint.org/users.html)
 
 ## Related Issues
 

@@ -1,7 +1,7 @@
 # textlint-tester
 
 [Mocha](http://mochajs.org/ "Mocha") test helper library
-for [textlint](https://github.com/textlint/textlint "textlint") [rule](https://textlint.github.io/docs/rule.html).
+for [textlint](https://github.com/textlint/textlint "textlint") [rule](https://textlint.org/docs/rule.html).
 
 ## Installation
 

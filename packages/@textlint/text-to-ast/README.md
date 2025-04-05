@@ -26,7 +26,7 @@ npm install @textlint/text-to-ast
 
 ## DEMO
 
-- [AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint")
+- [AST explorer for textlint](https://textlint.org/astexplorer/ "AST explorer for textlint")
 
 ## Usage
 

@@ -2,7 +2,7 @@
 
 `package.json`'s `"textlint"` field can be used for configuration.
 
-- https://textlint.github.io/docs/configuring.html
+- https://textlint.org/docs/configuring.html
 
 ## Usage
 

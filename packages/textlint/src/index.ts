@@ -34,7 +34,7 @@ export { TextLintCore } from "./DEPRECATED/textlint-core";
 
 /* = New APIs */
 /**
- * @see {https://textlint.github.io/docs/use-as-modules.html#new-apis}
+ * @see {https://textlint.org/docs/use-as-modules.html#new-apis}
  * @example
  *
  * ```js

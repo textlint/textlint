@@ -2,5 +2,5 @@
 
 The pluggable linting tool for text.  
 
-- Website: <https://textlint.github.io/>
+- Website: <https://textlint.org/>
 - Repository: <https://github.com/textlint/textlint>

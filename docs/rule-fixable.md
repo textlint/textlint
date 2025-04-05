@@ -122,10 +122,10 @@ If your textlint's rule is *fixable*, display "this rule is fixable!".
 
 We have *fixable* rule badge and use it!
 
-[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) 
+[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.org/) 
 
 ```markdown
-[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) 
+[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.org/) 
 ```
 
 ## Terms

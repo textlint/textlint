@@ -37,6 +37,6 @@
 import { TextLintCore } from "./DEPRECATED/textlint-core";
 /**
  * singleton instance
- * @deprecated use new APIs https://textlint.github.io/docs/use-as-modules.html#new-apis
+ * @deprecated use new APIs https://textlint.org/docs/use-as-modules.html#new-apis
  */
 export const textlint = new TextLintCore();

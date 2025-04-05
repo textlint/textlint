@@ -22,7 +22,7 @@ This library is a part of [textlint/textlint](https://github.com/textlint/textli
 
 ## DEMO
 
-- [textlint AST explorer](https://textlint.github.io/astexplorer/ "textlint AST explorer")
+- [textlint AST explorer](https://textlint.org/astexplorer/ "textlint AST explorer")
 
 ## Installation
 

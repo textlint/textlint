@@ -81,9 +81,9 @@ In textlint@11.1.0<=, you had to write `[Syntax.Document + ":exit"]`.
 
 [![gif visualize-txt-traverse](https://gyazo.com/155c68f0f9ff35e0a549d655a787c01e.gif)](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse")
 
-[AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") help you better understand [TxtAST](./txtnode.md).
+[AST explorer for textlint](https://textlint.org/astexplorer/ "AST explorer for textlint") help you better understand [TxtAST](./txtnode.md).
 
-[![ast-explorer fork](assets/ast-explorer.png)](https://textlint.github.io/astexplorer/)
+[![ast-explorer fork](assets/ast-explorer.png)](https://textlint.org/astexplorer/)
 
 
 **Related information:**
