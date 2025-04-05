@@ -46,7 +46,8 @@ const users = [
 const siteConfig = {
     title: "textlint" /* title for your website */,
     tagline: "The pluggable linting tool for text and markdown",
-    url: "https://textlint.github.io" /* your website url */,
+    url: "https://textlint.org" /* your website url */,
+    cname: "textlint.github.io",
     editUrl: "https://github.com/textlint/textlint/edit/master/docs/",
     baseUrl: "/" /* base url for your project */,
     organizationName: "textlint", // or set an env variable ORGANIZATION_NAME
