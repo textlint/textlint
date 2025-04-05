@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1743836321014,
+  "lastUpdate": 1743837367111,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -50736,6 +50736,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7119624637600002,
             "unit": "seconds",
             "range": "± 0.014212768000000042"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "dcddeeb1d96bf88652d126d9cb54fd2ed85f9e71",
+          "message": "Merge branch 'master' into fix-cname",
+          "timestamp": "2025-04-05T16:13:38+09:00",
+          "tree_id": "922ce1273b6e86490c34e6591a3d6e815f235650",
+          "url": "https://github.com/textlint/textlint/commit/dcddeeb1d96bf88652d126d9cb54fd2ed85f9e71"
+        },
+        "date": 1743837362573,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.18832647476,
+            "unit": "seconds",
+            "range": "± 0.08291636399999991"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.6363153949600004,
+            "unit": "seconds",
+            "range": "± 0.16031688700000046"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7238699743599999,
+            "unit": "seconds",
+            "range": "± 0.018005570000000026"
           }
         ]
       }
