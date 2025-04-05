@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1743851328405,
+  "lastUpdate": 1743852040948,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -50946,6 +50946,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7142948864800001,
             "unit": "seconds",
             "range": "± 0.02439217799999993"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "85a2ea89aaf602c2db363ef663d97a07c539b3c5",
+          "message": "fix(docs): update links from textlint.github.io to textlint.org (#1485)",
+          "timestamp": "2025-04-05T20:18:16+09:00",
+          "tree_id": "754d2fffef948dafc30a0784357622d7aa8d85fd",
+          "url": "https://github.com/textlint/textlint/commit/85a2ea89aaf602c2db363ef663d97a07c539b3c5"
+        },
+        "date": 1743852037186,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.17387980654,
+            "unit": "seconds",
+            "range": "± 0.04667937100000019"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.57236109694,
+            "unit": "seconds",
+            "range": "± 0.12518366199999953"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.72840053814,
+            "unit": "seconds",
+            "range": "± 0.01754812299999997"
           }
         ]
       }
