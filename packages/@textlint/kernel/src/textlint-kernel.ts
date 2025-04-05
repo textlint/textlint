@@ -172,7 +172,7 @@ ${preProcessResult.stack}
             
 You can check the validation result with "DEBUG=textlint*" env
 
-See https://textlint.github.io/docs/plugin.html`
+See https://textlint.org/docs/plugin.html`
             );
         }
         const sourceCode = new TextlintSourceCodeImpl({
@@ -241,7 +241,7 @@ See https://textlint.github.io/docs/plugin.html`
             
 You can check the validation result with "DEBUG=textlint*" env
 
-See https://textlint.github.io/docs/plugin.html`
+See https://textlint.org/docs/plugin.html`
             );
         }
         const sourceCode = new TextlintSourceCodeImpl({

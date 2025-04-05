@@ -32,7 +32,7 @@ import { Logger } from "../util/logger";
 
 /**
  * @class {TextLintCore}
- * @deprecated use new APIs https://textlint.github.io/docs/use-as-modules.html#new-apis
+ * @deprecated use new APIs https://textlint.org/docs/use-as-modules.html#new-apis
  */
 export class TextLintCore {
     private kernel: TextlintKernel;

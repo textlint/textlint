@@ -2,9 +2,9 @@
 
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://textlint.github.io/media/banner/banner_710x256.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://textlint.github.io/media/logo/spaced/textlint-logo.png">
-  <img alt="textlint log" src="https://textlint.github.io/media/logo/spaced/textlint-logo.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://textlint.org/media/banner/banner_710x256.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://textlint.org/media/logo/spaced/textlint-logo.png">
+  <img alt="textlint log" src="https://textlint.org/media/logo/spaced/textlint-logo.png">
 </picture>
 
 > The pluggable linting tool for text and markdown.
@@ -23,7 +23,7 @@ textlint is similar to [ESLint](http://eslint.org/ "ESLint"), but it's for use w
 - Searchable documents
 - Release blog
 
-Visit [https://textlint.github.io/](https://textlint.github.io/).
+Visit [https://textlint.org/](https://textlint.org/).
 
 ## Features
 
@@ -303,7 +303,7 @@ If you create a new rule, and add it to the wiki :)
 
 ### Fixable
 
-[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/)
+[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.org/)
 
 Some rules are fixable using the `--fix` command line flag.
 
@@ -324,7 +324,7 @@ $ npx textlint --fix --dry-run --format diff README.md
 You can copy and paste to your README.
 
 ```markdown
-[![textlint fixable rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/)
+[![textlint fixable rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.org/)
 ```
 
 ### Built-in formatters
@@ -436,7 +436,7 @@ Please see docs/
 
 You can use filter rule like [textlint-filter-rule-comments](https://github.com/textlint/textlint-filter-rule-comments "textlint-filter-rule-comments").
 
-Please see [Ignoring Text · textlint](https://textlint.github.io/docs/ignore.html) for more details.
+Please see [Ignoring Text · textlint](https://textlint.org/docs/ignore.html) for more details.
 
 ## Integrations
 

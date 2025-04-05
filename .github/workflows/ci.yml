@@ -68,7 +68,7 @@ jobs:
       - name: Output Step Summary
         run: |
           cat ./test/benchmark/result.md > $GITHUB_STEP_SUMMARY
-          echo "- <https://textlint.github.io/textlint/benchmarks/>" >> $GITHUB_STEP_SUMMARY
+          echo "- <https://textlint.org/textlint/benchmarks/>" >> $GITHUB_STEP_SUMMARY
   e2e:
     name: E2E
     runs-on: ubuntu-latest

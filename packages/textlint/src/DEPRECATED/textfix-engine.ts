@@ -9,7 +9,7 @@ import { Logger } from "../util/logger";
 /**
  * TextFixEngine a adapter for TextLintEngineCore.
  * It aim to pull the whole look together. (TextLintEngine and TextFixEngine)
- * @deprecated use new APIs https://textlint.github.io/docs/use-as-modules.html#new-apis
+ * @deprecated use new APIs https://textlint.org/docs/use-as-modules.html#new-apis
  */
 export class TextFixEngine extends AbstractTextLintEngine<TextlintFixResult> {
     constructor(...args: any[]) {

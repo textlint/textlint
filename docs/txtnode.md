@@ -14,9 +14,9 @@ Each node has common properties like `type`, `raw`, `loc`, `range` and `parent` 
 
 Each node has own properties that is defined in each node type.
 
-[![textlint ast-explorer](assets/ast-explorer.png)](https://textlint.github.io/astexplorer/)
+[![textlint ast-explorer](assets/ast-explorer.png)](https://textlint.org/astexplorer/)
 
-[AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") is useful for understanding AST.
+[AST explorer for textlint](https://textlint.org/astexplorer/ "AST explorer for textlint") is useful for understanding AST.
 
 ### `TxtNode`
 
@@ -264,9 +264,9 @@ If you want to use this interface from TypeScript, [packages/ast-node-types](htt
 
 ## Online Parsing Demo
 
-[![ast-explorer fork](assets/ast-explorer.png)](https://textlint.github.io/astexplorer/)
+[![ast-explorer fork](assets/ast-explorer.png)](https://textlint.org/astexplorer/)
 
-[AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") is useful for understanding AST.
+[AST explorer for textlint](https://textlint.org/astexplorer/ "AST explorer for textlint") is useful for understanding AST.
 
 Minimum(recommended) rules is following code:
 
@@ -326,7 +326,7 @@ In other word, textlint's rule handle `TxtNode`, but [formatter](./formatter.md 
 
 Input: `*text*`
 
-Output: The AST by [AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") + Markdown
+Output: The AST by [AST explorer for textlint](https://textlint.org/astexplorer/ "AST explorer for textlint") + Markdown
 
 ```json
 {
