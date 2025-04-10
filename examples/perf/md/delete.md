@@ -8,7 +8,7 @@ var adult = {age:26},
     child.age = 8;
 
 delete child.age;
- /* Remove age property from child, revealing the age of the prototype, because then it is not overriden. */
+ /* Remove age property from child, revealing the age of the prototype, because then it is not overridden. */
 var prototypeAge = child.age;
  // 26, because child does not have its own age property.
 ```
