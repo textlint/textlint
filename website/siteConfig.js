@@ -78,7 +78,7 @@ const siteConfig = {
         textColor: "#000000"
     },
     algolia: {
-        apiKey: "82014cf9b4a2988df9d5ab7a44d9d3b4",
+        apiKey: "27ef1d5fc0d12142485f3784f7d3cb46",
         indexName: "textlint",
         algoliaOptions: {} // Optional, if provided by Algolia
     },
