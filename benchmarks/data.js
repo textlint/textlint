@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1744941185764,
+  "lastUpdate": 1745280319255,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -51660,6 +51660,48 @@ window.BENCHMARK_DATA = {
             "value": 0.72056693526,
             "unit": "seconds",
             "range": "± 0.006673637999999982"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "f8a7a622c5f7c762edd014a6aa94e9c6f4ae56a5",
+          "message": "chore(website): use new docsearch api",
+          "timestamp": "2025-04-22T09:02:50+09:00",
+          "tree_id": "2464dadd1a365a74513812f77297a85be8fac449",
+          "url": "https://github.com/textlint/textlint/commit/f8a7a622c5f7c762edd014a6aa94e9c6f4ae56a5"
+        },
+        "date": 1745280314881,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.0932840553,
+            "unit": "seconds",
+            "range": "± 0.06423655700000008"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.5264443649,
+            "unit": "seconds",
+            "range": "± 0.08236479099999983"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7248629833000001,
+            "unit": "seconds",
+            "range": "± 0.020320019999999994"
           }
         ]
       }
