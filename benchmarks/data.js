@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1745333843363,
+  "lastUpdate": 1745333849896,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -51786,6 +51786,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7202212099399999,
             "unit": "seconds",
             "range": "± 0.006599410000000083"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4f3f53e2b98390eda9dcee683d18e8b4ca092825",
+          "message": "Revert \"chore(website): use new docsearch api (#1490)\"\n\nThis reverts commit 8abc40fbd1c062f79fd7f9f70ee652533105af3a.",
+          "timestamp": "2025-04-22T23:55:05+09:00",
+          "tree_id": "a51daf2b85fa07c4af58fd4110d8503186897129",
+          "url": "https://github.com/textlint/textlint/commit/4f3f53e2b98390eda9dcee683d18e8b4ca092825"
+        },
+        "date": 1745333846172,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.19447314492,
+            "unit": "seconds",
+            "range": "± 0.08106582000000007"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.685920772919999,
+            "unit": "seconds",
+            "range": "± 0.042369566000000525"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.73609988972,
+            "unit": "seconds",
+            "range": "± 0.023007200000000005"
           }
         ]
       }
