@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1745622015047,
+  "lastUpdate": 1745637268514,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -52122,6 +52122,48 @@ window.BENCHMARK_DATA = {
             "value": 0.73554853296,
             "unit": "seconds",
             "range": "± 0.021837955000000076"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5de68833ff6e18eb02bdfd9f5ed5b6ea29c9b7eb",
+          "message": "chore(deps): update softprops/action-gh-release action to v2.2.2 (#1493)\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-04-26T03:11:53Z",
+          "tree_id": "87b6b8581677d6c4373f3a33a88ac6a9e0a1fa51",
+          "url": "https://github.com/textlint/textlint/commit/5de68833ff6e18eb02bdfd9f5ed5b6ea29c9b7eb"
+        },
+        "date": 1745637264141,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.22797728742,
+            "unit": "seconds",
+            "range": "± 0.053237927000000074"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.72938782602,
+            "unit": "seconds",
+            "range": "± 0.18114888900000015"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7300499568200001,
+            "unit": "seconds",
+            "range": "± 0.015131400999999989"
           }
         ]
       }
