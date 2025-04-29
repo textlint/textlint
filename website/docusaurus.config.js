@@ -140,22 +140,28 @@ module.exports = {
                 {
                     to: "docs/getting-started",
                     label: "Docs",
-                    position: "left"
+                    position: "right"
+                },
+
+                {
+                    href: "/blog",
+                    label: "Blog",
+                    position: "right"
                 },
                 {
                     href: "https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule",
                     label: "Rules",
-                    position: "left"
+                    position: "right"
                 },
                 {
                     to: "/help",
                     label: "Help",
-                    position: "left"
+                    position: "right"
                 },
                 {
                     href: "https://github.com/textlint/textlint",
                     label: "GitHub",
-                    position: "left"
+                    position: "right"
                 }
             ]
         },
