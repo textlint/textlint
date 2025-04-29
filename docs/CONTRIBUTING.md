@@ -317,7 +317,7 @@ After all participants on pull request are satisfied to the changes, we will mer
 
 A Maintainer release new version of textlint by following way.
 
-1. Create Release PR via GitHub Actions: <https://github.com/textlint/textlint/actions/workflows/create-release-pr.yml>
+1. Create Release PR via GitHub Actions: [Release PR Action](https://github.com/textlint/textlint/actions/workflows/create-release-pr.yml)
    - Run workflow with `version` input
       - You can select new version with semver(patch,minor,major)
 2. [CI] Create Release PR

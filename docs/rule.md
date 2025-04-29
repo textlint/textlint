@@ -726,7 +726,7 @@ export default function (context, options) {
 
 **History**: This behavior is changed in textlint@11.
 
-- <https://github.com/textlint/textlint/issues/535>
+- [Issue #535](https://github.com/textlint/textlint/issues/535)
 
 ## Advanced example
 

@@ -1,7 +1,6 @@
 ---
 title: New website
-author: azu
-authorURL: "http://github.com/azu"
+authors: azu
 ---
 
 textlint get a new website!

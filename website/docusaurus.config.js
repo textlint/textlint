@@ -73,7 +73,8 @@ export default {
                     sidebarPath: "../website/sidebars.json"
                 },
                 blog: {
-                    path: "blog"
+                    path: "blog",
+                    onUntruncatedBlogPosts: "ignore"
                 },
                 theme: {
                     customCss: "./src/css/customTheme.css"

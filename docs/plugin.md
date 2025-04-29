@@ -70,7 +70,7 @@ It should return supported extension name list.
 
 Notes: 
 
-textlint@10<= support `static availableExtensions(): string[]`.
+textlint versions 10 and above support `static availableExtensions(): string[]`.
 The static method is deprecated in textlint@11.
 you should implement `availableExtensions()` method as instance method.
 
