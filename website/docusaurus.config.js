@@ -116,8 +116,8 @@ export default {
                     title: "Community",
                     items: [
                         {
-                            label: "Project Chat",
-                            href: "https://gitter.im/textlint-ja/textlint-ja"
+                            label: "Discussions",
+                            href: "https://github.com/orgs/textlint/discussions"
                         }
                     ]
                 },
