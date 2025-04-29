@@ -108,7 +108,7 @@ export default {
                         },
                         {
                             label: "Developer Guide",
-                            to: "/docs/rules"
+                            to: "/docs/rule"
                         }
                     ]
                 },
