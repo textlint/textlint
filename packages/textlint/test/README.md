@@ -3,7 +3,7 @@
 ## TODO
 
 - This tests contains `textlint` and `textlint-kernel` test
-- We should separate theses as possible.
+- We should separate these as possible.
 
 ## Purpose
 
