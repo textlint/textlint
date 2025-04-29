@@ -89,6 +89,13 @@
     transform: translateY(-5px);
 }
 
+/* Getting Startedセクションのタイトルスタイル */
+.sectionTitle {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
 .TextlintFeature img {
     height: 64px;
     margin-bottom: 1.5rem;
@@ -138,7 +145,6 @@
     text-align: center;
     max-width: 720px;
     margin: 0 auto 2rem;
-    font-size: 1.1rem;
     line-height: 1.6;
 }
 

@@ -78,14 +78,14 @@ function FeatureSection() {
 function GetStartedSection() {
     const { siteConfig } = useDocusaurusContext();
     return (
-        <section className="container margin-vert--xl">
-            <h2 id="getting-started" className="text--center">
+        <section className="container">
+            <h2 id="getting-started" className={`text--center ${styles.sectionTitle}`}>
                 Getting Started
             </h2>
             <p className="text--center">
-                You can use textlint by following steps:
+                Follow these steps to get started with textlint:
                 <br />
-                For more details, see <Link to="/docs/getting-started">documents</Link>.
+                Check out our <Link to="/docs/getting-started">documentation</Link> for more details.
             </p>
             <div className={styles.getStartedFlexContainer}>
                 <div className={styles["GettingStarted-steps"]}>
