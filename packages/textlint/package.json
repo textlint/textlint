@@ -1,7 +1,7 @@
 {
   "name": "textlint",
   "version": "14.6.0",
-  "description": "The pluggable linting tool for text and markdown.",
+  "description": "The pluggable linting tool for natural language.",
   "keywords": [
     "AST",
     "lint",

@@ -7,7 +7,7 @@
   <img alt="textlint log" src="https://textlint.org/media/logo/spaced/textlint-logo.png">
 </picture>
 
-> The pluggable linting tool for text and markdown.
+> The pluggable linting tool for natural language.
 
 textlint is similar to [ESLint](http://eslint.org/ "ESLint"), but it's for use with natural language.
 
