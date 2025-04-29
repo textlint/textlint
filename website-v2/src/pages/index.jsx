@@ -193,7 +193,7 @@ function Showcase() {
         .filter((user) => user.pinned)
         .map((user, i) => (
             <a href={user.infoLink} key={i}>
-                <img src={user.image} title={user.caption} alt={user.caption} />
+                <img src={user.image} title={user.caption} alt={user.caption} width={128} height={128} />
             </a>
         ));
 

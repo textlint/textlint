@@ -5,54 +5,48 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require("react");
-
-const CompLibrary = {
-    Container: (props) => <div {...props}></div>,
-    GridBlock: (props) => <div {...props}></div>,
-    MarkdownBlock: (props) => <div {...props}></div>
-};
-const Container = CompLibrary.Container;
-
-const siteConfig = require("../../docusaurus.config");
-
+import React from "react";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
+import styles from "./users.module.css";
 
-class Users extends React.Component {
-    render() {
-        const showcase = siteConfig.users.map((user, i) => {
-            return (
-                <a href={user.infoLink} key={i}>
-                    <img src={user.image} title={user.caption} />
-                </a>
-            );
-        });
+// ユーザーコンポーネント
+const Users = () => {
+    const { siteConfig } = useDocusaurusContext();
+    // ユーザー一覧を生成
+    const showcase = siteConfig.customFields.users.map((user, i) => (
+        <a href={user.infoLink} key={i}>
+            <img src={user.image} title={user.caption} alt={user.caption} width={128} height={128} />
+        </a>
+    ));
 
-        return (
-            <div className="mainContainer">
-                <Container padding={["bottom", "top"]}>
-                    <div className="showcaseSection">
-                        <div className="prose">
-                            <h1>Who's Using This?</h1>
-                            <p>This project is used by many folks</p>
-                        </div>
-                        <div className="logos">{showcase}</div>
-                        <p>Are you using this project?</p>
-                        <a
-                            href="https://github.com/textlint/textlint/edit/master/website/siteConfig.js"
-                            className="button"
-                        >
-                            Add your company or project
-                        </a>
+    return (
+        <div className={styles.mainContainer}>
+            <div className="container">
+                <div className={styles.showcaseSection}>
+                    <div className={styles.prose}>
+                        <h1>Who's Using This?</h1>
+                        <p>This project is used by many folks</p>
                     </div>
-                </Container>
+                    <div className={styles.logos}>{showcase}</div>
+                    <p>Are you using this project?</p>
+                    <a
+                        href="https://github.com/textlint/textlint/edit/master/website-v2/docusaurus.config.js"
+                        className={styles.button}
+                    >
+                        Add your company or project
+                    </a>
+                </div>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
-export default (props) => (
-    <Layout>
-        <Users {...props} />
-    </Layout>
-);
+// メインページコンポーネント
+export default function UsersPage(props) {
+    return (
+        <Layout>
+            <Users />
+        </Layout>
+    );
+}
