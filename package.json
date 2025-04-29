@@ -62,8 +62,7 @@
     "packages/@textlint/*",
     "packages/textlint-scripts/examples/*",
     "test/*",
-    "website",
-    "website-v2"
+    "website"
   ],
   "packageManager": "npm@9.9.2"
 }
