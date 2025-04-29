@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1745930701626,
+  "lastUpdate": 1745930985063,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -52458,6 +52458,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7238600235000001,
             "unit": "seconds",
             "range": "± 0.005751067000000054"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7c111e6f6c3b6458db876208f51385a3109b9b42",
+          "message": "Update to Docusaurus v3 (#1494)\n\n* init-v2\n\n* migrate\n\n* updat\n\n* fix: theme\n\n* update design\n\n* update footer\n\n* override\n\n* fix\n\n* Update package-lock.json\n\n* fix\n\n* Update package-lock.json+1\n\n* update\n\n* update docusaurus v3\n\n* Update docs/CONTRIBUTING.md+10\n\n* fix\n\n* fix\n\n* CI: fix build path\n\n* Update website/docusaurus.config.js\n\n* Update website/blog/2023-01-27-textlint-13.md\n\nCo-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>\n\n* update\n\n* rm\n\n---------\n\nCo-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>",
+          "timestamp": "2025-04-29T21:46:20+09:00",
+          "tree_id": "8cf05416a99f8c0a86df02a68a07e61de5bb0156",
+          "url": "https://github.com/textlint/textlint/commit/7c111e6f6c3b6458db876208f51385a3109b9b42"
+        },
+        "date": 1745930981151,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 1.1076745094199998,
+            "unit": "seconds",
+            "range": "± 0.028908242000000195"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.7771610330200005,
+            "unit": "seconds",
+            "range": "± 0.22346633100000002"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.8029116864200001,
+            "unit": "seconds",
+            "range": "± 0.03288933900000002"
           }
         ]
       }
