@@ -33,7 +33,7 @@ function FeatureCard({ title, image, children }) {
         <div className="col col--4 margin-vert--md">
             <div className="text--center">
                 <img src={image} className="margin-bottom--md" alt={title} style={{ height: "64px" }} />
-                <h3>{title}</h3>
+                <h2>{title}</h2>
                 {children}
             </div>
         </div>
@@ -212,36 +212,6 @@ function Showcase() {
     );
 }
 
-function Footer() {
-    const { siteConfig } = useDocusaurusContext();
-    return (
-        <footer className={styles.footer}>
-            <div className={styles.footerContent}>
-                <div>
-                    <Link to="/">
-                        <img src={`${siteConfig.baseUrl}img/textlint.svg`} alt="textlint" />
-                    </Link>
-                </div>
-                <div>
-                    <h5>Docs</h5>
-                    <Link to="/docs/configuring">User Manual</Link>
-                    <Link to="/docs/rule">Developer Guide</Link>
-                </div>
-                <div>
-                    <h5>Community</h5>
-                    <Link to="https://gitter.im/textlint-ja/textlint-ja">Project Chat</Link>
-                </div>
-                <div>
-                    <h5>More</h5>
-                    <Link to="/blog">Blog</Link>
-                    <Link to="https://github.com/textlint/textlint">GitHub</Link>
-                </div>
-            </div>
-            <div className={styles.copyright}>Copyright © {new Date().getFullYear()} textlint organization</div>
-        </footer>
-    );
-}
-
 export default function Home() {
     return (
         <Layout
@@ -255,7 +225,6 @@ export default function Home() {
                 <Playground />
                 <Showcase />
             </main>
-            <Footer />
         </Layout>
     );
 }

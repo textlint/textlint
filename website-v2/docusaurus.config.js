@@ -85,6 +85,52 @@ module.exports = {
         ]
     ],
     themeConfig: {
+        footer: {
+            style: "light",
+            logo: {
+                alt: "textlint Logo",
+                src: "img/textlint-icon_256x256.png",
+                href: "/"
+            },
+            links: [
+                {
+                    title: "Docs",
+                    items: [
+                        {
+                            label: "User Manual",
+                            to: "/docs/configuring"
+                        },
+                        {
+                            label: "Developer Guide",
+                            to: "/docs/rule"
+                        }
+                    ]
+                },
+                {
+                    title: "Community",
+                    items: [
+                        {
+                            label: "Project Chat",
+                            href: "https://gitter.im/textlint-ja/textlint-ja"
+                        }
+                    ]
+                },
+                {
+                    title: "More",
+                    items: [
+                        {
+                            label: "Blog",
+                            to: "/blog"
+                        },
+                        {
+                            label: "GitHub",
+                            href: "https://github.com/textlint/textlint"
+                        }
+                    ]
+                }
+            ],
+            copyright: `Copyright © ${new Date().getFullYear()} textlint organization`
+        },
         navbar: {
             title: "textlint",
             logo: {
@@ -114,13 +160,6 @@ module.exports = {
             ]
         },
         image: "img/textlint-icon_256x256.png",
-        footer: {
-            links: [],
-            copyright: "Copyright © 2025 textlint organization",
-            logo: {
-                src: "img/textlint-icon_256x256.png"
-            }
-        },
         algolia: {
             appId: "YKHP6FTHHI",
             apiKey: "82014cf9b4a2988df9d5ab7a44d9d3b4",
