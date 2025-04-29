@@ -1,139 +1,170 @@
-// @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
-
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
-
-/** @type {import('@docusaurus/types').Config} */
-const config = {
-    title: "My Site",
-    tagline: "Dinosaurs are cool",
-    favicon: "img/favicon.ico",
-
-    // Set the production url of your site here
-    url: "https://your-docusaurus-test-site.com",
-    // Set the /<baseUrl>/ pathname under which your site is served
-    // For GitHub pages deployment, it is often '/<projectName>/'
+module.exports = {
+    title: "textlint",
+    tagline: "The pluggable linting tool for text and markdown",
+    url: "https://textlint.org",
     baseUrl: "/",
-
-    // GitHub pages deployment config.
-    // If you aren't using GitHub pages, you don't need these.
-    organizationName: "facebook", // Usually your GitHub org/user name.
-    projectName: "docusaurus", // Usually your repo name.
-
-    onBrokenLinks: "throw",
-    onBrokenMarkdownLinks: "warn",
-
-    // Even if you don't use internalization, you can use this field to set useful
-    // metadata like html lang. For example, if your site is Chinese, you may want
-    // to replace "en" with "zh-Hans".
-    i18n: {
-        defaultLocale: "en",
-        locales: ["en"]
+    organizationName: "textlint",
+    projectName: "textlint",
+    scripts: ["https://buttons.github.io/buttons.js"],
+    favicon: "img/textlint-icon_256x256.png",
+    customFields: {
+        users: [
+            {
+                caption: "JavaScript Primer",
+                image: "https://78.media.tumblr.com/avatar_c63524fcb991_128.png",
+                infoLink: "https://jsprimer.net",
+                pinned: true
+            },
+            {
+                caption: "jp.vuejs.org",
+                image: "https://avatars3.githubusercontent.com/u/6128107?s=200&v=4",
+                infoLink: "https://github.com/vuejs/jp.vuejs.org",
+                pinned: true
+            },
+            {
+                caption: "SURVIVEJS - WEBPACK",
+                image: "https://www.gravatar.com/avatar/b26ec3c2769168c2cbc64cc3df9cdd9c?s=200",
+                infoLink: "https://survivejs.com/webpack/",
+                pinned: true
+            },
+            {
+                caption: "Hoodie",
+                image: "https://hoodiehq.github.io/hoodie-css/src/content_img/animals/low-profile-dog-3.png",
+                infoLink: "http://hood.ie/",
+                pinned: true
+            },
+            {
+                caption: "GIS実習オープン教材",
+                image: "https://raw.githubusercontent.com/gis-oer/gis-oer/master/img/logo/logo_gis-oer_01_256px.png",
+                infoLink: "https://github.com/gis-oer/gis-oer",
+                pinned: true
+            },
+            {
+                caption: "株式会社ソラコム",
+                image: "/img/soracom.png",
+                infoLink: "https://soracom.jp",
+                pinned: true
+            },
+            {
+                caption: "校正さん",
+                image: "https://kohsei-san.hata6502.com/favicon.png",
+                infoLink: "https://kohsei-san.hata6502.com/lp/",
+                pinned: true
+            }
+        ],
+        repoUrl: "https://github.com/textlint/textlint"
     },
-
+    onBrokenLinks: "log",
+    onBrokenMarkdownLinks: "log",
     presets: [
         [
-            "classic",
-            /** @type {import('@docusaurus/preset-classic').Options} */
-            ({
+            "@docusaurus/preset-classic",
+            {
                 docs: {
-                    sidebarPath: require.resolve("./sidebars.js"),
-                    // Please change this to your repo.
-                    // Remove this to remove the "edit this page" links.
-                    editUrl:
-                        "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
+                    showLastUpdateAuthor: true,
+                    showLastUpdateTime: true,
+                    editUrl: "https://github.com/textlint/textlint/edit/master/docs/",
+                    path: "../docs",
+                    sidebarPath: "../website/sidebars.json"
                 },
                 blog: {
-                    showReadingTime: true,
-                    // Please change this to your repo.
-                    // Remove this to remove the "edit this page" links.
-                    editUrl:
-                        "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
+                    path: "blog"
                 },
                 theme: {
-                    customCss: require.resolve("./src/css/custom.css")
+                    customCss: "./src/css/customTheme.css"
                 }
-            })
+            }
         ]
     ],
-
-    themeConfig:
-        /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-        ({
-            // Replace with your project's social card
-            image: "img/docusaurus-social-card.jpg",
-            navbar: {
-                title: "My Site",
-                logo: {
-                    alt: "My Site Logo",
-                    src: "img/logo.svg"
-                },
-                items: [
-                    {
-                        type: "docSidebar",
-                        sidebarId: "tutorialSidebar",
-                        position: "left",
-                        label: "Tutorial"
-                    },
-                    { to: "/blog", label: "Blog", position: "left" },
-                    {
-                        href: "https://github.com/facebook/docusaurus",
-                        label: "GitHub",
-                        position: "right"
-                    }
-                ]
-            },
-            footer: {
-                style: "dark",
-                links: [
-                    {
-                        title: "Docs",
-                        items: [
-                            {
-                                label: "Tutorial",
-                                to: "/docs/intro"
-                            }
-                        ]
-                    },
-                    {
-                        title: "Community",
-                        items: [
-                            {
-                                label: "Stack Overflow",
-                                href: "https://stackoverflow.com/questions/tagged/docusaurus"
-                            },
-                            {
-                                label: "Discord",
-                                href: "https://discordapp.com/invite/docusaurus"
-                            },
-                            {
-                                label: "Twitter",
-                                href: "https://twitter.com/docusaurus"
-                            }
-                        ]
-                    },
-                    {
-                        title: "More",
-                        items: [
-                            {
-                                label: "Blog",
-                                to: "/blog"
-                            },
-                            {
-                                label: "GitHub",
-                                href: "https://github.com/facebook/docusaurus"
-                            }
-                        ]
-                    }
-                ],
-                copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`
-            },
-            prism: {
-                theme: lightCodeTheme,
-                darkTheme: darkCodeTheme
+    plugins: [
+        [
+            "@docusaurus/plugin-client-redirects",
+            {
+                fromExtensions: ["html"]
             }
-        })
+        ]
+    ],
+    themeConfig: {
+        footer: {
+            style: "light",
+            logo: {
+                alt: "textlint Logo",
+                src: "img/textlint-icon_256x256.png",
+                href: "/"
+            },
+            links: [
+                {
+                    title: "Docs",
+                    items: [
+                        {
+                            label: "User Manual",
+                            to: "/docs/configuring"
+                        },
+                        {
+                            label: "Developer Guide",
+                            to: "/docs/rule"
+                        }
+                    ]
+                },
+                {
+                    title: "Community",
+                    items: [
+                        {
+                            label: "Project Chat",
+                            href: "https://gitter.im/textlint-ja/textlint-ja"
+                        }
+                    ]
+                },
+                {
+                    title: "More",
+                    items: [
+                        {
+                            label: "Blog",
+                            to: "/blog"
+                        },
+                        {
+                            label: "GitHub",
+                            href: "https://github.com/textlint/textlint"
+                        }
+                    ]
+                }
+            ],
+            copyright: `Copyright © ${new Date().getFullYear()} textlint organization`
+        },
+        navbar: {
+            title: "textlint",
+            logo: {
+                src: "img/textlint-icon_256x256.png"
+            },
+            items: [
+                {
+                    to: "docs/getting-started",
+                    label: "Docs",
+                    position: "left"
+                },
+                {
+                    href: "https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule",
+                    label: "Rules",
+                    position: "left"
+                },
+                {
+                    to: "/help",
+                    label: "Help",
+                    position: "left"
+                },
+                {
+                    href: "https://github.com/textlint/textlint",
+                    label: "GitHub",
+                    position: "left"
+                }
+            ]
+        },
+        image: "img/textlint-icon_256x256.png",
+        algolia: {
+            appId: "YKHP6FTHHI",
+            apiKey: "82014cf9b4a2988df9d5ab7a44d9d3b4",
+            indexName: "textlint",
+            algoliaOptions: {}
+        }
+    }
 };
-
-module.exports = config;
