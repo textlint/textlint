@@ -11,7 +11,10 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "bench": "textlint --config .textlintrc ../docs/ ../.github/ ../README.md",
+    "textlint": "textlint --cache --config .textlintrc ../docs/ ../.github/ ../README.md -f pretty-error",
+    "textlint:fix": "textlint --fix --cache -c .textlintrc ../docs ../.github/ ../README.md"
   },
   "dependencies": {
     "@docusaurus/core": "2.4.3",
@@ -24,7 +27,13 @@
     "@docusaurus/plugin-client-redirects": "2.4.3"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.4.3"
+    "@docusaurus/module-type-aliases": "2.4.3",
+    "textlint": "^14.6.0",
+    "textlint-filter-rule-comments": "^1.2.2",
+    "textlint-rule-eslint": "^4.0.2",
+    "textlint-rule-prh": "^5.3.0",
+    "textlint-rule-rousseau": "^1.4.8",
+    "textlint-rule-unexpanded-acronym": "^1.2.4"
   },
   "browserslist": {
     "production": [
