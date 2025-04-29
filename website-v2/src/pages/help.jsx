@@ -5,50 +5,48 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require("react");
-
-const CompLibrary = {
-    Container: (props) => <div {...props}></div>,
-    GridBlock: (props) => <div {...props}></div>,
-    MarkdownBlock: (props) => <div {...props}></div>
-};
-const Container = CompLibrary.Container;
-const GridBlock = CompLibrary.GridBlock;
-
+import React from "react";
 import Layout from "@theme/Layout";
+import Link from "@docusaurus/Link";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-class Help extends React.Component {
-    render() {
-        const supportLinks = [
-            {
-                content: "Learn more using the [documentation on this site.](/docs/getting-started.html)",
-                title: "Browse Docs"
-            },
-            {
-                content:
-                    "For bugs and feature requests, please [open an issue](https://github.com/textlint/textlint/issues). Be sure to also check out our [Contributing Guideline](/docs/contributing.html).",
-                title: "Join the Community"
-            }
-        ];
+const Card = ({ title, children }) => (
+    <div className="col col--4 margin-vert--md">
+        <div className="text--center padding-horiz--md">
+            <h3>{title}</h3>
+            {children}
+        </div>
+    </div>
+);
 
-        return (
-            <div className="docMainWrapper wrapper">
-                <Container className="mainContainer documentContainer postContainer">
-                    <div className="post">
-                        <header className="postHeader">
-                            <h2>Need help?</h2>
-                        </header>
-                        <p>This project is maintained by a dedicated group of people.</p>
-                        <GridBlock contents={supportLinks} layout="threeColumn" />
-                    </div>
-                </Container>
-            </div>
-        );
-    }
+function Help() {
+    const { siteConfig } = useDocusaurusContext();
+
+    return (
+        <Layout>
+            <main className="container margin-vert--lg">
+                <div className="text--center margin-bottom--xl">
+                    <h2>Need help?</h2>
+                    <p>This project is maintained by a dedicated group of people.</p>
+                </div>
+                <div className="row row--center">
+                    <Card title="Browse Docs">
+                        <p>
+                            Learn more using the <Link to="/docs/getting-started.html">documentation on this site</Link>
+                            .
+                        </p>
+                    </Card>
+                    <Card title="Join the Community">
+                        <p>
+                            For bugs and feature requests, please{" "}
+                            <Link to="https://github.com/textlint/textlint/issues">open an issue</Link>. Be sure to also
+                            check out our <Link to="/docs/contributing.html">Contributing Guideline</Link>.
+                        </p>
+                    </Card>
+                </div>
+            </main>
+        </Layout>
+    );
 }
 
-export default (props) => (
-    <Layout>
-        <Help {...props} />
-    </Layout>
-);
+export default Help;

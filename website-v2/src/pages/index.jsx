@@ -1,277 +1,174 @@
-/**
- * Copyright (c) 2017-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-require("../../static/css/index.css");
-const React = require("react");
+"use client";
 
-const CompLibrary = {
-    Container: (props) => <div {...props}></div>,
-    GridBlock: (props) => <div {...props}></div>,
-    MarkdownBlock: (props) => <div {...props}></div>
-};
-const Container = CompLibrary.Container;
-const GridBlock = CompLibrary.GridBlock;
-const MarkdownBlock = CompLibrary.MarkdownBlock;
-
-const siteConfig = require("../../docusaurus.config");
-
+import React from "react";
 import Layout from "@theme/Layout";
+import Link from "@docusaurus/Link";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import CodeBlock from "@theme/CodeBlock";
+import styles from "./index.module.css";
 
-function imgUrl(img) {
-    return siteConfig.baseUrl + "img/" + img;
-}
-
-function pageUrl(page, language) {
-    return siteConfig.baseUrl + (language ? language + "/" : "") + page;
-}
-
-class Button extends React.Component {
-    render() {
-        return (
-            <div className="pluginWrapper buttonWrapper">
-                <a className="button" href={this.props.href} target={this.props.target}>
-                    {this.props.children}
-                </a>
-            </div>
-        );
-    }
-}
-
-Button.defaultProps = {
-    target: "_self"
-};
-
-const SplashContainer = (props) => (
-    <div className="homeContainer">
-        <div className="homeSplashFade">
-            <div className="wrapper homeWrapper">{props.children}</div>
-        </div>
-    </div>
-);
-
-const Logo = (props) => (
-    <div className="projectLogo">
-        <img src={props.img_src} />
-    </div>
-);
-
-const ProjectTitle = (props) => (
-    <h2 className="ProjectTitle">
-        {siteConfig.title}
-        <small className={"ProjectTitle-copy"}>{siteConfig.tagline}</small>
-    </h2>
-);
-
-const PromoSection = (props) => (
-    <div className="section promoSection">
-        <div className="promoRow">
-            <div className="pluginRowBlock">{props.children}</div>
-        </div>
-    </div>
-);
-
-class HomeSplash extends React.Component {
-    render() {
-        let language = this.props.language || "";
-        return (
-            <SplashContainer>
-                <div className="inner">
-                    <ProjectTitle />
-                    <PromoSection>
-                        <a className={"GettingStartedButton"} href={`${language}/docs/getting-started.html`}>
-                            Getting Started
-                        </a>
-                    </PromoSection>
-                </div>
-            </SplashContainer>
-        );
-    }
-}
-
-const Block = (props) => (
-    <Container padding={["bottom", "top"]} id={props.id} background={props.background}>
-        <GridBlock align="center" contents={props.children} layout={props.layout} />
-    </Container>
-);
-
-const FeatureCallout = (props) => (
-    <Container padding={["bottom", "top"]} id={props.id} background={props.background}>
-        <div className="productShowcaseSection paddingBottom TextlintFeature">
-            <MarkdownBlock>{`
-**textlint** is an open source text linting utility written in JavaScript.
-It is hard to lint natural language texts, but we try to resolve this issue by **pluggable** approach.
-`}</MarkdownBlock>
-        </div>
-        <GridBlock
-            align="center"
-            className={"TextlintFeature-gridBlock"}
-            contents={[
-                {
-                    imageAlign: "top",
-                    image: siteConfig.baseUrl + "img/icon-pen.svg",
-                    title: "Rules",
-                    content: `To use a rule, simply run npm install textlint-rule-xxx.
-See the [collection of textlint rules](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule).`
-                },
-                {
-                    imageAlign: "top",
-                    image: siteConfig.baseUrl + "img/icon-markdown.svg",
-                    title: "Markdown & Texts",
-                    content: `Markdown and plain text are supported by default.
-HTML and other formats are offered by custom plugins`
-                },
-                {
-                    imageAlign: "top",
-                    image: siteConfig.baseUrl + "img/icon-formatters.svg",
-                    title: "Custom Formatters",
-                    content: `Formatter is used both by bundled and custom formatters`
-                }
-            ]}
-            layout="threeColumn"
-        />
-    </Container>
-);
-
-const bash = (...args) => `~~~bash\n${String.raw(...args)}\n~~~`;
-const json = (object) => `~~~json\n${JSON.stringify(object, null, 2)}\n~~~`;
-const GetStartedSection = (props) => {
+function HomepageHeader() {
+    const { siteConfig } = useDocusaurusContext();
     return (
-        <div className="GettingStarted productShowcaseSection">
-            <Container>
-                <h2 id="getting-started" className="GettingStarted-title">
-                    Getting Started
-                </h2>
-                <p className="GettingStarted-copy">
-                    You can use textlint by following steps:
-                    <br />
-                    For more details, see <a href={`${props.language}/docs/getting-started.html`}>documents</a>.
-                </p>
-                <div
-                    className="getStartedFlexContainer"
-                    style={{
-                        display: "flex",
-                        flexFlow: "row",
-                        alignItems: "flex-start",
-                        justifyContent: "space-between"
-                    }}
-                >
-                    <div className="GettingStarted-steps">
-                        <ol>
-                            <li>
-                                Create your project:
-                                <div className="getStartedStep">
-                                    <MarkdownBlock>{bash`npm init --yes`}</MarkdownBlock>
-                                </div>
-                            </li>
-                            <li>
-                                Install textlint into your project:
-                                <div className="getStartedStep">
-                                    <MarkdownBlock>{bash`npm install --save-dev textlint`}</MarkdownBlock>
-                                </div>
-                            </li>
-                            <li>
-                                Install textlint rule:
-                                <div className="getStartedStep">
-                                    <MarkdownBlock>{bash`npm install --save-dev textlint-rule-no-todo`}</MarkdownBlock>
-                                </div>
-                            </li>
-                            <li>
-                                Create .textlintrc file:
-                                <div className="getStartedStep">
-                                    <MarkdownBlock>{bash`npx textlint --init`}</MarkdownBlock>
-                                </div>
-                            </li>
-                            <li>
-                                Run textlint:
-                                <div className="getStartedStep">
-                                    <MarkdownBlock>{bash`npx textlint README.md`}</MarkdownBlock>
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
-                    <div className="GettingStarted-images">
-                        <ol>
-                            <li>
-                                <img
-                                    src={imgUrl("get-started-steps/1.png")}
-                                    alt={`$ npm init --yes
-Wrote to ~/textlint-demo/package.json:
-
-{
-  "name": "textlint-demo",
-  "version": "1.0.0"
-}`}
-                                />
-                            </li>
-                            <li>
-                                <img
-                                    src={imgUrl("get-started-steps/2.png")}
-                                    alt={`$ npm install --save-dev textlint
-
-+ textlint@10.0.0
-added 239 packages in 10.23s`}
-                                />
-                            </li>
-
-                            <li>
-                                <img
-                                    src={imgUrl("get-started-steps/3.png")}
-                                    alt={`
-$ npm install --save-dev textlint-rule-no-todo
-
-+ textlint@latest
-added 239 packages in 10.23s`}
-                                />
-                            </li>
-                            <li>
-                                <img
-                                    src={imgUrl("get-started-steps/4.png")}
-                                    alt={`$ npx textlint --init
-
-Create .textlintrc`}
-                                />
-                            </li>
-                            <li>
-                                <img
-                                    src={imgUrl("get-started-steps/5.png")}
-                                    alt={`$npx textlint README.md
-
-~/textlint-demo/README.md
-  1:3  error  Found TODO: '- [ ] Write usage'  no-todo
-
-✖ 1 problem (1 error, 0 warnings)
-
-                            `}
-                                />
-                                {/**/}
-                            </li>
-                        </ol>
+        <header className={styles.homeContainer}>
+            <div className={styles.homeSplashFade}>
+                <div className={styles.homeWrapper}>
+                    <h2 className={styles.ProjectTitle}>
+                        {siteConfig.title}
+                        <small className={styles["ProjectTitle-copy"]}>{siteConfig.tagline}</small>
+                    </h2>
+                    <div>
+                        <Link className={styles.GettingStartedButton} to="/docs/getting-started">
+                            Getting Started
+                        </Link>
                     </div>
                 </div>
-            </Container>
+            </div>
+        </header>
+    );
+}
+
+function FeatureCard({ title, image, children }) {
+    return (
+        <div className="col col--4 margin-vert--md">
+            <div className="text--center">
+                <img src={image} className="margin-bottom--md" alt={title} style={{ height: "64px" }} />
+                <h3>{title}</h3>
+                {children}
+            </div>
         </div>
     );
-};
+}
 
-const Playground = (props) => {
+function FeatureSection() {
+    const { siteConfig } = useDocusaurusContext();
     return (
-        <Container adding={["bottom", "top"]}>
-            <div className="productShowcaseSection paddingBottom paddingTop Playground">
-                <h2 id="try" className="Playground-title">
-                    Playground
-                </h2>
-                <p className="Playground-copy">
+        <section className={styles.TextlintFeature}>
+            <div className="container">
+                <div className="margin-bottom--lg">
+                    <strong>textlint</strong> is an open source text linting utility written in JavaScript. It is hard
+                    to lint natural language texts, but we try to resolve this issue by <strong>pluggable</strong>{" "}
+                    approach.
+                </div>
+                <div className="row">
+                    <FeatureCard title="Rules" image={`${siteConfig.baseUrl}img/icon-pen.svg`}>
+                        <p>
+                            To use a rule, simply run npm install textlint-rule-xxx. See the{" "}
+                            <Link to="https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule">
+                                collection of textlint rules
+                            </Link>
+                            .
+                        </p>
+                    </FeatureCard>
+                    <FeatureCard title="Markdown & Texts" image={`${siteConfig.baseUrl}img/icon-markdown.svg`}>
+                        <p>
+                            Markdown and plain text are supported by default. HTML and other formats are offered by
+                            custom plugins.
+                        </p>
+                    </FeatureCard>
+                    <FeatureCard title="Custom Formatters" image={`${siteConfig.baseUrl}img/icon-formatters.svg`}>
+                        <p>Formatter is used both by bundled and custom formatters.</p>
+                    </FeatureCard>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function GetStartedSection() {
+    const { siteConfig } = useDocusaurusContext();
+    return (
+        <section className="container margin-vert--xl">
+            <h2 id="getting-started" className="text--center">
+                Getting Started
+            </h2>
+            <p className="text--center">
+                You can use textlint by following steps:
+                <br />
+                For more details, see <Link to="/docs/getting-started">documents</Link>.
+            </p>
+            <div className={styles.getStartedFlexContainer}>
+                <div className={styles["GettingStarted-steps"]}>
+                    <ol>
+                        <li>
+                            Create your project:
+                            <div className={styles.getStartedStep}>
+                                <CodeBlock language="bash">npm init --yes</CodeBlock>
+                            </div>
+                        </li>
+                        <li>
+                            Install textlint into your project:
+                            <div className={styles.getStartedStep}>
+                                <CodeBlock language="bash">npm install --save-dev textlint</CodeBlock>
+                            </div>
+                        </li>
+                        <li>
+                            Install textlint rule:
+                            <div className={styles.getStartedStep}>
+                                <CodeBlock language="bash">npm install --save-dev textlint-rule-no-todo</CodeBlock>
+                            </div>
+                        </li>
+                        <li>
+                            Create .textlintrc file:
+                            <div className={styles.getStartedStep}>
+                                <CodeBlock language="bash">npx textlint --init</CodeBlock>
+                            </div>
+                        </li>
+                        <li>
+                            Run textlint:
+                            <div className={styles.getStartedStep}>
+                                <CodeBlock language="bash">npx textlint README.md</CodeBlock>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+                <div className={styles["GettingStarted-images"]}>
+                    <ol>
+                        <li>
+                            <img
+                                src={`${siteConfig.baseUrl}img/get-started-steps/1.png`}
+                                alt="Initialize project with npm init"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src={`${siteConfig.baseUrl}img/get-started-steps/2.png`}
+                                alt="Install textlint package"
+                            />
+                        </li>
+                        <li>
+                            <img src={`${siteConfig.baseUrl}img/get-started-steps/3.png`} alt="Install textlint rule" />
+                        </li>
+                        <li>
+                            <img
+                                src={`${siteConfig.baseUrl}img/get-started-steps/4.png`}
+                                alt="Initialize textlint configuration"
+                            />
+                        </li>
+                        <li>
+                            <img src={`${siteConfig.baseUrl}img/get-started-steps/5.png`} alt="Run textlint command" />
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function Playground() {
+    return (
+        <div className="container margin-vert--xl">
+            <div className="text--center">
+                <h2 id="try">Playground</h2>
+                <p>
                     Take textlint for a spin, start typing below.
                     <br />
-                    Want to try more? Go to <a href="https://textlint.org/playground">playground</a>.
+                    Want to try more? Go to <Link to="https://textlint.org/playground">playground</Link>.
                 </p>
             </div>
             <iframe
-                className={"Playground-frame"}
-                sandbox={"allow-scripts"}
+                className={styles["Playground-frame"]}
+                sandbox="allow-scripts"
                 src="https://textlint.org/playground?embed"
                 title="online demo"
                 width="100%"
@@ -279,71 +176,55 @@ const Playground = (props) => {
             >
                 <p>
                     Your browser does not support iframes. Please visit{" "}
-                    <a href="https://textlint.org/playground">online demo</a>.
+                    <Link to="https://textlint.org/playground">online demo</Link>.
                 </p>
             </iframe>
-        </Container>
+        </div>
     );
-};
-
-const Showcase = (props) => {
-    if ((siteConfig.users || []).length === 0) {
-        return null;
-    }
-    const showcase = siteConfig.users
-        .filter((user) => {
-            return user.pinned;
-        })
-        .map((user, i) => {
-            return (
-                <a href={user.infoLink} key={i}>
-                    <img src={user.image} title={user.caption} />
-                </a>
-            );
-        });
-
-    return (
-        <Container padding="top" id={props.id} background={props.background}>
-            <div className="productShowcaseSection paddingBottom paddingTop Showcase">
-                <h2 className="Showcase-title">{"Who's Using This?"}</h2>
-                <p>
-                    This project is used by all these people.{" "}
-                    <a href={pageUrl("users.html", props.language)}>More {siteConfig.title} users</a>.
-                </p>
-            </div>
-            <div className="productShowcaseSection paddingBottom">
-                <div className="logos">{showcase}</div>
-            </div>
-        </Container>
-    );
-};
-
-class Index extends React.Component {
-    render() {
-        let language = this.props.language || "";
-
-        return (
-            <div className={"main"}>
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `document.body.classList.add("is-index");`
-                    }}
-                />
-                <script src={siteConfig.baseUrl + "js/index.js"} />
-                <HomeSplash language={language} />
-                <div className="mainContainer">
-                    <FeatureCallout />
-                    <GetStartedSection language={language} />
-                    <Playground />
-                    <Showcase language={language} />
-                </div>
-            </div>
-        );
-    }
 }
 
-export default (props) => (
-    <Layout>
-        <Index {...props} />
-    </Layout>
-);
+function Showcase() {
+    const { siteConfig } = useDocusaurusContext();
+    if ((siteConfig.customFields?.users || []).length === 0) {
+        return null;
+    }
+
+    const showcase = siteConfig.customFields.users
+        .filter((user) => user.pinned)
+        .map((user, i) => (
+            <a href={user.infoLink} key={i}>
+                <img src={user.image} title={user.caption} alt={user.caption} />
+            </a>
+        ));
+
+    return (
+        <div className="margin-vert--xl">
+            <div className="text--center">
+                <h2>Who's Using This?</h2>
+                <p>
+                    This project is used by all these people. <Link to="/users">More {siteConfig.title} users</Link>.
+                </p>
+            </div>
+            <div className="container">
+                <div className="row">{showcase}</div>
+            </div>
+        </div>
+    );
+}
+
+export default function Home() {
+    return (
+        <Layout
+            title="textlint - pluggable linting tool for text and markdown"
+            description="textlint is an open source text linting utility written in JavaScript."
+        >
+            <HomepageHeader />
+            <main>
+                <FeatureSection />
+                <GetStartedSection />
+                <Playground />
+                <Showcase />
+            </main>
+        </Layout>
+    );
+}
