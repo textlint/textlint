@@ -215,7 +215,7 @@ function Showcase() {
 export default function Home() {
     return (
         <Layout
-            title="textlint - pluggable linting tool for text and markdown"
+            title="textlint - pluggable linting tool for natural language"
             description="textlint is an open source text linting utility written in JavaScript."
         >
             <HomepageHeader />
