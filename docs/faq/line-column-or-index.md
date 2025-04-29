@@ -1,3 +1,7 @@
+---
+id: have-to-use-line-column-or-index
+title: "Have to use {line, column} or index"
+---
 # Have to use {line, column} or index
 
 **Target:** Developer

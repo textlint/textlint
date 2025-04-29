@@ -1,0 +1,26 @@
+{
+  "docs": {
+    "User Manual": [
+      "getting-started",
+      "cli",
+      "configuring",
+      "ignore",
+      "integrations"
+    ],
+    "Developer Guide": [
+      "rule",
+      "filter-rule",
+      "rule-fixable",
+      "rule-preset",
+      "rule-advanced",
+      "rule-tips-after-all",
+      "plugin",
+      "formatter",
+      "use-as-modules",
+      "txtnode"
+    ],
+    "Contributing": [
+      "contributing"
+    ]
+  }
+}

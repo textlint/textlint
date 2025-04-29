@@ -1,3 +1,7 @@
+---
+id: failed-to-load-textlints-module
+title: "Failed to load textlint's module"
+---
 # Failed to load textlint's module: "${packageName}" is not found.
 
 **Target:** User
