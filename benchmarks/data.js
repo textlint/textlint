@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1745934156281,
+  "lastUpdate": 1745935072058,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -52836,6 +52836,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7585625651600001,
             "unit": "seconds",
             "range": "± 0.025803372000000047"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ba0d55d1f1c352d9cbc4a69b1b7480a87bd3b135",
+          "message": "docs: update description from 'text and markdown' to 'natural language' (#1495)\n\nCo-authored-by: Devin AI <158243242+devin-ai-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2025-04-29T22:54:52+09:00",
+          "tree_id": "8d45d4edbc7edc480a432d836076a9766d26a89a",
+          "url": "https://github.com/textlint/textlint/commit/ba0d55d1f1c352d9cbc4a69b1b7480a87bd3b135"
+        },
+        "date": 1745935067614,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.98746696142,
+            "unit": "seconds",
+            "range": "± 0.02242345400000012"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.702710377619999,
+            "unit": "seconds",
+            "range": "± 0.09834864499999973"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7219639518200001,
+            "unit": "seconds",
+            "range": "± 0.014710345000000014"
           }
         ]
       }
