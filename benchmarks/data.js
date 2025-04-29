@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1745929113666,
+  "lastUpdate": 1745929250888,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -52290,6 +52290,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7234963014800001,
             "unit": "seconds",
             "range": "± 0.0049892270000000405"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "46c20393cf7a17afa506f140e7b6b746ade4ea50",
+          "message": "Update website/docusaurus.config.js",
+          "timestamp": "2025-04-29T21:16:53+09:00",
+          "tree_id": "8ec61cfe041f819eb7cd08e04c839c2dc2dfb15c",
+          "url": "https://github.com/textlint/textlint/commit/46c20393cf7a17afa506f140e7b6b746ade4ea50"
+        },
+        "date": 1745929246955,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 1.0110838513,
+            "unit": "seconds",
+            "range": "± 0.03205937099999978"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.800497676099999,
+            "unit": "seconds",
+            "range": "± 0.09207833100000062"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7488800035000001,
+            "unit": "seconds",
+            "range": "± 0.015261782000000057"
           }
         ]
       }
