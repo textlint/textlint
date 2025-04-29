@@ -117,13 +117,13 @@
 }
 
 :global(.container) {
-    max-width: 960px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 1rem;
 }
 
 :global(.margin-vert--xl) {
-    max-width: 960px;
+    max-width: 1280px;
     margin: 4rem auto;
     padding: 0 1rem;
 }

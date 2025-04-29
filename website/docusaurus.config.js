@@ -1,4 +1,6 @@
-module.exports = {
+import { themes as prismThemes } from "prism-react-renderer";
+
+export default {
     title: "textlint",
     tagline: "The pluggable linting tool for text and markdown",
     url: "https://textlint.org",
@@ -7,6 +9,9 @@ module.exports = {
     projectName: "textlint",
     scripts: ["https://buttons.github.io/buttons.js"],
     favicon: "img/textlint-icon_256x256.png",
+    markdown: {
+        format: "md"
+    },
     customFields: {
         users: [
             {
@@ -171,6 +176,10 @@ module.exports = {
             apiKey: "82014cf9b4a2988df9d5ab7a44d9d3b4",
             indexName: "textlint",
             algoliaOptions: {}
+        },
+        prism: {
+            theme: prismThemes.github,
+            darkTheme: prismThemes.dracula
         }
     }
 };
