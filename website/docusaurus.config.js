@@ -2,7 +2,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 export default {
     title: "textlint",
-    tagline: "The pluggable linting tool for text and markdown",
+    tagline: "The pluggable linting tool for natural language",
     url: "https://textlint.org",
     baseUrl: "/",
     organizationName: "textlint",
