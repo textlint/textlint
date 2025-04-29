@@ -1,39 +1,58 @@
+:root {
+    --indexPrimaryColor: #29bfcd;
+    --indexSecondaryColor: #6f9bf2;
+}
+
 .homeContainer {
     text-align: center;
+    padding: 4rem 0;
     position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(to bottom, var(--indexPrimaryColor), var(--indexSecondaryColor));
+    color: white;
 }
 
 .homeSplashFade {
-    background: var(--ifm-color-primary);
-    color: white;
-}
-
-.homeWrapper {
     padding: 2rem;
 }
 
+.homeWrapper {
+    padding: 2rem 1rem;
+}
+
 .ProjectTitle {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: white;
+    margin-top: 80px;
+    font-family: HelveticaNeue, serif;
+    font-size: 72px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1em;
+    color: #ffffff;
 }
 
 .ProjectTitle-copy {
+    font-family: HelveticaNeue, serif;
+    font-size: 30px;
+    max-width: 380px;
+    max-height: 70px;
+    margin: 0.7em auto 1.3em;
+    font-weight: 300;
+    text-align: center;
+    color: #ffffff;
     display: block;
-    font-size: 1.5rem;
-    font-weight: normal;
-    margin: 1rem 0;
+    line-height: 1em;
 }
 
 .GettingStartedButton {
     display: inline-block;
+    padding: 1rem 2rem;
+    margin: 1rem;
     border: 2px solid white;
     border-radius: 3px;
     color: white;
     font-size: 1.2rem;
-    padding: 1rem 2rem;
     text-decoration: none;
-    transition: all 0.3s;
+    transition: all 0.2s;
 }
 
 .GettingStartedButton:hover {
@@ -43,8 +62,28 @@
 }
 
 .TextlintFeature {
-    text-align: center;
     padding: 4rem 0;
+    background-color: var(--ifm-background-color);
+}
+
+.TextlintFeature :global(.col) {
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.TextlintFeature :global(.col):hover {
+    transform: translateY(-5px);
+}
+
+.TextlintFeature img {
+    height: 64px;
+    margin-bottom: 1.5rem;
+}
+
+.TextlintFeature h3 {
+    margin-bottom: 1rem;
+    color: var(--ifm-heading-color);
 }
 
 .getStartedFlexContainer {
@@ -75,4 +114,44 @@
     padding: 1rem;
     background: var(--ifm-code-background);
     border-radius: 3px;
+}
+
+.footer {
+    padding: 2rem 0;
+    background-color: var(--ifm-footer-background-color);
+}
+
+.footerContent {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+    max-width: var(--ifm-container-width);
+    margin: 0 auto;
+}
+
+.footerContent div {
+    display: flex;
+    flex-direction: column;
+}
+
+.footerContent h5 {
+    margin-bottom: 0.5rem;
+    color: var(--ifm-heading-color);
+}
+
+.footerContent a {
+    margin-bottom: 0.5rem;
+    color: var(--ifm-color-emphasis-700);
+    text-decoration: none;
+}
+
+.footerContent a:hover {
+    color: var(--ifm-color-primary);
+}
+
+.copyright {
+    margin-top: 2rem;
+    text-align: center;
+    color: var(--ifm-color-emphasis-600);
 }
