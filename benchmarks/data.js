@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1745929250888,
+  "lastUpdate": 1745929527805,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -52332,6 +52332,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7488800035000001,
             "unit": "seconds",
             "range": "± 0.015261782000000057"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "288dd73556d7cc2e3d5f803b3a26195f16ac35bc",
+          "message": "Update website/blog/2023-01-27-textlint-13.md\n\nCo-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>",
+          "timestamp": "2025-04-29T21:21:29+09:00",
+          "tree_id": "6599cd721d8e3db0278341233ba8fc2a292ae482",
+          "url": "https://github.com/textlint/textlint/commit/288dd73556d7cc2e3d5f803b3a26195f16ac35bc"
+        },
+        "date": 1745929523953,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.9888925737600001,
+            "unit": "seconds",
+            "range": "± 0.04152879999999992"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.612818132959999,
+            "unit": "seconds",
+            "range": "± 0.09319706900000035"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7433606687600001,
+            "unit": "seconds",
+            "range": "± 0.04165249299999996"
           }
         ]
       }
