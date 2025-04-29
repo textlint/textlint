@@ -175,7 +175,8 @@ export default {
         algolia: {
             appId: "YKHP6FTHHI",
             apiKey: "82014cf9b4a2988df9d5ab7a44d9d3b4",
-            indexName: "textlint"
+            indexName: "textlint",
+            contextualSearch: false // because, en only
         },
         prism: {
             theme: prismThemes.github,
