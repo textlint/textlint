@@ -32,15 +32,14 @@ function Help() {
                 <div className="row row--center">
                     <Card title="Browse Docs">
                         <p>
-                            Learn more using the <Link to="/docs/getting-started.html">documentation on this site</Link>
-                            .
+                            Learn more using the <Link to="/docs/getting-started">documentation on this site</Link>.
                         </p>
                     </Card>
                     <Card title="Join the Community">
                         <p>
                             For bugs and feature requests, please{" "}
                             <Link to="https://github.com/textlint/textlint/issues">open an issue</Link>. Be sure to also
-                            check out our <Link to="/docs/contributing.html">Contributing Guideline</Link>.
+                            check out our <Link to="/docs/contributing">Contributing Guideline</Link>.
                         </p>
                     </Card>
                 </div>
