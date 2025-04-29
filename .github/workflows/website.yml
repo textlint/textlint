@@ -28,4 +28,4 @@ jobs:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY_WEBSITE }}
           external_repository: textlint/textlint.github.io
           publish_branch: master
-          publish_dir: ./website/build/textlint
+          publish_dir: ./website/build

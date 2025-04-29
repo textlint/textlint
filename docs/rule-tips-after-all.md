@@ -1,6 +1,6 @@
 ---
 id: rule-tips-after-all
-title: How to implement "after-all" in the rule?
+title: 'How to implement "after-all" in the rule?'
 ---
 
 > Is there any way to execute this after all checks are done?

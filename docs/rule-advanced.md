@@ -1,6 +1,6 @@
 ---
 id: rule-advanced
-title: Advanced: Paragraph Rule
+title: "Advanced: Paragraph Rule"
 ---
 
 ## Readme

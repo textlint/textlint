@@ -264,21 +264,9 @@ report(node, new RuleError(message, {
 ```
 
 :memo: `padding` option and `locator` object are introduced in textlint v12.2.0+.
-You can declare your dependency on textlint in `package.json` using the [peerDependencies](https://docs.npmjs.com/files/package.json#peerdependencies) and [peerDependenciesMeta](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#peerdependenciesmeta) fields.
-
-```json5
-  "peerDependencies": {
-    "textlint": ">= 12.2.0"
-  },
-  "peerDependenciesMeta": {
-    "textlint": {
-      "optional": true
-    }
-  }
-```
 
 <details>
-<summary>Deprecated: { line, column } and { index } properties</summary>
+<summary>Deprecated: `line, column` and `index` properties</summary>
 
 `{ line, column }` and `{ index }` properties are deprecated.
 Instead of these, textlint v12.2.0 introduce `padding` property and `locator` object.
@@ -738,7 +726,7 @@ export default function (context, options) {
 
 **History**: This behavior is changed in textlint@11.
 
-- <https://github.com/textlint/textlint/issues/535>
+- [Issue #535](https://github.com/textlint/textlint/issues/535)
 
 ## Advanced example
 

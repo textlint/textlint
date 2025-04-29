@@ -1,0 +1,53 @@
+/* users.module.css */
+.mainContainer {
+    padding: 2rem 0;
+}
+
+.showcaseSection {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.prose {
+    margin-bottom: 2rem;
+}
+
+.logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+.logos a {
+    display: inline-block;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.logos a:hover {
+    opacity: 0.8;
+}
+
+.logos img {
+    max-width: 128px;
+    height: auto;
+}
+
+.button {
+    display: inline-block;
+    border: 1px solid var(--ifm-color-primary);
+    border-radius: 3px;
+    color: var(--ifm-color-primary);
+    padding: 0.5rem 1.5rem;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.button:hover {
+    background: var(--ifm-color-primary);
+    color: var(--ifm-color-white);
+    text-decoration: none;
+}
