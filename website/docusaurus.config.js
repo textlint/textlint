@@ -171,7 +171,7 @@ export default {
                 }
             ]
         },
-        image: "img/textlint-icon_256x256.png",
+        image: "img/og-image.png",
         algolia: {
             appId: "YKHP6FTHHI",
             apiKey: "82014cf9b4a2988df9d5ab7a44d9d3b4",
