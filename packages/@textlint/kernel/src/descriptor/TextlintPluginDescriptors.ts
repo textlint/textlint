@@ -41,7 +41,7 @@ export class TextlintPluginDescriptors {
      */
     findPluginDescriptorWithExt(ext: string) {
         return this.descriptors.find((descriptor) => {
-            return descriptor.availableExtensions.includes(ext);
+            return descriptor.availableExtensions.some((availableExtension) => ext.endsWith(availableExtension));
         });
     }
 
