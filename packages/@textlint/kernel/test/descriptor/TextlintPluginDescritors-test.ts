@@ -108,7 +108,7 @@ describe("TextlintRuleDescriptors", function () {
         });
     });
     describe("#findPluginDescriptorWithExt", function () {
-        it("should return a descriptor that match forward with extension", function () {
+        it("should return the first descriptor that matches the single extension", function () {
             const descriptorA = new TextlintPluginDescriptor({
                 pluginId: "TextPlugin",
                 plugin: createDummyPlugin([".txt"]),
@@ -129,6 +129,33 @@ describe("TextlintRuleDescriptors", function () {
             const textPlugin = ruleDescriptors.findPluginDescriptorWithExt(".txt");
             // save first item
             assert.deepStrictEqual(textPlugin, descriptorA);
+        });
+        it("should return the first descriptor that matches the multi-part extension", function () {
+            const phpDescriptor = new TextlintPluginDescriptor({
+                pluginId: "HtmlPlugin",
+                plugin: createDummyPlugin([".php"]),
+                options: true
+            });
+            const phpDescriptors = new TextlintPluginDescriptors([phpDescriptor]);
+            // `.foo.php` should be matched
+            const fooPhpPlugin = phpDescriptors.findPluginDescriptorWithExt(".foo.php");
+            assert.strictEqual(fooPhpPlugin, phpDescriptor);
+            // `.php.foo` should not be matched
+            const phpFooPlugin = phpDescriptors.findPluginDescriptorWithExt(".php.foo");
+            assert.strictEqual(phpFooPlugin, undefined);
+
+            const bladePhpDescriptor = new TextlintPluginDescriptor({
+                pluginId: "HtmlPlugin",
+                plugin: createDummyPlugin([".blade.php"]),
+                options: true
+            });
+            const bladePhpDescriptors = new TextlintPluginDescriptors([bladePhpDescriptor]);
+            // `.blade.php` should be matched
+            const bladePhpPlugin = bladePhpDescriptors.findPluginDescriptorWithExt(".blade.php");
+            assert.strictEqual(bladePhpPlugin, bladePhpDescriptor);
+            // `.php` should not be matched
+            const phpPlugin = bladePhpDescriptors.findPluginDescriptorWithExt(".php");
+            assert.strictEqual(phpPlugin, undefined);
         });
     });
 });
