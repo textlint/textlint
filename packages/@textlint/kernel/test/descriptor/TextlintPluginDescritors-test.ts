@@ -139,10 +139,10 @@ describe("TextlintRuleDescriptors", function () {
             const phpDescriptors = new TextlintPluginDescriptors([phpDescriptor]);
             // `.foo.php` should be matched
             const fooPhpPlugin = phpDescriptors.findPluginDescriptorWithExt(".foo.php");
-            assert.deepStrictEqual(fooPhpPlugin, phpDescriptor);
+            assert.strictEqual(fooPhpPlugin, phpDescriptor);
             // `.php.foo` should not be matched
             const phpFooPlugin = phpDescriptors.findPluginDescriptorWithExt(".php.foo");
-            assert.deepStrictEqual(phpFooPlugin, undefined);
+            assert.strictEqual(phpFooPlugin, undefined);
 
             const bladePhpDescriptor = new TextlintPluginDescriptor({
                 pluginId: "HtmlPlugin",
@@ -152,10 +152,10 @@ describe("TextlintRuleDescriptors", function () {
             const bladePhpDescriptors = new TextlintPluginDescriptors([bladePhpDescriptor]);
             // `.blade.php` should be matched
             const bladePhpPlugin = bladePhpDescriptors.findPluginDescriptorWithExt(".blade.php");
-            assert.deepStrictEqual(bladePhpPlugin, bladePhpDescriptor);
+            assert.strictEqual(bladePhpPlugin, bladePhpDescriptor);
             // `.php` should not be matched
             const phpPlugin = bladePhpDescriptors.findPluginDescriptorWithExt(".php");
-            assert.deepStrictEqual(phpPlugin, undefined);
+            assert.strictEqual(phpPlugin, undefined);
         });
     });
 });
