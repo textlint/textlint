@@ -52,7 +52,6 @@
     "devDependencies": {
         "@types/node": "^18.19.9",
         "prettier": "^2.7.1",
-        "rimraf": "^3.0.2",
         "typescript": "~5.3.3"
     },
     "publishConfig": {
