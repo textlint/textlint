@@ -81,7 +81,7 @@ export const options = optionator({
             option: "fix",
             type: "Boolean",
             default: false,
-            description: "Automatically fix problems",
+            description: "Automatically fix problems.",
             example: "--fix"
         },
         {
@@ -95,13 +95,13 @@ export const options = optionator({
             option: "debug",
             type: "Boolean",
             default: false,
-            description: "Outputs debugging information"
+            description: "Outputs debugging information."
         },
         {
             option: "print-config",
             type: "Boolean",
             default: false,
-            description: "Print the config object to stdout"
+            description: "Print the config object to stdout."
         },
         {
             option: "version",
@@ -121,7 +121,7 @@ export const options = optionator({
         {
             option: "stdin-filename",
             type: "String",
-            description: "Specify filename to process STDIN as",
+            description: "Specify filename to process STDIN as.",
             example: "cat ./README.md | textlint --stdin --stdin-filename README.md"
         },
         {
@@ -163,19 +163,19 @@ export const options = optionator({
             option: "textlintrc",
             type: "Boolean",
             default: "true",
-            description: "Disable .textlintrc",
+            description: "Disable .textlintrc file.",
             example: "textlint --no-textlintrc --rule textlint-no-todo README.md"
         },
         {
             option: "plugin",
             type: "[String]",
-            description: "Set plugin package name",
+            description: "Set plugin package name.",
             example: "--plugin plugin-name"
         },
         {
             option: "rule",
             type: "[String]",
-            description: "Set rule package name"
+            description: "Set rule package name."
         },
         {
             option: "preset",
@@ -185,7 +185,7 @@ export const options = optionator({
         {
             option: "rulesdir",
             type: "[path::String]",
-            description: "Use additional rules from this directory"
+            description: "Use additional rules from this directory."
         },
         {
             heading: "Caching"
@@ -194,14 +194,14 @@ export const options = optionator({
             option: "cache",
             type: "Boolean",
             default: "false",
-            description: "Only check changed files",
+            description: "Only check changed files.",
             example: "textlint --cache docs/"
         },
         {
             option: "cache-location",
             type: "path::String",
             default: path.resolve(process.cwd(), ".textlintcache"),
-            description: "Path to the cache file or directory",
+            description: "Path to the cache file or directory.",
             example: 'textlint --cache --cache-location "/Users/user/.textlintcache" docs/'
         },
         {
@@ -211,7 +211,7 @@ export const options = optionator({
             option: "experimental",
             type: "Boolean",
             default: false,
-            description: "Enable experimental flag.Some feature use on experimental.",
+            description: "Enable experimental flag. Some feature use on experimental.",
             example: "--experimental"
         },
         {
