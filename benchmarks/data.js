@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1746258570576,
+  "lastUpdate": 1746258608040,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -53214,6 +53214,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7229652838,
             "unit": "seconds",
             "range": "± 0.012740996999999976"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "52315048+3w36zj6@users.noreply.github.com",
+            "name": "3w36zj6",
+            "username": "3w36zj6"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6ff24b5ab19069383269b54084ee96efb7e2ea01",
+          "message": "feat(textlint): unify punctuation in CLI option descriptions (#1499)",
+          "timestamp": "2025-05-03T16:47:07+09:00",
+          "tree_id": "cdafe71d85db8155969388829f95b20013a97141",
+          "url": "https://github.com/textlint/textlint/commit/6ff24b5ab19069383269b54084ee96efb7e2ea01"
+        },
+        "date": 1746258604128,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.98466261336,
+            "unit": "seconds",
+            "range": "± 0.05761400400000016"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.5944525469599995,
+            "unit": "seconds",
+            "range": "± 0.1566723019999996"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7258248147599999,
+            "unit": "seconds",
+            "range": "± 0.02577091000000009"
           }
         ]
       }
