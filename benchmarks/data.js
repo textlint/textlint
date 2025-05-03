@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1746182919905,
+  "lastUpdate": 1746258361539,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -53088,6 +53088,48 @@ window.BENCHMARK_DATA = {
             "value": 0.73283693236,
             "unit": "seconds",
             "range": "± 0.020571655000000022"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "52315048+3w36zj6@users.noreply.github.com",
+            "name": "3w36zj6",
+            "username": "3w36zj6"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fad857e68c6a6e5eb55141a8648dd9ad0279f682",
+          "message": "feat(kernel): support multi-part extensions in plugin (#1497)\n\n* test(kernel): update descriptor test cases for single and multi-part extensions\n\n* feat(kernel): support multi-part extensions in plugin\n\n* test(kernel): use `strictEqual` instead of `deepStrictEqual`",
+          "timestamp": "2025-05-03T16:43:06+09:00",
+          "tree_id": "f1bcb8932b474f72aa142b234c7c4f155e84da2c",
+          "url": "https://github.com/textlint/textlint/commit/fad857e68c6a6e5eb55141a8648dd9ad0279f682"
+        },
+        "date": 1746258357006,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.98324360712,
+            "unit": "seconds",
+            "range": "± 0.038121639999999846"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.54004561772,
+            "unit": "seconds",
+            "range": "± 0.048685600999999856"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7284239835200002,
+            "unit": "seconds",
+            "range": "± 0.021265757999999968"
           }
         ]
       }
