@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1746280903790,
+  "lastUpdate": 1746348633485,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -53508,6 +53508,48 @@ window.BENCHMARK_DATA = {
             "value": 0.72502374114,
             "unit": "seconds",
             "range": "± 0.015351509999999902"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "52315048+3w36zj6@users.noreply.github.com",
+            "name": "3w36zj6",
+            "username": "3w36zj6"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "04d8e593a4c8c617ba7fff10e4c43af6b52ed1bf",
+          "message": "feat(website): add Open Graph image (#1503)\n\n* feat(website): add Open Graph image file\n\n* chore(website): set meta image in Docusaurus config",
+          "timestamp": "2025-05-04T17:47:35+09:00",
+          "tree_id": "6e694c1001b3fd98276551a7480b5be860c27d7e",
+          "url": "https://github.com/textlint/textlint/commit/04d8e593a4c8c617ba7fff10e4c43af6b52ed1bf"
+        },
+        "date": 1746348628889,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.9800957161800001,
+            "unit": "seconds",
+            "range": "± 0.03084452900000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.53069915318,
+            "unit": "seconds",
+            "range": "± 0.109118402"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7172460331800001,
+            "unit": "seconds",
+            "range": "± 0.02256771599999996"
           }
         ]
       }
