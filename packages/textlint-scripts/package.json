@@ -44,10 +44,10 @@
     },
     "dependencies": {
         "@babel/cli": "^7.27.1",
-        "@babel/core": "^7.26.10",
-        "@babel/preset-env": "^7.26.9",
+        "@babel/core": "^7.27.1",
+        "@babel/preset-env": "^7.27.1",
         "@babel/preset-typescript": "^7.27.1",
-        "@babel/register": "^7.25.9",
+        "@babel/register": "^7.27.1",
         "babel-plugin-static-fs": "^3.0.0",
         "confirmer": "^1.1.2",
         "cross-spawn": "^7.0.3",
