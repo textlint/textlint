@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintKernelDescriptor } from "@textlint/kernel";
+import { TextlintKernelDescriptor, TextlintMessage, TextlintResult } from "@textlint/kernel";
 import { TextLintFormatterOption } from "../../textlint-interface";
 import { TextLintCore } from "../textlint-core";
 import { RuleMap } from "../../engine/rule-map";
@@ -11,7 +11,6 @@ import { TextLintModuleLoader } from "./textlint-module-loader";
 import { ExecuteFileBackerManager } from "../../engine/execute-file-backer-manager";
 import { CacheBacker } from "../../engine/execute-file-backers/cache-backer";
 import { SeverityLevel } from "../../shared/type/SeverityLevel";
-import { TextlintMessage, TextlintResult } from "@textlint/kernel";
 import debug0 from "debug";
 import path from "path";
 import { separateByAvailability } from "../../util/separate-by-availability";
