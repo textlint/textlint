@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1747494058128,
+  "lastUpdate": 1747655047405,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -54642,6 +54642,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7442211169,
             "unit": "seconds",
             "range": "± 0.0195659279999999"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "arukimedesu1166777@gmail.com",
+            "name": "Noritaka Kobayashi",
+            "username": "noritaka1166"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5792580e70631d8a88ee45433345a3ab640b8b7b",
+          "message": "refactor: unnecessarily renamed & import multiple times (#1507)",
+          "timestamp": "2025-05-19T20:40:26+09:00",
+          "tree_id": "91f0d055bbc2aef3b0ac297a96cc856537045340",
+          "url": "https://github.com/textlint/textlint/commit/5792580e70631d8a88ee45433345a3ab640b8b7b"
+        },
+        "date": 1747655043930,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 1.0170262527799998,
+            "unit": "seconds",
+            "range": "± 0.010418776999999935"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.68470380958,
+            "unit": "seconds",
+            "range": "± 0.10745122799999951"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.73943932518,
+            "unit": "seconds",
+            "range": "± 0.01771089299999995"
           }
         ]
       }
