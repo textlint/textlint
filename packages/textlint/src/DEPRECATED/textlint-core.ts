@@ -4,8 +4,8 @@
  textlint-core.js is a class
  textlint.js is a singleton object that is instance of textlint-core.js.
  */
-import { TextlintKernelDescriptor } from "@textlint/kernel";
 import {
+    TextlintKernelDescriptor,
     TextlintFixResult,
     TextlintKernel,
     TextlintKernelPlugin,

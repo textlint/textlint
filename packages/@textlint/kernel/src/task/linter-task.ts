@@ -23,13 +23,7 @@ export default class TextLintCoreTask extends CoreTask {
     sourceCode: TextlintSourceCode;
     configBaseDir?: string;
 
-    constructor({
-        config,
-        configBaseDir,
-        ruleDescriptors,
-        filterRuleDescriptors: filterRuleDescriptors,
-        sourceCode
-    }: TextLintCoreTaskArgs) {
+    constructor({ config, configBaseDir, ruleDescriptors, filterRuleDescriptors, sourceCode }: TextLintCoreTaskArgs) {
         super();
         this.config = config;
         this.configBaseDir = configBaseDir;
