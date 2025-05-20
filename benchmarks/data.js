@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1747709116850,
+  "lastUpdate": 1747750589493,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -54894,6 +54894,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7610314948400001,
             "unit": "seconds",
             "range": "± 0.008469017000000023"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hi@v1rtl.site",
+            "name": "v1rtl",
+            "username": "talentlessguy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1a0981366a748e6450fc0b7b196630fa2e644177",
+          "message": "refactor: replace get-stdin with built-in stream consumers (#1511)",
+          "timestamp": "2025-05-20T23:13:11+09:00",
+          "tree_id": "ae43b8b1e31d382f568549f14c92b1659025cdcd",
+          "url": "https://github.com/textlint/textlint/commit/1a0981366a748e6450fc0b7b196630fa2e644177"
+        },
+        "date": 1747750586213,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 1.0210025963599998,
+            "unit": "seconds",
+            "range": "± 0.02459462499999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.920091945359999,
+            "unit": "seconds",
+            "range": "± 0.16910842700000028"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7507939569600002,
+            "unit": "seconds",
+            "range": "± 0.013741255000000008"
           }
         ]
       }
