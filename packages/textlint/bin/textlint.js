@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 "use strict";
-const getStdin = require("get-stdin");
+const streamConsumers = require("node:stream/consumers");
 const useStdIn = process.argv.indexOf("--stdin") > -1;
 const isDebug = process.argv.indexOf("--debug") > -1;
 if (isDebug) {
@@ -42,7 +42,7 @@ function showError(error) {
 Promise.resolve()
     .then(function () {
         if (useStdIn) {
-            return getStdin().then(function (text) {
+            return streamConsumers.text(process.stdin).then(function (text) {
                 return cli.execute(process.argv, text);
             });
         }
