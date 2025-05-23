@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1748003781016,
+  "lastUpdate": 1748008928382,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -55230,6 +55230,48 @@ window.BENCHMARK_DATA = {
             "value": 0.73668429244,
             "unit": "seconds",
             "range": "± 0.01204044999999998"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "arukimedesu1166777@gmail.com",
+            "name": "Noritaka Kobayashi",
+            "username": "noritaka1166"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "48ab6371f2d6036d882410ded17f752ffb5a0f98",
+          "message": "chore: remove unused clsx dependency (#1514)",
+          "timestamp": "2025-05-23T22:58:42+09:00",
+          "tree_id": "012edebf6a506c8d4367fd908ad08434100dc540",
+          "url": "https://github.com/textlint/textlint/commit/48ab6371f2d6036d882410ded17f752ffb5a0f98"
+        },
+        "date": 1748008923518,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 1.0322420125599998,
+            "unit": "seconds",
+            "range": "± 0.041372930999999946"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.83785520836,
+            "unit": "seconds",
+            "range": "± 0.05325417700000035"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.75581033096,
+            "unit": "seconds",
+            "range": "± 0.016035123999999956"
           }
         ]
       }
