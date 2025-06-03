@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1748960162212,
+  "lastUpdate": 1748960261465,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -55776,6 +55776,48 @@ window.BENCHMARK_DATA = {
             "value": 0.73347122082,
             "unit": "seconds",
             "range": "± 0.035920770000000046"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "12edfe9bfaa58984ab6b4f38f12ecba8a793d5af",
+          "message": "fix(deps): update docusaurus monorepo to ^3.8.0",
+          "timestamp": "2025-06-03T14:13:15Z",
+          "tree_id": "6c8f2692e34664cfa55008777d927a97374e81ba",
+          "url": "https://github.com/textlint/textlint/commit/12edfe9bfaa58984ab6b4f38f12ecba8a793d5af"
+        },
+        "date": 1748960257199,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.99997077442,
+            "unit": "seconds",
+            "range": "± 0.04061092200000005"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.74818650042,
+            "unit": "seconds",
+            "range": "± 0.14086134700000041"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.74007081742,
+            "unit": "seconds",
+            "range": "± 0.025701832999999952"
           }
         ]
       }
