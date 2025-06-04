@@ -76,11 +76,26 @@ export const cli = {
             const descriptor = await loadDescriptor(currentOptions);
             Logger.log(JSON.stringify(descriptor, null, 4));
             return Promise.resolve(0);
+        } else if (currentOptions.mcp) {
+            const { server: mcpServer } = require("@textlint/mcp");
+            const { StdioServerTransport } = require("@modelcontextprotocol/sdk/server/stdio.js");
+
+            await mcpServer.connect(new StdioServerTransport());
+            // NOTE: do not use Logger.log() because stdout use to the server transport
+            Logger.error(`Textlint MCP server is running.`);
+
+            process.on("SIGINT", () => {
+                mcpServer.close();
+                process.exitCode = 0;
+            });
+
+            return 0;
         } else if (currentOptions.help || (!files.length && !text)) {
             Logger.log(options.generateHelp());
         } else {
             // specify file name of stdin content
             const stdinFilename = currentOptions.stdinFilename;
+
             debug(`textlint --version: ${version}`);
             debug(`Running on ${text ? "text" : "files"}, stdin-filename: ${stdinFilename}`);
             if (text) {
@@ -101,7 +116,6 @@ export const cli = {
         }
         return Promise.resolve(0);
     },
-
     /**
      * execute with cli options
      * @returns {Promise<number>} exit status
