@@ -1,0 +1,17 @@
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "outDir": "lib",
+        "resolveJsonModule": true
+    },
+    "references": [
+        {
+            "path": "../../textlint",
+        },
+        {
+            "path": "../resolver",
+        }
+    ],
+    "include": ["src/**/*", "./package.json"],
+    "exclude": [".git", "node_modules"]
+}
