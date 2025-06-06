@@ -1,17 +1,53 @@
 {
-    "extends": "../../../tsconfig.base.json",
-    "compilerOptions": {
-        "outDir": "lib",
-        "resolveJsonModule": true
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "lib",
+    "resolveJsonModule": true
+  },
+  "references": [
+    {
+      "path": "../ast-node-types"
     },
-    "references": [
-        {
-            "path": "../../textlint",
-        },
-        {
-            "path": "../resolver",
-        }
-    ],
-    "include": ["src/**/*", "./package.json"],
-    "exclude": [".git", "node_modules"]
+    {
+      "path": "../ast-traverse"
+    },
+    {
+      "path": "../config-loader"
+    },
+    {
+      "path": "../feature-flag"
+    },
+    {
+      "path": "../fixer-formatter"
+    },
+    {
+      "path": "../kernel"
+    },
+    {
+      "path": "../linter-formatter"
+    },
+    {
+      "path": "../module-interop"
+    },
+    {
+      "path": "../resolver"
+    },
+    {
+      "path": "../textlint-plugin-markdown"
+    },
+    {
+      "path": "../textlint-plugin-text"
+    },
+    {
+      "path": "../../textlint"
+    }
+  ],
+  "include": [
+    "src/**/*",
+    "./package.json"
+  ],
+  "exclude": [
+    ".git",
+    "node_modules"
+  ]
 }
