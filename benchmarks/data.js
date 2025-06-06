@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749061756572,
+  "lastUpdate": 1749215467075,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -56112,6 +56112,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7339122973600001,
             "unit": "seconds",
             "range": "± 0.016102450999999962"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "chick.p.1120@gmail.com",
+            "name": "piyo",
+            "username": "chick-p"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c035aad2294ce1bb78ec179c966e7174924786dc",
+          "message": "chore: do not format .nx and docusaurus files (#1519)",
+          "timestamp": "2025-06-06T22:07:57+09:00",
+          "tree_id": "b6ad1a2e8e354144faddf85e70ffd2999def7799",
+          "url": "https://github.com/textlint/textlint/commit/c035aad2294ce1bb78ec179c966e7174924786dc"
+        },
+        "date": 1749215462156,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.97115175062,
+            "unit": "seconds",
+            "range": "± 0.01805542299999996"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.56312930962,
+            "unit": "seconds",
+            "range": "± 0.06206396400000003"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.71499699782,
+            "unit": "seconds",
+            "range": "± 0.01255904699999999"
           }
         ]
       }
