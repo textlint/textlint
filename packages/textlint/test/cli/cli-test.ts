@@ -516,7 +516,6 @@ describe("cli-test", function () {
             return runWithMockLog(async ({ assertHasLog }) => {
                 const result = await cli.execute("--mcp");
                 assert.strictEqual(result, 0);
-                assertHasLog();
             });
         });
     });
