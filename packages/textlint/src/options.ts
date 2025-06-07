@@ -43,6 +43,7 @@ export type CliOptions = {
     version: boolean;
     outputFile: string;
     experimental: boolean;
+    mcp: boolean;
     _: string[];
 };
 export const options = optionator({
@@ -220,6 +221,13 @@ export const options = optionator({
             description:
                 "Set module base directory. textlint load modules(rules/presets/plugins) from the base directory.",
             example: 'textlint --rules-base-directory "/path/to/other/project/node_modules/"'
+        },
+        {
+            option: "mcp",
+            type: "Boolean",
+            default: false,
+            description: "Start textlint as the Model Context Protocol (MCP) server.",
+            example: "--mcp"
         }
     ]
 }) as {
