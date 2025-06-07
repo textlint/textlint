@@ -81,7 +81,8 @@ const defaultOptions = Object.freeze({
     // --cache-location: cache file path
     cacheLocation: path.resolve(process.cwd(), ".textlintcache"),
     // --ignore-path: ".textlintignore" file path
-    ignoreFile: path.resolve(process.cwd(), ".textlintignore")
+    ignoreFile: path.resolve(process.cwd(), ".textlintignore"),
+    mcp: false
 });
 
 export interface ConfigStatics {
@@ -204,6 +205,7 @@ export class Config {
             cliOptions.ignorePath !== undefined
                 ? path.resolve(process.cwd(), cliOptions.ignorePath)
                 : defaultOptions.ignoreFile;
+        options.mcp = cliOptions.mcp !== undefined ? cliOptions.mcp : defaultOptions.mcp;
         return this.initWithAutoLoading(options);
     }
 

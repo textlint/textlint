@@ -56,6 +56,9 @@
       "path": "packages/@textlint/text-to-ast"
     },
     {
+      "path": "packages/@textlint/mcp"
+    },
+    {
       "path": "packages/@textlint/textlint-plugin-markdown"
     },
     {

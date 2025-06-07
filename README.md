@@ -148,6 +148,7 @@ Caching:
 Experimental:
   --experimental              Enable experimental flag.Some feature use on experimental.
   --rules-base-directory path::String  Set module base directory. textlint load modules(rules/presets/plugins) from the base directory.
+  --mcp                       Start textlint as the Model Context Protocol (MCP) server.
 ```
 
 When running textlint, you can target files to lint using the glob patterns.
