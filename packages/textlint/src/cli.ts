@@ -77,10 +77,9 @@ export const cli = {
             Logger.log(JSON.stringify(descriptor, null, 4));
             return Promise.resolve(0);
         } else if (currentOptions.mcp) {
-            const { server: mcpServer } = require("@textlint/mcp");
-            const { StdioServerTransport } = require("@modelcontextprotocol/sdk/server/stdio.js");
+            const { connectMcpServer } = await import("@textlint/mcp");
+            const mcpServer = await connectMcpServer();
 
-            await mcpServer.connect(new StdioServerTransport());
             // NOTE: do not use Logger.log() because stdout use to the server transport
             Logger.error(`Textlint MCP server is running.`);
 

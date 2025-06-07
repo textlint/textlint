@@ -6,7 +6,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
 
-import { server } from "../src/index";
+import { server } from "../src/server";
 
 const validFilePath = path.join(__dirname, "fixtures", "ok.md");
 const stdinFilename = `textlint.txt`;
