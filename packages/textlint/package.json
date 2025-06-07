@@ -46,6 +46,7 @@
     "watch": "tsc -b --watch"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
     "@textlint/ast-node-types": "^14.7.2",
     "@textlint/ast-traverse": "^14.7.2",
     "@textlint/config-loader": "^14.7.2",
