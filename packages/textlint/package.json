@@ -46,6 +46,7 @@
     "watch": "tsc -b --watch"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
     "@textlint/ast-node-types": "^14.7.2",
     "@textlint/ast-traverse": "^14.7.2",
     "@textlint/config-loader": "^14.7.2",
@@ -70,7 +71,8 @@
     "read-pkg": "^1.1.0",
     "read-pkg-up": "^3.0.0",
     "structured-source": "^4.0.0",
-    "unique-concat": "^0.2.2"
+    "unique-concat": "^0.2.2",
+    "zod": "^3.25.56"
   },
   "devDependencies": {
     "@textlint/legacy-textlint-core": "^14.7.2",

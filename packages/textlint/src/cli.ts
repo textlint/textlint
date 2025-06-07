@@ -10,6 +10,7 @@ import { createLinter } from "./createLinter";
 import { SeverityLevel } from "./shared/type/SeverityLevel";
 import { printResults, showEmptyRuleWarning } from "./cli-util";
 import { loadFixerFormatter, loadLinterFormatter } from "./formatter";
+import { connectStdioMcpServer } from "./mcp/server";
 
 const debug = debug0("textlint:cli");
 type StdinExecuteOption = {
@@ -76,6 +77,13 @@ export const cli = {
             const descriptor = await loadDescriptor(currentOptions);
             Logger.log(JSON.stringify(descriptor, null, 4));
             return Promise.resolve(0);
+        } else if (currentOptions.mcp) {
+            const mcpServer = await connectStdioMcpServer();
+            process.on("SIGINT", () => {
+                mcpServer.close();
+                process.exitCode = 0;
+            });
+            return 0;
         } else if (currentOptions.help || (!files.length && !text)) {
             Logger.log(options.generateHelp());
         } else {

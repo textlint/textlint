@@ -510,6 +510,12 @@ describe("cli-test", function () {
             });
         });
     });
+    describe("--mcp", function () {
+        it("should have --mcp option", async function () {
+            const result = await cli.execute("--mcp");
+            assert.strictEqual(result, 0);
+        });
+    });
     describe("--version", function () {
         it("should output current textlint version", function () {
             const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, "../../package.json"), "utf-8"));
