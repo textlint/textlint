@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749349149080,
+  "lastUpdate": 1749392671649,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -56448,6 +56448,48 @@ window.BENCHMARK_DATA = {
             "value": 0.75322973136,
             "unit": "seconds",
             "range": "± 0.004002810999999995"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "170c6ec0e55c8597c6830f35cb3d3b70f0295677",
+          "message": "docs: Add --mcp usage",
+          "timestamp": "2025-06-08T23:20:39+09:00",
+          "tree_id": "8198f82de1e21af27e2352c7f0216356d4f539f7",
+          "url": "https://github.com/textlint/textlint/commit/170c6ec0e55c8597c6830f35cb3d3b70f0295677"
+        },
+        "date": 1749392666300,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 1.00309834828,
+            "unit": "seconds",
+            "range": "± 0.03657261599999995"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.60161458548,
+            "unit": "seconds",
+            "range": "± 0.13354494199999944"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7465934672800001,
+            "unit": "seconds",
+            "range": "± 0.019836839999999967"
           }
         ]
       }
