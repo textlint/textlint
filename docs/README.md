@@ -9,6 +9,11 @@ title: Documentation
 - [Configuring](./configuring.md)
 - [Ignoring Text](./ignore.md)
 
+## Integrations
+
+- [Integrations](./integrations.md)
+- [Model Context Protocol (MCP) Setup](./mcp.md)
+
 ## Developer Guide
 
 - [How to create rule?](./rule.md)

@@ -23,6 +23,19 @@ title: Integrating with Editors, Tools, etc..
 - Emacs
   - [flycheck/flycheck](https://www.flycheck.org/en/latest/languages.html#syntax-checker-textlint "emacs-flycheck-package")
 
+
+## AI Assistants (MCP)
+
+textlint can be used as a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server, enabling AI assistants to interact with textlint directly:
+
+```bash
+npx textlint --mcp
+```
+
+The MCP server provides tools for linting and fixing text content, allowing AI assistants to automatically check and improve text quality using your textlint configuration.
+
+For detailed setup instructions, see [MCP Setup Guide](./mcp.md).
+
 ## App
 
 - [textlint-app](https://github.com/textlint/textlint-app "textlint-app")
