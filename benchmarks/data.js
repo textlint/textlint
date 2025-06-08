@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749262841177,
+  "lastUpdate": 1749349092594,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -56364,6 +56364,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7093295167000002,
             "unit": "seconds",
             "range": "± 0.006967328999999967"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "chick.p.1120@gmail.com",
+            "name": "piyo",
+            "username": "chick-p"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bd3145570cf88f0ca03d17e945a45ceaf8d7c68a",
+          "message": "feat(textlint): add `--mcp` option (#1522)\n\n* deps(textlint): @modelcontextprotocol/sdk\n\n* deps(textlint): zod\n\n* feat(textlint): add mcp\n\n* test(textlint): add test for mcp\n\n* feat(textlint): add `--mcp` option\n\n* test(textlint): add test for `--mcp` option\n\n* docs(docs): write `--mcp` option\n\n* docs: add `--mcp` option",
+          "timestamp": "2025-06-08T11:14:15+09:00",
+          "tree_id": "7bf082a9d0c891b968bbf70404750c26d611ddcb",
+          "url": "https://github.com/textlint/textlint/commit/bd3145570cf88f0ca03d17e945a45ceaf8d7c68a"
+        },
+        "date": 1749349087938,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 1.0057361094200001,
+            "unit": "seconds",
+            "range": "± 0.021322646999999972"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.58385031882,
+            "unit": "seconds",
+            "range": "± 0.03246360900000056"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7468517122200001,
+            "unit": "seconds",
+            "range": "± 0.00817036900000001"
           }
         ]
       }
