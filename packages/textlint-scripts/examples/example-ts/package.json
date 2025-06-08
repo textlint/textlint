@@ -1,7 +1,7 @@
 {
   "name": "textlint-scripts-example-ts",
   "description": "Example of textlint-scripts with TypeScript",
-  "version": "14.7.2",
+  "version": "14.8.0",
   "private": true,
   "license": "MIT",
   "author": "azu",
@@ -14,8 +14,8 @@
     "prh": "^5.4.4"
   },
   "devDependencies": {
-    "@textlint/types": "^14.7.2",
-    "textlint-scripts": "^14.7.2",
+    "@textlint/types": "^14.8.0",
+    "textlint-scripts": "^14.8.0",
     "ts-node": "^10.9.2",
     "typescript": "~5.3.3"
   }
