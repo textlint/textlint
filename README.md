@@ -443,6 +443,22 @@ Please see [Ignoring Text · textlint](https://textlint.org/docs/ignore.html) fo
 
 For more details, see [integrations document](./docs/integrations.md).
 
+### AI Assistants (MCP)
+
+textlint can be used as a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server, enabling AI assistants to interact with textlint directly:
+
+```bash
+npx textlint --mcp
+```
+
+Supported editors:
+- VS Code with GitHub Copilot
+- Cursor
+- Windsurf
+- etc.
+
+For setup instructions, see [MCP Setup Guide](./docs/mcp.md).
+
 ### App
 
 - [textlint-app](https://github.com/textlint/textlint-app "textlint-app")
