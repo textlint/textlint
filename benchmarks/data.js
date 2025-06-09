@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749502043721,
+  "lastUpdate": 1749512312495,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -56784,6 +56784,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7445331419400001,
             "unit": "seconds",
             "range": "± 0.013729740000000046"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "ac99bf49ecaa08b85626bce6c142f25cf94c368a",
+          "message": "docs(mcp): add configuration prerequisite and improve setup instructions\n\nThe MCP server requires an existing textlint configuration since textlint\nhas no default rules. Updated documentation to clarify this requirement\nand provide clearer setup instructions.",
+          "timestamp": "2025-06-10T08:35:23+09:00",
+          "tree_id": "432c98202957ba341863a1b1e08d2cb24abbf9d1",
+          "url": "https://github.com/textlint/textlint/commit/ac99bf49ecaa08b85626bce6c142f25cf94c368a"
+        },
+        "date": 1749512308165,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 1.0128879667,
+            "unit": "seconds",
+            "range": "± 0.029418374000000025"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.6985719709,
+            "unit": "seconds",
+            "range": "± 0.08612809999999982"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7548079477,
+            "unit": "seconds",
+            "range": "± 0.00537063399999993"
           }
         ]
       }
