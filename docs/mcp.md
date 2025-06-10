@@ -156,38 +156,12 @@ Before using the MCP server, make sure you have:
 
 For detailed configuration instructions, see [Configuring textlint](./configuring.md).
 
-### Basic setup example
-
-1. Install textlint and rules:
-```bash
-npm install --save-dev textlint @textlint-rule/textlint-rule-common-misspellings
-```
-
-2. Create `.textlintrc.json`:
-```json
-{
-  "rules": {
-    "@textlint-rule/textlint-rule-common-misspellings": true
-  }
-}
-```
-
-3. Test your configuration:
-```bash
-npx textlint README.md
-```
-
-4. Start the MCP server:
-```bash
-npx textlint --mcp
-```
-
 ## Example Prompts
 
 Here are some example prompts you can use with AI assistants:
 
 ```
-Lint the current file and explain any text issues found
+Lint the current file with textlint MCP and explain any text issues found
 
 Fix all textlint issues in src/README.md
 
