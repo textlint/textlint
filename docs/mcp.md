@@ -6,10 +6,13 @@
 
 - textlint v14.8.0 or later
 - AI-powered code editor with MCP support (VS Code with Copilot Chat, Cursor, or Windsurf)
+- **A configured textlint project** - The MCP server requires an existing textlint configuration since textlint has no default rules
 
 ## Quick Start
 
-textlint includes a built-in MCP server that can be started with the `--mcp` option:
+First, you need to set up textlint in your project. textlint has no default rules, so you must configure rules before using the MCP server. See the [Configuring textlint](./configuring.md) guide for setup instructions.
+
+After setting up textlint, start the MCP server with:
 
 ```bash
 npx textlint --mcp
@@ -135,24 +138,30 @@ Automatically fix issues in raw text content.
 
 ## Configuration
 
+**Important**: The textlint MCP server requires an existing textlint configuration to function properly. textlint doesn't include any rules by default, so you must configure your project before using the MCP server.
+
 The textlint MCP server uses your existing textlint configuration:
 
 - `.textlintrc.json` or other textlint config files
 - Installed textlint rules and plugins
 - Standard textlint ignore patterns
 
-Make sure you have:
+### Setting up textlint (Required)
 
-1. A textlint configuration file in your project
-2. Required textlint rules installed as dependencies
-3. Appropriate plugins for your file types
+Before using the MCP server, make sure you have:
+
+1. **A textlint configuration file** in your project (`.textlintrc.json`, `.textlintrc.js`, etc.)
+2. **Required textlint rules installed** as dependencies
+3. **Appropriate plugins** for your file types
+
+For detailed configuration instructions, see [Configuring textlint](./configuring.md).
 
 ## Example Prompts
 
 Here are some example prompts you can use with AI assistants:
 
 ```
-Lint the current file and explain any text issues found
+Lint the current file with textlint MCP and explain any text issues found
 
 Fix all textlint issues in src/README.md
 
