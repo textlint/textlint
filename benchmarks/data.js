@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749514032034,
+  "lastUpdate": 1749515256877,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -56868,6 +56868,48 @@ window.BENCHMARK_DATA = {
             "value": 0.75169309438,
             "unit": "seconds",
             "range": "± 0.011613555000000053"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "67255ac813b97c62b5ff68ecb73b5af8ac5cdb31",
+          "message": "docs(mcp): add configuration prerequisite and improve setup instructions (#1526)\n\n* docs(mcp): add configuration prerequisite and improve setup instructions\n\nThe MCP server requires an existing textlint configuration since textlint\nhas no default rules. Updated documentation to clarify this requirement\nand provide clearer setup instructions.\n\n* docs(mcp): update",
+          "timestamp": "2025-06-10T09:23:13+09:00",
+          "tree_id": "6216480b5a0054e4874ef27e416936016959157a",
+          "url": "https://github.com/textlint/textlint/commit/67255ac813b97c62b5ff68ecb73b5af8ac5cdb31"
+        },
+        "date": 1749515251868,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 1.0359523882,
+            "unit": "seconds",
+            "range": "± 0.03943640199999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.884851832600001,
+            "unit": "seconds",
+            "range": "± 0.2840515080000001"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7662025758000002,
+            "unit": "seconds",
+            "range": "± 0.01235984499999998"
           }
         ]
       }
