@@ -15,8 +15,7 @@ const patternList = [patternOrgXOrg, patternOrgXRule, patternPresetXOrg, pattern
  * split "preset/rule" string to {preset, rule}
  */
 export const splitKeyToPresetSubRule = (name: string): { preset: string | null; rule: string } => {
-    for (let i = 0; i < patternList.length; i++) {
-        const pattern = patternList[i];
+    for (const pattern of patternList) {
         const result = name.match(pattern);
         if (!result) {
             continue;
@@ -35,8 +34,7 @@ export const splitKeyToPresetSubRule = (name: string): { preset: string | null; 
  * Remove `prefix` from `text`.
  */
 export const removePrefixFromPackageName = (prefixList: string[], packageName: string) => {
-    for (let i = 0; i < prefixList.length; i++) {
-        const prefix = prefixList[i];
+    for (const prefix of prefixList) {
         // @scope/name -> @scope/name
         // @scope/textlint-rule-name -> @scope/name
         if (packageName.charAt(0) === "@") {
