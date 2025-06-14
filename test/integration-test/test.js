@@ -1,5 +1,5 @@
-const semver = require("semver");
-const runLint = require("./run_lint");
+import semver from "semver";
+import runLint from "./run_lint.js";
 const testList = [
     {
         name: "JavaScript-Plugin-Architecture",

@@ -1,17 +1,25 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
-const shell = require("shelljs");
-const path = require("path");
-const assert = require("assert");
-const JSON5 = require("json5");
-const toPackageList = require("textlintrc-to-package-list");
-const fs = require("fs");
-module.exports = function runLint(projectDirName, sourceTarget) {
+import shell from "shelljs";
+import path from "path";
+import assert from "assert";
+import JSON5 from "json5";
+import { listPackageNames } from "textlintrc-to-package-list/src/textlintrc-to-pacakge-list.js";
+import fs from "fs";
+import { fileURLToPath } from 'url';
+import { dirname as pathDirname } from 'path';
+
+const toPackageList = listPackageNames;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = pathDirname(__filename);
+
+export default function runLint(projectDirName, sourceTarget) {
     const currentDir = __dirname;
     assert.ok(projectDirName !== undefined, "projectDirName is not defined");
     assert.ok(sourceTarget !== undefined, "sourceTarget is not defined");
     const projectDirPath = path.resolve(currentDir, projectDirName);
-    const textlintBin = require.resolve(".bin/textlint");
+    const textlintBin = path.resolve(currentDir, "../../node_modules/.bin/textlint");
 
     function echo(log) {
         const blue = "\u001b[34m";
@@ -35,7 +43,8 @@ module.exports = function runLint(projectDirName, sourceTarget) {
     const textlintrcText = fs.readFileSync(path.resolve(projectDirPath, ".textlintrc"), "utf-8");
     const textlintrc = JSON5.parse(textlintrcText);
     const packageList = toPackageList(textlintrc);
-    const pkg = require(path.resolve(projectDirPath, "package.json"));
+    const pkgText = fs.readFileSync(path.resolve(projectDirPath, "package.json"), "utf-8");
+    const pkg = JSON.parse(pkgText);
     echo("📦 Install modules....");
     const packageListWithVersions = mapRuleWithVersion(pkg, packageList);
     console.log(packageListWithVersions.join(", "));
