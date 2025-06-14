@@ -23,7 +23,7 @@ jobs:
           # for publishing packages to pnpm
           registry-url: https://registry.npmjs.org
       - name: install
-        run: pnpm ci
+        run: pnpm install
       - name: Publish
         run: pnpm exec -- lerna publish --canary --preid next --dist-tag next --force-publish='*' --no-push --no-git-tag-version --yes
         env:

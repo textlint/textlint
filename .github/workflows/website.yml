@@ -20,7 +20,7 @@ jobs:
           node-version: 22
           cache: "pnpm"
       - name: Install
-        run: pnpm ci
+        run: pnpm install
       - name: Build
         run: |
           pnpm run build --scope textlint-website

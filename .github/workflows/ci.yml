@@ -22,7 +22,7 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: 'pnpm'
       - name: Install
-        run: pnpm ci
+        run: pnpm install
       - name: Test
         run: pnpm test
         env:
@@ -47,7 +47,7 @@ jobs:
           wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
           sudo dpkg -i hyperfine_1.15.0_amd64.deb
       - name: Install
-        run: pnpm ci
+        run: pnpm install
       - name: Build textlint
         run: pnpm run build
       - name: Benchmark
@@ -84,7 +84,7 @@ jobs:
           node-version: 22
           cache: 'pnpm'
       - name: Install
-        run: pnpm ci
+        run: pnpm install
       - name: Build textlint
         run: pnpm run build
       - name: Integration Tests
@@ -106,6 +106,6 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: 'pnpm'
       - name: Install
-        run: pnpm ci
+        run: pnpm install
       - run: pnpm run test:docs
       - run: pnpm run website
