@@ -4,13 +4,8 @@ import * as assert from "assert";
 import { TextlintRuleDescriptors } from "../../src/descriptor/index";
 import exampleRule from "./helper/example-rule";
 import fixableExampleRule from "./helper/fixable-example-rule";
-import {
-    TextlintKernelPlugin,
-    TextlintKernelRule,
-    TextlintPluginCreator,
-    TextlintPluginOptions,
-    TextlintRuleModule
-} from "@textlint/kernel";
+import type { TextlintRuleModule, TextlintPluginCreator, TextlintPluginOptions } from "@textlint/types";
+import type { TextlintKernelPlugin, TextlintKernelRule } from "../../src/textlint-kernel-interface";
 import { createTextlintRuleDescriptors } from "../../src/descriptor/DescriptorsFactory";
 import { TextlintLintableRuleDescriptor } from "../../src/descriptor/TextlintLintableRuleDescriptor";
 import { TextlintFilterRuleReporter, TextlintKernelFilterRule } from "../../src/index";

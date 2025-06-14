@@ -1,4 +1,4 @@
-import { TextlintMessage } from "@textlint/kernel";
+import type { TextlintMessage } from "@textlint/types";
 import type { TextlintPluginCreator, TextlintPluginProcessor } from "@textlint/types";
 import { parse } from "@textlint/markdown-to-ast";
 
