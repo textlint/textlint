@@ -1,0 +1,10 @@
+onlyBuiltDependencies:
+  - nx
+
+packages:
+  - packages/*
+  - examples/*
+  - packages/@textlint/*
+  - packages/textlint-scripts/examples/*
+  - test/*
+  - website

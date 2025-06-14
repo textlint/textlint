@@ -18,13 +18,13 @@
       "path": "../module-interop"
     },
     {
+      "path": "../resolver"
+    },
+    {
       "path": "../types"
     },
     {
       "path": "../utils"
-    },
-    {
-      "path": "../resolver"
     }
   ]
 }
