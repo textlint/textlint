@@ -30,8 +30,8 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.13.14",
-    "mocha": "^10.8.1",
+    "@types/node": "^22.13.17",
+    "mocha": "^10.8.2",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "~5.3.3"
