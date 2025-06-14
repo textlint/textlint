@@ -15,7 +15,7 @@
   "license": "MIT",
   "devDependencies": {
     "textlint": "workspace:*",
-    "textlint-rule-preset-ja-technical-writing": "^7.0.0",
+    "textlint-rule-preset-ja-technical-writing": "catalog:",
     "textlint-rule-preset-jtf-style": "^2.3.13"
   }
 }

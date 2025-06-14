@@ -31,9 +31,9 @@
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.13.14",
-    "mocha": "^10.8.1",
-    "rimraf": "^6.0.1",
-    "ts-node": "^10.9.2",
+    "mocha": "catalog:",
+    "rimraf": "catalog:",
+    "ts-node": "catalog:",
     "typescript": "~5.3.3"
   }
 }

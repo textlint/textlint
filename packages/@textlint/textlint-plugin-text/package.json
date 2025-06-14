@@ -41,11 +41,11 @@
         "@textlint/kernel": "workspace:*",
         "@types/mocha": "9.1.1",
         "@types/node": "^20.0.0",
-        "@types/react": "^18.3.18",
-        "mocha": "^10.8.1",
-        "rimraf": "^6.0.1",
-        "textlint-rule-no-todo": "^2.0.1",
-        "ts-node": "^10.9.2",
+        "@types/react": "catalog:",
+        "mocha": "catalog:",
+        "rimraf": "catalog:",
+        "textlint-rule-no-todo": "catalog:",
+        "ts-node": "catalog:",
         "typescript": "~5.3.3"
     },
     "publishConfig": {

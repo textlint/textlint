@@ -13,8 +13,8 @@
     },
     "devDependencies": {
         "textlint": "workspace:*",
-        "textlint-filter-rule-comments": "^1.2.2",
-        "textlint-rule-no-todo": "^2.0.1"
+        "textlint-filter-rule-comments": "catalog:",
+        "textlint-rule-no-todo": "catalog:"
     },
     "files": [
         "bin/",

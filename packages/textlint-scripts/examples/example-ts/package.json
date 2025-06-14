@@ -11,13 +11,13 @@
     "test": "textlint-scripts test"
   },
   "dependencies": {
-    "prh": "^5.4.4"
+    "prh": "catalog:"
   },
   "devDependencies": {
     "@textlint/types": "workspace:*",
     "@types/node": "^18.19.9",
     "textlint-scripts": "workspace:*",
-    "ts-node": "^10.9.2",
+    "ts-node": "catalog:",
     "typescript": "~5.3.3"
   }
 }
