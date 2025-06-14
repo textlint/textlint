@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749880575771,
+  "lastUpdate": 1749882560787,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -57918,6 +57918,48 @@ window.BENCHMARK_DATA = {
             "value": 0.66256384546,
             "unit": "seconds",
             "range": "± 0.01795419499999995"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "17084059a04c0934baac6e054de89d690620490b",
+          "message": "refactor: migrate integration tests to ES modules and update package.json",
+          "timestamp": "2025-06-14T15:25:47+09:00",
+          "tree_id": "b271179db9b77b04b64b7f84353332163e6a17ea",
+          "url": "https://github.com/textlint/textlint/commit/17084059a04c0934baac6e054de89d690620490b"
+        },
+        "date": 1749882556147,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.8783280453000002,
+            "unit": "seconds",
+            "range": "± 0.060741490000000065"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.440529897500001,
+            "unit": "seconds",
+            "range": "± 0.1491128789999996"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6372121455,
+            "unit": "seconds",
+            "range": "± 0.026828030000000003"
           }
         ]
       }
