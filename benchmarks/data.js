@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749878699439,
+  "lastUpdate": 1749880575771,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -57876,6 +57876,48 @@ window.BENCHMARK_DATA = {
             "value": 0.64971553502,
             "unit": "seconds",
             "range": "± 0.010658074999999934"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "739de769ab980338652b75d7b21dd5a62dac57fa",
+          "message": "fix: correct typo in import statement for textlintrc-to-package-list",
+          "timestamp": "2025-06-14T14:52:03+09:00",
+          "tree_id": "4ebcc1ad8e22f53b4a434201865ed6874a37ab98",
+          "url": "https://github.com/textlint/textlint/commit/739de769ab980338652b75d7b21dd5a62dac57fa"
+        },
+        "date": 1749880571048,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.9020919094600002,
+            "unit": "seconds",
+            "range": "± 0.04652361599999999"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.660932120859999,
+            "unit": "seconds",
+            "range": "± 0.13228988399999952"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.66256384546,
+            "unit": "seconds",
+            "range": "± 0.01795419499999995"
           }
         ]
       }
