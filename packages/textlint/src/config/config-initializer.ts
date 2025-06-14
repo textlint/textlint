@@ -22,7 +22,7 @@ const isFile = (filePath: string) => {
  * @returns {Promise.<Array.<String>>}
  */
 const getTextlintDependencyNames = (dir: string): Promise<Array<string>> => {
-    return readPkg({ cwd: dir })
+    return readPkg(dir)
         .then((pkg: any) => {
             const dependencies = pkg.dependencies || {};
             const devDependencies = pkg.devDependencies || {};
