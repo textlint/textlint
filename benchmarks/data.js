@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749896196223,
+  "lastUpdate": 1749896532231,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -58254,6 +58254,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59596311428,
             "unit": "seconds",
             "range": "± 0.015378354000000094"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "2af7776e12886a2de8d0558fab79d73dfa10ceaa",
+          "message": "package.json and pnpm-lock.yaml: Update @types/node to version 22.10.6",
+          "timestamp": "2025-06-14T19:18:41+09:00",
+          "tree_id": "b195b46a27b08460320e95c3f42b0965cfe3c648",
+          "url": "https://github.com/textlint/textlint/commit/2af7776e12886a2de8d0558fab79d73dfa10ceaa"
+        },
+        "date": 1749896527696,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2148380574,
+            "unit": "seconds",
+            "range": "± 0.019447782999999996"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7404266115999998,
+            "unit": "seconds",
+            "range": "± 0.051059469999999774"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6023737519999999,
+            "unit": "seconds",
+            "range": "± 0.017402027000000042"
           }
         ]
       }
