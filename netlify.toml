@@ -2,5 +2,4 @@
   publish = "website/build"
   command = "pnpm run website"
 [build.environment]
-  NODE_VERSION = "18"
-  PNPM_VERSION = "10.12.1"
+  NODE_VERSION = "22"

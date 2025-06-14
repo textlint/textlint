@@ -64,25 +64,25 @@ After getting your clone, you can start playing with textlint.
 1. Enable [Corepack](https://nodejs.org/api/corepack.html) that help with managing versions of your package managers.
 
     ```sh
-    $ corepack enable npm
+    $ corepack enable pnpm
     ```
 
 2. Install dependencies and build packages:
 
     ```sh
-    $ npm install
+    $ pnpm install
     ```
 
 3. Build textlint:
 
     ```sh
-    $ npm run build
+    $ pnpm run build
     ```
 
 4. Building website if you needed:
 
     ```sh
-    $ npm run website
+    $ pnpm run website
     ```
 
 Under the hood, textlint uses [Lerna](https://lerna.js.org/) to manage multiple packages:
@@ -96,7 +96,7 @@ Under the hood, textlint uses [Lerna](https://lerna.js.org/) to manage multiple 
 
 If you are new to Lerna, it seems to add another layer of complexity but it's simpler than you think; you can edit codes, run tests, commit changes, etc. as usual in most cases.
 
-Note that `npm install` also builds a codebase, you can manually build by running `npm run build`. We have separate task `npm run website` since code and documentation have different life cycle.
+Note that `pnpm install` also builds a codebase, you can manually build by running `pnpm run build`. We have separate task `pnpm run website` since code and documentation have different life cycle.
 
 ### Creating a Branch for Your Work
 
@@ -119,13 +119,13 @@ This monorepo use [Project References](https://www.typescriptlang.org/docs/handb
 You can update Project References from `package.json`'s dependencies.
 
 ```
-npm run update:projectReferences
+pnpm run update:projectReferences
 ```
 
 Also, You can check Project References if it is correct.
 
 ```
-npm run test:projectReferences
+pnpm run test:projectReferences
 ```
 
 #### Coding Guideline
@@ -146,19 +146,19 @@ This repository uses [ESLint](https://eslint.org/) for JavaScript linter and [Pr
 - Run ESLint:
 
     ```sh
-    $ npm run eslint
+    $ pnpm run eslint
     ```
 
 - Run ESLint with [`--fix`](https://eslint.org/docs/user-guide/command-line-interface#--fix) feature to fix some wrong style automatically:
 
     ```sh
-    $ npm run eslint:fix
+    $ pnpm run eslint:fix
     ```
 
 - Run Prettier to reformat code:
 
     ```sh
-    $ npm run format
+    $ pnpm run format
     ```
 
 ##### Commit Message Format
@@ -250,14 +250,14 @@ All tests should be run at the top directory of your fork.
 Run tests under [`packages/`](https://github.com/textlint/textlint/tree/master/packages):
 
 ```sh
-$ npm run test
+$ pnpm run test
 ```
 
 While developing, it would be good to run package level unit test since it will run faster:
 
 ```sh
 $ cd packages/PACKAGE
-$ npm run test
+$ pnpm run test
 ```
 
 #### Example Test
@@ -265,7 +265,7 @@ $ npm run test
 Run [`examples`](https://github.com/textlint/textlint/tree/master/examples) as test:
 
 ```sh
-$ npm run test:examples
+$ pnpm run test:examples
 ```
 
 #### Integration Test
@@ -275,7 +275,7 @@ Run tests with [real–world documents](https://github.com/textlint/textlint/tre
 
 ```sh
 $ git submodule update --init
-$ npm run test:integration
+$ pnpm run test:integration
 ```
 
 #### Documentation Test
@@ -283,7 +283,7 @@ $ npm run test:integration
 Run textlint to [`docs/`](https://github.com/textlint/textlint/tree/master/docs), [`.github/`](https://github.com/textlint/textlint/tree/master/.github), and [README](https://github.com/textlint/textlint/blob/master/README.md) (we are dog–fooding!):
 
 ```sh
-$ npm run test:docs
+$ pnpm run test:docs
 ```
 
 #### All Tests
@@ -291,7 +291,7 @@ $ npm run test:docs
 Also, you can run all of the above by:
 
 ```sh
-$ npm run test:all
+$ pnpm run test:all
 ```
 
 ### Pushing the Commit and Opening a Pull Request
