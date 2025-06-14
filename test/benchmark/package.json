@@ -14,7 +14,7 @@
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "^14.8.1",
+    "textlint": "workspace:*",
     "textlint-rule-preset-ja-technical-writing": "^7.0.0",
     "textlint-rule-preset-jtf-style": "^2.3.13"
   }

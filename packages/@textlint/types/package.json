@@ -45,10 +45,10 @@
         "tabWidth": 4
     },
     "dependencies": {
-        "@textlint/ast-node-types": "^14.8.1"
+        "@textlint/ast-node-types": "workspace:*"
     },
     "devDependencies": {
-        "@textlint/markdown-to-ast": "^14.8.1",
+        "@textlint/markdown-to-ast": "workspace:*",
         "@types/mocha": "^9.1.1",
         "@types/node": "^18.19.9",
         "mocha": "^10.8.1",

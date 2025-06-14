@@ -14,8 +14,8 @@
     "prh": "^5.4.4"
   },
   "devDependencies": {
-    "@textlint/types": "^14.8.1",
-    "textlint-scripts": "^14.8.1",
+    "@textlint/types": "workspace:*",
+    "textlint-scripts": "workspace:*",
     "ts-node": "^10.9.2",
     "typescript": "~5.3.3"
   }

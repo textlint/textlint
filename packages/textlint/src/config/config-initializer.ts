@@ -4,7 +4,7 @@ import { TextlintPackageNamePrefix } from "@textlint/utils";
 
 import fs from "fs";
 import path from "path";
-// @ts-expect-error no types
+// @ts-ignore - read-pkg v1.1.0 doesn't have type definitions
 import readPkg from "read-pkg";
 import { Logger } from "../util/logger";
 
@@ -22,7 +22,7 @@ const isFile = (filePath: string) => {
  * @returns {Promise.<Array.<String>>}
  */
 const getTextlintDependencyNames = (dir: string): Promise<Array<string>> => {
-    return readPkg(dir)
+    return readPkg({ cwd: dir })
         .then((pkg: any) => {
             const dependencies = pkg.dependencies || {};
             const devDependencies = pkg.devDependencies || {};

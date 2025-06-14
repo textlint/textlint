@@ -35,6 +35,7 @@
     "@monorepo-utils/workspaces-to-typescript-project-references": "^2.11.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
+    "ajv": "^8.17.1",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -42,8 +43,7 @@
     "lint-staged": "^13.3.0",
     "npm-run-all2": "^5.0.2",
     "prettier": "^2.7.1",
-    "typescript": "~5.3.3",
-    "ajv": "^8.17.1"
+    "typescript": "~5.3.3"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [

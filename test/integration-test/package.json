@@ -37,7 +37,7 @@
     "devDependencies": {
         "json5": "^2.1.1",
         "shelljs": "^0.8.3",
-        "textlint": "^14.8.1",
+        "textlint": "workspace:*",
         "textlintrc-to-package-list": "^3.0.3"
     },
     "email": "azuciao@gmail.com"

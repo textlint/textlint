@@ -39,10 +39,10 @@
         "watch": "tsc -b --watch"
     },
     "dependencies": {
-        "@textlint/markdown-to-ast": "^14.8.1"
+        "@textlint/markdown-to-ast": "workspace:*"
     },
     "devDependencies": {
-        "@textlint/kernel": "^14.8.1",
+        "@textlint/kernel": "workspace:*",
         "mocha": "^10.8.1",
         "rimraf": "^6.0.1",
         "textlint-rule-no-todo": "^2.0.1",

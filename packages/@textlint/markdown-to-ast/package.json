@@ -35,7 +35,7 @@
         "watch": "tsc -b --watch"
     },
     "dependencies": {
-        "@textlint/ast-node-types": "^14.8.1",
+        "@textlint/ast-node-types": "workspace:*",
         "debug": "^4.4.1",
         "mdast-util-gfm-autolink-literal": "^0.1.3",
         "neotraverse": "^0.6.15",
@@ -46,7 +46,7 @@
         "unified": "^9.2.2"
     },
     "devDependencies": {
-        "@textlint/ast-tester": "^14.8.1",
+        "@textlint/ast-tester": "workspace:*",
         "@types/mocha": "^9.1.1",
         "@types/node": "^18.19.9",
         "mkdirp": "^1.0.4",

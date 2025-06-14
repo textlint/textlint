@@ -13,7 +13,7 @@
         "textlint-fix": "textlint --fix --dry-run README.md"
     },
     "devDependencies": {
-        "textlint": "^14.8.1",
+        "textlint": "workspace:*",
         "textlint-rule-prh": "^5.2.0"
     },
     "files": [

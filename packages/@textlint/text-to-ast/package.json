@@ -43,10 +43,10 @@
         "watch": "tsc -b --watch"
     },
     "dependencies": {
-        "@textlint/ast-node-types": "^14.8.1"
+        "@textlint/ast-node-types": "workspace:*"
     },
     "devDependencies": {
-        "@textlint/ast-tester": "^14.8.1",
+        "@textlint/ast-tester": "workspace:*",
         "eol-converter-cli": "^1.1.0",
         "mocha": "^10.8.1",
         "rimraf": "^6.0.1",

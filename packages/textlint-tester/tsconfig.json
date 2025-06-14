@@ -12,6 +12,9 @@
   ],
   "references": [
     {
+      "path": "../@textlint/ast-node-types"
+    },
+    {
       "path": "../@textlint/feature-flag"
     },
     {

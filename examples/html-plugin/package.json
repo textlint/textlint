@@ -10,7 +10,7 @@
         "textlint": "textlint -f pretty-error index.html"
     },
     "devDependencies": {
-        "textlint": "^14.8.1",
+        "textlint": "workspace:*",
         "textlint-plugin-html": "^0.2.0",
         "textlint-rule-sentence-length": "^2.1.2"
     },

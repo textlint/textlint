@@ -38,9 +38,9 @@
     "test": "mocha"
   },
   "dependencies": {
-    "@textlint/module-interop": "^14.8.1",
-    "@textlint/resolver": "^14.8.1",
-    "@textlint/types": "^14.8.1",
+    "@textlint/module-interop": "workspace:*",
+    "@textlint/resolver": "workspace:*",
+    "@textlint/types": "workspace:*",
     "chalk": "^4.1.2",
     "debug": "^4.4.1",
     "diff": "^5.2.0",

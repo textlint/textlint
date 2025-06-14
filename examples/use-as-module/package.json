@@ -10,7 +10,7 @@
         "test:ci": "npm test"
     },
     "dependencies": {
-        "textlint": "^14.8.1",
+        "textlint": "workspace:*",
         "textlint-rule-no-todo": "^2.0.1"
     },
     "files": [

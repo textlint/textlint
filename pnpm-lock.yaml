@@ -48,8 +48,8 @@ importers:
   examples/cli:
     devDependencies:
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
       textlint-rule-no-todo:
         specifier: ^2.0.1
         version: 2.0.1
@@ -57,8 +57,8 @@ importers:
   examples/config-file:
     devDependencies:
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
       textlint-rule-no-todo:
         specifier: ^2.0.1
         version: 2.0.1
@@ -66,8 +66,8 @@ importers:
   examples/config-in-package-json:
     devDependencies:
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
       textlint-rule-no-todo:
         specifier: ^2.0.1
         version: 2.0.1
@@ -75,11 +75,11 @@ importers:
   examples/filter:
     devDependencies:
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
       textlint-filter-rule-comments:
         specifier: ^1.2.2
-        version: 1.2.2(textlint@14.8.1)
+        version: 1.2.2(textlint@packages+textlint)
       textlint-rule-no-todo:
         specifier: ^2.0.1
         version: 2.0.1
@@ -87,8 +87,8 @@ importers:
   examples/fix:
     devDependencies:
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
       textlint-rule-prh:
         specifier: ^5.2.0
         version: 5.3.0
@@ -96,8 +96,8 @@ importers:
   examples/fix-dry-run:
     devDependencies:
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
       textlint-rule-prh:
         specifier: ^5.2.0
         version: 5.3.0
@@ -105,8 +105,8 @@ importers:
   examples/html-plugin:
     devDependencies:
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
       textlint-plugin-html:
         specifier: ^0.2.0
         version: 0.2.0
@@ -120,8 +120,8 @@ importers:
         specifier: ^0.8.5
         version: 0.8.5
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
       textlint-rule-max-ten:
         specifier: ^2.0.3
         version: 2.0.4
@@ -139,7 +139,7 @@ importers:
         version: 5.3.0
       textlint-rule-spellcheck-tech-word:
         specifier: ^5.0.0
-        version: 5.0.0(textlint@14.8.1)
+        version: 5.0.0(textlint@packages+textlint)
 
   examples/plugin-extensions-option:
     devDependencies:
@@ -147,8 +147,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
       textlint-rule-no-todo:
         specifier: ^2.0.1
         version: 2.0.1
@@ -156,23 +156,23 @@ importers:
   examples/preset:
     devDependencies:
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
       textlint-rule-preset-jtf-style:
         specifier: ^2.3.12
-        version: 2.3.14(textlint@14.8.1)
+        version: 2.3.14(textlint@packages+textlint)
 
   examples/rulesdir:
     devDependencies:
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
 
   examples/use-as-module:
     dependencies:
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
       textlint-rule-no-todo:
         specifier: ^2.0.1
         version: 2.0.1
@@ -180,8 +180,8 @@ importers:
   examples/use-as-ts-module:
     dependencies:
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
       textlint-rule-no-todo:
         specifier: ^2.0.1
         version: 2.0.1
@@ -195,6 +195,9 @@ importers:
 
   packages/@textlint/ast-node-types:
     devDependencies:
+      '@types/mocha':
+        specifier: ^10.0.10
+        version: 10.0.10
       mocha:
         specifier: ^10.8.1
         version: 10.8.2
@@ -203,7 +206,7 @@ importers:
         version: 6.0.1
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@20.19.0)(typescript@5.3.3)
+        version: 10.9.2(@types/node@24.0.1)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
         version: 5.3.3
@@ -211,8 +214,8 @@ importers:
   packages/@textlint/ast-tester:
     dependencies:
       '@textlint/ast-node-types':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../ast-node-types
       debug:
         specifier: ^4.4.1
         version: 4.4.1(supports-color@8.1.1)
@@ -239,12 +242,12 @@ importers:
   packages/@textlint/ast-traverse:
     dependencies:
       '@textlint/ast-node-types':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../ast-node-types
     devDependencies:
       '@textlint/markdown-to-ast':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../markdown-to-ast
       '@types/mocha':
         specifier: ^9.1.1
         version: 9.1.1
@@ -267,20 +270,20 @@ importers:
   packages/@textlint/config-loader:
     dependencies:
       '@textlint/kernel':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../kernel
       '@textlint/module-interop':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../module-interop
       '@textlint/resolver':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../resolver
       '@textlint/types':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../types
       '@textlint/utils':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../utils
       debug:
         specifier: ^4.4.1
         version: 4.4.1(supports-color@8.1.1)
@@ -334,14 +337,14 @@ importers:
   packages/@textlint/fixer-formatter:
     dependencies:
       '@textlint/module-interop':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../module-interop
       '@textlint/resolver':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../resolver
       '@textlint/types':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../types
       chalk:
         specifier: ^4.1.2
         version: 4.1.2
@@ -386,26 +389,26 @@ importers:
   packages/@textlint/kernel:
     dependencies:
       '@textlint/ast-node-types':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../ast-node-types
       '@textlint/ast-tester':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../ast-tester
       '@textlint/ast-traverse':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../ast-traverse
       '@textlint/feature-flag':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../feature-flag
       '@textlint/source-code-fixer':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../source-code-fixer
       '@textlint/types':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../types
       '@textlint/utils':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../utils
       debug:
         specifier: ^4.4.1
         version: 4.4.1(supports-color@8.1.1)
@@ -417,8 +420,8 @@ importers:
         version: 4.0.0
     devDependencies:
       '@textlint/markdown-to-ast':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../markdown-to-ast
       '@types/debug':
         specifier: ^4.1.12
         version: 4.1.12
@@ -447,14 +450,14 @@ importers:
   packages/@textlint/legacy-textlint-core:
     dependencies:
       '@textlint/kernel':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../kernel
       '@textlint/textlint-plugin-markdown':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../textlint-plugin-markdown
       '@textlint/textlint-plugin-text':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../textlint-plugin-text
     devDependencies:
       '@types/node':
         specifier: ^18.19.9
@@ -475,14 +478,14 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@textlint/module-interop':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../module-interop
       '@textlint/resolver':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../resolver
       '@textlint/types':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../types
       chalk:
         specifier: ^4.1.2
         version: 4.1.2
@@ -548,8 +551,8 @@ importers:
   packages/@textlint/markdown-to-ast:
     dependencies:
       '@textlint/ast-node-types':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../ast-node-types
       debug:
         specifier: ^4.4.1
         version: 4.4.1(supports-color@8.1.1)
@@ -576,8 +579,8 @@ importers:
         version: 9.2.2
     devDependencies:
       '@textlint/ast-tester':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../ast-tester
       '@types/mocha':
         specifier: ^9.1.1
         version: 9.1.1
@@ -640,16 +643,16 @@ importers:
         version: 2.8.8
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@20.19.0)(typescript@5.3.3)
+        version: 10.9.2(@types/node@20.19.0)(typescript@5.6.3)
       typescript:
         specifier: ^5.1.6
-        version: 5.3.3
+        version: 5.6.3
 
   packages/@textlint/source-code-fixer:
     dependencies:
       '@textlint/types':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../types
       debug:
         specifier: ^4.4.1
         version: 4.4.1(supports-color@8.1.1)
@@ -679,12 +682,12 @@ importers:
   packages/@textlint/text-to-ast:
     dependencies:
       '@textlint/ast-node-types':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../ast-node-types
     devDependencies:
       '@textlint/ast-tester':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../ast-tester
       eol-converter-cli:
         specifier: ^1.1.0
         version: 1.1.0
@@ -701,12 +704,12 @@ importers:
   packages/@textlint/textlint-plugin-markdown:
     dependencies:
       '@textlint/markdown-to-ast':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../markdown-to-ast
     devDependencies:
       '@textlint/kernel':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../kernel
       mocha:
         specifier: ^10.8.1
         version: 10.8.2
@@ -723,12 +726,12 @@ importers:
   packages/@textlint/textlint-plugin-text:
     dependencies:
       '@textlint/text-to-ast':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../text-to-ast
     devDependencies:
       '@textlint/kernel':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../kernel
       '@types/mocha':
         specifier: 9.1.1
         version: 9.1.1
@@ -743,7 +746,7 @@ importers:
         version: 2.0.1
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@20.19.0)(typescript@5.3.3)
+        version: 10.9.2(@types/node@24.0.1)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
         version: 5.3.3
@@ -751,12 +754,12 @@ importers:
   packages/@textlint/types:
     dependencies:
       '@textlint/ast-node-types':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../ast-node-types
     devDependencies:
       '@textlint/markdown-to-ast':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../markdown-to-ast
       '@types/mocha':
         specifier: ^9.1.1
         version: 9.1.1
@@ -812,44 +815,44 @@ importers:
         specifier: ^1.12.1
         version: 1.12.3
       '@textlint/ast-node-types':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/ast-node-types
       '@textlint/ast-traverse':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/ast-traverse
       '@textlint/config-loader':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/config-loader
       '@textlint/feature-flag':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/feature-flag
       '@textlint/fixer-formatter':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/fixer-formatter
       '@textlint/kernel':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/kernel
       '@textlint/linter-formatter':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/linter-formatter
       '@textlint/module-interop':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/module-interop
       '@textlint/resolver':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/resolver
       '@textlint/textlint-plugin-markdown':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/textlint-plugin-markdown
       '@textlint/textlint-plugin-text':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/textlint-plugin-text
       '@textlint/types':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/types
       '@textlint/utils':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/utils
       debug:
         specifier: ^4.4.1
         version: 4.4.1(supports-color@8.1.1)
@@ -891,8 +894,8 @@ importers:
         version: 3.25.64
     devDependencies:
       '@textlint/legacy-textlint-core':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/legacy-textlint-core
       '@types/clone':
         specifier: ^2.1.4
         version: 2.1.4
@@ -978,14 +981,14 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1
       textlint-tester:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../textlint-tester
       ts-node:
         specifier: '*'
-        version: 10.9.2(@types/node@20.19.0)(typescript@5.3.3)
+        version: 10.9.2(@types/node@24.0.1)(typescript@5.6.3)
       typescript:
         specifier: '*'
-        version: 5.3.3
+        version: 5.6.3
     devDependencies:
       lint-staged:
         specifier: ^13.3.0
@@ -1004,14 +1007,14 @@ importers:
         version: 5.4.4
     devDependencies:
       textlint-scripts:
-        specifier: ^14.8.1
-        version: 14.8.1(ts-node@10.9.2(@types/node@20.19.0)(typescript@5.6.3))(typescript@5.6.3)
+        specifier: workspace:*
+        version: link:../..
 
   packages/textlint-scripts/examples/example-dynamic-import:
     devDependencies:
       textlint-scripts:
-        specifier: ^14.8.1
-        version: 14.8.1(ts-node@10.9.2(@types/node@20.19.0)(typescript@5.6.3))(typescript@5.6.3)
+        specifier: workspace:*
+        version: link:../..
 
   packages/textlint-scripts/examples/example-ts:
     dependencies:
@@ -1020,32 +1023,35 @@ importers:
         version: 5.4.4
     devDependencies:
       '@textlint/types':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../../@textlint/types
       textlint-scripts:
-        specifier: ^14.8.1
-        version: 14.8.1(ts-node@10.9.2(@types/node@20.19.0)(typescript@5.3.3))(typescript@5.3.3)
+        specifier: workspace:*
+        version: link:../..
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@20.19.0)(typescript@5.3.3)
+        version: 10.9.2(@types/node@24.0.1)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
         version: 5.3.3
 
   packages/textlint-tester:
     dependencies:
+      '@textlint/ast-node-types':
+        specifier: workspace:*
+        version: link:../@textlint/ast-node-types
       '@textlint/feature-flag':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/feature-flag
       '@textlint/kernel':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/kernel
       '@textlint/textlint-plugin-markdown':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/textlint-plugin-markdown
       '@textlint/textlint-plugin-text':
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../@textlint/textlint-plugin-text
     devDependencies:
       '@types/mocha':
         specifier: ^9.1.1
@@ -1084,14 +1090,14 @@ importers:
   test/benchmark:
     devDependencies:
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
       textlint-rule-preset-ja-technical-writing:
         specifier: ^7.0.0
-        version: 7.0.0(textlint@14.8.1)
+        version: 7.0.0(textlint@packages+textlint)
       textlint-rule-preset-jtf-style:
         specifier: ^2.3.13
-        version: 2.3.14(textlint@14.8.1)
+        version: 2.3.14(textlint@packages+textlint)
 
   test/integration-test:
     dependencies:
@@ -1106,8 +1112,8 @@ importers:
         specifier: ^0.8.3
         version: 0.8.5
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../../packages/textlint
       textlintrc-to-package-list:
         specifier: ^3.0.3
         version: 3.0.3
@@ -1140,11 +1146,11 @@ importers:
         specifier: ^3.8.1
         version: 3.8.1(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       textlint:
-        specifier: ^14.8.1
-        version: 14.8.1
+        specifier: workspace:*
+        version: link:../packages/textlint
       textlint-filter-rule-comments:
         specifier: ^1.2.2
-        version: 1.2.2(textlint@14.8.1)
+        version: 1.2.2(textlint@packages+textlint)
       textlint-rule-eslint:
         specifier: ^4.0.2
         version: 4.0.2(eslint@8.57.1)
@@ -2820,9 +2826,6 @@ packages:
   '@textlint/kernel@14.8.1':
     resolution: {integrity: sha512-3lDjIKqfWltUg+swyHeX8ui5ucttSIkAK1F1PHP+Cn8+hLyRxW8NxFQM+u7whTi+dAPmlQqevrur8tIfjEPAaA==}
 
-  '@textlint/legacy-textlint-core@14.8.1':
-    resolution: {integrity: sha512-oSroReU7yXUS225NJ4lwgFjBdlLz/9YE2asAtIiWVV4sxa295b+QwwrTijGcl1BEaIBlP4mbStH0/Y3EBbQwFQ==}
-
   '@textlint/linter-formatter@14.8.1':
     resolution: {integrity: sha512-guraonRgEZJ9MnysT+pCvXFDaT5VeHwAHZAsr7uDRSviqEldmG2oqtXf4lxaQ1Qo4SL16bzSEr6F7+j5k8QONQ==}
 
@@ -3020,6 +3023,9 @@ packages:
 
   '@types/node@20.19.0':
     resolution: {integrity: sha512-hfrc+1tud1xcdVTABC2JiomZJEklMcXYNTVtZLAeqTVWD+qL5jkHKT+1lOtqDdGxt+mB53DTtiz673vfjU8D1Q==}
+
+  '@types/node@24.0.1':
+    resolution: {integrity: sha512-MX4Zioh39chHlDJbKmEgydJDS3tspMP/lnQC67G3SWsTnb9NeYVWOjkxpOSy4oMfPs4StcWHwBrvUb4ybfnuaw==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -3674,6 +3680,10 @@ packages:
 
   chalk@5.3.0:
     resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+
+  chalk@5.4.1:
+    resolution: {integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
   char-regex@1.0.2:
@@ -5711,6 +5721,10 @@ packages:
 
   is-stream@2.0.0:
     resolution: {integrity: sha512-XCoy+WlUr7d1+Z8GgSuXmpuUFC9fOhRXglJMx+dwLKTkL44Cjd4W1Z5P+BQZpr+cR93aGP4S/s7Ftw6Nd/kiEw==}
+    engines: {node: '>=8'}
+
+  is-stream@2.0.1:
+    resolution: {integrity: sha512-hFoiJiTl63nn+kstHGBtewWSKnQLpyb155KHheA1l39uvtO9nWIop1p3udqPcUd/xbF1VLMO4n7OI6p7RbngDg==}
     engines: {node: '>=8'}
 
   is-stream@3.0.0:
@@ -8770,22 +8784,6 @@ packages:
   textlint-rule-unexpanded-acronym@1.2.4:
     resolution: {integrity: sha512-F1kV06CdonOM2awtXjCSRYUsRJfDfZIujQQo4zEMqNqD6UwpkapxpZOiwcwbeaQz00+17ljbJEoGqIe2XeiU+w==}
 
-  textlint-scripts@14.8.1:
-    resolution: {integrity: sha512-/+Jza464nHY/EgBeTJaCp+BjFtzvoegjEf5v8WS/ksLRNZCW9c6DDY8oRbpye5CJzdcnw7rgG1fGU11zkbzyvQ==}
-    engines: {node: '>=18.19.0'}
-    hasBin: true
-    peerDependencies:
-      ts-node: '*'
-      typescript: '*'
-    peerDependenciesMeta:
-      ts-node:
-        optional: true
-      typescript:
-        optional: true
-
-  textlint-tester@14.8.1:
-    resolution: {integrity: sha512-/EVVxWkOF8Fq3bhYmRyZrZXTgWgYVFi8Ejx68toK+rpAF5drRkh4ovkprsslnCkv7T7uizrm1YR+2kvkxSsknA==}
-
   textlint-util-to-string@3.3.4:
     resolution: {integrity: sha512-XF4Qfw0ES+czKy03BwuvBUoXC8NAg920VuRxW0pd72fW76zMeMbPI/bRN5PHq3SbCdOm7U69/Pk+DX34xqIYqA==}
 
@@ -9013,6 +9011,9 @@ packages:
 
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+
+  undici-types@7.8.0:
+    resolution: {integrity: sha512-9UJ2xGDvQ43tYyVMpuHlsgApydB8ZKfVYTsLDhXkFL/6gfkp+U8xTGdh8pMJv1SpZna0zxG1DwsKZsreLbXBxw==}
 
   unherit@1.1.3:
     resolution: {integrity: sha512-Ft16BJcnapDKp0+J/rqFC3Rrk6Y/Ng4nzsC028k2jdDII/rdZ7Wd3pPT/6+vIIxRagwRc9K0IUX0Ra4fKvw+WQ==}
@@ -12309,14 +12310,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/legacy-textlint-core@14.8.1':
-    dependencies:
-      '@textlint/kernel': 14.8.1
-      '@textlint/textlint-plugin-markdown': 14.8.1
-      '@textlint/textlint-plugin-text': 14.8.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@textlint/linter-formatter@14.8.1':
     dependencies:
       '@azu/format-text': 1.0.2
@@ -12489,7 +12482,7 @@ snapshots:
 
   '@types/glob@7.2.0':
     dependencies:
-      '@types/minimatch': 3.0.5
+      '@types/minimatch': 5.1.2
       '@types/node': 18.19.111
 
   '@types/glob@8.1.0':
@@ -12568,6 +12561,10 @@ snapshots:
   '@types/node@20.19.0':
     dependencies:
       undici-types: 6.21.0
+
+  '@types/node@24.0.1':
+    dependencies:
+      undici-types: 7.8.0
 
   '@types/normalize-package-data@2.4.4': {}
 
@@ -13199,7 +13196,7 @@ snapshots:
     dependencies:
       ansi-align: 3.0.1
       camelcase: 7.0.1
-      chalk: 5.3.0
+      chalk: 5.4.1
       cli-boxes: 3.0.0
       string-width: 5.1.2
       type-fest: 2.19.0
@@ -13362,6 +13359,8 @@ snapshots:
       supports-color: 7.2.0
 
   chalk@5.3.0: {}
+
+  chalk@5.4.1: {}
 
   char-regex@1.0.2: {}
 
@@ -13573,7 +13572,7 @@ snapshots:
 
   compressible@2.0.18:
     dependencies:
-      mime-db: 1.52.0
+      mime-db: 1.54.0
 
   compression@1.8.0:
     dependencies:
@@ -14493,7 +14492,7 @@ snapshots:
       cross-spawn: 7.0.6
       get-stream: 6.0.1
       human-signals: 2.1.0
-      is-stream: 2.0.0
+      is-stream: 2.0.1
       merge-stream: 2.0.0
       npm-run-path: 4.0.1
       onetime: 5.1.2
@@ -15660,6 +15659,8 @@ snapshots:
       protocols: 2.0.2
 
   is-stream@2.0.0: {}
+
+  is-stream@2.0.1: {}
 
   is-stream@3.0.0: {}
 
@@ -19340,9 +19341,9 @@ snapshots:
 
   text-table@0.2.0: {}
 
-  textlint-filter-rule-comments@1.2.2(textlint@14.8.1):
+  textlint-filter-rule-comments@1.2.2(textlint@packages+textlint):
     dependencies:
-      textlint: 14.8.1
+      textlint: link:packages/textlint
 
   textlint-plugin-html@0.2.0:
     dependencies:
@@ -19565,7 +19566,7 @@ snapshots:
       textlint-rule-ja-space-around-link: 2.4.2
       textlint-rule-ja-space-between-half-and-full-width: 2.4.2
 
-  textlint-rule-preset-ja-technical-writing@7.0.0(textlint@14.8.1):
+  textlint-rule-preset-ja-technical-writing@7.0.0(textlint@packages+textlint):
     dependencies:
       '@textlint-rule/textlint-rule-no-invalid-control-character': 2.1.0
       '@textlint-rule/textlint-rule-no-unmatched-pair': 1.0.9
@@ -19589,7 +19590,7 @@ snapshots:
       textlint-rule-no-mix-dearu-desumasu: 5.0.0
       textlint-rule-no-nfd: 1.0.2
       textlint-rule-no-zero-width-spaces: 1.0.1
-      textlint-rule-preset-jtf-style: 2.3.14(textlint@14.8.1)
+      textlint-rule-preset-jtf-style: 2.3.14(textlint@packages+textlint)
       textlint-rule-sentence-length: 3.0.1
     transitivePeerDependencies:
       - textlint
@@ -19603,6 +19604,18 @@ snapshots:
       regexp.prototype.flags: 1.5.4
       regx: 1.0.4
       textlint: 14.8.1
+      textlint-rule-helper: 2.3.1
+      textlint-rule-prh: 5.3.0
+
+  textlint-rule-preset-jtf-style@2.3.14(textlint@packages+textlint):
+    dependencies:
+      analyze-desumasu-dearu: 2.1.5
+      japanese-numerals-to-number: 1.0.2
+      match-index: 1.0.3
+      moji: 0.5.1
+      regexp.prototype.flags: 1.5.4
+      regx: 1.0.4
+      textlint: link:packages/textlint
       textlint-rule-helper: 2.3.1
       textlint-rule-prh: 5.3.0
 
@@ -19653,63 +19666,16 @@ snapshots:
       textlint-rule-helper: 2.3.1
       textlint-util-to-string: 3.3.4
 
-  textlint-rule-spellcheck-tech-word@5.0.0(textlint@14.8.1):
+  textlint-rule-spellcheck-tech-word@5.0.0(textlint@packages+textlint):
     dependencies:
       spellcheck-technical-word: 2.0.0
-      textlint: 14.8.1
+      textlint: link:packages/textlint
       textlint-rule-helper: 1.2.0
 
   textlint-rule-unexpanded-acronym@1.2.4:
     dependencies:
       array-includes: 3.1.9
       is-capitalized: 1.0.0
-
-  textlint-scripts@14.8.1(ts-node@10.9.2(@types/node@20.19.0)(typescript@5.3.3))(typescript@5.3.3):
-    dependencies:
-      '@babel/cli': 7.27.2(@babel/core@7.27.4)
-      '@babel/core': 7.27.4
-      '@babel/preset-env': 7.27.2(@babel/core@7.27.4)
-      '@babel/preset-typescript': 7.27.1(@babel/core@7.27.4)
-      '@babel/register': 7.27.1(@babel/core@7.27.4)
-      babel-plugin-static-fs: 3.0.0
-      confirmer: 1.1.2
-      cross-spawn: 7.0.6
-      mocha: 10.8.2
-      pkg-to-readme: 3.0.1
-      textlint-tester: 14.8.1
-    optionalDependencies:
-      ts-node: 10.9.2(@types/node@20.19.0)(typescript@5.3.3)
-      typescript: 5.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  textlint-scripts@14.8.1(ts-node@10.9.2(@types/node@20.19.0)(typescript@5.6.3))(typescript@5.6.3):
-    dependencies:
-      '@babel/cli': 7.27.2(@babel/core@7.27.4)
-      '@babel/core': 7.27.4
-      '@babel/preset-env': 7.27.2(@babel/core@7.27.4)
-      '@babel/preset-typescript': 7.27.1(@babel/core@7.27.4)
-      '@babel/register': 7.27.1(@babel/core@7.27.4)
-      babel-plugin-static-fs: 3.0.0
-      confirmer: 1.1.2
-      cross-spawn: 7.0.6
-      mocha: 10.8.2
-      pkg-to-readme: 3.0.1
-      textlint-tester: 14.8.1
-    optionalDependencies:
-      ts-node: 10.9.2(@types/node@20.19.0)(typescript@5.6.3)
-      typescript: 5.6.3
-    transitivePeerDependencies:
-      - supports-color
-
-  textlint-tester@14.8.1:
-    dependencies:
-      '@textlint/feature-flag': 14.8.1
-      '@textlint/kernel': 14.8.1
-      '@textlint/textlint-plugin-markdown': 14.8.1
-      '@textlint/textlint-plugin-text': 14.8.1
-    transitivePeerDependencies:
-      - supports-color
 
   textlint-util-to-string@3.3.4:
     dependencies:
@@ -19849,24 +19815,6 @@ snapshots:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
-  ts-node@10.9.2(@types/node@20.19.0)(typescript@5.3.3):
-    dependencies:
-      '@cspotcode/source-map-support': 0.8.1
-      '@tsconfig/node10': 1.0.11
-      '@tsconfig/node12': 1.0.11
-      '@tsconfig/node14': 1.0.3
-      '@tsconfig/node16': 1.0.4
-      '@types/node': 20.19.0
-      acorn: 8.15.0
-      acorn-walk: 8.3.4
-      arg: 4.1.3
-      create-require: 1.1.1
-      diff: 4.0.2
-      make-error: 1.3.6
-      typescript: 5.3.3
-      v8-compile-cache-lib: 3.0.1
-      yn: 3.1.1
-
   ts-node@10.9.2(@types/node@20.19.0)(typescript@5.6.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
@@ -19884,7 +19832,42 @@ snapshots:
       typescript: 5.6.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
-    optional: true
+
+  ts-node@10.9.2(@types/node@24.0.1)(typescript@5.3.3):
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.11
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 24.0.1
+      acorn: 8.15.0
+      acorn-walk: 8.3.4
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.3.3
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+
+  ts-node@10.9.2(@types/node@24.0.1)(typescript@5.6.3):
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.11
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 24.0.1
+      acorn: 8.15.0
+      acorn-walk: 8.3.4
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.6.3
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
 
   tsconfig-paths@4.2.0:
     dependencies:
@@ -20013,6 +19996,8 @@ snapshots:
   undici-types@5.26.5: {}
 
   undici-types@6.21.0: {}
+
+  undici-types@7.8.0: {}
 
   unherit@1.1.3:
     dependencies:
@@ -20193,7 +20178,7 @@ snapshots:
   update-notifier@6.0.2:
     dependencies:
       boxen: 7.1.1
-      chalk: 5.3.0
+      chalk: 5.4.1
       configstore: 6.0.0
       has-yarn: 3.0.0
       import-lazy: 4.0.0
