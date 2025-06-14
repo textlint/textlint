@@ -1,18 +1,16 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
 import shell from "shelljs";
-import path from "path";
-import assert from "assert";
+import assert from "node:assert";
 import JSON5 from "json5";
-import { listPackageNames } from "textlintrc-to-package-list/src/textlintrc-to-pacakge-list.js";
-import fs from "fs";
-import { fileURLToPath } from 'url';
-import { dirname as pathDirname } from 'path';
-
+import { listPackageNames } from "textlintrc-to-package-list";
+import fs from "node:fs";
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 const toPackageList = listPackageNames;
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = pathDirname(__filename);
+const __dirname = path.dirname(__filename);
 
 export default function runLint(projectDirName, sourceTarget) {
     const currentDir = __dirname;

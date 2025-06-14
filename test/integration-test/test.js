@@ -1,4 +1,5 @@
 import semver from "semver";
+import { test } from "node:test";
 import runLint from "./run_lint.js";
 const testList = [
     {
@@ -32,6 +33,8 @@ const testList = [
     return semver.gte(version, testTarget.version);
 });
 
-testList.forEach((test) => {
-    runLint(test.name, test.path);
+testList.forEach((testInfo) => {
+    test(`Run textlint for ${testInfo.name}`, () =>{
+        runLint(testInfo.name, testInfo.path);
+    });
 });
