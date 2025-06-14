@@ -17,7 +17,9 @@ export default function runLint(projectDirName, sourceTarget) {
     assert.ok(projectDirName !== undefined, "projectDirName is not defined");
     assert.ok(sourceTarget !== undefined, "sourceTarget is not defined");
     const projectDirPath = path.resolve(currentDir, projectDirName);
-    const textlintBin = path.resolve(currentDir, "../../node_modules/.bin/textlint");
+    // Use direct Node.js execution of textlint CLI for reliability across npm/pnpm
+    const textlintPackagePath = path.resolve(currentDir, "../../packages/textlint");
+    const textlintBin = `node ${path.join(textlintPackagePath, "bin/textlint.js")}`;
 
     function echo(log) {
         const blue = "\u001b[34m";
