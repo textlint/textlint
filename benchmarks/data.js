@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749873759081,
+  "lastUpdate": 1749875302892,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -57414,6 +57414,48 @@ window.BENCHMARK_DATA = {
             "value": 0.75414871514,
             "unit": "seconds",
             "range": "± 0.01479278500000003"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b6d2dd542ff9cf74794b4fc19193b4e9a2907809",
+          "message": "refactor(mcp): rename fixFile/fixText tools to getLintFixedFileContent/getLintFixedTextContent (#1532)\n\n- Rename fixFile -> getLintFixedFileContent to clarify non-destructive behavior\n- Rename fixText -> getLintFixedTextContent to clarify non-destructive behavior\n- Update tool descriptions to emphasize content retrieval instead of file modification\n- Update documentation and examples to reflect new tool names\n- This change resolves AI Agent confusion about whether tools modify files\n\nFixes #1527",
+          "timestamp": "2025-06-14T13:24:03+09:00",
+          "tree_id": "9387dd6034448ba84cb46dcfc833619a31624ee0",
+          "url": "https://github.com/textlint/textlint/commit/b6d2dd542ff9cf74794b4fc19193b4e9a2907809"
+        },
+        "date": 1749875297696,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 1.01603772562,
+            "unit": "seconds",
+            "range": "± 0.03913359599999988"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.700820500019999,
+            "unit": "seconds",
+            "range": "± 0.0758322309999997"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7591357868199999,
+            "unit": "seconds",
+            "range": "± 0.043317968999999956"
           }
         ]
       }
