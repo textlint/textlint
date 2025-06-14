@@ -201,6 +201,9 @@ importers:
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
+      '@types/node':
+        specifier: ^22.13.14
+        version: 22.15.31
       mocha:
         specifier: ^10.8.1
         version: 10.8.2
@@ -209,7 +212,7 @@ importers:
         version: 6.0.1
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@20.19.0)(typescript@5.3.3)
+        version: 10.9.2(@types/node@22.15.31)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
         version: 5.3.3
@@ -773,7 +776,7 @@ importers:
         version: 2.0.1
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@20.19.0)(typescript@5.3.3)
+        version: 10.9.2(@types/node@22.15.31)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
         version: 5.3.3
@@ -1012,7 +1015,7 @@ importers:
         version: link:../textlint-tester
       ts-node:
         specifier: '*'
-        version: 10.9.2(@types/node@20.19.0)(typescript@5.6.3)
+        version: 10.9.2(@types/node@22.15.31)(typescript@5.6.3)
       typescript:
         specifier: '*'
         version: 5.6.3
@@ -1057,7 +1060,7 @@ importers:
         version: link:../..
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@20.19.0)(typescript@5.3.3)
+        version: 10.9.2(@types/node@22.15.31)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
         version: 5.3.3
@@ -3041,6 +3044,9 @@ packages:
 
   '@types/node@20.19.0':
     resolution: {integrity: sha512-hfrc+1tud1xcdVTABC2JiomZJEklMcXYNTVtZLAeqTVWD+qL5jkHKT+1lOtqDdGxt+mB53DTtiz673vfjU8D1Q==}
+
+  '@types/node@22.15.31':
+    resolution: {integrity: sha512-jnVe5ULKl6tijxUhvQeNbQG/84fHfg+yMak02cT8QVhBx/F05rAVxCGBYYTh2EKz22D6JF5ktXuNwdx7b9iEGw==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -12568,6 +12574,10 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
+  '@types/node@22.15.31':
+    dependencies:
+      undici-types: 6.21.0
+
   '@types/normalize-package-data@2.4.4': {}
 
   '@types/prismjs@1.26.5': {}
@@ -19817,7 +19827,7 @@ snapshots:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
-  ts-node@10.9.2(@types/node@20.19.0)(typescript@5.3.3):
+  ts-node@10.9.2(@types/node@20.19.0)(typescript@5.6.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
@@ -19831,18 +19841,36 @@ snapshots:
       create-require: 1.1.1
       diff: 4.0.2
       make-error: 1.3.6
-      typescript: 5.3.3
+      typescript: 5.6.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
-  ts-node@10.9.2(@types/node@20.19.0)(typescript@5.6.3):
+  ts-node@10.9.2(@types/node@22.15.31)(typescript@5.3.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
+      acorn: 8.15.0
+      acorn-walk: 8.3.4
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.3.3
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+
+  ts-node@10.9.2(@types/node@22.15.31)(typescript@5.6.3):
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.11
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 22.15.31
       acorn: 8.15.0
       acorn-walk: 8.3.4
       arg: 4.1.3

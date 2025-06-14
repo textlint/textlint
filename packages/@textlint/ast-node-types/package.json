@@ -1,38 +1,39 @@
 {
-    "name": "@textlint/ast-node-types",
-    "version": "14.8.1",
-    "description": "textlint AST node type definition.",
-    "keywords": [
-        "textlint"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/textlint/textlint.git"
-    },
-    "license": "MIT",
-    "author": "azu",
-    "type": "commonjs",
-    "main": "./lib/src/index.js",
-    "module": "./module/src/index.js",
-    "types": "./lib/src/index.d.ts",
-    "files": [
-        "bin/",
-        "lib/",
-        "module/",
-        "src/",
-        "!*.tsbuildinfo"
-    ],
-    "scripts": {
-        "build": "tsc -b && tsc -b tsconfig.module.json",
-        "clean": "rimraf lib/ module/",
-        "prepack": "npm run build",
-        "test": "mocha"
-    },
-    "devDependencies": {
-        "@types/mocha": "^10.0.10",
-        "mocha": "^10.8.1",
-        "rimraf": "^6.0.1",
-        "ts-node": "^10.9.2",
-        "typescript": "~5.3.3"
-    }
+  "name": "@textlint/ast-node-types",
+  "version": "14.8.1",
+  "description": "textlint AST node type definition.",
+  "keywords": [
+    "textlint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "type": "commonjs",
+  "main": "./lib/src/index.js",
+  "module": "./module/src/index.js",
+  "types": "./lib/src/index.d.ts",
+  "files": [
+    "bin/",
+    "lib/",
+    "module/",
+    "src/",
+    "!*.tsbuildinfo"
+  ],
+  "scripts": {
+    "build": "tsc -b && tsc -b tsconfig.module.json",
+    "clean": "rimraf lib/ module/",
+    "prepack": "npm run build",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.13.14",
+    "mocha": "^10.8.1",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.3.3"
+  }
 }
