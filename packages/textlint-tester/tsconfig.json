@@ -25,6 +25,9 @@
     },
     {
       "path": "../@textlint/textlint-plugin-text"
+    },
+    {
+      "path": "../@textlint/types"
     }
   ]
 }
