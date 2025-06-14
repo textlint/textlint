@@ -23,23 +23,23 @@ const replacer = (key: string, value: any) => {
     return value;
 };
 
-// 配列を決定論的な順序でソートするヘルパー関数
+// Helper function to sort arrays in deterministic order for comparison
 const sortConfigForComparison = (config: any): any => {
     if (Array.isArray(config)) {
         return config.map(sortConfigForComparison).sort((a, b) => {
-            // 文字列の場合はそのまま比較
+            // Compare strings directly
             if (typeof a === "string" && typeof b === "string") {
                 return a.localeCompare(b);
             }
-            // ruleIdで最初にソート
+            // Sort by ruleId first
             if (a.ruleId && b.ruleId) {
                 return a.ruleId.localeCompare(b.ruleId);
             }
-            // pluginIdでソート
+            // Sort by pluginId
             if (a.pluginId && b.pluginId) {
                 return a.pluginId.localeCompare(b.pluginId);
             }
-            // typeでソート
+            // Sort by type
             if (a.type && b.type) {
                 return a.type.localeCompare(b.type);
             }
