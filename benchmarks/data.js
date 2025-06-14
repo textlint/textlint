@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749897352333,
+  "lastUpdate": 1749897579332,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -58380,6 +58380,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59286126102,
             "unit": "seconds",
             "range": "± 0.01106300800000004"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "2cf2f79df4b3f9407269bc83a79c9b5ac595c682",
+          "message": "Update .github/workflows/ci.yml+5",
+          "timestamp": "2025-06-14T19:35:29+09:00",
+          "tree_id": "3d65fcacf6c9512501f1ecfd75a5179243be4cf8",
+          "url": "https://github.com/textlint/textlint/commit/2cf2f79df4b3f9407269bc83a79c9b5ac595c682"
+        },
+        "date": 1749897573816,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25924511496,
+            "unit": "seconds",
+            "range": "± 0.248342327"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7611917823600003,
+            "unit": "seconds",
+            "range": "± 0.027588442999999963"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.61968995676,
+            "unit": "seconds",
+            "range": "± 0.015235953000000024"
           }
         ]
       }
