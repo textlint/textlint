@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749897579332,
+  "lastUpdate": 1749898300004,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -58422,6 +58422,48 @@ window.BENCHMARK_DATA = {
             "value": 0.61968995676,
             "unit": "seconds",
             "range": "± 0.015235953000000024"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "94b63040343ef381303b1e1a8f1fc5b8ee6fc9cb",
+          "message": "CONTRIBUTING.md: Update package manager commands from npm to pnpm\nnetlify.toml: Update NODE_VERSION to 22 and remove PNPM_VERSION",
+          "timestamp": "2025-06-14T19:48:43+09:00",
+          "tree_id": "7991fa2bc41e46ce36e03890e1669bfe265422b7",
+          "url": "https://github.com/textlint/textlint/commit/94b63040343ef381303b1e1a8f1fc5b8ee6fc9cb"
+        },
+        "date": 1749898295458,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24812940402000003,
+            "unit": "seconds",
+            "range": "± 0.22931699200000005"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71173250582,
+            "unit": "seconds",
+            "range": "± 0.065428029"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59065164802,
+            "unit": "seconds",
+            "range": "± 0.012481299999999917"
           }
         ]
       }
