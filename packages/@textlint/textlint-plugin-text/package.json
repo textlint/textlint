@@ -41,7 +41,7 @@
         "@textlint/kernel": "workspace:*",
         "@types/mocha": "9.1.1",
         "@types/node": "^20.0.0",
-        "@types/react": "^18.3.18",
+        "@types/react": "^18.3.23",
         "mocha": "^10.8.1",
         "rimraf": "^6.0.1",
         "textlint-rule-no-todo": "^2.0.1",
