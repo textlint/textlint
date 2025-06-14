@@ -1,9 +1,20 @@
 {
-  "version": "14.8.1",
-  "npmClient": "pnpm",
-  "includeMergedTags": true,
-  "ignoreChanges": [
-    "**/test/**",
-    "**/*.md"
-  ]
+    "$schema": "https://raw.githubusercontent.com/lerna-lite/lerna-lite/main/packages/cli/schemas/lerna-schema.json",
+    "version": "14.8.1",
+    "npmClient": "pnpm",
+    "packages": [
+        "packages/*",
+        "packages/@textlint/*"
+    ],
+    "includeMergedTags": true,
+    "ignoreChanges": ["**/test/**", "**/*.md"],
+    "command": {
+        "run": {
+            "npmClient": "pnpm"
+        },
+        "publish": {
+            "npmClient": "pnpm",
+            "registry": "https://registry.npmjs.org/"
+        }
+    }
 }

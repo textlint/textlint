@@ -1,14 +1,12 @@
 # https://pnpm.io/settings#verifydepsbeforerun
 verifyDepsBeforeRun: "install"
-onlyBuiltDependencies:
-  - nx
 
 packages:
   - packages/*
   - examples/*
   - packages/@textlint/*
   - packages/textlint-scripts/examples/*
-  - test/*
+  - test/integration-test
   - website
 
 # Force all @textlint/ast-node-types references to use the workspace version
