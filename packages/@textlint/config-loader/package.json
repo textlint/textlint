@@ -1,6 +1,6 @@
 {
     "name": "@textlint/config-loader",
-    "version": "14.8.0",
+    "version": "14.8.1",
     "description": "Config loader for textlint. .textlintrc loader",
     "keywords": [
         "textlint"
@@ -45,11 +45,11 @@
         "trailingComma": "none"
     },
     "dependencies": {
-        "@textlint/kernel": "^14.8.0",
-        "@textlint/module-interop": "^14.8.0",
-        "@textlint/resolver": "^14.8.0",
-        "@textlint/types": "^14.8.0",
-        "@textlint/utils": "^14.8.0",
+        "@textlint/kernel": "^14.8.1",
+        "@textlint/module-interop": "^14.8.1",
+        "@textlint/resolver": "^14.8.1",
+        "@textlint/types": "^14.8.1",
+        "@textlint/utils": "^14.8.1",
         "debug": "^4.4.1",
         "rc-config-loader": "^4.1.3"
     },
