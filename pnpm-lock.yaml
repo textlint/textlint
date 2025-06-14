@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@textlint/ast-node-types': workspace:*
+
 importers:
 
   .:
@@ -206,7 +209,7 @@ importers:
         version: 6.0.1
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@24.0.1)(typescript@5.3.3)
+        version: 10.9.2(@types/node@20.19.0)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
         version: 5.3.3
@@ -220,6 +223,9 @@ importers:
         specifier: ^4.4.1
         version: 4.4.1(supports-color@8.1.1)
     devDependencies:
+      '@types/debug':
+        specifier: ^4.1.12
+        version: 4.1.12
       '@types/mocha':
         specifier: ^9.1.1
         version: 9.1.1
@@ -291,6 +297,9 @@ importers:
         specifier: ^4.1.3
         version: 4.1.3
     devDependencies:
+      '@types/debug':
+        specifier: ^4.1.12
+        version: 4.1.12
       '@types/mocha':
         specifier: ^9.1.1
         version: 9.1.1
@@ -459,6 +468,9 @@ importers:
         specifier: workspace:*
         version: link:../textlint-plugin-text
     devDependencies:
+      '@types/debug':
+        specifier: ^4.1.12
+        version: 4.1.12
       '@types/node':
         specifier: ^18.19.9
         version: 18.19.111
@@ -581,6 +593,9 @@ importers:
       '@textlint/ast-tester':
         specifier: workspace:*
         version: link:../ast-tester
+      '@types/debug':
+        specifier: ^4.1.12
+        version: 4.1.12
       '@types/mocha':
         specifier: ^9.1.1
         version: 9.1.1
@@ -629,8 +644,11 @@ importers:
 
   packages/@textlint/resolver:
     devDependencies:
+      '@types/debug':
+        specifier: ^4.1.12
+        version: 4.1.12
       '@types/mocha':
-        specifier: ^10.0.9
+        specifier: ^10.0.10
         version: 10.0.10
       '@types/node':
         specifier: ^20.16.12
@@ -657,6 +675,9 @@ importers:
         specifier: ^4.4.1
         version: 4.4.1(supports-color@8.1.1)
     devDependencies:
+      '@types/debug':
+        specifier: ^4.1.12
+        version: 4.1.12
       '@types/mocha':
         specifier: ^9.1.1
         version: 9.1.1
@@ -688,6 +709,9 @@ importers:
       '@textlint/ast-tester':
         specifier: workspace:*
         version: link:../ast-tester
+      '@types/mocha':
+        specifier: ^10.0.10
+        version: 10.0.10
       eol-converter-cli:
         specifier: ^1.1.0
         version: 1.1.0
@@ -710,6 +734,9 @@ importers:
       '@textlint/kernel':
         specifier: workspace:*
         version: link:../kernel
+      '@types/mocha':
+        specifier: ^10.0.10
+        version: 10.0.10
       mocha:
         specifier: ^10.8.1
         version: 10.8.2
@@ -746,7 +773,7 @@ importers:
         version: 2.0.1
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@24.0.1)(typescript@5.3.3)
+        version: 10.9.2(@types/node@20.19.0)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
         version: 5.3.3
@@ -985,7 +1012,7 @@ importers:
         version: link:../textlint-tester
       ts-node:
         specifier: '*'
-        version: 10.9.2(@types/node@24.0.1)(typescript@5.6.3)
+        version: 10.9.2(@types/node@20.19.0)(typescript@5.6.3)
       typescript:
         specifier: '*'
         version: 5.6.3
@@ -1030,7 +1057,7 @@ importers:
         version: link:../..
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@24.0.1)(typescript@5.3.3)
+        version: 10.9.2(@types/node@20.19.0)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
         version: 5.3.3
@@ -2799,15 +2826,6 @@ packages:
   '@textlint-rule/tokenize-text@2.0.2':
     resolution: {integrity: sha512-QtAP9fsz8P9JcnGiH//mZit05IZrX5qbABMAzsu6RU+AbxG9dccuQB5QVE9cGNZFQmvAPZ+2uvJqUonSW88AFg==}
 
-  '@textlint/ast-node-types@13.4.1':
-    resolution: {integrity: sha512-qrZyhCh8Ekk6nwArx3BROybm9BnX6vF7VcZbijetV/OM3yfS4rTYhoMWISmhVEP2H2re0CtWEyMl/XF+WdvVLQ==}
-
-  '@textlint/ast-node-types@14.8.1':
-    resolution: {integrity: sha512-fW5Tx5F3ZmTZeKNins9uRhoDCVLHcuUijGNQRfCmJX8R6MjL0yBFt3hHlrvXDpZg5t2PELCvBA25id83LhNMSg==}
-
-  '@textlint/ast-node-types@4.4.3':
-    resolution: {integrity: sha512-qi2jjgO6Tn3KNPGnm6B7p6QTEPvY95NFsIAaJuwbulur8iJUEenp1OnoUfiDaC/g2WPPEFkcfXpmnu8XEMFo2A==}
-
   '@textlint/ast-tester@14.8.1':
     resolution: {integrity: sha512-3Gs/Y6QZQC9klGhTeaESCdGshQntQ6R/KWBcQGtLTg8IJ8vSQHy2ryk2bBOY5rC33myhnnNadv51KtmScdrOPw==}
 
@@ -3023,9 +3041,6 @@ packages:
 
   '@types/node@20.19.0':
     resolution: {integrity: sha512-hfrc+1tud1xcdVTABC2JiomZJEklMcXYNTVtZLAeqTVWD+qL5jkHKT+1lOtqDdGxt+mB53DTtiz673vfjU8D1Q==}
-
-  '@types/node@24.0.1':
-    resolution: {integrity: sha512-MX4Zioh39chHlDJbKmEgydJDS3tspMP/lnQC67G3SWsTnb9NeYVWOjkxpOSy4oMfPs4StcWHwBrvUb4ybfnuaw==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -9012,9 +9027,6 @@ packages:
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
-  undici-types@7.8.0:
-    resolution: {integrity: sha512-9UJ2xGDvQ43tYyVMpuHlsgApydB8ZKfVYTsLDhXkFL/6gfkp+U8xTGdh8pMJv1SpZna0zxG1DwsKZsreLbXBxw==}
-
   unherit@1.1.3:
     resolution: {integrity: sha512-Ft16BJcnapDKp0+J/rqFC3Rrk6Y/Ng4nzsC028k2jdDII/rdZ7Wd3pPT/6+vIIxRagwRc9K0IUX0Ra4fKvw+WQ==}
 
@@ -12250,22 +12262,16 @@ snapshots:
     dependencies:
       lodash: 4.17.21
 
-  '@textlint/ast-node-types@13.4.1': {}
-
-  '@textlint/ast-node-types@14.8.1': {}
-
-  '@textlint/ast-node-types@4.4.3': {}
-
   '@textlint/ast-tester@14.8.1':
     dependencies:
-      '@textlint/ast-node-types': 14.8.1
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       debug: 4.4.1(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
   '@textlint/ast-traverse@14.8.1':
     dependencies:
-      '@textlint/ast-node-types': 14.8.1
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
 
   '@textlint/config-loader@14.8.1':
     dependencies:
@@ -12297,7 +12303,7 @@ snapshots:
 
   '@textlint/kernel@14.8.1':
     dependencies:
-      '@textlint/ast-node-types': 14.8.1
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       '@textlint/ast-tester': 14.8.1
       '@textlint/ast-traverse': 14.8.1
       '@textlint/feature-flag': 14.8.1
@@ -12331,7 +12337,7 @@ snapshots:
 
   '@textlint/markdown-to-ast@14.8.1':
     dependencies:
-      '@textlint/ast-node-types': 14.8.1
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       debug: 4.4.1(supports-color@8.1.1)
       mdast-util-gfm-autolink-literal: 0.1.3
       neotraverse: 0.6.18
@@ -12374,7 +12380,7 @@ snapshots:
 
   '@textlint/text-to-ast@14.8.1':
     dependencies:
-      '@textlint/ast-node-types': 14.8.1
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
 
   '@textlint/textlint-plugin-markdown@14.8.1':
     dependencies:
@@ -12388,11 +12394,11 @@ snapshots:
 
   '@textlint/types@13.4.1':
     dependencies:
-      '@textlint/ast-node-types': 13.4.1
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
 
   '@textlint/types@14.8.1':
     dependencies:
-      '@textlint/ast-node-types': 14.8.1
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
 
   '@textlint/utils@14.8.1': {}
 
@@ -12561,10 +12567,6 @@ snapshots:
   '@types/node@20.19.0':
     dependencies:
       undici-types: 6.21.0
-
-  '@types/node@24.0.1':
-    dependencies:
-      undici-types: 7.8.0
 
   '@types/normalize-package-data@2.4.4': {}
 
@@ -18836,7 +18838,7 @@ snapshots:
 
   sentence-splitter@3.2.3:
     dependencies:
-      '@textlint/ast-node-types': 4.4.3
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       concat-stream: 2.0.0
       object_values: 0.1.2
       structured-source: 3.0.2
@@ -19373,7 +19375,7 @@ snapshots:
 
   textlint-rule-helper@2.3.1:
     dependencies:
-      '@textlint/ast-node-types': 13.4.1
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       structured-source: 4.0.0
       unist-util-visit: 2.0.3
 
@@ -19679,7 +19681,7 @@ snapshots:
 
   textlint-util-to-string@3.3.4:
     dependencies:
-      '@textlint/ast-node-types': 13.4.1
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       rehype-parse: 6.0.2
       structured-source: 4.0.0
       unified: 8.4.2
@@ -19687,7 +19689,7 @@ snapshots:
   textlint@14.8.1:
     dependencies:
       '@modelcontextprotocol/sdk': 1.12.3
-      '@textlint/ast-node-types': 14.8.1
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       '@textlint/ast-traverse': 14.8.1
       '@textlint/config-loader': 14.8.1
       '@textlint/feature-flag': 14.8.1
@@ -19815,7 +19817,7 @@ snapshots:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
-  ts-node@10.9.2(@types/node@20.19.0)(typescript@5.6.3):
+  ts-node@10.9.2(@types/node@20.19.0)(typescript@5.3.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
@@ -19829,36 +19831,18 @@ snapshots:
       create-require: 1.1.1
       diff: 4.0.2
       make-error: 1.3.6
-      typescript: 5.6.3
-      v8-compile-cache-lib: 3.0.1
-      yn: 3.1.1
-
-  ts-node@10.9.2(@types/node@24.0.1)(typescript@5.3.3):
-    dependencies:
-      '@cspotcode/source-map-support': 0.8.1
-      '@tsconfig/node10': 1.0.11
-      '@tsconfig/node12': 1.0.11
-      '@tsconfig/node14': 1.0.3
-      '@tsconfig/node16': 1.0.4
-      '@types/node': 24.0.1
-      acorn: 8.15.0
-      acorn-walk: 8.3.4
-      arg: 4.1.3
-      create-require: 1.1.1
-      diff: 4.0.2
-      make-error: 1.3.6
       typescript: 5.3.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
-  ts-node@10.9.2(@types/node@24.0.1)(typescript@5.6.3):
+  ts-node@10.9.2(@types/node@20.19.0)(typescript@5.6.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 24.0.1
+      '@types/node': 20.19.0
       acorn: 8.15.0
       acorn-walk: 8.3.4
       arg: 4.1.3
@@ -19996,8 +19980,6 @@ snapshots:
   undici-types@5.26.5: {}
 
   undici-types@6.21.0: {}
-
-  undici-types@7.8.0: {}
 
   unherit@1.1.3:
     dependencies:

@@ -43,6 +43,7 @@
     },
     "devDependencies": {
         "@textlint/kernel": "workspace:*",
+        "@types/mocha": "^10.0.10",
         "mocha": "^10.8.1",
         "rimraf": "^6.0.1",
         "textlint-rule-no-todo": "^2.0.1",
