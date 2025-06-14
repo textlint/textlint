@@ -113,27 +113,27 @@ Lint raw text content using textlint configuration.
 "Check this text for writing issues: 'This is a sample text.'"
 ```
 
-### `fixFile`
-Automatically fix issues in one or more files using textlint's auto-fix capability.
+### `getLintFixedFileContent`
+Get lint-fixed content of files using textlint's auto-fix capability. This tool returns the corrected content without modifying the original files.
 
 **Parameters:**
-- `filePaths` (Array): File paths to fix
+- `filePaths` (Array): File paths to get fixed content for
 
 **Example usage:**
 ```
-"Fix all textlint issues in the current file"
+"Get the textlint auto-fixed version of the current file"
 ```
 
-### `fixText`
-Automatically fix issues in raw text content.
+### `getLintFixedTextContent`
+Get lint-fixed content of raw text using textlint's auto-fix capability.
 
 **Parameters:**
-- `text` (String): Text content to fix
+- `text` (String): Text content to get fixed version of
 - `stdinFilename` (String): Filename to use for the text
 
 **Example usage:**
 ```
-"Fix the writing issues in this text and show me the corrected version"
+"Get the auto-fixed version of this text and show me the corrected content"
 ```
 
 ## Configuration
@@ -163,11 +163,11 @@ Here are some example prompts you can use with AI assistants:
 ```
 Lint the current file with textlint MCP and explain any text issues found
 
-Fix all textlint issues in src/README.md
+Get the auto-fixed content for src/README.md using textlint
 
-Check this markdown text for writing problems and suggest improvements
+Check this markdown text for writing problems and show me the corrected version
 
-Apply textlint auto-fixes to all files in the docs/ directory
+Get textlint auto-fixed content for all files in the docs/ directory
 ```
 
 ## Troubleshooting

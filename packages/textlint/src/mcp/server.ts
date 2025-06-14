@@ -61,8 +61,8 @@ server.tool(
 );
 
 server.tool(
-    "fixFile",
-    "Fix files using textlint",
+    "getLintFixedFileContent",
+    "Get lint-fixed content of files using textlint",
     {
         filePaths: z.array(z.string().min(1)).nonempty()
     },
@@ -80,8 +80,8 @@ server.tool(
     }
 );
 server.tool(
-    "fixText",
-    "Fix text using textlint",
+    "getLintFixedTextContent",
+    "Get lint-fixed content of text using textlint",
     {
         text: z.string().nonempty(),
         stdinFilename: z.string().nonempty()
