@@ -10,8 +10,6 @@ packages:
   - packages/textlint-scripts/examples/*
   - test/integration-test
   - website
-  - test/*
-  - website
 
 # Force all @textlint/ast-node-types references to use the workspace version
 # This prevents version conflicts where some packages might reference old versions (e.g., 13.4.1)
