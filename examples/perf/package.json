@@ -10,7 +10,7 @@
     "devDependencies": {
         "shelljs": "^0.8.5",
         "textlint": "^14.8.1",
-        "textlint-plugin-jtf-style": "^1.0.1",
+        "textlint-rule-preset-jtf-style": "^3.0.2",
         "textlint-rule-max-ten": "^2.0.3",
         "textlint-rule-no-mix-dearu-desumasu": "^3.0.3",
         "textlint-rule-no-start-duplicated-conjunction": "^2.0.2",

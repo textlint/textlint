@@ -1,5 +1,6 @@
-const semver = require("semver");
-const runLint = require("./run_lint");
+import semver from "semver";
+import { test } from "node:test";
+import runLint from "./run_lint.js";
 const testList = [
     {
         name: "JavaScript-Plugin-Architecture",
@@ -32,6 +33,8 @@ const testList = [
     return semver.gte(version, testTarget.version);
 });
 
-testList.forEach((test) => {
-    runLint(test.name, test.path);
+testList.forEach((testInfo) => {
+    test(`Run textlint for ${testInfo.name}`, () =>{
+        runLint(testInfo.name, testInfo.path);
+    });
 });
