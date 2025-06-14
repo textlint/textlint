@@ -45,20 +45,20 @@
         "@textlint/source-code-fixer": "workspace:*",
         "@textlint/types": "workspace:*",
         "@textlint/utils": "workspace:*",
-        "debug": "^4.4.1",
-        "fast-equals": "^4.0.3",
-        "structured-source": "^4.0.0"
+        "debug": "catalog:",
+        "fast-equals": "catalog:",
+        "structured-source": "catalog:"
     },
     "devDependencies": {
         "@textlint/markdown-to-ast": "workspace:*",
-        "@types/debug": "^4.1.12",
+        "@types/debug": "catalog:",
         "@types/mocha": "^9.1.1",
         "@types/node": "^18.19.9",
-        "mocha": "^10.8.1",
-        "rimraf": "^6.0.1",
+        "mocha": "catalog:",
+        "rimraf": "catalog:",
         "shelljs": "^0.10.0",
-        "ts-node": "^10.9.2",
+        "ts-node": "catalog:",
         "typescript": "~5.3.3",
-        "unist-util-select": "^3.0.4"
+        "unist-util-select": "catalog:"
     }
 }

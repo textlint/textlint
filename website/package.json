@@ -17,22 +17,22 @@
     "textlint:fix": "textlint --fix --cache -c .textlintrc ../docs ../.github/ ../README.md"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.8.1",
-    "@docusaurus/plugin-client-redirects": "^3.8.1",
-    "@docusaurus/preset-classic": "^3.8.1",
-    "@mdx-js/react": "^3.1.0",
-    "prism-react-renderer": "^2.4.1",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "@docusaurus/core": "catalog:",
+    "@docusaurus/plugin-client-redirects": "catalog:",
+    "@docusaurus/preset-classic": "catalog:",
+    "@mdx-js/react": "catalog:",
+    "prism-react-renderer": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.8.1",
+    "@docusaurus/module-type-aliases": "catalog:",
     "textlint": "workspace:*",
-    "textlint-filter-rule-comments": "^1.2.2",
-    "textlint-rule-eslint": "^4.0.2",
+    "textlint-filter-rule-comments": "catalog:",
+    "textlint-rule-eslint": "catalog:",
     "textlint-rule-prh": "^5.3.0",
-    "textlint-rule-rousseau": "^1.4.8",
-    "textlint-rule-unexpanded-acronym": "^1.2.4"
+    "textlint-rule-rousseau": "catalog:",
+    "textlint-rule-unexpanded-acronym": "catalog:"
   },
   "browserslist": {
     "production": [

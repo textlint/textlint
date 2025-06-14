@@ -42,15 +42,15 @@
     },
     "dependencies": {
         "@textlint/ast-node-types": "workspace:*",
-        "debug": "^4.4.1"
+        "debug": "catalog:"
     },
     "devDependencies": {
-        "@types/debug": "^4.1.12",
+        "@types/debug": "catalog:",
         "@types/mocha": "^9.1.1",
         "@types/node": "^18.19.9",
-        "mocha": "^10.8.1",
-        "rimraf": "^6.0.1",
-        "ts-node": "^10.9.2",
+        "mocha": "catalog:",
+        "rimraf": "catalog:",
+        "ts-node": "catalog:",
         "typescript": "~5.3.3"
     },
     "publishConfig": {

@@ -11,11 +11,11 @@
         "shelljs": "^0.8.5",
         "textlint": "workspace:*",
         "textlint-rule-preset-jtf-style": "^3.0.2",
-        "textlint-rule-max-ten": "^2.0.3",
-        "textlint-rule-no-mix-dearu-desumasu": "^3.0.3",
-        "textlint-rule-no-start-duplicated-conjunction": "^2.0.2",
+        "textlint-rule-max-ten": "catalog:",
+        "textlint-rule-no-mix-dearu-desumasu": "catalog:",
+        "textlint-rule-no-start-duplicated-conjunction": "catalog:",
         "textlint-rule-prh": "^5.2.0",
-        "textlint-rule-spellcheck-tech-word": "^5.0.0"
+        "textlint-rule-spellcheck-tech-word": "catalog:"
     },
     "files": [
         "bin/",

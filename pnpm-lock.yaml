@@ -4,42 +4,339 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@textlint/ast-node-types': workspace:*
+catalogs:
+  default:
+    '@azu/format-text':
+      specifier: ^1.0.2
+      version: 1.0.2
+    '@azu/style-format':
+      specifier: ^1.0.1
+      version: 1.0.1
+    '@babel/cli':
+      specifier: ^7.27.2
+      version: 7.27.2
+    '@babel/core':
+      specifier: ^7.27.4
+      version: 7.27.4
+    '@babel/preset-env':
+      specifier: ^7.27.2
+      version: 7.27.2
+    '@babel/preset-typescript':
+      specifier: ^7.27.1
+      version: 7.27.1
+    '@babel/register':
+      specifier: ^7.27.1
+      version: 7.27.1
+    '@docusaurus/core':
+      specifier: ^3.8.1
+      version: 3.8.1
+    '@docusaurus/module-type-aliases':
+      specifier: ^3.8.1
+      version: 3.8.1
+    '@docusaurus/plugin-client-redirects':
+      specifier: ^3.8.1
+      version: 3.8.1
+    '@docusaurus/preset-classic':
+      specifier: ^3.8.1
+      version: 3.8.1
+    '@mdx-js/react':
+      specifier: ^3.1.0
+      version: 3.1.0
+    '@modelcontextprotocol/sdk':
+      specifier: ^1.12.1
+      version: 1.12.3
+    '@monorepo-utils/workspaces-to-typescript-project-references':
+      specifier: ^2.11.0
+      version: 2.11.0
+    '@types/clone':
+      specifier: ^2.1.4
+      version: 2.1.4
+    '@types/debug':
+      specifier: ^4.1.12
+      version: 4.1.12
+    '@types/diff':
+      specifier: ^4.0.2
+      version: 4.0.2
+    '@types/glob':
+      specifier: ^8.1.0
+      version: 8.1.0
+    '@types/js-yaml':
+      specifier: ^3.12.10
+      version: 3.12.10
+    '@types/lodash':
+      specifier: ^4.17.0
+      version: 4.17.17
+    '@types/react':
+      specifier: ^18.3.18
+      version: 18.3.23
+    '@types/read-pkg-up':
+      specifier: ^3.0.1
+      version: 3.0.1
+    '@types/shelljs':
+      specifier: ^0.8.15
+      version: 0.8.16
+    '@types/unist':
+      specifier: ^3.0.3
+      version: 3.0.3
+    '@typescript-eslint/eslint-plugin':
+      specifier: ^5.62.0
+      version: 5.62.0
+    '@typescript-eslint/parser':
+      specifier: ^5.62.0
+      version: 5.62.0
+    ajv:
+      specifier: ^8.17.1
+      version: 8.17.1
+    analyze-desumasu-dearu:
+      specifier: ^4.0.1
+      version: 4.0.1
+    babel-plugin-static-fs:
+      specifier: ^3.0.0
+      version: 3.0.0
+    chai:
+      specifier: ^4.5.0
+      version: 4.5.0
+    chalk:
+      specifier: ^4.1.2
+      version: 4.1.2
+    clone:
+      specifier: ^2.1.2
+      version: 2.1.2
+    confirmer:
+      specifier: ^1.1.2
+      version: 1.1.2
+    cross-spawn:
+      specifier: ^7.0.3
+      version: 7.0.6
+    debug:
+      specifier: ^4.4.1
+      version: 4.4.1
+    diff:
+      specifier: ^5.2.0
+      version: 5.2.0
+    eol-converter-cli:
+      specifier: ^1.1.0
+      version: 1.1.0
+    eslint:
+      specifier: ^8.23.0
+      version: 8.57.1
+    eslint-config-prettier:
+      specifier: ^8.10.0
+      version: 8.10.0
+    eslint-plugin-prettier:
+      specifier: ^4.2.1
+      version: 4.2.1
+    expected-exit-status:
+      specifier: ^1.0.2
+      version: 1.0.2
+    fast-equals:
+      specifier: ^4.0.3
+      version: 4.0.3
+    file-entry-cache:
+      specifier: ^10.0.5
+      version: 10.1.1
+    glob:
+      specifier: ^10.4.5
+      version: 10.4.5
+    js-yaml:
+      specifier: ^3.14.1
+      version: 3.14.1
+    json5:
+      specifier: ^2.1.1
+      version: 2.2.3
+    lerna:
+      specifier: ^8.2.2
+      version: 8.2.2
+    lint-staged:
+      specifier: ^13.3.0
+      version: 13.3.0
+    lodash:
+      specifier: ^4.17.21
+      version: 4.17.21
+    match-index:
+      specifier: ^1.0.3
+      version: 1.0.3
+    md5:
+      specifier: ^2.3.0
+      version: 2.3.0
+    mdast-util-gfm-autolink-literal:
+      specifier: ^0.1.3
+      version: 0.1.3
+    mocha:
+      specifier: ^10.8.1
+      version: 10.8.2
+    neotraverse:
+      specifier: ^0.6.15
+      version: 0.6.18
+    npm-run-all2:
+      specifier: ^5.0.2
+      version: 5.0.2
+    optionator:
+      specifier: ^0.9.3
+      version: 0.9.4
+    path-to-glob-pattern:
+      specifier: ^2.0.1
+      version: 2.0.1
+    pkg-to-readme:
+      specifier: ^3.0.1
+      version: 3.0.1
+    pluralize:
+      specifier: ^2.0.0
+      version: 2.0.0
+    prh:
+      specifier: ^5.4.4
+      version: 5.4.4
+    prism-react-renderer:
+      specifier: ^2.4.1
+      version: 2.4.1
+    proxyquire:
+      specifier: ^2.1.3
+      version: 2.1.3
+    rc-config-loader:
+      specifier: ^4.1.3
+      version: 4.1.3
+    react:
+      specifier: ^19.1.0
+      version: 19.1.0
+    react-dom:
+      specifier: ^19.1.0
+      version: 19.1.0
+    read-pkg:
+      specifier: ^1.1.0
+      version: 1.1.0
+    read-pkg-up:
+      specifier: ^3.0.0
+      version: 3.0.0
+    remark-footnotes:
+      specifier: ^3.0.0
+      version: 3.0.0
+    remark-frontmatter:
+      specifier: ^3.0.0
+      version: 3.0.0
+    remark-gfm:
+      specifier: ^1.0.0
+      version: 1.0.0
+    remark-parse:
+      specifier: ^9.0.0
+      version: 9.0.0
+    rimraf:
+      specifier: ^6.0.1
+      version: 6.0.1
+    semver:
+      specifier: ^5.3.0
+      version: 5.7.2
+    sinon:
+      specifier: ^1.17.7
+      version: 1.17.7
+    string-width:
+      specifier: ^4.2.3
+      version: 4.2.3
+    strip-ansi:
+      specifier: ^6.0.1
+      version: 6.0.1
+    structured-source:
+      specifier: ^4.0.0
+      version: 4.0.0
+    table:
+      specifier: ^6.9.0
+      version: 6.9.0
+    text-table:
+      specifier: ^0.2.0
+      version: 0.2.0
+    textlint-filter-rule-comments:
+      specifier: ^1.2.2
+      version: 1.2.2
+    textlint-rule-eslint:
+      specifier: ^4.0.2
+      version: 4.0.2
+    textlint-rule-helper:
+      specifier: ^2.3.1
+      version: 2.3.1
+    textlint-rule-max-number-of-lines:
+      specifier: ^1.0.3
+      version: 1.0.3
+    textlint-rule-max-ten:
+      specifier: ^2.0.3
+      version: 2.0.4
+    textlint-rule-no-mix-dearu-desumasu:
+      specifier: ^3.0.3
+      version: 3.0.3
+    textlint-rule-no-start-duplicated-conjunction:
+      specifier: ^2.0.2
+      version: 2.0.2
+    textlint-rule-no-todo:
+      specifier: ^2.0.1
+      version: 2.0.1
+    textlint-rule-preset-ja-spacing:
+      specifier: ^2.4.1
+      version: 2.4.3
+    textlint-rule-preset-ja-technical-writing:
+      specifier: ^7.0.0
+      version: 7.0.0
+    textlint-rule-rousseau:
+      specifier: ^1.4.8
+      version: 1.4.8
+    textlint-rule-sentence-length:
+      specifier: ^2.1.2
+      version: 2.2.0
+    textlint-rule-spellcheck-tech-word:
+      specifier: ^5.0.0
+      version: 5.0.0
+    textlint-rule-unexpanded-acronym:
+      specifier: ^1.2.4
+      version: 1.2.4
+    textlintrc-to-package-list:
+      specifier: ^3.0.3
+      version: 3.0.3
+    ts-node:
+      specifier: ^10.9.2
+      version: 10.9.2
+    unified:
+      specifier: ^9.2.2
+      version: 9.2.2
+    unique-concat:
+      specifier: ^0.2.2
+      version: 0.2.2
+    unist-util-select:
+      specifier: ^3.0.4
+      version: 3.0.4
+    zod:
+      specifier: ^3.25.56
+      version: 3.25.64
 
 importers:
 
   .:
     devDependencies:
       '@monorepo-utils/workspaces-to-typescript-project-references':
-        specifier: ^2.11.0
+        specifier: 'catalog:'
         version: 2.11.0
       '@typescript-eslint/eslint-plugin':
-        specifier: ^5.62.0
+        specifier: 'catalog:'
         version: 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@5.3.3))(eslint@8.57.1)(typescript@5.3.3)
       '@typescript-eslint/parser':
-        specifier: ^5.62.0
+        specifier: 'catalog:'
         version: 5.62.0(eslint@8.57.1)(typescript@5.3.3)
       ajv:
-        specifier: ^8.17.1
+        specifier: 'catalog:'
         version: 8.17.1
       eslint:
-        specifier: ^8.23.0
+        specifier: 'catalog:'
         version: 8.57.1
       eslint-config-prettier:
-        specifier: ^8.10.0
+        specifier: 'catalog:'
         version: 8.10.0(eslint@8.57.1)
       eslint-plugin-prettier:
-        specifier: ^4.2.1
+        specifier: 'catalog:'
         version: 4.2.1(eslint-config-prettier@8.10.0(eslint@8.57.1))(eslint@8.57.1)(prettier@2.8.8)
       lerna:
-        specifier: ^8.2.2
+        specifier: 'catalog:'
         version: 8.2.2(encoding@0.1.13)
       lint-staged:
-        specifier: ^13.3.0
+        specifier: 'catalog:'
         version: 13.3.0(enquirer@2.3.6)
       npm-run-all2:
-        specifier: ^5.0.2
+        specifier: 'catalog:'
         version: 5.0.2
       prettier:
         specifier: ^2.7.1
@@ -54,7 +351,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/textlint
       textlint-rule-no-todo:
-        specifier: ^2.0.1
+        specifier: 'catalog:'
         version: 2.0.1
 
   examples/config-file:
@@ -63,7 +360,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/textlint
       textlint-rule-no-todo:
-        specifier: ^2.0.1
+        specifier: 'catalog:'
         version: 2.0.1
 
   examples/config-in-package-json:
@@ -72,7 +369,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/textlint
       textlint-rule-no-todo:
-        specifier: ^2.0.1
+        specifier: 'catalog:'
         version: 2.0.1
 
   examples/filter:
@@ -81,10 +378,10 @@ importers:
         specifier: workspace:*
         version: link:../../packages/textlint
       textlint-filter-rule-comments:
-        specifier: ^1.2.2
+        specifier: 'catalog:'
         version: 1.2.2(textlint@packages+textlint)
       textlint-rule-no-todo:
-        specifier: ^2.0.1
+        specifier: 'catalog:'
         version: 2.0.1
 
   examples/fix:
@@ -114,7 +411,7 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
       textlint-rule-sentence-length:
-        specifier: ^2.1.2
+        specifier: 'catalog:'
         version: 2.2.0
 
   examples/perf:
@@ -126,13 +423,13 @@ importers:
         specifier: workspace:*
         version: link:../../packages/textlint
       textlint-rule-max-ten:
-        specifier: ^2.0.3
+        specifier: 'catalog:'
         version: 2.0.4
       textlint-rule-no-mix-dearu-desumasu:
-        specifier: ^3.0.3
+        specifier: 'catalog:'
         version: 3.0.3
       textlint-rule-no-start-duplicated-conjunction:
-        specifier: ^2.0.2
+        specifier: 'catalog:'
         version: 2.0.2
       textlint-rule-preset-jtf-style:
         specifier: ^3.0.2
@@ -141,19 +438,19 @@ importers:
         specifier: ^5.2.0
         version: 5.3.0
       textlint-rule-spellcheck-tech-word:
-        specifier: ^5.0.0
+        specifier: 'catalog:'
         version: 5.0.0(textlint@packages+textlint)
 
   examples/plugin-extensions-option:
     devDependencies:
       expected-exit-status:
-        specifier: ^1.0.2
+        specifier: 'catalog:'
         version: 1.0.2
       textlint:
         specifier: workspace:*
         version: link:../../packages/textlint
       textlint-rule-no-todo:
-        specifier: ^2.0.1
+        specifier: 'catalog:'
         version: 2.0.1
 
   examples/preset:
@@ -177,7 +474,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/textlint
       textlint-rule-no-todo:
-        specifier: ^2.0.1
+        specifier: 'catalog:'
         version: 2.0.1
 
   examples/use-as-ts-module:
@@ -186,7 +483,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/textlint
       textlint-rule-no-todo:
-        specifier: ^2.0.1
+        specifier: 'catalog:'
         version: 2.0.1
     devDependencies:
       '@types/node':
@@ -205,13 +502,13 @@ importers:
         specifier: ^22.13.14
         version: 22.15.31
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@22.15.31)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -223,11 +520,11 @@ importers:
         specifier: workspace:*
         version: link:../ast-node-types
       debug:
-        specifier: ^4.4.1
+        specifier: 'catalog:'
         version: 4.4.1(supports-color@8.1.1)
     devDependencies:
       '@types/debug':
-        specifier: ^4.1.12
+        specifier: 'catalog:'
         version: 4.1.12
       '@types/mocha':
         specifier: ^9.1.1
@@ -236,13 +533,13 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -264,13 +561,13 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -294,14 +591,14 @@ importers:
         specifier: workspace:*
         version: link:../utils
       debug:
-        specifier: ^4.4.1
+        specifier: 'catalog:'
         version: 4.4.1(supports-color@8.1.1)
       rc-config-loader:
-        specifier: ^4.1.3
+        specifier: 'catalog:'
         version: 4.1.3
     devDependencies:
       '@types/debug':
-        specifier: ^4.1.12
+        specifier: 'catalog:'
         version: 4.1.12
       '@types/mocha':
         specifier: ^9.1.1
@@ -310,16 +607,16 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       prettier:
         specifier: ^2.3.0
         version: 2.8.8
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.6.3)
       typescript:
         specifier: ~5.6.3
@@ -334,13 +631,13 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -358,29 +655,29 @@ importers:
         specifier: workspace:*
         version: link:../types
       chalk:
-        specifier: ^4.1.2
+        specifier: 'catalog:'
         version: 4.1.2
       debug:
-        specifier: ^4.4.1
+        specifier: 'catalog:'
         version: 4.4.1(supports-color@8.1.1)
       diff:
-        specifier: ^5.2.0
+        specifier: 'catalog:'
         version: 5.2.0
       string-width:
-        specifier: ^4.2.3
+        specifier: 'catalog:'
         version: 4.2.3
       strip-ansi:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       text-table:
-        specifier: ^0.2.0
+        specifier: 'catalog:'
         version: 0.2.0
     devDependencies:
       '@types/debug':
-        specifier: ^4.1.12
+        specifier: 'catalog:'
         version: 4.1.12
       '@types/diff':
-        specifier: ^4.0.2
+        specifier: 'catalog:'
         version: 4.0.2
       '@types/mocha':
         specifier: ^9.1.1
@@ -389,13 +686,13 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -425,20 +722,20 @@ importers:
         specifier: workspace:*
         version: link:../utils
       debug:
-        specifier: ^4.4.1
+        specifier: 'catalog:'
         version: 4.4.1(supports-color@8.1.1)
       fast-equals:
-        specifier: ^4.0.3
+        specifier: 'catalog:'
         version: 4.0.3
       structured-source:
-        specifier: ^4.0.0
+        specifier: 'catalog:'
         version: 4.0.0
     devDependencies:
       '@textlint/markdown-to-ast':
         specifier: workspace:*
         version: link:../markdown-to-ast
       '@types/debug':
-        specifier: ^4.1.12
+        specifier: 'catalog:'
         version: 4.1.12
       '@types/mocha':
         specifier: ^9.1.1
@@ -447,22 +744,22 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       shelljs:
         specifier: ^0.10.0
         version: 0.10.0
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
         version: 5.3.3
       unist-util-select:
-        specifier: ^3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
 
   packages/@textlint/legacy-textlint-core:
@@ -478,7 +775,7 @@ importers:
         version: link:../textlint-plugin-text
     devDependencies:
       '@types/debug':
-        specifier: ^4.1.12
+        specifier: 'catalog:'
         version: 4.1.12
       '@types/node':
         specifier: ^18.19.9
@@ -493,10 +790,10 @@ importers:
   packages/@textlint/linter-formatter:
     dependencies:
       '@azu/format-text':
-        specifier: ^1.0.2
+        specifier: 'catalog:'
         version: 1.0.2
       '@azu/style-format':
-        specifier: ^1.0.1
+        specifier: 'catalog:'
         version: 1.0.1
       '@textlint/module-interop':
         specifier: workspace:*
@@ -508,41 +805,41 @@ importers:
         specifier: workspace:*
         version: link:../types
       chalk:
-        specifier: ^4.1.2
+        specifier: 'catalog:'
         version: 4.1.2
       debug:
-        specifier: ^4.4.1
+        specifier: 'catalog:'
         version: 4.4.1(supports-color@8.1.1)
       js-yaml:
-        specifier: ^3.14.1
+        specifier: 'catalog:'
         version: 3.14.1
       lodash:
-        specifier: ^4.17.21
+        specifier: 'catalog:'
         version: 4.17.21
       pluralize:
-        specifier: ^2.0.0
+        specifier: 'catalog:'
         version: 2.0.0
       string-width:
-        specifier: ^4.2.3
+        specifier: 'catalog:'
         version: 4.2.3
       strip-ansi:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       table:
-        specifier: ^6.9.0
+        specifier: 'catalog:'
         version: 6.9.0
       text-table:
-        specifier: ^0.2.0
+        specifier: 'catalog:'
         version: 0.2.0
     devDependencies:
       '@types/debug':
-        specifier: ^4.1.12
+        specifier: 'catalog:'
         version: 4.1.12
       '@types/js-yaml':
-        specifier: ^3.12.10
+        specifier: 'catalog:'
         version: 3.12.10
       '@types/lodash':
-        specifier: ^4.17.0
+        specifier: 'catalog:'
         version: 4.17.17
       '@types/mocha':
         specifier: ^9.1.1
@@ -551,22 +848,22 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       chai:
-        specifier: ^4.5.0
+        specifier: 'catalog:'
         version: 4.5.0
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       proxyquire:
-        specifier: ^2.1.3
+        specifier: 'catalog:'
         version: 2.1.3
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       sinon:
-        specifier: ^1.17.7
+        specifier: 'catalog:'
         version: 1.17.7
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -578,35 +875,35 @@ importers:
         specifier: workspace:*
         version: link:../ast-node-types
       debug:
-        specifier: ^4.4.1
+        specifier: 'catalog:'
         version: 4.4.1(supports-color@8.1.1)
       mdast-util-gfm-autolink-literal:
-        specifier: ^0.1.3
+        specifier: 'catalog:'
         version: 0.1.3
       neotraverse:
-        specifier: ^0.6.15
+        specifier: 'catalog:'
         version: 0.6.18
       remark-footnotes:
-        specifier: ^3.0.0
+        specifier: 'catalog:'
         version: 3.0.0
       remark-frontmatter:
-        specifier: ^3.0.0
+        specifier: 'catalog:'
         version: 3.0.0
       remark-gfm:
-        specifier: ^1.0.0
+        specifier: 'catalog:'
         version: 1.0.0
       remark-parse:
-        specifier: ^9.0.0
+        specifier: 'catalog:'
         version: 9.0.0
       unified:
-        specifier: ^9.2.2
+        specifier: 'catalog:'
         version: 9.2.2
     devDependencies:
       '@textlint/ast-tester':
         specifier: workspace:*
         version: link:../ast-tester
       '@types/debug':
-        specifier: ^4.1.12
+        specifier: 'catalog:'
         version: 4.1.12
       '@types/mocha':
         specifier: ^9.1.1
@@ -615,19 +912,19 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       '@types/unist':
-        specifier: ^3.0.3
+        specifier: 'catalog:'
         version: 3.0.3
       mkdirp:
         specifier: ^1.0.4
         version: 1.0.4
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -642,16 +939,16 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       prettier:
         specifier: ^2.7.1
         version: 2.8.8
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -660,7 +957,7 @@ importers:
   packages/@textlint/resolver:
     devDependencies:
       '@types/debug':
-        specifier: ^4.1.12
+        specifier: 'catalog:'
         version: 4.1.12
       '@types/mocha':
         specifier: ^10.0.10
@@ -669,13 +966,13 @@ importers:
         specifier: ^20.16.12
         version: 20.19.0
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       prettier:
         specifier: ^2.8.1
         version: 2.8.8
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@20.19.0)(typescript@5.6.3)
       typescript:
         specifier: ^5.1.6
@@ -687,11 +984,11 @@ importers:
         specifier: workspace:*
         version: link:../types
       debug:
-        specifier: ^4.4.1
+        specifier: 'catalog:'
         version: 4.4.1(supports-color@8.1.1)
     devDependencies:
       '@types/debug':
-        specifier: ^4.1.12
+        specifier: 'catalog:'
         version: 4.1.12
       '@types/mocha':
         specifier: ^9.1.1
@@ -700,16 +997,16 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       prettier:
         specifier: ^2.7.1
         version: 2.8.8
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -731,16 +1028,16 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       eol-converter-cli:
-        specifier: ^1.1.0
+        specifier: 'catalog:'
         version: 1.1.0
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -765,19 +1062,19 @@ importers:
         specifier: ^22.10.6
         version: 22.15.31
       '@types/react':
-        specifier: ^18.3.18
+        specifier: 'catalog:'
         version: 18.3.23
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       textlint-rule-no-todo:
-        specifier: ^2.0.1
+        specifier: 'catalog:'
         version: 2.0.1
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@22.15.31)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -802,19 +1099,19 @@ importers:
         specifier: ^20.0.0
         version: 20.19.0
       '@types/react':
-        specifier: ^18.3.18
+        specifier: 'catalog:'
         version: 18.3.23
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       textlint-rule-no-todo:
-        specifier: ^2.0.1
+        specifier: 'catalog:'
         version: 2.0.1
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@20.19.0)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -836,22 +1133,22 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       prettier:
         specifier: ^2.7.1
         version: 2.8.8
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
         version: 5.3.3
       unist-util-select:
-        specifier: ^3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
 
   packages/@textlint/utils:
@@ -863,16 +1160,16 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       prettier:
         specifier: ^2.7.1
         version: 2.8.8
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -881,7 +1178,7 @@ importers:
   packages/textlint:
     dependencies:
       '@modelcontextprotocol/sdk':
-        specifier: ^1.12.1
+        specifier: 'catalog:'
         version: 1.12.3
       '@textlint/ast-node-types':
         specifier: workspace:*
@@ -923,56 +1220,56 @@ importers:
         specifier: workspace:*
         version: link:../@textlint/utils
       debug:
-        specifier: ^4.4.1
+        specifier: 'catalog:'
         version: 4.4.1(supports-color@8.1.1)
       file-entry-cache:
-        specifier: ^10.0.5
+        specifier: 'catalog:'
         version: 10.1.1
       glob:
-        specifier: ^10.4.5
+        specifier: 'catalog:'
         version: 10.4.5
       md5:
-        specifier: ^2.3.0
+        specifier: 'catalog:'
         version: 2.3.0
       mkdirp:
         specifier: ^0.5.6
         version: 0.5.6
       optionator:
-        specifier: ^0.9.3
+        specifier: 'catalog:'
         version: 0.9.4
       path-to-glob-pattern:
-        specifier: ^2.0.1
+        specifier: 'catalog:'
         version: 2.0.1
       rc-config-loader:
-        specifier: ^4.1.3
+        specifier: 'catalog:'
         version: 4.1.3
       read-pkg:
-        specifier: ^1.1.0
+        specifier: 'catalog:'
         version: 1.1.0
       read-pkg-up:
-        specifier: ^3.0.0
+        specifier: 'catalog:'
         version: 3.0.0
       structured-source:
-        specifier: ^4.0.0
+        specifier: 'catalog:'
         version: 4.0.0
       unique-concat:
-        specifier: ^0.2.2
+        specifier: 'catalog:'
         version: 0.2.2
       zod:
-        specifier: ^3.25.56
+        specifier: 'catalog:'
         version: 3.25.64
     devDependencies:
       '@textlint/legacy-textlint-core':
         specifier: workspace:*
         version: link:../@textlint/legacy-textlint-core
       '@types/clone':
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       '@types/debug':
-        specifier: ^4.1.12
+        specifier: 'catalog:'
         version: 4.1.12
       '@types/glob':
-        specifier: ^8.1.0
+        specifier: 'catalog:'
         version: 8.1.0
       '@types/mocha':
         specifier: ^9.1.1
@@ -981,19 +1278,19 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       '@types/read-pkg-up':
-        specifier: ^3.0.1
+        specifier: 'catalog:'
         version: 3.0.1
       '@types/shelljs':
-        specifier: ^0.8.15
+        specifier: 'catalog:'
         version: 0.8.16
       clone:
-        specifier: ^2.1.2
+        specifier: 'catalog:'
         version: 2.1.2
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       shelljs:
         specifier: ^0.10.0
@@ -1002,19 +1299,19 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       textlint-rule-helper:
-        specifier: ^2.3.1
+        specifier: 'catalog:'
         version: 2.3.1
       textlint-rule-no-todo:
-        specifier: ^2.0.1
+        specifier: 'catalog:'
         version: 2.0.1
       textlint-rule-preset-ja-spacing:
-        specifier: ^2.4.1
+        specifier: 'catalog:'
         version: 2.4.3
       textlint-rule-preset-jtf-style:
         specifier: ^2.3.14
         version: 2.3.14(textlint@14.8.1)
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -1023,34 +1320,34 @@ importers:
   packages/textlint-scripts:
     dependencies:
       '@babel/cli':
-        specifier: ^7.27.2
+        specifier: 'catalog:'
         version: 7.27.2(@babel/core@7.27.4)
       '@babel/core':
-        specifier: ^7.27.4
+        specifier: 'catalog:'
         version: 7.27.4
       '@babel/preset-env':
-        specifier: ^7.27.2
+        specifier: 'catalog:'
         version: 7.27.2(@babel/core@7.27.4)
       '@babel/preset-typescript':
-        specifier: ^7.27.1
+        specifier: 'catalog:'
         version: 7.27.1(@babel/core@7.27.4)
       '@babel/register':
-        specifier: ^7.27.1
+        specifier: 'catalog:'
         version: 7.27.1(@babel/core@7.27.4)
       babel-plugin-static-fs:
-        specifier: ^3.0.0
+        specifier: 'catalog:'
         version: 3.0.0
       confirmer:
-        specifier: ^1.1.2
+        specifier: 'catalog:'
         version: 1.1.2
       cross-spawn:
-        specifier: ^7.0.3
+        specifier: 'catalog:'
         version: 7.0.6
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       pkg-to-readme:
-        specifier: ^3.0.1
+        specifier: 'catalog:'
         version: 3.0.1
       textlint-tester:
         specifier: workspace:*
@@ -1063,7 +1360,7 @@ importers:
         version: 5.6.3
     devDependencies:
       lint-staged:
-        specifier: ^13.3.0
+        specifier: 'catalog:'
         version: 13.3.0(enquirer@2.3.6)
       prettier:
         specifier: ^2.2.1
@@ -1075,7 +1372,7 @@ importers:
   packages/textlint-scripts/examples/example:
     dependencies:
       prh:
-        specifier: ^5.4.4
+        specifier: 'catalog:'
         version: 5.4.4
     devDependencies:
       textlint-scripts:
@@ -1091,7 +1388,7 @@ importers:
   packages/textlint-scripts/examples/example-ts:
     dependencies:
       prh:
-        specifier: ^5.4.4
+        specifier: 'catalog:'
         version: 5.4.4
     devDependencies:
       '@textlint/types':
@@ -1104,7 +1401,7 @@ importers:
         specifier: workspace:*
         version: link:../..
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -1138,28 +1435,28 @@ importers:
         specifier: ^18.19.9
         version: 18.19.111
       analyze-desumasu-dearu:
-        specifier: ^4.0.1
+        specifier: 'catalog:'
         version: 4.0.1
       match-index:
-        specifier: ^1.0.3
+        specifier: 'catalog:'
         version: 1.0.3
       mocha:
-        specifier: ^10.8.1
+        specifier: 'catalog:'
         version: 10.8.2
       rimraf:
-        specifier: ^6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       textlint-plugin-html:
         specifier: ^0.3.0
         version: 0.3.0
       textlint-rule-helper:
-        specifier: ^2.3.1
+        specifier: 'catalog:'
         version: 2.3.1
       textlint-rule-max-number-of-lines:
-        specifier: ^1.0.3
+        specifier: 'catalog:'
         version: 1.0.3
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@18.19.111)(typescript@5.3.3)
       typescript:
         specifier: ~5.3.3
@@ -1171,7 +1468,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/textlint
       textlint-rule-preset-ja-technical-writing:
-        specifier: ^7.0.0
+        specifier: 'catalog:'
         version: 7.0.0(textlint@packages+textlint)
       textlint-rule-preset-jtf-style:
         specifier: ^2.3.13
@@ -1180,11 +1477,11 @@ importers:
   test/integration-test:
     dependencies:
       semver:
-        specifier: ^5.3.0
+        specifier: 'catalog:'
         version: 5.7.2
     devDependencies:
       json5:
-        specifier: ^2.1.1
+        specifier: 'catalog:'
         version: 2.2.3
       shelljs:
         specifier: ^0.8.3
@@ -1193,53 +1490,53 @@ importers:
         specifier: workspace:*
         version: link:../../packages/textlint
       textlintrc-to-package-list:
-        specifier: ^3.0.3
+        specifier: 'catalog:'
         version: 3.0.3
 
   website:
     dependencies:
       '@docusaurus/core':
-        specifier: ^3.8.1
+        specifier: 'catalog:'
         version: 3.8.1(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.6.3)
       '@docusaurus/plugin-client-redirects':
-        specifier: ^3.8.1
+        specifier: 'catalog:'
         version: 3.8.1(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.6.3)
       '@docusaurus/preset-classic':
-        specifier: ^3.8.1
+        specifier: 'catalog:'
         version: 3.8.1(@algolia/client-search@5.27.0)(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)(typescript@5.6.3)
       '@mdx-js/react':
-        specifier: ^3.1.0
+        specifier: 'catalog:'
         version: 3.1.0(@types/react@19.1.8)(react@19.1.0)
       prism-react-renderer:
-        specifier: ^2.4.1
+        specifier: 'catalog:'
         version: 2.4.1(react@19.1.0)
       react:
-        specifier: ^19.1.0
+        specifier: 'catalog:'
         version: 19.1.0
       react-dom:
-        specifier: ^19.1.0
+        specifier: 'catalog:'
         version: 19.1.0(react@19.1.0)
     devDependencies:
       '@docusaurus/module-type-aliases':
-        specifier: ^3.8.1
+        specifier: 'catalog:'
         version: 3.8.1(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       textlint:
         specifier: workspace:*
         version: link:../packages/textlint
       textlint-filter-rule-comments:
-        specifier: ^1.2.2
+        specifier: 'catalog:'
         version: 1.2.2(textlint@packages+textlint)
       textlint-rule-eslint:
-        specifier: ^4.0.2
+        specifier: 'catalog:'
         version: 4.0.2(eslint@8.57.1)
       textlint-rule-prh:
         specifier: ^5.3.0
         version: 5.3.0
       textlint-rule-rousseau:
-        specifier: ^1.4.8
+        specifier: 'catalog:'
         version: 1.4.8(buffer@6.0.3)
       textlint-rule-unexpanded-acronym:
-        specifier: ^1.2.4
+        specifier: 'catalog:'
         version: 1.2.4
 
 packages:
@@ -2876,6 +3173,15 @@ packages:
 
   '@textlint-rule/tokenize-text@2.0.2':
     resolution: {integrity: sha512-QtAP9fsz8P9JcnGiH//mZit05IZrX5qbABMAzsu6RU+AbxG9dccuQB5QVE9cGNZFQmvAPZ+2uvJqUonSW88AFg==}
+
+  '@textlint/ast-node-types@13.4.1':
+    resolution: {integrity: sha512-qrZyhCh8Ekk6nwArx3BROybm9BnX6vF7VcZbijetV/OM3yfS4rTYhoMWISmhVEP2H2re0CtWEyMl/XF+WdvVLQ==}
+
+  '@textlint/ast-node-types@14.8.1':
+    resolution: {integrity: sha512-fW5Tx5F3ZmTZeKNins9uRhoDCVLHcuUijGNQRfCmJX8R6MjL0yBFt3hHlrvXDpZg5t2PELCvBA25id83LhNMSg==}
+
+  '@textlint/ast-node-types@4.4.3':
+    resolution: {integrity: sha512-qi2jjgO6Tn3KNPGnm6B7p6QTEPvY95NFsIAaJuwbulur8iJUEenp1OnoUfiDaC/g2WPPEFkcfXpmnu8XEMFo2A==}
 
   '@textlint/ast-tester@14.8.1':
     resolution: {integrity: sha512-3Gs/Y6QZQC9klGhTeaESCdGshQntQ6R/KWBcQGtLTg8IJ8vSQHy2ryk2bBOY5rC33myhnnNadv51KtmScdrOPw==}
@@ -10946,7 +11252,7 @@ snapshots:
     dependencies:
       '@docusaurus/types': 3.8.1(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/history': 4.7.11
-      '@types/react': 18.3.23
+      '@types/react': 19.1.8
       '@types/react-router-config': 5.0.11
       '@types/react-router-dom': 5.3.3
       react: 19.1.0
@@ -11352,7 +11658,7 @@ snapshots:
 
   '@docusaurus/react-loadable@6.0.0(react@19.1.0)':
     dependencies:
-      '@types/react': 18.3.23
+      '@types/react': 19.1.8
       react: 19.1.0
 
   '@docusaurus/theme-classic@3.8.1(@types/react@19.1.8)(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.6.3)':
@@ -11412,7 +11718,7 @@ snapshots:
       '@docusaurus/utils': 3.8.1(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@docusaurus/utils-common': 3.8.1(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/history': 4.7.11
-      '@types/react': 18.3.23
+      '@types/react': 19.1.8
       '@types/react-router-config': 5.0.11
       clsx: 2.1.1
       parse-numeric-range: 1.3.0
@@ -11480,7 +11786,7 @@ snapshots:
     dependencies:
       '@mdx-js/mdx': 3.1.0(acorn@8.15.0)
       '@types/history': 4.7.11
-      '@types/react': 18.3.23
+      '@types/react': 19.1.8
       commander: 5.1.0
       joi: 17.13.3
       react: 19.1.0
@@ -11704,7 +12010,7 @@ snapshots:
 
   '@leichtgewicht/ip-codec@2.0.5': {}
 
-  '@lerna/create@8.2.2(encoding@0.1.13)(typescript@5.3.3)':
+  '@lerna/create@8.2.2(encoding@0.1.13)(typescript@5.6.3)':
     dependencies:
       '@npmcli/arborist': 7.5.4
       '@npmcli/package-json': 5.2.0
@@ -11722,7 +12028,7 @@ snapshots:
       console-control-strings: 1.1.0
       conventional-changelog-core: 5.0.1
       conventional-recommended-bump: 7.0.1
-      cosmiconfig: 9.0.0(typescript@5.3.3)
+      cosmiconfig: 9.0.0(typescript@5.6.3)
       dedent: 1.5.3
       execa: 5.0.0
       fs-extra: 11.3.0
@@ -12322,16 +12628,22 @@ snapshots:
     dependencies:
       lodash: 4.17.21
 
+  '@textlint/ast-node-types@13.4.1': {}
+
+  '@textlint/ast-node-types@14.8.1': {}
+
+  '@textlint/ast-node-types@4.4.3': {}
+
   '@textlint/ast-tester@14.8.1':
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 14.8.1
       debug: 4.4.1(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
   '@textlint/ast-traverse@14.8.1':
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 14.8.1
 
   '@textlint/config-loader@14.8.1':
     dependencies:
@@ -12363,7 +12675,7 @@ snapshots:
 
   '@textlint/kernel@14.8.1':
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 14.8.1
       '@textlint/ast-tester': 14.8.1
       '@textlint/ast-traverse': 14.8.1
       '@textlint/feature-flag': 14.8.1
@@ -12397,7 +12709,7 @@ snapshots:
 
   '@textlint/markdown-to-ast@14.8.1':
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 14.8.1
       debug: 4.4.1(supports-color@8.1.1)
       mdast-util-gfm-autolink-literal: 0.1.3
       neotraverse: 0.6.18
@@ -12440,7 +12752,7 @@ snapshots:
 
   '@textlint/text-to-ast@14.8.1':
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 14.8.1
 
   '@textlint/textlint-plugin-markdown@14.8.1':
     dependencies:
@@ -12454,11 +12766,11 @@ snapshots:
 
   '@textlint/types@13.4.1':
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 13.4.1
 
   '@textlint/types@14.8.1':
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 14.8.1
 
   '@textlint/utils@14.8.1': {}
 
@@ -12645,19 +12957,19 @@ snapshots:
   '@types/react-router-config@5.0.11':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 18.3.23
+      '@types/react': 19.1.8
       '@types/react-router': 5.1.20
 
   '@types/react-router-dom@5.3.3':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 18.3.23
+      '@types/react': 19.1.8
       '@types/react-router': 5.1.20
 
   '@types/react-router@5.1.20':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 18.3.23
+      '@types/react': 19.1.8
 
   '@types/react@18.3.23':
     dependencies:
@@ -13806,14 +14118,14 @@ snapshots:
     optionalDependencies:
       typescript: 5.6.3
 
-  cosmiconfig@9.0.0(typescript@5.3.3):
+  cosmiconfig@9.0.0(typescript@5.6.3):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
       js-yaml: 4.1.0
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 5.3.3
+      typescript: 5.6.3
 
   crc@4.3.2(buffer@6.0.3):
     optionalDependencies:
@@ -14551,9 +14863,9 @@ snapshots:
   execa@5.0.0:
     dependencies:
       cross-spawn: 7.0.6
-      get-stream: 6.0.0
+      get-stream: 6.0.1
       human-signals: 2.1.0
-      is-stream: 2.0.0
+      is-stream: 2.0.1
       merge-stream: 2.0.0
       npm-run-path: 4.0.1
       onetime: 5.1.2
@@ -15953,7 +16265,7 @@ snapshots:
 
   lerna@8.2.2(encoding@0.1.13):
     dependencies:
-      '@lerna/create': 8.2.2(encoding@0.1.13)(typescript@5.3.3)
+      '@lerna/create': 8.2.2(encoding@0.1.13)(typescript@5.6.3)
       '@npmcli/arborist': 7.5.4
       '@npmcli/package-json': 5.2.0
       '@npmcli/run-script': 8.1.0
@@ -15971,7 +16283,7 @@ snapshots:
       conventional-changelog-angular: 7.0.0
       conventional-changelog-core: 5.0.1
       conventional-recommended-bump: 7.0.1
-      cosmiconfig: 9.0.0(typescript@5.3.3)
+      cosmiconfig: 9.0.0(typescript@5.6.3)
       dedent: 1.5.3
       envinfo: 7.13.0
       execa: 5.0.0
@@ -16023,7 +16335,7 @@ snapshots:
       strong-log-transformer: 2.1.0
       tar: 6.2.1
       temp-dir: 1.0.0
-      typescript: 5.3.3
+      typescript: 5.6.3
       upath: 2.0.1
       uuid: 10.0.0
       validate-npm-package-license: 3.0.4
@@ -17149,7 +17461,7 @@ snapshots:
       array-differ: 3.0.0
       array-union: 2.1.0
       arrify: 2.0.1
-      minimatch: 3.0.5
+      minimatch: 3.1.2
 
   mute-stream@0.0.8: {}
 
@@ -17430,7 +17742,7 @@ snapshots:
       bl: 4.1.0
       chalk: 4.1.2
       cli-cursor: 3.1.0
-      cli-spinners: 2.6.1
+      cli-spinners: 2.9.2
       is-interactive: 1.0.0
       log-symbols: 4.1.0
       strip-ansi: 6.0.1
@@ -18909,7 +19221,7 @@ snapshots:
 
   sentence-splitter@3.2.3:
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 4.4.3
       concat-stream: 2.0.0
       object_values: 0.1.2
       structured-source: 3.0.2
@@ -19446,7 +19758,7 @@ snapshots:
 
   textlint-rule-helper@2.3.1:
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 13.4.1
       structured-source: 4.0.0
       unist-util-visit: 2.0.3
 
@@ -19752,7 +20064,7 @@ snapshots:
 
   textlint-util-to-string@3.3.4:
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 13.4.1
       rehype-parse: 6.0.2
       structured-source: 4.0.0
       unified: 8.4.2
@@ -19760,7 +20072,7 @@ snapshots:
   textlint@14.8.1:
     dependencies:
       '@modelcontextprotocol/sdk': 1.12.3
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 14.8.1
       '@textlint/ast-traverse': 14.8.1
       '@textlint/config-loader': 14.8.1
       '@textlint/feature-flag': 14.8.1

@@ -50,7 +50,7 @@
         "@textlint/textlint-plugin-text": "workspace:*"
     },
     "devDependencies": {
-        "@types/debug": "^4.1.12",
+        "@types/debug": "catalog:",
         "@types/node": "^18.19.9",
         "prettier": "^2.7.1",
         "typescript": "~5.3.3"

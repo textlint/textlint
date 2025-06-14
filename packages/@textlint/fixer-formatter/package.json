@@ -41,21 +41,21 @@
     "@textlint/module-interop": "workspace:*",
     "@textlint/resolver": "workspace:*",
     "@textlint/types": "workspace:*",
-    "chalk": "^4.1.2",
-    "debug": "^4.4.1",
-    "diff": "^5.2.0",
-    "string-width": "^4.2.3",
-    "strip-ansi": "^6.0.1",
-    "text-table": "^0.2.0"
+    "chalk": "catalog:",
+    "debug": "catalog:",
+    "diff": "catalog:",
+    "string-width": "catalog:",
+    "strip-ansi": "catalog:",
+    "text-table": "catalog:"
   },
   "devDependencies": {
-    "@types/debug": "^4.1.12",
-    "@types/diff": "^4.0.2",
+    "@types/debug": "catalog:",
+    "@types/diff": "catalog:",
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.19.9",
-    "mocha": "^10.8.1",
-    "rimraf": "^6.0.1",
-    "ts-node": "^10.9.2",
+    "mocha": "catalog:",
+    "rimraf": "catalog:",
+    "ts-node": "catalog:",
     "typescript": "~5.3.3"
   },
   "publishConfig": {

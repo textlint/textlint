@@ -32,16 +32,16 @@
     "prepare": "git config --local core.hooksPath .githooks"
   },
   "devDependencies": {
-    "@monorepo-utils/workspaces-to-typescript-project-references": "^2.11.0",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
-    "ajv": "^8.17.1",
-    "eslint": "^8.23.0",
-    "eslint-config-prettier": "^8.10.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "lerna": "^8.2.2",
-    "lint-staged": "^13.3.0",
-    "npm-run-all2": "^5.0.2",
+    "@monorepo-utils/workspaces-to-typescript-project-references": "catalog:",
+    "@typescript-eslint/eslint-plugin": "catalog:",
+    "@typescript-eslint/parser": "catalog:",
+    "ajv": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-prettier": "catalog:",
+    "eslint-plugin-prettier": "catalog:",
+    "lerna": "catalog:",
+    "lint-staged": "catalog:",
+    "npm-run-all2": "catalog:",
     "prettier": "^2.7.1",
     "typescript": "~5.3.3"
   },
@@ -56,6 +56,5 @@
     "tabWidth": 4,
     "trailingComma": "none"
   },
-
   "packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac"
 }

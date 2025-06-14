@@ -38,21 +38,21 @@
         "node": ">=18.19.0"
     },
     "devDependencies": {
-        "lint-staged": "^13.3.0",
+        "lint-staged": "catalog:",
         "prettier": "^2.2.1",
         "shelljs": "^0.10.0"
     },
     "dependencies": {
-        "@babel/cli": "^7.27.2",
-        "@babel/core": "^7.27.4",
-        "@babel/preset-env": "^7.27.2",
-        "@babel/preset-typescript": "^7.27.1",
-        "@babel/register": "^7.27.1",
-        "babel-plugin-static-fs": "^3.0.0",
-        "confirmer": "^1.1.2",
-        "cross-spawn": "^7.0.3",
-        "mocha": "^10.8.1",
-        "pkg-to-readme": "^3.0.1",
+        "@babel/cli": "catalog:",
+        "@babel/core": "catalog:",
+        "@babel/preset-env": "catalog:",
+        "@babel/preset-typescript": "catalog:",
+        "@babel/register": "catalog:",
+        "babel-plugin-static-fs": "catalog:",
+        "confirmer": "catalog:",
+        "cross-spawn": "catalog:",
+        "mocha": "catalog:",
+        "pkg-to-readme": "catalog:",
         "textlint-tester": "workspace:*"
     },
     "peerDependencies": {
