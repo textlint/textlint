@@ -89,10 +89,10 @@ describe("MCP Server", () => {
             });
         });
 
-        describe("fixFile", () => {
+        describe("getLintFixedFileContent", () => {
             it("should return zero lint messages for a valid file", async () => {
                 const { content: rawContent } = (await client.callTool({
-                    name: "fixFile",
+                    name: "getLintFixedFileContent",
                     arguments: {
                         filePaths: [validFilePath]
                     }
@@ -113,10 +113,10 @@ describe("MCP Server", () => {
             });
         });
 
-        describe("fixText", () => {
+        describe("getLintFixedTextContent", () => {
             it("should return zero lint messages for a valid file", async () => {
                 const { content: rawContent } = (await client.callTool({
-                    name: "fixText",
+                    name: "getLintFixedTextContent",
                     arguments: {
                         text: "This is a valid text.",
                         stdinFilename
