@@ -8,6 +8,8 @@ packages:
   - examples/*
   - packages/@textlint/*
   - packages/textlint-scripts/examples/*
+  - test/integration-test
+  - website
   - test/*
   - website
 
