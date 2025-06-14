@@ -592,9 +592,6 @@ importers:
       unified:
         specifier: ^9.2.2
         version: 9.2.2
-      unist:
-        specifier: ^0.0.1
-        version: 0.0.1
     devDependencies:
       '@textlint/ast-tester':
         specifier: workspace:*
@@ -608,6 +605,9 @@ importers:
       '@types/node':
         specifier: ^18.19.9
         version: 18.19.111
+      '@types/unist':
+        specifier: ^3.0.3
+        version: 3.0.3
       mkdirp:
         specifier: ^1.0.4
         version: 1.0.4
@@ -9146,10 +9146,6 @@ packages:
 
   unist-util-visit@5.0.0:
     resolution: {integrity: sha512-MR04uvD+07cwl/yhVuVWAtw+3GOR/knlL55Nd/wAdblk27GCVt3lqpTivy/tkJcZoNPzTwS1Y+KMojlLDhoTzg==}
-
-  unist@0.0.1:
-    resolution: {integrity: sha512-bnzuF8b6d47WubA4a5yLqFbuZz/v/NS6eRwUIdOaDmsqzwTlyv8yS1g3M7ISdtBQrigPD3qKK87Cu7zhEfCF3A==}
-    deprecated: Use @types/unist instead
 
   universal-user-agent@6.0.1:
     resolution: {integrity: sha512-yCzhz6FN2wU1NiiQRogkTQszlQSlpWaw8SvVegAc+bDxbzHgh1vX8uIe8OYyMH6DwH+sdTJsgMl36+mSMdRJIQ==}
@@ -20173,8 +20169,6 @@ snapshots:
       '@types/unist': 3.0.3
       unist-util-is: 6.0.0
       unist-util-visit-parents: 6.0.1
-
-  unist@0.0.1: {}
 
   universal-user-agent@6.0.1: {}
 

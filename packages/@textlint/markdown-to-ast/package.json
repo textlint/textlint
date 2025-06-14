@@ -43,11 +43,11 @@
     "remark-frontmatter": "^3.0.0",
     "remark-gfm": "^1.0.0",
     "remark-parse": "^9.0.0",
-    "unified": "^9.2.2",
-    "unist": "^0.0.1"
+    "unified": "^9.2.2"
   },
   "devDependencies": {
     "@textlint/ast-tester": "workspace:*",
+    "@types/unist": "^3.0.3",
     "@types/debug": "^4.1.12",
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.19.9",
