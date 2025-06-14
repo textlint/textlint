@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749876830373,
+  "lastUpdate": 1749878097222,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -57750,6 +57750,48 @@ window.BENCHMARK_DATA = {
             "value": 0.63237649302,
             "unit": "seconds",
             "range": "± 0.00472522799999997"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e2acb97cb62267b41267098a510f95bf70bfa88c",
+          "message": "refactor: upgrade to Node.js 22 for CI and development (#1534)\n\n* Update Node.js version to v22.16.0\n\n- Update .node-version from 18.20.1 to v22.16.0\n- Support latest Node.js LTS version\n\n* feat: update CI to use Node.js 22\n\n- Update test matrix to use Node.js 20 and 22 instead of 18 and 20\n- Update all workflow files to use Node.js 22 as default version\n- This aligns with the .node-version file update to v22.16.0\n\n* fix(config-loader): make tests deterministic by sorting before comparison\n\n- Add sortConfigForComparison function to sort arrays by ruleId/pluginId/type\n- Update all test snapshots to use sorted order\n- This prevents test failures due to different object property enumeration order in Node.js 22\n- Ensures tests are stable across different Node.js versions\n\n* refactor(config-loader): translate comments to English\n\n- Update Japanese comments in sortConfigForComparison function to English\n- Improve code readability for international contributors",
+          "timestamp": "2025-06-14T14:11:21+09:00",
+          "tree_id": "6e1208fb8ce8733501c59ec561093f970298663e",
+          "url": "https://github.com/textlint/textlint/commit/e2acb97cb62267b41267098a510f95bf70bfa88c"
+        },
+        "date": 1749878092788,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.8750576218800001,
+            "unit": "seconds",
+            "range": "± 0.021457969999999937"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.521409406080001,
+            "unit": "seconds",
+            "range": "± 0.1422206819999996"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6475072724800001,
+            "unit": "seconds",
+            "range": "± 0.00941082900000001"
           }
         ]
       }
