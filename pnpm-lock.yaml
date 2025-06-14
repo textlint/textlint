@@ -959,6 +959,9 @@ importers:
       '@types/clone':
         specifier: ^2.1.4
         version: 2.1.4
+      '@types/debug':
+        specifier: ^4.1.12
+        version: 4.1.12
       '@types/glob':
         specifier: ^8.1.0
         version: 8.1.0

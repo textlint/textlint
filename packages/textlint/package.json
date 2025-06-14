@@ -77,6 +77,7 @@
   "devDependencies": {
     "@textlint/legacy-textlint-core": "workspace:*",
     "@types/clone": "^2.1.4",
+    "@types/debug": "^4.1.12",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.19.9",
