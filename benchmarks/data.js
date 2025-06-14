@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749895460131,
+  "lastUpdate": 1749895699222,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -58170,6 +58170,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5906055757399999,
             "unit": "seconds",
             "range": "± 0.023557820000000063"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "eedd123019c3408dfdd6bc810bce9d673697eb51",
+          "message": "package.json and pnpm-lock.yaml: Add unist-util-select dependency",
+          "timestamp": "2025-06-14T19:05:00+09:00",
+          "tree_id": "5d29234563fff5d4bd7bef72e5daae03a457fa9e",
+          "url": "https://github.com/textlint/textlint/commit/eedd123019c3408dfdd6bc810bce9d673697eb51"
+        },
+        "date": 1749895693963,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.33837974308,
+            "unit": "seconds",
+            "range": "± 0.682800241"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.73656732728,
+            "unit": "seconds",
+            "range": "± 0.030439641999999933"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5948591290799999,
+            "unit": "seconds",
+            "range": "± 0.010544164999999994"
           }
         ]
       }
