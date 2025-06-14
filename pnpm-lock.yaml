@@ -1115,6 +1115,9 @@ importers:
       '@textlint/textlint-plugin-text':
         specifier: workspace:*
         version: link:../@textlint/textlint-plugin-text
+      '@textlint/types':
+        specifier: workspace:*
+        version: link:../@textlint/types
     devDependencies:
       '@types/mocha':
         specifier: ^9.1.1

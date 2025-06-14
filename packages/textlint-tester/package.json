@@ -42,7 +42,8 @@
         "@textlint/feature-flag": "workspace:*",
         "@textlint/kernel": "workspace:*",
         "@textlint/textlint-plugin-markdown": "workspace:*",
-        "@textlint/textlint-plugin-text": "workspace:*"
+        "@textlint/textlint-plugin-text": "workspace:*",
+        "@textlint/types": "workspace:*"
     },
     "devDependencies": {
         "@types/mocha": "^9.1.1",
