@@ -376,6 +376,9 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
     devDependencies:
+      '@types/debug':
+        specifier: ^4.1.12
+        version: 4.1.12
       '@types/diff':
         specifier: ^4.0.2
         version: 4.0.2
@@ -529,6 +532,9 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
     devDependencies:
+      '@types/debug':
+        specifier: ^4.1.12
+        version: 4.1.12
       '@types/js-yaml':
         specifier: ^3.12.10
         version: 3.12.10
