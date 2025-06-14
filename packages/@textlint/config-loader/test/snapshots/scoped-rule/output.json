@@ -1,36 +1,36 @@
 {
-    "ok": true,
     "config": {
+        "filterRules": [],
+        "plugins": [],
         "rules": [
             {
-                "type": "RuleInPreset",
+                "filePath": "<MODULES_DIR>/@scope/textlint-rule-preset-abc/index.js",
+                "inputModuleName": "@scope/preset-abc",
+                "moduleName": "@scope/textlint-rule-preset-abc",
+                "options": true,
                 "ruleId": "@scope/abc/a",
-                "options": true,
-                "filePath": "<MODULES_DIR>/@scope/textlint-rule-preset-abc/index.js",
-                "moduleName": "@scope/textlint-rule-preset-abc",
-                "inputModuleName": "@scope/preset-abc",
-                "ruleKey": "a"
+                "ruleKey": "a",
+                "type": "RuleInPreset"
             },
             {
-                "type": "RuleInPreset",
+                "filePath": "<MODULES_DIR>/@scope/textlint-rule-preset-abc/index.js",
+                "inputModuleName": "@scope/preset-abc",
+                "moduleName": "@scope/textlint-rule-preset-abc",
+                "options": true,
                 "ruleId": "@scope/abc/b",
-                "options": true,
-                "filePath": "<MODULES_DIR>/@scope/textlint-rule-preset-abc/index.js",
-                "moduleName": "@scope/textlint-rule-preset-abc",
-                "inputModuleName": "@scope/preset-abc",
-                "ruleKey": "b"
+                "ruleKey": "b",
+                "type": "RuleInPreset"
             },
             {
-                "type": "RuleInPreset",
-                "ruleId": "@scope/abc/c",
-                "options": true,
                 "filePath": "<MODULES_DIR>/@scope/textlint-rule-preset-abc/index.js",
-                "moduleName": "@scope/textlint-rule-preset-abc",
                 "inputModuleName": "@scope/preset-abc",
-                "ruleKey": "c"
+                "moduleName": "@scope/textlint-rule-preset-abc",
+                "options": true,
+                "ruleId": "@scope/abc/c",
+                "ruleKey": "c",
+                "type": "RuleInPreset"
             }
-        ],
-        "plugins": [],
-        "filterRules": []
-    }
+        ]
+    },
+    "ok": true
 }

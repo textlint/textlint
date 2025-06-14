@@ -1,45 +1,45 @@
 {
-    "ok": true,
     "config": {
+        "filterRules": [],
+        "plugins": [],
         "rules": [
             {
-                "type": "Rule",
-                "ruleId": "a",
-                "options": true,
                 "filePath": "<MODULES_DIR>/textlint-rule-a/index.js",
+                "inputModuleName": "a",
                 "moduleName": "textlint-rule-a",
-                "inputModuleName": "a"
+                "options": true,
+                "ruleId": "a",
+                "type": "Rule"
             },
             {
-                "type": "Rule",
-                "ruleId": "b",
+                "filePath": "<MODULES_DIR>/textlint-rule-b/index.js",
+                "inputModuleName": "b",
+                "moduleName": "textlint-rule-b",
                 "options": {
                     "key": "value"
                 },
-                "filePath": "<MODULES_DIR>/textlint-rule-b/index.js",
-                "moduleName": "textlint-rule-b",
-                "inputModuleName": "b"
+                "ruleId": "b",
+                "type": "Rule"
             },
             {
-                "type": "RuleInPreset",
-                "ruleId": "c/c-sub1",
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-c/index.js",
+                "inputModuleName": "preset-c",
+                "moduleName": "textlint-rule-preset-c",
                 "options": true,
-                "filePath": "<MODULES_DIR>/textlint-rule-preset-c/index.js",
-                "moduleName": "textlint-rule-preset-c",
-                "inputModuleName": "preset-c",
-                "ruleKey": "c-sub1"
+                "ruleId": "c/c-sub1",
+                "ruleKey": "c-sub1",
+                "type": "RuleInPreset"
             },
             {
-                "type": "RuleInPreset",
-                "ruleId": "c/c-sub2",
-                "options": false,
                 "filePath": "<MODULES_DIR>/textlint-rule-preset-c/index.js",
-                "moduleName": "textlint-rule-preset-c",
                 "inputModuleName": "preset-c",
-                "ruleKey": "c-sub2"
+                "moduleName": "textlint-rule-preset-c",
+                "options": false,
+                "ruleId": "c/c-sub2",
+                "ruleKey": "c-sub2",
+                "type": "RuleInPreset"
             }
-        ],
-        "plugins": [],
-        "filterRules": []
-    }
+        ]
+    },
+    "ok": true
 }

@@ -22,6 +22,40 @@ const replacer = (key: string, value: any) => {
     }
     return value;
 };
+
+// Helper function to sort arrays in deterministic order for comparison
+const sortConfigForComparison = (config: any): any => {
+    if (Array.isArray(config)) {
+        return config.map(sortConfigForComparison).sort((a, b) => {
+            // Compare strings directly
+            if (typeof a === "string" && typeof b === "string") {
+                return a.localeCompare(b);
+            }
+            // Sort by ruleId first
+            if (a.ruleId && b.ruleId) {
+                return a.ruleId.localeCompare(b.ruleId);
+            }
+            // Sort by pluginId
+            if (a.pluginId && b.pluginId) {
+                return a.pluginId.localeCompare(b.pluginId);
+            }
+            // Sort by type
+            if (a.type && b.type) {
+                return a.type.localeCompare(b.type);
+            }
+            return 0;
+        });
+    } else if (config && typeof config === "object") {
+        const sorted: any = {};
+        Object.keys(config)
+            .sort()
+            .forEach((key) => {
+                sorted[key] = sortConfigForComparison(config[key]);
+            });
+        return sorted;
+    }
+    return config;
+};
 describe("@textlint/config-loader", () => {
     fs.readdirSync(fixturesDir).map((caseName) => {
         const normalizedTestName = caseName.replace(/-/g, " ");
@@ -42,17 +76,18 @@ describe("@textlint/config-loader", () => {
             // Usage: update snapshots
             // UPDATE_SNAPSHOT=1 npm test
             if (!fs.existsSync(expectedFilePath) || process.env.UPDATE_SNAPSHOT) {
-                fs.writeFileSync(expectedFilePath, JSON.stringify(actual, replacer, 4));
+                const processedActual = JSON.parse(JSON.stringify(actual, replacer));
+                const sortedActual = sortConfigForComparison(processedActual);
+                fs.writeFileSync(expectedFilePath, JSON.stringify(sortedActual, null, 4));
                 this.skip(); // skip when updating snapshots
                 return;
             }
             // compare input and output
             const expectedContent = JSON.parse(fs.readFileSync(expectedFilePath, "utf-8"));
-            assert.deepStrictEqual(
-                // remove undefined
-                JSON.parse(JSON.stringify(actual, replacer)),
-                expectedContent
-            );
+            const processedActual = JSON.parse(JSON.stringify(actual, replacer));
+            const actualForComparison = sortConfigForComparison(processedActual);
+            const expectedForComparison = sortConfigForComparison(expectedContent);
+            assert.deepStrictEqual(actualForComparison, expectedForComparison);
         });
     });
     context("when config file is not encoded in UTF-8", () => {

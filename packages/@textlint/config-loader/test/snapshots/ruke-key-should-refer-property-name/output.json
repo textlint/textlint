@@ -1,36 +1,36 @@
 {
-    "ok": true,
     "config": {
+        "filterRules": [],
+        "plugins": [],
         "rules": [
             {
-                "type": "RuleInPreset",
-                "ruleId": "abc-but-unique-rule-key/uniqueA",
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key/index.js",
+                "inputModuleName": "preset-abc-but-unique-rule-key",
+                "moduleName": "textlint-rule-preset-abc-but-unique-rule-key",
                 "options": true,
-                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key/index.js",
-                "moduleName": "textlint-rule-preset-abc-but-unique-rule-key",
-                "inputModuleName": "preset-abc-but-unique-rule-key",
-                "ruleKey": "uniqueA"
+                "ruleId": "abc-but-unique-rule-key/uniqueA",
+                "ruleKey": "uniqueA",
+                "type": "RuleInPreset"
             },
             {
-                "type": "RuleInPreset",
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key/index.js",
+                "inputModuleName": "preset-abc-but-unique-rule-key",
+                "moduleName": "textlint-rule-preset-abc-but-unique-rule-key",
+                "options": false,
                 "ruleId": "abc-but-unique-rule-key/uniqueB",
-                "options": false,
-                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key/index.js",
-                "moduleName": "textlint-rule-preset-abc-but-unique-rule-key",
-                "inputModuleName": "preset-abc-but-unique-rule-key",
-                "ruleKey": "uniqueB"
+                "ruleKey": "uniqueB",
+                "type": "RuleInPreset"
             },
             {
-                "type": "RuleInPreset",
-                "ruleId": "abc-but-unique-rule-key/uniqueC",
-                "options": false,
                 "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key/index.js",
-                "moduleName": "textlint-rule-preset-abc-but-unique-rule-key",
                 "inputModuleName": "preset-abc-but-unique-rule-key",
-                "ruleKey": "uniqueC"
+                "moduleName": "textlint-rule-preset-abc-but-unique-rule-key",
+                "options": false,
+                "ruleId": "abc-but-unique-rule-key/uniqueC",
+                "ruleKey": "uniqueC",
+                "type": "RuleInPreset"
             }
-        ],
-        "plugins": [],
-        "filterRules": []
-    }
+        ]
+    },
+    "ok": true
 }
