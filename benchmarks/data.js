@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749882560787,
+  "lastUpdate": 1749883802464,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -57960,6 +57960,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6372121455,
             "unit": "seconds",
             "range": "± 0.026828030000000003"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "39603ef3a4cbb5d82a5ae9bb75ed1842fafaacb8",
+          "message": "fix: update textlintrc-to-package-list to version 3.0.3 and modify test script to use node:test",
+          "timestamp": "2025-06-14T15:46:21+09:00",
+          "tree_id": "efd4d2f6043452bd0c7b4e7f80c9d01ff79a69c3",
+          "url": "https://github.com/textlint/textlint/commit/39603ef3a4cbb5d82a5ae9bb75ed1842fafaacb8"
+        },
+        "date": 1749883797606,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.8679107059200002,
+            "unit": "seconds",
+            "range": "± 0.029748453999999924"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.428827589720001,
+            "unit": "seconds",
+            "range": "± 0.13185268599999933"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6438390673200001,
+            "unit": "seconds",
+            "range": "± 0.004500884000000038"
           }
         ]
       }
