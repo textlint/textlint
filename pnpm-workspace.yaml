@@ -1,7 +1,5 @@
 # https://pnpm.io/settings#verifydepsbeforerun
 verifyDepsBeforeRun: "install"
-onlyBuiltDependencies:
-  - nx
 
 packages:
   - packages/*

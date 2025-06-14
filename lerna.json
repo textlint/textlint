@@ -4,12 +4,17 @@
     "npmClient": "pnpm",
     "packages": [
         "packages/*",
-        "examples/*",
-        "packages/@textlint/*",
-        "packages/textlint-scripts/examples/*",
-        "test/integration-test",
-        "website"
+        "packages/@textlint/*"
     ],
     "includeMergedTags": true,
-    "ignoreChanges": ["**/test/**", "**/*.md"]
+    "ignoreChanges": ["**/test/**", "**/*.md"],
+    "command": {
+        "run": {
+            "npmClient": "pnpm"
+        },
+        "publish": {
+            "npmClient": "pnpm",
+            "registry": "https://registry.npmjs.org/"
+        }
+    }
 }
