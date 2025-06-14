@@ -748,6 +748,9 @@ importers:
       '@textlint/markdown-to-ast':
         specifier: workspace:*
         version: link:../markdown-to-ast
+      '@textlint/types':
+        specifier: workspace:*
+        version: link:../types
     devDependencies:
       '@textlint/kernel':
         specifier: workspace:*
@@ -755,6 +758,9 @@ importers:
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
+      '@types/react':
+        specifier: ^18.3.18
+        version: 18.3.23
       mocha:
         specifier: ^10.8.1
         version: 10.8.2
@@ -776,6 +782,9 @@ importers:
       '@textlint/text-to-ast':
         specifier: workspace:*
         version: link:../text-to-ast
+      '@textlint/types':
+        specifier: workspace:*
+        version: link:../types
     devDependencies:
       '@textlint/kernel':
         specifier: workspace:*
@@ -783,6 +792,9 @@ importers:
       '@types/mocha':
         specifier: 9.1.1
         version: 9.1.1
+      '@types/react':
+        specifier: ^18.3.18
+        version: 18.3.23
       mocha:
         specifier: ^10.8.1
         version: 10.8.2
@@ -3072,6 +3084,9 @@ packages:
   '@types/prismjs@1.26.5':
     resolution: {integrity: sha512-AUZTa7hQ2KY5L7AmtSiqxlhWxb4ina0yd8hNbl4TWuqnv/pFP0nDMb3YrfSBf4hJVGLh2YEIBfKaBW/9UEl6IQ==}
 
+  '@types/prop-types@15.7.15':
+    resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
+
   '@types/qs@6.14.0':
     resolution: {integrity: sha512-eOunJqu0K1923aExK6y8p6fsihYEn/BYuQ4g0CxAAgFc4b/ZLN4CrsRZ55srTdqoiLzU2B2evC+apEIxprEzkQ==}
 
@@ -3086,6 +3101,9 @@ packages:
 
   '@types/react-router@5.1.20':
     resolution: {integrity: sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==}
+
+  '@types/react@18.3.23':
+    resolution: {integrity: sha512-/LDXMQh55EzZQ0uVAZmKKhfENivEvWz6E+EYzh+/MCjMhNsotd+ZHhBGIjFDTi6+fz0OhQQQLbTgdQIxxCsC0w==}
 
   '@types/react@19.1.8':
     resolution: {integrity: sha512-AwAfQ2Wa5bCx9WP8nZL2uMZWod7J7/JSplxbTmBQ5ms6QpqNYm672H0Vu9ZVKVngQ+ii4R/byguVEUZQyeg44g==}
@@ -10910,7 +10928,7 @@ snapshots:
     dependencies:
       '@docusaurus/types': 3.8.1(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/history': 4.7.11
-      '@types/react': 19.1.8
+      '@types/react': 18.3.23
       '@types/react-router-config': 5.0.11
       '@types/react-router-dom': 5.3.3
       react: 19.1.0
@@ -11316,7 +11334,7 @@ snapshots:
 
   '@docusaurus/react-loadable@6.0.0(react@19.1.0)':
     dependencies:
-      '@types/react': 19.1.8
+      '@types/react': 18.3.23
       react: 19.1.0
 
   '@docusaurus/theme-classic@3.8.1(@types/react@19.1.8)(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.6.3)':
@@ -11376,7 +11394,7 @@ snapshots:
       '@docusaurus/utils': 3.8.1(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@docusaurus/utils-common': 3.8.1(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/history': 4.7.11
-      '@types/react': 19.1.8
+      '@types/react': 18.3.23
       '@types/react-router-config': 5.0.11
       clsx: 2.1.1
       parse-numeric-range: 1.3.0
@@ -11444,7 +11462,7 @@ snapshots:
     dependencies:
       '@mdx-js/mdx': 3.1.0(acorn@8.15.0)
       '@types/history': 4.7.11
-      '@types/react': 19.1.8
+      '@types/react': 18.3.23
       commander: 5.1.0
       joi: 17.13.3
       react: 19.1.0
@@ -12600,6 +12618,8 @@ snapshots:
 
   '@types/prismjs@1.26.5': {}
 
+  '@types/prop-types@15.7.15': {}
+
   '@types/qs@6.14.0': {}
 
   '@types/range-parser@1.2.7': {}
@@ -12607,19 +12627,24 @@ snapshots:
   '@types/react-router-config@5.0.11':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 19.1.8
+      '@types/react': 18.3.23
       '@types/react-router': 5.1.20
 
   '@types/react-router-dom@5.3.3':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 19.1.8
+      '@types/react': 18.3.23
       '@types/react-router': 5.1.20
 
   '@types/react-router@5.1.20':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 19.1.8
+      '@types/react': 18.3.23
+
+  '@types/react@18.3.23':
+    dependencies:
+      '@types/prop-types': 15.7.15
+      csstype: 3.1.3
 
   '@types/react@19.1.8':
     dependencies:

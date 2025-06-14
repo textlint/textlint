@@ -34,11 +34,13 @@
         "watch": "tsc -b --watch"
     },
     "dependencies": {
-        "@textlint/text-to-ast": "workspace:*"
+        "@textlint/text-to-ast": "workspace:*",
+        "@textlint/types": "workspace:*"
     },
     "devDependencies": {
         "@textlint/kernel": "workspace:*",
         "@types/mocha": "9.1.1",
+        "@types/react": "^18.3.18",
         "mocha": "^10.8.1",
         "rimraf": "^6.0.1",
         "textlint-rule-no-todo": "^2.0.1",
