@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749875944343,
+  "lastUpdate": 1749876700751,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -57666,6 +57666,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6457912410200001,
             "unit": "seconds",
             "range": "± 0.012721795000000036"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "f68ab6ed19b05071ba77c49f50a09a9f3040c62d",
+          "message": "fix(config-loader): make tests deterministic by sorting before comparison\n\n- Add sortConfigForComparison function to sort arrays by ruleId/pluginId/type\n- Update all test snapshots to use sorted order\n- This prevents test failures due to different object property enumeration order in Node.js 22\n- Ensures tests are stable across different Node.js versions",
+          "timestamp": "2025-06-14T13:48:44+09:00",
+          "tree_id": "5e43dbc18c4d84a10c6d7af9672f258a9a2ff944",
+          "url": "https://github.com/textlint/textlint/commit/f68ab6ed19b05071ba77c49f50a09a9f3040c62d"
+        },
+        "date": 1749876696286,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.8861945824199999,
+            "unit": "seconds",
+            "range": "± 0.030279424000000055"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.58266033742,
+            "unit": "seconds",
+            "range": "± 0.08509737400000006"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6532865798199999,
+            "unit": "seconds",
+            "range": "± 0.007229689999999955"
           }
         ]
       }
