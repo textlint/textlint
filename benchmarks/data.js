@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749899610741,
+  "lastUpdate": 1749899700991,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -58548,6 +58548,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60819657748,
             "unit": "seconds",
             "range": "± 0.007060188999999939"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c82b8f36244d8ae99f07385f011a5f69524c8d46",
+          "message": "fix(deps): replace dependency read-pkg-up with read-package-up ^11.0.0",
+          "timestamp": "2025-06-14T11:12:08Z",
+          "tree_id": "34799498bdfd47012bbb839a015fcc7c76f9ed04",
+          "url": "https://github.com/textlint/textlint/commit/c82b8f36244d8ae99f07385f011a5f69524c8d46"
+        },
+        "date": 1749899696401,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24337192226,
+            "unit": "seconds",
+            "range": "± 0.188886885"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.38107529526,
+            "unit": "seconds",
+            "range": "± 0.0070949240000000025"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.38054931026000005,
+            "unit": "seconds",
+            "range": "± 0.009563254999999993"
           }
         ]
       }
