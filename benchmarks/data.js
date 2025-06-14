@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749878198580,
+  "lastUpdate": 1749878699439,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -57834,6 +57834,48 @@ window.BENCHMARK_DATA = {
             "value": 0.63341849366,
             "unit": "seconds",
             "range": "± 0.010745281999999912"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "9c8cdd3c426039d639d64757d00bd4af2c0a2302",
+          "message": "refactor: replace textlint-plugin-jtf-style with textlint-rule-preset-jtf-style and update package versions",
+          "timestamp": "2025-06-14T14:21:07+09:00",
+          "tree_id": "22f62dd0df1a2ccf7db5de04eb50d0109450dfa3",
+          "url": "https://github.com/textlint/textlint/commit/9c8cdd3c426039d639d64757d00bd4af2c0a2302"
+        },
+        "date": 1749878694914,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.88166547042,
+            "unit": "seconds",
+            "range": "± 0.04154108499999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.59143526682,
+            "unit": "seconds",
+            "range": "± 0.11376837300000009"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.64971553502,
+            "unit": "seconds",
+            "range": "± 0.010658074999999934"
           }
         ]
       }
