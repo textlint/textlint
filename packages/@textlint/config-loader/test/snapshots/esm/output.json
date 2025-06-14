@@ -1,18 +1,18 @@
 {
-    "ok": true,
     "config": {
-        "rules": [],
+        "filterRules": [],
         "plugins": [
             {
-                "type": "Plugin",
-                "pluginId": "esm",
-                "plugin": {},
-                "options": true,
                 "filePath": "<MODULES_DIR>/textlint-plugin-esm/index.mjs",
+                "inputModuleName": "esm",
                 "moduleName": "textlint-plugin-esm",
-                "inputModuleName": "esm"
+                "options": true,
+                "plugin": {},
+                "pluginId": "esm",
+                "type": "Plugin"
             }
         ],
-        "filterRules": []
-    }
+        "rules": []
+    },
+    "ok": true
 }

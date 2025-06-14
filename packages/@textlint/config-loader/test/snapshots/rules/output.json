@@ -1,8 +1,8 @@
 {
-    "ok": true,
     "config": {
-        "rules": [],
+        "filterRules": [],
         "plugins": [],
-        "filterRules": []
-    }
+        "rules": []
+    },
+    "ok": true
 }

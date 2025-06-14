@@ -1,36 +1,36 @@
 {
-    "ok": true,
     "config": {
+        "filterRules": [],
+        "plugins": [],
         "rules": [
             {
-                "type": "RuleInPreset",
-                "ruleId": "abc/a",
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc/index.js",
+                "inputModuleName": "preset-abc",
+                "moduleName": "textlint-rule-preset-abc",
                 "options": true,
-                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc/index.js",
-                "moduleName": "textlint-rule-preset-abc",
-                "inputModuleName": "preset-abc",
-                "ruleKey": "a"
+                "ruleId": "abc/a",
+                "ruleKey": "a",
+                "type": "RuleInPreset"
             },
             {
-                "type": "RuleInPreset",
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc/index.js",
+                "inputModuleName": "preset-abc",
+                "moduleName": "textlint-rule-preset-abc",
+                "options": false,
                 "ruleId": "abc/b",
-                "options": false,
-                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc/index.js",
-                "moduleName": "textlint-rule-preset-abc",
-                "inputModuleName": "preset-abc",
-                "ruleKey": "b"
+                "ruleKey": "b",
+                "type": "RuleInPreset"
             },
             {
-                "type": "RuleInPreset",
-                "ruleId": "abc/c",
-                "options": false,
                 "filePath": "<MODULES_DIR>/textlint-rule-preset-abc/index.js",
-                "moduleName": "textlint-rule-preset-abc",
                 "inputModuleName": "preset-abc",
-                "ruleKey": "c"
+                "moduleName": "textlint-rule-preset-abc",
+                "options": false,
+                "ruleId": "abc/c",
+                "ruleKey": "c",
+                "type": "RuleInPreset"
             }
-        ],
-        "plugins": [],
-        "filterRules": []
-    }
+        ]
+    },
+    "ok": true
 }

@@ -1,26 +1,26 @@
 {
-    "ok": true,
     "config": {
-        "rules": [
-            {
-                "type": "Rule",
-                "ruleId": "a",
-                "options": true,
-                "filePath": "<MODULES_DIR>/textlint-rule-a/index.js",
-                "moduleName": "textlint-rule-a",
-                "inputModuleName": "a"
-            }
-        ],
+        "filterRules": [],
         "plugins": [
             {
-                "type": "Plugin",
-                "pluginId": "custom",
-                "plugin": {},
                 "filePath": "<MODULES_DIR>/textlint-plugin-custom/index.js",
+                "inputModuleName": "custom",
                 "moduleName": "textlint-plugin-custom",
-                "inputModuleName": "custom"
+                "plugin": {},
+                "pluginId": "custom",
+                "type": "Plugin"
             }
         ],
-        "filterRules": []
-    }
+        "rules": [
+            {
+                "filePath": "<MODULES_DIR>/textlint-rule-a/index.js",
+                "inputModuleName": "a",
+                "moduleName": "textlint-rule-a",
+                "options": true,
+                "ruleId": "a",
+                "type": "Rule"
+            }
+        ]
+    },
+    "ok": true
 }
