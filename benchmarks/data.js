@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749902186487,
+  "lastUpdate": 1749902474285,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -58800,6 +58800,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5921518249200001,
             "unit": "seconds",
             "range": "± 0.010085506000000022"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "68af105818ce397ce783af1ea140e8e8a1e5291e",
+          "message": "Update pnpm-lock.yaml+1",
+          "timestamp": "2025-06-14T20:58:10+09:00",
+          "tree_id": "f47f2d6c1e96f6ee3ef9412fbe31e64377073475",
+          "url": "https://github.com/textlint/textlint/commit/68af105818ce397ce783af1ea140e8e8a1e5291e"
+        },
+        "date": 1749902468656,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.33325947748,
+            "unit": "seconds",
+            "range": "± 0.6385058109999999"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.72191854448,
+            "unit": "seconds",
+            "range": "± 0.026486805999999863"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60386824328,
+            "unit": "seconds",
+            "range": "± 0.014320832999999977"
           }
         ]
       }
