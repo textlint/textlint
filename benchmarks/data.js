@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749899134577,
+  "lastUpdate": 1749899610741,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -58506,6 +58506,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5995262903,
             "unit": "seconds",
             "range": "± 0.021524131000000057"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ca96a7d2f2e218033c4115fc6ecc020023a5aa6d",
+          "message": "chore: use pnpm instead of npm (#1538)\n\n* CI: pin GitHub Action version\n\n* Implement code changes to enhance functionality and improve performance\n\n* ci: replace 'pnpm ci' with 'pnpm install' in workflows for consistency\n\n* chore: add pnpm workspace configuration with package paths and built dependencies\n\n* chore: update textlint dependency to use workspace protocol in package.json files\n\n* chore: add @types/debug dependency and update pnpm workspace overrides\n\n* chore: update package.json and pnpm-lock.yaml to add @types/node dependency and remove pnpm overrides\n\n* add unist\n\n* add unist\n\n* chore: update CI workflow to install pnpm and modify build commands to use pnpm\n\n* fix\n\n* Update packages/@textlint/fixer-formatter/package.json+2\n\n* Update packages/@textlint/text-to-ast/package.json+1\n\n* Update packages/@textlint/text-to-ast/package.json+2\n\n* Update packages/@textlint/textlint-plugin-markdown/package.json+6\n\n* Update packages/textlint/package.json+1\n\n* Update dependencies in package.json and pnpm-lock.yaml to include @textlint/types\n\n* tsconfig.json: Add reference to @textlint/types\n\n* Update @types/node version in package.json and pnpm-lock.yaml\n\n* package.json and pnpm-lock.yaml: Add unist-util-select dependency\n\n* テストファイルでの@textlint/kernelから@textlint/typesへのインポートを更新\n\n* package.json and pnpm-lock.yaml: Update @types/node to version 22.10.6\n\n* package.json and pnpm-lock.yaml: Update @types/node to version ^20.0.0\n\n* fix bin path\n\n* Update .github/workflows/ci.yml+5\n\n* CONTRIBUTING.md: Update package manager commands from npm to pnpm\nnetlify.toml: Update NODE_VERSION to 22 and remove PNPM_VERSION\n\n* pnpm-workspace.yaml: Add verifyDepsBeforeRun configuration",
+          "timestamp": "2025-06-14T20:10:25+09:00",
+          "tree_id": "ffbf9d12de89b40be6ba082f8848c6221c016ee5",
+          "url": "https://github.com/textlint/textlint/commit/ca96a7d2f2e218033c4115fc6ecc020023a5aa6d"
+        },
+        "date": 1749899606272,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.31830645348,
+            "unit": "seconds",
+            "range": "± 0.549103981"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.79037672028,
+            "unit": "seconds",
+            "range": "± 0.05712501999999997"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60819657748,
+            "unit": "seconds",
+            "range": "± 0.007060188999999939"
           }
         ]
       }
