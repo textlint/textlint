@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749876700751,
+  "lastUpdate": 1749876830373,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -57708,6 +57708,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6532865798199999,
             "unit": "seconds",
             "range": "± 0.007229689999999955"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "2f261439e803ce3f1b4986b2a4a3c99fbf77dfe4",
+          "message": "refactor(config-loader): translate comments to English\n\n- Update Japanese comments in sortConfigForComparison function to English\n- Improve code readability for international contributors",
+          "timestamp": "2025-06-14T13:49:51+09:00",
+          "tree_id": "6e1208fb8ce8733501c59ec561093f970298663e",
+          "url": "https://github.com/textlint/textlint/commit/2f261439e803ce3f1b4986b2a4a3c99fbf77dfe4"
+        },
+        "date": 1749876825922,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.85855785562,
+            "unit": "seconds",
+            "range": "± 0.022682901000000033"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.43554766062,
+            "unit": "seconds",
+            "range": "± 0.12019688200000012"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.63237649302,
+            "unit": "seconds",
+            "range": "± 0.00472522799999997"
           }
         ]
       }
