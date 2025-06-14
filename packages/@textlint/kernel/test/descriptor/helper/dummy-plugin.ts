@@ -1,4 +1,4 @@
-import { TextlintPluginCreator } from "@textlint/kernel";
+import { TextlintPluginCreator } from "../../../src/index";
 
 export const createDummyPlugin = (extensions: string[] = [".dummy"]): TextlintPluginCreator => {
     return {

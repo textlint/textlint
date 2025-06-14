@@ -1,4 +1,4 @@
-import { TextlintMessage } from "@textlint/kernel";
+import type { TextlintMessage } from "@textlint/types";
 import createDummySourceCode from "./dummy-source-code";
 import { resolveLocation } from "../../src/core/source-location";
 import { TextlintRuleErrorImpl } from "../../src/context/TextlintRuleErrorImpl";

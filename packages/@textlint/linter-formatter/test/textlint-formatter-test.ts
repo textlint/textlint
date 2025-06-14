@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { createFormatter, getFormatterList } from "@textlint/linter-formatter";
+import { createFormatter, getFormatterList } from "../src/index";
 
 import * as path from "path";
 import * as assert from "assert";

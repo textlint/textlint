@@ -11,6 +11,6 @@
     "test": "textlint-scripts test"
   },
   "devDependencies": {
-    "textlint-scripts": "^14.8.1"
+    "textlint-scripts": "workspace:*"
   }
 }

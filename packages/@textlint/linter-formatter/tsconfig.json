@@ -24,10 +24,10 @@
       "path": "../module-interop"
     },
     {
-      "path": "../types"
+      "path": "../resolver"
     },
     {
-      "path": "../resolver"
+      "path": "../types"
     }
   ]
 }

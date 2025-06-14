@@ -1,6 +1,6 @@
 // MIT © 2017 azu
 "use strict";
-import { TextlintMessage } from "@textlint/kernel";
+import type { TextlintMessage } from "@textlint/types";
 import { TextlintKernel } from "../src/textlint-kernel";
 import { errorRule } from "./helper/ErrorRule";
 import { createPluginStub, ExampleProcessorOptions } from "./helper/ExamplePlugin";

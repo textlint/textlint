@@ -1,5 +1,5 @@
 [build]
   publish = "website/build"
-  command = "npm run website"
+  command = "pnpm run website"
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "22"

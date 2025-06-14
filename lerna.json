@@ -1,6 +1,6 @@
 {
   "version": "14.8.1",
-  "npmClient": "npm",
+  "npmClient": "pnpm",
   "includeMergedTags": true,
   "ignoreChanges": [
     "**/test/**",

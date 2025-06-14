@@ -45,6 +45,9 @@
       "path": "../@textlint/module-interop"
     },
     {
+      "path": "../@textlint/resolver"
+    },
+    {
       "path": "../@textlint/textlint-plugin-markdown"
     },
     {
@@ -55,9 +58,6 @@
     },
     {
       "path": "../@textlint/utils"
-    },
-    {
-      "path": "../@textlint/resolver"
     },
     {
       "path": "../@textlint/legacy-textlint-core"

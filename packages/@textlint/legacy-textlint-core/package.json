@@ -45,11 +45,12 @@
         "tabWidth": 4
     },
     "dependencies": {
-        "@textlint/kernel": "^14.8.1",
-        "@textlint/textlint-plugin-markdown": "^14.8.1",
-        "@textlint/textlint-plugin-text": "^14.8.1"
+        "@textlint/kernel": "workspace:*",
+        "@textlint/textlint-plugin-markdown": "workspace:*",
+        "@textlint/textlint-plugin-text": "workspace:*"
     },
     "devDependencies": {
+        "@types/debug": "^4.1.12",
         "@types/node": "^18.19.9",
         "prettier": "^2.7.1",
         "typescript": "~5.3.3"

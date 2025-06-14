@@ -41,10 +41,11 @@
         "watch": "tsc -b --watch"
     },
     "dependencies": {
-        "@textlint/ast-node-types": "^14.8.1",
+        "@textlint/ast-node-types": "workspace:*",
         "debug": "^4.4.1"
     },
     "devDependencies": {
+        "@types/debug": "^4.1.12",
         "@types/mocha": "^9.1.1",
         "@types/node": "^18.19.9",
         "mocha": "^10.8.1",
