@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749875581884,
+  "lastUpdate": 1749875674976,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -57582,6 +57582,48 @@ window.BENCHMARK_DATA = {
             "value": 0.76225633826,
             "unit": "seconds",
             "range": "± 0.06490566000000009"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "3a799cbb493ba6c6bebccb1c60d17507281aa939",
+          "message": "Update Node.js version to v22.16.0\n\n- Update .node-version from 18.20.1 to v22.16.0\n- Support latest Node.js LTS version",
+          "timestamp": "2025-06-14T13:30:21+09:00",
+          "tree_id": "2d01fecfdc1097a55542f24d9f94b584f6879f87",
+          "url": "https://github.com/textlint/textlint/commit/3a799cbb493ba6c6bebccb1c60d17507281aa939"
+        },
+        "date": 1749875669798,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 1.01395771186,
+            "unit": "seconds",
+            "range": "± 0.04187251299999972"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.61156793806,
+            "unit": "seconds",
+            "range": "± 0.05985452899999988"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.74942763546,
+            "unit": "seconds",
+            "range": "± 0.014507810999999982"
           }
         ]
       }
