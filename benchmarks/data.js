@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749883802464,
+  "lastUpdate": 1749885142191,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -58002,6 +58002,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6438390673200001,
             "unit": "seconds",
             "range": "± 0.004500884000000038"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7b62f1a1938715b00b190852fb62b3ca625d4ca8",
+          "message": "refactor: migrate deprecated JTF-style plugin and fix integration-test ESM compatibility (#1536)\n\n* refactor: replace textlint-plugin-jtf-style with textlint-rule-preset-jtf-style and update package versions\n\n* fix: correct typo in import statement for textlintrc-to-package-list\n\n* refactor: migrate integration tests to ES modules and update package.json\n\n* fix: update textlintrc-to-package-list to version 3.0.3 and modify test script to use node:test",
+          "timestamp": "2025-06-14T16:08:50+09:00",
+          "tree_id": "efd4d2f6043452bd0c7b4e7f80c9d01ff79a69c3",
+          "url": "https://github.com/textlint/textlint/commit/7b62f1a1938715b00b190852fb62b3ca625d4ca8"
+        },
+        "date": 1749885137686,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.8917668635600002,
+            "unit": "seconds",
+            "range": "± 0.05525163699999991"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.4882257247599995,
+            "unit": "seconds",
+            "range": "± 0.13419321399999973"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6479051101600002,
+            "unit": "seconds",
+            "range": "± 0.03253920100000007"
           }
         ]
       }
