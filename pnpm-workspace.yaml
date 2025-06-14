@@ -1,7 +1,5 @@
 # https://pnpm.io/settings#verifydepsbeforerun
 verifyDepsBeforeRun: "install"
-onlyBuiltDependencies:
-  - nx
 packages:
   - packages/*
   - examples/*
@@ -54,7 +52,7 @@ catalog:
   expected-exit-status: ^1.0.2
 
   # Monorepo & Project Management
-  lerna: ^8.2.2
+  lerna-lite: ^3.9.3
   "@monorepo-utils/workspaces-to-typescript-project-references": ^2.11.0
   lint-staged: ^13.3.0
   npm-run-all2: ^5.0.2
