@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749875674976,
+  "lastUpdate": 1749875944343,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -57624,6 +57624,48 @@ window.BENCHMARK_DATA = {
             "value": 0.74942763546,
             "unit": "seconds",
             "range": "± 0.014507810999999982"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "e44c27012f9fe03b6a61bf3dfc066461d8294897",
+          "message": "feat: update CI to use Node.js 22\n\n- Update test matrix to use Node.js 20 and 22 instead of 18 and 20\n- Update all workflow files to use Node.js 22 as default version\n- This aligns with the .node-version file update to v22.16.0",
+          "timestamp": "2025-06-14T13:35:38+09:00",
+          "tree_id": "ba72ac41a4417eda3783958e02e39b7157d30059",
+          "url": "https://github.com/textlint/textlint/commit/e44c27012f9fe03b6a61bf3dfc066461d8294897"
+        },
+        "date": 1749875939872,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.88142089002,
+            "unit": "seconds",
+            "range": "± 0.03351724700000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.51781319322,
+            "unit": "seconds",
+            "range": "± 0.044637381000000254"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6457912410200001,
+            "unit": "seconds",
+            "range": "± 0.012721795000000036"
           }
         ]
       }
