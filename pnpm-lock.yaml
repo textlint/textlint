@@ -765,7 +765,7 @@ importers:
         specifier: ^22.10.6
         version: 22.15.31
       '@types/react':
-        specifier: ^18.3.18
+        specifier: ^18.3.23
         version: 18.3.23
       mocha:
         specifier: ^10.8.1
@@ -802,7 +802,7 @@ importers:
         specifier: ^20.0.0
         version: 20.19.0
       '@types/react':
-        specifier: ^18.3.18
+        specifier: ^18.3.23
         version: 18.3.23
       mocha:
         specifier: ^10.8.1
