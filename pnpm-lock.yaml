@@ -461,6 +461,9 @@ importers:
       typescript:
         specifier: ~5.3.3
         version: 5.3.3
+      unist-util-select:
+        specifier: ^3.0.4
+        version: 3.0.4
 
   packages/@textlint/legacy-textlint-core:
     dependencies:
