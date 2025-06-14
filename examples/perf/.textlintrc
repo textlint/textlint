@@ -1,8 +1,6 @@
 {
-  "plugins": [
-    "jtf-style"
-  ],
   "rules": {
+    "preset-jtf-style": true,
     "max-ten": {
       "max": 3
     },

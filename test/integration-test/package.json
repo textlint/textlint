@@ -37,7 +37,7 @@
         "json5": "^2.1.1",
         "shelljs": "^0.8.3",
         "textlint": "^14.8.1",
-        "textlintrc-to-pacakge-list": "^1.2.0"
+        "textlintrc-to-package-list": "^3.0.1"
     },
     "email": "azuciao@gmail.com"
 }
