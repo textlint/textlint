@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749983230973,
+  "lastUpdate": 1749983933269,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -59556,6 +59556,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59107798038,
             "unit": "seconds",
             "range": "± 0.008774810000000022"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "13e63ba98eddfc13dda903e695ecd41d208a72c0",
+          "message": "fix: update eslint patterns to include .js files",
+          "timestamp": "2025-06-15T19:33:23+09:00",
+          "tree_id": "922083fba10755fbed5b701a098c071c7e34d439",
+          "url": "https://github.com/textlint/textlint/commit/13e63ba98eddfc13dda903e695ecd41d208a72c0"
+        },
+        "date": 1749983928568,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.30372468290000004,
+            "unit": "seconds",
+            "range": "± 0.509060901"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7028585157000002,
+            "unit": "seconds",
+            "range": "± 0.025363739999999968"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5934372977000001,
+            "unit": "seconds",
+            "range": "± 0.008469202000000009"
           }
         ]
       }
