@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749980458085,
+  "lastUpdate": 1749980572763,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -59304,6 +59304,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59468259652,
             "unit": "seconds",
             "range": "± 0.010411644000000053"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "fbbb00059dfd2b8c7f3d9896131490bb4132915b",
+          "message": "CI: update Node.js version",
+          "timestamp": "2025-06-15T18:39:18+09:00",
+          "tree_id": "0ebe2846c1d25a46bdbe82fdd46a11e6dbf08def",
+          "url": "https://github.com/textlint/textlint/commit/fbbb00059dfd2b8c7f3d9896131490bb4132915b"
+        },
+        "date": 1749980567326,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.29368728564,
+            "unit": "seconds",
+            "range": "± 0.40870135799999996"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.76003474704,
+            "unit": "seconds",
+            "range": "± 0.031063932999999988"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60695705044,
+            "unit": "seconds",
+            "range": "± 0.007758238000000084"
           }
         ]
       }
