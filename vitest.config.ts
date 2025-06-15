@@ -4,6 +4,13 @@ export default defineConfig({
         include: [...configDefaults.include, "**/test/*.ts"],
         passWithNoTests: true,
         testTimeout: 10_000,
-        bail: 1
+        bail: 1,
+        environment: "node"
+    },
+    esbuild: {
+        target: "node14"
+    },
+    resolve: {
+        extensions: [".ts", ".js", ".json"]
     }
 });

@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "vitest";
-import { moduleInterop } from "../lib/src/index.js";
+import { moduleInterop } from "../src/index.js";
 
 describe("moduleExports", function () {
     it("should interop commonjs", () => {

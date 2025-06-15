@@ -7,7 +7,7 @@ import {
     ResolverContext,
     tryResolve,
     clearHooks,
-} from "../lib/src/index.js";
+} from "../src/index.js";
 
 describe("@secretlint/resolver", () => {
     const myModuleURL = "file:///path/to/my-module.js";
