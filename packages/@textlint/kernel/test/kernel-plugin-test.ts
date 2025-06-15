@@ -236,7 +236,7 @@ describe("kernel-plugin", () => {
             return assert
                 .rejects(() => {
                     return kernel.fixText("text", options);
-                }, /AST is missing location information/)
+                }, /example processor return invalid AST object/)
                 .finally(() => {
                     resetFlags();
                 });

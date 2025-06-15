@@ -7,9 +7,6 @@ export default defineConfig({
         bail: 1,
         environment: "node"
     },
-    esbuild: {
-        target: "node14"
-    },
     resolve: {
         extensions: [".ts", ".js", ".json"]
     }

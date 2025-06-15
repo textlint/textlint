@@ -7,6 +7,7 @@
  */
 const fs = require("node:fs");
 const path = require("node:path");
+// Use lib version for fixture generation
 const parse = require("../lib/src/index").parse;
 const testDir = path.join(__dirname, "..", "test");
 // remark_fixtures to fixtures
