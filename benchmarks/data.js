@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749974292857,
+  "lastUpdate": 1749974694646,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -59178,6 +59178,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5939901684,
             "unit": "seconds",
             "range": "± 0.00904897299999996"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "9cb41b13b05528fbfbb9c13fca06a5084ee3daca",
+          "message": "Update vitest.config.mts",
+          "timestamp": "2025-06-15T17:02:39+09:00",
+          "tree_id": "36b2418f2445df392b1293ce92e43d24cb413844",
+          "url": "https://github.com/textlint/textlint/commit/9cb41b13b05528fbfbb9c13fca06a5084ee3daca"
+        },
+        "date": 1749974688988,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25902692244000003,
+            "unit": "seconds",
+            "range": "± 0.235732248"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7214858174400003,
+            "unit": "seconds",
+            "range": "± 0.06280648700000002"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6010087008400001,
+            "unit": "seconds",
+            "range": "± 0.018096106"
           }
         ]
       }
