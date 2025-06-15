@@ -33,10 +33,10 @@
     "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ module/",
     "prepack": "npm run --if-present build",
-    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
-    "test:build": "tsc -b test",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:build": "tsc -b test",
+    "test:watch": "vitest watch",
+    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test"
   },
   "dependencies": {
     "@textlint/ast-node-types": "workspace:*",
@@ -56,7 +56,6 @@
     "@types/node": "^18.19.111",
     "rimraf": "^6.0.1",
     "shelljs": "^0.10.0",
-    "ts-node": "^10.9.2",
     "typescript": "~5.3.3",
     "unist-util-select": "^3.0.4",
     "vitest": "^3.2.3"

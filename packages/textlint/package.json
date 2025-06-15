@@ -42,9 +42,9 @@
     "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ module/",
     "prepack": "npm run build",
-    "watch": "tsc -b --watch",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "watch": "tsc -b --watch"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
@@ -91,7 +91,6 @@
     "textlint-rule-no-todo": "^2.0.1",
     "textlint-rule-preset-ja-spacing": "^2.4.3",
     "textlint-rule-preset-jtf-style": "^2.3.14",
-    "ts-node": "^10.9.2",
     "typescript": "~5.3.3",
     "vitest": "^3.2.3"
   },

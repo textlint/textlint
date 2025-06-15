@@ -39,9 +39,9 @@
     "clean": "rimraf lib/ module/",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepack": "npm run --if-present build",
-    "watch": "tsc -b --watch",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "watch": "tsc -b --watch"
   },
   "prettier": {
     "printWidth": 120,
@@ -52,7 +52,6 @@
     "@types/node": "^18.19.111",
     "prettier": "^2.7.1",
     "rimraf": "^6.0.1",
-    "ts-node": "^10.9.2",
     "typescript": "~5.3.3",
     "vitest": "^3.2.3"
   },

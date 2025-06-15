@@ -30,10 +30,10 @@
     "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ module/",
     "prepack": "npm run --if-present build",
-    "updateSnapshot": "npm run build && node tools/update-fixtures.js",
-    "watch": "tsc -b --watch",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "updateSnapshot": "npm run build && node tools/update-fixtures.js",
+    "watch": "tsc -b --watch"
   },
   "dependencies": {
     "@textlint/ast-node-types": "workspace:*",
@@ -49,12 +49,11 @@
   },
   "devDependencies": {
     "@textlint/ast-tester": "workspace:*",
-    "@types/unist": "^3.0.3",
     "@types/debug": "^4.1.12",
     "@types/node": "^18.19.111",
+    "@types/unist": "^3.0.3",
     "mkdirp": "^1.0.4",
     "rimraf": "^6.0.1",
-    "ts-node": "^10.9.2",
     "typescript": "~5.3.3",
     "vitest": "^3.2.3"
   },

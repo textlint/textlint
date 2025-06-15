@@ -11,9 +11,18 @@
     "bugs": {
         "url": "https://github.com/textlint/textlint/issues"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/textlint/textlint.git"
+    },
     "license": "MIT",
     "author": "azu",
     "type": "commonjs",
+    "main": "lib/src/index.js",
+    "types": "lib/src/index.d.ts",
+    "directories": {
+        "test": "test"
+    },
     "files": [
         "bin/",
         "lib/",
@@ -21,15 +30,6 @@
         "src/",
         "!*.tsbuildinfo"
     ],
-    "main": "lib/src/index.js",
-    "types": "lib/src/index.d.ts",
-    "directories": {
-        "test": "test"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/textlint/textlint.git"
-    },
     "scripts": {
         "build": "tsc -b",
         "clean": "rimraf lib/ out/",

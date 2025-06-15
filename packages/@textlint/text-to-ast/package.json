@@ -38,10 +38,10 @@
     "crlf": "eolConverter crlf test/snapshots/crlf/input.txt && eolConverter crlf test/snapshots/crlf-empty-line/input.txt",
     "prepack": "npm run --if-present build",
     "pretest": "npm run crlf",
-    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
-    "watch": "tsc -b --watch",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
+    "watch": "tsc -b --watch"
   },
   "dependencies": {
     "@textlint/ast-node-types": "workspace:*"
@@ -51,7 +51,6 @@
     "@types/node": "^18.19.111",
     "eol-converter-cli": "^1.1.0",
     "rimraf": "^6.0.1",
-    "ts-node": "^10.9.2",
     "typescript": "~5.3.3",
     "vitest": "^3.2.3"
   },

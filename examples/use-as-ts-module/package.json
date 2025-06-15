@@ -3,14 +3,21 @@
   "version": "14.8.1",
   "private": true,
   "license": "MIT",
-  "type": "module",
   "author": "0x6b",
+  "type": "module",
   "main": "lib/src/index.js",
+  "files": [
+    "bin/",
+    "lib/",
+    "module/",
+    "src/",
+    "!*.tsbuildinfo"
+  ],
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
-    "test": "npm run build && node lib/src/index.js fixtures/success.md",
     "fail:test": "npm run build && node lib/src/index.js fixtures/failure.md",
+    "test": "npm run build && node lib/src/index.js fixtures/success.md",
     "test:ci": "npm test"
   },
   "dependencies": {
@@ -20,12 +27,5 @@
   "devDependencies": {
     "@types/node": "^18.7.16",
     "typescript": "~5.3.3"
-  },
-  "files": [
-    "bin/",
-    "lib/",
-    "module/",
-    "src/",
-    "!*.tsbuildinfo"
-  ]
+  }
 }

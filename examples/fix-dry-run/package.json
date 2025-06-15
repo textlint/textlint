@@ -6,6 +6,13 @@
   "license": "MIT",
   "author": "azu",
   "main": "index.js",
+  "files": [
+    "bin/",
+    "lib/",
+    "module/",
+    "src/",
+    "!*.tsbuildinfo"
+  ],
   "scripts": {
     "test": "npm run textlint-fix",
     "test:ci": "npm test",
@@ -15,12 +22,5 @@
   "devDependencies": {
     "textlint": "workspace:*",
     "textlint-rule-prh": "^5.2.0"
-  },
-  "files": [
-    "bin/",
-    "lib/",
-    "module/",
-    "src/",
-    "!*.tsbuildinfo"
-  ]
+  }
 }

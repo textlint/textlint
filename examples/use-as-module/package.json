@@ -5,6 +5,13 @@
   "license": "MIT",
   "author": "azu",
   "main": "index.mjs",
+  "files": [
+    "bin/",
+    "lib/",
+    "module/",
+    "src/",
+    "!*.tsbuildinfo"
+  ],
   "scripts": {
     "test": "node index.mjs",
     "test:ci": "npm test"
@@ -12,12 +19,5 @@
   "dependencies": {
     "textlint": "workspace:*",
     "textlint-rule-no-todo": "^2.0.1"
-  },
-  "files": [
-    "bin/",
-    "lib/",
-    "module/",
-    "src/",
-    "!*.tsbuildinfo"
-  ]
+  }
 }

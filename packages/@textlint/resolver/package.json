@@ -37,10 +37,10 @@
     "prepublishOnly": "npm run clean && npm run build",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",
-    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
-    "watch": "tsc --build --watch",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
+    "watch": "tsc --build --watch"
   },
   "prettier": {
     "printWidth": 120,
@@ -51,7 +51,6 @@
     "@types/debug": "^4.1.12",
     "@types/node": "^20.16.15",
     "prettier": "^2.8.1",
-    "ts-node": "^10.9.2",
     "typescript": "^5.1.6",
     "vitest": "^3.2.3"
   },

@@ -3,33 +3,44 @@
   "private": true,
   "scripts": {
     "build": "lerna run build",
-    "website": "lerna run build --scope textlint-website",
+    "ci:release": "lerna publish from-package --yes",
+    "ci:versionup:major": "lerna version major --no-push --no-git-tag-version --yes && npm run commit-version",
+    "ci:versionup:minor": "lerna version minor --no-push --no-git-tag-version --yes && npm run commit-version",
+    "ci:versionup:patch": "lerna version patch --no-push --no-git-tag-version --yes && npm run commit-version",
     "clean": "lerna run clean",
+    "commit-version": "git add . && git commit -m \"chore(release): v`node -p 'require(\"./lerna.json\").version'`\"",
     "eslint": "eslint --cache \"packages/**/{src,test}/**/*.js\"",
     "eslint:fix": "eslint --fix --cache \"packages/**/{src,test}/**/*.js\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "lint": "npm-run-all eslint",
     "lint:fix": "npm-run-all eslint:fix",
-    "perf": "cd ./examples/perf && npm run test:ci",
     "prepack": "npm-run-all clean build",
-    "versionup": "lerna version",
-    "ci:versionup:patch": "lerna version patch --no-push --no-git-tag-version --yes && npm run commit-version",
-    "ci:versionup:minor": "lerna version minor --no-push --no-git-tag-version --yes && npm run commit-version",
-    "ci:versionup:major": "lerna version major --no-push --no-git-tag-version --yes && npm run commit-version",
-    "commit-version": "git add . && git commit -m \"chore(release): v`node -p 'require(\"./lerna.json\").version'`\"",
+    "perf": "cd ./examples/perf && npm run test:ci",
+    "prepare": "git config --local core.hooksPath .githooks",
     "release": "lerna publish from-package",
-    "ci:release": "lerna publish from-package --yes",
     "test": "npm-run-all --parallel lint test:projectReferences test:packages",
-    "updateSnapshot": "lerna run updateSnapshot",
     "test:all": "npm-run-all test test:examples test:integration test:docs",
     "test:docs": "lerna run test --scope textlint-website",
     "test:examples": "lerna run test:ci --scope textlint-example-*",
     "test:integration": "lerna run test --scope integration-test",
     "test:packages": "lerna run test --ignore integration-test --ignore textlint-example-* --ignore textlint-script-* --ignore textlint-website",
     "test:projectReferences": "workspaces-to-typescript-project-references --includesRoot --check",
-    "update:projectReferences": "workspaces-to-typescript-project-references --includesRoot ",
     "type-check": "tsc -b .",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
-    "prepare": "git config --local core.hooksPath .githooks"
+    "update:projectReferences": "workspaces-to-typescript-project-references --includesRoot ",
+    "updateSnapshot": "lerna run updateSnapshot",
+    "versionup": "lerna version",
+    "website": "lerna run build --scope textlint-website"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": false,
+    "tabWidth": 4,
+    "trailingComma": "none"
   },
   "devDependencies": {
     "@monorepo-utils/workspaces-to-typescript-project-references": "^2.11.0",
@@ -46,17 +57,5 @@
     "typescript": "~5.3.3",
     "vitest": "^3.2.3"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,css}": [
-      "prettier --write"
-    ]
-  },
-  "prettier": {
-    "singleQuote": false,
-    "printWidth": 120,
-    "tabWidth": 4,
-    "trailingComma": "none"
-  },
-
   "packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac"
 }

@@ -15,8 +15,8 @@
   },
   "license": "MIT",
   "author": "azu",
-  "type": "commonjs",
   "sideEffects": false,
+  "type": "commonjs",
   "main": "lib/src/index.js",
   "module": "module/src/index.js",
   "types": "lib/src/index.d.ts",
@@ -34,10 +34,10 @@
     "clean": "rimraf lib/ module/",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",
-    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
-    "watch": "tsc -b . --watch",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
+    "watch": "tsc -b . --watch"
   },
   "prettier": {
     "printWidth": 120,
@@ -59,7 +59,6 @@
     "@types/node": "^18.19.111",
     "prettier": "^2.3.0",
     "rimraf": "^6.0.1",
-    "ts-node": "^10.9.2",
     "typescript": "~5.6.3",
     "vitest": "^3.2.3"
   },
