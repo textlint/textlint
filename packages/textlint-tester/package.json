@@ -56,7 +56,7 @@
         "textlint-rule-helper": "^2.3.1",
         "textlint-rule-max-number-of-lines": "^1.0.3",
         "ts-node": "^10.9.2",
-        "typescript": "~5.3.3"
+        "typescript": "~5.8.3"
     },
     "email": "azuciao@gmail.com"
 }

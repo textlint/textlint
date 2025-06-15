@@ -51,7 +51,7 @@
     "@types/node": "^18.19.111",
     "eol-converter-cli": "^1.1.0",
     "rimraf": "^6.0.1",
-    "typescript": "~5.3.3",
+    "typescript": "~5.8.3",
     "vitest": "^3.2.3"
   },
   "publishConfig": {
