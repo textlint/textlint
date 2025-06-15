@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749986431500,
+  "lastUpdate": 1749986679227,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -59934,6 +59934,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5993685800399999,
             "unit": "seconds",
             "range": "± 0.04421803999999996"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3ec176726039a8457438c24f9c98fa828cab74c1",
+          "message": "Add pnpm installation step to release job (#1548)\n\n* CI: add pnpm installation step to the release job\n\n* fix: add cache configuration for pnpm in Node.js setup",
+          "timestamp": "2025-06-15T20:19:08+09:00",
+          "tree_id": "e39d1d6b20aa80a3ff7ef8ac26963f622e45bcf4",
+          "url": "https://github.com/textlint/textlint/commit/3ec176726039a8457438c24f9c98fa828cab74c1"
+        },
+        "date": 1749986674277,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25577599094000003,
+            "unit": "seconds",
+            "range": "± 0.279073637"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.70985814254,
+            "unit": "seconds",
+            "range": "± 0.06304895200000016"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59481049834,
+            "unit": "seconds",
+            "range": "± 0.010374425000000076"
           }
         ]
       }
