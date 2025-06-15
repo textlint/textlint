@@ -1,5 +1,5 @@
 [build]
   publish = "website/build"
-  command = "pnpm run website"
+  command = "pnpm run website --verbose"
 [build.environment]
   NODE_VERSION = "22"

@@ -1,20 +1,21 @@
 // LICENSE : MIT
 "use strict";
-import * as assert from "assert";
-import { TextlintPluginDescriptors } from "../../src/descriptor/index";
-import { createTextlintPluginDescriptors } from "../../src/descriptor/DescriptorsFactory";
-import { TextlintPluginDescriptor } from "../../src/descriptor/TextlintPluginDescriptor";
-import { createDummyPlugin } from "./helper/dummy-plugin";
+import * as assert from "node:assert";
+import { describe, it } from "vitest";
+import { TextlintPluginDescriptors } from "../../src/descriptor/index.js";
+import { createTextlintPluginDescriptors } from "../../src/descriptor/DescriptorsFactory.js";
+import { TextlintPluginDescriptor } from "../../src/descriptor/TextlintPluginDescriptor.js";
+import { createDummyPlugin } from "./helper/dummy-plugin.js";
 
 describe("TextlintRuleDescriptors", function () {
-    context("when passing undefined", function () {
+    describe("when passing undefined", function () {
         it("should return empty result", function () {
             const pluginDescriptors = new TextlintPluginDescriptors();
             assert.deepStrictEqual(pluginDescriptors.descriptors, []);
             assert.deepStrictEqual(pluginDescriptors.allDescriptors, []);
         });
     });
-    context("when passing unavailable rule", function () {
+    describe("when passing unavailable rule", function () {
         it("should return empty result", function () {
             const ruleDescriptors = createTextlintPluginDescriptors([
                 {

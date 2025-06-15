@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import debug0 from "debug";
-import path from "path";
+import path from "node:path";
 import { glob } from "glob";
 
 const debug = debug0("textlint:find-util");

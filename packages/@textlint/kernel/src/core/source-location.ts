@@ -6,9 +6,9 @@ import type {
     TextlintRuleErrorDetails
 } from "@textlint/types";
 import { TxtNode } from "@textlint/ast-node-types";
-import { invariant } from "../util/invariant";
+import { invariant } from "../util/invariant.js";
 import { throwIfTesting } from "@textlint/feature-flag";
-import { isTextlintRuleErrorPaddingLocation } from "../context/TextlintRulePaddingLocator";
+import { isTextlintRuleErrorPaddingLocation } from "../context/TextlintRulePaddingLocator.js";
 
 export interface ReportMessage {
     ruleId: string;

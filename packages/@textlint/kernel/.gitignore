@@ -2,3 +2,5 @@
 out/
 lib/
 module/
+
+coverage

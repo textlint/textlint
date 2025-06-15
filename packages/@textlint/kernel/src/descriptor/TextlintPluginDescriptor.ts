@@ -1,6 +1,6 @@
 "use strict";
-import { TextlintKernelPlugin } from "../textlint-kernel-interface";
-import { Descriptor } from "./Descriptor";
+import { TextlintKernelPlugin } from "../textlint-kernel-interface.js";
+import { Descriptor } from "./Descriptor.js";
 import type {
     TextlintPluginOptions,
     TextlintPluginProcessor,

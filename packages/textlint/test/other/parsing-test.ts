@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
-import assert from "assert";
-import path from "path";
-import { cli } from "../../src/";
+import assert from "node:assert";
+import { describe, it } from "vitest";
+import path from "node:path";
+import { cli } from "../../src/index.js";
 
 describe("parsing", function () {
     it("should lint all files without error", function () {

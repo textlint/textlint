@@ -6,13 +6,15 @@
 /* jshint node:true */
 
 "use strict";
-import formatter from "../../src/formatters/junit";
+import formatter from "../../src/formatters/junit.js";
+
+import { describe, it } from "vitest";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-import * as assert from "assert";
+import * as assert from "node:assert";
 
 //------------------------------------------------------------------------------
 // Tests

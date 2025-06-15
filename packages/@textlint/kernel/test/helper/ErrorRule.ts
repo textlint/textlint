@@ -2,7 +2,7 @@
 
 import { TxtNode } from "@textlint/ast-node-types";
 import type { TextlintRuleContext, TextlintRuleModule, TextlintRuleReporter } from "@textlint/types";
-import * as assert from "assert";
+import * as assert from "node:assert";
 
 export interface ReportOptions {
     errors?: {

@@ -1,14 +1,14 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintKernelFilterRule, TextlintKernelPlugin, TextlintKernelRule } from "../textlint-kernel-interface";
-import { TextlintFilterRuleDescriptor } from "./TextlintFilterRuleDescriptor";
-import { TextlintFilterRuleDescriptors } from "./TextlintFilterRuleDescriptors";
-import { TextlintRuleDescriptors } from "./TextlintRuleDescriptors";
-import { TextlintLintableRuleDescriptor } from "./TextlintLintableRuleDescriptor";
-import { TextlintPluginDescriptors } from "./TextlintPluginDescriptors";
-import { TextlintPluginDescriptor } from "./TextlintPluginDescriptor";
-import { hasFixer } from "./rule-creator-helper";
-import { TextlintFixableRuleDescriptor } from "./TextlintFixableRuleDescriptor";
+import { TextlintKernelFilterRule, TextlintKernelPlugin, TextlintKernelRule } from "../textlint-kernel-interface.js";
+import { TextlintFilterRuleDescriptor } from "./TextlintFilterRuleDescriptor.js";
+import { TextlintFilterRuleDescriptors } from "./TextlintFilterRuleDescriptors.js";
+import { TextlintRuleDescriptors } from "./TextlintRuleDescriptors.js";
+import { TextlintLintableRuleDescriptor } from "./TextlintLintableRuleDescriptor.js";
+import { TextlintPluginDescriptors } from "./TextlintPluginDescriptors.js";
+import { TextlintPluginDescriptor } from "./TextlintPluginDescriptor.js";
+import { hasFixer } from "./rule-creator-helper.js";
+import { TextlintFixableRuleDescriptor } from "./TextlintFixableRuleDescriptor.js";
 
 export const createTextlintRuleDescriptors = (rules: TextlintKernelRule[]) => {
     const ruleOrFixableRuleDescriptorList = rules.map((rule) => {

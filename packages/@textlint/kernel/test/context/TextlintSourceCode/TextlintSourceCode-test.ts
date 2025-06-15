@@ -1,6 +1,7 @@
-import * as assert from "assert";
+import * as assert from "node:assert";
+import { describe, it } from "vitest";
 import { TxtNode } from "@textlint/ast-node-types";
-import { TextlintSourceCodeImpl } from "../../../src/context/TextlintSourceCodeImpl";
+import { TextlintSourceCodeImpl } from "../../../src/context/TextlintSourceCodeImpl.js";
 import { parse } from "@textlint/markdown-to-ast";
 import select from "unist-util-select";
 

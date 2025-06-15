@@ -1,16 +1,17 @@
 // LICENSE : MIT
 "use strict";
-import filterMessages from "../../src/messages/filter-duplicated-process";
-import * as assert from "assert";
+import filterMessages from "../../src/messages/filter-duplicated-process.js";
+import { describe, it } from "vitest";
+import * as assert from "node:assert";
 import { TextlintMessage } from "@textlint/types";
 
 describe("message-filter", function () {
-    context("when pass empty messages", function () {
+    describe("when pass empty messages", function () {
         it("should return empty messages", function () {
             assert.equal(filterMessages([]).length, 0);
         });
     });
-    context("when only lint messages", function () {
+    describe("when only lint messages", function () {
         it("should not change messages", function () {
             const messages = [
                 {
@@ -38,7 +39,7 @@ describe("message-filter", function () {
             assert.deepEqual(filterMessages(messages), messages);
         });
     });
-    context("when contain duplicated messages", function () {
+    describe("when contain duplicated messages", function () {
         it("should filter to be one", function () {
             const messages = [
                 {
@@ -150,7 +151,7 @@ describe("message-filter", function () {
             assert.equal(filterMessages(messages).length, 1);
         });
     });
-    context("when duplicated message, but ruleId is difference", function () {
+    describe("when duplicated message, but ruleId is difference", function () {
         it("should filter messages", function () {
             const messages = [
                 {
@@ -197,7 +198,7 @@ describe("message-filter", function () {
             assert.equal(filterMessages(messages).length, 1);
         });
     });
-    context("when duplicated message, but message is difference", function () {
+    describe("when duplicated message, but message is difference", function () {
         it("should not filter messages", function () {
             const messages = [
                 {

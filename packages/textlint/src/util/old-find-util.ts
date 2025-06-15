@@ -2,8 +2,8 @@
 "use strict";
 import { pathToGlobPattern } from "path-to-glob-pattern";
 import * as glob from "glob";
-import path from "path";
-import fs from "fs";
+import path from "node:path";
+import fs from "node:fs";
 import debug0 from "debug";
 
 const debug = debug0("textlint:find-util");

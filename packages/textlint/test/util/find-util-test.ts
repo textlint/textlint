@@ -1,6 +1,7 @@
-import * as assert from "assert";
-import path from "path";
-import { scanFilePath, searchFiles } from "../../src/util/find-util";
+import * as assert from "node:assert";
+import { describe, it } from "vitest";
+import path from "node:path";
+import { scanFilePath, searchFiles } from "../../src/util/find-util.js";
 
 const testDir = path.resolve(__dirname, "fixtures/find-util");
 const test2Dir = path.resolve(__dirname, "fixtures/(find-util)");
@@ -60,7 +61,7 @@ describe("find-util", () => {
                 path.resolve(test2Dir, "ignored/test.md")
             ]);
         });
-        context("when specify `ignoreFilePath` option", () => {
+        describe("when specify `ignoreFilePath` option", () => {
             it("should find files with relative path patterns", async () => {
                 const patterns = ["**/*.md"];
                 const files = await searchFiles(patterns, {

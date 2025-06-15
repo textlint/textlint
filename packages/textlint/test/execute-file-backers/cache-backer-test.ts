@@ -1,12 +1,13 @@
 // MIT © 2016 azu
 "use strict";
-import assert from "assert";
-import path from "path";
-import os from "os";
+import assert from "node:assert";
+import { describe, it } from "vitest";
+import path from "node:path";
+import os from "node:os";
 import sh from "shelljs";
-import fs from "fs";
-import { CacheBacker } from "../../src/engine/execute-file-backers/cache-backer";
-import { Config } from "../../src/DEPRECATED/config";
+import fs from "node:fs";
+import { CacheBacker } from "../../src/engine/execute-file-backers/cache-backer.js";
+import { Config } from "../../src/DEPRECATED/config.js";
 import { TextlintMessage } from "@textlint/types";
 
 describe("CacheBacker", function () {
@@ -18,7 +19,7 @@ describe("CacheBacker", function () {
     after(function () {
         sh.rm("-r", configDir);
     });
-    context("when previously have success result", function () {
+    describe("when previously have success result", function () {
         it("shouldExecute return false", () => {
             const config = new Config({ cache: true, cacheLocation: path.resolve(configDir, ".cache") });
             const cacheBacker = new CacheBacker(config);
@@ -32,7 +33,7 @@ describe("CacheBacker", function () {
         });
     });
 
-    context("when previously have failure result", function () {
+    describe("when previously have failure result", function () {
         it("shouldExecute return true", () => {
             const config = new Config({ cache: true, cacheLocation: path.resolve(configDir, ".cache") });
             const cacheBacker = new CacheBacker(config);
@@ -48,7 +49,7 @@ describe("CacheBacker", function () {
             assert.ok(shouldExecute);
         });
     });
-    context("when specify `cacheLocation` options", function () {
+    describe("when specify `cacheLocation` options", function () {
         it("should save the specific path", () => {
             const cacheFilePath = path.resolve(configDir, ".cache");
             const config = new Config({ cache: true, cacheLocation: cacheFilePath });

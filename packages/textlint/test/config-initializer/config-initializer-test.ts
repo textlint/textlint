@@ -1,12 +1,13 @@
 // LICENSE : MIT
 "use strict";
-import { createConfigFile } from "../../src/config/config-initializer";
-import { Logger } from "../../src/util/logger";
-import path from "path";
-import os from "os";
+import { createConfigFile } from "../../src/config/config-initializer.js";
+import { afterEach, beforeEach, describe, it } from "vitest";
+import { Logger } from "../../src/util/logger.js";
+import path from "node:path";
+import os from "node:os";
 import sh from "shelljs";
-import assert from "assert";
-import fs from "fs";
+import assert from "node:assert";
+import fs from "node:fs";
 
 describe("config-initializer-test", function () {
     let configDir: string;
@@ -20,7 +21,7 @@ describe("config-initializer-test", function () {
     afterEach(function () {
         sh.rm("-r", configDir);
     });
-    context("when pacakge.json has textlint-rule-* packages", function () {
+    describe("when pacakge.json has textlint-rule-* packages", function () {
         beforeEach(function () {
             const packageFilePath = path.join(__dirname, "fixtures", "package.json");
             sh.cp(packageFilePath, configDir);
@@ -41,7 +42,7 @@ describe("config-initializer-test", function () {
             });
         });
     });
-    context("when .textlintrc is not existed", function () {
+    describe("when .textlintrc is not existed", function () {
         it("should create new file", function () {
             return createConfigFile({
                 dir: configDir,
@@ -67,7 +68,7 @@ describe("config-initializer-test", function () {
             });
         });
     });
-    context("when .textlintrc is existed", function () {
+    describe("when .textlintrc is existed", function () {
         beforeEach(function () {
             // mock console API
             Logger.error = function mockErrorLog() {};

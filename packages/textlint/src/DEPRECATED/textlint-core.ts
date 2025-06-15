@@ -14,21 +14,21 @@ import {
     TextlintPluginProcessorConstructor,
     TextlintResult
 } from "@textlint/kernel";
-import fs from "fs";
-import { Config } from "./config";
+import fs from "node:fs";
+import { Config } from "./config.js";
 import {
     filterRulesObjectToKernelRule,
     pluginsObjectToKernelRule,
     rulesObjectToKernelRule
-} from "../util/object-to-kernel-format";
+} from "../util/object-to-kernel-format.js";
 import textPlugin from "@textlint/textlint-plugin-text";
 import markdownPlugin from "@textlint/textlint-plugin-markdown";
 import type { TextlintKernelOptions } from "@textlint/kernel";
-import path from "path";
+import path from "node:path";
 
 const readFile = fs.promises.readFile;
 import { throwIfTesting } from "@textlint/feature-flag";
-import { Logger } from "../util/logger";
+import { Logger } from "../util/logger.js";
 
 /**
  * @class {TextLintCore}

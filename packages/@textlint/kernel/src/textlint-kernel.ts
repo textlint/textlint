@@ -1,25 +1,25 @@
 // MIT © 2017- azu
 // sequence
-import FixerProcessor from "./fixer/fixer-processor";
+import FixerProcessor from "./fixer/fixer-processor.js";
 // parallel
-import LinterProcessor from "./linter/linter-processor";
+import LinterProcessor from "./linter/linter-processor.js";
 // message process manager
-import MessageProcessManager from "./messages/MessageProcessManager";
-import filterIgnoredProcess from "./messages/filter-ignored-process";
-import filterDuplicatedProcess from "./messages/filter-duplicated-process";
-import filterSeverityProcess from "./messages/filter-severity-process";
-import sortMessageProcess from "./messages/sort-messages-process";
-import { TextlintKernelConstructorOptions, TextlintKernelOptions } from "./textlint-kernel-interface";
+import MessageProcessManager from "./messages/MessageProcessManager.js";
+import filterIgnoredProcess from "./messages/filter-ignored-process.js";
+import filterDuplicatedProcess from "./messages/filter-duplicated-process.js";
+import filterSeverityProcess from "./messages/filter-severity-process.js";
+import sortMessageProcess from "./messages/sort-messages-process.js";
+import { TextlintKernelConstructorOptions, TextlintKernelOptions } from "./textlint-kernel-interface.js";
 import type { TextlintFixResult, TextlintResult } from "@textlint/types";
-import { TextlintKernelDescriptor } from "./descriptor";
-import { TextlintSourceCodeImpl } from "./context/TextlintSourceCodeImpl";
-import { isPluginParsedObject } from "./util/isPluginParsedObject";
-import { invariant } from "./util/invariant";
+import { TextlintKernelDescriptor } from "./descriptor/index.js";
+import { TextlintSourceCodeImpl } from "./context/TextlintSourceCodeImpl.js";
+import { isPluginParsedObject } from "./util/isPluginParsedObject.js";
+import { invariant } from "./util/invariant.js";
 import { coreFlags } from "@textlint/feature-flag";
 import { isTxtAST } from "@textlint/ast-tester";
 import _debug from "debug";
-import { parseByPlugin } from "./util/parse-by-plugin";
-import { createDummyTextLintResult } from "./util/createDummyTextLintResult";
+import { parseByPlugin } from "./util/parse-by-plugin.js";
+import { createDummyTextLintResult } from "./util/createDummyTextLintResult.js";
 
 const debug = _debug("textlint:kernel");
 

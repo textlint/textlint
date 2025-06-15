@@ -1,14 +1,15 @@
 "use strict";
-import path from "path";
-import compats from "../../src/formatters/compats";
-import assert from "assert";
+import path from "node:path";
+import { describe, it } from "vitest";
+import compats from "../../src/formatters/compats.js";
+import assert from "node:assert";
 
 const formatter = (code) => {
     return compats(code, { color: false });
 };
 
 describe("formatter:compats", function () {
-    context("when single modified", function () {
+    describe("when single modified", function () {
         it("should return output", function () {
             const input = path.join(__dirname, "../fixtures", "single.md");
             const code = require("../fixtures/single");
@@ -24,7 +25,7 @@ Fixed 1 problem
             );
         });
     });
-    context("when double modified", function () {
+    describe("when double modified", function () {
         it("should return output", function () {
             const input = path.join(__dirname, "../fixtures", "double.md");
             const code = require("../fixtures/double");
@@ -41,7 +42,7 @@ Fixed 2 problems
             );
         });
     });
-    context("when multiple files results", function () {
+    describe("when multiple files results", function () {
         it("should return output", function () {
             const singleFile = path.join(__dirname, "../fixtures", "single.md");
             const multiple = path.join(__dirname, "../fixtures", "multiple.md");
@@ -65,7 +66,7 @@ Fixed 7 problems
         });
     });
 
-    context("when remaining messages", function () {
+    describe("when remaining messages", function () {
         it("should return output", function () {
             const input = path.join(__dirname, "../fixtures", "remaining.md");
             const code = require("../fixtures/remaining");

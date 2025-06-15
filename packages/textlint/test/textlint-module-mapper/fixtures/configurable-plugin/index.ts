@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import configurableRule from "./rules/configurable-rule";
+import configurableRule from "./rules/configurable-rule.js";
 
 export default {
     rules: {

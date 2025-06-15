@@ -1,54 +1,53 @@
 {
-    "name": "@textlint/textlint-plugin-text",
-    "version": "14.8.1",
-    "description": "plain text plugin for textlint",
-    "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-text/",
-    "bugs": {
-        "url": "https://github.com/textlint/textlint/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/textlint/textlint.git"
-    },
-    "license": "MIT",
-    "author": "azu",
-    "type": "commonjs",
-    "types": "lib/src/index.d.ts",
-    "main": "lib/src/index.js",
-    "module": "module/src/index.js",
-    "directories": {
-        "test": "test"
-    },
-    "files": [
-        "bin/",
-        "lib/",
-        "module/",
-        "src/",
-        "!*.tsbuildinfo"
-    ],
-    "scripts": {
-        "build": "tsc -b && tsc -b tsconfig.module.json",
-        "clean": "rimraf lib/ module/",
-        "prepack": "npm run --if-present build",
-        "test": "mocha",
-        "watch": "tsc -b --watch"
-    },
-    "dependencies": {
-        "@textlint/text-to-ast": "workspace:*",
-        "@textlint/types": "workspace:*"
-    },
-    "devDependencies": {
-        "@textlint/kernel": "workspace:*",
-        "@types/mocha": "9.1.1",
-        "@types/node": "^20.19.0",
-        "@types/react": "^18.3.23",
-        "mocha": "^10.8.2",
-        "rimraf": "^6.0.1",
-        "textlint-rule-no-todo": "^2.0.1",
-        "ts-node": "^10.9.2",
-        "typescript": "~5.3.3"
-    },
-    "publishConfig": {
-        "access": "public"
-    }
+  "name": "@textlint/textlint-plugin-text",
+  "version": "14.8.1",
+  "description": "plain text plugin for textlint",
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-text/",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "type": "commonjs",
+  "main": "lib/src/index.js",
+  "module": "module/src/index.js",
+  "types": "lib/src/index.d.ts",
+  "directories": {
+    "test": "test"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "module/",
+    "src/",
+    "!*.tsbuildinfo"
+  ],
+  "scripts": {
+    "build": "tsc -b && tsc -b tsconfig.module.json",
+    "clean": "rimraf lib/ module/",
+    "prepack": "npm run --if-present build",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "watch": "tsc -b --watch"
+  },
+  "dependencies": {
+    "@textlint/text-to-ast": "workspace:*",
+    "@textlint/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@textlint/kernel": "workspace:*",
+    "@types/node": "^20.19.0",
+    "@types/react": "^18.3.23",
+    "rimraf": "^6.0.1",
+    "textlint-rule-no-todo": "^2.0.1",
+    "typescript": "~5.3.3",
+    "vitest": "^3.2.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

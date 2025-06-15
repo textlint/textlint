@@ -1,6 +1,7 @@
-import { TextlintRuleErrorImpl } from "../../src/context/TextlintRuleErrorImpl";
-import * as assert from "assert";
-import { createPaddingLocator } from "../../src/context/TextlintRulePaddingLocator";
+import { TextlintRuleErrorImpl } from "../../src/context/TextlintRuleErrorImpl.js";
+import { afterEach, beforeEach, describe, it } from "vitest";
+import * as assert from "node:assert";
+import { createPaddingLocator } from "../../src/context/TextlintRulePaddingLocator.js";
 import { coreFlags } from "@textlint/feature-flag";
 
 describe("TextlintRuleError", function () {

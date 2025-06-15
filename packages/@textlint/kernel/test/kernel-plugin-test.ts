@@ -1,10 +1,11 @@
-import { createPluginStub } from "./helper/ExamplePlugin";
-import { errorRule } from "./helper/ErrorRule";
-import { TextlintKernel, TextlintPluginCreator } from "../src";
-import * as path from "path";
-import * as assert from "assert";
-import { createBinaryPluginStub } from "./helper/BinaryPlugin";
-import { createAsyncPluginStub } from "./helper/AsyncPlugin";
+import { createPluginStub } from "./helper/ExamplePlugin.js";
+import { describe, it } from "vitest";
+import { errorRule } from "./helper/ErrorRule.js";
+import { TextlintKernel, TextlintPluginCreator } from "../src/index";
+import * as path from "node:path";
+import * as assert from "node:assert";
+import { createBinaryPluginStub } from "./helper/BinaryPlugin.js";
+import { createAsyncPluginStub } from "./helper/AsyncPlugin.js";
 import type { TextlintRuleReporter } from "@textlint/types";
 import { TextlintKernelOptions } from "../src/textlint-kernel-interface";
 import { TxtDocumentNode } from "@textlint/ast-node-types";
@@ -235,7 +236,7 @@ describe("kernel-plugin", () => {
             return assert
                 .rejects(() => {
                     return kernel.fixText("text", options);
-                }, /invalid AST/)
+                }, /example processor return invalid AST object/)
                 .finally(() => {
                     resetFlags();
                 });

@@ -1,7 +1,8 @@
 // LICENSE : MIT
 "use strict";
-import * as assert from "assert";
-import sortMessages from "../../src/messages/sort-messages-process";
+import * as assert from "node:assert";
+import { describe, it } from "vitest";
+import sortMessages from "../../src/messages/sort-messages-process.js";
 import { TextlintMessage } from "@textlint/types";
 
 const createTextlintMessage = (
@@ -30,12 +31,12 @@ const createTextlintMessage = (
 };
 
 describe("sort-message-test", function () {
-    context("when empty array", function () {
+    describe("when empty array", function () {
         it("should return empty array", function () {
             assert.equal(sortMessages([]).length, 0);
         });
     });
-    context("when reverse line", function () {
+    describe("when reverse line", function () {
         it("should sort by line and column", function () {
             const message = [
                 createTextlintMessage({ line: 3, column: 1 }),
@@ -48,7 +49,7 @@ describe("sort-message-test", function () {
             assert.deepEqual(sortMessages(message), expected);
         });
     });
-    context("when reverse column", function () {
+    describe("when reverse column", function () {
         it("should sort by line and column", function () {
             const message = [
                 createTextlintMessage({ line: 1, column: 3 }),
@@ -61,7 +62,7 @@ describe("sort-message-test", function () {
             assert.deepEqual(sortMessages(message), expected);
         });
     });
-    context("when reverse both", function () {
+    describe("when reverse both", function () {
         it("should sort by line and column", function () {
             const message = [
                 createTextlintMessage({ line: 3, column: 3 }),

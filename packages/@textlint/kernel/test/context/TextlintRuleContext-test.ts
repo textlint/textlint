@@ -1,17 +1,18 @@
 // LICENSE : MIT
 "use strict";
-import * as assert from "assert";
-import { assertRuleContext } from "./assert-rule-context";
+import * as assert from "node:assert";
+import { describe, it } from "vitest";
+import { assertRuleContext } from "./assert-rule-context.js";
 import { TextlintRuleModule } from "@textlint/types";
-import { TextlintKernel } from "../../src/index";
-import { createPluginStub } from "../helper/ExamplePlugin";
+import { TextlintKernel } from "../../src/index.js";
+import { createPluginStub } from "../helper/ExamplePlugin.js";
 
 describe("Context", function () {
     it("should receive context and options", function () {
         const kernel = new TextlintKernel();
         const expectedOptions = { key: "value", str: "string", on: true };
         const assertReporter: TextlintRuleModule = (context, options) => {
-            assertRuleContext(context);
+            assertRuledescribe(context);
             assert.deepEqual(options, expectedOptions);
             return {};
         };

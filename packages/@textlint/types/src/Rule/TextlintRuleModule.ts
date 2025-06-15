@@ -2,8 +2,8 @@
  * Rule reporter function
  */
 import { ASTNodeTypes, TypeofTxtNode } from "@textlint/ast-node-types";
-import { TextlintRuleOptions } from "./TextlintRuleOptions";
-import { TextlintRuleContext } from "./TextlintRuleContext";
+import { TextlintRuleOptions } from "./TextlintRuleOptions.js";
+import { TextlintRuleContext } from "./TextlintRuleContext.js";
 
 /**
  * Rule Reporter Handler object define handler for each TxtNode type.

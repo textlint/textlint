@@ -4,7 +4,7 @@
 import type { TextlintRuleContextFixCommand, TextlintRuleErrorDetails, TextlintRuleError } from "@textlint/types";
 import { TextlintRuleErrorPaddingLocation } from "@textlint/types";
 import { throwIfTesting } from "@textlint/feature-flag";
-import { isTextlintRuleErrorPaddingLocation } from "./TextlintRulePaddingLocator";
+import { isTextlintRuleErrorPaddingLocation } from "./TextlintRulePaddingLocator.js";
 
 const assertTextlintRuleErrorDetail = (details: TextlintRuleErrorDetails) => {
     // reject wrong usage

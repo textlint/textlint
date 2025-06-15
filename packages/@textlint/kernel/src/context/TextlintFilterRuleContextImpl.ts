@@ -6,9 +6,9 @@ import type {
     TextlintSourceCode
 } from "@textlint/types";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
-import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl";
-import { createPaddingLocator } from "./TextlintRulePaddingLocator";
-import { invariant } from "../util/invariant";
+import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl.js";
+import { createPaddingLocator } from "./TextlintRulePaddingLocator.js";
+import { invariant } from "../util/invariant.js";
 
 /**
  * Rule context object is passed to each rule as `context`

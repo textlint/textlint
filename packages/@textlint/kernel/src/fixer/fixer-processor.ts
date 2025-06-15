@@ -2,16 +2,16 @@
 "use strict";
 
 import type { TextlintFixResult, TextlintMessage, TextlintPluginProcessor, TextlintSourceCode } from "@textlint/types";
-import FixerTask from "../task/fixer-task";
-import TaskRunner from "../task/task-runner";
-import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
-import MessageProcessManager from "../messages/MessageProcessManager";
-import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor";
-import { TextlintSourceCodeImpl } from "../context/TextlintSourceCodeImpl";
+import FixerTask from "../task/fixer-task.js";
+import TaskRunner from "../task/task-runner.js";
+import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface.js";
+import MessageProcessManager from "../messages/MessageProcessManager.js";
+import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor/index.js";
+import { TextlintSourceCodeImpl } from "../context/TextlintSourceCodeImpl.js";
 import _debug from "debug";
 import { applyFixesToSourceCode } from "@textlint/source-code-fixer";
-import { invariant } from "../util/invariant";
-import { parseByPlugin } from "../util/parse-by-plugin";
+import { invariant } from "../util/invariant.js";
+import { parseByPlugin } from "../util/parse-by-plugin.js";
 
 const debug = _debug("textlint:fixer-processor");
 

@@ -2,11 +2,12 @@ import {
     filterRulesObjectToKernelRule,
     pluginsObjectToKernelRule,
     rulesObjectToKernelRule
-} from "../../src/util/object-to-kernel-format";
-import * as assert from "assert";
-import exampleRule from "./fixtures/example-rule";
-import exampleFilterRule from "./fixtures/example-filter-rule";
-import examplePlugin from "./fixtures/example-plugin";
+} from "../../src/util/object-to-kernel-format.js";
+import { describe, it } from "vitest";
+import * as assert from "node:assert";
+import exampleRule from "./fixtures/example-rule.js";
+import exampleFilterRule from "./fixtures/example-filter-rule.js";
+import examplePlugin from "./fixtures/example-plugin.js";
 
 describe("object-to-kernel-format", () => {
     describe("rulesObjectToKernelRule", () => {

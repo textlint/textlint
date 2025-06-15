@@ -1,5 +1,5 @@
 // MIT © 2017 azu
-import type { TextlintMessage } from "../../src/index";
+import type { TextlintMessage } from "../../src/index.js";
 import type { TextlintPluginCreator, TextlintPluginProcessor } from "@textlint/types";
 import { parse } from "@textlint/markdown-to-ast";
 

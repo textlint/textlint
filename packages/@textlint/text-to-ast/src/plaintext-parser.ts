@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { Syntax } from "./plaintext-syntax";
+import { Syntax } from "./plaintext-syntax.js";
 import type { TxtBreakNode, TxtDocumentNode, TxtNode, TxtParagraphNode } from "@textlint/ast-node-types";
 import { TxtStrNode } from "@textlint/ast-node-types";
 

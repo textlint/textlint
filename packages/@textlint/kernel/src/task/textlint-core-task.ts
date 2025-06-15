@@ -1,11 +1,11 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintRuleErrorImpl } from "../context/TextlintRuleErrorImpl";
-import { EventEmitter, PromiseEventEmitter } from "./promise-event-emitter";
-import { resolveLocation, resolveFixCommandLocation } from "../core/source-location";
-import timing from "../util/timing";
-import { invariant } from "../util/invariant";
-import MessageType from "../shared/type/MessageType";
+import { TextlintRuleErrorImpl } from "../context/TextlintRuleErrorImpl.js";
+import { EventEmitter, PromiseEventEmitter } from "./promise-event-emitter.js";
+import { resolveLocation, resolveFixCommandLocation } from "../core/source-location.js";
+import timing from "../util/timing.js";
+import { invariant } from "../util/invariant.js";
+import MessageType from "../shared/type/MessageType.js";
 import { AnyTxtNode, TxtParentNode } from "@textlint/ast-node-types";
 import type {
     TextlintFilterRuleContext,
@@ -22,7 +22,7 @@ import type {
     TextlintSourceCode
 } from "@textlint/types";
 import { normalizeTextlintKeyPath } from "@textlint/utils";
-import { TextlintRuleContextImpl } from "../context/TextlintRuleContextImpl";
+import { TextlintRuleContextImpl } from "../context/TextlintRuleContextImpl.js";
 import _debug from "debug";
 import { Controller as TraverseController } from "@textlint/ast-traverse";
 

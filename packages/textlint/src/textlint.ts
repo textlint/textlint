@@ -34,7 +34,7 @@
 
 
  */
-import { TextLintCore } from "./DEPRECATED/textlint-core";
+import { TextLintCore } from "./DEPRECATED/textlint-core.js";
 /**
  * singleton instance
  * @deprecated use new APIs https://textlint.org/docs/use-as-modules.html#new-apis

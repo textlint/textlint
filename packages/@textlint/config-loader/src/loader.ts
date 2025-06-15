@@ -1,10 +1,10 @@
-import { TextLintModuleResolver } from "./textlint-module-resolver";
-import { isPresetRuleKey } from "./config-util";
-import { TextlintRcConfig } from "./TextlintRcConfig";
+import { TextLintModuleResolver } from "./textlint-module-resolver.js";
+import { isPresetRuleKey } from "./config-util.js";
+import { TextlintRcConfig } from "./TextlintRcConfig.js";
 import { moduleInterop } from "@textlint/module-interop";
-import { TextlintConfigDescriptor } from "./TextlintConfigDescriptor";
+import { TextlintConfigDescriptor } from "./TextlintConfigDescriptor.js";
 import { TextlintPluginCreator } from "@textlint/types";
-import { isTextlintRulePresetCreator, isTextlintFilterRuleModule, isTextlintRuleModule } from "./is";
+import { isTextlintRulePresetCreator, isTextlintFilterRuleModule, isTextlintRuleModule } from "./is.js";
 import { normalizeTextlintPresetSubRuleKey } from "@textlint/utils";
 import { dynamicImport } from "@textlint/resolver";
 

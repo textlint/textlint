@@ -4,4 +4,4 @@ export {
     revertSourceCode,
     SimpleTextSourceCode,
     SourceCodeFixerResult
-} from "./source-code-fixer";
+} from "./source-code-fixer.js";

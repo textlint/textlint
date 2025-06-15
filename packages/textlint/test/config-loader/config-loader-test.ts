@@ -1,11 +1,12 @@
 // LICENSE : MIT
 "use strict";
-import path from "path";
-import { TextLintModuleResolver } from "../../src/DEPRECATED/engine/textlint-module-resolver";
-import { loadConfig } from "../../src/DEPRECATED/config/config-loader";
-import { Config } from "../../src/DEPRECATED/config";
+import path from "node:path";
+import { it, describe } from "vitest";
+import { TextLintModuleResolver } from "../../src/DEPRECATED/engine/textlint-module-resolver.js";
+import { loadConfig } from "../../src/DEPRECATED/config/config-loader.js";
+import { Config } from "../../src/DEPRECATED/config.js";
 
-import assert from "assert";
+import assert from "node:assert";
 
 const dummyModuleLoader = new TextLintModuleResolver({
     rulesBaseDirectory: path.join(__dirname, "fixtures")
@@ -21,7 +22,7 @@ describe("config-loader", function () {
         assert.equal(typeof config.rules["no-todo"], "object");
         assert.equal(config.rules["no-todo"]["use-task-list"], true);
     });
-    context("when config file is not encoded in UTF8", () => {
+    describe("when config file is not encoded in UTF8", () => {
         // FIXME: https://github.com/textlint/textlint/issues/298
         it.skip("should throw an Error", () => {
             const notUTF8Files = ["shift-jis.ts", "euc-jp.json"];
@@ -37,7 +38,7 @@ describe("config-loader", function () {
             });
         });
     });
-    context("when specify Config module, found it", function () {
+    describe("when specify Config module, found it", function () {
         it("should load from Config module", function () {
             const baseDir = path.join(__dirname, "fixtures");
             const moduleResolver = new TextLintModuleResolver({
@@ -52,7 +53,7 @@ describe("config-loader", function () {
             assert.ok(config.rules.config.key === true);
         });
     });
-    context("when specify Config module, but not found", function () {
+    describe("when specify Config module, but not found", function () {
         it("should load same name of module", function () {
             const baseDir = path.join(__dirname, "fixtures");
             const moduleResolver = new TextLintModuleResolver({

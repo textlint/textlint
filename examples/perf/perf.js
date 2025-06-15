@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 require("shelljs/make");
-var os = require("os");
+var os = require("node:os");
 /*
  * A little bit fuzzy. My computer has a first CPU speed of 3093 and the perf test
  * always completes in < 2000ms. However, Travis is less predictable due to

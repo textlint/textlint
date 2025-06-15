@@ -1,13 +1,14 @@
 // LICENSE : MIT
 "use strict";
-import * as assert from "assert";
-import { resolveFixCommandLocation, resolveLocation } from "../../src/core/source-location";
-import RuleFixer from "../../src/fixer/rule-fixer";
-import createDummySourceCode from "../util/dummy-source-code";
+import * as assert from "node:assert";
+import { afterEach, beforeEach, describe, it } from "vitest";
+import { resolveFixCommandLocation, resolveLocation } from "../../src/core/source-location.js";
+import RuleFixer from "../../src/fixer/rule-fixer.js";
+import createDummySourceCode from "../util/dummy-source-code.js";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
-import { TextlintRuleErrorImpl } from "../../src/context/TextlintRuleErrorImpl";
+import { TextlintRuleErrorImpl } from "../../src/context/TextlintRuleErrorImpl.js";
 import { TxtNode } from "@textlint/ast-node-types";
-import { createPaddingLocator } from "../../src/context/TextlintRulePaddingLocator";
+import { createPaddingLocator } from "../../src/context/TextlintRulePaddingLocator.js";
 import { TextlintRuleError } from "@textlint/types";
 
 // Workaround for structured-source serialization
@@ -22,7 +23,7 @@ describe("source-location", function () {
     afterEach(function () {
         resetFlags();
     });
-    context("message only", function () {
+    describe("message only", function () {
         it("should return node's start location", function () {
             const node = {
                 type: "Str" as const,
@@ -37,7 +38,7 @@ describe("source-location", function () {
             assert.strictEqual(column, 11);
         });
     });
-    context("[deprecated] column only", function () {
+    describe("[deprecated] column only", function () {
         it("[Backward Compatible] should handle column as index", function () {
             coreFlags.runningTester = false;
 
@@ -57,7 +58,7 @@ describe("source-location", function () {
             assert.strictEqual(line, 1);
             assert.strictEqual(column, 16);
         });
-        context("[textlint-tester] when testing", function () {
+        describe("[textlint-tester] when testing", function () {
             it("should throw error in testing.", function () {
                 const node = {
                     type: "Str" as const,
@@ -72,7 +73,7 @@ describe("source-location", function () {
             });
         });
     });
-    context("[deprecated] index only", function () {
+    describe("[deprecated] index only", function () {
         it("should return column, line", function () {
             const node = {
                 type: "Str" as const,
@@ -88,7 +89,7 @@ describe("source-location", function () {
         });
     });
 
-    context("[deprecated] index and column", function () {
+    describe("[deprecated] index and column", function () {
         it("should throw error", function () {
             const node = {
                 type: "Str" as const,
@@ -116,7 +117,7 @@ describe("source-location", function () {
             }, /\[RULE_NAME\]/);
         });
     });
-    context("[deprecated] when line only", function () {
+    describe("[deprecated] when line only", function () {
         it("should add line to the node.start", function () {
             const source = createDummySourceCode("1234567890\n\n1234567890\n", "test.md");
             // @ts-expect-error : any node may have not children
@@ -129,7 +130,7 @@ describe("source-location", function () {
             });
         });
     });
-    context("when pass padding property", function () {
+    describe("when pass padding property", function () {
         it("should throw error if pass invalid loc", function () {
             const source = createDummySourceCode("1234567890\n\n1234567890\n", "test.md");
             const node = source.ast;
@@ -205,7 +206,7 @@ describe("source-location", function () {
             assert.strictEqual(content, `234567890\n12`);
         });
     });
-    context("paddingObject is plain object", function () {
+    describe("paddingObject is plain object", function () {
         it("should accept this that same as RuleError", function () {
             const node = {
                 type: "Str" as const,

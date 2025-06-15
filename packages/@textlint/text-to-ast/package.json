@@ -1,61 +1,60 @@
 {
-    "name": "@textlint/text-to-ast",
-    "version": "14.8.1",
-    "description": "Parse plain text to AST with location info.",
-    "keywords": [
-        "ast",
-        "textlint",
-        "txt"
-    ],
-    "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/text-to-ast/",
-    "bugs": {
-        "url": "https://github.com/textlint/textlint/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/textlint/textlint.git"
-    },
-    "license": "MIT",
-    "author": "azu",
-    "type": "commonjs",
-    "main": "lib/src/index.js",
-    "module": "module/src/index.js",
-    "types": "lib/src/index.d.ts",
-    "directories": {
-        "example": "example",
-        "test": "test"
-    },
-    "files": [
-        "bin/",
-        "lib/",
-        "module/",
-        "src/",
-        "!*.tsbuildinfo"
-    ],
-    "scripts": {
-        "build": "tsc -b && tsc -b tsconfig.module.json",
-        "clean": "rimraf lib/ module/",
-        "crlf": "eolConverter crlf test/snapshots/crlf/input.txt && eolConverter crlf test/snapshots/crlf-empty-line/input.txt",
-        "prepack": "npm run --if-present build",
-        "pretest": "npm run crlf",
-        "test": "mocha",
-        "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
-        "watch": "tsc -b --watch"
-    },
-    "dependencies": {
-        "@textlint/ast-node-types": "workspace:*"
-    },
-    "devDependencies": {
-        "@textlint/ast-tester": "workspace:*",
-        "@types/mocha": "^10.0.10",
-        "@types/node": "^18.19.111",
-        "eol-converter-cli": "^1.1.0",
-        "mocha": "^10.8.2",
-        "rimraf": "^6.0.1",
-        "ts-node": "^10.9.2",
-        "typescript": "~5.3.3"
-    },
-    "publishConfig": {
-        "access": "public"
-    }
+  "name": "@textlint/text-to-ast",
+  "version": "14.8.1",
+  "description": "Parse plain text to AST with location info.",
+  "keywords": [
+    "ast",
+    "textlint",
+    "txt"
+  ],
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/text-to-ast/",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "type": "commonjs",
+  "main": "lib/src/index.js",
+  "module": "module/src/index.js",
+  "types": "lib/src/index.d.ts",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "module/",
+    "src/",
+    "!*.tsbuildinfo"
+  ],
+  "scripts": {
+    "build": "tsc -b && tsc -b tsconfig.module.json",
+    "clean": "rimraf lib/ module/",
+    "crlf": "eolConverter crlf test/snapshots/crlf/input.txt && eolConverter crlf test/snapshots/crlf-empty-line/input.txt",
+    "prepack": "npm run --if-present build",
+    "pretest": "npm run crlf",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
+    "watch": "tsc -b --watch"
+  },
+  "dependencies": {
+    "@textlint/ast-node-types": "workspace:*"
+  },
+  "devDependencies": {
+    "@textlint/ast-tester": "workspace:*",
+    "@types/node": "^18.19.111",
+    "eol-converter-cli": "^1.1.0",
+    "rimraf": "^6.0.1",
+    "typescript": "~5.3.3",
+    "vitest": "^3.2.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

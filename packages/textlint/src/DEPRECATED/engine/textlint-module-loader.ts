@@ -1,21 +1,21 @@
 // LICENSE : MIT
 "use strict";
-import { EventEmitter } from "events";
+import { EventEmitter } from "node:events";
 import { moduleInterop } from "@textlint/module-interop";
 import debug0 from "debug";
-import { isPluginRuleKey } from "../config/config-util";
-import { loadFromDir } from "../../engine/rule-loader";
-import { Logger } from "../../util/logger";
-import { TextLintModuleResolver } from "./textlint-module-resolver";
-import { TextLintModuleMapper } from "./textlint-module-mapper";
-import { Config } from "../config";
+import { isPluginRuleKey } from "../config/config-util.js";
+import { loadFromDir } from "../../engine/rule-loader.js";
+import { Logger } from "../../util/logger.js";
+import { TextLintModuleResolver } from "./textlint-module-resolver.js";
+import { TextLintModuleMapper } from "./textlint-module-mapper.js";
+import { Config } from "../config.js";
 import {
     normalizeTextlintFilterRuleKey,
     normalizeTextlintPluginKey,
     normalizeTextlintRuleKey,
     normalizeTextlintRulePresetKey
 } from "@textlint/utils";
-import fs from "fs";
+import fs from "node:fs";
 
 const debug = debug0("textlint:module-loader");
 

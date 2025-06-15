@@ -1,9 +1,11 @@
 // LICENSE : MIT
 "use strict";
-import { createFormatter, getFormatterList } from "../src/index";
+import { createFormatter, getFormatterList } from "../src/index.js";
 
-import * as path from "path";
-import * as assert from "assert";
+import { describe, it } from "vitest";
+
+import * as path from "node:path";
+import * as assert from "node:assert";
 
 describe("@textlint/linter-formatter-test", function () {
     describe("createFormatter", function () {
@@ -13,7 +15,7 @@ describe("@textlint/linter-formatter-test", function () {
             });
             assert.ok(typeof formatter === "function");
         });
-        context("formatter", function () {
+        describe("formatter", function () {
             it("should return output text", function () {
                 const formatter = createFormatter({
                     formatterName: "stylish",

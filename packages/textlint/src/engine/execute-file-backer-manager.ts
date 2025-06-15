@@ -1,4 +1,4 @@
-import { AbstractBacker } from "./execute-file-backers/abstruct-backer";
+import { AbstractBacker } from "./execute-file-backers/abstruct-backer.js";
 import { TextlintResult } from "@textlint/kernel";
 
 export class ExecuteFileBackerManager {

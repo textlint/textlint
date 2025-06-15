@@ -1,9 +1,9 @@
 // MIT © 2017 azu
 "use strict";
-import assert from "assert";
+import assert from "node:assert";
 import type { TextlintRuleContext } from "@textlint/types";
 
-export function assertRuleContext(context: Readonly<TextlintRuleContext>) {
+export function assertRuledescribe(context: Readonly<TextlintRuleContext>) {
     assert.ok(context !== undefined);
     assert.ok(typeof context.id === "string");
     assert.ok(typeof context.Syntax === "object");

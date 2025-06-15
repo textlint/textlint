@@ -1,10 +1,13 @@
-import * as fs from "fs";
-import * as path from "path";
-import * as assert from "assert";
-import { TextlintKernelOptions } from "../src/textlint-kernel-interface";
-import { TextlintKernel } from "../src";
+import * as fs from "node:fs";
+import { describe, it, expect } from "vitest";
+import * as path from "node:path";
+import { pathToFileURL } from "node:url";
+import * as assert from "node:assert";
+import { TextlintKernelOptions } from "../src/textlint-kernel-interface.js";
+import { TextlintKernel } from "../src/index.js";
 
-const SNAPSHOTS_DIRECTORY = path.join(__dirname, "snapshots");
+// Use a relative path for test files in vitest
+const SNAPSHOTS_DIRECTORY = path.resolve(__dirname, "snapshots");
 // normalize based on the OS
 const normalizePath = (value: string) => {
     return path.sep === "\\" ? value.replace(/\\/g, "/") : value;
@@ -29,8 +32,9 @@ describe("textlint-kernel-snapshots", () => {
             const actualFilePath = path.join(fixtureDir, "input.md");
             const actualContent = fs.readFileSync(actualFilePath, "utf-8");
             const actualOptionFilePath = path.join(fixtureDir, "options.ts");
-            // FIXME: import() does not transpile .ts
-            const actualOptions: TextlintKernelOptions = require(actualOptionFilePath).options;
+            // Use dynamic import for TypeScript files
+            const actualOptionsModule = await import(pathToFileURL(actualOptionFilePath).href);
+            const actualOptions: TextlintKernelOptions = actualOptionsModule.options;
             const kernel = new TextlintKernel();
             const actualResults = normalizeJSON(
                 await kernel.lintText(actualContent, actualOptions),
@@ -41,8 +45,7 @@ describe("textlint-kernel-snapshots", () => {
             // UPDATE_SNAPSHOT=1 npm test
             if (!fs.existsSync(expectedFilePath) || process.env.UPDATE_SNAPSHOT) {
                 fs.writeFileSync(expectedFilePath, JSON.stringify(actualResults, null, 4));
-                this.skip(); // skip when updating snapshots
-                return;
+                return; // skip when updating snapshots
             }
             // compare input and output
             const expectedContent = JSON.parse(fs.readFileSync(expectedFilePath, "utf-8"));

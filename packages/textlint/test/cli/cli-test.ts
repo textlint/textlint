@@ -1,12 +1,13 @@
 // LICENSE : MIT
 "use strict";
-import * as assert from "assert";
-import { cli } from "../../src/cli";
-import * as path from "path";
-import { Logger } from "../../src/util/logger";
-import * as fs from "fs";
-import { loadBuiltinPlugins } from "../../src/loader/TextlintrcLoader";
-import * as os from "os";
+import * as assert from "node:assert";
+import { afterEach, beforeEach, describe, it } from "vitest";
+import { cli } from "../../src/cli.js";
+import * as path from "node:path";
+import { Logger } from "../../src/util/logger.js";
+import * as fs from "node:fs";
+import { loadBuiltinPlugins } from "../../src/loader/TextlintrcLoader.js";
+import * as os from "node:os";
 
 type RunContext = {
     getLogs(): string[];
@@ -54,7 +55,7 @@ describe("cli-test", function () {
     afterEach(function () {
         Logger.log = originLog;
     });
-    context("when pass linting", function () {
+    describe("when pass linting", function () {
         it("should output checkstyle xml if the results length is 0", function () {
             return runWithMockLog(({ getLogs }) => {
                 const targetFile = path.join(__dirname, "fixtures/test.md");
@@ -68,7 +69,7 @@ describe("cli-test", function () {
             });
         });
     });
-    context("when fail linting", function () {
+    describe("when fail linting", function () {
         it("should return error when text with incorrect quotes is passed as argument", function () {
             return runWithMockLog(async () => {
                 const ruleDir = path.join(__dirname, "fixtures/rules");
@@ -137,7 +138,7 @@ describe("cli-test", function () {
             });
         });
     });
-    context("When run with --rule", function () {
+    describe("When run with --rule", function () {
         it("should lint the file with long name", function () {
             return runWithMockLog(async ({ assertNotHasLog }) => {
                 const targetFile = path.join(__dirname, "fixtures/test.md");
@@ -157,7 +158,7 @@ describe("cli-test", function () {
             });
         });
     });
-    context("When run with --preset", function () {
+    describe("When run with --preset", function () {
         it("should lint the file with full name", function () {
             return runWithMockLog(async ({ assertNotHasLog }) => {
                 const targetFile = path.join(__dirname, "fixtures/test.md");
@@ -187,7 +188,7 @@ describe("cli-test", function () {
         });
     });
 
-    context("When run with --plugin", function () {
+    describe("When run with --plugin", function () {
         it("should lint the file with full name", function () {
             return runWithMockLog(async ({ assertHasLog }) => {
                 const targetFile = path.join(__dirname, "fixtures/todo.html");
@@ -259,8 +260,8 @@ describe("cli-test", function () {
             });
         });
     });
-    context("--fix", function () {
-        context("when no rules found", function () {
+    describe("--fix", function () {
+        describe("when no rules found", function () {
             it("show suggestion message from FAQ", function () {
                 return runWithMockLog(async ({ assertMatchLog }) => {
                     const targetFile = path.join(__dirname, "fixtures/test.md");
@@ -270,7 +271,7 @@ describe("cli-test", function () {
                 });
             });
         });
-        context("when has rule, but no fix", function () {
+        describe("when has rule, but no fix", function () {
             it("should execute fixer", function () {
                 return runWithMockLog(async ({ assertNotHasLog }) => {
                     const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
@@ -281,7 +282,7 @@ describe("cli-test", function () {
                 });
             });
         });
-        context("when has rule and fix it", function () {
+        describe("when has rule and fix it", function () {
             const targetFilePath = path.join(os.tmpdir(), "fix-input-copy-file.md");
             beforeEach(async () => {
                 try {
@@ -325,7 +326,7 @@ describe("cli-test", function () {
         });
     });
 
-    context("When run with --quiet", function () {
+    describe("When run with --quiet", function () {
         it("shows only errors, not warnings. as a result, it will be no error", function () {
             return runWithMockLog(async ({ assertNotHasLog }) => {
                 const targetFile = path.join(__dirname, "fixtures/todo.html");

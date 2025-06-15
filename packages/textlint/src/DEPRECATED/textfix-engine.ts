@@ -1,10 +1,10 @@
 "use strict";
-import { AbstractTextLintEngine } from "./engine/textlint-engine-core";
+import { AbstractTextLintEngine } from "./engine/textlint-engine-core.js";
 import { createFormatter } from "@textlint/fixer-formatter";
-import { TextLintCore } from "./textlint-core";
-import { TextLintFormatterOption } from "../textlint-interface";
+import { TextLintCore } from "./textlint-core.js";
+import { TextLintFormatterOption } from "../textlint-interface.js";
 import { TextlintFixResult } from "@textlint/kernel";
-import { Logger } from "../util/logger";
+import { Logger } from "../util/logger.js";
 
 /**
  * TextFixEngine a adapter for TextLintEngineCore.

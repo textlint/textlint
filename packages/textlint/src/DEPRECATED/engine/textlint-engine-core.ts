@@ -1,19 +1,19 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintKernelDescriptor, TextlintMessage, TextlintResult } from "@textlint/kernel";
-import { TextLintFormatterOption } from "../../textlint-interface";
-import { TextLintCore } from "../textlint-core";
-import { RuleMap } from "../../engine/rule-map";
-import { PluginMap } from "../../engine/processor-map";
-import { Config } from "../config";
-import { findFiles, pathsToGlobPatterns } from "../../util/old-find-util";
-import { TextLintModuleLoader } from "./textlint-module-loader";
-import { ExecuteFileBackerManager } from "../../engine/execute-file-backer-manager";
-import { CacheBacker } from "../../engine/execute-file-backers/cache-backer";
-import { SeverityLevel } from "../../shared/type/SeverityLevel";
+import { TextLintFormatterOption } from "../../textlint-interface.js";
+import { TextLintCore } from "../textlint-core.js";
+import { RuleMap } from "../../engine/rule-map.js";
+import { PluginMap } from "../../engine/processor-map.js";
+import { Config } from "../config.js";
+import { findFiles, pathsToGlobPatterns } from "../../util/old-find-util.js";
+import { TextLintModuleLoader } from "./textlint-module-loader.js";
+import { ExecuteFileBackerManager } from "../../engine/execute-file-backer-manager.js";
+import { CacheBacker } from "../../engine/execute-file-backers/cache-backer.js";
+import { SeverityLevel } from "../../shared/type/SeverityLevel.js";
 import debug0 from "debug";
-import path from "path";
-import { separateByAvailability } from "../../util/separate-by-availability";
+import path from "node:path";
+import { separateByAvailability } from "../../util/separate-by-availability.js";
 
 const debug = debug0("textlint:engine-core");
 

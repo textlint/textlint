@@ -1,9 +1,10 @@
 // LICENSE : MIT
 "use strict";
 import { TxtNode } from "@textlint/ast-node-types";
-import RuleFixer from "../../src/fixer/rule-fixer";
+import { describe, it } from "vitest";
+import RuleFixer from "../../src/fixer/rule-fixer.js";
 // Original: https://github.com/eslint/eslint/blob/master/tests/src/util/rule-fixer.js
-import assert from "assert";
+import assert from "node:assert";
 
 const fixer = new RuleFixer();
 describe("RuleFixer", function () {

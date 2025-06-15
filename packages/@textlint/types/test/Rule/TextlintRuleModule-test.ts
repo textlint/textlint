@@ -1,4 +1,4 @@
-import { TextlintRuleModule, TextlintRuleOptions, TextlintRuleReporter } from "../../src/index";
+import { TextlintRuleModule, TextlintRuleOptions, TextlintRuleReporter } from "../../src/index.js";
 
 const noop = (..._args: any[]) => {};
 // test any

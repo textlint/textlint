@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { Controller } from "../src";
+import { Controller } from "../src/index.js";
 import { TxtParentNode } from "@textlint/ast-node-types";
 
 export class Dumper {

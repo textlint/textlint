@@ -1,5 +1,6 @@
-import { createPaddingLocator } from "../../../src/context/TextlintRulePaddingLocator";
-import * as assert from "assert";
+import { createPaddingLocator } from "../../../src/context/TextlintRulePaddingLocator.js";
+import { describe, it } from "vitest";
+import * as assert from "node:assert";
 
 describe("TextlintLocator", () => {
     describe("at(index)", function () {

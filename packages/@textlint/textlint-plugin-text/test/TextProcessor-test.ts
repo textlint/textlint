@@ -1,10 +1,11 @@
 // LICENSE : MIT
 "use strict";
-import assert from "assert";
-import fs from "fs";
-import TextPlugin from "../src/index";
+import assert from "node:assert";
+import { describe, it } from "vitest";
+import fs from "node:fs";
+import TextPlugin from "../src/index.js";
 import { TextlintKernel, TextlintPluginOptions } from "@textlint/kernel";
-import path from "path";
+import path from "node:path";
 
 const lintFile = (filePath: string, options: boolean | TextlintPluginOptions | undefined = true) => {
     const kernel = new TextlintKernel();
@@ -39,7 +40,7 @@ const lintText = (text: string, options: boolean | TextlintPluginOptions | undef
 };
 
 describe("TextProcessor", function () {
-    context("when target file is a Text", function () {
+    describe("when target file is a Text", function () {
         it("should report error", function () {
             const fixturePath = path.join(__dirname, "fixtures/test.txt");
             return lintFile(fixturePath).then((results) => {
@@ -48,7 +49,7 @@ describe("TextProcessor", function () {
             });
         });
     });
-    context("when extensions option is specified", function () {
+    describe("when extensions option is specified", function () {
         it("should report error", function () {
             const fixturePath = path.join(__dirname, "fixtures/test.custom");
             return lintFile(fixturePath, {
@@ -59,7 +60,7 @@ describe("TextProcessor", function () {
             });
         });
     });
-    context("when target is text", function () {
+    describe("when target is text", function () {
         it("should report error", function () {
             return lintText("TODO: this is todo").then((results) => {
                 assert(results.messages.length === 1);

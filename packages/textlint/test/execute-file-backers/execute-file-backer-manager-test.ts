@@ -1,12 +1,13 @@
 // MIT © 2016 azu
 "use strict";
 import { TextlintResult } from "@textlint/types";
-import assert from "assert";
-import { ExecuteFileBackerManager } from "../../src/engine/execute-file-backer-manager";
-import { AbstractBacker } from "../../src/engine/execute-file-backers/abstruct-backer";
+import { describe, it } from "vitest";
+import assert from "node:assert";
+import { ExecuteFileBackerManager } from "../../src/engine/execute-file-backer-manager.js";
+import { AbstractBacker } from "../../src/engine/execute-file-backers/abstruct-backer.js";
 
 describe("execute-file-backer-manager", function () {
-    context("when no backer", function () {
+    describe("when no backer", function () {
         it("should process all files", function () {
             const manager = new ExecuteFileBackerManager();
             const executeFile = (filePath: string) => {
@@ -18,7 +19,7 @@ describe("execute-file-backer-manager", function () {
             });
         });
     });
-    context("when has backer", function () {
+    describe("when has backer", function () {
         it("call each backer lifecycle", function () {
             const manager = new ExecuteFileBackerManager();
             const callStack: string[] = [];
@@ -54,7 +55,7 @@ describe("execute-file-backer-manager", function () {
             });
         });
     });
-    context("when shouldExecute:false backer", function () {
+    describe("when shouldExecute:false backer", function () {
         it("should return dummy result instead of actual result", function () {
             class ShouldNotExecuteBacker extends AbstractBacker {
                 shouldExecute() {

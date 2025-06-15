@@ -1,12 +1,13 @@
-import * as assert from "assert";
+import * as assert from "node:assert";
+import { describe, it } from "vitest";
 import {
     normalizeTextlintFilterRuleKey,
     normalizeTextlintPluginKey,
     normalizeTextlintPresetSubRuleKey,
     normalizeTextlintRuleKey,
     normalizeTextlintRulePresetKey,
-} from "../../src/KeyPath/TextlintKeyPath";
-import { splitKeyToPresetSubRule } from "../../src/KeyPath/KeyPathUtil";
+} from "../../src/KeyPath/TextlintKeyPath.js";
+import { splitKeyToPresetSubRule } from "../../src/KeyPath/KeyPathUtil.js";
 
 type NormalizeFunction = (name: string) => string;
 const checkPatterns = (normalizeFunction: NormalizeFunction, patterns: { before: string; after: string }[]) => {

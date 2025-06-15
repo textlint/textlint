@@ -2,11 +2,11 @@
 "use strict";
 import { TextlintPackageNamePrefix } from "@textlint/utils";
 
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 // @ts-ignore - read-pkg v1.1.0 doesn't have type definitions
 import readPkg from "read-pkg";
-import { Logger } from "../util/logger";
+import { Logger } from "../util/logger.js";
 
 const isFile = (filePath: string) => {
     try {

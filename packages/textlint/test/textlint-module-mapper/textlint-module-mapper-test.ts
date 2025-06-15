@@ -1,9 +1,10 @@
 // LICENSE : MIT
 "use strict";
-import { TextLintModuleMapper } from "../../src/DEPRECATED/engine/textlint-module-mapper";
-import configurablePlugin from "./fixtures/configurable-plugin";
-import configurableRule from "./fixtures/configurable-plugin/rules/configurable-rule";
-import assert from "assert";
+import { TextLintModuleMapper } from "../../src/DEPRECATED/engine/textlint-module-mapper.js";
+import { describe, it } from "vitest";
+import configurablePlugin from "./fixtures/configurable-plugin.js";
+import configurableRule from "./fixtures/configurable-plugin/rules/configurable-rule.js";
+import assert from "node:assert";
 
 describe("textlint-module-mapper-test", function () {
     describe("#createRuleEntities", function () {

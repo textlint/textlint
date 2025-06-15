@@ -11,11 +11,11 @@ export type {
     TextlintSourceCodeLocation,
     TextlintSourceCodePosition,
     TextlintSourceCodeRange,
-} from "./Source/TextlintSourceCode";
+} from "./Source/TextlintSourceCode.js";
 // RuleContext
-export type { TextlintRulePaddingLocator } from "./Rule/TextlintRulePaddingLocator";
-export type { TextlintRuleContextFixCommand } from "./Rule/TextlintRuleContextFixCommand";
-export type { TextlintRuleContextFixCommandGenerator } from "./Rule/TextlintRuleContextFixCommandGenerator";
+export type { TextlintRulePaddingLocator } from "./Rule/TextlintRulePaddingLocator.js";
+export type { TextlintRuleContextFixCommand } from "./Rule/TextlintRuleContextFixCommand.js";
+export type { TextlintRuleContextFixCommandGenerator } from "./Rule/TextlintRuleContextFixCommandGenerator.js";
 export type {
     TextlintRuleError,
     TextlintRuleErrorConstructor,
@@ -24,34 +24,34 @@ export type {
     TextlintRuleErrorPaddingLocationRange,
     TextlintRuleErrorPaddingLocationLoc,
     TextlintRuleReportedObject,
-} from "./Rule/TextlintRuleError";
-export type { TextlintRuleSeverityLevel } from "./Rule/TextlintRuleSeverityLevel";
-export type { TextlintRuleSeverityLevelKey } from "./Rule/TextlintRuleSeverityLevelKey";
+} from "./Rule/TextlintRuleError.js";
+export type { TextlintRuleSeverityLevel } from "./Rule/TextlintRuleSeverityLevel.js";
+export type { TextlintRuleSeverityLevelKey } from "./Rule/TextlintRuleSeverityLevelKey.js";
 // Rule
 export type {
     TextlintRuleContext,
     TextlintRuleContextReportFunction,
     TextlintRuleContextReportFunctionArgs,
-} from "./Rule/TextlintRuleContext";
-export type { TextlintRuleOptions } from "./Rule/TextlintRuleOptions";
+} from "./Rule/TextlintRuleContext.js";
+export type { TextlintRuleOptions } from "./Rule/TextlintRuleOptions.js";
 export type {
     TextlintRuleReporter,
     TextlintFixableRuleModule,
     TextlintRuleModule,
     TextlintRuleReportHandler,
-} from "./Rule/TextlintRuleModule";
+} from "./Rule/TextlintRuleModule.js";
 // Filter Rule
 export type {
     TextlintFilterRuleContext,
     TextlintFilterRuleShouldIgnoreFunction,
     TextlintFilterRuleShouldIgnoreFunctionArgs,
-} from "./Rule/TextlintFilterRuleContext";
+} from "./Rule/TextlintFilterRuleContext.js";
 export type {
     TextlintFilterRuleModule,
     TextlintFilterRuleOptions,
     TextlintFilterRuleReporter,
     TextlintFilterRuleReportHandler,
-} from "./Rule/TextlintFilterRuleModule";
+} from "./Rule/TextlintFilterRuleModule.js";
 // Plugin
 export type {
     TextlintPluginCreator,
@@ -60,7 +60,7 @@ export type {
     TextlintPluginProcessorConstructor,
     TextlintPluginPreProcessResult,
     TextlintPluginPostProcessResult,
-} from "./Plugin/TextlintPluginModule";
+} from "./Plugin/TextlintPluginModule.js";
 // Output message from textlint
 // This types is come from output of textlint lint results
 export type {
@@ -68,4 +68,4 @@ export type {
     TextlintFixResult,
     TextlintMessage,
     TextlintMessageFixCommand,
-} from "./Message/TextlintResult";
+} from "./Message/TextlintResult.js";

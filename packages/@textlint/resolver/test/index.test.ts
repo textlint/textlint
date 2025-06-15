@@ -1,5 +1,5 @@
 import * as assert from "node:assert";
-import { afterEach, beforeEach } from "mocha";
+import { afterEach, beforeEach, describe, it } from "vitest";
 import {
     registerResolveHook,
     registerImportHook,
@@ -7,7 +7,7 @@ import {
     ResolverContext,
     tryResolve,
     clearHooks,
-} from "../src/index";
+} from "../src/index.js";
 
 describe("@secretlint/resolver", () => {
     const myModuleURL = "file:///path/to/my-module.js";

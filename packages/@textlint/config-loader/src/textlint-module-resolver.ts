@@ -1,6 +1,6 @@
-import * as path from "path";
-import { PackageNamePrefix } from "./package-prefix";
-import { createFullPackageName } from "./textlint-package-name-util";
+import * as path from "node:path";
+import { PackageNamePrefix } from "./package-prefix.js";
+import { createFullPackageName } from "./textlint-package-name-util.js";
 import { tryResolve } from "@textlint/resolver";
 
 export interface ConfigModulePrefix {
