@@ -1,6 +1,6 @@
 {
   "name": "textlint-scripts-example-dynamic-import",
-  "version": "14.8.1",
+  "version": "14.8.2",
   "private": true,
   "description": "Example of textlint-scripts with dynamic import",
   "license": "MIT",

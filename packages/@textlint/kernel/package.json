@@ -1,6 +1,6 @@
 {
   "name": "@textlint/kernel",
-  "version": "14.8.1",
+  "version": "14.8.2",
   "description": "textlint kernel is core logic by pure JavaScript.",
   "keywords": [
     "textlint"

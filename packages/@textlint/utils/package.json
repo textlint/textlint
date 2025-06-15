@@ -1,6 +1,6 @@
 {
   "name": "@textlint/utils",
-  "version": "14.8.1",
+  "version": "14.8.2",
   "description": "textlint internal utils.",
   "keywords": [
     "internal",
