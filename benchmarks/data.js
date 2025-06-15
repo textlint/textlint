@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749966973844,
+  "lastUpdate": 1749969705086,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -59052,6 +59052,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5891188242000001,
             "unit": "seconds",
             "range": "± 0.00977497599999999"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "c5bebaa2e60ad8f1094bf0216ccf1eb69d397198",
+          "message": "fix: remove unused test import from compliance tests",
+          "timestamp": "2025-06-15T15:38:34+09:00",
+          "tree_id": "2d3aa0eab2392392da6e41df5f302c95c9c49eff",
+          "url": "https://github.com/textlint/textlint/commit/c5bebaa2e60ad8f1094bf0216ccf1eb69d397198"
+        },
+        "date": 1749969700304,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.28631184792000003,
+            "unit": "seconds",
+            "range": "± 0.40826754899999995"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7050879593200001,
+            "unit": "seconds",
+            "range": "± 0.0682112640000001"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5898800919199999,
+            "unit": "seconds",
+            "range": "± 0.008992968000000046"
           }
         ]
       }
