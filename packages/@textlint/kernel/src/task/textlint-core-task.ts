@@ -103,14 +103,14 @@ export default abstract class TextLintCoreTask extends EventEmitter {
             const { ruleId, range, optional } = args;
             invariant(
                 typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
-                "ignoreRange should have actual range: " + range
+                `ignoreRange should have actual range: ${range}`
             );
             // FIXME: should have index, loc
             // should be compatible with LintReportedMessage?
             const message: IgnoreReportedMessage = {
                 type: MessageType.ignore,
-                ruleId: ruleId,
-                range: range,
+                ruleId,
+                range,
                 // ignoring target ruleId - default: filter all messages
                 // This ruleId should be normalized, because the user can report any value
                 ignoringRuleId: optional.ruleId ? normalizeTextlintKeyPath(optional.ruleId) : "*"
@@ -141,14 +141,14 @@ export default abstract class TextLintCoreTask extends EventEmitter {
             // add TextLintMessage
             const message: LintReportedMessage = {
                 type: MessageType.lint,
-                ruleId: ruleId,
+                ruleId,
                 message: ruleError.message,
                 index: range[0],
                 line: loc.start.line,
                 column: loc.start.column,
                 range,
                 loc,
-                severity: severity, // it's for compatible ESLint formatter
+                severity, // it's for compatible ESLint formatter
                 fix: fix !== undefined ? fix : undefined
             };
             if (!(ruleError instanceof TextlintRuleErrorImpl)) {

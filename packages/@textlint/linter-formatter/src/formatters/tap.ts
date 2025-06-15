@@ -32,13 +32,8 @@ function getMessageType(message: any): string {
  */
 function outputDiagnostics(diagnostic: any): string {
     const prefix = "  ";
-    let output = prefix + "---\n";
-    output +=
-        prefix +
-        yaml
-            .safeDump(diagnostic)
-            .split("\n")
-            .join("\n" + prefix);
+    let output = `${prefix}---\n`;
+    output += prefix + yaml.safeDump(diagnostic).split("\n").join(`\n${prefix}`);
     output += "...\n";
     return output;
 }
@@ -48,7 +43,7 @@ function outputDiagnostics(diagnostic: any): string {
 //------------------------------------------------------------------------------
 
 function formatter(results: TextlintResult[]) {
-    let output = "TAP version 13\n1.." + results.length + "\n";
+    let output = `TAP version 13\n1..${results.length}\n`;
 
     results.forEach(function (result, id) {
         const messages = result.messages;
@@ -83,7 +78,7 @@ function formatter(results: TextlintResult[]) {
             });
         }
 
-        output += testResult + " " + (id + 1) + " - " + result.filePath + "\n";
+        output += `${testResult} ${id + 1} - ${result.filePath}\n`;
 
         // If we have an error include diagnostics
         if (messages.length > 0) {

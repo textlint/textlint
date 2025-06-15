@@ -9,8 +9,8 @@ const TEST_TEXT = "This is **strong**.";
 const TEST_AST = parse(TEST_TEXT);
 const createSourceCode = (text: string, ast: TxtNode) => {
     return new TextlintSourceCodeImpl({
-        text: text,
-        ast: ast,
+        text,
+        ast,
         ext: ".md"
     });
 };

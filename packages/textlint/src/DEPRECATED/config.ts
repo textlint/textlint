@@ -211,7 +211,6 @@ export class Config {
         return this.initWithAutoLoading(options);
     }
 
-    /* eslint-disable complexity */
     /**
      * load config and merge options.
      * These config is user defined options.
@@ -445,8 +444,6 @@ export class Config {
         // We should defined what is default name.
         assert.ok(!fileStats.isDirectory(), "--cache-location doesn't support directory");
     }
-
-    /* eslint-enable complexity */
 
     toJSON() {
         const r = Object.create(null);

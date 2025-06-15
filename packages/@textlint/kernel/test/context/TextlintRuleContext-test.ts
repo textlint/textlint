@@ -2,7 +2,7 @@
 "use strict";
 import * as assert from "node:assert";
 import { describe, it } from "vitest";
-import { assertRuleContext } from "./assert-rule-context.js";
+import { assertRuledescribe } from "./assert-rule-context.js";
 import { TextlintRuleModule } from "@textlint/types";
 import { TextlintKernel } from "../../src/index.js";
 import { createPluginStub } from "../helper/ExamplePlugin.js";

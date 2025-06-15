@@ -158,7 +158,6 @@ const report: TextlintRuleReporter = (context) => {
             expectType<TxtHtmlNode>(node);
         },
         [Syntax.Table](node) {
-            // eslint-disable-next-line no-undef
             expectType<TxtTableNode>(node);
         },
         [Syntax.TableExit](node) {
