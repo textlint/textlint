@@ -2,6 +2,7 @@
 verifyDepsBeforeRun: "install"
 onlyBuiltDependencies:
   - nx
+  - esbuild
 
 packages:
   - packages/*
