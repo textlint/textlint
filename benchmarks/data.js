@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749984958903,
+  "lastUpdate": 1749985508659,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -59640,6 +59640,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6004329972600001,
             "unit": "seconds",
             "range": "± 0.024545130999999998"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "230567bea09cd1f5f1e5d0c8a5f7f0f5f7f2b4b2",
+          "message": "Update ESLint to version 9 and include .js files in patterns (#1546)\n\n* Update to ESLInt 9\n\n* fix: update eslint patterns to include .js files\n\n* fix",
+          "timestamp": "2025-06-15T20:02:14+09:00",
+          "tree_id": "83ab39e94c202db6765ce5da2dd89d8d266e63b3",
+          "url": "https://github.com/textlint/textlint/commit/230567bea09cd1f5f1e5d0c8a5f7f0f5f7f2b4b2"
+        },
+        "date": 1749985503536,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23703065642000004,
+            "unit": "seconds",
+            "range": "± 0.175801167"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.70744379202,
+            "unit": "seconds",
+            "range": "± 0.03253973500000007"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5970561154199999,
+            "unit": "seconds",
+            "range": "± 0.013023747999999946"
           }
         ]
       }
