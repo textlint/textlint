@@ -2,7 +2,7 @@
 "use strict";
 process.env.NODE_ENV = "test";
 const spawn = require("cross-spawn");
-const fs = require("node:fs");
+const fs = require("fs");
 const args = process.argv.slice(2);
 const paths = require("../configs/paths");
 const useTypeScript = fs.existsSync(paths.appTsConfig);

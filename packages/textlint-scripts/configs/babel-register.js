@@ -4,7 +4,7 @@
  * Note: This register does not type-check
  * Please use --require textlint-scripts/register-ts instead of it
  */
-const fs = require("node:fs");
+const fs = require("fs");
 const paths = require("../configs/paths");
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 const babelConfig = require("./babel.config");

@@ -1,4 +1,4 @@
-const path = require("node:path");
+const path = require("path");
 const shell = require("shelljs");
 
 const exampleDir = path.join(__dirname, "../examples/example");

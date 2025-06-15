@@ -2,7 +2,7 @@
 // See https://github.com/textlint/textlint/tree/master/packages/textlint-tester
 import TextLintTester from "textlint-tester";
 // rule
-import rule from "../src/index.js";
+import rule from "../src/index";
 
 const tester = new TextLintTester();
 // ruleName, rule, { valid, invalid }
