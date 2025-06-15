@@ -1,4 +1,4 @@
-import type { ASTNodeTypes } from "./ASTNodeTypes";
+import type { ASTNodeTypes } from "./ASTNodeTypes.js";
 import type {
     AnyTxtNode,
     TxtBlockQuoteNode,
@@ -25,7 +25,7 @@ import type {
     TxtTableCellNode,
     TxtTableNode,
     TxtTableRowNode
-} from "./NodeType";
+} from "./NodeType.js";
 
 /**
  * Type utility for TxtNodeType

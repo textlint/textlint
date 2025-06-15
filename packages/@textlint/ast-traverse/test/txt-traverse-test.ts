@@ -2,10 +2,11 @@
 "use strict";
 
 import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
-import { Controller, traverse, VisitorOption } from "../src/";
+import { describe, it } from "vitest";
+import { Controller, traverse, VisitorOption } from "../src/index.js";
 import { parse, Syntax } from "@textlint/markdown-to-ast";
-import { dump } from "./traverse-dump";
-import assert from "assert";
+import { dump } from "./traverse-dump.js";
+import assert from "node:assert";
 
 const enter = "enter";
 const leave = "leave";
@@ -129,7 +130,7 @@ describe("txt-traverse", () => {
             ];
             assert.deepEqual(resultOfDump, expected, JSON.stringify(resultOfDump));
         });
-        context("SKIP", () => {
+        describe("SKIP", () => {
             it("skip child nodes", () => {
                 const AST: TxtParentNode = parse("# Header\n" + "Hello*world*");
                 const results: [string, string][] = [];
@@ -169,7 +170,7 @@ describe("txt-traverse", () => {
                 assert.deepEqual(results, expected);
             });
         });
-        context("BREAK", () => {
+        describe("BREAK", () => {
             it("break child nodes", () => {
                 const AST: TxtParentNode = parse("# Header\n" + "Hello*world*");
                 const results: [string, string][] = [];

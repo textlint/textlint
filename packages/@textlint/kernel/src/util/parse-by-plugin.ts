@@ -1,4 +1,4 @@
-import { isPluginParsedObject } from "./isPluginParsedObject";
+import { isPluginParsedObject } from "./isPluginParsedObject.js";
 import type { TextlintPluginProcessor } from "@textlint/types";
 import { TxtNode } from "@textlint/ast-node-types";
 

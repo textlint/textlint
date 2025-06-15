@@ -4,13 +4,15 @@
  */
 
 "use strict";
-import formatter from "../../src/formatters/tap";
+import formatter from "../../src/formatters/tap.js";
+
+import { describe, it } from "vitest";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-import * as assert from "assert";
+import * as assert from "node:assert";
 
 //------------------------------------------------------------------------------
 // Tests

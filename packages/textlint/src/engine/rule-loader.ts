@@ -1,7 +1,7 @@
 "use strict";
 import { moduleInterop } from "@textlint/module-interop";
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 import { TextlintKernelRule } from "@textlint/kernel";
 import { dynamicImport } from "@textlint/resolver";
 import { isTextlintRuleModule } from "@textlint/config-loader";

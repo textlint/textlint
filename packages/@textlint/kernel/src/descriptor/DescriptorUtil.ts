@@ -1,4 +1,4 @@
-import { Descriptor } from "./Descriptor";
+import { Descriptor } from "./Descriptor.js";
 
 /**
  * Remove duplicated descriptor

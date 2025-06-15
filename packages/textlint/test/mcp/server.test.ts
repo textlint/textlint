@@ -1,10 +1,11 @@
 import assert from "node:assert";
+import { afterEach, beforeEach, describe, it } from "vitest";
 import path from "node:path";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
 
-import { server } from "../../src/mcp/server";
+import { server } from "../../src/mcp/server.js";
 
 const validFilePath = path.join(__dirname, "fixtures", "ok.md");
 const stdinFilename = `textlint.txt`;

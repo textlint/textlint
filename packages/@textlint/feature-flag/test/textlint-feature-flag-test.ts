@@ -1,5 +1,6 @@
 "use strict";
-import assert from "assert";
+import assert from "node:assert";
+import { beforeEach, describe, it } from "vitest";
 import {
     coreFlags,
     isFeatureEnabled,
@@ -7,7 +8,7 @@ import {
     setFeature,
     throwIfTesting,
     throwWithoutExperimental
-} from "../src/index";
+} from "../src/index.js";
 
 describe("textlint-feature-flag", () => {
     beforeEach(() => {
@@ -29,7 +30,7 @@ describe("textlint-feature-flag", () => {
         });
     });
     describe("feature-flag", () => {
-        context("when default", () => {
+        describe("when default", () => {
             it("should throw error if the feature is not defined", () => {
                 assert.throws(() => {
                     isFeatureEnabled("test");
@@ -43,7 +44,7 @@ describe("textlint-feature-flag", () => {
                 assert.ok(isFeatureEnabled("test") === false);
             });
         });
-        context("when loose-mode", () => {
+        describe("when loose-mode", () => {
             it("should return false if the feature is not defined", () => {
                 assert.strictEqual(isFeatureEnabled("test", { loose: true }), false);
             });

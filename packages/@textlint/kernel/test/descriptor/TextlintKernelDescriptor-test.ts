@@ -1,8 +1,9 @@
-import * as assert from "assert";
-import { createDummyPlugin } from "./helper/dummy-plugin";
-import { TextlintKernelDescriptor } from "../../src/descriptor/index";
-import exampleRule from "./helper/example-rule";
-import fixableExampleRule from "./helper/fixable-example-rule";
+import * as assert from "node:assert";
+import { describe, it } from "vitest";
+import { createDummyPlugin } from "./helper/dummy-plugin.js";
+import { TextlintKernelDescriptor } from "../../src/descriptor/index.js";
+import exampleRule from "./helper/example-rule.js";
+import fixableExampleRule from "./helper/fixable-example-rule.js";
 
 describe("TextlintKernelDescriptor", () => {
     it("example code", () => {

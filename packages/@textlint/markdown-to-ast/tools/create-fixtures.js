@@ -5,8 +5,8 @@
 
     markdown_fixtures/some.md -> move to fixtures/{input.md, output.json}
  */
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
 const mkdirp = require("mkdirp");
 const parse = require("../lib/src/index").parse;
 const testDir = path.join(__dirname, "..", "test");

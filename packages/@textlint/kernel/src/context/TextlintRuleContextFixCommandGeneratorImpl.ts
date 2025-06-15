@@ -1,6 +1,6 @@
 import { TxtNode } from "@textlint/ast-node-types";
 import type { TextlintRuleContextFixCommandGenerator, TextlintSourceCodeRange } from "@textlint/types";
-import { invariant } from "../util/invariant";
+import { invariant } from "../util/invariant.js";
 
 /**
  * Creates a fix command that inserts text at the specified index in the source text.

@@ -1,7 +1,8 @@
-import { parse } from "../src";
-import fs from "fs";
-import path from "path";
-import assert from "assert";
+import { parse } from "../src/index.js";
+import { describe, it } from "vitest";
+import fs from "node:fs";
+import path from "node:path";
+import assert from "node:assert";
 const fixturesDir = path.join(__dirname, "snapshots");
 
 describe("Snapshot testing", () => {

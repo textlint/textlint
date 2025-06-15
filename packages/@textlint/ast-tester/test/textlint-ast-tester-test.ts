@@ -1,24 +1,25 @@
-import * as assert from "assert";
-import { test, isTxtAST } from "../src/";
-import fs from "fs";
-import path from "path";
+import * as assert from "node:assert";
+import { describe, test, it } from "vitest";
+import { test, isTxtAST } from "../src/index.js";
+import fs from "node:fs";
+import path from "node:path";
 
 describe("@textlint/ast-tester", function () {
-    context("when markdown-to-ast", function () {
+    describe("when markdown-to-ast", function () {
         it("should not throw", function () {
             const AST = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures/markdown-to-ast.json"), "utf-8"));
             test(AST);
             assert.ok(isTxtAST(AST));
         });
     });
-    context("when @textlint/text-to-ast", function () {
+    describe("when @textlint/text-to-ast", function () {
         it("should not throw", function () {
             const AST = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures/text-to-ast.json"), "utf-8"));
             test(AST);
             assert.ok(isTxtAST(AST));
         });
     });
-    context("when invalid case", function () {
+    describe("when invalid case", function () {
         it("should throw with details", () => {
             const AST = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures/invalid-ast.json"), "utf-8"));
             assert.throws(() => {

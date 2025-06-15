@@ -1,12 +1,13 @@
 // LICENSE : MIT
 "use strict";
-import assert from "assert";
+import assert from "node:assert";
+import { afterEach, beforeEach, describe, it } from "vitest";
 import { TextlintRuleModule } from "@textlint/kernel";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 // fixture
-import fixtureRule from "./fixtures/rules/example-rule";
+import fixtureRule from "./fixtures/rules/example-rule.js";
 
-import fixtureRuleAsync from "./fixtures/rules/async-rule";
+import fixtureRuleAsync from "./fixtures/rules/async-rule.js";
 import { TextLintCore } from "@textlint/legacy-textlint-core";
 
 describe("Async Rule", function () {

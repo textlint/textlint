@@ -4,21 +4,21 @@ import type { TextlintResult } from "@textlint/types";
 
 import { moduleInterop } from "@textlint/module-interop";
 
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import { dynamicImport, tryResolve } from "@textlint/resolver";
 import debug0 from "debug";
 // formatter
-import checkstyleFormatter from "./formatters/checkstyle";
-import compactFormatter from "./formatters/compact";
-import jslintXMLFormatter from "./formatters/jslint-xml";
-import jsonFormatter from "./formatters/json";
-import junitFormatter from "./formatters/junit";
-import prettyErrorFormatter from "./formatters/pretty-error";
-import stylishFormatter from "./formatters/stylish";
-import tableFormatter from "./formatters/table";
-import tapFormatter from "./formatters/tap";
-import unixFormatter from "./formatters/unix";
+import checkstyleFormatter from "./formatters/checkstyle.js";
+import compactFormatter from "./formatters/compact.js";
+import jslintXMLFormatter from "./formatters/jslint-xml.js";
+import jsonFormatter from "./formatters/json.js";
+import junitFormatter from "./formatters/junit.js";
+import prettyErrorFormatter from "./formatters/pretty-error.js";
+import stylishFormatter from "./formatters/stylish.js";
+import tableFormatter from "./formatters/table.js";
+import tapFormatter from "./formatters/tap.js";
+import unixFormatter from "./formatters/unix.js";
 
 const builtinFormatterList = {
     checkstyle: checkstyleFormatter,

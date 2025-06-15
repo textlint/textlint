@@ -1,6 +1,0 @@
-{
-    "timeout": 5000,
-    "import": "ts-node/esm",
-    "forbidOnly": true,
-    "spec": ["test/**/*.ts"]
-}

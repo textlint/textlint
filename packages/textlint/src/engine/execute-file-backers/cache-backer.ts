@@ -4,7 +4,7 @@ import fileEntryCache, { FileEntryCache } from "file-entry-cache";
 import debug0 from "debug";
 import path from "node:path";
 import fs from "node:fs";
-import { AbstractBacker } from "./abstruct-backer";
+import { AbstractBacker } from "./abstruct-backer.js";
 import { TextlintResult } from "@textlint/kernel";
 
 const debug = debug0("textlint:CacheBacker");

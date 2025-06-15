@@ -19,7 +19,7 @@ const Card = ({ title, children }) => (
 );
 
 function Help() {
-    const { siteConfig } = useDocusaurusContext();
+    const { siteConfig } = useDocusaurusdescribe();
 
     return (
         <Layout>

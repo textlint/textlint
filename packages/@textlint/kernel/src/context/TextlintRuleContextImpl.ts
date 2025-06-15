@@ -8,11 +8,11 @@ import {
     TextlintSourceCode
 } from "@textlint/types";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
-import { TextlintRuleContextFixCommandGeneratorImpl } from "./TextlintRuleContextFixCommandGeneratorImpl";
-import { TextlintRuleSeverityLevelKeys } from "./TextlintRuleSeverityLevelKeys";
-import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl";
-import { createPaddingLocator } from "./TextlintRulePaddingLocator";
-import { invariant } from "../util/invariant";
+import { TextlintRuleContextFixCommandGeneratorImpl } from "./TextlintRuleContextFixCommandGeneratorImpl.js";
+import { TextlintRuleSeverityLevelKeys } from "./TextlintRuleSeverityLevelKeys.js";
+import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl.js";
+import { createPaddingLocator } from "./TextlintRulePaddingLocator.js";
+import { invariant } from "../util/invariant.js";
 
 const ruleFixer = new TextlintRuleContextFixCommandGeneratorImpl();
 

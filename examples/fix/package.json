@@ -1,26 +1,26 @@
 {
-    "name": "textlint-example-fix",
-    "version": "14.8.1",
-    "private": true,
-    "description": "",
-    "license": "MIT",
-    "author": "azu",
-    "main": "index.js",
-    "scripts": {
-        "test": "npm run textlint && npm run textlint-fix",
-        "test:ci": "npm test",
-        "textlint": "textlint README.md",
-        "textlint-fix": "textlint --fix README.md"
-    },
-    "devDependencies": {
-        "textlint": "workspace:*",
-        "textlint-rule-prh": "^5.2.0"
-    },
-    "files": [
-        "bin/",
-        "lib/",
-        "module/",
-        "src/",
-        "!*.tsbuildinfo"
-    ]
+  "name": "textlint-example-fix",
+  "version": "14.8.1",
+  "private": true,
+  "description": "",
+  "license": "MIT",
+  "author": "azu",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run textlint && npm run textlint-fix",
+    "test:ci": "npm test",
+    "textlint": "textlint README.md",
+    "textlint-fix": "textlint --fix README.md"
+  },
+  "devDependencies": {
+    "textlint": "workspace:*",
+    "textlint-rule-prh": "^5.2.0"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "module/",
+    "src/",
+    "!*.tsbuildinfo"
+  ]
 }

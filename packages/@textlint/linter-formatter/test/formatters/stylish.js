@@ -9,7 +9,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-import * as assert from "assert";
+import * as assert from "node:assert";
+import { afterEach, beforeEach, describe, it } from "vitest";
 const chalk = require("chalk");
 const proxyquire = require("proxyquire");
 const sinon = require("sinon");

@@ -1,4 +1,4 @@
-import { TextlintRuleErrorPaddingLocation } from "./TextlintRuleError";
+import { TextlintRuleErrorPaddingLocation } from "./TextlintRuleError.js";
 
 export type TextlintRulePaddingLocator = {
     /**

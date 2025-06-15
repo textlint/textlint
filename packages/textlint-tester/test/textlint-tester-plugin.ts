@@ -1,7 +1,7 @@
-import TextLintTester from "../src/index";
+import TextLintTester from "../src/index.js";
 // @ts-expect-error: no types
 import htmlPlugin from "textlint-plugin-html";
-import noTodoRule from "./fixtures/rule/no-todo";
+import noTodoRule from "./fixtures/rule/no-todo.js";
 // @ts-expect-error: no types
 import maxNumberOfLineRule from "textlint-rule-max-number-of-lines";
 const tester = new TextLintTester();

@@ -5,7 +5,7 @@
 
 "use strict";
 import type { TextlintResult } from "@textlint/types";
-import { FormatterOptions } from "../FormatterOptions";
+import { FormatterOptions } from "../FormatterOptions.js";
 
 import chalk from "chalk";
 // @ts-expect-error no types

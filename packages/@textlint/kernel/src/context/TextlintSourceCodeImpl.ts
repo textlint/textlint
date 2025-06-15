@@ -7,7 +7,7 @@ import type {
 } from "@textlint/types";
 import { AnyTxtNode, ASTNodeTypes } from "@textlint/ast-node-types";
 import { StructuredSource } from "structured-source";
-import { invariant } from "../util/invariant";
+import { invariant } from "../util/invariant.js";
 
 /**
  * Validates that the given AST has the required information.

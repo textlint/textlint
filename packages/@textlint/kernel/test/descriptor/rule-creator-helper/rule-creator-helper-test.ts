@@ -1,6 +1,7 @@
 // LICENSE : MIT
 "use strict";
-import * as assert from "assert";
+import * as assert from "node:assert";
+import { describe, it } from "vitest";
 import {
     hasLinter,
     getLinter,
@@ -8,11 +9,11 @@ import {
     getFixer,
     isRuleModule,
     assertRuleShape
-} from "../../../src/descriptor/rule-creator-helper";
-import FixerRule from "./fixtures/fixer";
-import FixerOnlyRule from "./fixtures/fixer-only-is-bad";
-import LinterRule from "./fixtures/linter";
-import SimpleModule from "./fixtures/foo";
+} from "../../../src/descriptor/rule-creator-helper.js";
+import FixerRule from "./fixtures/fixer.js";
+import FixerOnlyRule from "./fixtures/fixer-only-is-bad.js";
+import LinterRule from "./fixtures/linter.js";
+import SimpleModule from "./fixtures/foo.js";
 
 describe("rule-creator-helper", function () {
     it("#hasLinter", function () {

@@ -1,7 +1,7 @@
-import { TextlintKernelOptions } from "../../../src/textlint-kernel-interface";
-import rule from "./index";
-import { createPluginStub } from "../../helper/ExamplePlugin";
-import * as path from "path";
+import { TextlintKernelOptions } from "../../../src/textlint-kernel-interface.js";
+import rule from "./index.js";
+import { createPluginStub } from "../../helper/ExamplePlugin.js";
+import * as path from "node:path";
 
 const { plugin } = createPluginStub({
     extensions: [".md"]

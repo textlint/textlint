@@ -1,9 +1,10 @@
 // LICENSE : MIT
 "use strict";
-import { parse, Syntax } from "../src";
-import assert from "assert";
+import { parse, Syntax } from "../src/index.js";
+import { describe, it } from "vitest";
+import assert from "node:assert";
 describe("plaintext-parser-test", function () {
-    context("Document", function () {
+    describe("Document", function () {
         it("should return AST", function () {
             const text = "text";
             const ast = parse(text);
@@ -17,7 +18,7 @@ describe("plaintext-parser-test", function () {
             assert(ast.children.length > 0);
         });
     });
-    context("Paragraph", function () {
+    describe("Paragraph", function () {
         it("should contain Str node", function () {
             const text = "Hello world";
             const ast = parse(text);
@@ -47,7 +48,7 @@ describe("plaintext-parser-test", function () {
             assert.deepStrictEqual(ast, expected);
         });
     });
-    context("Paragraph ended with break line", function () {
+    describe("Paragraph ended with break line", function () {
         it("should contain Break node", function () {
             const text = "text\n";
             const ast = parse(text);
@@ -84,7 +85,7 @@ describe("plaintext-parser-test", function () {
             assert.deepStrictEqual(ast, expected);
         });
     });
-    context("Paragraph + BR + Paragraph", function () {
+    describe("Paragraph + BR + Paragraph", function () {
         it("should equal to P + BR + P", function () {
             const text = "text\ntext";
             const ast = parse(text);
@@ -136,7 +137,7 @@ describe("plaintext-parser-test", function () {
             assert.deepStrictEqual(ast, expected);
         });
     });
-    context("Paragraph + BR + BR + Paragraph", function () {
+    describe("Paragraph + BR + BR + Paragraph", function () {
         it("should equal to P + BR + BR + P", function () {
             const text = "text\n" + "\n" + "text";
             const ast = parse(text);

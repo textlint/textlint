@@ -5,8 +5,8 @@
 
     input.md -> parse -> output.json
  */
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
 const parse = require("../lib/src/index").parse;
 const testDir = path.join(__dirname, "..", "test");
 // remark_fixtures to fixtures

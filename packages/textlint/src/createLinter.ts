@@ -1,18 +1,18 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintKernel, TextlintKernelDescriptor, TextlintResult } from "@textlint/kernel";
-import { findFiles, pathsToGlobPatterns } from "./util/old-find-util";
-import { ExecuteFileBackerManager } from "./engine/execute-file-backer-manager";
-import { CacheBacker } from "./engine/execute-file-backers/cache-backer";
-import path from "path";
-import crypto from "crypto";
+import { findFiles, pathsToGlobPatterns } from "./util/old-find-util.js";
+import { ExecuteFileBackerManager } from "./engine/execute-file-backer-manager.js";
+import { CacheBacker } from "./engine/execute-file-backers/cache-backer.js";
+import path from "node:path";
+import crypto from "node:crypto";
 import pkgConf from "read-pkg-up";
-import fs from "fs/promises";
-import { Logger } from "./util/logger";
+import fs from "node:fs/promises";
+import { Logger } from "./util/logger.js";
 import { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
-import { separateByAvailability } from "./util/separate-by-availability";
-import { scanFilePath, ScanFilePathResult } from "./util/find-util";
+import { separateByAvailability } from "./util/separate-by-availability.js";
+import { scanFilePath, ScanFilePathResult } from "./util/find-util.js";
 
 const debug = debug0("textlint:createTextlint");
 export type CreateLinterOptions = {

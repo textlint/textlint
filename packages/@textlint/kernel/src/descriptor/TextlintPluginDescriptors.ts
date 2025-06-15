@@ -1,7 +1,7 @@
 "use strict";
-import { TextlintKernelPlugin } from "../textlint-kernel-interface";
-import { TextlintPluginDescriptor } from "./TextlintPluginDescriptor";
-import { filterDuplicateDescriptor } from "./DescriptorUtil";
+import { TextlintKernelPlugin } from "../textlint-kernel-interface.js";
+import { TextlintPluginDescriptor } from "./TextlintPluginDescriptor.js";
+import { filterDuplicateDescriptor } from "./DescriptorUtil.js";
 
 /**
  * Collection class of TextlintPluginDescriptor

@@ -1,8 +1,9 @@
 // TODO: move to @textlint/source-code-fixer
-import * as assert from "assert";
+import * as assert from "node:assert";
+import { beforeEach, describe, it } from "vitest";
 import { applyFixesToSourceCode, revertSourceCode, applyFixesToText } from "@textlint/source-code-fixer";
 import { parse } from "@textlint/markdown-to-ast";
-import { TextlintSourceCodeImpl } from "../../src/context/TextlintSourceCodeImpl";
+import { TextlintSourceCodeImpl } from "../../src/context/TextlintSourceCodeImpl.js";
 import { TextlintMessage, TextlintSourceCode } from "@textlint/types";
 
 const TEST_CODE = "var answer = 6 * 7;";

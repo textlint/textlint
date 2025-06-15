@@ -1,5 +1,6 @@
-import * as assert from "assert";
-import { createFullPackageName, removePrefixFromPackageName } from "../../src/DEPRECATED/textlint-package-name-util";
+import * as assert from "node:assert";
+import { describe, it } from "vitest";
+import { createFullPackageName, removePrefixFromPackageName } from "../../src/DEPRECATED/textlint-package-name-util.js";
 
 describe("textlint-package-name-util", () => {
     describe("removePrefixFromPackageName", () => {

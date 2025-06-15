@@ -1,5 +1,6 @@
-import { separateByAvailability } from "../../src/util/separate-by-availability";
-import assert from "assert";
+import { separateByAvailability } from "../../src/util/separate-by-availability.js";
+import { describe, it } from "vitest";
+import assert from "node:assert";
 
 describe("separateByAvailability", () => {
     it("should separate availableFiles/unAvailableFiles", () => {

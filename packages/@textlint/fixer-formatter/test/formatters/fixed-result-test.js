@@ -1,14 +1,15 @@
 "use strict";
-import path from "path";
-import fixedResult from "../../src/formatters/fixed-result";
-import assert from "assert";
+import path from "node:path";
+import { describe, it } from "vitest";
+import fixedResult from "../../src/formatters/fixed-result.js";
+import assert from "node:assert";
 
 const formatter = (code) => {
     return fixedResult(code, { color: false });
 };
 
 describe("formatter:fixed-result", function () {
-    context("when single modified", function () {
+    describe("when single modified", function () {
         it("should return output", function () {
             const input = path.join(__dirname, "../fixtures", "single.md");
             const code = require("../fixtures/single");
@@ -27,7 +28,7 @@ describe("formatter:fixed-result", function () {
             );
         });
     });
-    context("when double modified", function () {
+    describe("when double modified", function () {
         it("should return output", function () {
             const input = path.join(__dirname, "../fixtures", "double.md");
             const code = require("../fixtures/double");
@@ -46,7 +47,7 @@ describe("formatter:fixed-result", function () {
             );
         });
     });
-    context("when multiple files results", function () {
+    describe("when multiple files results", function () {
         it("should return output", function () {
             const singleFile = path.join(__dirname, "../fixtures", "single.md");
             const multiple = path.join(__dirname, "../fixtures", "multiple.md");
@@ -74,7 +75,7 @@ describe("formatter:fixed-result", function () {
         });
     });
 
-    context("when remaining messages", function () {
+    describe("when remaining messages", function () {
         it("should return output", function () {
             const input = path.join(__dirname, "../fixtures", "remaining.md");
             const code = require("../fixtures/remaining");

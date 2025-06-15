@@ -30,7 +30,9 @@
     "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ module/",
     "prepack": "npm run build",
-    "test": "mocha"
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@azu/format-text": "^1.0.2",
@@ -52,15 +54,15 @@
     "@types/debug": "^4.1.12",
     "@types/js-yaml": "^3.12.10",
     "@types/lodash": "^4.17.17",
-    "@types/mocha": "^9.1.1",
     "@types/node": "^18.19.111",
     "chai": "^4.5.0",
-    "mocha": "^10.8.2",
     "proxyquire": "^2.1.3",
     "rimraf": "^6.0.1",
     "sinon": "^1.17.7",
     "ts-node": "^10.9.2",
-    "typescript": "~5.3.3"
+    "typescript": "~5.3.3",
+    "vitest": "^1.0.1",
+    "@vitest/coverage-v8": "^1.0.1"
   },
   "publishConfig": {
     "access": "public"

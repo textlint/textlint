@@ -1,16 +1,16 @@
 // LICENSE : MIT
 import debug0 from "debug";
-import { CliOptions, options } from "./options";
-import { createConfigFile } from "./config/config-initializer";
-import { TextLintFixer } from "./fixer/textlint-fixer";
-import { Logger } from "./util/logger";
-import { loadBuiltinPlugins, loadTextlintrc } from "./loader/TextlintrcLoader";
-import { loadCliDescriptor } from "./loader/CliLoader";
-import { createLinter } from "./createLinter";
-import { SeverityLevel } from "./shared/type/SeverityLevel";
-import { printResults, showEmptyRuleWarning } from "./cli-util";
-import { loadFixerFormatter, loadLinterFormatter } from "./formatter";
-import { connectStdioMcpServer } from "./mcp/server";
+import { CliOptions, options } from "./options.js";
+import { createConfigFile } from "./config/config-initializer.js";
+import { TextLintFixer } from "./fixer/textlint-fixer.js";
+import { Logger } from "./util/logger.js";
+import { loadBuiltinPlugins, loadTextlintrc } from "./loader/TextlintrcLoader.js";
+import { loadCliDescriptor } from "./loader/CliLoader.js";
+import { createLinter } from "./createLinter.js";
+import { SeverityLevel } from "./shared/type/SeverityLevel.js";
+import { printResults, showEmptyRuleWarning } from "./cli-util.js";
+import { loadFixerFormatter, loadLinterFormatter } from "./formatter.js";
+import { connectStdioMcpServer } from "./mcp/server.js";
 
 const debug = debug0("textlint:cli");
 type StdinExecuteOption = {

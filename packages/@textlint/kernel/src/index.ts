@@ -1,14 +1,14 @@
 // Kernel
-export { TextlintKernel } from "./textlint-kernel";
+export { TextlintKernel } from "./textlint-kernel.js";
 // Kernel Descriptor
-export * from "./descriptor/index";
+export * from "./descriptor/index.js";
 // Kernel rule/filter/plugin format
 export {
     TextlintKernelRule,
     TextlintKernelFilterRule,
     TextlintKernelPlugin,
     TextlintKernelOptions
-} from "./textlint-kernel-interface";
+} from "./textlint-kernel-interface.js";
 
 /**
  * Types of textlint lint/fix result
@@ -35,4 +35,4 @@ export type {
     TextlintPluginProcessorConstructor
 } from "@textlint/types";
 // TextlintRuleSeverityLevel Key
-export { TextlintRuleSeverityLevelKeys } from "./context/TextlintRuleSeverityLevelKeys";
+export { TextlintRuleSeverityLevelKeys } from "./context/TextlintRuleSeverityLevelKeys.js";

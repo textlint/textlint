@@ -7,14 +7,14 @@ export {
     TextlintLintConfigLoaderResult,
     TextlintLoadPackagesFromRawConfigOptions,
     TextlintLoadPackagesFromRawConfigResult
-} from "./config-loader";
-export { TextlintRcConfig } from "./TextlintRcConfig";
+} from "./config-loader.js";
+export { TextlintRcConfig } from "./TextlintRcConfig.js";
 export {
     TextlintConfigDescriptor,
     TextlintConfigFilterRule,
     TextlintConfigPlugin,
     TextlintConfigRule,
     TextlintConfigRulePreset
-} from "./TextlintConfigDescriptor";
+} from "./TextlintConfigDescriptor.js";
 
-export { isTextlintRulePresetCreator, isTextlintRuleModule, isTextlintFilterRuleModule } from "./is";
+export { isTextlintRulePresetCreator, isTextlintRuleModule, isTextlintFilterRuleModule } from "./is.js";

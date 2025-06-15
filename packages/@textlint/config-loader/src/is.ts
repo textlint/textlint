@@ -1,6 +1,6 @@
 // TODO: share with @textlint/kernel
 import type { TextlintRuleModule } from "@textlint/types";
-import { TextlintConfigRulePreset } from "./TextlintConfigDescriptor";
+import { TextlintConfigRulePreset } from "./TextlintConfigDescriptor.js";
 import { TextlintFilterRuleReporter } from "@textlint/types";
 
 /**

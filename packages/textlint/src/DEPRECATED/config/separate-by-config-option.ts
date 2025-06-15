@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { isPluginRuleKey, isPresetRuleKey } from "./config-util";
+import { isPluginRuleKey, isPresetRuleKey } from "./config-util.js";
 export interface RuleOf {
     presetNames: string[];
     enabledRuleNames: string[];

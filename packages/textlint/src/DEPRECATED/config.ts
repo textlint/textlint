@@ -1,25 +1,25 @@
 // LICENSE : MIT
 "use strict";
-import crypto from "crypto";
-import { loadConfig } from "./config/config-loader";
-import { createFlatRulesConfigFromRawRulesConfig, loadRulesConfigFromPresets } from "./config/preset-loader";
-import { getPluginConfig, getPluginNames } from "./config/plugin-loader";
-import { TextLintModuleResolver } from "./engine/textlint-module-resolver";
-import { separateEnabledOrDisabled } from "./config/separate-by-config-option";
+import crypto from "node:crypto";
+import { loadConfig } from "./config/config-loader.js";
+import { createFlatRulesConfigFromRawRulesConfig, loadRulesConfigFromPresets } from "./config/preset-loader.js";
+import { getPluginConfig, getPluginNames } from "./config/plugin-loader.js";
+import { TextLintModuleResolver } from "./engine/textlint-module-resolver.js";
+import { separateEnabledOrDisabled } from "./config/separate-by-config-option.js";
 import {
     normalizeTextlintFilterRuleKey,
     normalizeTextlintPluginKey,
     normalizeTextlintRuleKey,
     normalizeTextlintRulePresetKey
 } from "@textlint/utils";
-import { Logger } from "../util/logger";
+import { Logger } from "../util/logger.js";
 // @ts-expect-error no types. it will be removed
 import md5 from "md5";
-import fs from "fs";
-import assert from "assert";
+import fs from "node:fs";
+import assert from "node:assert";
 // @ts-expect-error no types. it will be removed
 import concat from "unique-concat";
-import path from "path";
+import path from "node:path";
 import pkgConf from "read-pkg-up";
 
 function applyNormalizerToList(normalizer: (name: string) => string, names: string[]) {

@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
 import { moduleInterop } from "@textlint/module-interop";
-import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
+import { TextLintModuleResolver } from "../engine/textlint-module-resolver.js";
 import { normalizeTextlintPresetSubRuleKey } from "@textlint/utils";
-import { isPresetRuleKey } from "./config-util";
+import { isPresetRuleKey } from "./config-util.js";
 
 /**
  * Convert config of preset to rawRulesConfig flat path format.

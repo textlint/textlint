@@ -1,6 +1,7 @@
 "use strict";
-import stylish from "../../src/formatters/stylish";
-import assert from "assert";
+import stylish from "../../src/formatters/stylish.js";
+import { describe, it } from "vitest";
+import assert from "node:assert";
 
 const formatter = (code) => {
     return stylish(code, { color: false });

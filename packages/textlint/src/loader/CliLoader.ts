@@ -1,9 +1,9 @@
 import { loadPackagesFromRawConfig } from "@textlint/config-loader";
-import { CliOptions } from "../options";
+import { CliOptions } from "../options.js";
 import { TextlintKernelDescriptor, TextlintKernelRule } from "@textlint/kernel";
 import { normalizeTextlintPluginKey, normalizeTextlintRuleKey } from "@textlint/utils";
 import debug_ from "debug";
-import { loadFromDirAsESM } from "../engine/rule-loader";
+import { loadFromDirAsESM } from "../engine/rule-loader.js";
 
 const debug = debug_("textlint:cli-loader");
 export const loadCliDescriptor = async (cliOptions: CliOptions) => {

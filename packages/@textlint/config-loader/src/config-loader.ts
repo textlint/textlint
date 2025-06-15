@@ -1,8 +1,8 @@
 import { rcFile } from "rc-config-loader";
-import { TextLintModuleResolver } from "./textlint-module-resolver";
-import { loadFilterRules, loadPlugins, loadRules } from "./loader";
-import { TextlintRcConfig } from "./TextlintRcConfig";
-import type { TextlintConfigDescriptor } from "./TextlintConfigDescriptor";
+import { TextLintModuleResolver } from "./textlint-module-resolver.js";
+import { loadFilterRules, loadPlugins, loadRules } from "./loader.js";
+import { TextlintRcConfig } from "./TextlintRcConfig.js";
+import type { TextlintConfigDescriptor } from "./TextlintConfigDescriptor.js";
 import { isUtf8 } from "node:buffer";
 import fs from "node:fs";
 

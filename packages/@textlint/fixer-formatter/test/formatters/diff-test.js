@@ -1,14 +1,15 @@
 // LICENSE : MIT
 "use strict";
-import path from "path";
-import assert from "assert";
-import diff from "../../src/formatters/diff";
+import path from "node:path";
+import { describe, it } from "vitest";
+import assert from "node:assert";
+import diff from "../../src/formatters/diff.js";
 
 const formatter = (code) => {
     return diff(code, { color: false });
 };
 describe("formatter:diff", function () {
-    context("when single modified", function () {
+    describe("when single modified", function () {
         it("should return output", function () {
             const input = path.join(__dirname, "../fixtures", "single.md");
             const code = require("../fixtures/single");
@@ -28,7 +29,7 @@ ${input}
             );
         });
     });
-    context("when double modified", function () {
+    describe("when double modified", function () {
         it("should return output", function () {
             const input = path.join(__dirname, "../fixtures", "double.md");
             const code = require("../fixtures/double");
@@ -50,7 +51,7 @@ ${input}
             );
         });
     });
-    context("when multiple files results", function () {
+    describe("when multiple files results", function () {
         it("should return output", function () {
             const singleFile = path.join(__dirname, "../fixtures", "single.md");
             const multiple = path.join(__dirname, "../fixtures", "multiple.md");
@@ -85,7 +86,7 @@ ${multiple}
         });
     });
 
-    context("when remaining messages", function () {
+    describe("when remaining messages", function () {
         it("should return output", function () {
             const input = path.join(__dirname, "../fixtures", "remaining.md");
             const code = require("../fixtures/remaining");

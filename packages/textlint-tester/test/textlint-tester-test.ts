@@ -1,6 +1,6 @@
-import * as path from "path";
-import TextLintTester from "../src/index";
-import noTodo from "./fixtures/rule/no-todo";
+import * as path from "node:path";
+import TextLintTester from "../src/index.js";
+import noTodo from "./fixtures/rule/no-todo.js";
 // @ts-expect-error: no types
 import maxNumberOfLine from "textlint-rule-max-number-of-lines";
 

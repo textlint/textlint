@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
-import path from "path";
-import * as assert from "assert";
-import { loadFromDir } from "../../src/engine/rule-loader";
+import path from "node:path";
+import { describe, it } from "vitest";
+import * as assert from "node:assert";
+import { loadFromDir } from "../../src/engine/rule-loader.js";
 import { TextlintLintableRuleDescriptor } from "@textlint/kernel";
 
 const fixtureDir = path.join(__dirname, "fixtures", "rule-loader");

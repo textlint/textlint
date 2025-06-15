@@ -1,10 +1,11 @@
 // LICENSE : MIT
 "use strict";
-import * as assert from "assert";
+import * as assert from "node:assert";
+import { describe, it } from "vitest";
 import * as glob from "glob";
-import * as fs from "fs";
-import * as path from "path";
-import { Config } from "../../src/DEPRECATED/config";
+import * as fs from "node:fs";
+import * as path from "node:path";
+import { Config } from "../../src/DEPRECATED/config.js";
 import { moduleInterop } from "@textlint/module-interop";
 /* load config from "./config/" and match expected result */
 describe("config-as-example", function () {

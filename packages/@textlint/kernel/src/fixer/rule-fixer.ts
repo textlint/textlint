@@ -1,4 +1,4 @@
-import { invariant } from "../util/invariant";
+import { invariant } from "../util/invariant.js";
 import { TxtNode } from "@textlint/ast-node-types";
 import type { TextlintSourceCodeRange } from "@textlint/types";
 

@@ -1,27 +1,28 @@
 // LICENSE : MIT
 "use strict";
-import assert from "assert";
-import path from "path";
-import { Config } from "../../src/DEPRECATED/config";
+import assert from "node:assert";
+import { describe, it } from "vitest";
+import path from "node:path";
+import { Config } from "../../src/DEPRECATED/config.js";
 /*
     config file test reference to config-as-example.js
  */
 describe("config", function () {
     describe("#initWithCLIOptions", function () {
-        context("when init with command line options", function () {
+        describe("when init with command line options", function () {
             it("should has not rules", function () {
                 const config = Config.initWithCLIOptions({});
                 assert.ok(config.rules.length === 0);
                 assert.ok(config.rulePaths.length === 0);
             });
         });
-        context("when specify --config", function () {
+        describe("when specify --config", function () {
             it("should use the config file", function () {
                 const config = Config.initWithCLIOptions({ config: path.join(__dirname, "fixtures", ".textlintrc") });
                 assert.ok(config.rules.length > 0);
             });
         });
-        context("when specify --no-textlintrc", function () {
+        describe("when specify --no-textlintrc", function () {
             it("should not use the config file", function () {
                 const config = Config.initWithCLIOptions({
                     textlintrc: false,
@@ -40,20 +41,20 @@ describe("config", function () {
         });
     });
     describe("#absolutePath", function () {
-        context("when init configFile", function () {
+        describe("when init configFile", function () {
             it("should return path to .textlintrc", function () {
                 const configFilePath = path.join(__dirname, "fixtures", ".textlintrc");
                 const config = Config.initWithCLIOptions({ config: configFilePath });
                 assert.equal(config.configFile, configFilePath);
             });
         });
-        context("when has not configFile", function () {
+        describe("when has not configFile", function () {
             it("should return undefined", function () {
                 const config = new Config();
                 assert.ok(config.configFile === undefined);
             });
         });
-        context("when pass config module", function () {
+        describe("when pass config module", function () {
             it("should return undefined", function () {
                 const baseDir = path.join(__dirname, "fixtures");
                 const config = Config.initWithAutoLoading({

@@ -4,7 +4,7 @@ import CoreTask, {
     default as TextLintCoreTask,
     IgnoreReportedMessage,
     LintReportedMessage
-} from "./textlint-core-task";
+} from "./textlint-core-task.js";
 
 export default class TaskRunner {
     /**

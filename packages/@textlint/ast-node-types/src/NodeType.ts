@@ -6,7 +6,7 @@
  * Constant value of types
  * @see https://github.com/textlint/textlint/blob/master/docs/txtnode.md
  */
-import type { ASTNodeTypes } from "./ASTNodeTypes";
+import type { ASTNodeTypes } from "./ASTNodeTypes.js";
 
 /**
  * Key of ASTNodeTypes or any string

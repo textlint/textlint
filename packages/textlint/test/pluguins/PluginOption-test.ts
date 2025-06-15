@@ -1,8 +1,9 @@
 // MIT © 2017 azu
 "use strict";
-import assert from "assert";
-import { createPluginStub } from "./fixtures/example-plugin";
-import exampleRule from "./fixtures/example-rule";
+import assert from "node:assert";
+import { describe, it } from "vitest";
+import { createPluginStub } from "./fixtures/example-plugin.js";
+import exampleRule from "./fixtures/example-rule.js";
 import { TextLintCore } from "@textlint/legacy-textlint-core";
 
 describe("plugin-option", () => {

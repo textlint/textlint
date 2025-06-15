@@ -1,61 +1,61 @@
 {
-    "name": "@textlint/legacy-textlint-core",
-    "version": "14.8.1",
-    "description": "Legacy TextLintCore Compatibility Layer for textlint v14+",
-    "keywords": [
-        "definition",
-        "textlint",
-        "types",
-        "typescript"
-    ],
-    "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/legacy-textlint-core/",
-    "bugs": {
-        "url": "https://github.com/textlint/textlint/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/textlint/textlint.git"
-    },
-    "license": "MIT",
-    "author": "azu",
-    "type": "commonjs",
-    "main": "lib/src/index.js",
-    "types": "lib/src/index.d.ts",
-    "directories": {
-        "lib": "lib",
-        "test": "test"
-    },
-    "files": [
-        "bin/",
-        "lib/",
-        "src/",
-        "!*.tsbuildinfo"
-    ],
-    "scripts": {
-        "build": "tsc -b",
-        "clean": "tsc --build --clean",
-        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
-        "prepack": "npm run --if-present build",
-        "test": "tsc -b",
-        "watch": "tsc -b --watch"
-    },
-    "prettier": {
-        "printWidth": 120,
-        "singleQuote": false,
-        "tabWidth": 4
-    },
-    "dependencies": {
-        "@textlint/kernel": "workspace:*",
-        "@textlint/textlint-plugin-markdown": "workspace:*",
-        "@textlint/textlint-plugin-text": "workspace:*"
-    },
-    "devDependencies": {
-        "@types/debug": "^4.1.12",
-        "@types/node": "^18.19.111",
-        "prettier": "^2.7.1",
-        "typescript": "~5.3.3"
-    },
-    "publishConfig": {
-        "access": "public"
-    }
+  "name": "@textlint/legacy-textlint-core",
+  "version": "14.8.1",
+  "description": "Legacy TextLintCore Compatibility Layer for textlint v14+",
+  "keywords": [
+    "definition",
+    "textlint",
+    "types",
+    "typescript"
+  ],
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/legacy-textlint-core/",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "type": "commonjs",
+  "main": "lib/src/index.js",
+  "types": "lib/src/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "src/",
+    "!*.tsbuildinfo"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "tsc --build --clean",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "prepack": "npm run --if-present build",
+    "test": "tsc -b",
+    "watch": "tsc -b --watch"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": false,
+    "tabWidth": 4
+  },
+  "dependencies": {
+    "@textlint/kernel": "workspace:*",
+    "@textlint/textlint-plugin-markdown": "workspace:*",
+    "@textlint/textlint-plugin-text": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/node": "^18.19.111",
+    "prettier": "^2.7.1",
+    "typescript": "~5.3.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

@@ -1,6 +1,7 @@
-import path from "path";
-import assert from "assert";
-import { createLinter, loadTextlintrc } from "../../src";
+import path from "node:path";
+import { describe, it } from "vitest";
+import assert from "node:assert";
+import { createLinter, loadTextlintrc } from "../../src/index.js";
 
 describe("createLinter", () => {
     it("should load ESM/CJS rules", async () => {

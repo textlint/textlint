@@ -4,13 +4,15 @@
  */
 
 "use strict";
-import formatter from "../../src/formatters/compact";
+import formatter from "../../src/formatters/compact.js";
+
+import { describe, it } from "vitest";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-import * as assert from "assert";
+import * as assert from "node:assert";
 
 //------------------------------------------------------------------------------
 // Tests

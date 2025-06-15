@@ -1,5 +1,5 @@
-import { TextlintPackageNamePrefix } from "./TextlintPackagePrefix";
-import { removePrefixFromPackageName, splitKeyToPresetSubRule } from "./KeyPathUtil";
+import { TextlintPackageNamePrefix } from "./TextlintPackagePrefix.js";
+import { removePrefixFromPackageName, splitKeyToPresetSubRule } from "./KeyPathUtil.js";
 
 /**
  * normalize `keyPath` that is specific path for rule

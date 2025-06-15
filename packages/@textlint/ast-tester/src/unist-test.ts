@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import * as assert from "assert";
+import * as assert from "node:assert";
 
 // https://github.com/wooorm/unist
 export function isUnist(node: any): boolean {

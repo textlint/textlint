@@ -1,8 +1,9 @@
-import * as fs from "fs";
-import * as path from "path";
-import * as assert from "assert";
-import { TextlintKernelOptions } from "../src/textlint-kernel-interface";
-import { TextlintKernel } from "../src";
+import * as fs from "node:fs";
+import { describe, it } from "vitest";
+import * as path from "node:path";
+import * as assert from "node:assert";
+import { TextlintKernelOptions } from "../src/textlint-kernel-interface.js";
+import { TextlintKernel } from "../src/index.js";
 
 const SNAPSHOTS_DIRECTORY = path.join(__dirname, "snapshots");
 // normalize based on the OS

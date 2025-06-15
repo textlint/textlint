@@ -2,16 +2,16 @@
 "use strict";
 import type { TextlintFixResult } from "@textlint/types";
 import { moduleInterop } from "@textlint/module-interop";
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import debug0 from "debug";
 import { tryResolve, dynamicImport } from "@textlint/resolver";
 // formatters
-import compatsFormatter from "./formatters/compats";
-import diffFormatter from "./formatters/diff";
-import fixedResultFormatter from "./formatters/fixed-result";
-import jsonFormatter from "./formatters/json";
-import stylishFormatter from "./formatters/stylish";
+import compatsFormatter from "./formatters/compats.js";
+import diffFormatter from "./formatters/diff.js";
+import fixedResultFormatter from "./formatters/fixed-result.js";
+import jsonFormatter from "./formatters/json.js";
+import stylishFormatter from "./formatters/stylish.js";
 
 const builtinFormatterList = {
     compats: compatsFormatter,

@@ -1,7 +1,7 @@
 /**
  * Filter rule reporter function
  */
-import { TextlintFilterRuleContext } from "./TextlintFilterRuleContext";
+import { TextlintFilterRuleContext } from "./TextlintFilterRuleContext.js";
 import { ASTNodeTypes, TypeofTxtNode } from "@textlint/ast-node-types";
 /**
  * textlint filter rule option values is object or boolean.

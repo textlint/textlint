@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
-import { getFilter } from "./rule-creator-helper";
-import { TextlintKernelFilterRule } from "../textlint-kernel-interface";
-import { Descriptor } from "./Descriptor";
+import { getFilter } from "./rule-creator-helper.js";
+import { TextlintKernelFilterRule } from "../textlint-kernel-interface.js";
+import { Descriptor } from "./Descriptor.js";
 import type { TextlintFilterRuleOptions, TextlintFilterRuleReporter } from "@textlint/types";
 import { deepEqual } from "fast-equals";
 

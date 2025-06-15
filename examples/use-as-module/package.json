@@ -1,23 +1,23 @@
 {
-    "name": "textlint-example-use-as-module",
-    "version": "14.8.1",
-    "private": true,
-    "license": "MIT",
-    "author": "azu",
-    "main": "index.mjs",
-    "scripts": {
-        "test": "node index.mjs",
-        "test:ci": "npm test"
-    },
-    "dependencies": {
-        "textlint": "workspace:*",
-        "textlint-rule-no-todo": "^2.0.1"
-    },
-    "files": [
-        "bin/",
-        "lib/",
-        "module/",
-        "src/",
-        "!*.tsbuildinfo"
-    ]
+  "name": "textlint-example-use-as-module",
+  "version": "14.8.1",
+  "private": true,
+  "license": "MIT",
+  "author": "azu",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "node index.mjs",
+    "test:ci": "npm test"
+  },
+  "dependencies": {
+    "textlint": "workspace:*",
+    "textlint-rule-no-todo": "^2.0.1"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "module/",
+    "src/",
+    "!*.tsbuildinfo"
+  ]
 }

@@ -1,4 +1,4 @@
-export { ASTNodeTypes } from "./ASTNodeTypes";
+export { ASTNodeTypes } from "./ASTNodeTypes.js";
 export type {
     // abstract node types
     AnyTxtNode,
@@ -35,5 +35,5 @@ export type {
     TxtTableNode,
     TxtTableRowNode,
     TxtTableCellNode
-} from "./NodeType";
-export type { TypeofTxtNode } from "./TypeofTxtNode";
+} from "./NodeType.js";
+export type { TypeofTxtNode } from "./TypeofTxtNode.js";

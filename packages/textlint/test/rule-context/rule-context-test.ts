@@ -1,7 +1,8 @@
 // LICENSE : MIT
 "use strict";
-import assert from "assert";
-import path from "path";
+import assert from "node:assert";
+import { afterEach, beforeEach, describe, it } from "vitest";
+import path from "node:path";
 import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 import {
@@ -10,7 +11,7 @@ import {
     TextlintRuleContext,
     TextlintRuleReportHandler
 } from "@textlint/types";
-import throwErrorInRule from "./fixtures/rules/throw-error-in-rule";
+import throwErrorInRule from "./fixtures/rules/throw-error-in-rule.js";
 import { TextLintCore } from "@textlint/legacy-textlint-core";
 /*
     TODO: rule-context-test has `lintText` and `fixText` test.
@@ -21,12 +22,12 @@ describe("rule-context-test", function () {
     beforeEach(function () {
         textlint = new TextLintCore();
     });
-    context("in traverse", function () {
+    describe("in traverse", function () {
         let callCount: number;
         beforeEach(function () {
             callCount = 0;
         });
-        context(":enter", function () {
+        describe(":enter", function () {
             beforeEach(function () {
                 textlint.setupRules({
                     // rule-key : rule function(see docs/rule.md)
@@ -57,7 +58,7 @@ describe("rule-context-test", function () {
                     });
             });
         });
-        context(":exit", function () {
+        describe(":exit", function () {
             beforeEach(function () {
                 textlint.setupRules({
                     // rule-key : rule function(see docs/rule.md)
@@ -88,7 +89,7 @@ describe("rule-context-test", function () {
                     });
             });
         });
-        context("when throw error in a rule", function () {
+        describe("when throw error in a rule", function () {
             beforeEach(function () {
                 textlint.setupRules({
                     // rule-key : rule function(see docs/rule.md)
@@ -101,7 +102,7 @@ describe("rule-context-test", function () {
                 });
             });
         });
-        context("when throw error in a rule at file", function () {
+        describe("when throw error in a rule at file", function () {
             beforeEach(function () {
                 textlint.setupRules({
                     // rule-key : rule function(see docs/rule.md)
@@ -181,14 +182,14 @@ describe("rule-context-test", function () {
         });
     });
     describe("#report", function () {
-        context("RuleError", function () {
+        describe("RuleError", function () {
             beforeEach(function () {
                 coreFlags.runningTester = true;
             });
             afterEach(function () {
                 resetFlags();
             });
-            context("[backward compatible]", function () {
+            describe("[backward compatible]", function () {
                 beforeEach(function () {
                     coreFlags.runningTester = false;
                 });
@@ -301,7 +302,7 @@ describe("rule-context-test", function () {
         });
     });
     describe("#shouldIgnore", function () {
-        context("when ignoreMessages only", function () {
+        describe("when ignoreMessages only", function () {
             it("should return empty message", function () {
                 textlint.setupFilterRules({
                     "filter-rule"(context: TextlintFilterRuleContext): TextlintFilterRuleReportHandler {
@@ -317,7 +318,7 @@ describe("rule-context-test", function () {
                 });
             });
         });
-        context("when ignoreMessages not match message", function () {
+        describe("when ignoreMessages not match message", function () {
             it("should preserve messages", function () {
                 textlint.setupRules({
                     rule(context: TextlintRuleContext): TextlintRuleReportHandler {
@@ -344,7 +345,7 @@ describe("rule-context-test", function () {
                 });
             });
         });
-        context("when duplicated ignoreMessages", function () {
+        describe("when duplicated ignoreMessages", function () {
             it("should messages is ignore", function () {
                 textlint.setupRules({
                     rule(context: TextlintRuleContext): TextlintRuleReportHandler {
@@ -371,7 +372,7 @@ describe("rule-context-test", function () {
                 });
             });
         });
-        context("when ignoreMessages that is not specified ruleId", function () {
+        describe("when ignoreMessages that is not specified ruleId", function () {
             it("should filter all messages *", function () {
                 textlint.setupRules({
                     rule(context: TextlintRuleContext): TextlintRuleReportHandler {
@@ -397,7 +398,7 @@ describe("rule-context-test", function () {
                 });
             });
         });
-        context("when exist messages and ignoreMessages", function () {
+        describe("when exist messages and ignoreMessages", function () {
             it("should return filtered result by ignoreMessages", function () {
                 textlint.setupRules({
                     rule(context: TextlintRuleContext): TextlintRuleReportHandler {
@@ -422,7 +423,7 @@ describe("rule-context-test", function () {
                 });
             });
         });
-        context("when --fix", function () {
+        describe("when --fix", function () {
             it("should fixer messages", function () {
                 const reporter = (context: TextlintRuleContext): TextlintRuleReportHandler => {
                     return {
@@ -447,7 +448,7 @@ describe("rule-context-test", function () {
                     assert.ok(result.messages.length === 0);
                 });
             });
-            context("when ignoreMessages that is not specified ruleId", function () {
+            describe("when ignoreMessages that is not specified ruleId", function () {
                 it("should filter all messages as `*`", function () {
                     const reporter = (context: TextlintRuleContext): TextlintRuleReportHandler => {
                         return {
@@ -485,7 +486,7 @@ describe("rule-context-test", function () {
     });
 
     describe("#getFilePath", function () {
-        context("when linting text", function () {
+        describe("when linting text", function () {
             it("should return undefined", function () {
                 textlint.setupRules({
                     "rule-key"(context: TextlintRuleContext): TextlintRuleReportHandler {
@@ -500,7 +501,7 @@ describe("rule-context-test", function () {
                 return textlint.lintMarkdown("test");
             });
         });
-        context("when linting file", function () {
+        describe("when linting file", function () {
             it("should return filePath that is linting now", function () {
                 const lintFilePath = path.join(__dirname, "fixtures/test.md");
                 textlint.setupRules({
@@ -518,7 +519,7 @@ describe("rule-context-test", function () {
         });
     });
     describe("#getConfigBaseDir", function () {
-        context("when linting text", function () {
+        describe("when linting text", function () {
             it("should return undefined", function () {
                 textlint.setupRules({
                     "rule-key"(context: TextlintRuleContext): TextlintRuleReportHandler {

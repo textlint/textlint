@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand";
+import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand.js";
 
 export type TextlintRuleErrorPaddingLocationLoc = {
     start: {

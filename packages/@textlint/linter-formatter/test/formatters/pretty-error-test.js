@@ -1,12 +1,14 @@
 // LICENSE : MIT
 "use strict";
-import prettyError from "../../src/formatters/pretty-error";
+import prettyError from "../../src/formatters/pretty-error.js";
 
-import * as assert from "assert";
-const path = require("path");
+import { describe, it } from "vitest";
+
+import * as assert from "node:assert";
+const path = require("node:path");
 const stripAnsi = require("strip-ansi");
 describe("pretty-error", function () {
-    context("when first line", function () {
+    describe("when first line", function () {
         it("should start 0 line", function () {
             const fooFile = path.join(__dirname, "../fixtures", "foo.md");
             const code = [
@@ -43,7 +45,7 @@ ${fooFile}:1:1
         });
     });
 
-    context("when contain fixable", function () {
+    describe("when contain fixable", function () {
         it("should return output", function () {
             const fooFile = path.join(__dirname, "../fixtures", "foo.md");
             const barFile = path.join(__dirname, "../fixtures", "bar.md");
@@ -109,7 +111,7 @@ Try to run: $ textlint --fix [file]
             );
         });
     });
-    context("when last line", function () {
+    describe("when last line", function () {
         it("should contain end+1 line", function () {
             const fooFile = path.join(__dirname, "../fixtures", "foo.md");
             const code = [
@@ -145,7 +147,7 @@ ${fooFile}:6:1
             );
         });
     });
-    context("when last line", function () {
+    describe("when last line", function () {
         it("should contain end+1 line", function () {
             const fooFile = path.join(__dirname, "../fixtures", "foo.md");
             const code = [
@@ -181,7 +183,7 @@ ${fooFile}:6:1
             );
         });
     });
-    context("when CKJ(東アジア文字幅)", function () {
+    describe("when CKJ(東アジア文字幅)", function () {
         it("should correct position ^", function () {
             const ckjFile = path.join(__dirname, "../fixtures", "ckj.md");
             const code = [

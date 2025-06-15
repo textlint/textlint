@@ -4,7 +4,7 @@
 // Author : azer
 "use strict";
 import type { TextlintMessage, TextlintResult } from "@textlint/types";
-import { FormatterOptions } from "../FormatterOptions";
+import { FormatterOptions } from "../FormatterOptions.js";
 
 import chalk from "chalk";
 // @ts-expect-error no types
@@ -19,7 +19,7 @@ import pluralize from "pluralize";
 import widthOfString from "string-width";
 
 // color set
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 
 const summaryColor = "yellow";
 const greenColor = "green";

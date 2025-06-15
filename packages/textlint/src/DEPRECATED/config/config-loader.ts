@@ -1,4 +1,4 @@
-import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
+import { TextLintModuleResolver } from "../engine/textlint-module-resolver.js";
 import { moduleInterop } from "@textlint/module-interop";
 
 import { rcFile } from "rc-config-loader";

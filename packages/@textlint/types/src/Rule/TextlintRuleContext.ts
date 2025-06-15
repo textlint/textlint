@@ -1,10 +1,10 @@
 // LICENSE : MIT
 "use strict";
 
-import { TextlintBaseRuleContext } from "./TextlintBaseRuleContext";
+import { TextlintBaseRuleContext } from "./TextlintBaseRuleContext.js";
 import { TxtNode } from "@textlint/ast-node-types";
-import { TextlintRuleError, TextlintRuleReportedObject } from "./TextlintRuleError";
-import { TextlintRuleContextFixCommandGenerator } from "./TextlintRuleContextFixCommandGenerator";
+import { TextlintRuleError, TextlintRuleReportedObject } from "./TextlintRuleError.js";
+import { TextlintRuleContextFixCommandGenerator } from "./TextlintRuleContextFixCommandGenerator.js";
 
 /**
  * context.report function

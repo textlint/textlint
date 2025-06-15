@@ -5,13 +5,15 @@
  */
 
 "use strict";
-import formatter from "../../src/formatters/json";
+import formatter from "../../src/formatters/json.js";
+
+import { describe, it } from "vitest";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-import * as assert from "assert";
+import * as assert from "node:assert";
 
 //------------------------------------------------------------------------------
 // Tests

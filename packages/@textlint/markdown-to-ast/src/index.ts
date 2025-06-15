@@ -1,9 +1,9 @@
-import { SyntaxMap } from "./mapping/markdown-syntax-map";
+import { SyntaxMap } from "./mapping/markdown-syntax-map.js";
 import type { TxtDocumentNode } from "@textlint/ast-node-types";
 import { ASTNodeTypes } from "@textlint/ast-node-types";
 import traverse from "neotraverse/legacy";
 import debug0 from "debug";
-import { parseMarkdown } from "./parse-markdown";
+import { parseMarkdown } from "./parse-markdown.js";
 
 const debug = debug0("@textlint/markdown-to-ast");
 

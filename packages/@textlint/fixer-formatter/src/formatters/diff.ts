@@ -1,6 +1,6 @@
 "use strict";
 import type { TextlintFixResult } from "@textlint/types";
-import fs from "fs";
+import fs from "node:fs";
 import { diffLines } from "diff";
 import chalk from "chalk";
 import stripAnsi from "strip-ansi";

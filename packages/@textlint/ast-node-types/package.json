@@ -26,14 +26,16 @@
     "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ module/",
     "prepack": "npm run build",
-    "test": "mocha"
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.10",
     "@types/node": "^22.13.17",
-    "mocha": "^10.8.2",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
-    "typescript": "~5.3.3"
+    "typescript": "~5.3.3",
+    "vitest": "^1.0.1",
+    "@vitest/coverage-v8": "^1.0.1"
   }
 }

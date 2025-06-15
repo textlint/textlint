@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
-import { getFixer } from "./rule-creator-helper";
-import { TextlintLintableRuleDescriptor } from "./TextlintLintableRuleDescriptor";
+import { getFixer } from "./rule-creator-helper.js";
+import { TextlintLintableRuleDescriptor } from "./TextlintLintableRuleDescriptor.js";
 import type { TextlintRuleReporter } from "@textlint/types";
 
 /**

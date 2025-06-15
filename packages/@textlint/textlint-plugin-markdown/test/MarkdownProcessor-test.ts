@@ -1,10 +1,11 @@
 // LICENSE : MIT
 "use strict";
-import assert from "assert";
+import assert from "node:assert";
+import { describe, it } from "vitest";
 import { TextlintKernel, TextlintPluginOptions } from "@textlint/kernel";
-import fs from "fs";
-import path from "path";
-import MarkdownPlugin from "../src";
+import fs from "node:fs";
+import path from "node:path";
+import MarkdownPlugin from "../src/index.js";
 
 const lintFile = (filePath: string, options: TextlintPluginOptions | boolean | undefined = true) => {
     const kernel = new TextlintKernel();
@@ -37,7 +38,7 @@ const lintText = (text: string, options = true) => {
     });
 };
 describe("MarkdownPlugin", function () {
-    context("when target file is a HTML", function () {
+    describe("when target file is a HTML", function () {
         it("should report error", function () {
             const fixturePath = path.join(__dirname, "/error.md");
             return lintFile(fixturePath).then((results) => {
@@ -46,7 +47,7 @@ describe("MarkdownPlugin", function () {
             });
         });
     });
-    context("extensions", function () {
+    describe("extensions", function () {
         it("should report error if extensions define .custom extension", function () {
             const fixturePath = path.join(__dirname, "/error.custom");
             return lintFile(fixturePath, {
@@ -57,7 +58,7 @@ describe("MarkdownPlugin", function () {
             });
         });
     });
-    context("When no file path", function () {
+    describe("When no file path", function () {
         it("should filePath is <ext>", function () {
             return lintText("- [ ] TODO").then((results) => {
                 assert(results.messages.length > 0);

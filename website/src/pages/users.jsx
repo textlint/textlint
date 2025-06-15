@@ -11,7 +11,7 @@ import styles from "./users.module.css";
 
 // ユーザーコンポーネント
 const Users = () => {
-    const { siteConfig } = useDocusaurusContext();
+    const { siteConfig } = useDocusaurusdescribe();
     // ユーザー一覧を生成
     const showcase = siteConfig.customFields.users.map((user, i) => (
         <a href={user.infoLink} key={i}>

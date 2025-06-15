@@ -30,9 +30,11 @@
     "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ module/",
     "prepack": "npm run --if-present build",
-    "test": "mocha",
     "updateSnapshot": "npm run build && node tools/update-fixtures.js",
-    "watch": "tsc -b --watch"
+    "watch": "tsc -b --watch",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@textlint/ast-node-types": "workspace:*",
@@ -49,13 +51,13 @@
     "@textlint/ast-tester": "workspace:*",
     "@types/unist": "^3.0.3",
     "@types/debug": "^4.1.12",
-    "@types/mocha": "^9.1.1",
     "@types/node": "^18.19.111",
     "mkdirp": "^1.0.4",
-    "mocha": "^10.8.2",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
-    "typescript": "~5.3.3"
+    "typescript": "~5.3.3",
+    "vitest": "^1.0.1",
+    "@vitest/coverage-v8": "^1.0.1"
   },
   "publishConfig": {
     "access": "public"

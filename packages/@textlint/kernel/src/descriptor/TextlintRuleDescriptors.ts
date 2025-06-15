@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintKernelRule } from "../textlint-kernel-interface";
-import { TextlintLintableRuleDescriptor } from "./TextlintLintableRuleDescriptor";
-import { filterDuplicateDescriptor } from "./DescriptorUtil";
-import { TextlintFixableRuleDescriptor } from "./TextlintFixableRuleDescriptor";
+import { TextlintKernelRule } from "../textlint-kernel-interface.js";
+import { TextlintLintableRuleDescriptor } from "./TextlintLintableRuleDescriptor.js";
+import { filterDuplicateDescriptor } from "./DescriptorUtil.js";
+import { TextlintFixableRuleDescriptor } from "./TextlintFixableRuleDescriptor.js";
 
 export type TextlintRuleAllRuleDescriptor = TextlintLintableRuleDescriptor | TextlintFixableRuleDescriptor;
 

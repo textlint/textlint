@@ -1,5 +1,5 @@
 import { TextlintFixResult } from "@textlint/kernel";
-import fs from "fs/promises";
+import fs from "node:fs/promises";
 
 function overWriteResult(result: TextlintFixResult): Promise<void> {
     const targetFilePath = result.filePath;

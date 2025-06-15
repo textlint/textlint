@@ -2,7 +2,7 @@
 "use strict";
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.NODE_ENV = "production";
-const fs = require("fs");
+const fs = require("node:fs");
 const spawn = require("cross-spawn");
 const paths = require("../configs/paths");
 const args = process.argv.slice(2);

@@ -1,8 +1,8 @@
-import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
+import { TextLintModuleResolver } from "../engine/textlint-module-resolver.js";
 import { moduleInterop } from "@textlint/module-interop";
 import debug0 from "debug";
 
-import assert from "assert";
+import assert from "node:assert";
 
 const debug = debug0("textlint:plugin-loader");
 

@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
-import filterMessages from "../../src/messages/filter-ignored-process";
-import * as assert from "assert";
-import { createIgnoreReportedMessage, createTextlintMessage } from "../util/createTextlintMessage";
+import filterMessages from "../../src/messages/filter-ignored-process.js";
+import { describe, it } from "vitest";
+import * as assert from "node:assert";
+import { createIgnoreReportedMessage, createTextlintMessage } from "../util/createTextlintMessage.js";
 
 // 9 character in each lines
 const MULTILINE_TEXT = `1st line.
@@ -11,12 +12,12 @@ const MULTILINE_TEXT = `1st line.
 4th line.
 5th line.`;
 describe("message-filter", function () {
-    context("when pass empty messages", function () {
+    describe("when pass empty messages", function () {
         it("should return empty messages", function () {
             assert.equal(filterMessages([]).length, 0);
         });
     });
-    context("when only lint messages", function () {
+    describe("when only lint messages", function () {
         it("should not change messages", function () {
             const messages = [
                 createTextlintMessage(MULTILINE_TEXT, {
@@ -34,7 +35,7 @@ describe("message-filter", function () {
     // Over point at least one(start or end): not ignored
     // For more details in
     // https://github.com/textlint/textlint/issues/835#issuecomment-1001287841
-    context("when contain ignore messages", function () {
+    describe("when contain ignore messages", function () {
         it("should not filtered, if start index < ignored's range start ", function () {
             const messages = [
                 createTextlintMessage(MULTILINE_TEXT, {
@@ -136,7 +137,7 @@ describe("message-filter", function () {
             assert.equal(filterMessages(messages).length, 0);
         });
     });
-    context("when the message has ignoringRuleId", function () {
+    describe("when the message has ignoringRuleId", function () {
         it("* match any rule", function () {
             const messages = [
                 createTextlintMessage(MULTILINE_TEXT, {

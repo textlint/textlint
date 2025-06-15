@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
-import path from "path";
-import * as assert from "assert";
-import { TextLintModuleResolver } from "../../src/DEPRECATED/engine/textlint-module-resolver";
+import path from "node:path";
+import { describe, it } from "vitest";
+import * as assert from "node:assert";
+import { TextLintModuleResolver } from "../../src/DEPRECATED/engine/textlint-module-resolver.js";
 
 const FIXTURE_DIR = path.join(__dirname, "fixtures");
 const createResolve = (ruleBaseDir?: string) => {
@@ -91,7 +92,7 @@ describe("textlint-module-resolver", function () {
         });
     });
     describe("#resolvePresetPackageName", function () {
-        context("In Configuration", function () {
+        describe("In Configuration", function () {
             it("should resolve plugin package name", function () {
                 const resolver = createResolve();
                 const shortPkg = resolver.resolvePresetPackageName("preset-jtf-style");

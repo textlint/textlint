@@ -1,8 +1,10 @@
 // MIT © 2017 azu
 "use strict";
-import * as assert from "assert";
+import * as assert from "node:assert";
 
-import { ASTNodeTypes } from "../src";
+import { describe, it } from "vitest";
+
+import { ASTNodeTypes } from "../src/index.js";
 
 describe("TextLintASTNodeTypes", () => {
     it("should have same value with key", () => {

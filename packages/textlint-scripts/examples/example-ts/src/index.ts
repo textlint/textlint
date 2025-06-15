@@ -1,5 +1,5 @@
 "use strict";
-import common from "./common";
+import common from "./common.js";
 import { TextlintRuleModule, TextlintRuleReporter } from "@textlint/types";
 
 const report: TextlintRuleReporter = function (context, _options = {}) {

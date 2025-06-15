@@ -1,4 +1,4 @@
-const path = require("path");
+const path = require("node:path");
 const shell = require("shelljs");
 const testRootDirectory = path.join(__dirname, "..", "test");
 if (!shell.which("grasp")) {

@@ -1,81 +1,84 @@
 {
-    "directories": {
-        "test": "test"
+  "directories": {
+    "test": "test"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "type": "commonjs",
+  "files": [
+    "register.js",
+    "register-ts.js",
+    "bin/",
+    "scripts/",
+    "configs/",
+    "!*.tsbuildinfo"
+  ],
+  "name": "textlint-scripts",
+  "version": "14.8.1",
+  "description": "textlint scripts help you to create textlint rule.",
+  "bin": {
+    "textlint-scripts": "./bin/cmd.js"
+  },
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "coverage": "vitest run --coverage"
+  },
+  "keywords": [
+    "textlint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-scripts",
+  "engines": {
+    "node": ">=18.19.0"
+  },
+  "devDependencies": {
+    "lint-staged": "^13.3.0",
+    "prettier": "^2.2.1",
+    "shelljs": "^0.10.0",
+    "vitest": "^1.0.1",
+    "@vitest/coverage-v8": "^1.0.1"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.27.2",
+    "@babel/core": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-typescript": "^7.27.1",
+    "@babel/register": "^7.27.1",
+    "babel-plugin-static-fs": "^3.0.0",
+    "confirmer": "^1.1.2",
+    "cross-spawn": "^7.0.6",
+    "pkg-to-readme": "^3.0.1",
+    "textlint-tester": "workspace:*"
+  },
+  "peerDependencies": {
+    "ts-node": "*",
+    "typescript": "*"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
     },
-    "author": "azu",
-    "license": "MIT",
-    "type": "commonjs",
-    "files": [
-        "register.js",
-        "register-ts.js",
-        "bin/",
-        "scripts/",
-        "configs/",
-        "!*.tsbuildinfo"
-    ],
-    "name": "textlint-scripts",
-    "version": "14.8.1",
-    "description": "textlint scripts help you to create textlint rule.",
-    "bin": {
-        "textlint-scripts": "./bin/cmd.js"
-    },
-    "scripts": {
-        "test": "mocha",
-        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
-    },
-    "keywords": [
-        "textlint"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/textlint/textlint.git"
-    },
-    "bugs": {
-        "url": "https://github.com/textlint/textlint/issues"
-    },
-    "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-scripts",
-    "engines": {
-        "node": ">=18.19.0"
-    },
-    "devDependencies": {
-        "lint-staged": "^13.3.0",
-        "prettier": "^2.2.1",
-        "shelljs": "^0.10.0"
-    },
-    "dependencies": {
-        "@babel/cli": "^7.27.2",
-        "@babel/core": "^7.27.4",
-        "@babel/preset-env": "^7.27.2",
-        "@babel/preset-typescript": "^7.27.1",
-        "@babel/register": "^7.27.1",
-        "babel-plugin-static-fs": "^3.0.0",
-        "confirmer": "^1.1.2",
-        "cross-spawn": "^7.0.6",
-        "mocha": "^10.8.2",
-        "pkg-to-readme": "^3.0.1",
-        "textlint-tester": "workspace:*"
-    },
-    "peerDependencies": {
-        "ts-node": "*",
-        "typescript": "*"
-    },
-    "peerDependenciesMeta": {
-        "typescript": {
-            "optional": true
-        },
-        "ts-node": {
-            "optional": true
-        }
-    },
-    "prettier": {
-        "singleQuote": false,
-        "printWidth": 120,
-        "tabWidth": 4,
-        "trailingComma": "none"
-    },
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx,css}": [
-            "prettier --write"
-        ]
+    "ts-node": {
+      "optional": true
     }
+  },
+  "prettier": {
+    "singleQuote": false,
+    "printWidth": 120,
+    "tabWidth": 4,
+    "trailingComma": "none"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write"
+    ]
+  }
 }

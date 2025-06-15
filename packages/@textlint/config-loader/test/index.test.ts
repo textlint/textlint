@@ -1,7 +1,8 @@
-import * as fs from "fs";
-import * as path from "path";
-import * as assert from "assert";
-import { loadRawConfig, loadPackagesFromRawConfig } from "../src/index";
+import * as fs from "node:fs";
+import { describe, it } from "vitest";
+import * as path from "node:path";
+import * as assert from "node:assert";
+import { loadRawConfig, loadPackagesFromRawConfig } from "../src/index.js";
 
 const fixturesDir = path.join(__dirname, "snapshots");
 const modulesDir = path.join(__dirname, "modules_fixtures");
@@ -90,7 +91,7 @@ describe("@textlint/config-loader", () => {
             assert.deepStrictEqual(actualForComparison, expectedForComparison);
         });
     });
-    context("when config file is not encoded in UTF-8", () => {
+    describe("when config file is not encoded in UTF-8", () => {
         it("should validate UTF-8 encoding and reject non-UTF-8 files", () => {
             const notUTF8Files = ["shift-jis.json", "euc-jp.json"];
             notUTF8Files.forEach(async (notUTF8File) => {

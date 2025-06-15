@@ -1,6 +1,7 @@
-import * as assert from "assert";
-import path from "path";
-import { findFiles } from "../../src/util/old-find-util";
+import * as assert from "node:assert";
+import { describe, it } from "vitest";
+import path from "node:path";
+import { findFiles } from "../../src/util/old-find-util.js";
 
 describe("old-find-util", () => {
     describe("findFiles", () => {
@@ -47,7 +48,7 @@ describe("old-find-util", () => {
                 path.resolve(cwd, "ignored/test.md")
             ]);
         });
-        context("when specify `ignoreFilePath` option", () => {
+        describe("when specify `ignoreFilePath` option", () => {
             it("should find files with relative path patterns", () => {
                 const patterns = ["**/*.md"];
                 const files = findFiles(patterns, {

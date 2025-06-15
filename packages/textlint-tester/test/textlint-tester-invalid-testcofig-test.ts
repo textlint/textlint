@@ -1,10 +1,11 @@
-import * as assert from "assert";
+import * as assert from "node:assert";
+import { describe, it } from "vitest";
 // @ts-expect-error: no types
 import htmlPlugin from "textlint-plugin-html";
-import noTodoRule from "./fixtures/rule/no-todo";
+import noTodoRule from "./fixtures/rule/no-todo.js";
 // @ts-expect-error: no types
 import maxNumberOfLineRule from "textlint-rule-max-number-of-lines";
-import { TextLintTester } from "../src/textlint-tester";
+import { TextLintTester } from "../src/textlint-tester.js";
 
 const tester = new TextLintTester();
 const baseCase = {

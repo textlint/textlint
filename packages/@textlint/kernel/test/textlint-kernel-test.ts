@@ -1,14 +1,15 @@
 // MIT © 2017 azu
 "use strict";
 import type { TextlintMessage } from "@textlint/types";
-import { TextlintKernel } from "../src/textlint-kernel";
-import { errorRule } from "./helper/ErrorRule";
-import { createPluginStub, ExampleProcessorOptions } from "./helper/ExamplePlugin";
-import { TextlintKernelOptions } from "../src/textlint-kernel-interface";
-import { filterRule } from "./helper/FilterRule";
-import { TextlintRuleSeverityLevelKeys } from "../src/context/TextlintRuleSeverityLevelKeys";
+import { describe, it } from "vitest";
+import { TextlintKernel } from "../src/textlint-kernel.js";
+import { errorRule } from "./helper/ErrorRule.js";
+import { createPluginStub, ExampleProcessorOptions } from "./helper/ExamplePlugin.js";
+import { TextlintKernelOptions } from "../src/textlint-kernel-interface.js";
+import { filterRule } from "./helper/FilterRule.js";
+import { TextlintRuleSeverityLevelKeys } from "../src/context/TextlintRuleSeverityLevelKeys.js";
 
-import assert from "assert";
+import assert from "node:assert";
 
 /**
  * assert: TextlintMessage must have these properties
@@ -52,7 +53,7 @@ describe("textlint-kernel", () => {
                 result.messages.forEach((message) => assertMessage(message));
             });
         });
-        context("when rule has fixer", () => {
+        describe("when rule has fixer", () => {
             it("should return messages that has `fix` object", () => {
                 const kernel = new TextlintKernel();
                 const expectedFixObject = {
@@ -153,7 +154,7 @@ describe("textlint-kernel", () => {
                 assert.strictEqual(errorMessage.severity, TextlintRuleSeverityLevelKeys.error);
             });
         });
-        context("when rule error is match ignoredRange and ruleId", () => {
+        describe("when rule error is match ignoredRange and ruleId", () => {
             it("should not report these error", () => {
                 const kernel = new TextlintKernel();
                 const { plugin } = createPluginStub();
@@ -239,7 +240,7 @@ describe("textlint-kernel", () => {
                 });
             });
         });
-        context("when rule error is match ignoredRange", () => {
+        describe("when rule error is match ignoredRange", () => {
             it("should not report these error", () => {
                 const kernel = new TextlintKernel();
                 const { plugin } = createPluginStub();
@@ -283,7 +284,7 @@ describe("textlint-kernel", () => {
                 });
             });
         });
-        context("when pass invalid options", () => {
+        describe("when pass invalid options", () => {
             it("should throw validation error", () => {
                 const kernel = new TextlintKernel({});
                 return kernel.lintText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as any).catch((error) => {
@@ -329,7 +330,7 @@ describe("textlint-kernel", () => {
                 assert.deepEqual(actualPluginOptions, expectedPluginOptions);
             });
         });
-        context("when pass invalid options", () => {
+        describe("when pass invalid options", () => {
             it("should throw validation error", () => {
                 const kernel = new TextlintKernel({});
                 return kernel.fixText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as any).catch((error) => {

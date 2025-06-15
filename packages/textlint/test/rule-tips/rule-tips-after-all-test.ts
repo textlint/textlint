@@ -1,7 +1,8 @@
 // MIT © 2017 azu
 "use strict";
-import * as assert from "assert";
-import { createAfterAllRule } from "./fixtures/rules/after-all";
+import * as assert from "node:assert";
+import { describe, it } from "vitest";
+import { createAfterAllRule } from "./fixtures/rules/after-all.js";
 import { TextLintCore } from "@textlint/legacy-textlint-core";
 describe("rule-tips-after-all-test", function () {
     // Test https://github.com/textlint/textlint/issues/266#issuecomment-293192017

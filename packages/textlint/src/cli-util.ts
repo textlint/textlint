@@ -1,7 +1,7 @@
-import { Logger } from "./util/logger";
-import type { CliOptions } from "./options";
-import path from "path";
-import fs from "fs";
+import { Logger } from "./util/logger.js";
+import type { CliOptions } from "./options.js";
+import path from "node:path";
+import fs from "node:fs";
 
 export const showEmptyRuleWarning = () => {
     Logger.log(`

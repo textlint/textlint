@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
 import { TxtNode } from "@textlint/ast-node-types";
-import { parse, Syntax } from "../src/index";
-import assert from "assert";
+import { beforeEach, describe, it } from "vitest";
+import { parse, Syntax } from "../lib/src/index.js";
+import assert from "node:assert";
 import traverse from "neotraverse/legacy";
 
 const inspect = (obj: unknown) => JSON.stringify(obj, null, 4);
@@ -70,7 +71,7 @@ function shouldHaveImplementInlineTxtNode(node: TxtNode, text: string, allText: 
 
  */
 describe("markdown-parser", function () {
-    context("Node type is Document", function () {
+    describe("Node type is Document", function () {
         it("should has implemented TxtNode", function () {
             const RootDocument = parse("");
             assert.strictEqual(RootDocument.type, Syntax.Document);
@@ -119,19 +120,19 @@ describe("markdown-parser", function () {
     /*
         Paragraph > Str
      */
-    context("Node type is Paragraph", function () {
+    describe("Node type is Paragraph", function () {
         let AST: TxtNode, rawValue: string;
         beforeEach(function () {
             rawValue = "string";
             AST = parse(rawValue);
         });
-        context("Paragraph", function () {
+        describe("Paragraph", function () {
             it("should has implemented TxtNode", function () {
                 const node = findFirstTypedNode(AST, Syntax.Paragraph, rawValue);
                 shouldHaveImplementTxtNode(node, rawValue);
             });
         });
-        context("Text", function () {
+        describe("Text", function () {
             it("should has implemented TxtNode", function () {
                 const node = findFirstTypedNode(AST, Syntax.Str, rawValue);
                 shouldHaveImplementTxtNode(node, rawValue);
@@ -141,25 +142,25 @@ describe("markdown-parser", function () {
     /*
         H1  > Str
      */
-    context("Node type is Header", function () {
+    describe("Node type is Header", function () {
         /**
          * text
          * =====
          **/
-        context("SetextHeader", function () {
+        describe("SetextHeader", function () {
             let AST: TxtNode, text: string, header: string;
             beforeEach(function () {
                 text = "string";
                 header = `${text}\n======`;
                 AST = parse(header);
             });
-            context("Header", function () {
+            describe("Header", function () {
                 it("should has implemented TxtNode", function () {
                     const node = findFirstTypedNode(AST, Syntax.Header);
                     shouldHaveImplementTxtNode(node, header);
                 });
             });
-            context("Str", function () {
+            describe("Str", function () {
                 it("should has implemented TxtNode", function () {
                     const node = findFirstTypedNode(AST, Syntax.Str);
                     shouldHaveImplementTxtNode(node, text);
@@ -169,20 +170,20 @@ describe("markdown-parser", function () {
         /**
          * # text
          * */
-        context("ATXHeader", function () {
+        describe("ATXHeader", function () {
             let AST: TxtNode, text: string, header: string;
             beforeEach(function () {
                 text = "string";
                 header = `# ${text}`;
                 AST = parse(header);
             });
-            context("Header", function () {
+            describe("Header", function () {
                 it("should has implemented TxtNode", function () {
                     const node = findFirstTypedNode(AST, Syntax.Header);
                     shouldHaveImplementTxtNode(node, header);
                 });
             });
-            context("Str", function () {
+            describe("Str", function () {
                 it("should have correct range", function () {
                     const node = findFirstTypedNode(AST, Syntax.Str);
                     shouldHaveImplementInlineTxtNode(node, text, header);
@@ -190,7 +191,7 @@ describe("markdown-parser", function () {
             });
         });
     });
-    context("Node type is Link", function () {
+    describe("Node type is Link", function () {
         let AST: TxtNode, rawValue: string, labelText: string;
         beforeEach(function () {
             labelText = "text";
@@ -201,14 +202,14 @@ describe("markdown-parser", function () {
             const node = findFirstTypedNode(AST, Syntax.Link);
             shouldHaveImplementTxtNode(node, rawValue);
         });
-        context("Str", function () {
+        describe("Str", function () {
             it("should have correct range", function () {
                 const node = findFirstTypedNode(AST, Syntax.Str);
                 shouldHaveImplementInlineTxtNode(node, labelText, rawValue);
             });
         });
     });
-    context("Node type is List", function () {
+    describe("Node type is List", function () {
         it("should has implemented TxtNode", function () {
             const rawValue = "- list1\n- list2",
                 AST = parse(rawValue);
@@ -216,7 +217,7 @@ describe("markdown-parser", function () {
             shouldHaveImplementTxtNode(node, rawValue);
         });
     });
-    context("Node type is ListItem", function () {
+    describe("Node type is ListItem", function () {
         it("should same the bullet_char", function () {
             let node: TxtNode, AST: TxtNode;
             AST = parse("- item");
@@ -239,7 +240,7 @@ describe("markdown-parser", function () {
             const node = findFirstTypedNode(AST, Syntax.ListItem);
             shouldHaveImplementTxtNode(node, rawValue);
         });
-        context("Str", function () {
+        describe("Str", function () {
             it("should have correct range", function () {
                 const text = "text",
                     rawValue = `- ${text}`,
@@ -252,7 +253,7 @@ describe("markdown-parser", function () {
     /*
         > BlockQuote
     */
-    context("Node type is BlockQuote", function () {
+    describe("Node type is BlockQuote", function () {
         let AST: TxtNode, rawValue: string, text: string;
         beforeEach(function () {
             text = "text";
@@ -269,8 +270,8 @@ describe("markdown-parser", function () {
     CodeBlock
     ```
     */
-    context("Node type is CodeBlock", function () {
-        context("IndentCodeBlock", function () {
+    describe("Node type is CodeBlock", function () {
+        describe("IndentCodeBlock", function () {
             let AST: TxtNode, rawValue: string, code: string;
             beforeEach(function () {
                 code = "var code;";
@@ -284,7 +285,7 @@ describe("markdown-parser", function () {
                 assert.strictEqual(slicedCode.trim(), code);
             });
         });
-        context("FencedCode", function () {
+        describe("FencedCode", function () {
             let AST: TxtNode, rawValue: string, code: string;
             beforeEach(function () {
                 code = "var code;";
@@ -303,7 +304,7 @@ describe("markdown-parser", function () {
     /*
         `code`
      */
-    context("Node type is Code", function () {
+    describe("Node type is Code", function () {
         let AST: TxtNode, rawValue: string;
         beforeEach(function () {
             rawValue = "`code`";
@@ -317,7 +318,7 @@ describe("markdown-parser", function () {
     /*
         __Strong__
      */
-    context("Node type is Strong", function () {
+    describe("Node type is Strong", function () {
         let AST: TxtNode, rawValue: string, text: string;
         beforeEach(function () {
             text = "text";
@@ -328,7 +329,7 @@ describe("markdown-parser", function () {
             const node = findFirstTypedNode(AST, Syntax.Strong);
             shouldHaveImplementTxtNode(node, rawValue);
         });
-        context("Str", function () {
+        describe("Str", function () {
             it("should have correct range", function () {
                 const node = findFirstTypedNode(AST, Syntax.Str);
                 shouldHaveImplementInlineTxtNode(node, text, rawValue);
@@ -339,7 +340,7 @@ describe("markdown-parser", function () {
     /*
         ![text](http://example.com/a.png)
      */
-    context("Node type is Image", function () {
+    describe("Node type is Image", function () {
         let AST: TxtNode, rawValue: string, labelText: string;
         beforeEach(function () {
             labelText = "text";
@@ -354,7 +355,7 @@ describe("markdown-parser", function () {
     /*
      *text*
      */
-    context("Node type is Emphasis", function () {
+    describe("Node type is Emphasis", function () {
         let AST: TxtNode, rawValue: string, text: string;
         beforeEach(function () {
             text = "text";
@@ -365,7 +366,7 @@ describe("markdown-parser", function () {
             const node = findFirstTypedNode(AST, Syntax.Emphasis);
             shouldHaveImplementTxtNode(node, rawValue);
         });
-        context("Str", function () {
+        describe("Str", function () {
             it("should have correct range", function () {
                 const node = findFirstTypedNode(AST, Syntax.Str);
                 shouldHaveImplementInlineTxtNode(node, text, rawValue);
@@ -375,7 +376,7 @@ describe("markdown-parser", function () {
     /*
     ----
     */
-    context("Node type is HorizontalRule", function () {
+    describe("Node type is HorizontalRule", function () {
         let AST: TxtNode, rawValue: string;
         beforeEach(function () {
             rawValue = "----";
@@ -389,7 +390,7 @@ describe("markdown-parser", function () {
     /*
         <html>
      */
-    context("Node type is Html", function () {
+    describe("Node type is Html", function () {
         let AST: TxtNode, rawValue: string;
         beforeEach(function () {
             rawValue = "<p>text</p>";
