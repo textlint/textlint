@@ -14,7 +14,6 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "lint": "npm-run-all eslint",
     "lint:fix": "npm-run-all eslint:fix",
-    "prepack": "npm-run-all clean build",
     "perf": "cd ./examples/perf && npm run test:ci",
     "prepare": "git config --local core.hooksPath .githooks",
     "release": "lerna publish from-package",
