@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
 import * as assert from "node:assert";
-import { createTestLinter, createTextlintKernelDescriptor } from "../lib/src/textlint-tester.js";
-import { testValid, testInvalid } from "../lib/src/test-util.js";
+import { describe, it } from "vitest";
+import { createTestLinter, createTextlintKernelDescriptor } from "../src/textlint-tester";
+import { testValid, testInvalid } from "../src/test-util";
 import rule from "./fixtures/rule/no-todo";
 
 describe("Error format", () => {

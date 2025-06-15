@@ -35,10 +35,9 @@
     "clean": "rimraf lib/ out/",
     "prepack": "npm run --if-present build",
     "watch": "tsc -b --watch",
-    "pretest": "npm run build",
-    "test": "mocha \"test/**/*.ts\" --require ts-node/register",
-    "test:watch": "mocha \"test/**/*.ts\" --require ts-node/register --watch",
-    "coverage": "nyc npm test"
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@textlint/ast-node-types": "workspace:*",
@@ -58,9 +57,8 @@
     "textlint-rule-max-number-of-lines": "^1.0.3",
     "ts-node": "^10.9.2",
     "typescript": "~5.3.3",
-    "mocha": "^10.2.0",
-    "@types/mocha": "^10.0.3",
-    "nyc": "^15.1.0"
+    "vitest": "^1.0.1",
+    "@vitest/coverage-v8": "^1.0.1"
   },
   "email": "azuciao@gmail.com"
 }

@@ -1,4 +1,4 @@
-import TextLintTester from "../lib/src/index.js";
+import TextLintTester from "../src/index";
 // @ts-expect-error: no types
 import htmlPlugin from "textlint-plugin-html";
 import noTodoRule from "./fixtures/rule/no-todo";

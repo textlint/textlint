@@ -32,7 +32,7 @@
     "prepack": "npm run --if-present build",
     "updateSnapshot": "npm run build && node tools/update-fixtures.js",
     "watch": "tsc -b --watch",
-    "test": "npm run build && vitest run",
+    "test": "vitest run",
     "test:watch": "vitest watch",
     "coverage": "vitest run --coverage"
   },

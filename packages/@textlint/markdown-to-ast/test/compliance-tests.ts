@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { describe, it } from "vitest";
 import { test as astTest } from "@textlint/ast-tester";
-import { parse } from "../lib/src/index.js";
+import { parse } from "../src/index";
 import { TxtNode } from "@textlint/ast-node-types";
 import type { Node } from "unist";
 // String -> [String]

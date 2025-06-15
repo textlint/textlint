@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import TextLintTester from "../lib/src/index.js";
+import TextLintTester from "../src/index";
 import path from "node:path";
 import fixerRule from "./fixtures/rule/fixer-rule-add";
 

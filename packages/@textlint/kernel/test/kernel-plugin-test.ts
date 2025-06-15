@@ -1,13 +1,13 @@
 import { createPluginStub } from "./helper/ExamplePlugin.js";
 import { describe, it } from "vitest";
 import { errorRule } from "./helper/ErrorRule.js";
-import { TextlintKernel, TextlintPluginCreator } from "../lib/src/index.js";
+import { TextlintKernel, TextlintPluginCreator } from "../src/index";
 import * as path from "node:path";
 import * as assert from "node:assert";
 import { createBinaryPluginStub } from "./helper/BinaryPlugin.js";
 import { createAsyncPluginStub } from "./helper/AsyncPlugin.js";
 import type { TextlintRuleReporter } from "@textlint/types";
-import { TextlintKernelOptions } from "../lib/src/textlint-kernel-interface.js";
+import { TextlintKernelOptions } from "../src/textlint-kernel-interface";
 import { TxtDocumentNode } from "@textlint/ast-node-types";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 
