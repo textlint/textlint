@@ -1,6 +1,6 @@
 {
   "name": "@textlint/resolver",
-  "version": "14.8.1",
+  "version": "14.8.2",
   "description": "Module Resolver Utility for textlint",
   "keywords": [
     "textlint",

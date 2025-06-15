@@ -1,6 +1,6 @@
 {
     "name": "textlint-tester",
-    "version": "14.8.1",
+    "version": "14.8.2",
     "description": "testing tool for textlint rule.",
     "keywords": [
         "test",
