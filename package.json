@@ -29,7 +29,7 @@
     "update:projectReferences": "workspaces-to-typescript-project-references --includesRoot ",
     "updateSnapshot": "lerna run updateSnapshot",
     "versionup": "lerna version",
-    "website": "lerna run build --scope textlint-website"
+    "website": "pnpm run build && lerna run build --scope textlint-website"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [
