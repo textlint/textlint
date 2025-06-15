@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749986423403,
+  "lastUpdate": 1749986431500,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -59892,6 +59892,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6008377212200001,
             "unit": "seconds",
             "range": "± 0.0060605349999999225"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "85130d742ef192acc4269f506ef92764cd10d694",
+          "message": "CI: add pnpm installation step to the release job",
+          "timestamp": "2025-06-15T20:17:09+09:00",
+          "tree_id": "e3c5dd27a69c012bd2ec7de9f58a6610b33c8d6d",
+          "url": "https://github.com/textlint/textlint/commit/85130d742ef192acc4269f506ef92764cd10d694"
+        },
+        "date": 1749986426361,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.29643367843999996,
+            "unit": "seconds",
+            "range": "± 0.458436022"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71121873164,
+            "unit": "seconds",
+            "range": "± 0.027829253999999803"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5993685800399999,
+            "unit": "seconds",
+            "range": "± 0.04421803999999996"
           }
         ]
       }
