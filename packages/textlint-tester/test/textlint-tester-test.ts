@@ -1,4 +1,4 @@
-import * as path from "node:path";
+import * as path from "path";
 import TextLintTester from "../src/index";
 import noTodo from "./fixtures/rule/no-todo";
 // @ts-expect-error: no types

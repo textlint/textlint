@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
-import * as assert from "node:assert";
-import { testInvalid, testValid } from "./test-util.js";
+import * as assert from "assert";
+import { testInvalid, testValid } from "./test-util";
 import {
     TextlintFixResult,
     TextlintKernel,
@@ -13,8 +13,8 @@ import {
 import { coreFlags } from "@textlint/feature-flag";
 import textPlugin from "@textlint/textlint-plugin-text";
 import markdownPlugin from "@textlint/textlint-plugin-markdown";
-import fs from "node:fs/promises";
-import path from "node:path";
+import fs from "fs/promises";
+import path from "path";
 import { TextlintPluginOptions, TextlintRuleOptions } from "@textlint/types";
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;

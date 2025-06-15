@@ -1,3 +1,3 @@
-import { TextLintTester } from "./textlint-tester.js";
+import { TextLintTester } from "./textlint-tester";
 
 export default TextLintTester;

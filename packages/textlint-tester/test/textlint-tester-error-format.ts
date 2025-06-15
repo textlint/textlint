@@ -1,7 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import * as assert from "node:assert";
-import { describe, it } from "vitest";
+import * as assert from "assert";
 import { createTestLinter, createTextlintKernelDescriptor } from "../src/textlint-tester";
 import { testValid, testInvalid } from "../src/test-util";
 import rule from "./fixtures/rule/no-todo";
@@ -15,7 +14,7 @@ describe("Error format", () => {
     );
 
     describe("valid", () => {
-        describe("when w/o description", () => {
+        context("when w/o description", () => {
             it(`should output error messages in a specific format`, async () => {
                 const errorMsg = `valid: should have no errors but had Error results:
 ===Text===:
@@ -67,7 +66,7 @@ describe("Error format", () => {
             });
         });
 
-        describe("when w/ description", () => {
+        context("when w/ description", () => {
             it(`should output error messages in a specific format`, async () => {
                 const errorMsg = `valid: should have no errors but had Error results:
 ===Description===:
@@ -125,7 +124,7 @@ when valid it expects to raise an error.
     });
 
     describe("invalid", () => {
-        describe("when w/o description", () => {
+        context("when w/o description", () => {
             it(`should output error messages in a specific format`, async () => {
                 const errorMsg = `invalid: should have 1 errors but had 0:
 ===Text===:
@@ -153,7 +152,7 @@ text
             });
         });
 
-        describe("when w/ description", () => {
+        context("when w/ description", () => {
             it(`should output error messages in a specific format`, async () => {
                 const errorMsg = `invalid: should have 1 errors but had 0:
 ===Description===:
