@@ -44,8 +44,7 @@
     "prepack": "npm run build",
     "watch": "tsc -b --watch",
     "test": "vitest run",
-    "test:watch": "vitest watch",
-    "coverage": "vitest run --coverage"
+    "test:watch": "vitest watch"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
@@ -94,8 +93,7 @@
     "textlint-rule-preset-jtf-style": "^2.3.14",
     "ts-node": "^10.9.2",
     "typescript": "~5.3.3",
-    "vitest": "^1.0.1",
-    "@vitest/coverage-v8": "^1.0.1"
+    "vitest": "^3.2.3"
   },
   "engines": {
     "node": ">=18.14.0"

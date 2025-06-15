@@ -36,8 +36,7 @@
     "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
     "test:build": "tsc -b test",
     "test": "vitest run",
-    "test:watch": "vitest watch",
-    "coverage": "vitest run --coverage"
+    "test:watch": "vitest watch"
   },
   "dependencies": {
     "@textlint/ast-node-types": "workspace:*",
@@ -60,7 +59,6 @@
     "ts-node": "^10.9.2",
     "typescript": "~5.3.3",
     "unist-util-select": "^3.0.4",
-    "vitest": "^1.0.1",
-    "@vitest/coverage-v8": "^1.0.1"
+    "vitest": "^3.2.3"
   }
 }

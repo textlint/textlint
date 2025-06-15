@@ -27,15 +27,13 @@
     "clean": "rimraf lib/ module/",
     "prepack": "npm run build",
     "test": "vitest run",
-    "test:watch": "vitest watch",
-    "coverage": "vitest run --coverage"
+    "test:watch": "vitest watch"
   },
   "devDependencies": {
     "@types/node": "^22.13.17",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "~5.3.3",
-    "vitest": "^1.0.1",
-    "@vitest/coverage-v8": "^1.0.1"
+    "vitest": "^3.2.3"
   }
 }

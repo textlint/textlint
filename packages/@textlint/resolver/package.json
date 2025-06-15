@@ -40,8 +40,7 @@
     "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
     "watch": "tsc --build --watch",
     "test": "vitest run",
-    "test:watch": "vitest watch",
-    "coverage": "vitest run --coverage"
+    "test:watch": "vitest watch"
   },
   "prettier": {
     "printWidth": 120,
@@ -54,8 +53,7 @@
     "prettier": "^2.8.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.1.6",
-    "vitest": "^1.0.1",
-    "@vitest/coverage-v8": "^1.0.1"
+    "vitest": "^3.2.3"
   },
   "publishConfig": {
     "access": "public"
