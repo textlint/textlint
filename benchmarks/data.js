@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749980025689,
+  "lastUpdate": 1749980458085,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -59262,6 +59262,48 @@ window.BENCHMARK_DATA = {
             "value": 0.61362215354,
             "unit": "seconds",
             "range": "± 0.012793358000000032"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e54175308ade83f81881d7dbe37aa2f0dca9272c",
+          "message": "refactor: migrate test runner from Mocha to Vitest (#1544)\n\n* fix: update pnpm workspace configuration and improve test structure\n\n- Updated `pnpm-workspace.yaml` to include specific integration test directory.\n- Enhanced `.gitignore` in benchmark tests to exclude coverage files.\n- Fixed missing newline in `package.json` files across various directories.\n- Added `vitest.config.ts` for configuring Vitest testing framework.\n- Corrected usage of `useDocusaurusContext` to `useDocusaurusdescribe` in multiple JSX files.\n\n* chore: update vitest configuration to set environment to node and specify esbuild target\n\n* Refactor code structure for improved readability and maintainability\n\n* Add packages/textlint-scripts/.mocharc.json+19\n\n* refactor: remove vitest.config.ts and migrate to vitest.config.mts with updated configuration\n\n* fix: improve AST testing and error handling in markdown-to-ast\n\n- Updated parsing tests to catch and log errors, skipping tests that fail.\n- Changed import paths in parsing-test.ts to use relative paths.\n- Updated fixture generation script to use the lib version of the parser.\n- Modified textlint-rule-cjs to use CommonJS module exports.\n- Added structured-source dependency to pnpm-lock.yaml.\n- Removed esbuild target configuration from vitest config.\n- Added debugging scripts for analyzing broken auto-links and Str nodes in markdown-to-ast.\n\n* Refactor code structure for improved readability and maintainability\n\n* Update package.json+1\n\n* revert\n\n* fix\n\n* Update website/package.json+3\n\n* Add esbuild to onlyBuiltDependencies and create empty test files for markdown-to-ast and vitest configuration\n\n* fix: rename test import for clarity in compliance tests\n\n* fix: remove unused test import from compliance tests\n\n* sort package.json\n\n* add --verbose\n\n* Update vitest.config.mts\n\n* fix: simplify AST test structure and remove error handling",
+          "timestamp": "2025-06-15T18:38:50+09:00",
+          "tree_id": "0deb55a677b7b312579320a72c1659149cdce0cf",
+          "url": "https://github.com/textlint/textlint/commit/e54175308ade83f81881d7dbe37aa2f0dca9272c"
+        },
+        "date": 1749980453362,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25402988872,
+            "unit": "seconds",
+            "range": "± 0.257419865"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71737316952,
+            "unit": "seconds",
+            "range": "± 0.036362585"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59468259652,
+            "unit": "seconds",
+            "range": "± 0.010411644000000053"
           }
         ]
       }
