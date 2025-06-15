@@ -11,7 +11,7 @@ const callAsync = (text: string) => {
 export const createAfterAllRule = (array: string[]) => {
     return (context: TextlintRuleContext): TextlintRuleReportHandler => {
         const { Syntax, getSource } = context;
-        const promiseQueue: Promise<String>[] = [];
+        const promiseQueue: Promise<string>[] = [];
         return {
             [Syntax.Str](node) {
                 const text = getSource(node);

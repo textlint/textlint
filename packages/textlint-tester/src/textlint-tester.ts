@@ -19,7 +19,7 @@ import { TextlintPluginOptions, TextlintRuleOptions } from "@textlint/types";
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 const globalObject = globalThis;
-/* eslint-disable no-invalid-this */
+
 const describe =
     typeof globalObject.describe === "function"
         ? globalObject.describe
@@ -34,7 +34,6 @@ const it =
               return method.apply(this);
           };
 
-/* eslint-enable no-invalid-this */
 /**
  * get fixer function from ruleCreator
  * if not found, throw error

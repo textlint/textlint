@@ -11,7 +11,6 @@ const inspect = (obj: unknown) => JSON.stringify(obj, null, 4);
 function findFirstTypedNode(node: TxtNode, type: string, value?: string): TxtNode {
     let result: TxtNode | null = null;
     traverse(node).forEach(function (x) {
-        // eslint-disable-next-line no-invalid-this
         if (this.notLeaf) {
             if (x.type === type) {
                 if (value == null) {

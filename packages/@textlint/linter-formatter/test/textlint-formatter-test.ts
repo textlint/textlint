@@ -70,7 +70,7 @@ describe("@textlint/linter-formatter-test", function () {
                 const ckjFile = path.join(__dirname, "./fixtures", "ckj.md");
                 const output = formatter([
                     {
-                        filePath: __dirname + "/fixtures/myfile.js",
+                        filePath: `${__dirname}/fixtures/myfile.js`,
                         messages: [
                             {
                                 type: "lint",

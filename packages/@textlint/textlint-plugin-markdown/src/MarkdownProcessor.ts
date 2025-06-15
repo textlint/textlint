@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 // LICENSE : MIT
 "use strict";
 import { parse } from "@textlint/markdown-to-ast";

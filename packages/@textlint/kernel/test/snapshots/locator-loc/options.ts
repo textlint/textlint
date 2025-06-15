@@ -10,11 +10,11 @@ const { plugin } = createPluginStub({
 export const options: TextlintKernelOptions = {
     filePath: path.join(__dirname, "input.md"),
     ext: ".md",
-    plugins: [{ pluginId: "markdown", plugin: plugin }],
+    plugins: [{ pluginId: "markdown", plugin }],
     rules: [
         {
             ruleId: "rule",
-            rule: rule
+            rule
         }
     ]
 };

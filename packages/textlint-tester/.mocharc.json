@@ -1,7 +1,6 @@
 {
-  "timeout": 5000,
-  "require": "tsx/cjs",
-  "extensions": ["ts"],
-  "spec": ["test/**/*.ts"],
-  "forbidOnly": true
+    "timeout": 5000,
+    "import": "ts-node/esm",
+    "forbidOnly": true,
+    "spec": ["test/**/*.ts"]
 }

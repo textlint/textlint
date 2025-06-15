@@ -182,7 +182,6 @@ export function parse(text: string): TxtDocumentNode {
     const nodesWithoutPosition: Array<{ node: any; parent: any }> = [];
 
     traverse(ast).forEach(function (node) {
-        // eslint-disable-next-line no-invalid-this
         if (this.notLeaf) {
             if (node.type) {
                 const replacedType = SyntaxMap[node.type as keyof typeof SyntaxMap];
@@ -228,7 +227,7 @@ export function parse(text: string): TxtDocumentNode {
                 // reconstruct their position information using sibling nodes and parent context.
 
                 // Get parent using this.parent
-                // eslint-disable-next-line no-invalid-this
+
                 const parent = this.parent;
 
                 nodesWithoutPosition.push({ node, parent });

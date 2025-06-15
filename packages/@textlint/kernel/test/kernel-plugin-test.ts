@@ -39,11 +39,11 @@ describe("kernel-plugin", () => {
             const options = {
                 filePath: binaryFilePath,
                 ext: ".out",
-                plugins: [{ pluginId: "binary", plugin: plugin }],
+                plugins: [{ pluginId: "binary", plugin }],
                 rules: [
                     {
                         ruleId: "error",
-                        rule: rule
+                        rule
                     }
                 ]
             };
@@ -59,7 +59,7 @@ describe("kernel-plugin", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "example", plugin: plugin }],
+                plugins: [{ pluginId: "example", plugin }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             const text = "text";
@@ -73,7 +73,7 @@ describe("kernel-plugin", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "example", plugin: plugin, options: true }],
+                plugins: [{ pluginId: "example", plugin, options: true }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             const text = "text";
@@ -88,7 +88,7 @@ describe("kernel-plugin", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "example", plugin: plugin, options: PASS_OPTIONS }],
+                plugins: [{ pluginId: "example", plugin, options: PASS_OPTIONS }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             const text = "text";
@@ -104,7 +104,7 @@ describe("kernel-plugin", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "example", plugin: plugin }],
+                plugins: [{ pluginId: "example", plugin }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             const text = "text";
@@ -120,7 +120,7 @@ describe("kernel-plugin", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "example", plugin: plugin }],
+                plugins: [{ pluginId: "example", plugin }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             const text = "text";
@@ -135,7 +135,7 @@ describe("kernel-plugin", () => {
             const options = {
                 filePath: path.join(__dirname, "fixtures/binary/a.out"),
                 ext: ".out",
-                plugins: [{ pluginId: "example", plugin: plugin }],
+                plugins: [{ pluginId: "example", plugin }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             const text = "text";
@@ -153,7 +153,7 @@ describe("kernel-plugin", () => {
             const options = {
                 filePath: path.join(__dirname, "fixtures/binary/a.out"),
                 ext: ".out",
-                plugins: [{ pluginId: "example", plugin: plugin }],
+                plugins: [{ pluginId: "example", plugin }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             const text = "text";
@@ -168,7 +168,7 @@ describe("kernel-plugin", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "example", plugin: plugin }],
+                plugins: [{ pluginId: "example", plugin }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             const text = "text";
@@ -183,7 +183,7 @@ describe("kernel-plugin", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "example", plugin: plugin }],
+                plugins: [{ pluginId: "example", plugin }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             const text = "text";
@@ -249,7 +249,7 @@ describe("kernel-plugin", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "example", plugin: plugin }],
+                plugins: [{ pluginId: "example", plugin }],
                 rules: [
                     {
                         ruleId: "error",

@@ -1,6 +1,6 @@
 // MIT © 2016 azu
 "use strict";
-/* eslint-disable */
+
 import type { TextlintResult } from "@textlint/kernel";
 
 export abstract class AbstractBacker {

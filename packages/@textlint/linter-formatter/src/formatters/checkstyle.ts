@@ -31,7 +31,7 @@ function getMessageType(message: any): string {
  * @private
  */
 function xmlEscape(s: any): string {
-    return ("" + s).replace(/[<>&"']/g, function (c) {
+    return `${s}`.replace(/[<>&"']/g, function (c) {
         switch (c) {
             case "<":
                 return "&lt;";
@@ -62,26 +62,15 @@ function formatter(results: TextlintResult[]) {
     results.forEach(function (result) {
         const messages = result.messages;
 
-        output += '<file name="' + xmlEscape(result.filePath) + '">';
+        output += `<file name="${xmlEscape(result.filePath)}">`;
 
         messages.forEach(function (message) {
             output +=
-                '<error line="' +
-                xmlEscape(message.line) +
-                '" ' +
-                'column="' +
-                xmlEscape(message.column) +
-                '" ' +
-                'severity="' +
-                xmlEscape(getMessageType(message)) +
-                '" ' +
-                'message="' +
-                xmlEscape(message.message) +
-                (message.ruleId ? " (" + xmlEscape(message.ruleId) + ")" : "") +
-                '" ' +
-                'source="' +
-                (message.ruleId ? xmlEscape("eslint.rules." + message.ruleId) : "") +
-                '" />';
+                `<error line="${xmlEscape(message.line)}" ` +
+                `column="${xmlEscape(message.column)}" ` +
+                `severity="${xmlEscape(getMessageType(message))}" ` +
+                `message="${xmlEscape(message.message)}${message.ruleId ? ` (${xmlEscape(message.ruleId)})` : ""}" ` +
+                `source="${message.ruleId ? xmlEscape(`eslint.rules.${message.ruleId}`) : ""}" />`;
         });
 
         output += "</file>";

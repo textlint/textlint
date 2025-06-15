@@ -38,7 +38,7 @@ describe("textlint-kernel", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "markdown", plugin: plugin }],
+                plugins: [{ pluginId: "markdown", plugin }],
                 rules: [
                     {
                         ruleId: "error",
@@ -64,7 +64,7 @@ describe("textlint-kernel", () => {
                 const options = {
                     filePath: "/path/to/file.md",
                     ext: ".md",
-                    plugins: [{ pluginId: "markdown", plugin: plugin }],
+                    plugins: [{ pluginId: "markdown", plugin }],
                     rules: [
                         {
                             ruleId: "error",
@@ -100,7 +100,7 @@ describe("textlint-kernel", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "example", plugin: plugin, options: expectedPluginOptions }],
+                plugins: [{ pluginId: "example", plugin, options: expectedPluginOptions }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             return kernel.lintText("text", options).then((_result) => {
@@ -114,7 +114,7 @@ describe("textlint-kernel", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "example", plugin: plugin }],
+                plugins: [{ pluginId: "example", plugin }],
                 rules: [
                     {
                         ruleId: "warning",
@@ -163,7 +163,7 @@ describe("textlint-kernel", () => {
                 const options: TextlintKernelOptions = {
                     filePath: "/path/to/file.md",
                     ext: ".md",
-                    plugins: [{ pluginId: "markdown", plugin: plugin }],
+                    plugins: [{ pluginId: "markdown", plugin }],
                     rules: [
                         {
                             ruleId: "error-id",
@@ -205,7 +205,7 @@ describe("textlint-kernel", () => {
                 const options: TextlintKernelOptions = {
                     filePath: "/path/to/file.md",
                     ext: ".md",
-                    plugins: [{ pluginId: "markdown", plugin: plugin }],
+                    plugins: [{ pluginId: "markdown", plugin }],
                     rules: [
                         {
                             ruleId: "error-id",
@@ -249,7 +249,7 @@ describe("textlint-kernel", () => {
                 const options: TextlintKernelOptions = {
                     filePath: "/path/to/file.md",
                     ext: ".md",
-                    plugins: [{ pluginId: "markdown", plugin: plugin }],
+                    plugins: [{ pluginId: "markdown", plugin }],
                     rules: [
                         {
                             ruleId: "error",
@@ -300,7 +300,7 @@ describe("textlint-kernel", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "markdown", plugin: plugin }],
+                plugins: [{ pluginId: "markdown", plugin }],
                 rules: [
                     {
                         ruleId: "error",
@@ -322,7 +322,7 @@ describe("textlint-kernel", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "example", plugin: plugin, options: expectedPluginOptions }],
+                plugins: [{ pluginId: "example", plugin, options: expectedPluginOptions }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             return kernel.lintText("text", options).then((_result) => {

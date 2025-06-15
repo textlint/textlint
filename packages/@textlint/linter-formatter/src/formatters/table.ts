@@ -28,7 +28,7 @@ import stripAnsi from "strip-ansi";
  * @returns {string} A text table.
  */
 function drawTable(messages: TextlintMessage[]): string {
-    let rows: any = [];
+    const rows: any = [];
 
     if (messages.length === 0) {
         return "";
@@ -78,7 +78,7 @@ function drawTable(messages: TextlintMessage[]): string {
                 wrapWord: true
             }
         },
-        drawHorizontalLine: function (index: number) {
+        drawHorizontalLine(index: number) {
             return index === 1;
         }
     });
@@ -98,7 +98,7 @@ function drawReport(results: any): string {
             return "";
         }
 
-        return "\n" + result.filePath + "\n\n" + drawTable(result.messages);
+        return `\n${result.filePath}\n\n${drawTable(result.messages)}`;
     });
 
     files = files.filter(function (content: string) {
@@ -128,25 +128,20 @@ function formatter(report: any, options: FormatterOptions) {
         output = drawReport(report);
     }
 
-    output +=
-        "\n" +
-        table(
-            [
-                [chalk.red(pluralize("Error", errorCount, true))],
-                [chalk.yellow(pluralize("Warning", warningCount, true))]
-            ],
-            {
-                columns: {
-                    0: {
-                        width: 110,
-                        wrapWord: true
-                    }
-                },
-                drawHorizontalLine: function () {
-                    return true;
+    output += `\n${table(
+        [[chalk.red(pluralize("Error", errorCount, true))], [chalk.yellow(pluralize("Warning", warningCount, true))]],
+        {
+            columns: {
+                0: {
+                    width: 110,
+                    wrapWord: true
                 }
+            },
+            drawHorizontalLine() {
+                return true;
             }
-        );
+        }
+    )}`;
 
     if (!useColor) {
         return stripAnsi(output);
