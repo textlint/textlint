@@ -7,7 +7,7 @@ import CodeBlock from "@theme/CodeBlock";
 import styles from "./index.module.css";
 
 function HomepageHeader() {
-    const { siteConfig } = useDocusaurusdescribe();
+    const { siteConfig } = useDocusaurusContext();
     return (
         <header className={styles.homeContainer}>
             <div className={styles.homeSplashFade}>
@@ -40,7 +40,7 @@ function FeatureCard({ title, image, children }) {
 }
 
 function FeatureSection() {
-    const { siteConfig } = useDocusaurusdescribe();
+    const { siteConfig } = useDocusaurusContext();
     return (
         <section className={styles.TextlintFeature}>
             <div className="container">
@@ -75,7 +75,7 @@ function FeatureSection() {
 }
 
 function GetStartedSection() {
-    const { siteConfig } = useDocusaurusdescribe();
+    const { siteConfig } = useDocusaurusContext();
     return (
         <section className="container">
             <h2 id="getting-started" className={`text--center ${styles.sectionTitle}`}>
@@ -183,7 +183,7 @@ function Playground() {
 }
 
 function Showcase() {
-    const { siteConfig } = useDocusaurusdescribe();
+    const { siteConfig } = useDocusaurusContext();
     if ((siteConfig.customFields?.users || []).length === 0) {
         return null;
     }
