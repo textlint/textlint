@@ -47,6 +47,9 @@ importers:
       typescript:
         specifier: ~5.3.3
         version: 5.3.3
+      vitest:
+        specifier: ^3.2.3
+        version: 3.2.3(@types/debug@4.1.12)(@types/node@22.15.31)(terser@5.42.0)
 
   examples/cli:
     devDependencies:
