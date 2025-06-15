@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749966494052,
+  "lastUpdate": 1749966973844,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -59010,6 +59010,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5941542965200001,
             "unit": "seconds",
             "range": "± 0.013538901999999964"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "fe8294192c25bda8b10973c45734690b113ae437",
+          "message": "Add esbuild to onlyBuiltDependencies and create empty test files for markdown-to-ast and vitest configuration",
+          "timestamp": "2025-06-15T14:50:11+09:00",
+          "tree_id": "4b4f902ba3553249b0e3445bdbae7d1ed10012f8",
+          "url": "https://github.com/textlint/textlint/commit/fe8294192c25bda8b10973c45734690b113ae437"
+        },
+        "date": 1749966968494,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2454075538,
+            "unit": "seconds",
+            "range": "± 0.199788859"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6898307110000002,
+            "unit": "seconds",
+            "range": "± 0.05050978500000003"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5891188242000001,
+            "unit": "seconds",
+            "range": "± 0.00977497599999999"
           }
         ]
       }
