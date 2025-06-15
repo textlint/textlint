@@ -1,6 +1,5 @@
 // MIT © 2017 azu
-import type { TextlintMessage } from "@textlint/types";
-import type { TextlintPluginCreator, TextlintPluginProcessor } from "@textlint/types";
+import type { TextlintMessage, TextlintPluginCreator, TextlintPluginProcessor } from "@textlint/types";
 import type { TxtDocumentNode } from "@textlint/ast-node-types";
 
 export interface BinaryPluginProcessorOptions {
