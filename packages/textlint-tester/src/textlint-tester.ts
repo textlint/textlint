@@ -1,7 +1,6 @@
 // LICENSE : MIT
 "use strict";
 import * as assert from "node:assert";
-import { describe, it } from "vitest";
 import { testInvalid, testValid } from "./test-util.js";
 import {
     TextlintFixResult,
