@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749985759948,
+  "lastUpdate": 1749986423403,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -59850,6 +59850,48 @@ window.BENCHMARK_DATA = {
             "value": 0.62449899416,
             "unit": "seconds",
             "range": "± 0.02023656500000004"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "5a17a7f6be7f11235fcbb1da519cc271ca97a2a7",
+          "message": "fix: add cache configuration for pnpm in Node.js setup",
+          "timestamp": "2025-06-15T20:18:04+09:00",
+          "tree_id": "e39d1d6b20aa80a3ff7ef8ac26963f622e45bcf4",
+          "url": "https://github.com/textlint/textlint/commit/5a17a7f6be7f11235fcbb1da519cc271ca97a2a7"
+        },
+        "date": 1749986418360,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.27141213462,
+            "unit": "seconds",
+            "range": "± 0.325560978"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7433352232200001,
+            "unit": "seconds",
+            "range": "± 0.02672285200000002"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6008377212200001,
+            "unit": "seconds",
+            "range": "± 0.0060605349999999225"
           }
         ]
       }
