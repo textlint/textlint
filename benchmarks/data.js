@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1749974694646,
+  "lastUpdate": 1749980025689,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -59220,6 +59220,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6010087008400001,
             "unit": "seconds",
             "range": "± 0.018096106"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "4b8c104917dfcc8ffe7e1adb9202d1e907afdc0b",
+          "message": "fix: simplify AST test structure and remove error handling",
+          "timestamp": "2025-06-15T18:30:32+09:00",
+          "tree_id": "0deb55a677b7b312579320a72c1659149cdce0cf",
+          "url": "https://github.com/textlint/textlint/commit/4b8c104917dfcc8ffe7e1adb9202d1e907afdc0b"
+        },
+        "date": 1749980020344,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.28192450114,
+            "unit": "seconds",
+            "range": "± 0.33913896000000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7600860551400004,
+            "unit": "seconds",
+            "range": "± 0.04448960099999999"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.61362215354,
+            "unit": "seconds",
+            "range": "± 0.012793358000000032"
           }
         ]
       }
