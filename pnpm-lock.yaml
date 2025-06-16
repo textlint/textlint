@@ -12,7 +12,7 @@ importers:
   .:
     devDependencies:
       '@eslint/js':
-        specifier: ^9.0.0
+        specifier: ^9.28.0
         version: 9.29.0
       '@monorepo-utils/workspaces-to-typescript-project-references':
         specifier: ^2.11.0
