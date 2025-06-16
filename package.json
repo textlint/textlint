@@ -42,14 +42,14 @@
     "trailingComma": "none"
   },
   "devDependencies": {
-    "@eslint/js": "^9.0.0",
+    "@eslint/js": "^9.28.0",
     "@monorepo-utils/workspaces-to-typescript-project-references": "^2.11.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "ajv": "^8.17.1",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.0.0",
-    "globals": "^15.0.0",
+    "globals": "^15.15.0",
     "lerna": "^8.2.2",
     "lint-staged": "^13.3.0",
     "npm-run-all2": "^5.0.2",
