@@ -205,7 +205,7 @@ importers:
   packages/@textlint/ast-node-types:
     devDependencies:
       '@types/node':
-        specifier: ^22.15.30
+        specifier: ^22.15.31
         version: 22.15.31
       rimraf:
         specifier: ^6.0.1
@@ -690,7 +690,7 @@ importers:
         specifier: workspace:*
         version: link:../kernel
       '@types/node':
-        specifier: ^22.15.30
+        specifier: ^22.15.31
         version: 22.15.31
       '@types/react':
         specifier: ^18.3.23
@@ -866,7 +866,7 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
       zod:
-        specifier: ^3.25.56
+        specifier: ^3.25.57
         version: 3.25.64
     devDependencies:
       '@textlint/legacy-textlint-core':
