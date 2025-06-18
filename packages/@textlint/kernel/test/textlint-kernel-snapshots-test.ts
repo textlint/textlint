@@ -1,5 +1,5 @@
 import * as fs from "node:fs";
-import { describe, it, expect } from "vitest";
+import { describe, it } from "vitest";
 import * as path from "node:path";
 import { pathToFileURL } from "node:url";
 import * as assert from "node:assert";
