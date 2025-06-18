@@ -73,7 +73,7 @@
     "read-pkg-up": "^3.0.0",
     "structured-source": "^4.0.0",
     "unique-concat": "^0.2.2",
-    "zod": "^3.25.57"
+    "zod": "^3.25.58"
   },
   "devDependencies": {
     "@textlint/legacy-textlint-core": "workspace:*",
