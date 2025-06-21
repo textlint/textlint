@@ -33,7 +33,7 @@ importers:
         specifier: ^9.0.0
         version: 9.1.0(eslint@9.29.0(jiti@1.21.7))
       globals:
-        specifier: ^15.0.0
+        specifier: ^15.15.0
         version: 15.15.0
       lerna:
         specifier: ^8.2.2
