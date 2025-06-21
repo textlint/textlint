@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750513139804,
+  "lastUpdate": 1750513829705,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -61530,6 +61530,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5915245974400001,
             "unit": "seconds",
             "range": "± 0.01823014700000003"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "158243242+devin-ai-integration[bot]@users.noreply.github.com",
+            "name": "Devin AI",
+            "username": "devin-ai-integration[bot]"
+          },
+          "committer": {
+            "email": "158243242+devin-ai-integration[bot]@users.noreply.github.com",
+            "name": "Devin AI",
+            "username": "devin-ai-integration[bot]"
+          },
+          "distinct": true,
+          "id": "9c53bfed3b81afa475046662794b1efb3811a72d",
+          "message": "fix: resolve TypeScript compilation errors in ESM migration\n\n- Fix read-package-up import and null safety in cli.ts\n- Remove unused getVersion function in mcp/server.ts\n- Add sync hash property to Config class for CacheBackerOptions compatibility\n- Maintain backward compatibility with async getHash method\n\nCo-Authored-By: azu <azuciao@gmail.com>",
+          "timestamp": "2025-06-21T13:48:10Z",
+          "tree_id": "13c54b9d873446fef38ac55e340a73b51727ccc3",
+          "url": "https://github.com/textlint/textlint/commit/9c53bfed3b81afa475046662794b1efb3811a72d"
+        },
+        "date": 1750513824003,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24429857254000006,
+            "unit": "seconds",
+            "range": "± 0.17078543300000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7388260607400003,
+            "unit": "seconds",
+            "range": "± 0.044639753000000004"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6000250533400001,
+            "unit": "seconds",
+            "range": "± 0.005821406000000029"
           }
         ]
       }
