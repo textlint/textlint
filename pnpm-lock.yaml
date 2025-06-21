@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@textlint/ast-node-types': workspace:*
+
 importers:
 
   .:
@@ -3047,9 +3050,6 @@ packages:
 
   '@textlint/ast-node-types@13.4.1':
     resolution: {integrity: sha512-qrZyhCh8Ekk6nwArx3BROybm9BnX6vF7VcZbijetV/OM3yfS4rTYhoMWISmhVEP2H2re0CtWEyMl/XF+WdvVLQ==}
-
-  '@textlint/ast-node-types@14.8.4':
-    resolution: {integrity: sha512-+fI7miec/r9VeniFV9ppL4jRCmHNsTxieulTUf/4tvGII3db5hGriKHC4p/diq1SkQ9Sgs7kg6UyydxZtpTz1Q==}
 
   '@textlint/ast-node-types@4.4.3':
     resolution: {integrity: sha512-qi2jjgO6Tn3KNPGnm6B7p6QTEPvY95NFsIAaJuwbulur8iJUEenp1OnoUfiDaC/g2WPPEFkcfXpmnu8XEMFo2A==}
@@ -12853,20 +12853,18 @@ snapshots:
 
   '@textlint/ast-node-types@13.4.1': {}
 
-  '@textlint/ast-node-types@14.8.4': {}
-
   '@textlint/ast-node-types@4.4.3': {}
 
   '@textlint/ast-tester@14.8.4':
     dependencies:
-      '@textlint/ast-node-types': 14.8.4
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       debug: 4.4.1(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
   '@textlint/ast-traverse@14.8.4':
     dependencies:
-      '@textlint/ast-node-types': 14.8.4
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
 
   '@textlint/config-loader@14.8.4':
     dependencies:
@@ -12898,7 +12896,7 @@ snapshots:
 
   '@textlint/kernel@14.8.4':
     dependencies:
-      '@textlint/ast-node-types': 14.8.4
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       '@textlint/ast-tester': 14.8.4
       '@textlint/ast-traverse': 14.8.4
       '@textlint/feature-flag': 14.8.4
@@ -12932,7 +12930,7 @@ snapshots:
 
   '@textlint/markdown-to-ast@14.8.4':
     dependencies:
-      '@textlint/ast-node-types': 14.8.4
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       debug: 4.4.1(supports-color@8.1.1)
       mdast-util-gfm-autolink-literal: 0.1.3
       neotraverse: 0.6.18
@@ -12976,7 +12974,7 @@ snapshots:
 
   '@textlint/text-to-ast@14.8.4':
     dependencies:
-      '@textlint/ast-node-types': 14.8.4
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
 
   '@textlint/textlint-plugin-markdown@14.8.4':
     dependencies:
@@ -12996,7 +12994,7 @@ snapshots:
 
   '@textlint/types@14.8.4':
     dependencies:
-      '@textlint/ast-node-types': 14.8.4
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
 
   '@textlint/utils@14.8.4': {}
 
@@ -20430,7 +20428,7 @@ snapshots:
   textlint@14.8.4:
     dependencies:
       '@modelcontextprotocol/sdk': 1.13.0
-      '@textlint/ast-node-types': 14.8.4
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       '@textlint/ast-traverse': 14.8.4
       '@textlint/config-loader': 14.8.4
       '@textlint/feature-flag': 14.8.4
