@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750509956825,
+  "lastUpdate": 1750511553221,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -61278,6 +61278,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5973485462800001,
             "unit": "seconds",
             "range": "± 0.008589449999999998"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "51d5d47d6d4d0ceeb75f678db3a88c6f87f43601",
+          "message": "fix: remove hardcoded paths from test snapshots to avoid secretlint warnings\n\n- Exclude dynamic error message paths from inline snapshots\n- Use assertion to verify error message content instead\n- Maintain type safety for error field validation",
+          "timestamp": "2025-06-21T22:09:10+09:00",
+          "tree_id": "95bdafa95a673256c151c637e97f2079461d1946",
+          "url": "https://github.com/textlint/textlint/commit/51d5d47d6d4d0ceeb75f678db3a88c6f87f43601"
+        },
+        "date": 1750511548233,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25391893652,
+            "unit": "seconds",
+            "range": "± 0.256083929"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.72194157912,
+            "unit": "seconds",
+            "range": "± 0.029537134999999992"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5956855703199999,
+            "unit": "seconds",
+            "range": "± 0.012586059000000094"
           }
         ]
       }
