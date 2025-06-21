@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@textlint/ast-node-types': workspace:*
-
 importers:
 
   .:
@@ -853,12 +850,12 @@ importers:
       rc-config-loader:
         specifier: ^4.1.3
         version: 4.1.3
+      read-package-up:
+        specifier: ^11.0.0
+        version: 11.0.0
       read-pkg:
-        specifier: ^1.1.0
-        version: 1.1.0
-      read-pkg-up:
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^9.0.1
+        version: 9.0.1
       structured-source:
         specifier: ^4.0.0
         version: 4.0.0
@@ -884,9 +881,6 @@ importers:
       '@types/node':
         specifier: ^18.19.111
         version: 18.19.111
-      '@types/read-pkg-up':
-        specifier: ^3.0.1
-        version: 3.0.1
       '@types/shelljs':
         specifier: ^0.8.16
         version: 0.8.16
@@ -3051,6 +3045,15 @@ packages:
   '@textlint-rule/tokenize-text@2.0.2':
     resolution: {integrity: sha512-QtAP9fsz8P9JcnGiH//mZit05IZrX5qbABMAzsu6RU+AbxG9dccuQB5QVE9cGNZFQmvAPZ+2uvJqUonSW88AFg==}
 
+  '@textlint/ast-node-types@13.4.1':
+    resolution: {integrity: sha512-qrZyhCh8Ekk6nwArx3BROybm9BnX6vF7VcZbijetV/OM3yfS4rTYhoMWISmhVEP2H2re0CtWEyMl/XF+WdvVLQ==}
+
+  '@textlint/ast-node-types@14.8.4':
+    resolution: {integrity: sha512-+fI7miec/r9VeniFV9ppL4jRCmHNsTxieulTUf/4tvGII3db5hGriKHC4p/diq1SkQ9Sgs7kg6UyydxZtpTz1Q==}
+
+  '@textlint/ast-node-types@4.4.3':
+    resolution: {integrity: sha512-qi2jjgO6Tn3KNPGnm6B7p6QTEPvY95NFsIAaJuwbulur8iJUEenp1OnoUfiDaC/g2WPPEFkcfXpmnu8XEMFo2A==}
+
   '@textlint/ast-tester@14.8.4':
     resolution: {integrity: sha512-j6YKPuEaASeXQ2Y/ode993r4A8ugdGEFnPhp96HVGjNVoAsandlR/L0WEMDG1FdIJj3W9+9rlcikXhFQSFc0lA==}
 
@@ -3305,9 +3308,6 @@ packages:
 
   '@types/react@19.1.8':
     resolution: {integrity: sha512-AwAfQ2Wa5bCx9WP8nZL2uMZWod7J7/JSplxbTmBQ5ms6QpqNYm672H0Vu9ZVKVngQ+ii4R/byguVEUZQyeg44g==}
-
-  '@types/read-pkg-up@3.0.1':
-    resolution: {integrity: sha512-rMD+eDN93H/f6UGe6HJjJ08L+Vro+LN0bfCdYxsSb3Np13s75Lv+E/XBgw14kjz83Pfi82fb5z3/jtw1S3DvgA==}
 
   '@types/retry@0.12.0':
     resolution: {integrity: sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==}
@@ -12851,16 +12851,22 @@ snapshots:
     dependencies:
       lodash: 4.17.21
 
+  '@textlint/ast-node-types@13.4.1': {}
+
+  '@textlint/ast-node-types@14.8.4': {}
+
+  '@textlint/ast-node-types@4.4.3': {}
+
   '@textlint/ast-tester@14.8.4':
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 14.8.4
       debug: 4.4.1(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
   '@textlint/ast-traverse@14.8.4':
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 14.8.4
 
   '@textlint/config-loader@14.8.4':
     dependencies:
@@ -12892,7 +12898,7 @@ snapshots:
 
   '@textlint/kernel@14.8.4':
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 14.8.4
       '@textlint/ast-tester': 14.8.4
       '@textlint/ast-traverse': 14.8.4
       '@textlint/feature-flag': 14.8.4
@@ -12926,7 +12932,7 @@ snapshots:
 
   '@textlint/markdown-to-ast@14.8.4':
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 14.8.4
       debug: 4.4.1(supports-color@8.1.1)
       mdast-util-gfm-autolink-literal: 0.1.3
       neotraverse: 0.6.18
@@ -12970,7 +12976,7 @@ snapshots:
 
   '@textlint/text-to-ast@14.8.4':
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 14.8.4
 
   '@textlint/textlint-plugin-markdown@14.8.4':
     dependencies:
@@ -12986,11 +12992,11 @@ snapshots:
 
   '@textlint/types@13.4.1':
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 13.4.1
 
   '@textlint/types@14.8.4':
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 14.8.4
 
   '@textlint/utils@14.8.4': {}
 
@@ -13205,10 +13211,6 @@ snapshots:
   '@types/react@19.1.8':
     dependencies:
       csstype: 3.1.3
-
-  '@types/read-pkg-up@3.0.1':
-    dependencies:
-      '@types/normalize-package-data': 2.4.4
 
   '@types/retry@0.12.0': {}
 
@@ -19569,7 +19571,7 @@ snapshots:
 
   sentence-splitter@3.2.3:
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 4.4.3
       concat-stream: 2.0.0
       object_values: 0.1.2
       structured-source: 3.0.2
@@ -20114,7 +20116,7 @@ snapshots:
 
   textlint-rule-helper@2.3.1:
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 13.4.1
       structured-source: 4.0.0
       unist-util-visit: 2.0.3
 
@@ -20420,7 +20422,7 @@ snapshots:
 
   textlint-util-to-string@3.3.4:
     dependencies:
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 13.4.1
       rehype-parse: 6.0.2
       structured-source: 4.0.0
       unified: 8.4.2
@@ -20428,7 +20430,7 @@ snapshots:
   textlint@14.8.4:
     dependencies:
       '@modelcontextprotocol/sdk': 1.13.0
-      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      '@textlint/ast-node-types': 14.8.4
       '@textlint/ast-traverse': 14.8.4
       '@textlint/config-loader': 14.8.4
       '@textlint/feature-flag': 14.8.4
