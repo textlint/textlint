@@ -620,4 +620,6 @@ textlint website is powered by [Netlify](https://www.netlify.com).
   <img src="https://www.netlify.com/img/global/badges/netlify-light.svg"/>
 </a>
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/textlint/textlint)
+
 <!-- textlint-enable -->
