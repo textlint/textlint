@@ -6,7 +6,7 @@ import { ExecuteFileBackerManager } from "./engine/execute-file-backer-manager.j
 import { CacheBacker } from "./engine/execute-file-backers/cache-backer.js";
 import path from "node:path";
 import crypto from "node:crypto";
-import pkgConf from "read-pkg-up";
+
 import fs from "node:fs/promises";
 import { Logger } from "./util/logger.js";
 import { TextlintFixResult } from "@textlint/types";
@@ -29,13 +29,10 @@ export type CreateLinterOptions = {
 };
 const createHashForDescriptor = (descriptor: TextlintKernelDescriptor): string => {
     try {
-        const version = pkgConf.sync({ cwd: __dirname }).pkg.version;
         const toString = JSON.stringify(descriptor.toJSON());
         const md5 = crypto.createHash("md5");
-        return md5.update(`${version}-${toString}`, "utf8").digest("hex");
+        return md5.update(`fallback-${toString}`, "utf8").digest("hex");
     } catch (error) {
-        // Fallback for some env
-        // https://github.com/textlint/textlint/issues/597
         Logger.warn("Use random value as hash because calculating hash value throw error", error);
         return crypto.randomBytes(20).toString("hex");
     }

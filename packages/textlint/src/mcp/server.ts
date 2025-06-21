@@ -1,14 +1,24 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import pkgConf from "read-pkg-up";
+
 import { createLinter, loadTextlintrc, type CreateLinterOptions } from "../index.js";
 import { existsSync } from "node:fs";
 
-const version = pkgConf.sync({ cwd: __dirname }).pkg.version;
+async function getVersion(): Promise<string> {
+    try {
+        const pkgConf = await import("read-package-up");
+        const result = pkgConf.readPackageUpSync({ cwd: __dirname });
+        return result?.packageJson?.version || "unknown";
+    } catch (error) {
+        console.warn("Could not load package version:", error);
+        return "unknown";
+    }
+}
+
 const server = new McpServer({
     name: "textlint",
-    version
+    version: "unknown"
 });
 
 const makeLinterOptions = async (): Promise<CreateLinterOptions> => {
