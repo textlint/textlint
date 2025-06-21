@@ -3,6 +3,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import pkgConf from "read-pkg-up";
 import { createLinter, loadTextlintrc, type CreateLinterOptions } from "../index.js";
+import { existsSync } from "node:fs";
 
 const version = pkgConf.sync({ cwd: __dirname }).pkg.version;
 const server = new McpServer({
@@ -17,88 +18,420 @@ const makeLinterOptions = async (): Promise<CreateLinterOptions> => {
     };
 };
 
-server.tool(
+server.registerTool(
     "lintFile",
-    "Lint files using textlint",
     {
-        filePaths: z.array(z.string().min(1)).nonempty()
+        description: "Lint files using textlint",
+        inputSchema: {
+            filePaths: z.array(z.string().min(1)).nonempty()
+        },
+        outputSchema: {
+            results: z.array(
+                z.object({
+                    filePath: z.string(),
+                    messages: z.array(
+                        z.object({
+                            ruleId: z.string().optional(),
+                            message: z.string(),
+                            line: z.number(),
+                            column: z.number(),
+                            severity: z.number(),
+                            fix: z
+                                .object({
+                                    range: z.array(z.number()),
+                                    text: z.string()
+                                })
+                                .optional()
+                        })
+                    ),
+                    output: z.string().optional()
+                })
+            ),
+            isError: z.boolean(),
+            timestamp: z.string().optional(),
+            error: z.string().optional(),
+            type: z.string().optional()
+        }
     },
     async ({ filePaths }) => {
-        const linterOptions = await makeLinterOptions();
-        const linter = createLinter(linterOptions);
+        try {
+            // Phase 1: Check if files exist before processing
+            const nonExistentFiles = filePaths.filter((filePath) => !existsSync(filePath));
+            if (nonExistentFiles.length > 0) {
+                const structuredContent = {
+                    results: [],
+                    error: `File(s) not found: ${nonExistentFiles.join(", ")}`,
+                    type: "lintFile_error",
+                    timestamp: new Date().toISOString(),
+                    isError: true
+                };
 
-        const results = await linter.lintFiles(filePaths);
-        const content = results.map((result) => ({
-            type: "text" as const,
-            text: JSON.stringify(result)
-        }));
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(structuredContent, null, 2)
+                        }
+                    ],
+                    structuredContent,
+                    isError: true
+                };
+            }
 
-        return { content };
+            const linterOptions = await makeLinterOptions();
+            const linter = createLinter(linterOptions);
+
+            const results = await linter.lintFiles(filePaths);
+
+            const structuredContent = {
+                results,
+                isError: false,
+                timestamp: new Date().toISOString()
+            };
+
+            return {
+                content: [
+                    {
+                        type: "text" as const,
+                        text: JSON.stringify(structuredContent, null, 2)
+                    }
+                ],
+                structuredContent,
+                isError: false
+            };
+        } catch (error) {
+            // Phase 1: Handle errors with isError flag
+            const structuredContent = {
+                results: [],
+                error: error instanceof Error ? error.message : "Unknown error occurred",
+                type: "lintFile_error",
+                timestamp: new Date().toISOString(),
+                isError: true
+            };
+
+            return {
+                content: [
+                    {
+                        type: "text" as const,
+                        text: JSON.stringify(structuredContent, null, 2)
+                    }
+                ],
+                structuredContent,
+                isError: true
+            };
+        }
     }
 );
 
-server.tool(
+server.registerTool(
     "lintText",
-    "Lint text using textlint",
     {
-        text: z.string().nonempty(),
-        stdinFilename: z.string().nonempty()
+        description: "Lint text using textlint",
+        inputSchema: {
+            text: z.string().nonempty(),
+            stdinFilename: z.string().nonempty()
+        },
+        outputSchema: {
+            filePath: z.string(),
+            messages: z.array(
+                z.object({
+                    ruleId: z.string().optional(),
+                    message: z.string(),
+                    line: z.number(),
+                    column: z.number(),
+                    severity: z.number(),
+                    fix: z
+                        .object({
+                            range: z.array(z.number()),
+                            text: z.string()
+                        })
+                        .optional()
+                })
+            ),
+            output: z.string().optional(),
+            isError: z.boolean(),
+            timestamp: z.string().optional(),
+            error: z.string().optional(),
+            type: z.string().optional()
+        }
     },
     async ({ text, stdinFilename }) => {
-        const linterOptions = await makeLinterOptions();
-        const linter = createLinter(linterOptions);
+        try {
+            // Phase 1: Validate input parameters
+            if (!stdinFilename.trim()) {
+                const structuredContent = {
+                    filePath: stdinFilename,
+                    messages: [],
+                    error: "stdinFilename cannot be empty",
+                    type: "lintText_error",
+                    timestamp: new Date().toISOString(),
+                    isError: true
+                };
 
-        const result = await linter.lintText(text, stdinFilename);
-        const content = [
-            {
-                type: "text" as const,
-                text: JSON.stringify(result)
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(structuredContent, null, 2)
+                        }
+                    ],
+                    structuredContent,
+                    isError: true
+                };
             }
-        ];
 
-        return { content };
+            const linterOptions = await makeLinterOptions();
+            const linter = createLinter(linterOptions);
+
+            const result = await linter.lintText(text, stdinFilename);
+
+            // Phase 1: Return structured content with both content and structuredContent
+            const structuredContent = {
+                ...result,
+                isError: false,
+                timestamp: new Date().toISOString()
+            };
+
+            return {
+                content: [
+                    {
+                        type: "text" as const,
+                        text: JSON.stringify(structuredContent, null, 2)
+                    }
+                ],
+                structuredContent,
+                isError: false
+            };
+        } catch (error) {
+            const structuredContent = {
+                filePath: stdinFilename,
+                messages: [],
+                error: error instanceof Error ? error.message : "Unknown error occurred",
+                type: "lintText_error",
+                timestamp: new Date().toISOString(),
+                isError: true
+            };
+
+            return {
+                content: [
+                    {
+                        type: "text" as const,
+                        text: JSON.stringify(structuredContent, null, 2)
+                    }
+                ],
+                structuredContent,
+                isError: true
+            };
+        }
     }
 );
 
-server.tool(
+server.registerTool(
     "getLintFixedFileContent",
-    "Get lint-fixed content of files using textlint",
     {
-        filePaths: z.array(z.string().min(1)).nonempty()
+        description: "Get lint-fixed content of files using textlint",
+        inputSchema: {
+            filePaths: z.array(z.string().min(1)).nonempty()
+        },
+        outputSchema: {
+            results: z.array(
+                z.object({
+                    filePath: z.string(),
+                    messages: z.array(
+                        z.object({
+                            ruleId: z.string().optional(),
+                            message: z.string(),
+                            line: z.number(),
+                            column: z.number(),
+                            severity: z.number(),
+                            fix: z
+                                .object({
+                                    range: z.array(z.number()),
+                                    text: z.string()
+                                })
+                                .optional()
+                        })
+                    ),
+                    output: z.string().optional()
+                })
+            ),
+            isError: z.boolean(),
+            timestamp: z.string().optional(),
+            error: z.string().optional(),
+            type: z.string().optional()
+        }
     },
     async ({ filePaths }) => {
-        const linterOptions = await makeLinterOptions();
-        const linter = createLinter(linterOptions);
+        try {
+            // Phase 1: Check if files exist before processing
+            const nonExistentFiles = filePaths.filter((filePath) => !existsSync(filePath));
+            if (nonExistentFiles.length > 0) {
+                const structuredContent = {
+                    results: [],
+                    error: `File(s) not found: ${nonExistentFiles.join(", ")}`,
+                    type: "fixFiles_error",
+                    timestamp: new Date().toISOString(),
+                    isError: true
+                };
 
-        const results = await linter.fixFiles(filePaths);
-        const content = results.map((result) => ({
-            type: "text" as const,
-            text: JSON.stringify(result)
-        }));
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(structuredContent, null, 2)
+                        }
+                    ],
+                    structuredContent,
+                    isError: true
+                };
+            }
 
-        return { content };
+            const linterOptions = await makeLinterOptions();
+            const linter = createLinter(linterOptions);
+
+            const results = await linter.fixFiles(filePaths);
+
+            // Phase 1: Return structured content with both content and structuredContent
+            const structuredContent = {
+                results,
+                isError: false,
+                timestamp: new Date().toISOString()
+            };
+
+            return {
+                content: [
+                    {
+                        type: "text" as const,
+                        text: JSON.stringify(structuredContent, null, 2)
+                    }
+                ],
+                structuredContent,
+                isError: false
+            };
+        } catch (error) {
+            // Phase 1: Handle errors with isError flag
+            const structuredContent = {
+                results: [],
+                error: error instanceof Error ? error.message : "Unknown error occurred",
+                type: "fixFiles_error",
+                timestamp: new Date().toISOString(),
+                isError: true
+            };
+
+            return {
+                content: [
+                    {
+                        type: "text" as const,
+                        text: JSON.stringify(structuredContent, null, 2)
+                    }
+                ],
+                structuredContent,
+                isError: true
+            };
+        }
     }
 );
-server.tool(
+server.registerTool(
     "getLintFixedTextContent",
-    "Get lint-fixed content of text using textlint",
     {
-        text: z.string().nonempty(),
-        stdinFilename: z.string().nonempty()
+        description: "Get lint-fixed content of text using textlint",
+        inputSchema: {
+            text: z.string().nonempty(),
+            stdinFilename: z.string().nonempty()
+        },
+        outputSchema: {
+            filePath: z.string(),
+            messages: z.array(
+                z.object({
+                    ruleId: z.string().optional(),
+                    message: z.string(),
+                    line: z.number(),
+                    column: z.number(),
+                    severity: z.number(),
+                    fix: z
+                        .object({
+                            range: z.array(z.number()),
+                            text: z.string()
+                        })
+                        .optional()
+                })
+            ),
+            output: z.string().optional(),
+            isError: z.boolean(),
+            timestamp: z.string().optional(),
+            error: z.string().optional(),
+            type: z.string().optional()
+        }
     },
     async ({ text, stdinFilename }) => {
-        const linterOptions = await makeLinterOptions();
-        const linter = createLinter(linterOptions);
+        try {
+            // Phase 1: Validate input parameters
+            if (!stdinFilename.trim()) {
+                const structuredContent = {
+                    filePath: stdinFilename,
+                    messages: [],
+                    error: "stdinFilename cannot be empty",
+                    type: "fixText_error",
+                    timestamp: new Date().toISOString(),
+                    isError: true
+                };
 
-        const result = await linter.fixText(text, stdinFilename);
-        const content = [
-            {
-                type: "text" as const,
-                text: JSON.stringify(result)
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(structuredContent, null, 2)
+                        }
+                    ],
+                    structuredContent,
+                    isError: true
+                };
             }
-        ];
 
-        return { content };
+            const linterOptions = await makeLinterOptions();
+            const linter = createLinter(linterOptions);
+
+            const result = await linter.fixText(text, stdinFilename);
+
+            // Phase 1: Return structured content with both content and structuredContent
+            const structuredContent = {
+                ...result,
+                isError: false,
+                timestamp: new Date().toISOString()
+            };
+
+            return {
+                content: [
+                    {
+                        type: "text" as const,
+                        text: JSON.stringify(structuredContent, null, 2)
+                    }
+                ],
+                structuredContent,
+                isError: false
+            };
+        } catch (error) {
+            // Phase 1: Handle errors with isError flag
+            const structuredContent = {
+                filePath: stdinFilename,
+                messages: [],
+                error: error instanceof Error ? error.message : "Unknown error occurred",
+                type: "fixText_error",
+                timestamp: new Date().toISOString(),
+                isError: true
+            };
+
+            return {
+                content: [
+                    {
+                        type: "text" as const,
+                        text: JSON.stringify(structuredContent, null, 2)
+                    }
+                ],
+                structuredContent,
+                isError: true
+            };
+        }
     }
 );
 
