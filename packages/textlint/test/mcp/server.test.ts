@@ -1,5 +1,5 @@
 import assert from "node:assert";
-import { afterEach, beforeEach, describe, it } from "vitest";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import path from "node:path";
 import { readFileSync } from "node:fs";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -32,8 +32,8 @@ describe("MCP Server", () => {
         }
     });
 
-    // Phase 1: 改善点のテスト
-    describe("Phase 1 Improvements", () => {
+    // MCP specification improvements tests
+    describe("MCP Specification Improvements", () => {
         describe("Structured Tool Output", () => {
             it("should return structured content and regular content", async () => {
                 const result = (await client.callTool({
@@ -43,7 +43,7 @@ describe("MCP Server", () => {
                     }
                 })) as CallToolResult;
 
-                // Phase 1: Verify isError flag is set correctly
+                // Verify isError flag is set correctly (MCP specification compliance)
                 assert.strictEqual(result.isError, false, "isError should be false for successful operations");
 
                 // Verify both content and structuredContent are present
@@ -90,19 +90,15 @@ describe("MCP Server", () => {
                 assert.ok(result.structuredContent, "Should have structuredContent field");
                 assert.strictEqual(result.isError, false, "isError should be false for successful operations");
 
-                // Verify structuredContent structure
-                assert.ok(
-                    result.structuredContent.hasOwnProperty("filePath"),
-                    "structuredContent should have filePath property"
-                );
-                assert.ok(
-                    result.structuredContent.hasOwnProperty("messages"),
-                    "structuredContent should have messages property"
-                );
-                assert.ok(
-                    result.structuredContent.hasOwnProperty("isError"),
-                    "structuredContent should have isError property"
-                );
+                // Verify structuredContent structure using inline snapshot
+                const { timestamp, ...structuredWithoutTimestamp } = result.structuredContent;
+                expect(structuredWithoutTimestamp).toMatchInlineSnapshot(`
+                  {
+                    "filePath": "textlint.txt",
+                    "isError": false,
+                    "messages": [],
+                  }
+                `);
             });
         });
 
@@ -114,10 +110,100 @@ describe("MCP Server", () => {
                 assert.ok(lintFileTool, "lintFile tool should exist");
                 assert.ok(lintFileTool.outputSchema, "lintFile tool should have outputSchema defined");
 
-                // スキーマの構造をチェック
-                const schema = lintFileTool.outputSchema;
-                assert.ok(schema.type, "outputSchema should have type");
-                assert.ok(schema.properties, "outputSchema should have properties");
+                // Use inline snapshot for schema structure
+                expect(lintFileTool.outputSchema).toMatchInlineSnapshot(`
+                  {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "additionalProperties": false,
+                    "properties": {
+                      "error": {
+                        "type": "string",
+                      },
+                      "isError": {
+                        "type": "boolean",
+                      },
+                      "results": {
+                        "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "filePath": {
+                              "type": "string",
+                            },
+                            "messages": {
+                              "items": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "column": {
+                                    "type": "number",
+                                  },
+                                  "fix": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                      "range": {
+                                        "items": {
+                                          "type": "number",
+                                        },
+                                        "type": "array",
+                                      },
+                                      "text": {
+                                        "type": "string",
+                                      },
+                                    },
+                                    "required": [
+                                      "range",
+                                      "text",
+                                    ],
+                                    "type": "object",
+                                  },
+                                  "line": {
+                                    "type": "number",
+                                  },
+                                  "message": {
+                                    "type": "string",
+                                  },
+                                  "ruleId": {
+                                    "type": "string",
+                                  },
+                                  "severity": {
+                                    "type": "number",
+                                  },
+                                },
+                                "required": [
+                                  "message",
+                                  "line",
+                                  "column",
+                                  "severity",
+                                ],
+                                "type": "object",
+                              },
+                              "type": "array",
+                            },
+                            "output": {
+                              "type": "string",
+                            },
+                          },
+                          "required": [
+                            "filePath",
+                            "messages",
+                          ],
+                          "type": "object",
+                        },
+                        "type": "array",
+                      },
+                      "timestamp": {
+                        "type": "string",
+                      },
+                      "type": {
+                        "type": "string",
+                      },
+                    },
+                    "required": [
+                      "results",
+                      "isError",
+                    ],
+                    "type": "object",
+                  }
+                `);
             });
 
             it("should have proper schema for lintText tool", async () => {
@@ -176,17 +262,28 @@ describe("MCP Server", () => {
                     }
                 })) as CallToolResult;
 
-                // Phase 1: isError flag should be true for errors
+                // Verify isError flag is set correctly for error cases (MCP specification compliance)
                 assert.strictEqual(result.isError, true, "isError should be true for non-existent file");
 
                 // Error should still have structured content
-                assert.ok(result.structuredContent, "Error should have structured content");
-                assert.ok(result.structuredContent.error, "Error structured content should have error property");
-                assert.strictEqual(
-                    result.structuredContent.isError,
-                    true,
-                    "Error structured content should have isError=true"
-                );
+                assert.ok(result.structuredContent, "Error should have structured content"); // Use inline snapshot for structured error content (excluding timestamp and dynamic paths)
+                const { timestamp, error, ...structuredContentWithoutDynamic } = result.structuredContent;
+                expect(structuredContentWithoutDynamic).toMatchInlineSnapshot(`
+                  {
+                    "isError": true,
+                    "results": [],
+                    "type": "lintFile_error",
+                  }
+                `);
+
+                // Verify error message contains expected text
+                assert.ok(typeof error === "string", "Error should be a string");
+                assert.ok(error.includes("File(s) not found:"), "Error should mention file not found");
+                assert.ok(error.includes("nonexistent.md"), "Error should mention the missing file");
+
+                // Verify timestamp exists and is a string
+                assert.ok(timestamp, "Should have timestamp");
+                assert.strictEqual(typeof timestamp, "string", "Timestamp should be a string");
 
                 // Content should also be structured
                 assert.ok(Array.isArray(result.content), "content should be an array even for errors");
@@ -263,8 +360,20 @@ describe("MCP Server", () => {
             })) as CallToolResult;
 
             assert.ok(result.structuredContent, "Should have structured content");
-            assert.ok(Array.isArray(result.structuredContent.messages), "Should have messages array");
-            assert.strictEqual(result.structuredContent.filePath, stdinFilename, "Should have correct file path");
+
+            // Use inline snapshot for structured content verification (excluding timestamp)
+            const { timestamp, ...structuredContentWithoutTimestamp } = result.structuredContent;
+            expect(structuredContentWithoutTimestamp).toMatchInlineSnapshot(`
+              {
+                "filePath": "textlint.txt",
+                "isError": false,
+                "messages": [],
+              }
+            `);
+
+            // Verify timestamp exists and is a string
+            assert.ok(timestamp, "Should have timestamp");
+            assert.strictEqual(typeof timestamp, "string", "Timestamp should be a string");
         });
     });
 });
