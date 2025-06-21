@@ -290,6 +290,15 @@ export class Config {
     }
 
     /**
+     * Synchronous hash getter for CacheBackerOptions compatibility
+     * Returns a fallback hash since the full hash calculation requires async operations
+     */
+    get hash(): string {
+        const toString = JSON.stringify(this.toJSON());
+        return md5(`fallback-${toString}`);
+    }
+
+    /**
      * Return hash string of the config and textlint version
      * @returns {string}
      */

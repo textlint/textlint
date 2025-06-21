@@ -5,17 +5,6 @@ import { z } from "zod";
 import { createLinter, loadTextlintrc, type CreateLinterOptions } from "../index.js";
 import { existsSync } from "node:fs";
 
-async function getVersion(): Promise<string> {
-    try {
-        const pkgConf = await import("read-package-up");
-        const result = pkgConf.readPackageUpSync({ cwd: __dirname });
-        return result?.packageJson?.version || "unknown";
-    } catch (error) {
-        console.warn("Could not load package version:", error);
-        return "unknown";
-    }
-}
-
 const server = new McpServer({
     name: "textlint",
     version: "unknown"
