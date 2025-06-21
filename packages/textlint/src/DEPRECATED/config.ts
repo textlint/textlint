@@ -20,7 +20,6 @@ import assert from "node:assert";
 // @ts-expect-error no types. it will be removed
 import concat from "unique-concat";
 import path from "node:path";
-import pkgConf from "read-pkg-up";
 
 function applyNormalizerToList(normalizer: (name: string) => string, names: string[]) {
     return names.map((name) => {
@@ -291,17 +290,26 @@ export class Config {
     }
 
     /**
+     * Synchronous hash getter for CacheBackerOptions compatibility
+     * Returns a fallback hash since the full hash calculation requires async operations
+     */
+    get hash(): string {
+        const toString = JSON.stringify(this.toJSON());
+        return md5(`fallback-${toString}`);
+    }
+
+    /**
      * Return hash string of the config and textlint version
      * @returns {string}
      */
-    get hash() {
+    async getHash() {
         try {
-            const version = pkgConf.sync({ cwd: __dirname }).pkg.version;
+            const pkgConf = await import("read-package-up");
+            const result = pkgConf.readPackageUpSync({ cwd: __dirname });
+            const version = result?.packageJson?.version;
             const toString = JSON.stringify(this.toJSON());
             return md5(`${version}-${toString}`);
         } catch (error) {
-            // Fallback for some env
-            // https://github.com/textlint/textlint/issues/597
             Logger.warn("Use random value as hash because calculating hash value throw error", error);
             return crypto.randomBytes(20).toString("hex");
         }

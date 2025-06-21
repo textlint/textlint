@@ -4,8 +4,7 @@ import { TextlintPackageNamePrefix } from "@textlint/utils";
 
 import fs from "node:fs";
 import path from "node:path";
-// @ts-ignore - read-pkg v1.1.0 doesn't have type definitions
-import readPkg from "read-pkg";
+
 import { Logger } from "../util/logger.js";
 
 const isFile = (filePath: string) => {
@@ -21,27 +20,27 @@ const isFile = (filePath: string) => {
  * @param {string} dir
  * @returns {Promise.<Array.<String>>}
  */
-const getTextlintDependencyNames = (dir: string): Promise<Array<string>> => {
-    return readPkg(dir)
-        .then((pkg: any) => {
-            const dependencies = pkg.dependencies || {};
-            const devDependencies = pkg.devDependencies || {};
-            const mergedDependencies = Object.assign({}, dependencies, devDependencies);
-            const pkgNames = Object.keys(mergedDependencies);
-            return pkgNames.filter((pkgName) => {
-                const ruleOrFilterOrPlugin =
-                    pkgName.indexOf(TextlintPackageNamePrefix.filterRule) !== -1 ||
-                    pkgName.indexOf(TextlintPackageNamePrefix.rule) !== -1 ||
-                    pkgName.indexOf(TextlintPackageNamePrefix.plugin) !== -1;
-                if (pkgName === "textlint-rule-helper") {
-                    return false;
-                }
-                return ruleOrFilterOrPlugin;
-            });
-        })
-        .catch(() => {
-            return [];
+const getTextlintDependencyNames = async (dir: string): Promise<Array<string>> => {
+    try {
+        const readPkg = await import("read-pkg");
+        const pkg = await (readPkg as any).readPackage({ cwd: dir });
+        const dependencies = pkg.dependencies || {};
+        const devDependencies = pkg.devDependencies || {};
+        const mergedDependencies = Object.assign({}, dependencies, devDependencies);
+        const pkgNames = Object.keys(mergedDependencies);
+        return pkgNames.filter((pkgName) => {
+            const ruleOrFilterOrPlugin =
+                pkgName.indexOf(TextlintPackageNamePrefix.filterRule) !== -1 ||
+                pkgName.indexOf(TextlintPackageNamePrefix.rule) !== -1 ||
+                pkgName.indexOf(TextlintPackageNamePrefix.plugin) !== -1;
+            if (pkgName === "textlint-rule-helper") {
+                return false;
+            }
+            return ruleOrFilterOrPlugin;
         });
+    } catch {
+        return [];
+    }
 };
 
 /**
@@ -70,46 +69,45 @@ export interface CreateConfigFileOption {
  * @params {string} dir The directory of .textlintrc file
  * @returns {Promise.<number>} The exit code for the operation.
  */
-export const createConfigFile = (options: CreateConfigFileOption) => {
+export const createConfigFile = async (options: CreateConfigFileOption) => {
     const dir = options.dir;
-    return getTextlintDependencyNames(dir).then((pkgNames) => {
-        const rcFile = `.textlintrc.json`;
-        const filePath = path.resolve(dir, rcFile);
-        if (isFile(filePath)) {
-            Logger.error(`${rcFile} is already existed.`);
-            return Promise.resolve(1);
-        }
-        const filters = pkgNames
-            .filter((pkgName) => {
-                return pkgName.indexOf(TextlintPackageNamePrefix.filterRule) !== -1;
-            })
-            .map((filterName) => {
-                return filterName.replace(TextlintPackageNamePrefix.filterRule, "");
-            });
-        const rules = pkgNames
-            .filter((pkgName) => {
-                return pkgName.indexOf(TextlintPackageNamePrefix.rule) !== -1;
-            })
-            .map((filterName) => {
-                return filterName.replace(TextlintPackageNamePrefix.rule, "");
-            });
-        const plugins = pkgNames
-            .filter((pkgName) => {
-                return pkgName.indexOf(TextlintPackageNamePrefix.plugin) !== -1;
-            })
-            .map((filterName) => {
-                return filterName.replace(TextlintPackageNamePrefix.plugin, "");
-            });
-        const defaultTextlintRc = {
-            plugins: arrayToObject(plugins, true),
-            filters: arrayToObject(filters, true),
-            rules: arrayToObject(rules, true)
-        };
-        const output = JSON.stringify(defaultTextlintRc, null, 2);
-        fs.writeFileSync(filePath, output);
-        if (options.verbose) {
-            Logger.log(`${rcFile} is created.`);
-        }
-        return Promise.resolve(0);
-    });
+    const pkgNames = await getTextlintDependencyNames(dir);
+    const rcFile = `.textlintrc.json`;
+    const filePath = path.resolve(dir, rcFile);
+    if (isFile(filePath)) {
+        Logger.error(`${rcFile} is already existed.`);
+        return Promise.resolve(1);
+    }
+    const filters = pkgNames
+        .filter((pkgName) => {
+            return pkgName.indexOf(TextlintPackageNamePrefix.filterRule) !== -1;
+        })
+        .map((filterName) => {
+            return filterName.replace(TextlintPackageNamePrefix.filterRule, "");
+        });
+    const rules = pkgNames
+        .filter((pkgName) => {
+            return pkgName.indexOf(TextlintPackageNamePrefix.rule) !== -1;
+        })
+        .map((filterName) => {
+            return filterName.replace(TextlintPackageNamePrefix.rule, "");
+        });
+    const plugins = pkgNames
+        .filter((pkgName) => {
+            return pkgName.indexOf(TextlintPackageNamePrefix.plugin) !== -1;
+        })
+        .map((filterName) => {
+            return filterName.replace(TextlintPackageNamePrefix.plugin, "");
+        });
+    const defaultTextlintRc = {
+        plugins: arrayToObject(plugins, true),
+        filters: arrayToObject(filters, true),
+        rules: arrayToObject(rules, true)
+    };
+    const output = JSON.stringify(defaultTextlintRc, null, 2);
+    fs.writeFileSync(filePath, output);
+    if (options.verbose) {
+        Logger.log(`${rcFile} is created.`);
+    }
+    return Promise.resolve(0);
 };
