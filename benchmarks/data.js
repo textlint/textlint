@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750464034379,
+  "lastUpdate": 1750509956825,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -61236,6 +61236,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58805746068,
             "unit": "seconds",
             "range": "± 0.013993838999999952"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "e70af59cd2351ee7a44a91355c45ed7e3a815aea",
+          "message": "feat(mcp): implement Phase 1 improvements - structured output, outputSchema, and error handling\n\n- Migrate all MCP tools to use registerTool with Zod-based input/output schemas\n- Add outputSchema for all tools (lintFile, lintText, getLintFixedFileContent, getLintFixedTextContent)\n- Implement structuredContent in tool responses with pretty-printed JSON in content for backward compatibility\n- Add isError flag: true for errors (file not found, invalid input), false for success\n- Add file existence checks using existsSync and input validation for robust error handling\n- Update and clean up all related tests to match the new API\n- All Phase 1 tests now pass, confirming MCP SDK spec compliance\n\nCloses #1563",
+          "timestamp": "2025-06-21T21:41:01+09:00",
+          "tree_id": "3762d6f9acb11dc0bc5777b5bfac3dd70da631d4",
+          "url": "https://github.com/textlint/textlint/commit/e70af59cd2351ee7a44a91355c45ed7e3a815aea"
+        },
+        "date": 1750509951771,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25072433528000004,
+            "unit": "seconds",
+            "range": "± 0.23757070000000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6997823570800001,
+            "unit": "seconds",
+            "range": "± 0.038278174"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5973485462800001,
+            "unit": "seconds",
+            "range": "± 0.008589449999999998"
           }
         ]
       }
