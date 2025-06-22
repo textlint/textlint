@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750578444384,
+  "lastUpdate": 1750578720474,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63126,6 +63126,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5787505995600001,
             "unit": "seconds",
             "range": "± 0.019634883999999908"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "faf957b9bccf5287d43fb383cb49930402bda376",
+          "message": "feat: replace Netlify with pr-preview-action (#1580)\n\n* feat: replace Netlify with pr-preview-action\n\n- Remove netlify.toml configuration\n- Add GitHub Actions workflow for PR previews using pr-preview-action\n- Only build previews when docs or website files are changed\n- Deploy previews to gh-pages-preview branch\n\nFixes #1579\n\n* feat: update workflow name and paths in PR preview configuration\n\n* refactor: remove unnecessary build command from website preview step\n\n* feat: add website preview workflow configuration\n\n* Update .github/workflows/website-preview.yml\n\n* docs: fix typos in documentation\n\n- Fix 'Can't handling' to 'Can't handle' in getting-started.md\n- Fix 'type.length' to 'match[0].length' in rule.md comment\n- Fix 'recommenced' to 'recommended' in plugin.md\n\n* docs: remove mention of Netlify from README\n\n* chore: improve pr-preview workflow configuration\n\n- Add concurrency group to prevent race conditions\n- Change permissions to contents: write for proper deployment\n- Use standard gh-pages branch instead of gh-pages-preview\n- Remove custom token (use default github.token)\n- Add explicit action: auto parameter\n- Fix build command to include proper scope\n\n* fix: remove unnecessary build command from website preview workflow\n\n* feat: set dynamic DOCUSAURUS_BASE_URL for PR previews\n\n- Set DOCUSAURUS_BASE_URL to match PR preview path pattern\n- Use github.event.number to dynamically generate base URL\n- Ensures Docusaurus routing works correctly in PR previews\n- Path format: /textlint/pr-preview/pr-{PR_NUMBER}/\n\n* feat: set dynamic DOCUSAURUS_BASE_URL in docusaurus.config.js and update pr-preview action version",
+          "timestamp": "2025-06-22T16:49:54+09:00",
+          "tree_id": "57401ea95e307a0ea647ff77f4b41fb68d6e3364",
+          "url": "https://github.com/textlint/textlint/commit/faf957b9bccf5287d43fb383cb49930402bda376"
+        },
+        "date": 1750578716798,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25734941060000005,
+            "unit": "seconds",
+            "range": "± 0.271262727"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7072637634000003,
+            "unit": "seconds",
+            "range": "± 0.03699420700000022"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5779707802,
+            "unit": "seconds",
+            "range": "± 0.019384599999999974"
           }
         ]
       }
