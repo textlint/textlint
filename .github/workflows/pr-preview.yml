@@ -37,7 +37,6 @@ jobs:
       - name: Build website
         if: github.event.action != 'closed'
         run: |
-          pnpm run build --scope textlint-website
           pnpm run website
 
       - name: Deploy PR preview
