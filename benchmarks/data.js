@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750578008998,
+  "lastUpdate": 1750578425576,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63042,6 +63042,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5780477762000001,
             "unit": "seconds",
             "range": "± 0.020609336000000034"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "b0b19c80cacd5f853a96b0158961050f4f00dc46",
+          "message": "feat: set dynamic DOCUSAURUS_BASE_URL for PR previews\n\n- Set DOCUSAURUS_BASE_URL to match PR preview path pattern\n- Use github.event.number to dynamically generate base URL\n- Ensures Docusaurus routing works correctly in PR previews\n- Path format: /textlint/pr-preview/pr-{PR_NUMBER}/",
+          "timestamp": "2025-06-22T16:44:46+09:00",
+          "tree_id": "278a7a24bfe9c2745be1316f9f67e840821ccfe3",
+          "url": "https://github.com/textlint/textlint/commit/b0b19c80cacd5f853a96b0158961050f4f00dc46"
+        },
+        "date": 1750578421799,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24219248422,
+            "unit": "seconds",
+            "range": "± 0.19907118799999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7011392536199998,
+            "unit": "seconds",
+            "range": "± 0.027226819000000013"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.57531235402,
+            "unit": "seconds",
+            "range": "± 0.007271207000000057"
           }
         ]
       }
