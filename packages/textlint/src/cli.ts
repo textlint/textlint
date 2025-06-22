@@ -131,59 +131,66 @@ export const cli = {
             ignoreFilePath: cliOptions.ignorePath,
             descriptor
         });
-        if (cliOptions.fix) {
-            // --fix
-            const results = isStdinExecution(executeOptions)
-                ? [await linter.fixText(executeOptions.text, executeOptions.stdinFilename)]
-                : await linter.fixFiles(executeOptions.files);
-            debug("fix results: %j", results);
-            const fixer = new TextLintFixer();
-            const formatter = await loadFixerFormatter({
-                formatterName: cliOptions.format,
-                color: cliOptions.color
-            });
-            const output = formatter.format(results);
-            // --dry-run
-            if (cliOptions.dryRun) {
-                debug("Enable dry-run mode");
-                return printResults(output, cliOptions) ? Promise.resolve(0) : Promise.resolve(2);
-            }
-            // modify file and return exit status
-            await fixer.write(results);
-            if (printResults(output, cliOptions)) {
-                if (cliOptions.outputFile) {
-                    return 0; // if --output-file option is specified, exit status is always 0
-                }
-                // --fix result has remaining errors, return 1
-                const hasErrorMessage = results.some((result) => {
-                    return result.remainingMessages.some((message) => message.severity === SeverityLevel.error);
+
+        try {
+            if (cliOptions.fix) {
+                // --fix
+                const results = isStdinExecution(executeOptions)
+                    ? [await linter.fixText(executeOptions.text, executeOptions.stdinFilename)]
+                    : await linter.fixFiles(executeOptions.files);
+                debug("fix results: %j", results);
+                const fixer = new TextLintFixer();
+                const formatter = await loadFixerFormatter({
+                    formatterName: cliOptions.format,
+                    color: cliOptions.color
                 });
-                return hasErrorMessage ? 1 : 0;
-            } else {
-                return 2;
-            }
-        } else {
-            // lint as default
-            const results = isStdinExecution(executeOptions)
-                ? [await linter.lintText(executeOptions.text, executeOptions.stdinFilename)]
-                : await linter.lintFiles(executeOptions.files);
-            debug("lint results: %j", results);
-            const formatter = await loadLinterFormatter({
-                formatterName: cliOptions.format,
-                color: cliOptions.color
-            });
-            const output = formatter.format(results);
-            if (printResults(output, cliOptions)) {
-                if (cliOptions.outputFile) {
-                    return 0; // if --output-file option is specified, exit status is always 0
+                const output = formatter.format(results);
+                // --dry-run
+                if (cliOptions.dryRun) {
+                    debug("Enable dry-run mode");
+                    return printResults(output, cliOptions) ? Promise.resolve(0) : Promise.resolve(2);
                 }
-                const hasErrorMessage = results.some((result) => {
-                    return result.messages.some((message) => message.severity === SeverityLevel.error);
-                });
-                return hasErrorMessage ? 1 : 0;
+                // modify file and return exit status
+                await fixer.write(results);
+                if (printResults(output, cliOptions)) {
+                    if (cliOptions.outputFile) {
+                        return 0; // if --output-file option is specified, exit status is always 0
+                    }
+                    // --fix result has remaining errors, return 1
+                    const hasErrorMessage = results.some((result) => {
+                        return result.remainingMessages.some((message) => message.severity === SeverityLevel.error);
+                    });
+                    return hasErrorMessage ? 1 : 0;
+                } else {
+                    return 2;
+                }
             } else {
-                return 2;
+                // lint as default
+                const results = isStdinExecution(executeOptions)
+                    ? [await linter.lintText(executeOptions.text, executeOptions.stdinFilename)]
+                    : await linter.lintFiles(executeOptions.files);
+                debug("lint results: %j", results);
+                const formatter = await loadLinterFormatter({
+                    formatterName: cliOptions.format,
+                    color: cliOptions.color
+                });
+                const output = formatter.format(results);
+                if (printResults(output, cliOptions)) {
+                    if (cliOptions.outputFile) {
+                        return 0; // if --output-file option is specified, exit status is always 0
+                    }
+                    const hasErrorMessage = results.some((result) => {
+                        return result.messages.some((message) => message.severity === SeverityLevel.error);
+                    });
+                    return hasErrorMessage ? 1 : 0;
+                } else {
+                    return 2;
+                }
             }
+        } catch (error) {
+            // Handle errors from lintFiles/fixFiles (e.g., when searchFiles fails)
+            Logger.error("Error during file processing:", error);
+            return 1;
         }
     }
 };
