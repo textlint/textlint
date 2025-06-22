@@ -94,7 +94,7 @@ You should check the AST using [@textlint/ast-tester](https://github.com/textlin
 import { test, isTxtAST } from "@textlint/ast-tester";
 // your implement
 import yourParse from "your-parser";
-// recommenced: test much pattern test
+// recommended: test much pattern test
 const AST = yourParse("This is text");
 
 // Validate AST

@@ -1,0 +1,52 @@
+name: WebSite Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    paths:
+      - 'docs/**'
+      - 'website/**'
+      - '.github/workflows/website-preview.yml'
+
+concurrency: preview-${{ github.ref }}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        if: github.event.action != 'closed'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        if: github.event.action != 'closed'
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
+        if: github.event.action != 'closed'
+        with:
+          node-version: 22
+          cache: "pnpm"
+          
+      - name: Install dependencies
+        if: github.event.action != 'closed'
+        run: pnpm install
+
+      - name: Build website
+        if: github.event.action != 'closed'
+        run: |
+          pnpm run website
+        env:
+          DOCUSAURUS_BASE_URL: "/textlint/pr-preview/pr-${{ github.event.number }}/"
+
+      - name: Deploy PR preview
+        uses: rossjrw/pr-preview-action@2fb559e4766555e23d07b73d313fe97c4f8c3cfe # v1.6.1
+        with:
+          source-dir: ./website/build
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: auto

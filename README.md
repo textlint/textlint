@@ -614,8 +614,6 @@ Download from [textlint/media](https://github.com/textlint/media "textlint/media
 
 Thanks to [ESLint](https://eslint.org/ "ESLint").
 
-textlint website is powered by [Netlify](https://www.netlify.com).
-
 <a href="https://www.netlify.com">
   <img src="https://www.netlify.com/img/global/badges/netlify-light.svg"/>
 </a>
