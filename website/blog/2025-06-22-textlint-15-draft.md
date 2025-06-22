@@ -135,6 +135,8 @@ const result = await linter.lintText("text", "file.md");
 
 ## Migration Guide
 
+> **📖 For detailed migration instructions with comprehensive examples, see the [complete migration guide](https://textlint.org/docs/migration-to-v15.html).**
+
 ### Quick Reference
 
 | Deprecated API | New API | Method Change |
@@ -250,9 +252,10 @@ const output = formatter.format(results);
 
 ## Resources
 
-- [New API Documentation](https://textlint.org/docs/use-as-modules.html#new-apis)
-- [Working Example](https://github.com/textlint/textlint/tree/master/examples/use-as-module)
-- [GitHub Issues](https://github.com/textlint/textlint/issues) - For migration support
+- [Migration Guide to v15](https://textlint.org/docs/migration-to-v15.html) - Comprehensive migration guide with detailed examples
+- [New API Documentation](https://textlint.org/docs/use-as-modules.html) - Complete documentation for the new APIs
+- [Working Example](https://github.com/textlint/textlint/tree/master/examples/use-as-module) - Example project using the new APIs
+- [GitHub Issues](https://github.com/textlint/textlint/issues) - For migration support and questions
 
 ## Conclusion
 

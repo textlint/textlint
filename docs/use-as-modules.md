@@ -5,36 +5,44 @@ title: Use as Node Modules
 
 ## Overview
 
-`textlint` package provides some High-Level APIs.
+`textlint` package provides High-Level APIs for integrating textlint into your applications.
 
-- If you want to load `.textlintrc`, please use `textlint` package
-- If you do not want to load `.textlintrc`, please use `@textlint/kernel` package
+- If you want to load `.textlintrc` configuration, use the `textlint` package
+- If you need lower-level control without `.textlintrc`, use the `@textlint/kernel` package directly
 
-### CLI(Command Line Interface)
+> **Note:** textlint v15.0.0 removed all deprecated legacy APIs (`textlint`, `TextLintEngine`, `TextFixEngine`, and `TextLintCore`). If you're migrating from these APIs, see the [migration guide](./migration-to-v15.md).
 
-CLI parse command arguments, and run Engine with the options.
-It returns exit code.
+### CLI (Command Line Interface)
+
+The CLI interface provides programmatic access to textlint's command-line functionality:
 
 ```js
 import { cli } from "textlint";
 const result = await cli.execute(`./README.md --rule textlint-rule-no-todo`);
-assert.strictEqual(result, 0);
+assert.strictEqual(result, 0); // 0 = success, 1 = lint errors, 2 = fatal errors
 ```
 
-## APIs
+## Modern APIs (v15+)
 
-**textlint v12.3.0** introduced a new API, and textlint and will drop support for the old API (`textlint`, `TextLintEngine`, `TextFixEngine`, and `TextLintCore`) in the future. The old API does not support ECMAScript modules like the new API does. For guidance on migration, see the [migration guide](#migration-to-new-api) section below.
+The modern textlint API provides these core functions:
 
-- `createLinter`: create linter instance
-    - `lintFiles(files): Promise<TextlintResult[]>`: lint files and return linter messages
-    - `lintText(text, filePath): Promise<TextlintResult>` lint text with virtual filePath and return linter messages
-        - The virtual file path does not need to be a real file, rather it should hint the content type being passed to lintText. For example, if `text` is Markdown, `filePath` could be `foo.md`.
-    - `fixFiles(files): Promise<TextlintFixResult[]>` lint text and return fixer messages
-    - `fixText(text, filePath): Promise<TextlintFixResult>` lint text with virtual filePath and return fixer messages
-        - `fixFiles` and `fixText` does not modify files
-    - `scanFilePath(filePath): Promise<ScanFilePathResult>` check the the file path is lintable or not
-- `loadTextlintrc`: load `.textlintrc` config file and return a descriptor object
-- `loadLinerFormatter` and `loadFixerFormatter`: load formatter
+### Core Functions
+
+- **`createLinter(options)`**: Creates a linter instance
+  - `lintFiles(files): Promise<TextlintResult[]>`: Lint multiple files
+  - `lintText(text, filePath): Promise<TextlintResult>`: Lint text content with a virtual file path
+  - `fixFiles(files): Promise<TextlintFixResult[]>`: Auto-fix multiple files  
+  - `fixText(text, filePath): Promise<TextlintFixResult>`: Auto-fix text content
+  - `scanFilePath(filePath): Promise<ScanFilePathResult>`: Check if a file path is lintable
+
+- **`loadTextlintrc(options?)`**: Load `.textlintrc` configuration file
+- **`loadLinterFormatter(options)`**: Load output formatter for lint results
+- **`loadFixerFormatter(options)`**: Load output formatter for fix results
+
+### Key Concepts
+
+- **Virtual File Paths**: The `filePath` parameter in `lintText()` and `fixText()` doesn't need to be a real file. It should hint at the content type (e.g., `document.md` for Markdown content).
+- **Immutable Operations**: `fixFiles()` and `fixText()` return fix results but don't modify files directly.
 
 ## Examples
 
@@ -128,112 +136,6 @@ const result = await linter.scanFilePath("README.md");
 if (result.status === "ok") {
     const lintResult = await linter.lintText("README content", "README.md");
     console.log(lintResult);
-}
-```
-
-
-## Deprecated APIs
-
-
-### [Deprecated] Engine
-
-textlint has two engines `TextLintEngine` and `TextFixEngine`.
-
-Both engine
-
-- Load configuration from `.textlintrc`.
-- Handle **multiple** files or text string.
-- Return an array of `TextLintResult` or `TextLintFixResult`
-  - actually, return a Promise like `Promise<TextLintResult[]>`
-
-### [Deprecated] `TextlintCore`
-
-You can use `@textlint/legacy-textlint-core` package instead of `TextlintCore`.
-
-- Accept configuration as object.
-- Handle a **single** file or text string.
-- Return `TextLintResult` or `TextLintFixResult`
-  - actually, return a Promise like `Promise<TextLintResult>`
-
-### TextLintEngine Example
-
-Lint files using `TextLintEngine`:
-
-See [examples/use-as-module/index.js](https://github.com/textlint/textlint/blob/master/examples/use-as-module/index.js)
-
-```js
-const TextLintEngine = require("textlint").TextLintEngine;
-const path = require("path");
-
-function lintFile(filePath) {
-    const options = {
-        // load rules from [../rules]
-        rules: ["no-todo"],
-        formatterName: "pretty-error"
-    };
-    const engine = new TextLintEngine(options);
-    const filePathList = [path.resolve(process.cwd(), filePath)];
-    return engine.executeOnFiles(filePathList).then(function(results) {
-        if (engine.isErrorResults(results)) {
-            const output = engine.formatResults(results);
-            console.log(output);
-        } else {
-            console.log("All Passed!");
-        }
-    });
-}
-
-lintFile(`${__dirname}/README.md`).catch(function(error) {
-    console.error(error);
-    process.exit(1);
-});
-```
-
-### Migration to New API
-
-To migrate to the new API from the old API, you may need to make additional changes beyond just changing to a different method.
-
-Old API:
-
-```js
-const TextLintEngine = require("textlint").TextLintEngine;
-// Rely on textlint finding the config automatically.
-const engine = new TextLintEngine();
-```
-
-New API:
-
-```js
-// Import node helpers to get the config path.
-import path from "node:path";
-import { cwd } from "node:process";
-import { createLinter, loadTextlintrc } from "textlint";
-
-// Load config using helpers to pass into createLinter().
-const descriptor = await loadTextlintrc({
-    configFilePath: path.join(cwd(), ".textlintrc.json")
-});
-const linter = createLinter({
-    descriptor
-});
-```
-
-#### engine.executeOnText
-
-Replace with `linter.lintText()`:
-
-Old API:
-```js
-const ruleText = "Tihs is my text.";
-const results = await engine.executeOnText(ruleText);
-```
-
-New API -- dummy filename to determine content type.
-```js
-const ruleText = "Tihs is my text.";
-const results = await linter.lintText(ruleText, 'dummy.txt');
-```
-
 ## Testing
 
 You can use [textlint-tester](https://www.npmjs.com/package/textlint-tester) for testing your custom rule.
