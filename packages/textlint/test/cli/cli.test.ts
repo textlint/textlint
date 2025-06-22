@@ -492,8 +492,8 @@ describe("cli-test", function () {
                 const result = await cli.execute(
                     `--rule "${ruleModuleName}" "${invalidPattern}" --ignore-path ${ignoreFile}"`
                 );
-                // Should exit with error code when no files found
-                assert.strictEqual(result, 1);
+                // Should exit with error code 2 when no files found (file search error)
+                assert.strictEqual(result, 2);
             });
         });
     });

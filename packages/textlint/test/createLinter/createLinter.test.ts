@@ -70,14 +70,14 @@ describe("createLinter", () => {
             } catch (error) {
                 assert.ok(error instanceof Error);
                 assert.ok(
-                    error.message.includes("searchFiles failed"),
-                    `Expected error message to include 'searchFiles failed', got: ${error.message}`
+                    error.message.includes("Not found target files"),
+                    `Expected error message to include 'Not found target files', got: ${error.message}`
                 );
             }
         });
     });
     describe("linter.fixFiles", () => {
-        it("should return empty array and log error when searchFiles fails", async () => {
+        it("should throw error when searchFiles fails", async () => {
             const descriptor = await loadTextlintrc({
                 configFilePath: path.join(__dirname, "fixtures/.textlintrc.json"),
                 node_modulesDir: path.join(__dirname, "fixtures/modules")
@@ -88,8 +88,16 @@ describe("createLinter", () => {
             });
             // Use patterns that will cause searchFiles to fail
             const invalidPattern = "/nonexistent/directory/**/*.md";
-            const results = await linter.fixFiles([invalidPattern]);
-            assert.strictEqual(results.length, 0, "fixFiles should return empty array when searchFiles fails");
+            try {
+                await linter.fixFiles([invalidPattern]);
+                assert.fail("Expected fixFiles to throw an error");
+            } catch (error) {
+                assert.ok(error instanceof Error);
+                assert.ok(
+                    error.message.includes("Not found target files"),
+                    `Expected error message to include 'Not found target files', got: ${error.message}`
+                );
+            }
         });
     });
     describe("linter.scanFilePath", () => {
