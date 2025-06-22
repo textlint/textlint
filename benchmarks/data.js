@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750574217500,
+  "lastUpdate": 1750574733174,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62412,6 +62412,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58502534254,
             "unit": "seconds",
             "range": "± 0.020662843999999958"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "72a63d769c4f1fce629fa5fdb6ef3f4062c933c3",
+          "message": "refactor: rename: change test files from -test.ts to .test.ts (#1575)\n\n* rename: change test files from -test.ts to .test.ts\n\n- Rename 52 test files from *-test.ts to *.test.ts pattern\n- This ensures consistency with vitest's default test file patterns\n- Update vitest config to remove obsolete **/*-test.ts pattern\n- Add rename script for future migrations\n\nThis change improves test discovery and ensures all tests are properly\ndetected by vitest without needing custom patterns.\n\n* fix: revert unist.test.ts to unist-test.ts (implementation file)\n\n- unist-test.ts in src/ directory is an implementation file, not a test file\n- Update rename script to exclude files in src/ directories\n- This prevents misidentifying implementation files as test files\n\n* fix(tsconfig): add missing comma in compilerOptions",
+          "timestamp": "2025-06-22T15:42:37+09:00",
+          "tree_id": "64c5746b28d345b3da4158cdb7daaf1f3fab85d3",
+          "url": "https://github.com/textlint/textlint/commit/72a63d769c4f1fce629fa5fdb6ef3f4062c933c3"
+        },
+        "date": 1750574727993,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23816733673999999,
+            "unit": "seconds",
+            "range": "± 0.14500592300000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7244343341400001,
+            "unit": "seconds",
+            "range": "± 0.019642165000000045"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5968573513400001,
+            "unit": "seconds",
+            "range": "± 0.021734729999999924"
           }
         ]
       }
