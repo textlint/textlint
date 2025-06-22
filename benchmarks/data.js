@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750602125830,
+  "lastUpdate": 1750636166353,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -64260,6 +64260,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5835735151200001,
             "unit": "seconds",
             "range": "± 0.015693145000000075"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "e78cfc08f0720ae7294077c2a2bf713c161683a6",
+          "message": "fix: Correct types path in package.json for @textlint/resolver",
+          "timestamp": "2025-06-23T08:47:32+09:00",
+          "tree_id": "2152d25ae1645180103302f723ed52dce65996a4",
+          "url": "https://github.com/textlint/textlint/commit/e78cfc08f0720ae7294077c2a2bf713c161683a6"
+        },
+        "date": 1750636163027,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2324551697,
+            "unit": "seconds",
+            "range": "± 0.14626109900000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7108954603000002,
+            "unit": "seconds",
+            "range": "± 0.041151660000000145"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5808562801,
+            "unit": "seconds",
+            "range": "± 0.01859724500000004"
           }
         ]
       }
