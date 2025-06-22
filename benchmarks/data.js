@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750597909931,
+  "lastUpdate": 1750598210304,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63966,6 +63966,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5802083172400001,
             "unit": "seconds",
             "range": "± 0.013823913000000077"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "1b6311d544a462d50031100505415c3e2750bc80",
+          "message": "fix: Update error handling for file search failures and adjust expected exit codes",
+          "timestamp": "2025-06-22T22:14:41+09:00",
+          "tree_id": "6e9d37de418db3ec6521513b1d352a3a75961dae",
+          "url": "https://github.com/textlint/textlint/commit/1b6311d544a462d50031100505415c3e2750bc80"
+        },
+        "date": 1750598207024,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20808607758000003,
+            "unit": "seconds",
+            "range": "± 0.03102645400000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7058762065800004,
+            "unit": "seconds",
+            "range": "± 0.013715209999999978"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.57420483398,
+            "unit": "seconds",
+            "range": "± 0.017527225000000035"
           }
         ]
       }
