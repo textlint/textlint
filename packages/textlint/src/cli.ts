@@ -56,8 +56,8 @@ export const cli = {
     async execute(args: string | Array<string>, text?: string): Promise<number> {
         let currentOptions;
         // version from package.json
-        const pkgConf = await import("read-pkg-up");
-        const version = pkgConf.sync({ cwd: __dirname }).pkg.version;
+        const { readPackageUpSync } = await import("read-package-up");
+        const version = readPackageUpSync({ cwd: __dirname })?.packageJson.version ?? "unknown";
         try {
             currentOptions = options.parse(args);
         } catch (error) {

@@ -853,12 +853,9 @@ importers:
       rc-config-loader:
         specifier: ^4.1.3
         version: 4.1.3
-      read-pkg:
-        specifier: ^1.1.0
-        version: 1.1.0
-      read-pkg-up:
-        specifier: ^3.0.0
-        version: 3.0.0
+      read-package-up:
+        specifier: ^11.0.0
+        version: 11.0.0
       structured-source:
         specifier: ^4.0.0
         version: 4.0.0
@@ -884,9 +881,6 @@ importers:
       '@types/node':
         specifier: ^18.19.111
         version: 18.19.111
-      '@types/read-pkg-up':
-        specifier: ^3.0.1
-        version: 3.0.1
       '@types/shelljs':
         specifier: ^0.8.16
         version: 0.8.16
@@ -3305,9 +3299,6 @@ packages:
 
   '@types/react@19.1.8':
     resolution: {integrity: sha512-AwAfQ2Wa5bCx9WP8nZL2uMZWod7J7/JSplxbTmBQ5ms6QpqNYm672H0Vu9ZVKVngQ+ii4R/byguVEUZQyeg44g==}
-
-  '@types/read-pkg-up@3.0.1':
-    resolution: {integrity: sha512-rMD+eDN93H/f6UGe6HJjJ08L+Vro+LN0bfCdYxsSb3Np13s75Lv+E/XBgw14kjz83Pfi82fb5z3/jtw1S3DvgA==}
 
   '@types/retry@0.12.0':
     resolution: {integrity: sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==}
@@ -13206,10 +13197,6 @@ snapshots:
     dependencies:
       csstype: 3.1.3
 
-  '@types/read-pkg-up@3.0.1':
-    dependencies:
-      '@types/normalize-package-data': 2.4.4
-
   '@types/retry@0.12.0': {}
 
   '@types/sax@1.2.7':
@@ -13355,6 +13342,22 @@ snapshots:
       '@vitest/utils': 3.2.3
       chai: 5.2.0
       tinyrainbow: 2.0.0
+
+  '@vitest/mocker@3.2.3(vite@5.4.19(@types/node@18.19.111)(terser@5.42.0))':
+    dependencies:
+      '@vitest/spy': 3.2.3
+      estree-walker: 3.0.3
+      magic-string: 0.30.17
+    optionalDependencies:
+      vite: 5.4.19(@types/node@18.19.111)(terser@5.42.0)
+
+  '@vitest/mocker@3.2.3(vite@5.4.19(@types/node@20.19.0)(terser@5.42.0))':
+    dependencies:
+      '@vitest/spy': 3.2.3
+      estree-walker: 3.0.3
+      magic-string: 0.30.17
+    optionalDependencies:
+      vite: 5.4.19(@types/node@20.19.0)(terser@5.42.0)
 
   '@vitest/mocker@3.2.3(vite@5.4.19(@types/node@22.15.31)(terser@5.42.0))':
     dependencies:
@@ -21048,7 +21051,7 @@ snapshots:
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.3
-      '@vitest/mocker': 3.2.3(vite@5.4.19(@types/node@22.15.31)(terser@5.42.0))
+      '@vitest/mocker': 3.2.3(vite@5.4.19(@types/node@18.19.111)(terser@5.42.0))
       '@vitest/pretty-format': 3.2.3
       '@vitest/runner': 3.2.3
       '@vitest/snapshot': 3.2.3
@@ -21087,7 +21090,7 @@ snapshots:
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.3
-      '@vitest/mocker': 3.2.3(vite@5.4.19(@types/node@22.15.31)(terser@5.42.0))
+      '@vitest/mocker': 3.2.3(vite@5.4.19(@types/node@20.19.0)(terser@5.42.0))
       '@vitest/pretty-format': 3.2.3
       '@vitest/runner': 3.2.3
       '@vitest/snapshot': 3.2.3

@@ -5,23 +5,23 @@ import { readFileSync } from "node:fs";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
-import { server } from "../../src/mcp/server.js";
+import { setupServer } from "../../src/mcp/server.js";
 
 const validFilePath = path.join(__dirname, "fixtures", "ok.md");
 const stdinFilename = `textlint.txt`;
 
 describe("MCP Server", () => {
-    let client: Client, clientTransport, serverTransport;
+    let client: Client, server: McpServer, clientTransport, serverTransport;
 
     beforeEach(async () => {
         client = new Client({
             name: "textlint",
             version: "1.0"
         });
-
+        server = await setupServer();
         [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
-
         await server.connect(serverTransport);
         await client.connect(clientTransport);
     });
@@ -29,6 +29,9 @@ describe("MCP Server", () => {
     afterEach(async () => {
         if (client) {
             await client.close();
+        }
+        if (server) {
+            await server.close();
         }
     });
 

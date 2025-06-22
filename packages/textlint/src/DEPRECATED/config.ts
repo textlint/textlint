@@ -13,14 +13,11 @@ import {
     normalizeTextlintRulePresetKey
 } from "@textlint/utils";
 import { Logger } from "../util/logger.js";
-// @ts-expect-error no types. it will be removed
-import md5 from "md5";
 import fs from "node:fs";
 import assert from "node:assert";
 // @ts-expect-error no types. it will be removed
 import concat from "unique-concat";
 import path from "node:path";
-import pkgConf from "read-pkg-up";
 
 function applyNormalizerToList(normalizer: (name: string) => string, names: string[]) {
     return names.map((name) => {
@@ -295,16 +292,10 @@ export class Config {
      * @returns {string}
      */
     get hash() {
-        try {
-            const version = pkgConf.sync({ cwd: __dirname }).pkg.version;
-            const toString = JSON.stringify(this.toJSON());
-            return md5(`${version}-${toString}`);
-        } catch (error) {
-            // Fallback for some env
-            // https://github.com/textlint/textlint/issues/597
-            Logger.warn("Use random value as hash because calculating hash value throw error", error);
-            return crypto.randomBytes(20).toString("hex");
-        }
+        // Fallback for some env
+        // https://github.com/textlint/textlint/issues/597
+        Logger.warn("Use random value as hash because deprecated config.hash");
+        return crypto.randomBytes(20).toString("hex");
     }
 
     /**
