@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750571020662,
+  "lastUpdate": 1750573571691,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62328,6 +62328,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5881374505,
             "unit": "seconds",
             "range": "± 0.008427040000000052"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ea166d41c1445ccd5eded65e51b7db99f89cdd58",
+          "message": "BREAKING CHANGE: remove legacy `textlint` APIs (#1574)\n\n* refactor(textlint): remove deprecated apis and tests\n\n- Deleted unused configuration files for textlint rules and plugins.\n- Removed test files related to cache backers and execute file backers.\n- Cleaned up plugin loader test fixtures and module resolver tests.\n- Eliminated unnecessary example configurations and rule presets.\n- Streamlined the test structure by removing obsolete tests and fixtures.\n\n* remove legacy `loadFromDir`\n\n* fix(kernal): add test preset to depDevs\n\n* docs: add migration guide for textlint v15\n\n* docs: remove migration guide for textlint v15\n\n* docs: add migration guide for textlint v15 and update usage documentation\n\n* test: enhance cache-backer tests with improved directory handling and add missing test file\n\n* fix: update build command in netlify.toml to include clean step\n\n* test: improve config directory handling in config-initializer tests",
+          "timestamp": "2025-06-22T15:23:07+09:00",
+          "tree_id": "0e503d65d3771aa03c7b39869cdd44b72fc738cb",
+          "url": "https://github.com/textlint/textlint/commit/ea166d41c1445ccd5eded65e51b7db99f89cdd58"
+        },
+        "date": 1750573566494,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.37959637318000006,
+            "unit": "seconds",
+            "range": "± 0.893240389"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6955874145799998,
+            "unit": "seconds",
+            "range": "± 0.029840918000000105"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5955173591800001,
+            "unit": "seconds",
+            "range": "± 0.02079144700000002"
           }
         ]
       }
