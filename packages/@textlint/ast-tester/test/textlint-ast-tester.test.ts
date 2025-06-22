@@ -1,5 +1,5 @@
 import * as assert from "node:assert";
-import { describe, test, it } from "vitest";
+import { describe, it } from "vitest";
 import { test, isTxtAST } from "../src/index.js";
 import fs from "node:fs";
 import path from "node:path";
