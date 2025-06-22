@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750576436970,
+  "lastUpdate": 1750576770655,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62706,6 +62706,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58382190746,
             "unit": "seconds",
             "range": "± 0.019286727000000004"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bce7d8326054f1bef9c354bd7326191f1b723e46",
+          "message": "feat: remove deprecated createFormatter function (#1578)\n\n* feat: remove deprecated createFormatter function\n\n- Remove createFormatter from @textlint/linter-formatter\n- Remove createFormatter from @textlint/fixer-formatter\n- Update DEPRECATED textlint-engine to use loadFormatter\n- Update README documentation to use loadFormatter\n- Add test to ensure createFormatter is not exported\n\nCloses #1570\n\n* feat: remove deprecated TextLintEngine and update documentation for new API usage",
+          "timestamp": "2025-06-22T16:11:54+09:00",
+          "tree_id": "3c67f65539d4f80051aa5849a62358b9a10e1d3f",
+          "url": "https://github.com/textlint/textlint/commit/bce7d8326054f1bef9c354bd7326191f1b723e46"
+        },
+        "date": 1750576765526,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23744230262000002,
+            "unit": "seconds",
+            "range": "± 0.16028913800000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7202260924199997,
+            "unit": "seconds",
+            "range": "± 0.031866447000000075"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5865048028200001,
+            "unit": "seconds",
+            "range": "± 0.011076854999999997"
           }
         ]
       }
