@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750574927431,
+  "lastUpdate": 1750575173857,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62580,6 +62580,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5770819108,
             "unit": "seconds",
             "range": "± 0.008086159999999953"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e84b5ff5064d825e76f4d9ed93c858a6dce8b868",
+          "message": "refactor(test): remove unused import from test file (#1576)",
+          "timestamp": "2025-06-22T15:50:46+09:00",
+          "tree_id": "c3382f8f55bbf6062db8a815d02bc44fe2420f91",
+          "url": "https://github.com/textlint/textlint/commit/e84b5ff5064d825e76f4d9ed93c858a6dce8b868"
+        },
+        "date": 1750575168717,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25718517896000004,
+            "unit": "seconds",
+            "range": "± 0.20401114900000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.80202107816,
+            "unit": "seconds",
+            "range": "± 0.07973041499999978"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6088547645600001,
+            "unit": "seconds",
+            "range": "± 0.013361074999999945"
           }
         ]
       }
