@@ -76,7 +76,10 @@ export const createLinter = (options: CreateLinterOptions) => {
                 ignoreFilePath: options.ignoreFilePath
             });
             if (!searchResult.ok) {
-                return [];
+                Logger.error("Failed to search files. Error details:", searchResult.errors);
+                throw new Error(
+                    `searchFiles failed: ${searchResult.errors.map((e) => e.type).join(", ") || "Unknown error"}`
+                );
             }
             const targetFiles = searchResult.items;
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
@@ -127,6 +130,11 @@ export const createLinter = (options: CreateLinterOptions) => {
                 ignoreFilePath: options.ignoreFilePath
             });
             if (!searchResult.ok) {
+                Logger.error(
+                    `Failed to search files with patterns: ${patterns}. Reason: ${
+                        searchResult.errors.map((e) => e.type).join(", ") || "Unknown error"
+                    }`
+                );
                 return [];
             }
             const targetFiles = searchResult.items;
