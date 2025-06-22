@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750577511726,
+  "lastUpdate": 1750577674842,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62916,6 +62916,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58689197834,
             "unit": "seconds",
             "range": "± 0.009821240999999925"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "72441340d8fbb7eec9b39419478b76d604e99201",
+          "message": "docs: fix typos in documentation\n\n- Fix 'Can't handling' to 'Can't handle' in getting-started.md\n- Fix 'type.length' to 'match[0].length' in rule.md comment\n- Fix 'recommenced' to 'recommended' in plugin.md",
+          "timestamp": "2025-06-22T16:31:23+09:00",
+          "tree_id": "28e44ab1d1299f7351d0c728a15d19e725a30f9a",
+          "url": "https://github.com/textlint/textlint/commit/72441340d8fbb7eec9b39419478b76d604e99201"
+        },
+        "date": 1750577669697,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23116338444,
+            "unit": "seconds",
+            "range": "± 0.158094869"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71265826544,
+            "unit": "seconds",
+            "range": "± 0.06471113300000009"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.57964113004,
+            "unit": "seconds",
+            "range": "± 0.01177886699999997"
           }
         ]
       }
