@@ -193,7 +193,7 @@ export const cli = {
         } catch (error) {
             // Handle file search errors with exit status 2
             if (error instanceof TextlintFileSearchError) {
-                Logger.error("File search failed:", error.errors);
+                Logger.error(error);
                 return 2;
             }
             // Handle other unexpected errors

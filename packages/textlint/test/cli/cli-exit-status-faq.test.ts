@@ -309,7 +309,7 @@ describe("CLI Exit Status FAQ Patterns", function () {
                 path.join(files.testDir, "nonexistent.md")
             ],
             expectedExitStatus: 2,
-            expectedErrorPattern: /File search failed/
+            expectedErrorPattern: /TextlintFileSearchError/
         },
         {
             name: "3.2 Glob pattern with no matching files",
@@ -322,7 +322,7 @@ describe("CLI Exit Status FAQ Patterns", function () {
                 path.join(files.testDir, "nonexistent-dir/**/*.md")
             ],
             expectedExitStatus: 2,
-            expectedErrorPattern: /File search failed/
+            expectedErrorPattern: /TextlintFileSearchError/
         },
         {
             name: "3.3 Absolute path to non-existent file",
@@ -335,7 +335,7 @@ describe("CLI Exit Status FAQ Patterns", function () {
                 "/nonexistent/path/file.md"
             ],
             expectedExitStatus: 2,
-            expectedErrorPattern: /File search failed/
+            expectedErrorPattern: /TextlintFileSearchError/
         },
         {
             name: "3.4 Non-existent directory in glob",
@@ -348,7 +348,7 @@ describe("CLI Exit Status FAQ Patterns", function () {
                 "/nonexistent-dir/**/*.md"
             ],
             expectedExitStatus: 2,
-            expectedErrorPattern: /File search failed/
+            expectedErrorPattern: /TextlintFileSearchError/
         },
         {
             name: "3.5 --fix option with non-existent file",
@@ -362,7 +362,7 @@ describe("CLI Exit Status FAQ Patterns", function () {
                 path.join(files.testDir, "nonexistent.md")
             ],
             expectedExitStatus: 2,
-            expectedErrorPattern: /Failed to search files with patterns/
+            expectedErrorPattern: /TextlintFileSearchError/
         },
         {
             name: "3.6 All non-existent files should return exit status 2",
@@ -376,7 +376,7 @@ describe("CLI Exit Status FAQ Patterns", function () {
                 path.join(files.testDir, "nonexistent2.md")
             ],
             expectedExitStatus: 2,
-            expectedErrorPattern: /File search failed/
+            expectedErrorPattern: /TextlintFileSearchError/
         }
     ];
 
