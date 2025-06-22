@@ -1,4 +1,4 @@
-name: PR Preview
+name: WebSite Preview
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
     paths:
       - 'docs/**'
       - 'website/**'
-      - 'packages/@textlint/website/**'
+      - '.github/workflows/pr-preview.yml'
 
 permissions:
   contents: read
