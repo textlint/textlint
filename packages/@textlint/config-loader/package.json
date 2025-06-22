@@ -18,7 +18,6 @@
   "sideEffects": false,
   "type": "commonjs",
   "main": "lib/src/index.js",
-  "module": "module/src/index.js",
   "types": "lib/src/index.d.ts",
   "directories": {
     "lib": "lib",
@@ -30,8 +29,8 @@
     "module"
   ],
   "scripts": {
-    "build": "tsc -b . && tsc -b ./tsconfig.module.json",
-    "clean": "rimraf lib/ module/",
+    "build": "tsc -b .",
+    "clean": "rimraf lib/",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",
     "test": "vitest run",
