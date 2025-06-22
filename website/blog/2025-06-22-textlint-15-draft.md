@@ -239,40 +239,43 @@ const linter = createLinter({
 });
 ```
 
-## Common Pitfalls
 
-### 1. File Extension for `lintText()`
+**Improvements:**
+- **Exit Status Improvement**: File search errors now return exit status 2 (aligned with ESLint)
+- **Ignore Pattern Fix**: Absolute file paths now correctly respect `.textlintignore` patterns
 
-The new `lintText()` method requires a file extension hint:
+## Improved Exit Status Handling
 
-```javascript
-// ❌ Bad - no extension
-await linter.lintText("# Title", "unknown");
+textlint v15 improves exit status handling to align with ESLint's behavior, helping scripts distinguish between different types of errors.
 
-// ✅ Good - with extension
-await linter.lintText("# Title", "document.md");
+**Key Changes:**
+- File search errors now return exit status 2 (previously 1)
+- Lint errors continue to return exit status 1
+- Success cases return exit status 0
+
+```bash
+# v15+ behavior (now matches ESLint)
+textlint nonexistent-file.md     # Exit Status: 2 (file search error)
+textlint file-with-errors.md     # Exit Status: 1 (lint errors)
+textlint clean-file.md           # Exit Status: 0 (success)
 ```
 
-### 2. Module Loading
+This enables better CI/CD error handling and aligns with ESLint's behavior. For comprehensive documentation, see the [Exit Status FAQ](https://textlint.org/docs/faq/exit-status.html).
 
-Use `moduleInterop()` for proper module loading:
+## Fixed Ignore Pattern Handling for Absolute Paths
 
-```javascript
-import { moduleInterop } from "@textlint/module-interop";
+textlint v15 fixes a bug where absolute file paths did not respect `.textlintignore` patterns.
 
-const rule = moduleInterop((await import("./my-rule")).default);
+**What was fixed:**
+```bash
+# Before v15 (Bug)
+textlint /absolute/path/to/ignored-file.md  # ❌ Would lint even if ignored
+
+# v15+ (Fixed)
+textlint /absolute/path/to/ignored-file.md  # ✅ Properly respects .textlintignore
 ```
 
-### 3. Formatter Usage
-
-Formatters are now loaded separately:
-
-```javascript
-import { loadLinterFormatter } from "textlint";
-
-const formatter = await loadLinterFormatter({ formatterName: "stylish" });
-const output = formatter.format(results);
-```
+This fix is important for CI/CD systems and IDE integrations that use absolute paths. See [GitHub Issue #1412](https://github.com/textlint/textlint/issues/1412) for details.
 
 ## Resources
 
