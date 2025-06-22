@@ -23,7 +23,9 @@ describe("config-initializer-test", function () {
     });
     describe("when pacakge.json has textlint-rule-* packages", function () {
         beforeEach(function () {
-            const packageFilePath = path.join(__dirname, "fixtures", "package.json");
+            // Ensure directory exists
+            sh.mkdir("-p", configDir);
+            const packageFilePath = path.resolve(process.cwd(), "test/config-initializer/fixtures/package.json");
             sh.cp(packageFilePath, configDir);
         });
         it("should create new file with packages", function () {
