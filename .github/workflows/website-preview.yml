@@ -8,8 +8,10 @@ on:
       - 'website/**'
       - '.github/workflows/website-preview.yml'
 
+concurrency: preview-${{ github.ref }}
+
 permissions:
-  contents: read
+  contents: write
   pull-requests: write
 
 jobs:
@@ -37,12 +39,13 @@ jobs:
       - name: Build website
         if: github.event.action != 'closed'
         run: |
+          pnpm run build --scope textlint-website
           pnpm run website
 
       - name: Deploy PR preview
-        uses: rossjrw/pr-preview-action@2fb559e4766555e23d07b73d313fe97c4f8c3cfe # v1.6.1
+        uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./website/build
-          preview-branch: gh-pages-preview
+          preview-branch: gh-pages
           umbrella-dir: pr-preview
-          token: ${{ secrets.ACTIONS_DEPLOY_KEY_WEBSITE }}
+          action: auto
