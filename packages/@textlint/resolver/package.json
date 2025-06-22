@@ -20,20 +20,18 @@
   "author": "azu",
   "type": "commonjs",
   "main": "lib/src/index.js",
-  "module": "module/src/index.js",
-  "types": "./module/src/index.d.ts",
+  "types": "lib/src/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
   "files": [
     "bin/",
-    "module/",
     "src/"
   ],
   "scripts": {
-    "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "tsc -b --clean && tsc -b tsconfig.module.json --clean",
+    "build": "tsc -b",
+    "clean": "tsc -b --clean --clean",
     "prepublishOnly": "npm run clean && npm run build",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",

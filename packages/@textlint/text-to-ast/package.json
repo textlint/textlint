@@ -19,7 +19,6 @@
   "author": "azu",
   "type": "commonjs",
   "main": "lib/src/index.js",
-  "module": "module/src/index.js",
   "types": "lib/src/index.d.ts",
   "directories": {
     "example": "example",
@@ -28,13 +27,12 @@
   "files": [
     "bin/",
     "lib/",
-    "module/",
     "src/",
     "!*.tsbuildinfo"
   ],
   "scripts": {
-    "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "rimraf lib/ module/",
+    "build": "tsc -b",
+    "clean": "rimraf lib/",
     "crlf": "eolConverter crlf test/snapshots/crlf/input.txt && eolConverter crlf test/snapshots/crlf-empty-line/input.txt",
     "prepack": "npm run --if-present build",
     "pretest": "npm run crlf",
