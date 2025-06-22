@@ -42,16 +42,16 @@ const createHashForDescriptor = async (descriptor: TextlintKernelDescriptor): Pr
 };
 
 const createExecutor = async (options: CreateLinterOptions): Promise<ExecuteFileBackerManager> => {
-    const executeFileBackerManger = new ExecuteFileBackerManager();
+    const executeFileBackerManager = new ExecuteFileBackerManager();
     if (options.cache) {
         const cacheBaker = new CacheBacker({
             cache: options.cache ?? false,
             cacheLocation: options.cacheLocation ?? path.resolve(process.cwd(), ".textlintcache"),
             hash: await createHashForDescriptor(options.descriptor)
         });
-        executeFileBackerManger.add(cacheBaker);
+        executeFileBackerManager.add(cacheBaker);
     }
-    return executeFileBackerManger;
+    return executeFileBackerManager;
 };
 
 export const createLinter = (options: CreateLinterOptions) => {
@@ -68,7 +68,7 @@ export const createLinter = (options: CreateLinterOptions) => {
          * @returns {Promise<TextlintResult[]>} The results for all files that were linted.
          */
         async lintFiles(filesOrGlobs: string[]): Promise<TextlintResult[]> {
-            const executeFileBackerManger = await createExecutor(options);
+            const executeFileBackerManager = await createExecutor(options);
             const patterns = pathsToGlobPatterns(filesOrGlobs, {
                 extensions: options.descriptor.availableExtensions
             });
@@ -81,7 +81,7 @@ export const createLinter = (options: CreateLinterOptions) => {
             debug("Available extensions: %j", options.descriptor.availableExtensions);
             debug("Process files: %j", availableFiles);
             debug("No Process files that are un-support extensions: %j", unAvailableFiles);
-            return executeFileBackerManger.process(availableFiles, async (filePath: string) => {
+            return executeFileBackerManager.process(availableFiles, async (filePath: string) => {
                 const absoluteFilePath = path.resolve(process.cwd(), filePath);
                 const fileContent = await fs.readFile(filePath, "utf-8");
                 const kernelOptions = {
@@ -114,7 +114,7 @@ export const createLinter = (options: CreateLinterOptions) => {
          * @returns {Promise<TextlintFixResult[]>} The results for all files that were linted and fixed.
          */
         async fixFiles(fileOrGlobs: string[]): Promise<TextlintFixResult[]> {
-            const executeFileBackerManger = await createExecutor(options);
+            const executeFileBackerManager = await createExecutor(options);
             const patterns = pathsToGlobPatterns(fileOrGlobs, {
                 extensions: options.descriptor.availableExtensions
             });
@@ -127,7 +127,7 @@ export const createLinter = (options: CreateLinterOptions) => {
             debug("Available extensions: %j", options.descriptor.availableExtensions);
             debug("Process files: %j", availableFiles);
             debug("No Process files that are un-support extensions: %j", unAvailableFiles);
-            return executeFileBackerManger.process(availableFiles, async (filePath: string) => {
+            return executeFileBackerManager.process(availableFiles, async (filePath: string) => {
                 const absoluteFilePath = path.resolve(process.cwd(), filePath);
                 const fileContent = await fs.readFile(filePath, "utf-8");
                 const kernelOptions = {
