@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750600452532,
+  "lastUpdate": 1750601713526,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -64176,6 +64176,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58040956952,
             "unit": "seconds",
             "range": "± 0.023648449999999932"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "c740ac3b74eb01894b74271616e72e791cdb18bb",
+          "message": "feat: add release notes for textlint v15.0.0 with breaking changes and new features",
+          "timestamp": "2025-06-22T23:12:15+09:00",
+          "tree_id": "5a4350c1c3d72a99d769bb1ebede91d105143d67",
+          "url": "https://github.com/textlint/textlint/commit/c740ac3b74eb01894b74271616e72e791cdb18bb"
+        },
+        "date": 1750601710277,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20867984075999998,
+            "unit": "seconds",
+            "range": "± 0.021781682000000024"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7379982305600001,
+            "unit": "seconds",
+            "range": "± 0.042132827999999956"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59185457076,
+            "unit": "seconds",
+            "range": "± 0.027638162999999993"
           }
         ]
       }
