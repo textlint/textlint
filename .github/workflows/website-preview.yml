@@ -6,7 +6,7 @@ on:
     paths:
       - 'docs/**'
       - 'website/**'
-      - '.github/workflows/pr-preview.yml'
+      - '.github/workflows/website-preview.yml'
 
 permissions:
   contents: read
@@ -45,3 +45,4 @@ jobs:
           source-dir: ./website/build
           preview-branch: gh-pages-preview
           umbrella-dir: pr-preview
+          token: ${{ secrets.ACTIONS_DEPLOY_KEY_WEBSITE }}
