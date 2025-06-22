@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750577674842,
+  "lastUpdate": 1750577965808,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62958,6 +62958,48 @@ window.BENCHMARK_DATA = {
             "value": 0.57964113004,
             "unit": "seconds",
             "range": "± 0.01177886699999997"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "e107eaae1511c1e68af8d6f30554a3e788544d69",
+          "message": "chore: improve pr-preview workflow configuration\n\n- Add concurrency group to prevent race conditions\n- Change permissions to contents: write for proper deployment\n- Use standard gh-pages branch instead of gh-pages-preview\n- Remove custom token (use default github.token)\n- Add explicit action: auto parameter\n- Fix build command to include proper scope",
+          "timestamp": "2025-06-22T16:36:31+09:00",
+          "tree_id": "9be501165cff3a0e0a5be42947b642df6a344fbc",
+          "url": "https://github.com/textlint/textlint/commit/e107eaae1511c1e68af8d6f30554a3e788544d69"
+        },
+        "date": 1750577962682,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2288111401,
+            "unit": "seconds",
+            "range": "± 0.11090856399999999"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7609768141,
+            "unit": "seconds",
+            "range": "± 0.043882504000000155"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6033967765,
+            "unit": "seconds",
+            "range": "± 0.02905521100000008"
           }
         ]
       }
