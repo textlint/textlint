@@ -1,7 +1,13 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintKernel, TextlintKernelDescriptor, TextlintResult } from "@textlint/kernel";
-import { searchFiles, scanFilePath, ScanFilePathResult, pathsToGlobPatterns } from "./util/find-util.js";
+import {
+    searchFiles,
+    scanFilePath,
+    ScanFilePathResult,
+    pathsToGlobPatterns,
+    SearchFilesResultError
+} from "./util/find-util.js";
 import { ExecuteFileBackerManager } from "./engine/execute-file-backer-manager.js";
 import { CacheBacker } from "./engine/execute-file-backers/cache-backer.js";
 import path from "node:path";
@@ -13,6 +19,18 @@ import debug0 from "debug";
 import { separateByAvailability } from "./util/separate-by-availability.js";
 
 const debug = debug0("textlint:createTextlint");
+
+// File Search Custom Error
+export class TextlintFileSearchError extends Error {
+    public readonly name = "TextlintFileSearchError";
+    public readonly errors: SearchFilesResultError[];
+
+    constructor(errors: SearchFilesResultError[], message?: string) {
+        super(message || `Not found target files: ${errors.map((e) => e.type).join(", ")}`);
+        this.errors = errors;
+    }
+}
+
 export type CreateLinterOptions = {
     // You can get config descriptor from `loadTextlintrc()`
     descriptor: TextlintKernelDescriptor;
@@ -77,9 +95,7 @@ export const createLinter = (options: CreateLinterOptions) => {
             });
             if (!searchResult.ok) {
                 Logger.error("Failed to search files. Error details:", searchResult.errors);
-                throw new Error(
-                    `searchFiles failed: ${searchResult.errors.map((e) => e.type).join(", ") || "Unknown error"}`
-                );
+                throw new TextlintFileSearchError(searchResult.errors);
             }
             const targetFiles = searchResult.items;
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
@@ -88,7 +104,7 @@ export const createLinter = (options: CreateLinterOptions) => {
             debug("Available extensions: %j", options.descriptor.availableExtensions);
             debug("Process files: %j", availableFiles);
             debug("No Process files that are un-support extensions: %j", unAvailableFiles);
-            return executeFileBackerManager.process(availableFiles, async (filePath: string) => {
+            const results = await executeFileBackerManager.process(availableFiles, async (filePath: string) => {
                 const absoluteFilePath = path.resolve(process.cwd(), filePath);
                 const fileContent = await fs.readFile(filePath, "utf-8");
                 const kernelOptions = {
@@ -98,6 +114,7 @@ export const createLinter = (options: CreateLinterOptions) => {
                 };
                 return kernel.lintText(fileContent, kernelOptions);
             });
+            return results;
         },
         /**
          * Lint text
@@ -135,7 +152,7 @@ export const createLinter = (options: CreateLinterOptions) => {
                         searchResult.errors.map((e) => e.type).join(", ") || "Unknown error"
                     }`
                 );
-                return [];
+                throw new TextlintFileSearchError(searchResult.errors);
             }
             const targetFiles = searchResult.items;
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
@@ -144,7 +161,7 @@ export const createLinter = (options: CreateLinterOptions) => {
             debug("Available extensions: %j", options.descriptor.availableExtensions);
             debug("Process files: %j", availableFiles);
             debug("No Process files that are un-support extensions: %j", unAvailableFiles);
-            return executeFileBackerManager.process(availableFiles, async (filePath: string) => {
+            const results = await executeFileBackerManager.process(availableFiles, async (filePath: string) => {
                 const absoluteFilePath = path.resolve(process.cwd(), filePath);
                 const fileContent = await fs.readFile(filePath, "utf-8");
                 const kernelOptions = {
@@ -154,6 +171,7 @@ export const createLinter = (options: CreateLinterOptions) => {
                 };
                 return kernel.fixText(fileContent, kernelOptions);
             });
+            return results;
         },
         /**
          * Lint text and fix it

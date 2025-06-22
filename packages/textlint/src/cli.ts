@@ -6,7 +6,7 @@ import { TextLintFixer } from "./fixer/textlint-fixer.js";
 import { Logger } from "./util/logger.js";
 import { loadBuiltinPlugins, loadTextlintrc } from "./loader/TextlintrcLoader.js";
 import { loadCliDescriptor } from "./loader/CliLoader.js";
-import { createLinter } from "./createLinter.js";
+import { createLinter, TextlintFileSearchError } from "./createLinter.js";
 import { SeverityLevel } from "./shared/type/SeverityLevel.js";
 import { printResults, showEmptyRuleWarning } from "./cli-util.js";
 import { loadFixerFormatter, loadLinterFormatter } from "./formatter.js";
@@ -113,6 +113,9 @@ export const cli = {
     /**
      * execute with cli options
      * @returns {Promise<number>} exit status
+     *   - 0: Success (no lint errors, or files ignored/not found when mixed with existing files)
+     *   - 1: Lint errors found or unexpected errors
+     *   - 2: File search errors (no files found matching the specified patterns) or fatal errors
      */
     async executeWithOptions(executeOptions: ExecuteOptions): Promise<number> {
         const cliOptions = executeOptions.cliOptions;
@@ -188,8 +191,13 @@ export const cli = {
                 }
             }
         } catch (error) {
-            // Handle errors from lintFiles/fixFiles (e.g., when searchFiles fails)
-            Logger.error("Error during file processing:", error);
+            // Handle file search errors with exit status 2
+            if (error instanceof TextlintFileSearchError) {
+                Logger.error("File search failed:", error.errors);
+                return 2;
+            }
+            // Handle other unexpected errors
+            Logger.error("Unexpected error during file processing:", error);
             return 1;
         }
     }
