@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750568037007,
+  "lastUpdate": 1750568812880,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62202,6 +62202,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5770000523200001,
             "unit": "seconds",
             "range": "± 0.014440023999999996"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "d160939b5adb94e50b8e4b01a72657434a6adeed",
+          "message": "test: enhance cache-backer tests with improved directory handling and add missing test file",
+          "timestamp": "2025-06-22T14:04:34+09:00",
+          "tree_id": "374543265eb9a4ac677120b644ecb1ad18e5be01",
+          "url": "https://github.com/textlint/textlint/commit/d160939b5adb94e50b8e4b01a72657434a6adeed"
+        },
+        "date": 1750568807480,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23612151186000002,
+            "unit": "seconds",
+            "range": "± 0.17351366299999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7228743988599997,
+            "unit": "seconds",
+            "range": "± 0.020204831999999895"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5952041250600001,
+            "unit": "seconds",
+            "range": "± 0.04382307699999999"
           }
         ]
       }
