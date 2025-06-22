@@ -181,7 +181,7 @@ export default function (context) {
             if (match) {
                 // report error with padding
                 // node's start + padding's range
-                // As a result, report the error that is [node.range[0] + typo.index, node.range[1] + typo.index + type.length]
+                // As a result, report the error that is [node.range[0] + match.index, node.range[1] + match.index + match[0].length]
                 report(
                     node,
                     new RuleError("Found a typo", {
