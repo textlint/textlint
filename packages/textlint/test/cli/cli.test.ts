@@ -467,11 +467,33 @@ describe("cli-test", function () {
             const result = await cli.execute(
                 `--rule "${ruleModuleName}" "${targetFilePath}" --ignore-path ${ignoreFile}"`
             );
-            // TODO: this test should be pass, but current implementation is not working correctly
-            // Next textlint fix this bug
-            // https://github.com/textlint/textlint/issues/1409
-            assert.throws(() => {
-                assert.strictEqual(result, 0);
+            // Fixed by https://github.com/textlint/textlint/issues/1412
+            // Now ignore files work correctly with absolute file paths
+            assert.strictEqual(result, 0);
+        });
+        it("should handle error when ignore file does not exist", async function () {
+            return runWithMockLog(async ({ assertHasLog }) => {
+                const ruleModuleName = "textlint-rule-no-todo";
+                const nonExistentIgnoreFile = path.join(__dirname, "fixtures/nonexistent.textlintignore");
+                const targetFilePath = path.join(__dirname, "fixtures/todo.md");
+                const result = await cli.execute(
+                    `--rule "${ruleModuleName}" "${targetFilePath}" --ignore-path ${nonExistentIgnoreFile}"`
+                );
+                // Should still work (use default behavior) when ignore file doesn't exist
+                assert.strictEqual(result, 1); // todo.md should have linting errors without ignore
+                assertHasLog();
+            });
+        });
+        it("should handle invalid file patterns gracefully", async function () {
+            return runWithMockLog(async () => {
+                const ruleModuleName = "textlint-rule-no-todo";
+                const ignoreFile = path.join(__dirname, "fixtures/all-md.textlintignore");
+                const invalidPattern = "/nonexistent/directory/**/*.md";
+                const result = await cli.execute(
+                    `--rule "${ruleModuleName}" "${invalidPattern}" --ignore-path ${ignoreFile}"`
+                );
+                // Should exit with error code 2 when no files found (file search error)
+                assert.strictEqual(result, 2);
             });
         });
     });

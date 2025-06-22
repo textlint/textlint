@@ -6,7 +6,7 @@ import { TextLintFixer } from "./fixer/textlint-fixer.js";
 import { Logger } from "./util/logger.js";
 import { loadBuiltinPlugins, loadTextlintrc } from "./loader/TextlintrcLoader.js";
 import { loadCliDescriptor } from "./loader/CliLoader.js";
-import { createLinter } from "./createLinter.js";
+import { createLinter, TextlintFileSearchError } from "./createLinter.js";
 import { SeverityLevel } from "./shared/type/SeverityLevel.js";
 import { printResults, showEmptyRuleWarning } from "./cli-util.js";
 import { loadFixerFormatter, loadLinterFormatter } from "./formatter.js";
@@ -113,6 +113,9 @@ export const cli = {
     /**
      * execute with cli options
      * @returns {Promise<number>} exit status
+     *   - 0: Success (no lint errors, or files ignored/not found when mixed with existing files)
+     *   - 1: Lint errors found or unexpected errors
+     *   - 2: File search errors (no files found matching the specified patterns) or fatal errors
      */
     async executeWithOptions(executeOptions: ExecuteOptions): Promise<number> {
         const cliOptions = executeOptions.cliOptions;
@@ -131,59 +134,71 @@ export const cli = {
             ignoreFilePath: cliOptions.ignorePath,
             descriptor
         });
-        if (cliOptions.fix) {
-            // --fix
-            const results = isStdinExecution(executeOptions)
-                ? [await linter.fixText(executeOptions.text, executeOptions.stdinFilename)]
-                : await linter.fixFiles(executeOptions.files);
-            debug("fix results: %j", results);
-            const fixer = new TextLintFixer();
-            const formatter = await loadFixerFormatter({
-                formatterName: cliOptions.format,
-                color: cliOptions.color
-            });
-            const output = formatter.format(results);
-            // --dry-run
-            if (cliOptions.dryRun) {
-                debug("Enable dry-run mode");
-                return printResults(output, cliOptions) ? Promise.resolve(0) : Promise.resolve(2);
-            }
-            // modify file and return exit status
-            await fixer.write(results);
-            if (printResults(output, cliOptions)) {
-                if (cliOptions.outputFile) {
-                    return 0; // if --output-file option is specified, exit status is always 0
-                }
-                // --fix result has remaining errors, return 1
-                const hasErrorMessage = results.some((result) => {
-                    return result.remainingMessages.some((message) => message.severity === SeverityLevel.error);
+
+        try {
+            if (cliOptions.fix) {
+                // --fix
+                const results = isStdinExecution(executeOptions)
+                    ? [await linter.fixText(executeOptions.text, executeOptions.stdinFilename)]
+                    : await linter.fixFiles(executeOptions.files);
+                debug("fix results: %j", results);
+                const fixer = new TextLintFixer();
+                const formatter = await loadFixerFormatter({
+                    formatterName: cliOptions.format,
+                    color: cliOptions.color
                 });
-                return hasErrorMessage ? 1 : 0;
+                const output = formatter.format(results);
+                // --dry-run
+                if (cliOptions.dryRun) {
+                    debug("Enable dry-run mode");
+                    return printResults(output, cliOptions) ? Promise.resolve(0) : Promise.resolve(2);
+                }
+                // modify file and return exit status
+                await fixer.write(results);
+                if (printResults(output, cliOptions)) {
+                    if (cliOptions.outputFile) {
+                        return 0; // if --output-file option is specified, exit status is always 0
+                    }
+                    // --fix result has remaining errors, return 1
+                    const hasErrorMessage = results.some((result) => {
+                        return result.remainingMessages.some((message) => message.severity === SeverityLevel.error);
+                    });
+                    return hasErrorMessage ? 1 : 0;
+                } else {
+                    return 2;
+                }
             } else {
+                // lint as default
+                const results = isStdinExecution(executeOptions)
+                    ? [await linter.lintText(executeOptions.text, executeOptions.stdinFilename)]
+                    : await linter.lintFiles(executeOptions.files);
+                debug("lint results: %j", results);
+                const formatter = await loadLinterFormatter({
+                    formatterName: cliOptions.format,
+                    color: cliOptions.color
+                });
+                const output = formatter.format(results);
+                if (printResults(output, cliOptions)) {
+                    if (cliOptions.outputFile) {
+                        return 0; // if --output-file option is specified, exit status is always 0
+                    }
+                    const hasErrorMessage = results.some((result) => {
+                        return result.messages.some((message) => message.severity === SeverityLevel.error);
+                    });
+                    return hasErrorMessage ? 1 : 0;
+                } else {
+                    return 2;
+                }
+            }
+        } catch (error) {
+            // Handle file search errors with exit status 2
+            if (error instanceof TextlintFileSearchError) {
+                Logger.error(error);
                 return 2;
             }
-        } else {
-            // lint as default
-            const results = isStdinExecution(executeOptions)
-                ? [await linter.lintText(executeOptions.text, executeOptions.stdinFilename)]
-                : await linter.lintFiles(executeOptions.files);
-            debug("lint results: %j", results);
-            const formatter = await loadLinterFormatter({
-                formatterName: cliOptions.format,
-                color: cliOptions.color
-            });
-            const output = formatter.format(results);
-            if (printResults(output, cliOptions)) {
-                if (cliOptions.outputFile) {
-                    return 0; // if --output-file option is specified, exit status is always 0
-                }
-                const hasErrorMessage = results.some((result) => {
-                    return result.messages.some((message) => message.severity === SeverityLevel.error);
-                });
-                return hasErrorMessage ? 1 : 0;
-            } else {
-                return 2;
-            }
+            // Handle other unexpected errors
+            Logger.error("Unexpected error during file processing:", error);
+            return 1;
         }
     }
 };

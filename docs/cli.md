@@ -110,6 +110,7 @@ If you want to clear the cache, you can use the `--no-cache` option or just remo
 ## Exit Code
 
 📝 This status is defined in textlint v13.0.0 or later.
+🚀 File search error handling improved in textlint v15 or later.
 
 `0`: No Error
 
@@ -126,5 +127,28 @@ If you want to clear the cache, you can use the `--no-cache` option or just remo
 `2`: Fatal Error
 
 - Crash textlint process
-- Fail to load config/rule/plugin etc...
+- Fail to load config/rule/plugin
+- File search errors
+
+### File Search Error Details
+
+Starting with textlint v15+, file search related errors return exit status 2 to align with ESLint's behavior:
+
+```bash
+# Non-existent file
+$ textlint nonexistent.md
+# Exit Status: 2
+
+# Non-existent glob pattern  
+$ textlint "nonexistent-dir/**/*.md"
+# Exit Status: 2
+
+# Mixed existing and non-existing files (only existing files are processed)
+$ textlint existing.md nonexistent.md
+# Exit Status: 0
+```
+
+This change allows scripts to distinguish between lint errors (exit status 1) and file search errors (exit status 2).
+
+For comprehensive exit status behavior documentation, see [Exit Status FAQ](./faq/exit-status.md).
 

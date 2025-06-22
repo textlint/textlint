@@ -1,7 +1,13 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintKernel, TextlintKernelDescriptor, TextlintResult } from "@textlint/kernel";
-import { findFiles, pathsToGlobPatterns } from "./util/old-find-util.js";
+import {
+    searchFiles,
+    scanFilePath,
+    ScanFilePathResult,
+    pathsToGlobPatterns,
+    SearchFilesResultError
+} from "./util/find-util.js";
 import { ExecuteFileBackerManager } from "./engine/execute-file-backer-manager.js";
 import { CacheBacker } from "./engine/execute-file-backers/cache-backer.js";
 import path from "node:path";
@@ -11,9 +17,25 @@ import { Logger } from "./util/logger.js";
 import { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
 import { separateByAvailability } from "./util/separate-by-availability.js";
-import { scanFilePath, ScanFilePathResult } from "./util/find-util.js";
 
 const debug = debug0("textlint:createTextlint");
+
+// File Search Custom Error
+export class TextlintFileSearchError extends Error {
+    public readonly name = "TextlintFileSearchError";
+    public readonly errors: SearchFilesResultError[];
+    public readonly patterns: string[];
+
+    constructor({ errors, patterns }: { errors: SearchFilesResultError[]; patterns: string[] }) {
+        super(`Not found target files.
+        
+Patterns: ${patterns.join(", ")}        
+Reason: ${errors.map((e) => e.type).join(", ") || "Unknown error"}`);
+        this.errors = errors;
+        this.patterns = patterns;
+    }
+}
+
 export type CreateLinterOptions = {
     // You can get config descriptor from `loadTextlintrc()`
     descriptor: TextlintKernelDescriptor;
@@ -72,16 +94,26 @@ export const createLinter = (options: CreateLinterOptions) => {
             const patterns = pathsToGlobPatterns(filesOrGlobs, {
                 extensions: options.descriptor.availableExtensions
             });
-            const targetFiles = findFiles(patterns, {
+            const searchResult = await searchFiles(patterns, {
+                cwd,
                 ignoreFilePath: options.ignoreFilePath
             });
+            if (!searchResult.ok) {
+                debug(
+                    "Failed to search files with patterns: %j. Reason: %s",
+                    patterns,
+                    searchResult.errors.map((e) => e.type).join(", ") || "Unknown error"
+                );
+                throw new TextlintFileSearchError({ errors: searchResult.errors, patterns });
+            }
+            const targetFiles = searchResult.items;
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
                 extensions: options.descriptor.availableExtensions
             });
             debug("Available extensions: %j", options.descriptor.availableExtensions);
             debug("Process files: %j", availableFiles);
             debug("No Process files that are un-support extensions: %j", unAvailableFiles);
-            return executeFileBackerManager.process(availableFiles, async (filePath: string) => {
+            const results = await executeFileBackerManager.process(availableFiles, async (filePath: string) => {
                 const absoluteFilePath = path.resolve(process.cwd(), filePath);
                 const fileContent = await fs.readFile(filePath, "utf-8");
                 const kernelOptions = {
@@ -91,6 +123,7 @@ export const createLinter = (options: CreateLinterOptions) => {
                 };
                 return kernel.lintText(fileContent, kernelOptions);
             });
+            return results;
         },
         /**
          * Lint text
@@ -118,16 +151,26 @@ export const createLinter = (options: CreateLinterOptions) => {
             const patterns = pathsToGlobPatterns(fileOrGlobs, {
                 extensions: options.descriptor.availableExtensions
             });
-            const targetFiles = findFiles(patterns, {
+            const searchResult = await searchFiles(patterns, {
+                cwd,
                 ignoreFilePath: options.ignoreFilePath
             });
+            if (!searchResult.ok) {
+                debug(
+                    "Failed to search files with patterns: %j. Reason: %s",
+                    patterns,
+                    searchResult.errors.map((e) => e.type).join(", ") || "Unknown error"
+                );
+                throw new TextlintFileSearchError({ errors: searchResult.errors, patterns });
+            }
+            const targetFiles = searchResult.items;
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
                 extensions: options.descriptor.availableExtensions
             });
             debug("Available extensions: %j", options.descriptor.availableExtensions);
             debug("Process files: %j", availableFiles);
             debug("No Process files that are un-support extensions: %j", unAvailableFiles);
-            return executeFileBackerManager.process(availableFiles, async (filePath: string) => {
+            const results = await executeFileBackerManager.process(availableFiles, async (filePath: string) => {
                 const absoluteFilePath = path.resolve(process.cwd(), filePath);
                 const fileContent = await fs.readFile(filePath, "utf-8");
                 const kernelOptions = {
@@ -137,6 +180,7 @@ export const createLinter = (options: CreateLinterOptions) => {
                 };
                 return kernel.fixText(fileContent, kernelOptions);
             });
+            return results;
         },
         /**
          * Lint text and fix it

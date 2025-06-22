@@ -2,9 +2,26 @@ import fs from "node:fs/promises";
 import debug0 from "debug";
 import path from "node:path";
 import { glob } from "glob";
+import { pathToGlobPattern } from "path-to-glob-pattern";
 
 const debug = debug0("textlint:find-util");
 const DEFAULT_IGNORE_PATTERNS = ["**/.git/**", "**/node_modules/**"];
+
+/**
+ * Convert file paths to glob patterns
+ * @param patterns file paths or patterns
+ * @param options
+ */
+export function pathsToGlobPatterns(
+    patterns: string[],
+    options: { extensions?: string[]; cwd?: string } = {}
+): string[] {
+    const processPatterns = pathToGlobPattern({
+        extensions: options.extensions || [],
+        cwd: options.cwd || process.cwd()
+    });
+    return patterns.map(processPatterns);
+}
 export type SearchFilesOptions = {
     cwd: string;
     ignoreFilePath?: string;
@@ -29,6 +46,11 @@ const createIgnorePatterns = async (cwd: string, ignoreFilePath: string): Promis
         const ignoreFileContent = await fs.readFile(normalizeIgnoreFilePath, "utf-8");
         return ignoreFileContent.split(/\r?\n/).filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line));
     } catch (error) {
+        // If ignore file doesn't exist, return empty array (for default .textlintignore behavior)
+        if (error && typeof error === "object" && "code" in error && error.code === "ENOENT") {
+            debug("ignore file not found: %s", ignoreFilePath);
+            return [];
+        }
         throw new Error(`Failed to read ignore file: ${ignoreFilePath}`, {
             cause: error
         });
@@ -41,10 +63,14 @@ const createIgnorePatterns = async (cwd: string, ignoreFilePath: string): Promis
  */
 export const searchFiles = async (patterns: string[], options: SearchFilesOptions): Promise<SearchFilesResult> => {
     const cwd = options.cwd ?? process.cwd();
-    const ignoredPatterns: string[] = [
-        ...DEFAULT_IGNORE_PATTERNS,
-        ...(options.ignoreFilePath ? await createIgnorePatterns(cwd, options.ignoreFilePath) : [])
-    ];
+    const ignoredPatterns: string[] = [...DEFAULT_IGNORE_PATTERNS];
+
+    // Only add ignore patterns if ignoreFilePath is explicitly provided
+    if (options.ignoreFilePath) {
+        const ignorePatterns = await createIgnorePatterns(cwd, options.ignoreFilePath);
+        ignoredPatterns.push(...ignorePatterns);
+    }
+
     debug("search patterns: %o", patterns);
     debug("search ignore patterns: %o", ignoredPatterns);
     // Glob support file path, we can pass file path directly
