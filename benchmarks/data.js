@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750565640833,
+  "lastUpdate": 1750566206171,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62076,6 +62076,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5772007369599998,
             "unit": "seconds",
             "range": "± 0.01320048099999993"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "5b55a829afc27f167c98bc0095d86e4c9af24e48",
+          "message": "fix(kernal): add test preset to depDevs",
+          "timestamp": "2025-06-22T13:20:25+09:00",
+          "tree_id": "9af61488c9add65845070a563cbfacdd060c4e7f",
+          "url": "https://github.com/textlint/textlint/commit/5b55a829afc27f167c98bc0095d86e4c9af24e48"
+        },
+        "date": 1750566201039,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25778180538,
+            "unit": "seconds",
+            "range": "± 0.28266448"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.69904631978,
+            "unit": "seconds",
+            "range": "± 0.042247087000000016"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.57457620058,
+            "unit": "seconds",
+            "range": "± 0.013923010000000069"
           }
         ]
       }
