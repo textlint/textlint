@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750576827903,
+  "lastUpdate": 1750576902522,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62790,6 +62790,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5902070441800001,
             "unit": "seconds",
             "range": "± 0.021710847000000033"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "cbe3087d1f60ea3396c5ebe7e297fd2a598ca6bf",
+          "message": "feat: update workflow name and paths in PR preview configuration",
+          "timestamp": "2025-06-22T16:19:26+09:00",
+          "tree_id": "a433cbeda9732f22fbca7ec91d9a017bb83faf17",
+          "url": "https://github.com/textlint/textlint/commit/cbe3087d1f60ea3396c5ebe7e297fd2a598ca6bf"
+        },
+        "date": 1750576897170,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23674547688,
+            "unit": "seconds",
+            "range": "± 0.17365336800000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7054219116800002,
+            "unit": "seconds",
+            "range": "± 0.03371486400000001"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5821164264800001,
+            "unit": "seconds",
+            "range": "± 0.008250529000000006"
           }
         ]
       }
