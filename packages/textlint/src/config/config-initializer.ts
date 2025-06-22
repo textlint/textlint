@@ -24,9 +24,10 @@ const getTextlintDependencyNames = async (dir: string): Promise<Array<string>> =
     return readPackageUp({
         cwd: dir
     })
-        .then((pkg: any) => {
-            const dependencies = pkg.dependencies || {};
-            const devDependencies = pkg.devDependencies || {};
+        .then((result) => {
+            const pkg = result?.packageJson;
+            const dependencies = pkg?.dependencies ?? {};
+            const devDependencies = pkg?.devDependencies ?? {};
             const mergedDependencies = Object.assign({}, dependencies, devDependencies);
             const pkgNames = Object.keys(mergedDependencies);
             return pkgNames.filter((pkgName) => {
