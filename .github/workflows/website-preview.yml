@@ -40,9 +40,11 @@ jobs:
         if: github.event.action != 'closed'
         run: |
           pnpm run website
+        env:
+          DOCUSAURUS_BASE_URL: "/textlint/pr-preview/pr-${{ github.event.number }}/"
 
       - name: Deploy PR preview
-        uses: rossjrw/pr-preview-action@2fb559e4766555e23d07b73d313fe97c4f8c3cfe # v1.6.1
+        uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./website/build
           preview-branch: gh-pages
