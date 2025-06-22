@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750601713526,
+  "lastUpdate": 1750602125830,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -64218,6 +64218,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59185457076,
             "unit": "seconds",
             "range": "± 0.027638162999999993"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "903bb7a69acedbd1e88b996fffa5aef184b12af0",
+          "message": "v15.0.0 (#1586)\n\n* chore(release): v15.0.0\n\n* feat: add release notes for textlint v15.0.0 with breaking changes and new features\n\n---------\n\nCo-authored-by: azu <azu@users.noreply.github.com>\nCo-authored-by: azu <azuciao@gmail.com>",
+          "timestamp": "2025-06-22T23:20:04+09:00",
+          "tree_id": "5a4350c1c3d72a99d769bb1ebede91d105143d67",
+          "url": "https://github.com/textlint/textlint/commit/903bb7a69acedbd1e88b996fffa5aef184b12af0"
+        },
+        "date": 1750602122548,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.27051819091999996,
+            "unit": "seconds",
+            "range": "± 0.346660522"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7184122667200001,
+            "unit": "seconds",
+            "range": "± 0.038182165000000046"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5835735151200001,
+            "unit": "seconds",
+            "range": "± 0.015693145000000075"
           }
         ]
       }
