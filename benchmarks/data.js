@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750564404090,
+  "lastUpdate": 1750564791922,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -61992,6 +61992,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5789947975000002,
             "unit": "seconds",
             "range": "± 0.021516307000000068"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "79409fa2a35a7292fa42235249492dc62c62efa2",
+          "message": "refactor(textlint): remove deprecated apis and tests\n\n- Deleted unused configuration files for textlint rules and plugins.\n- Removed test files related to cache backers and execute file backers.\n- Cleaned up plugin loader test fixtures and module resolver tests.\n- Eliminated unnecessary example configurations and rule presets.\n- Streamlined the test structure by removing obsolete tests and fixtures.",
+          "timestamp": "2025-06-22T12:56:51+09:00",
+          "tree_id": "570308096d03d3dd5ecbdcdeddb60ae0fd857fb3",
+          "url": "https://github.com/textlint/textlint/commit/79409fa2a35a7292fa42235249492dc62c62efa2"
+        },
+        "date": 1750564786810,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25603537402,
+            "unit": "seconds",
+            "range": "± 0.253870928"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7094603348200004,
+            "unit": "seconds",
+            "range": "± 0.034638059999999804"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5787668544200001,
+            "unit": "seconds",
+            "range": "± 0.009653550999999982"
           }
         ]
       }
