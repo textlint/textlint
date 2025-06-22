@@ -4,8 +4,6 @@ import { TextlintPackageNamePrefix } from "@textlint/utils";
 
 import fs from "node:fs";
 import path from "node:path";
-// @ts-ignore - read-pkg v1.1.0 doesn't have type definitions
-import readPkg from "read-pkg";
 import { Logger } from "../util/logger.js";
 
 const isFile = (filePath: string) => {
@@ -21,8 +19,11 @@ const isFile = (filePath: string) => {
  * @param {string} dir
  * @returns {Promise.<Array.<String>>}
  */
-const getTextlintDependencyNames = (dir: string): Promise<Array<string>> => {
-    return readPkg(dir)
+const getTextlintDependencyNames = async (dir: string): Promise<Array<string>> => {
+    const { readPackageUp } = await import("read-package-up");
+    return readPackageUp({
+        cwd: dir
+    })
         .then((pkg: any) => {
             const dependencies = pkg.dependencies || {};
             const devDependencies = pkg.devDependencies || {};
@@ -70,7 +71,7 @@ export interface CreateConfigFileOption {
  * @params {string} dir The directory of .textlintrc file
  * @returns {Promise.<number>} The exit code for the operation.
  */
-export const createConfigFile = (options: CreateConfigFileOption) => {
+export const createConfigFile = async (options: CreateConfigFileOption) => {
     const dir = options.dir;
     return getTextlintDependencyNames(dir).then((pkgNames) => {
         const rcFile = `.textlintrc.json`;
