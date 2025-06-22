@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750579810526,
+  "lastUpdate": 1750579966177,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63504,6 +63504,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5979646414600001,
             "unit": "seconds",
             "range": "± 0.01592796799999996"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "845935c61f56386fd5b7a7300a4e08e13a29d0a2",
+          "message": "feat: update Node.js version requirements to 20.x across all packages (#1582)\n\n* feat: update Node.js version requirements to 20.x across all packages\n\n* fix: correct typos and improve clarity in README.md",
+          "timestamp": "2025-06-22T08:10:36Z",
+          "tree_id": "df92a6e4d415c6e7e0ffd107b81d75d7931654ec",
+          "url": "https://github.com/textlint/textlint/commit/845935c61f56386fd5b7a7300a4e08e13a29d0a2"
+        },
+        "date": 1750579962307,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23124613482000003,
+            "unit": "seconds",
+            "range": "± 0.122647597"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.75800256082,
+            "unit": "seconds",
+            "range": "± 0.05048583700000009"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6033929720200002,
+            "unit": "seconds",
+            "range": "± 0.017920964000000095"
           }
         ]
       }
