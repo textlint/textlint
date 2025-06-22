@@ -1,0 +1,48 @@
+name: PR Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    paths:
+      - 'docs/**'
+      - 'website/**'
+      - 'packages/@textlint/website/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        if: github.event.action != 'closed'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        if: github.event.action != 'closed'
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
+        if: github.event.action != 'closed'
+        with:
+          node-version: 22
+          cache: "pnpm"
+          
+      - name: Install dependencies
+        if: github.event.action != 'closed'
+        run: pnpm install
+
+      - name: Build website
+        if: github.event.action != 'closed'
+        run: |
+          pnpm run build --scope textlint-website
+          pnpm run website
+
+      - name: Deploy PR preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./website/build
+          preview-branch: gh-pages-preview
+          umbrella-dir: pr-preview
