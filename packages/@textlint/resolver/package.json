@@ -20,7 +20,7 @@
   "author": "azu",
   "type": "commonjs",
   "main": "lib/src/index.js",
-  "types": "./module/src/index.d.ts",
+  "types": "lib/src/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
