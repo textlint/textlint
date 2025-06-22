@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750586217091,
+  "lastUpdate": 1750587483928,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63756,6 +63756,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58526086286,
             "unit": "seconds",
             "range": "± 0.011257043000000078"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "94669dbd33051430768d435931d34235e38d32a9",
+          "message": "test: Add error handling tests for lintFiles and fixFiles\n\n- Add test for lintFiles throwing error when searchFiles fails\n- Add test for fixFiles returning empty array and logging error when searchFiles fails\n- Addresses reviewer feedback requesting test coverage for error conditions\n- All 120 tests pass including new error handling test cases",
+          "timestamp": "2025-06-22T19:14:45+09:00",
+          "tree_id": "b5075eeb509784ec8e4afb636b66763c35788e05",
+          "url": "https://github.com/textlint/textlint/commit/94669dbd33051430768d435931d34235e38d32a9"
+        },
+        "date": 1750587480121,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24131895411999998,
+            "unit": "seconds",
+            "range": "± 0.172155404"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7332731973200002,
+            "unit": "seconds",
+            "range": "± 0.01862655400000013"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.58592256472,
+            "unit": "seconds",
+            "range": "± 0.013087801000000066"
           }
         ]
       }
