@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750566206171,
+  "lastUpdate": 1750566682361,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62118,6 +62118,48 @@ window.BENCHMARK_DATA = {
             "value": 0.57457620058,
             "unit": "seconds",
             "range": "± 0.013923010000000069"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "42ec2f8db65933cfbfb0945f94b17fa572f4e6e2",
+          "message": "docs: add migration guide for textlint v15",
+          "timestamp": "2025-06-22T13:27:56+09:00",
+          "tree_id": "ef3376302ee97a1ccb369aa2844cd227309189bd",
+          "url": "https://github.com/textlint/textlint/commit/42ec2f8db65933cfbfb0945f94b17fa572f4e6e2"
+        },
+        "date": 1750566677314,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24401250703999997,
+            "unit": "seconds",
+            "range": "± 0.19745652600000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.69606549684,
+            "unit": "seconds",
+            "range": "± 0.03308702100000005"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5817952666400001,
+            "unit": "seconds",
+            "range": "± 0.012398911999999984"
           }
         ]
       }
