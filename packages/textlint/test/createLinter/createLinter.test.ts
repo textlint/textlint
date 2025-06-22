@@ -52,6 +52,45 @@ describe("createLinter", () => {
             assert.strictEqual(results.length, 1, "non-ignored file should be linted");
             assert.strictEqual(results[0].messages.length, 4); // ESM + CJS rules for 2 lines
         });
+
+        it("should throw error when searchFiles fails", async () => {
+            const descriptor = await loadTextlintrc({
+                configFilePath: path.join(__dirname, "fixtures/.textlintrc.json"),
+                node_modulesDir: path.join(__dirname, "fixtures/modules")
+            });
+            const linter = createLinter({
+                cwd: path.resolve(__dirname, "fixtures"),
+                descriptor
+            });
+            // Use patterns that will cause searchFiles to fail (non-existent directory with specific pattern)
+            const invalidPattern = "/nonexistent/directory/**/*.md";
+            try {
+                await linter.lintFiles([invalidPattern]);
+                assert.fail("Expected lintFiles to throw an error");
+            } catch (error) {
+                assert.ok(error instanceof Error);
+                assert.ok(
+                    error.message.includes("searchFiles failed"),
+                    `Expected error message to include 'searchFiles failed', got: ${error.message}`
+                );
+            }
+        });
+    });
+    describe("linter.fixFiles", () => {
+        it("should return empty array and log error when searchFiles fails", async () => {
+            const descriptor = await loadTextlintrc({
+                configFilePath: path.join(__dirname, "fixtures/.textlintrc.json"),
+                node_modulesDir: path.join(__dirname, "fixtures/modules")
+            });
+            const linter = createLinter({
+                cwd: path.resolve(__dirname, "fixtures"),
+                descriptor
+            });
+            // Use patterns that will cause searchFiles to fail
+            const invalidPattern = "/nonexistent/directory/**/*.md";
+            const results = await linter.fixFiles([invalidPattern]);
+            assert.strictEqual(results.length, 0, "fixFiles should return empty array when searchFiles fails");
+        });
     });
     describe("linter.scanFilePath", () => {
         it("should not use .textlintignore by default", async () => {
