@@ -419,6 +419,9 @@ importers:
       shelljs:
         specifier: ^0.10.0
         version: 0.10.0
+      textlint-rule-preset-ja-spacing:
+        specifier: ^2.4.3
+        version: 2.4.3
       typescript:
         specifier: ~5.8.3
         version: 5.8.3

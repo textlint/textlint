@@ -14,16 +14,25 @@ describe("config-initializer-test", function () {
     const originErrorLog = Logger.error;
 
     beforeEach(function () {
-        configDir = `${os.tmpdir()}/textlint-config`;
+        // Create unique directory for each test to avoid conflicts
+        const timestamp = Date.now();
+        const random = Math.random().toString(36).substring(7);
+        configDir = `${os.tmpdir()}/textlint-config-${timestamp}-${random}`;
         sh.mkdir("-p", configDir);
     });
 
     afterEach(function () {
-        sh.rm("-r", configDir);
+        if (fs.existsSync(configDir)) {
+            sh.rm("-rf", configDir);
+        }
     });
     describe("when pacakge.json has textlint-rule-* packages", function () {
         beforeEach(function () {
-            const packageFilePath = path.join(__dirname, "fixtures", "package.json");
+            // Ensure directory exists and is accessible
+            if (!fs.existsSync(configDir)) {
+                sh.mkdir("-p", configDir);
+            }
+            const packageFilePath = path.resolve(process.cwd(), "test/config-initializer/fixtures/package.json");
             sh.cp(packageFilePath, configDir);
         });
         it("should create new file with packages", function () {

@@ -1,5 +1,0 @@
-{
-  "name": "textlint-rule-preset-foo",
-  "main": "index.ts",
-  "private": true
-}
