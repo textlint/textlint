@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750578425576,
+  "lastUpdate": 1750578444384,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63084,6 +63084,48 @@ window.BENCHMARK_DATA = {
             "value": 0.57531235402,
             "unit": "seconds",
             "range": "± 0.007271207000000057"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "40264f2ec6ad5443f4b16e8a25ce6ce5a520b9c8",
+          "message": "feat: set dynamic DOCUSAURUS_BASE_URL in docusaurus.config.js and update pr-preview action version",
+          "timestamp": "2025-06-22T16:45:06+09:00",
+          "tree_id": "57401ea95e307a0ea647ff77f4b41fb68d6e3364",
+          "url": "https://github.com/textlint/textlint/commit/40264f2ec6ad5443f4b16e8a25ce6ce5a520b9c8"
+        },
+        "date": 1750578440659,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25425753936000006,
+            "unit": "seconds",
+            "range": "± 0.23048571"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.70184627776,
+            "unit": "seconds",
+            "range": "± 0.06316446099999995"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5787505995600001,
+            "unit": "seconds",
+            "range": "± 0.019634883999999908"
           }
         ]
       }
