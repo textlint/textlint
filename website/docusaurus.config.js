@@ -4,7 +4,7 @@ export default {
     title: "textlint",
     tagline: "The pluggable linting tool for natural language",
     url: "https://textlint.org",
-    baseUrl: "/",
+    baseUrl: process.env.DOCUSAURUS_BASE_URL || "/",
     organizationName: "textlint",
     projectName: "textlint",
     scripts: ["https://buttons.github.io/buttons.js"],
