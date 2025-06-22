@@ -1,8 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintKernel, TextlintKernelDescriptor, TextlintResult } from "@textlint/kernel";
-import { pathsToGlobPatterns } from "./util/old-find-util.js";
-import { searchFiles, scanFilePath, ScanFilePathResult } from "./util/find-util.js";
+import { searchFiles, scanFilePath, ScanFilePathResult, pathsToGlobPatterns } from "./util/find-util.js";
 import { ExecuteFileBackerManager } from "./engine/execute-file-backer-manager.js";
 import { CacheBacker } from "./engine/execute-file-backers/cache-backer.js";
 import path from "node:path";
