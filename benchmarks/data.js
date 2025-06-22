@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750576902522,
+  "lastUpdate": 1750577338499,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62832,6 +62832,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5821164264800001,
             "unit": "seconds",
             "range": "± 0.008250529000000006"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "9d94dad2fbf679e19dbf1af5ccb2267c06b7592d",
+          "message": "feat: add website preview workflow configuration",
+          "timestamp": "2025-06-22T16:26:37+09:00",
+          "tree_id": "51718f4460b2854e23a873cbc85eb777b9f567e3",
+          "url": "https://github.com/textlint/textlint/commit/9d94dad2fbf679e19dbf1af5ccb2267c06b7592d"
+        },
+        "date": 1750577332712,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24257771924,
+            "unit": "seconds",
+            "range": "± 0.17674447299999999"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71941825764,
+            "unit": "seconds",
+            "range": "± 0.022960654000000247"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5906857238400001,
+            "unit": "seconds",
+            "range": "± 0.023536200000000007"
           }
         ]
       }
