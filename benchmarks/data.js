@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750580067453,
+  "lastUpdate": 1750581629219,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63630,6 +63630,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5975365340800001,
             "unit": "seconds",
             "range": "± 0.020298361000000043"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "fb423aeb839217a97732ae6a0c8151741f2116a1",
+          "message": "refactor: Move pathsToGlobPatterns to find-util and remove old-find-util\n\n- Move pathsToGlobPatterns function from old-find-util to find-util\n- Update imports in createLinter.ts to use pathsToGlobPatterns from find-util\n- Remove old-find-util.ts and its test file as they are no longer needed\n- Update createIgnorePatterns to handle missing ignore files gracefully\n- Remove test case for explicit ignore file error handling since CLI always provides a default path\n- Maintain backward compatibility for CLI usage where ignore files may not exist\n\nThis completes the migration to the new find-util system while preserving existing behavior.",
+          "timestamp": "2025-06-22T17:36:29+09:00",
+          "tree_id": "662cdcd261345581479f828e2f9424b0965d896c",
+          "url": "https://github.com/textlint/textlint/commit/fb423aeb839217a97732ae6a0c8151741f2116a1"
+        },
+        "date": 1750581625925,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23546917778000004,
+            "unit": "seconds",
+            "range": "± 0.162630627"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.75951513798,
+            "unit": "seconds",
+            "range": "± 0.038952196999999966"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5926871473800001,
+            "unit": "seconds",
+            "range": "± 0.03119229000000001"
           }
         ]
       }
