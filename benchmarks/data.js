@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750578720474,
+  "lastUpdate": 1750578728420,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63168,6 +63168,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5779707802,
             "unit": "seconds",
             "range": "± 0.019384599999999974"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "91ad7b10c2d8fea842d409f048c847669cc0cb4e",
+          "message": "CI: add Merge Gatekeeper workflow for pull requests (#1577)",
+          "timestamp": "2025-06-22T16:50:08+09:00",
+          "tree_id": "eacedc21f03f5efcd607eb7300c9b5360f0466df",
+          "url": "https://github.com/textlint/textlint/commit/91ad7b10c2d8fea842d409f048c847669cc0cb4e"
+        },
+        "date": 1750578724965,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21524303656,
+            "unit": "seconds",
+            "range": "± 0.03215659599999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7276312951600001,
+            "unit": "seconds",
+            "range": "± 0.024593551999999796"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5866173771600001,
+            "unit": "seconds",
+            "range": "± 0.013770922999999935"
           }
         ]
       }
