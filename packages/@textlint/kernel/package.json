@@ -1,6 +1,6 @@
 {
   "name": "@textlint/kernel",
-  "version": "14.8.4",
+  "version": "15.0.0",
   "description": "textlint kernel is core logic by pure JavaScript.",
   "keywords": [
     "textlint"
@@ -52,11 +52,11 @@
   },
   "devDependencies": {
     "@textlint/markdown-to-ast": "workspace:*",
-    "textlint-rule-preset-ja-spacing": "^2.4.3",
     "@types/debug": "^4.1.12",
     "@types/node": "^18.19.111",
     "rimraf": "^6.0.1",
     "shelljs": "^0.10.0",
+    "textlint-rule-preset-ja-spacing": "^2.4.3",
     "typescript": "~5.8.3",
     "unist-util-select": "^3.0.4",
     "vitest": "^3.2.3"
