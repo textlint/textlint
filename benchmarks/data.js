@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750581629219,
+  "lastUpdate": 1750581865634,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63672,6 +63672,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5926871473800001,
             "unit": "seconds",
             "range": "± 0.03119229000000001"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "3d54dbb554bfb207f4cf1524519fb95628eed13b",
+          "message": "fix: Improve error handling in lintFiles and fixFiles as per review feedback\n\n- Add proper error logging when searchFiles fails\n- Throw detailed error in lintFiles instead of silently returning empty array\n- Add error logging in fixFiles for better debugging\n- Address GitHub Copilot PR review comments",
+          "timestamp": "2025-06-22T17:41:34+09:00",
+          "tree_id": "c881bc61632e878a9e826bcce2aaae0c685b7c8a",
+          "url": "https://github.com/textlint/textlint/commit/3d54dbb554bfb207f4cf1524519fb95628eed13b"
+        },
+        "date": 1750581862463,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22705355708,
+            "unit": "seconds",
+            "range": "± 0.11519485100000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.76466922628,
+            "unit": "seconds",
+            "range": "± 0.07232974999999997"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.58324642328,
+            "unit": "seconds",
+            "range": "± 0.012711625999999976"
           }
         ]
       }
