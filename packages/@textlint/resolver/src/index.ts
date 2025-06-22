@@ -61,8 +61,8 @@ export const tryResolve = (packageName: string, context: ResolverContext): strin
             }
         }
 
-        // TODO: import.meta.resolve is not supported in Node.js 18
-        // We will change to import.meta.resolve(packageName)
+        // TODO: consider using import.meta.resolve(packageName) for future ESM support
+        // import.meta.resolve is supported in Node.js 20.6.0+
         return require.resolve(packageName);
     } catch {
         return undefined;

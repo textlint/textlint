@@ -882,8 +882,8 @@ importers:
         specifier: ^8.1.0
         version: 8.1.0
       '@types/node':
-        specifier: ^18.19.111
-        version: 18.19.111
+        specifier: ^20.0.0
+        version: 20.19.0
       '@types/shelljs':
         specifier: ^0.8.16
         version: 0.8.16
@@ -916,7 +916,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.3
-        version: 3.2.3(@types/debug@4.1.12)(@types/node@18.19.111)(terser@5.42.0)
+        version: 3.2.3(@types/debug@4.1.12)(@types/node@20.19.0)(terser@5.42.0)
 
   packages/textlint-scripts:
     dependencies:

@@ -4,7 +4,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://textlint.org/media/banner/banner_710x256.png">
   <source media="(prefers-color-scheme: light)" srcset="https://textlint.org/media/logo/spaced/textlint-logo.png">
-  <img alt="textlint log" src="https://textlint.org/media/logo/spaced/textlint-logo.png">
+  <img alt="textlint logo" src="https://textlint.org/media/logo/spaced/textlint-logo.png">
 </picture>
 
 > The pluggable linting tool for natural language.
@@ -48,7 +48,7 @@ $ npm install textlint --save-dev
 
 **Requirements**:
 
-- Node.js 16+
+- Node.js 20+
 
 If you're not sure what version of Node you're running, you can run `node -v` in your console to find out.
 
@@ -78,7 +78,7 @@ You can run textlint with `.textlintrc.json` config file.
 npm install --save-dev textlint textlint-rule-no-todo
 ```
 
-`npx textlint --init` command create `.textlintrc.json` file from installed rules.
+`npx textlint --init` command creates `.textlintrc.json` file from installed rules.
 
 ```bash
 npx textlint --init
@@ -291,7 +291,7 @@ See [Processor Plugin List](https://github.com/textlint/textlint/wiki/Collection
 
 - Check it: [A Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
 
-textlint has not built-in rules, but there are 100+ pluggable rules:
+textlint has no built-in rules, but there are 100+ pluggable rules:
 
 - [textlint-rule-no-todo](https://github.com/textlint-rule/textlint-rule-no-todo)
 - [textlint-rule-max-number-of-lines](https://github.com/azu/textlint-rule-max-number-of-lines)
@@ -310,7 +310,7 @@ Some rules are fixable using the `--fix` command line flag.
 
 ``` sh
 $ npx textlint --fix README.md
-# As a possible, textlint fix the content.
+# If possible, textlint will fix the content.
 ```
 
 ![fixable-error](./docs/assets/fixable-error.png)
@@ -372,7 +372,7 @@ const output = formatter.format(results);
 console.log(output);
 ```
 
-More details info, please read the following documents:
+For more details, please read the following documents:
 
 - See [docs/use-as-modules.md](docs/use-as-modules.md)
 
@@ -563,7 +563,7 @@ These modules are internal usage in the monorepo.
 ## Semantic Versioning Policy
 
 textlint project follow [Semantic Versioning](https://semver.org/ "Semantic Versioning").
-However, textlint is not different with most semver project.
+However, textlint is not different from most semver project.
 
 - Patch release (intended to not break your lint build)
     - A bug fix to the CLI or core (including formatters).

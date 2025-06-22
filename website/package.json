@@ -47,6 +47,6 @@
     "textlint-rule-unexpanded-acronym": "^1.2.4"
   },
   "engines": {
-    "node": ">=16.14"
+    "node": ">=20.0.0"
   }
 }
