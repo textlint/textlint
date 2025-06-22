@@ -48,7 +48,7 @@ $ npm install textlint --save-dev
 
 **Requirements**:
 
-- Node.js 16+
+- Node.js 20+
 
 If you're not sure what version of Node you're running, you can run `node -v` in your console to find out.
 
