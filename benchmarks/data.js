@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750569667012,
+  "lastUpdate": 1750571020662,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62286,6 +62286,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6011905043400001,
             "unit": "seconds",
             "range": "± 0.009732767000000031"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "79b12f41a6b1edb7598e73bda5728f0c889997a6",
+          "message": "test: improve config directory handling in config-initializer tests",
+          "timestamp": "2025-06-22T14:41:20+09:00",
+          "tree_id": "0e503d65d3771aa03c7b39869cdd44b72fc738cb",
+          "url": "https://github.com/textlint/textlint/commit/79b12f41a6b1edb7598e73bda5728f0c889997a6"
+        },
+        "date": 1750571014923,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25472662970000004,
+            "unit": "seconds",
+            "range": "± 0.235747759"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7249633065,
+            "unit": "seconds",
+            "range": "± 0.03837396999999987"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5881374505,
+            "unit": "seconds",
+            "range": "± 0.008427040000000052"
           }
         ]
       }
