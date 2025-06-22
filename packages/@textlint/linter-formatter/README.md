@@ -15,11 +15,11 @@ See [formatters/](src/formatters).
 Currently, you can use "stylish" (defaults), "checkstyle", "compact", "jslint-xml", "json", "junit", "pretty-error", "table", "tap", and "unix".
 
 ```js
-const createFormatter = require("@textlint/linter-formatter").createFormatter;
-const formatter = createFormatter({
+const { loadFormatter } = require("@textlint/linter-formatter");
+const formatter = await loadFormatter({
     formatterName: "stylish"
 });
-const output = formatter([
+const output = formatter.format([
     {
         filePath: "./README.md",
         messages: [
@@ -49,7 +49,6 @@ export declare type FormatterConfig = {
     color?: boolean;
     formatterName: string;
 };
-export declare function createFormatter(formatterConfig: FormatterConfig): (results: TextlintResult[]) => string;
 export interface FormatterDetail {
     name: string;
 }
