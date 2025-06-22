@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750587483928,
+  "lastUpdate": 1750588238955,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63798,6 +63798,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58592256472,
             "unit": "seconds",
             "range": "± 0.013087801000000066"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "dd264bddbb766beb941164704910df459a009a30",
+          "message": "fix: Add CLI error handling and comprehensive test coverage\n\n- Add try-catch error handling in CLI executeWithOptions for lintFiles/fixFiles\n- Add test for CLI handling of nonexistent ignore file\n- Add test for CLI handling of invalid file patterns\n- All 122 tests pass including new error handling scenarios\n- CLI now properly catches and logs errors from lintFiles when searchFiles fails\n- Maintains proper exit codes for all error conditions",
+          "timestamp": "2025-06-22T19:27:44+09:00",
+          "tree_id": "ffd5238fcaa259d820a05848239232b6690fea15",
+          "url": "https://github.com/textlint/textlint/commit/dd264bddbb766beb941164704910df459a009a30"
+        },
+        "date": 1750588235791,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22975908878,
+            "unit": "seconds",
+            "range": "± 0.130908901"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.72764773838,
+            "unit": "seconds",
+            "range": "± 0.0358790739999999"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.58500663498,
+            "unit": "seconds",
+            "range": "± 0.012814172999999984"
           }
         ]
       }
