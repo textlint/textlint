@@ -29,6 +29,10 @@ const createIgnorePatterns = async (cwd: string, ignoreFilePath: string): Promis
         const ignoreFileContent = await fs.readFile(normalizeIgnoreFilePath, "utf-8");
         return ignoreFileContent.split(/\r?\n/).filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line));
     } catch (error) {
+        // If ignore file doesn't exist, return empty array (same behavior as old-find-util)
+        if (error && typeof error === "object" && "code" in error && error.code === "ENOENT") {
+            return [];
+        }
         throw new Error(`Failed to read ignore file: ${ignoreFilePath}`, {
             cause: error
         });

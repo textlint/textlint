@@ -20,6 +20,39 @@ describe("createLinter", () => {
         assert.ok(hasESMResult, "ESM");
         assert.ok(hasCJSResult, "CJS");
     });
+    describe("linter.lintFiles", () => {
+        it("should respect ignore file when linting specific file paths", async () => {
+            const descriptor = await loadTextlintrc({
+                configFilePath: path.join(__dirname, "fixtures/.textlintrc.json"),
+                node_modulesDir: path.join(__dirname, "fixtures/modules")
+            });
+            const linter = createLinter({
+                cwd: path.resolve(__dirname, "fixtures"),
+                descriptor,
+                ignoreFilePath: path.join(__dirname, "fixtures/.textlintignore")
+            });
+            // Test with absolute file path - should be ignored
+            const ignoredFilePath = path.join(__dirname, "fixtures/test-files/ignored.md");
+            const results = await linter.lintFiles([ignoredFilePath]);
+            assert.strictEqual(results.length, 0, "ignored file should not be linted");
+        });
+        it("should lint files that are not ignored", async () => {
+            const descriptor = await loadTextlintrc({
+                configFilePath: path.join(__dirname, "fixtures/.textlintrc.json"),
+                node_modulesDir: path.join(__dirname, "fixtures/modules")
+            });
+            const linter = createLinter({
+                cwd: path.resolve(__dirname, "fixtures"),
+                descriptor,
+                ignoreFilePath: path.join(__dirname, "fixtures/.textlintignore")
+            });
+            // Test with absolute file path - should not be ignored
+            const testFilePath = path.join(__dirname, "fixtures/test-files/test.md");
+            const results = await linter.lintFiles([testFilePath]);
+            assert.strictEqual(results.length, 1, "non-ignored file should be linted");
+            assert.strictEqual(results[0].messages.length, 4); // ESM + CJS rules for 2 lines
+        });
+    });
     describe("linter.scanFilePath", () => {
         it("should not use .textlintignore by default", async () => {
             const descriptor = await loadTextlintrc({

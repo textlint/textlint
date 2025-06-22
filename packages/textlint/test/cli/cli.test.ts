@@ -467,12 +467,9 @@ describe("cli-test", function () {
             const result = await cli.execute(
                 `--rule "${ruleModuleName}" "${targetFilePath}" --ignore-path ${ignoreFile}"`
             );
-            // TODO: this test should be pass, but current implementation is not working correctly
-            // Next textlint fix this bug
-            // https://github.com/textlint/textlint/issues/1409
-            assert.throws(() => {
-                assert.strictEqual(result, 0);
-            });
+            // Fixed by https://github.com/textlint/textlint/issues/1412
+            // Now ignore files work correctly with absolute file paths
+            assert.strictEqual(result, 0);
         });
     });
     describe("--outputFile /path/to/output.txt", function () {

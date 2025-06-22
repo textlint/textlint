@@ -1,7 +1,8 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintKernel, TextlintKernelDescriptor, TextlintResult } from "@textlint/kernel";
-import { findFiles, pathsToGlobPatterns } from "./util/old-find-util.js";
+import { pathsToGlobPatterns } from "./util/old-find-util.js";
+import { searchFiles, scanFilePath, ScanFilePathResult } from "./util/find-util.js";
 import { ExecuteFileBackerManager } from "./engine/execute-file-backer-manager.js";
 import { CacheBacker } from "./engine/execute-file-backers/cache-backer.js";
 import path from "node:path";
@@ -11,7 +12,6 @@ import { Logger } from "./util/logger.js";
 import { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
 import { separateByAvailability } from "./util/separate-by-availability.js";
-import { scanFilePath, ScanFilePathResult } from "./util/find-util.js";
 
 const debug = debug0("textlint:createTextlint");
 export type CreateLinterOptions = {
@@ -72,9 +72,14 @@ export const createLinter = (options: CreateLinterOptions) => {
             const patterns = pathsToGlobPatterns(filesOrGlobs, {
                 extensions: options.descriptor.availableExtensions
             });
-            const targetFiles = findFiles(patterns, {
+            const searchResult = await searchFiles(patterns, {
+                cwd,
                 ignoreFilePath: options.ignoreFilePath
             });
+            if (!searchResult.ok) {
+                return [];
+            }
+            const targetFiles = searchResult.items;
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
                 extensions: options.descriptor.availableExtensions
             });
@@ -118,9 +123,14 @@ export const createLinter = (options: CreateLinterOptions) => {
             const patterns = pathsToGlobPatterns(fileOrGlobs, {
                 extensions: options.descriptor.availableExtensions
             });
-            const targetFiles = findFiles(patterns, {
+            const searchResult = await searchFiles(patterns, {
+                cwd,
                 ignoreFilePath: options.ignoreFilePath
             });
+            if (!searchResult.ok) {
+                return [];
+            }
+            const targetFiles = searchResult.items;
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
                 extensions: options.descriptor.availableExtensions
             });
