@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750597679060,
+  "lastUpdate": 1750597909931,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63924,6 +63924,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58471584016,
             "unit": "seconds",
             "range": "± 0.018537221999999964"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "9b814a43a8bb8db7ce8cffb532600c8ddf1e8366",
+          "message": "fix: Improve exit status handling and ignore pattern for absolute paths",
+          "timestamp": "2025-06-22T22:08:46+09:00",
+          "tree_id": "9e31bb1b60c86eec19a788ffa9c96bdce38cb4e4",
+          "url": "https://github.com/textlint/textlint/commit/9b814a43a8bb8db7ce8cffb532600c8ddf1e8366"
+        },
+        "date": 1750597906715,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25539074164,
+            "unit": "seconds",
+            "range": "± 0.26054937300000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7150189126400002,
+            "unit": "seconds",
+            "range": "± 0.02607882199999989"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5802083172400001,
+            "unit": "seconds",
+            "range": "± 0.013823913000000077"
           }
         ]
       }
