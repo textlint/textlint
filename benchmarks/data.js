@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750636611369,
+  "lastUpdate": 1750636619196,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -64344,6 +64344,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5864620876,
             "unit": "seconds",
             "range": "± 0.008270852999999967"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "55699b06cd6e6c2afa303cd8652b68122a348dc4",
+          "message": "fix: Remove redundant '--clean' flag from clean script in package.json",
+          "timestamp": "2025-06-23T08:51:00+09:00",
+          "tree_id": "cde6f3df295120fdc1f508320a4b24293fb54be0",
+          "url": "https://github.com/textlint/textlint/commit/55699b06cd6e6c2afa303cd8652b68122a348dc4"
+        },
+        "date": 1750636615271,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25753043522,
+            "unit": "seconds",
+            "range": "± 0.291083081"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.69076533442,
+            "unit": "seconds",
+            "range": "± 0.03406643600000003"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.57381147722,
+            "unit": "seconds",
+            "range": "± 0.008746543999999967"
           }
         ]
       }
