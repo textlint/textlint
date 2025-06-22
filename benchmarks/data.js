@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750598973998,
+  "lastUpdate": 1750599522244,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -64050,6 +64050,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58107978522,
             "unit": "seconds",
             "range": "± 0.01087861000000001"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "021bda0b4877ee4a021f5e95df2b83b27b4df6db",
+          "message": "fix: Update textlint command to use double quotes for consistency",
+          "timestamp": "2025-06-22T22:36:27+09:00",
+          "tree_id": "a17c71f2af83d8344353a97acc5d79fa1a9dd7ab",
+          "url": "https://github.com/textlint/textlint/commit/021bda0b4877ee4a021f5e95df2b83b27b4df6db"
+        },
+        "date": 1750599518218,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21409684736,
+            "unit": "seconds",
+            "range": "± 0.03795736499999999"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7113803617600003,
+            "unit": "seconds",
+            "range": "± 0.06305384599999986"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.57741905876,
+            "unit": "seconds",
+            "range": "± 0.010942636999999977"
           }
         ]
       }
