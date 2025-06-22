@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750636166353,
+  "lastUpdate": 1750636611369,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -64302,6 +64302,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5808562801,
             "unit": "seconds",
             "range": "± 0.01859724500000004"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "de313d862783e3354a38db9e24ab3dc29754b969",
+          "message": "fix: Remove 'module' field from packages with type=commonjs to fix webpack compatibility (#1588)\n\n* fix: Remove 'module' field from packages with type=commonjs to fix webpack compatibility\n\nThis change removes the 'module' field from all packages that have 'type': 'commonjs'\nto resolve webpack compatibility issues where both fields cannot coexist.\n\nChanges:\n- Remove 'module' field from 15 @textlint packages\n- Remove module/ directory from files array\n- Update build scripts to not build module/ version\n- Update clean scripts to not remove module/ directory\n- Remove tsconfig.module.json files\n\nFixes #1587\n\n* fix: Correct types path in package.json for @textlint/resolver",
+          "timestamp": "2025-06-23T08:54:20+09:00",
+          "tree_id": "2152d25ae1645180103302f723ed52dce65996a4",
+          "url": "https://github.com/textlint/textlint/commit/de313d862783e3354a38db9e24ab3dc29754b969"
+        },
+        "date": 1750636608075,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23945833880000006,
+            "unit": "seconds",
+            "range": "± 0.17169637200000007"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7313722678,
+            "unit": "seconds",
+            "range": "± 0.02402338100000012"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5864620876,
+            "unit": "seconds",
+            "range": "± 0.008270852999999967"
           }
         ]
       }
