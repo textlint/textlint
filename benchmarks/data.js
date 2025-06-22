@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750599522244,
+  "lastUpdate": 1750600396475,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -64092,6 +64092,48 @@ window.BENCHMARK_DATA = {
             "value": 0.57741905876,
             "unit": "seconds",
             "range": "± 0.010942636999999977"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7c89d08854cf366dcf36f53566712a0400bfc58e",
+          "message": "fix: Make lintFiles respect ignore patterns for absolute file paths (#1412) (#1583)\n\n* fix: Make lintFiles respect ignore patterns for absolute file paths\n\n- Replace findFiles from old-find-util with searchFiles from find-util in createLinter.ts\n- Update find-util.ts to handle missing ignore files gracefully (return empty array)\n- Add comprehensive tests for lintFiles with ignore patterns\n- Update CLI test to expect correct behavior now that the bug is fixed\n- Add test content to fixtures to ensure rules trigger appropriately\n\nFixes #1412\n\n* refactor: Move pathsToGlobPatterns to find-util and remove old-find-util\n\n- Move pathsToGlobPatterns function from old-find-util to find-util\n- Update imports in createLinter.ts to use pathsToGlobPatterns from find-util\n- Remove old-find-util.ts and its test file as they are no longer needed\n- Update createIgnorePatterns to handle missing ignore files gracefully\n- Remove test case for explicit ignore file error handling since CLI always provides a default path\n- Maintain backward compatibility for CLI usage where ignore files may not exist\n\nThis completes the migration to the new find-util system while preserving existing behavior.\n\n* fix: Improve error handling in lintFiles and fixFiles as per review feedback\n\n- Add proper error logging when searchFiles fails\n- Throw detailed error in lintFiles instead of silently returning empty array\n- Add error logging in fixFiles for better debugging\n- Address GitHub Copilot PR review comments\n\n* test: Add error handling tests for lintFiles and fixFiles\n\n- Add test for lintFiles throwing error when searchFiles fails\n- Add test for fixFiles returning empty array and logging error when searchFiles fails\n- Addresses reviewer feedback requesting test coverage for error conditions\n- All 120 tests pass including new error handling test cases\n\n* fix: Add CLI error handling and comprehensive test coverage\n\n- Add try-catch error handling in CLI executeWithOptions for lintFiles/fixFiles\n- Add test for CLI handling of nonexistent ignore file\n- Add test for CLI handling of invalid file patterns\n- All 122 tests pass including new error handling scenarios\n- CLI now properly catches and logs errors from lintFiles when searchFiles fails\n- Maintains proper exit codes for all error conditions\n\n* fix: Improve file search error handling and update exit status documentation\n\n* fix: Improve exit status handling and ignore pattern for absolute paths\n\n* fix: Update error handling for file search failures and adjust expected exit codes\n\n* improve error message\n\n* fix: Update textlint command to use double quotes for consistency",
+          "timestamp": "2025-06-22T22:50:27+09:00",
+          "tree_id": "83360e56fce7560965eb1cd78160b355fedf14e6",
+          "url": "https://github.com/textlint/textlint/commit/7c89d08854cf366dcf36f53566712a0400bfc58e"
+        },
+        "date": 1750600392166,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.27445757616,
+            "unit": "seconds",
+            "range": "± 0.3643910060000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7139093951600004,
+            "unit": "seconds",
+            "range": "± 0.03585477600000009"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5844265177600001,
+            "unit": "seconds",
+            "range": "± 0.01403542499999999"
           }
         ]
       }
