@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750579192227,
+  "lastUpdate": 1750579330546,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63420,6 +63420,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5743628055200001,
             "unit": "seconds",
             "range": "± 0.013980914000000011"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "3b39af73d5ad7e0a3d83e952bbbfc340be5807e0",
+          "message": "feat: update Node.js version requirements to 20.x across all packages",
+          "timestamp": "2025-06-22T16:58:20+09:00",
+          "tree_id": "85424451ca719a7bd4077541267bae5a9fccfef5",
+          "url": "https://github.com/textlint/textlint/commit/3b39af73d5ad7e0a3d83e952bbbfc340be5807e0"
+        },
+        "date": 1750579327291,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23218486501999996,
+            "unit": "seconds",
+            "range": "± 0.14221664600000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6983659962200002,
+            "unit": "seconds",
+            "range": "± 0.033566156000000014"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.58061042742,
+            "unit": "seconds",
+            "range": "± 0.014827754999999998"
           }
         ]
       }
