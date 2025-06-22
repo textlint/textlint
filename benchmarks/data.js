@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750575173857,
+  "lastUpdate": 1750575840861,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62622,6 +62622,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6088547645600001,
             "unit": "seconds",
             "range": "± 0.013361074999999945"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "77671f8bf8f2bd892ab0722b8e74027a76c0e6cc",
+          "message": "feat: remove deprecated TextLintEngine and update documentation for new API usage",
+          "timestamp": "2025-06-22T16:00:53+09:00",
+          "tree_id": "3c67f65539d4f80051aa5849a62358b9a10e1d3f",
+          "url": "https://github.com/textlint/textlint/commit/77671f8bf8f2bd892ab0722b8e74027a76c0e6cc"
+        },
+        "date": 1750575835515,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23403345187999997,
+            "unit": "seconds",
+            "range": "± 0.14542508299999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6983605064799998,
+            "unit": "seconds",
+            "range": "± 0.056078674999999745"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.57999575268,
+            "unit": "seconds",
+            "range": "± 0.017479789000000023"
           }
         ]
       }
