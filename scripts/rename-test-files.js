@@ -24,7 +24,10 @@ function findTestFiles(dir) {
                     searchDirectory(itemPath);
                 }
             } else if (stat.isFile() && item.endsWith("-test.ts")) {
-                files.push(itemPath);
+                // Skip files in src directories as they might be implementation files, not tests
+                if (!itemPath.includes("/src/")) {
+                    files.push(itemPath);
+                }
             }
         }
     }
