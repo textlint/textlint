@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750577965808,
+  "lastUpdate": 1750578008998,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63000,6 +63000,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6033967765,
             "unit": "seconds",
             "range": "± 0.02905521100000008"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "99775192779674bd123a6a932034108e5dac284e",
+          "message": "fix: remove unnecessary build command from website preview workflow",
+          "timestamp": "2025-06-22T16:36:55+09:00",
+          "tree_id": "e91e6e94975fba9e82acb0c29015deb8773d1ad1",
+          "url": "https://github.com/textlint/textlint/commit/99775192779674bd123a6a932034108e5dac284e"
+        },
+        "date": 1750578005827,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2392877612,
+            "unit": "seconds",
+            "range": "± 0.18987384600000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6874482914000002,
+            "unit": "seconds",
+            "range": "± 0.023037569000000202"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5780477762000001,
+            "unit": "seconds",
+            "range": "± 0.020609336000000034"
           }
         ]
       }
