@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750563103308,
+  "lastUpdate": 1750563320401,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -61740,6 +61740,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60799978144,
             "unit": "seconds",
             "range": "± 0.008116515000000102"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "a2732d4740e6d6fc8b0a9fc8a3547fdfcf88950e",
+          "message": "fix(netlify): update build command to include installation step",
+          "timestamp": "2025-06-22T12:33:04+09:00",
+          "tree_id": "6c8a592361e371e7b025ba3c676b577120caccf8",
+          "url": "https://github.com/textlint/textlint/commit/a2732d4740e6d6fc8b0a9fc8a3547fdfcf88950e"
+        },
+        "date": 1750563315183,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23282452966,
+            "unit": "seconds",
+            "range": "± 0.13615032900000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.72800023326,
+            "unit": "seconds",
+            "range": "± 0.03684907599999998"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5879744864600001,
+            "unit": "seconds",
+            "range": "± 0.012359679000000012"
           }
         ]
       }
