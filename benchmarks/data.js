@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750577338499,
+  "lastUpdate": 1750577511726,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62874,6 +62874,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5906857238400001,
             "unit": "seconds",
             "range": "± 0.023536200000000007"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "ce71805cee2235ba0210ebaac68b89635cc29a9a",
+          "message": "Update .github/workflows/website-preview.yml",
+          "timestamp": "2025-06-22T16:28:51+09:00",
+          "tree_id": "57e89b52ef8562492a0d687b62b1370fc08d643a",
+          "url": "https://github.com/textlint/textlint/commit/ce71805cee2235ba0210ebaac68b89635cc29a9a"
+        },
+        "date": 1750577506584,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23407688874000004,
+            "unit": "seconds",
+            "range": "± 0.148306744"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7295139763400003,
+            "unit": "seconds",
+            "range": "± 0.06300335999999995"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.58689197834,
+            "unit": "seconds",
+            "range": "± 0.009821240999999925"
           }
         ]
       }
