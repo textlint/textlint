@@ -1,8 +1,6 @@
 // LICENSE : MIT
 "use strict";
 
-import { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types";
-
 /**
  * @param {import("@textlint/types").TextlintRuleContext} context
  */

@@ -1,5 +1,4 @@
-import type { TextlintMessage } from "@textlint/types";
-import type { TextlintPluginCreator, TextlintPluginProcessor } from "@textlint/types";
+import type { TextlintMessage, TextlintPluginCreator, TextlintPluginProcessor } from "@textlint/types";
 import { parse } from "@textlint/markdown-to-ast";
 
 export interface AsyncProcessorOptions {
