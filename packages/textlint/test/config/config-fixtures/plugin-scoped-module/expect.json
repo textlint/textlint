@@ -1,8 +1,0 @@
-{
-  "plugins": [
-    "@textlint/pl-example"
-  ],
-  "pluginsConfig": {
-    "@textlint/pl-example": true
-  }
-}
