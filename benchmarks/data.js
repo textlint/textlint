@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750579330546,
+  "lastUpdate": 1750579810526,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63462,6 +63462,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58061042742,
             "unit": "seconds",
             "range": "± 0.014827754999999998"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "e6e11c3b7e256eafea0e302d939c33e2468a52a9",
+          "message": "fix: correct typos and improve clarity in README.md",
+          "timestamp": "2025-06-22T17:06:51+09:00",
+          "tree_id": "df92a6e4d415c6e7e0ffd107b81d75d7931654ec",
+          "url": "https://github.com/textlint/textlint/commit/e6e11c3b7e256eafea0e302d939c33e2468a52a9"
+        },
+        "date": 1750579807176,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25253514546,
+            "unit": "seconds",
+            "range": "± 0.211179791"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.76634688786,
+            "unit": "seconds",
+            "range": "± 0.01073306499999993"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5979646414600001,
+            "unit": "seconds",
+            "range": "± 0.01592796799999996"
           }
         ]
       }
