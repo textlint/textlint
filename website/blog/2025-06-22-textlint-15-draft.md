@@ -17,6 +17,7 @@ This significantly reduces the codebase size and maintenance burden while provid
 - Removed `TextFixEngine` - Use `createLinter()` instead  
 - Removed `TextLintCore` - Use `createLinter()` or `@textlint/kernel` instead
 - Removed `textlint` (singleton instance) - Use `createLinter()` instead
+- Removed `createFormatter` - Use `loadFormatter()` instead
 
 ## Breaking Changes
 
@@ -124,6 +125,28 @@ const linter = createLinter({ descriptor });
 const result = await linter.lintText("text", "file.md");
 ```
 
+#### `createFormatter` → `loadFormatter`
+
+**Before (v14 and earlier):**
+```javascript
+const { createFormatter } = require("@textlint/linter-formatter");
+
+const formatter = createFormatter({
+    formatterName: "stylish"
+});
+const output = formatter([results]);
+```
+
+**After (v15+):**
+```javascript
+import { loadFormatter } from "@textlint/linter-formatter";
+
+const formatter = await loadFormatter({
+    formatterName: "stylish"
+});
+const output = formatter.format(results);
+```
+
 ## Benefits of the New API
 
 1. **Modern ESM Support**: The new APIs support both CommonJS and ES modules
@@ -144,6 +167,7 @@ const result = await linter.lintText("text", "file.md");
 | `new TextLintEngine()` | `createLinter()` | `executeOnFiles()` → `lintFiles()` |
 | `new TextFixEngine()` | `createLinter()` | `executeOnFiles()` → `fixFiles()` |
 | `new TextLintCore()` | `createLinter()` | `lintText()` → `lintText()` |
+| `createFormatter()` | `loadFormatter()` | Async loading, `.format()` method |
 | `engine.formatResults()` | `loadLinterFormatter()` | Separate formatter loading |
 
 ### Common Migration Patterns

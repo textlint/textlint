@@ -1,193 +1,65 @@
 // LICENSE : MIT
 "use strict";
-import { createFormatter, getFormatterList } from "../src/index.js";
+import { getFormatterList, loadFormatter } from "../src/index.js";
 
 import { describe, it } from "vitest";
 
-import * as path from "node:path";
 import * as assert from "node:assert";
 
 describe("@textlint/linter-formatter-test", function () {
-    describe("createFormatter", function () {
-        it("should return formatter function", function () {
-            const formatter = createFormatter({
-                formatterName: "stylish"
-            });
-            assert.ok(typeof formatter === "function");
-        });
-        describe("formatter", function () {
-            it("should return output text", function () {
-                const formatter = createFormatter({
-                    formatterName: "stylish",
-                    color: false
-                });
-                const output = formatter([
-                    {
-                        filePath: "./myfile.js",
-                        messages: [
-                            {
-                                type: "lint",
-                                ruleId: "semi",
-                                line: 1,
-                                column: 23,
-                                index: 0,
-                                range: [0, 1],
-                                loc: {
-                                    start: {
-                                        line: 1,
-                                        column: 23
-                                    },
-                                    end: {
-                                        line: 1,
-                                        column: 24
-                                    }
-                                },
-                                message: "Expected a semicolon.",
-                                severity: 2
-                            }
-                        ]
-                    }
-                ]);
-                assert.ok(output.length > 0);
-            });
-        });
-        it("run all formatter", function () {
-            const formatterNames = [
-                "checkstyle",
-                "compact",
-                "jslint-xml",
-                "junit",
-                "pretty-error",
-                "stylish",
-                "tap",
-                "json"
-            ];
-            formatterNames.forEach(function (name) {
-                const formatter = createFormatter({
-                    formatterName: name,
-                    color: false
-                });
-                const ckjFile = path.join(__dirname, "./fixtures", "ckj.md");
-                const output = formatter([
-                    {
-                        filePath: `${__dirname}/fixtures/myfile.js`,
-                        messages: [
-                            {
-                                type: "lint",
-                                ruleId: "semi",
-                                line: 1,
-                                column: 1,
-                                index: 0,
-                                range: [0, 1],
-                                loc: {
-                                    start: {
-                                        line: 1,
-                                        column: 1
-                                    },
-                                    end: {
-                                        line: 1,
-                                        column: 2
-                                    }
-                                },
-                                message: "0 pattern.",
-                                severity: 2
-                            },
-                            {
-                                type: "lint",
-                                ruleId: "semi",
-                                line: 2,
-                                column: 26,
-                                index: 0,
-                                range: [0, 1],
-                                loc: {
-                                    start: {
-                                        line: 2,
-                                        column: 26
-                                    },
-                                    end: {
-                                        line: 2,
-                                        column: 27
-                                    }
-                                },
-                                message: "Expected a semicolon.",
-                                severity: 2
-                            },
-                            {
-                                type: "lint",
-                                ruleId: "semi",
-                                line: 1,
-                                column: 21,
-                                index: 0,
-                                range: [0, 1],
-                                loc: {
-                                    start: {
-                                        line: 1,
-                                        column: 21
-                                    },
-                                    end: {
-                                        line: 1,
-                                        column: 22
-                                    }
-                                },
-                                message: "Expected a semicolon.",
-                                severity: 2
-                            },
-                            {
-                                type: "lint",
-                                ruleId: "semi",
-                                line: 2,
-                                column: 26,
-                                index: 0,
-                                range: [0, 1],
-                                loc: {
-                                    start: {
-                                        line: 1,
-                                        column: 26
-                                    },
-                                    end: {
-                                        line: 1,
-                                        column: 27
-                                    }
-                                },
-                                message: "Expected a semicolon.",
-                                severity: 2
-                            }
-                        ]
-                    },
-                    {
-                        filePath: ckjFile,
-                        messages: [
-                            {
-                                type: "lint",
-                                message: "Unexpected !!!.",
-                                severity: 2,
-                                line: 2,
-                                column: 16,
-                                index: 0,
-                                range: [0, 1],
-                                loc: {
-                                    start: {
-                                        line: 2,
-                                        column: 16
-                                    },
-                                    end: {
-                                        line: 2,
-                                        column: 17
-                                    }
-                                },
-                                ruleId: "foo",
-                                fix: {
-                                    range: [40, 45],
-                                    text: "fixed 1"
-                                }
-                            }
-                        ]
-                    }
-                ]);
-                assert.ok(output.length > 0);
-            });
+    describe("deprecated createFormatter", function () {
+        it("should not be exported", async function () {
+            // Test that createFormatter is no longer exported
+            const index = await import("../src/index.js");
+            assert.strictEqual(typeof index.createFormatter, "undefined", "createFormatter should not be exported");
         });
     });
+
+    describe("loadFormatter", function () {
+        it("should load stylish formatter", async function () {
+            const formatterResult = await loadFormatter({
+                formatterName: "stylish",
+                color: false
+            });
+            assert.ok(typeof formatterResult.format === "function");
+        });
+
+        it("should format output text", async function () {
+            const formatterResult = await loadFormatter({
+                formatterName: "stylish",
+                color: false
+            });
+            const output = formatterResult.format([
+                {
+                    filePath: "./myfile.js",
+                    messages: [
+                        {
+                            type: "lint",
+                            ruleId: "semi",
+                            line: 1,
+                            column: 23,
+                            index: 0,
+                            range: [0, 1],
+                            loc: {
+                                start: {
+                                    line: 1,
+                                    column: 23
+                                },
+                                end: {
+                                    line: 1,
+                                    column: 24
+                                }
+                            },
+                            message: "Expected a semicolon.",
+                            severity: 2
+                        }
+                    ]
+                }
+            ]);
+            assert.ok(output.length > 0);
+        });
+    });
+
     describe("getFormatterList", function () {
         it("should return list of formatter(s)", function () {
             assert.deepEqual(getFormatterList(), [

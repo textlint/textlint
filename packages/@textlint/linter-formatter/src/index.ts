@@ -100,51 +100,6 @@ ${ex}`);
     };
 }
 
-/**
- * @deprecated use loadFormatter
- * @param formatterConfig
- */
-export function createFormatter(formatterConfig: FormatterConfig) {
-    const formatterName = formatterConfig.formatterName;
-    debug(`formatterName: ${formatterName}`);
-    if (builtinFormatterNames.includes(formatterName)) {
-        return function (results: TextlintResult[]) {
-            return builtinFormatterList[formatterName as BuiltInFormatterName](results, formatterConfig);
-        };
-    }
-    let formatter: (results: TextlintResult[], formatterConfig: FormatterConfig) => string;
-    let formatterPath;
-    if (fs.existsSync(formatterName)) {
-        formatterPath = formatterName;
-    } else if (fs.existsSync(path.resolve(process.cwd(), formatterName))) {
-        formatterPath = path.resolve(process.cwd(), formatterName);
-    } else {
-        const pkgPath =
-            tryResolve(`textlint-formatter-${formatterName}`, {
-                parentModule: "linter-formatter"
-            }) ||
-            tryResolve(formatterName, {
-                parentModule: "linter-formatter"
-            });
-        if (pkgPath) {
-            formatterPath = pkgPath;
-        }
-    }
-
-    if (!formatterPath) {
-        throw new Error(`Could not find formatter ${formatterName}`);
-    }
-    try {
-        formatter = moduleInterop(require(formatterPath));
-    } catch (ex) {
-        throw new Error(`Could not find formatter ${formatterName}
-${ex}`);
-    }
-    return function (results: TextlintResult[]) {
-        return formatter(results, formatterConfig);
-    };
-}
-
 export interface FormatterDetail {
     name: string;
 }
