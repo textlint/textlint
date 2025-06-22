@@ -24,10 +24,15 @@ const debug = debug0("textlint:createTextlint");
 export class TextlintFileSearchError extends Error {
     public readonly name = "TextlintFileSearchError";
     public readonly errors: SearchFilesResultError[];
+    public readonly patterns: string[];
 
-    constructor(errors: SearchFilesResultError[], message?: string) {
-        super(message || `Not found target files: ${errors.map((e) => e.type).join(", ")}`);
+    constructor({ errors, patterns }: { errors: SearchFilesResultError[]; patterns: string[] }) {
+        super(`Not found target files.
+        
+Patterns: ${patterns.join(", ")}        
+Reason: ${errors.map((e) => e.type).join(", ") || "Unknown error"}`);
         this.errors = errors;
+        this.patterns = patterns;
     }
 }
 
@@ -94,8 +99,12 @@ export const createLinter = (options: CreateLinterOptions) => {
                 ignoreFilePath: options.ignoreFilePath
             });
             if (!searchResult.ok) {
-                Logger.error("Failed to search files. Error details:", searchResult.errors);
-                throw new TextlintFileSearchError(searchResult.errors);
+                debug(
+                    "Failed to search files with patterns: %j. Reason: %s",
+                    patterns,
+                    searchResult.errors.map((e) => e.type).join(", ") || "Unknown error"
+                );
+                throw new TextlintFileSearchError({ errors: searchResult.errors, patterns });
             }
             const targetFiles = searchResult.items;
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
@@ -147,12 +156,12 @@ export const createLinter = (options: CreateLinterOptions) => {
                 ignoreFilePath: options.ignoreFilePath
             });
             if (!searchResult.ok) {
-                Logger.error(
-                    `Failed to search files with patterns: ${patterns}. Reason: ${
-                        searchResult.errors.map((e) => e.type).join(", ") || "Unknown error"
-                    }`
+                debug(
+                    "Failed to search files with patterns: %j. Reason: %s",
+                    patterns,
+                    searchResult.errors.map((e) => e.type).join(", ") || "Unknown error"
                 );
-                throw new TextlintFileSearchError(searchResult.errors);
+                throw new TextlintFileSearchError({ errors: searchResult.errors, patterns });
             }
             const targetFiles = searchResult.items;
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
