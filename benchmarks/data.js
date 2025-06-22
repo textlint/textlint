@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750573571691,
+  "lastUpdate": 1750574217500,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62370,6 +62370,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5955173591800001,
             "unit": "seconds",
             "range": "± 0.02079144700000002"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "c600fa1c6b7cc444789bfae756437d7b4b813879",
+          "message": "fix(tsconfig): add missing comma in compilerOptions",
+          "timestamp": "2025-06-22T15:33:41+09:00",
+          "tree_id": "64c5746b28d345b3da4158cdb7daaf1f3fab85d3",
+          "url": "https://github.com/textlint/textlint/commit/c600fa1c6b7cc444789bfae756437d7b4b813879"
+        },
+        "date": 1750574211969,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24251134194,
+            "unit": "seconds",
+            "range": "± 0.177268385"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7031141097400002,
+            "unit": "seconds",
+            "range": "± 0.0563721570000002"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.58502534254,
+            "unit": "seconds",
+            "range": "± 0.020662843999999958"
           }
         ]
       }
