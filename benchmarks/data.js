@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750568812880,
+  "lastUpdate": 1750569667012,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62244,6 +62244,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5952041250600001,
             "unit": "seconds",
             "range": "± 0.04382307699999999"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "c4dc95b50e0f96adc912847ac91006505ed4a3a2",
+          "message": "fix: update build command in netlify.toml to include clean step",
+          "timestamp": "2025-06-22T14:18:10+09:00",
+          "tree_id": "695c7a9e9213bbada693092d010cce428245d423",
+          "url": "https://github.com/textlint/textlint/commit/c4dc95b50e0f96adc912847ac91006505ed4a3a2"
+        },
+        "date": 1750569661896,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21513135214,
+            "unit": "seconds",
+            "range": "± 0.02208863800000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7741052075400003,
+            "unit": "seconds",
+            "range": "± 0.036933025000000175"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6011905043400001,
+            "unit": "seconds",
+            "range": "± 0.009732767000000031"
           }
         ]
       }
