@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750588238955,
+  "lastUpdate": 1750597513818,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -63840,6 +63840,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58500663498,
             "unit": "seconds",
             "range": "± 0.012814172999999984"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "c30999b032effa9d1618a310063579dc95b2f5b9",
+          "message": "fix: Improve file search error handling and update exit status documentation",
+          "timestamp": "2025-06-22T22:02:02+09:00",
+          "tree_id": "3506b0c421b20a4bec9cd2a4523adc2ad5c7060e",
+          "url": "https://github.com/textlint/textlint/commit/c30999b032effa9d1618a310063579dc95b2f5b9"
+        },
+        "date": 1750597510536,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2433314729,
+            "unit": "seconds",
+            "range": "± 0.17565031900000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7135519176999998,
+            "unit": "seconds",
+            "range": "± 0.030532813000000214"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5792896817,
+            "unit": "seconds",
+            "range": "± 0.01486712400000001"
           }
         ]
       }
