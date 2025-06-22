@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750576770655,
+  "lastUpdate": 1750576827903,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -62748,6 +62748,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5865048028200001,
             "unit": "seconds",
             "range": "± 0.011076854999999997"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "948c1f853a09d8b832a1020be5ba8af600347981",
+          "message": "feat: replace Netlify with pr-preview-action\n\n- Remove netlify.toml configuration\n- Add GitHub Actions workflow for PR previews using pr-preview-action\n- Only build previews when docs or website files are changed\n- Deploy previews to gh-pages-preview branch\n\nFixes #1579",
+          "timestamp": "2025-06-22T16:18:11+09:00",
+          "tree_id": "068157c1b6dd3ae4e9645f58ba19b422dde2be2d",
+          "url": "https://github.com/textlint/textlint/commit/948c1f853a09d8b832a1020be5ba8af600347981"
+        },
+        "date": 1750576822534,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25875290318,
+            "unit": "seconds",
+            "range": "± 0.25132183300000005"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7248423023799997,
+            "unit": "seconds",
+            "range": "± 0.08979885099999985"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5902070441800001,
+            "unit": "seconds",
+            "range": "± 0.021710847000000033"
           }
         ]
       }
