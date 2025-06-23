@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750682439692,
+  "lastUpdate": 1750688337868,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -64722,6 +64722,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6120140338000001,
             "unit": "seconds",
             "range": "± 0.030698971999999936"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "arukimedesu1166777@gmail.com",
+            "name": "Noritaka Kobayashi",
+            "username": "noritaka1166"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8b854572b3e007947b65a93d4a74bf24ea591a5e",
+          "message": "chore: update npm-run-all2 from v5 to v8 (#1593)",
+          "timestamp": "2025-06-23T23:16:07+09:00",
+          "tree_id": "755087860c9974b24b01467760182f6385d0a880",
+          "url": "https://github.com/textlint/textlint/commit/8b854572b3e007947b65a93d4a74bf24ea591a5e"
+        },
+        "date": 1750688333607,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20635647640000002,
+            "unit": "seconds",
+            "range": "± 0.021827139999999995"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7277582058,
+            "unit": "seconds",
+            "range": "± 0.03822676700000005"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5833568980000001,
+            "unit": "seconds",
+            "range": "± 0.012403854999999964"
           }
         ]
       }
