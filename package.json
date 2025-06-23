@@ -51,7 +51,7 @@
     "eslint-config-prettier": "^9.1.0",
     "globals": "^15.15.0",
     "lerna": "^8.2.2",
-    "lint-staged": "^13.3.0",
+    "lint-staged": "^16.1.2",
     "npm-run-all2": "^8.0.4",
     "prettier": "^2.7.1",
     "typescript": "~5.8.3",
