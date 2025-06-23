@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750637177795,
+  "lastUpdate": 1750637774233,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -64554,6 +64554,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58023330344,
             "unit": "seconds",
             "range": "± 0.010699025999999945"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "f881ac6fac8b39583cb957c057156f196dbd5780",
+          "message": "fix: revert version to 15.0.0 in package.json and update blog for Webpack compatibility changes",
+          "timestamp": "2025-06-23T09:13:30+09:00",
+          "tree_id": "a4f4a25efd5d3d4d16925f81c28fdbcac39c760d",
+          "url": "https://github.com/textlint/textlint/commit/f881ac6fac8b39583cb957c057156f196dbd5780"
+        },
+        "date": 1750637770453,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24727814604000004,
+            "unit": "seconds",
+            "range": "± 0.230470871"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7244995124400002,
+            "unit": "seconds",
+            "range": "± 0.034527955000000166"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5837902752399999,
+            "unit": "seconds",
+            "range": "± 0.013856476999999923"
           }
         ]
       }
