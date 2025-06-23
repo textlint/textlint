@@ -1,6 +1,6 @@
 {
   "name": "@textlint/config-loader",
-  "version": "15.0.0",
+  "version": "15.0.1",
   "description": "Config loader for textlint. .textlintrc loader",
   "keywords": [
     "textlint"
