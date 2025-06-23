@@ -1,6 +1,6 @@
 {
   "name": "@textlint/legacy-textlint-core",
-  "version": "15.0.0",
+  "version": "15.0.1",
   "description": "Legacy TextLintCore Compatibility Layer for textlint v14+",
   "keywords": [
     "definition",
