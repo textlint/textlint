@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "build": "tsc -b",
-    "clean": "tsc -b --clean --clean",
+    "clean": "tsc -b --clean",
     "prepublishOnly": "npm run clean && npm run build",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",

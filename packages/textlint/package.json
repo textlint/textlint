@@ -39,8 +39,8 @@
     "!*.tsbuildinfo"
   ],
   "scripts": {
-    "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "rimraf lib/ module/",
+    "build": "tsc -b",
+    "clean": "rimraf lib/",
     "prepack": "npm run build",
     "test": "vitest run",
     "test:watch": "vitest watch",
