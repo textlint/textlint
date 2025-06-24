@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750752927237,
+  "lastUpdate": 1750753008045,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -65394,6 +65394,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58309895756,
             "unit": "seconds",
             "range": "± 0.015621599000000042"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "68f99085705b8508da0405af15fcad0122332802",
+          "message": "fix(deps): update dependency zod to ^3.25.67",
+          "timestamp": "2025-06-24T08:14:07Z",
+          "tree_id": "4038047e20038ac5b5688024666b1d8b46526280",
+          "url": "https://github.com/textlint/textlint/commit/68f99085705b8508da0405af15fcad0122332802"
+        },
+        "date": 1750753003658,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23265698920000003,
+            "unit": "seconds",
+            "range": "± 0.15433268699999997"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7258520946,
+            "unit": "seconds",
+            "range": "± 0.016581922000000082"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5854837232000001,
+            "unit": "seconds",
+            "range": "± 0.03032100999999998"
           }
         ]
       }
