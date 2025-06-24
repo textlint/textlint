@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750762432297,
+  "lastUpdate": 1750780668451,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -65478,6 +65478,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6074535941,
             "unit": "seconds",
             "range": "± 0.017493866000000025"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "arukimedesu1166777@gmail.com",
+            "name": "Noritaka Kobayashi",
+            "username": "noritaka1166"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "17080f47ec453d9ebad8d703b6ce824a6567471f",
+          "message": "chore: update globals from v15 to v16 (#1599)",
+          "timestamp": "2025-06-24T15:55:54Z",
+          "tree_id": "91a8785be8babc6ca244f3f3388a151a0f4f2e85",
+          "url": "https://github.com/textlint/textlint/commit/17080f47ec453d9ebad8d703b6ce824a6567471f"
+        },
+        "date": 1750780664233,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21278916350000002,
+            "unit": "seconds",
+            "range": "± 0.026890562000000007"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7065729691000002,
+            "unit": "seconds",
+            "range": "± 0.050533275000000044"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5823876607,
+            "unit": "seconds",
+            "range": "± 0.01571921799999998"
           }
         ]
       }
