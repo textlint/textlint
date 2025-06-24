@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750780668451,
+  "lastUpdate": 1750793927031,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -65520,6 +65520,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5823876607,
             "unit": "seconds",
             "range": "± 0.01571921799999998"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b66f92939d73a05de64fbf149cd002de7cf9ea8e",
+          "message": "chore(deps): update dependency vitest to ^3.2.4",
+          "timestamp": "2025-06-24T19:36:54Z",
+          "tree_id": "f5f7bc37f9e26c15411f537daaf5c9cb94a7e1fb",
+          "url": "https://github.com/textlint/textlint/commit/b66f92939d73a05de64fbf149cd002de7cf9ea8e"
+        },
+        "date": 1750793923496,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2341216455,
+            "unit": "seconds",
+            "range": "± 0.16522502999999997"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7063654597,
+            "unit": "seconds",
+            "range": "± 0.02630219900000008"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5760906395000001,
+            "unit": "seconds",
+            "range": "± 0.007819613000000003"
           }
         ]
       }
