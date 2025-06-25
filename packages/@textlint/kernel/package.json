@@ -57,6 +57,6 @@
     "textlint-rule-preset-ja-spacing": "^2.4.3",
     "typescript": "~5.8.3",
     "unist-util-select": "^3.0.4",
-    "vitest": "^3.2.3"
+    "vitest": "^3.2.4"
   }
 }

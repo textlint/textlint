@@ -57,7 +57,7 @@
     "rimraf": "^6.0.1",
     "sinon": "^1.17.7",
     "typescript": "~5.8.3",
-    "vitest": "^3.2.3"
+    "vitest": "^3.2.4"
   },
   "publishConfig": {
     "access": "public"
