@@ -48,7 +48,7 @@
     "@typescript-eslint/parser": "^8.34.1",
     "ajv": "^8.17.1",
     "eslint": "^9.0.0",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-prettier": "^10.1.5",
     "globals": "^16.2.0",
     "lerna": "^8.2.2",
     "lint-staged": "^16.1.2",
