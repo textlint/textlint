@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751209732993,
+  "lastUpdate": 1751209994692,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -66738,6 +66738,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6047721208400001,
             "unit": "seconds",
             "range": "± 0.009995332000000023"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "99d096f94ce3f27919df292b6bb82857f92d6899",
+          "message": "CI(website-preview): remove redundant condition for checkout step",
+          "timestamp": "2025-06-30T00:10:57+09:00",
+          "tree_id": "3a00e4665866be373967d8dd51752dba7715d57c",
+          "url": "https://github.com/textlint/textlint/commit/99d096f94ce3f27919df292b6bb82857f92d6899"
+        },
+        "date": 1751209990255,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20972776848,
+            "unit": "seconds",
+            "range": "± 0.029831139000000007"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7166922844799999,
+            "unit": "seconds",
+            "range": "± 0.03466242899999994"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5909104344800001,
+            "unit": "seconds",
+            "range": "± 0.007644286"
           }
         ]
       }
