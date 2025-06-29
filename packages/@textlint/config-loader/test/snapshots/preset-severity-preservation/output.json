@@ -33,8 +33,19 @@
                 "options": {
                     "severity": "warning"
                 },
-                "ruleId": "abc-with-severity/c",
-                "ruleKey": "c",
+                "ruleId": "abc-with-severity/c1",
+                "ruleKey": "c1",
+                "type": "RuleInPreset"
+            },
+            {
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-with-severity/index.js",
+                "inputModuleName": "preset-abc-with-severity",
+                "moduleName": "textlint-rule-preset-abc-with-severity",
+                "options": {
+                    "severity": "warning"
+                },
+                "ruleId": "abc-with-severity/c2",
+                "ruleKey": "c2",
                 "type": "RuleInPreset"
             }
         ]
