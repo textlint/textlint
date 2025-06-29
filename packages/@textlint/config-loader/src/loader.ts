@@ -326,8 +326,22 @@ export async function loadPreset({
             type: "RuleInPreset",
             ruleId: normalizedKey,
             // prefer .textlintrc config than preset.rulesConfig
+            // merge preset config with user config to preserve preset severity when user provides partial config
+            //
+            // Fix for preset + severity combination issue:
+            // When user provides partial config (e.g., { customOption: true }) for a preset rule
+            // that has severity defined (e.g., { severity: "warning", defaultOption: false }),
+            // we need to merge both objects to preserve the preset's severity setting.
+            // The previous implementation used ?? operator which completely replaced
+            // preset config when user config was present, losing preset's severity.
             rule: preset.rules[ruleKey],
-            options: presetRulesOptions[ruleKey] ?? preset.rulesConfig[ruleKey],
+            options:
+                presetRulesOptions[ruleKey] !== undefined
+                    ? typeof presetRulesOptions[ruleKey] === "boolean" ||
+                      typeof preset.rulesConfig[ruleKey] === "boolean"
+                        ? presetRulesOptions[ruleKey] // For boolean configs, user setting takes precedence completely
+                        : { ...preset.rulesConfig[ruleKey], ...presetRulesOptions[ruleKey] } // For object configs, merge them
+                    : preset.rulesConfig[ruleKey],
             filePath: presetPackageName.filePath,
             // preset package name
             moduleName: presetPackageName.moduleName,

@@ -1,0 +1,11 @@
+{
+    "presets": [
+        "textlint-rule-preset-abc-with-severity"
+    ],
+    "rules": {
+        "preset-abc-with-severity/no-todo": {
+            "allow": ["TODO(username):"]
+        },
+        "preset-abc-with-severity/max-ten": "error"
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "config": {
+        "filterRules": [],
+        "plugins": [],
+        "rules": [
+            {
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-with-severity/index.js",
+                "inputModuleName": "preset-abc-with-severity",
+                "moduleName": "textlint-rule-preset-abc-with-severity",
+                "options": {
+                    "presetOption": "default",
+                    "severity": "error",
+                    "userOption": true
+                },
+                "ruleId": "abc-with-severity/a",
+                "ruleKey": "a",
+                "type": "RuleInPreset"
+            },
+            {
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-with-severity/index.js",
+                "inputModuleName": "preset-abc-with-severity",
+                "moduleName": "textlint-rule-preset-abc-with-severity",
+                "options": {
+                    "anotherPresetOption": "value",
+                    "customOption": "value",
+                    "severity": "warning"
+                },
+                "ruleId": "abc-with-severity/b",
+                "ruleKey": "b",
+                "type": "RuleInPreset"
+            },
+            {
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-with-severity/index.js",
+                "inputModuleName": "preset-abc-with-severity",
+                "moduleName": "textlint-rule-preset-abc-with-severity",
+                "options": true,
+                "ruleId": "abc-with-severity/c",
+                "ruleKey": "c",
+                "type": "RuleInPreset"
+            }
+        ]
+    },
+    "ok": true
+}
