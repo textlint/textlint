@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751200867313,
+  "lastUpdate": 1751200905656,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -66318,6 +66318,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58943798586,
             "unit": "seconds",
             "range": "± 0.005086225"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7b3a3f4548d25a519837af5bc6c2d438ce56e79c",
+          "message": "fix: preserve preset severity settings when user provides `true` config (#1607)\n\n* fix: preserve preset severity settings when user provides partial rule configuration\n\n- Replace nullish coalescing operator with proper object merging in loadPreset function\n- Fixes issue where preset severity was lost when users provided partial rule config\n- Maintains backward compatibility for boolean configurations\n- Add comprehensive unit tests for preset + severity combinations\n- Add CLI-level integration tests\n\nFixes #1606\n\n* remove\n\n* fix remove\n\n* remove\n\n* test: add snapshots test\n\n* fix\n\n* fix\n\n* fix text case",
+          "timestamp": "2025-06-29T12:39:11Z",
+          "tree_id": "a4bfc1e048d08c26df6a9460f6d06c166eb1dd5d",
+          "url": "https://github.com/textlint/textlint/commit/7b3a3f4548d25a519837af5bc6c2d438ce56e79c"
+        },
+        "date": 1751200902133,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23199864783999996,
+            "unit": "seconds",
+            "range": "± 0.14709027100000005"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7217289972400003,
+            "unit": "seconds",
+            "range": "± 0.032850980000000085"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59324055844,
+            "unit": "seconds",
+            "range": "± 0.012792778999999976"
           }
         ]
       }
