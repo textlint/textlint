@@ -130,10 +130,10 @@ Use it with `report` function.
 
 - `report(node, new RuleError(<message>))`
   - report new error
-  - textlint show the `<mesage>` against `node`'s range. 
+  - textlint show the `<message>` against `node`'s range. 
 - `report(node, new RuleError(<message>, { padding }))`
   - report new error with `padding`.
-  - textlint show the `<mesage>` against `node`'s range + `padding`.
+  - textlint show the `<message>` against `node`'s range + `padding`.
   - You can control correct error range by `padding` property of `RuleError`
 
 Example: report the `Str` node that is typo.

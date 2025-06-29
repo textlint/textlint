@@ -275,7 +275,7 @@ tester.run("no-todo", rule, {
                 }
             ]
         },
-        // Depreacted way
+        // Deprecated way
         // line, column
         {
             text: "- [ ] string",

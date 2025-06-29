@@ -150,7 +150,7 @@ describe("rule-context-test", function () {
             return textlint.lintMarkdown(expectedText);
         });
     });
-    describe("#serverity", function () {
+    describe("#severity", function () {
         it("should return Error by default", function () {
             const expectedText = "this is text.";
             textlint.setupRules({
