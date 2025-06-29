@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751177245010,
+  "lastUpdate": 1751177599750,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -65940,6 +65940,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5933984463799999,
             "unit": "seconds",
             "range": "± 0.020137008999999928"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "55d7e6039546272e304b5039a7f0e5260e2d4107",
+          "message": "fix: preserve preset severity settings when user provides partial rule configuration\n\n- Replace nullish coalescing operator with proper object merging in loadPreset function\n- Fixes issue where preset severity was lost when users provided partial rule config\n- Maintains backward compatibility for boolean configurations\n- Add comprehensive unit tests for preset + severity combinations\n- Add CLI-level integration tests\n\nFixes #1606",
+          "timestamp": "2025-06-29T15:11:25+09:00",
+          "tree_id": "af0ad16418004a41cda8d25e61b5bb6890c2e23c",
+          "url": "https://github.com/textlint/textlint/commit/55d7e6039546272e304b5039a7f0e5260e2d4107"
+        },
+        "date": 1751177596481,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22204799356,
+            "unit": "seconds",
+            "range": "± 0.10629287399999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7112076999599999,
+            "unit": "seconds",
+            "range": "± 0.009863618000000018"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.58569038096,
+            "unit": "seconds",
+            "range": "± 0.012112244999999966"
           }
         ]
       }
