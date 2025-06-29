@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751206270570,
+  "lastUpdate": 1751208299170,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -66570,6 +66570,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59754082956,
             "unit": "seconds",
             "range": "± 0.011492864000000047"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "a55fda72fe4b541a77924ac472ca59f80360c28f",
+          "message": "refactor: remove deprecated tests and add new comprehensive tests for formatter functionality",
+          "timestamp": "2025-06-29T23:42:53+09:00",
+          "tree_id": "ec80444e6ebadbb4dceb403952abf0f0e004793b",
+          "url": "https://github.com/textlint/textlint/commit/a55fda72fe4b541a77924ac472ca59f80360c28f"
+        },
+        "date": 1751208295482,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22566018744000002,
+            "unit": "seconds",
+            "range": "± 0.11257798"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7674649726399998,
+            "unit": "seconds",
+            "range": "± 0.024868624999999867"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6085603842400001,
+            "unit": "seconds",
+            "range": "± 0.027707939999999986"
           }
         ]
       }
