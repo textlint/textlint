@@ -26,7 +26,7 @@ describe("config-initializer-test", function () {
             sh.rm("-rf", configDir);
         }
     });
-    describe("when pacakge.json has textlint-rule-* packages", function () {
+    describe("when package.json has textlint-rule-* packages", function () {
         beforeEach(function () {
             // Ensure directory exists and is accessible
             if (!fs.existsSync(configDir)) {

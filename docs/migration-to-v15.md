@@ -345,7 +345,7 @@ async function lintFile(filePath) {
 ```js
 const TextLintEngine = require("textlint").TextLintEngine;
 const engine = new TextLintEngine();
-const ruleText = "Tihs is my text.";
+const ruleText = "This is my text.";
 const results = await engine.executeOnText(ruleText);
 ```
 
@@ -355,7 +355,7 @@ import { createLinter, loadTextlintrc } from "textlint";
 
 const descriptor = await loadTextlintrc();
 const linter = createLinter({ descriptor });
-const ruleText = "Tihs is my text.";
+const ruleText = "This is my text.";
 // Note: dummy filename needed to determine content type
 const results = await linter.lintText(ruleText, 'document.txt');
 ```
