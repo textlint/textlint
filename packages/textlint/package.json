@@ -43,6 +43,7 @@
     "clean": "rimraf lib/",
     "prepack": "npm run build",
     "test": "vitest run",
+    "updateSnapshot": "UPDATE_SNAPSHOT=true vitest run",
     "test:watch": "vitest watch",
     "watch": "tsc -b --watch"
   },

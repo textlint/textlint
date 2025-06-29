@@ -1,0 +1,43 @@
+{
+    "config": {
+        "filterRules": [],
+        "plugins": [],
+        "rules": [
+            {
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-with-severity/index.js",
+                "inputModuleName": "preset-abc-with-severity",
+                "moduleName": "textlint-rule-preset-abc-with-severity",
+                "options": {
+                    "severity": "error",
+                    "userOption": true
+                },
+                "ruleId": "abc-with-severity/a",
+                "ruleKey": "a",
+                "type": "RuleInPreset"
+            },
+            {
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-with-severity/index.js",
+                "inputModuleName": "preset-abc-with-severity",
+                "moduleName": "textlint-rule-preset-abc-with-severity",
+                "options": {
+                    "customOption": "value"
+                },
+                "ruleId": "abc-with-severity/b",
+                "ruleKey": "b",
+                "type": "RuleInPreset"
+            },
+            {
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-with-severity/index.js",
+                "inputModuleName": "preset-abc-with-severity",
+                "moduleName": "textlint-rule-preset-abc-with-severity",
+                "options": {
+                    "severity": "warning"
+                },
+                "ruleId": "abc-with-severity/c",
+                "ruleKey": "c",
+                "type": "RuleInPreset"
+            }
+        ]
+    },
+    "ok": true
+}
