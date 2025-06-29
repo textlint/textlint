@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751205647144,
+  "lastUpdate": 1751206270570,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -66528,6 +66528,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59469032952,
             "unit": "seconds",
             "range": "± 0.023393832999999975"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "1f689b959e48e1839b3753d212e4124390e85f61",
+          "message": "fix: correct table formatter test expectation for info severity\n\n- Fix test case to expect '1 Info' instead of '1 Warning' for info severity (3)\n- Update warningCount from 1 to 0 in test data to match actual behavior\n- Info messages should be counted separately from warnings and errors\n- Table formatter correctly displays info messages with their own category",
+          "timestamp": "2025-06-29T23:08:45+09:00",
+          "tree_id": "786c6301f2ab3bc0812b910c28f9222e0e653733",
+          "url": "https://github.com/textlint/textlint/commit/1f689b959e48e1839b3753d212e4124390e85f61"
+        },
+        "date": 1751206266881,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22209626095999999,
+            "unit": "seconds",
+            "range": "± 0.102647338"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7306537815599998,
+            "unit": "seconds",
+            "range": "± 0.027214781999999937"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59754082956,
+            "unit": "seconds",
+            "range": "± 0.011492864000000047"
           }
         ]
       }
