@@ -6,7 +6,6 @@
 import formatter from "../../src/formatters/checkstyle";
 import { describe, it } from "vitest";
 import * as assert from "node:assert";
-import type { TextlintResult } from "@textlint/types";
 
 describe("formatter:checkstyle", function () {
     describe("when passed a single message", function () {

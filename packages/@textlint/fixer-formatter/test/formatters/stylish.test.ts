@@ -1,17 +1,18 @@
 "use strict";
 import stylish from "../../src/formatters/stylish.js";
-import { describe, it } from "vitest";
-import assert from "node:assert";
+import { describe, it, expect } from "vitest";
 
-const formatter = (code) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const formatter = (code: any) => {
     return stylish(code, { color: false });
 };
+
 describe("formatter:stylish", function () {
     describe("when passed no messages", function () {
         const code = [{ filePath: "foo.js", applyingMessages: [], remainingMessages: [] }];
         it("should not return message", function () {
-            const result = formatter(code, { color: false });
-            assert.equal(result, "");
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`""`);
         });
     });
 
@@ -25,16 +26,15 @@ describe("formatter:stylish", function () {
         ];
 
         it("should return a string in the correct format for errors", function () {
-            const result = formatter(code, { color: false });
-            assert.equal(
-                result,
-                `
-foo.js
-  5:10  ✔   Unexpected foo  foo
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`
+              "
+              foo.js
+                5:10  ✔   Unexpected foo  foo
 
-✔ Fixed 1 problem
-`
-            );
+              ✔ Fixed 1 problem
+              "
+            `);
         });
     });
 
@@ -48,16 +48,15 @@ foo.js
         ];
 
         it("should return a string in the correct format for info", function () {
-            const result = formatter(code, { color: false });
-            assert.equal(
-                result,
-                `
-foo.js
-  5:10  ✔   Unexpected foo  foo
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`
+              "
+              foo.js
+                5:10  ✔   Unexpected foo  foo
 
-✔ Fixed 1 problem
-`
-            );
+              ✔ Fixed 1 problem
+              "
+            `);
         });
     });
 
@@ -74,17 +73,16 @@ foo.js
         ];
 
         it("should return a string with multiple entries", function () {
-            const result = formatter(code, { color: false });
-            assert.equal(
-                result,
-                `
-foo.js
-  5:10  ✔   Unexpected foo  foo
-  6:11  ✔   Unexpected bar  bar
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`
+              "
+              foo.js
+                5:10  ✔   Unexpected foo  foo
+                6:11  ✔   Unexpected bar  bar
 
-✔ Fixed 2 problems
-`
-            );
+              ✔ Fixed 2 problems
+              "
+            `);
         });
     });
 
@@ -103,19 +101,18 @@ foo.js
         ];
 
         it("should return a string with multiple entries", function () {
-            const result = formatter(code, { color: false });
-            assert.equal(
-                result,
-                `
-foo.js
-  5:10  ✔   Unexpected foo  foo
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`
+              "
+              foo.js
+                5:10  ✔   Unexpected foo  foo
 
-bar.js
-  6:11  ✔   Unexpected bar  bar
+              bar.js
+                6:11  ✔   Unexpected bar  bar
 
-✔ Fixed 2 problems
-`
-            );
+              ✔ Fixed 2 problems
+              "
+            `);
         });
     });
 
@@ -135,18 +132,17 @@ bar.js
         ];
 
         it("should show remaining count", function () {
-            const result = formatter(code, { color: false });
-            assert.equal(
-                result,
-                `
-foo.js
-  5:10  ✔   Unexpected foo  foo
-  6:11  ✔   Unexpected bar  bar
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`
+              "
+              foo.js
+                5:10  ✔   Unexpected foo  foo
+                6:11  ✔   Unexpected bar  bar
 
-✔ Fixed 2 problems
-✖ Remaining 2 problems
-`
-            );
+              ✔ Fixed 2 problems
+              ✖ Remaining 2 errors
+              "
+            `);
         });
     });
     describe("when passed one remainingMessages", function () {
@@ -162,18 +158,17 @@ foo.js
         ];
 
         it("should show remaining count", function () {
-            const result = formatter(code, { color: false });
-            assert.equal(
-                result,
-                `
-foo.js
-  5:10  ✔   Unexpected foo  foo
-  6:11  ✔   Unexpected bar  bar
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`
+              "
+              foo.js
+                5:10  ✔   Unexpected foo  foo
+                6:11  ✔   Unexpected bar  bar
 
-✔ Fixed 2 problems
-✖ Remaining 1 problem
-`
-            );
+              ✔ Fixed 2 problems
+              ✖ Remaining 1 error
+              "
+            `);
         });
     });
 });
