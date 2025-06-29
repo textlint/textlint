@@ -1,5 +1,6 @@
 "use strict";
 import type { TextlintFixResult } from "@textlint/types";
+import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 
 import chalk from "chalk";
 // @ts-expect-error no types
@@ -17,12 +18,14 @@ function pluralize(word: string, count: number): string {
     return count === 1 ? word : `${word}s`;
 }
 
-export default function (results: TextlintFixResult[], options: any) {
+export default function (results: TextlintFixResult[], options: { color?: boolean }) {
     // default: true
     const useColor = options.color !== undefined ? options.color : true;
     let output = "\n";
     let totalFixed = 0;
     let errors = 0;
+    let warnings = 0;
+    let infos = 0;
     const summaryColor = "yellow";
     const greenColor = "green";
 
@@ -33,7 +36,19 @@ export default function (results: TextlintFixResult[], options: any) {
         const messages = result.applyingMessages;
         // still error count
         const remainingMessages = result.remainingMessages;
-        errors += remainingMessages.length;
+
+        // Count remaining messages by severity
+        remainingMessages.forEach(function (message) {
+            const fatal = (message as { fatal?: boolean }).fatal;
+            if (fatal || message.severity === TextlintRuleSeverityLevelKeys.error) {
+                errors++;
+            } else if (message.severity === TextlintRuleSeverityLevelKeys.warning) {
+                warnings++;
+            } else if (message.severity === TextlintRuleSeverityLevelKeys.info) {
+                infos++;
+            }
+        });
+
         if (messages.length === 0) {
             return;
         }
@@ -88,13 +103,24 @@ export default function (results: TextlintFixResult[], options: any) {
         );
     }
 
-    if (errors > 0) {
+    const totalRemaining = errors + warnings + infos;
+    if (totalRemaining > 0) {
+        const summaryParts = [];
+        if (errors > 0) {
+            summaryParts.push(`${errors} ${pluralize("error", errors)}`);
+        }
+        if (warnings > 0) {
+            summaryParts.push(`${warnings} ${pluralize("warning", warnings)}`);
+        }
+        if (infos > 0) {
+            summaryParts.push(`${infos} ${pluralize("info", infos)}`);
+        }
+
         output += chalk[summaryColor].bold(
             [
                 // http://www.fileformat.info/info/unicode/char/2716/index.htm
                 "\u2716 Remaining ",
-                errors,
-                pluralize(" problem", errors),
+                summaryParts.join(", "),
                 "\n"
             ].join("")
         );

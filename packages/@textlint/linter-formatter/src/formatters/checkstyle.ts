@@ -4,7 +4,7 @@
  */
 
 "use strict";
-import type { TextlintResult } from "@textlint/types";
+import type { TextlintMessage, TextlintResult } from "@textlint/types";
 import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 
 //------------------------------------------------------------------------------
@@ -17,8 +17,8 @@ import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
  * @returns {string} severity level
  * @private
  */
-function getMessageType(message: { fatal?: boolean; severity: number }): string {
-    if (message.fatal || message.severity === TextlintRuleSeverityLevelKeys.error) {
+function getMessageType(message: TextlintMessage): string {
+    if (message.severity === TextlintRuleSeverityLevelKeys.error) {
         return "error";
     } else if (message.severity === TextlintRuleSeverityLevelKeys.warning) {
         return "warning";
