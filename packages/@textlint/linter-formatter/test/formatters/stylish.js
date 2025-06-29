@@ -112,10 +112,7 @@ describe("formatter:stylish", function () {
         it("should return a string in the correct format for info", function () {
             code[0].messages[0].severity = 3;
             const result = formatter(code, { color: false });
-            assert.strictEqual(
-                result,
-                "\nfoo.js\n  5:10  info  Unexpected foo  foo\n\n\u2716 1 problem (0 errors, 1 warning)\n"
-            );
+            assert.strictEqual(result, "\nfoo.js\n  5:10  info  Unexpected foo  foo\n\n\u2716 1 problem (1 info)\n");
             assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
             assert.strictEqual(chalkStub.red.bold.callCount, 0);
         });
