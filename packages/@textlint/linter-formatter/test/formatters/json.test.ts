@@ -4,20 +4,11 @@
  * @copyright 2015 Burak Yigit Kaya. All rights reserved.
  */
 
-"use strict";
 import formatter from "../../src/formatters/json.js";
 
 import { describe, it } from "vitest";
 
-//------------------------------------------------------------------------------
-// Requirements
-//------------------------------------------------------------------------------
-
 import * as assert from "node:assert";
-
-//------------------------------------------------------------------------------
-// Tests
-//------------------------------------------------------------------------------
 
 describe("formatter:json", function () {
     const code = [
@@ -50,7 +41,7 @@ describe("formatter:json", function () {
     ];
 
     it("should return passed results as a JSON string without any modification", function () {
-        const result = JSON.parse(formatter(code, { color: false }));
+        const result = JSON.parse(formatter(code as any));
         assert.deepEqual(result, code);
     });
 });

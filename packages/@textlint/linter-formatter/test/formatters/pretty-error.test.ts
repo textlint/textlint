@@ -1,5 +1,5 @@
 // LICENSE : MIT
-"use strict";
+
 import prettyError from "../../src/formatters/pretty-error.js";
 
 import { describe, it } from "vitest";
@@ -39,7 +39,7 @@ ${fooFile}:1:1
     2. 2nd line
        ^
 
-\u2716 1 problem (1 error, 0 warnings)
+\u2716 1 problem (1 error)
 `
             );
         });
@@ -142,7 +142,7 @@ ${fooFile}:6:1
     7. 
        ^
 
-\u2716 1 problem (1 error, 0 warnings)
+\u2716 1 problem (1 error)
 `
             );
         });
@@ -178,7 +178,7 @@ ${fooFile}:6:1
     7. 
        ^
 
-\u2716 1 problem (1 error, 0 warnings)
+\u2716 1 problem (1 error)
 `
             );
         });
@@ -217,7 +217,7 @@ ${ckjFile}:2:16
     3. 3rd line
                              ^
 
-\u2716 1 problem (1 error, 0 warnings)
+\u2716 1 problem (1 error)
 \u2713 1 fixable problem.
 Try to run: $ textlint --fix [file]
 `
@@ -255,7 +255,7 @@ ${fooFile}:5:10
     6. 6th line
                 ^
 
-\u2716 1 problem (0 errors, 1 warning)
+\u2716 1 problem (1 info)
 `
             );
         });

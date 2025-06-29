@@ -1,24 +1,13 @@
 /**
  * @fileoverview Tests for options.
- * @author Jonathan Kingston
+ * @author Nicholas C. Zakas
  */
 
-"use strict";
-import formatter from "../../src/formatters/tap.js";
-
+import formatter from "../../src/formatters/compact";
 import { describe, it } from "vitest";
-
-//------------------------------------------------------------------------------
-// Requirements
-//------------------------------------------------------------------------------
-
 import * as assert from "node:assert";
 
-//------------------------------------------------------------------------------
-// Tests
-//------------------------------------------------------------------------------
-
-describe("formatter:tap", function () {
+describe("formatter:compact", function () {
     describe("when passed no messages", function () {
         const code = [
             {
@@ -29,7 +18,7 @@ describe("formatter:tap", function () {
 
         it("should return nothing", function () {
             const result = formatter(code, { color: false });
-            assert.equal(result, "TAP version 13\n1..1\nok 1 - foo.js\n");
+            assert.equal(result, "");
         });
     });
 
@@ -49,32 +38,21 @@ describe("formatter:tap", function () {
             }
         ];
 
-        it("should return a string with YAML severity, line and column", function () {
+        it("should return a string in the format filename: line x, col y, Error - z for errors", function () {
             const result = formatter(code, { color: false });
-            assert.equal(
-                result,
-                "TAP version 13\n1..1\nnot ok 1 - foo.js\n  ---\n  message: Unexpected foo.\n  severity: error\n  data:\n    line: 5\n    column: 10\n    ruleId: foo\n  ...\n"
-            );
+            assert.equal(result, "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\n\n1 problem");
         });
 
-        it("should return a string with line: x, column: y, severity: warning for warnings", function () {
+        it("should return a string in the format filename: line x, col y, Warning - z for warnings", function () {
             code[0].messages[0].severity = 1;
             const result = formatter(code, { color: false });
-            assert.ok(result.indexOf("line: 5") !== -1);
-            assert.ok(result.indexOf("column: 10") !== -1);
-            assert.ok(result.indexOf("ruleId: foo") !== -1);
-            assert.ok(result.indexOf("severity: warning") !== -1);
-            assert.ok(result.indexOf("1..1") !== -1);
+            assert.equal(result, "foo.js: line 5, col 10, Warning - Unexpected foo. (foo)\n\n1 problem");
         });
 
-        it("should return a string with line: x, column: y, severity: info for info", function () {
+        it("should return a string in the format filename: line x, col y, Info - z for info", function () {
             code[0].messages[0].severity = 3;
             const result = formatter(code, { color: false });
-            assert.ok(result.indexOf("line: 5") !== -1);
-            assert.ok(result.indexOf("column: 10") !== -1);
-            assert.ok(result.indexOf("ruleId: foo") !== -1);
-            assert.ok(result.indexOf("severity: info") !== -1);
-            assert.ok(result.indexOf("1..1") !== -1);
+            assert.equal(result, "foo.js: line 5, col 10, Info - Unexpected foo. (foo)\n\n1 problem");
         });
     });
 
@@ -94,10 +72,9 @@ describe("formatter:tap", function () {
             }
         ];
 
-        it("should return a an error string", function () {
+        it("should return a string in the format filename: line x, col y, Error - z", function () {
             const result = formatter(code, { color: false });
-            assert.ok(result.indexOf("not ok") !== -1);
-            assert.ok(result.indexOf("error") !== -1);
+            assert.equal(result, "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\n\n1 problem");
         });
     });
 
@@ -119,13 +96,6 @@ describe("formatter:tap", function () {
                         line: 6,
                         column: 11,
                         ruleId: "bar"
-                    },
-                    {
-                        message: "Unexpected baz.",
-                        severity: 1,
-                        line: 7,
-                        column: 12,
-                        ruleId: "baz"
                     }
                 ]
             }
@@ -133,17 +103,10 @@ describe("formatter:tap", function () {
 
         it("should return a string with multiple entries", function () {
             const result = formatter(code, { color: false });
-            assert.ok(result.indexOf("not ok") !== -1);
-            assert.ok(result.indexOf("messages") !== -1);
-            assert.ok(result.indexOf("Unexpected foo.") !== -1);
-            assert.ok(result.indexOf("line: 5") !== -1);
-            assert.ok(result.indexOf("column: 10") !== -1);
-            assert.ok(result.indexOf("Unexpected bar.") !== -1);
-            assert.ok(result.indexOf("line: 6") !== -1);
-            assert.ok(result.indexOf("column: 11") !== -1);
-            assert.ok(result.indexOf("Unexpected baz.") !== -1);
-            assert.ok(result.indexOf("line: 7") !== -1);
-            assert.ok(result.indexOf("column: 12") !== -1);
+            assert.equal(
+                result,
+                "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\nfoo.js: line 6, col 11, Warning - Unexpected bar. (bar)\n\n2 problems"
+            );
         });
     });
 
@@ -177,8 +140,10 @@ describe("formatter:tap", function () {
 
         it("should return a string with multiple entries", function () {
             const result = formatter(code, { color: false });
-            assert.ok(result.indexOf("not ok 1") !== -1);
-            assert.ok(result.indexOf("not ok 2") !== -1);
+            assert.equal(
+                result,
+                "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\nbar.js: line 6, col 11, Warning - Unexpected bar. (bar)\n\n2 problems"
+            );
         });
     });
 
@@ -197,10 +162,7 @@ describe("formatter:tap", function () {
 
         it("should return a string without line and column", function () {
             const result = formatter(code, { color: false });
-            assert.ok(result.indexOf("line: 0") !== -1);
-            assert.ok(result.indexOf("column: 0") !== -1);
-            assert.ok(result.indexOf("severity: error") !== -1);
-            assert.ok(result.indexOf("1..1") !== -1);
+            assert.equal(result, "foo.js: line 0, col 0, Error - Couldn't find foo.js.\n\n1 problem");
         });
     });
 });

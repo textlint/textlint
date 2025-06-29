@@ -1,38 +1,13 @@
 /**
- * @fileoverview Tests for options.
- * @author Nicholas C. Zakas
+ * @fileoverview Tests for checkstyle reporter.
+ * @author Ian Christian Myers
  */
 
-"use strict";
-import formatter from "../../src/formatters/compact.js";
-
+import formatter from "../../src/formatters/checkstyle";
 import { describe, it } from "vitest";
-
-//------------------------------------------------------------------------------
-// Requirements
-//------------------------------------------------------------------------------
-
 import * as assert from "node:assert";
 
-//------------------------------------------------------------------------------
-// Tests
-//------------------------------------------------------------------------------
-
-describe("formatter:compact", function () {
-    describe("when passed no messages", function () {
-        const code = [
-            {
-                filePath: "foo.js",
-                messages: []
-            }
-        ];
-
-        it("should return nothing", function () {
-            const result = formatter(code, { color: false });
-            assert.equal(result, "");
-        });
-    });
-
+describe("formatter:checkstyle", function () {
     describe("when passed a single message", function () {
         const code = [
             {
@@ -51,19 +26,53 @@ describe("formatter:compact", function () {
 
         it("should return a string in the format filename: line x, col y, Error - z for errors", function () {
             const result = formatter(code, { color: false });
-            assert.equal(result, "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\n\n1 problem");
+            assert.equal(
+                result,
+                '<?xml version="1.0" encoding="utf-8"?><checkstyle version="4.3"><file name="foo.js"><error line="5" column="10" severity="error" message="Unexpected foo. (foo)" source="eslint.rules.foo" /></file></checkstyle>'
+            );
         });
 
         it("should return a string in the format filename: line x, col y, Warning - z for warnings", function () {
             code[0].messages[0].severity = 1;
             const result = formatter(code, { color: false });
-            assert.equal(result, "foo.js: line 5, col 10, Warning - Unexpected foo. (foo)\n\n1 problem");
+            assert.equal(
+                result,
+                '<?xml version="1.0" encoding="utf-8"?><checkstyle version="4.3"><file name="foo.js"><error line="5" column="10" severity="warning" message="Unexpected foo. (foo)" source="eslint.rules.foo" /></file></checkstyle>'
+            );
         });
 
         it("should return a string in the format filename: line x, col y, Info - z for info", function () {
             code[0].messages[0].severity = 3;
             const result = formatter(code, { color: false });
-            assert.equal(result, "foo.js: line 5, col 10, Info - Unexpected foo. (foo)\n\n1 problem");
+            assert.equal(
+                result,
+                '<?xml version="1.0" encoding="utf-8"?><checkstyle version="4.3"><file name="foo.js"><error line="5" column="10" severity="info" message="Unexpected foo. (foo)" source="eslint.rules.foo" /></file></checkstyle>'
+            );
+        });
+    });
+
+    describe("when passed a message with XML control characters", function () {
+        const code = [
+            {
+                filePath: "<>&\"'.js",
+                messages: [
+                    {
+                        fatal: true,
+                        message: "Unexpected <>&\"'.",
+                        line: "<",
+                        column: ">",
+                        ruleId: "foo>"
+                    }
+                ]
+            }
+        ];
+
+        it("should return a string in the format filename: line x, col y, Error - z", function () {
+            const result = formatter(code, { color: false });
+            assert.equal(
+                result,
+                '<?xml version="1.0" encoding="utf-8"?><checkstyle version="4.3"><file name="&lt;&gt;&amp;&quot;&apos;.js"><error line="&lt;" column="&gt;" severity="error" message="Unexpected &lt;&gt;&amp;&quot;&apos;. (foo&gt;)" source="eslint.rules.foo&gt;" /></file></checkstyle>'
+            );
         });
     });
 
@@ -85,7 +94,10 @@ describe("formatter:compact", function () {
 
         it("should return a string in the format filename: line x, col y, Error - z", function () {
             const result = formatter(code, { color: false });
-            assert.equal(result, "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\n\n1 problem");
+            assert.equal(
+                result,
+                '<?xml version="1.0" encoding="utf-8"?><checkstyle version="4.3"><file name="foo.js"><error line="5" column="10" severity="error" message="Unexpected foo. (foo)" source="eslint.rules.foo" /></file></checkstyle>'
+            );
         });
     });
 
@@ -116,7 +128,7 @@ describe("formatter:compact", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
-                "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\nfoo.js: line 6, col 11, Warning - Unexpected bar. (bar)\n\n2 problems"
+                '<?xml version="1.0" encoding="utf-8"?><checkstyle version="4.3"><file name="foo.js"><error line="5" column="10" severity="error" message="Unexpected foo. (foo)" source="eslint.rules.foo" /><error line="6" column="11" severity="warning" message="Unexpected bar. (bar)" source="eslint.rules.bar" /></file></checkstyle>'
             );
         });
     });
@@ -153,27 +165,32 @@ describe("formatter:compact", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
-                "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\nbar.js: line 6, col 11, Warning - Unexpected bar. (bar)\n\n2 problems"
+                '<?xml version="1.0" encoding="utf-8"?><checkstyle version="4.3"><file name="foo.js"><error line="5" column="10" severity="error" message="Unexpected foo. (foo)" source="eslint.rules.foo" /></file><file name="bar.js"><error line="6" column="11" severity="warning" message="Unexpected bar. (bar)" source="eslint.rules.bar" /></file></checkstyle>'
             );
         });
     });
 
-    describe("when passed one file not found message", function () {
+    describe("when passing single message without rule id", function () {
         const code = [
             {
                 filePath: "foo.js",
                 messages: [
                     {
-                        fatal: true,
-                        message: "Couldn't find foo.js."
+                        message: "Unexpected foo.",
+                        severity: 2,
+                        line: 5,
+                        column: 10
                     }
                 ]
             }
         ];
 
-        it("should return a string without line and column", function () {
+        it("should return a string in the format filename: line x, col y, Error - z for errors", function () {
             const result = formatter(code, { color: false });
-            assert.equal(result, "foo.js: line 0, col 0, Error - Couldn't find foo.js.\n\n1 problem");
+            assert.equal(
+                result,
+                '<?xml version="1.0" encoding="utf-8"?><checkstyle version="4.3"><file name="foo.js"><error line="5" column="10" severity="error" message="Unexpected foo." source="" /></file></checkstyle>'
+            );
         });
     });
 });

@@ -3,20 +3,9 @@
  * @author Ian Christian Myers
  */
 
-"use strict";
-import formatter from "../../src/formatters/jslint-xml.js";
-
+import formatter from "../../src/formatters/jslint-xml";
 import { describe, it } from "vitest";
-
-//------------------------------------------------------------------------------
-// Requirements
-//------------------------------------------------------------------------------
-
 import * as assert from "node:assert";
-
-//------------------------------------------------------------------------------
-// Tests
-//------------------------------------------------------------------------------
 
 describe("formatter:jslint-xml", function () {
     describe("when passed a single message", function () {

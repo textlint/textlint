@@ -17,7 +17,8 @@ import type { TextlintMessage, TextlintResult } from "@textlint/types";
  * @private
  */
 function getMessageType(message: TextlintMessage): string {
-    if (message.severity === 2) {
+    const messageWithFatal = message as any;
+    if (messageWithFatal.fatal || message.severity === 2) {
         return "error";
     } else if (message.severity === 1) {
         return "warning";
