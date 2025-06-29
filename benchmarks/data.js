@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751210774216,
+  "lastUpdate": 1751211876717,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -66906,6 +66906,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6102805326799999,
             "unit": "seconds",
             "range": "± 0.007840195999999966"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "627b0e7fe65391f71d7bb6c82e6441f94acff0d0",
+          "message": "feat(mcp): enhance input/output schema descriptions for linting functions",
+          "timestamp": "2025-06-30T00:40:54+09:00",
+          "tree_id": "9cec1697a01565f640ef4fe2024c1299f66594ae",
+          "url": "https://github.com/textlint/textlint/commit/627b0e7fe65391f71d7bb6c82e6441f94acff0d0"
+        },
+        "date": 1751211872110,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23256315272,
+            "unit": "seconds",
+            "range": "± 0.11344459299999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7266510777200001,
+            "unit": "seconds",
+            "range": "± 0.019579997999999987"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5998412467200002,
+            "unit": "seconds",
+            "range": "± 0.014175170000000015"
           }
         ]
       }
