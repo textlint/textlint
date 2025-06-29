@@ -20,7 +20,16 @@ const results = [
                 ruleId: "semi",
                 line: 1,
                 column: 23,
-                message: "Expected a semicolon."
+                message: "Expected a semicolon.",
+                severity: 2  // error
+            },
+            {
+                type: "lint", 
+                ruleId: "style-guide",
+                line: 2,
+                column: 1,
+                message: "Consider using a more concise expression.",
+                severity: 3  // info
             }
         ]
     }
@@ -48,7 +57,7 @@ export class TextlintMessage {
     // indexed-location
     index: number; // start with 0
     // Severity Level
-    // See src/shared/type/SeverityLevel.js
+    // 1: warning, 2: error, 3: info
     severity: number;
 }
 
@@ -62,6 +71,26 @@ export interface TextlintResult {
 export class TextlintFixCommand {
     text: string;
     range: [number, number];
+}
+```
+
+### Severity Levels
+
+The `severity` property in `TextlintMessage` indicates the severity level of the message:
+
+- `1`: **warning** - Issues that should be addressed but don't prevent the text from being processed
+- `2`: **error** - Critical issues that need to be fixed
+- `3`: **info** - Informational messages for guidance or suggestions
+
+Example:
+
+```js
+{
+    ruleId: "example-rule",
+    line: 1,
+    column: 10,
+    message: "This is an informational message",
+    severity: 3  // info level
 }
 ```
 
@@ -83,7 +112,8 @@ $ textlint --format json <file>
                 ruleId: "semi",
                 line: 1,
                 column: 23,
-                message: "Expected a semicolon."
+                message: "Expected a semicolon.",
+                severity: 2
             }
         ]
     }
