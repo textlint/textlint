@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751211876717,
+  "lastUpdate": 1751212229559,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -66948,6 +66948,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5998412467200002,
             "unit": "seconds",
             "range": "± 0.014175170000000015"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "d5f3ed58bf8a8163df77e3dec5017faf603329d4",
+          "message": "test(mcp): update tests for schema descriptions\n\n- Update outputSchema snapshot to include new descriptions for severity, line, column, fix fields\n- Add comprehensive validation for input schema descriptions\n- Add test to verify all tools have proper descriptions for severity levels\n- Verify 1-based vs 0-based indexing documentation is correct",
+          "timestamp": "2025-06-30T00:47:30+09:00",
+          "tree_id": "72094f63708da1c94891877fb3cf1a843742aeaa",
+          "url": "https://github.com/textlint/textlint/commit/d5f3ed58bf8a8163df77e3dec5017faf603329d4"
+        },
+        "date": 1751212225778,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23384223942000001,
+            "unit": "seconds",
+            "range": "± 0.145980031"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71370024302,
+            "unit": "seconds",
+            "range": "± 0.060534812999999854"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59084947902,
+            "unit": "seconds",
+            "range": "± 0.01489561100000003"
           }
         ]
       }
