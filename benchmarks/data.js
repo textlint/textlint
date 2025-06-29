@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751168883035,
+  "lastUpdate": 1751175305571,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -65814,6 +65814,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59582400708,
             "unit": "seconds",
             "range": "± 0.0068358939999999535"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "158243242+devin-ai-integration[bot]@users.noreply.github.com",
+            "name": "Devin AI",
+            "username": "devin-ai-integration[bot]"
+          },
+          "committer": {
+            "email": "158243242+devin-ai-integration[bot]@users.noreply.github.com",
+            "name": "Devin AI",
+            "username": "devin-ai-integration[bot]"
+          },
+          "distinct": true,
+          "id": "d33a70f797c5aa66da0303b1f5a9f88fbb4e580d",
+          "message": "fix: skip deploy-pr-preview for external repository PRs\n\nAdd condition to prevent the website preview deployment from running\non PRs from forked repositories, which would fail due to lack of\nwrite permissions to the gh-pages branch.\n\nThe condition 'github.event.pull_request.head.repo.full_name == github.repository'\nensures the preview job only runs for PRs from the same repository.\n\nCo-Authored-By: azu <azuciao@gmail.com>",
+          "timestamp": "2025-06-29T05:33:02Z",
+          "tree_id": "2e82b1d2347834013c12d22b556ccfc78c2d4007",
+          "url": "https://github.com/textlint/textlint/commit/d33a70f797c5aa66da0303b1f5a9f88fbb4e580d"
+        },
+        "date": 1751175301327,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21143614314000003,
+            "unit": "seconds",
+            "range": "± 0.044077014"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71991634114,
+            "unit": "seconds",
+            "range": "± 0.018025139000000134"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6007967249400001,
+            "unit": "seconds",
+            "range": "± 0.008758998000000018"
           }
         ]
       }
