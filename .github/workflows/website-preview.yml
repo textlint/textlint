@@ -17,6 +17,7 @@ permissions:
 jobs:
   preview:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         if: github.event.action != 'closed'
