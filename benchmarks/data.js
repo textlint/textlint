@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751177599750,
+  "lastUpdate": 1751181667182,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -65982,6 +65982,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58569038096,
             "unit": "seconds",
             "range": "± 0.012112244999999966"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "arukimedesu1166777@gmail.com",
+            "name": "Noritaka Kobayashi",
+            "username": "noritaka1166"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b4b4eec07b097726a41847769baf696b43a5aff0",
+          "message": "chore: fix typos (#1604)\n\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2025-06-29T16:18:26+09:00",
+          "tree_id": "0927dc1d0df58787628415a86bcb2c8a178af8ae",
+          "url": "https://github.com/textlint/textlint/commit/b4b4eec07b097726a41847769baf696b43a5aff0"
+        },
+        "date": 1751181663592,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23445762536,
+            "unit": "seconds",
+            "range": "± 0.034955930999999996"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8191963553600001,
+            "unit": "seconds",
+            "range": "± 0.06899554100000005"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.63220235496,
+            "unit": "seconds",
+            "range": "± 0.011507376000000069"
           }
         ]
       }
