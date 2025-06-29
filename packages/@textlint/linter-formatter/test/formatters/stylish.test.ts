@@ -1,51 +1,16 @@
 /**
- * @fileoverview Tests for options.
- * @author Sindre Sorhus
+ * @fileoverview Tests for stylish formatter.
  */
 
-import * as assert from "node:assert";
-import { afterEach, beforeEach, describe, it } from "vitest";
-const chalk = require("chalk");
-const proxyquire = require("proxyquire");
-const sinon = require("sinon");
+import { describe, it, expect } from "vitest";
+import stylish from "../../src/formatters/stylish.js";
 
-// Chalk protects its methods so we need to inherit from it
-// for Sinon to work.
-const chalkStub = Object.create(chalk, {
-    yellow: {
-        value(str) {
-            return chalk.yellow(str);
-        },
-        writable: true
-    },
-    red: {
-        value(str) {
-            return chalk.red(str);
-        },
-        writable: true
-    }
-});
-chalkStub.yellow.bold = chalk.yellow.bold;
-chalkStub.red.bold = chalk.red.bold;
-
-const formatter = proxyquire("../../lib/src/formatters/stylish", { chalk: chalkStub }).default;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const formatter = (code: any) => {
+    return stylish(code, { color: false });
+};
 
 describe("formatter:stylish", function () {
-    let sandbox;
-    const colorsEnabled = chalk.enabled;
-
-    beforeEach(function () {
-        chalk.enabled = false;
-        sandbox = sinon.sandbox.create();
-        sandbox.spy(chalkStub.yellow, "bold");
-        sandbox.spy(chalkStub.red, "bold");
-    });
-
-    afterEach(function () {
-        sandbox.verifyAndRestore();
-        chalk.enabled = colorsEnabled;
-    });
-
     describe("when passed no messages", function () {
         const code = [
             {
@@ -55,53 +20,88 @@ describe("formatter:stylish", function () {
         ];
 
         it("should not return message", function () {
-            const result = formatter(code as any, { color: false });
-            assert.strictEqual(result, "");
-            assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
-            assert.strictEqual(chalkStub.red.bold.callCount, 0);
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`""`);
         });
     });
 
     describe("when passed a single message", function () {
-        const code = [
-            {
-                filePath: "foo.js",
-                messages: [
-                    {
-                        message: "Unexpected foo.",
-                        severity: 2,
-                        line: 5,
-                        column: 10,
-                        ruleId: "foo"
-                    }
-                ]
-            }
-        ];
-
         it("should return a string in the correct format for errors", function () {
-            const result = formatter(code as any, { color: false });
-            assert.strictEqual(result, "\nfoo.js\n  5:10  error  Unexpected foo  foo\n\n\u2716 1 problem (1 error)\n");
-            assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
-            assert.strictEqual(chalkStub.red.bold.callCount, 1);
+            const code = [
+                {
+                    filePath: "foo.js",
+                    messages: [
+                        {
+                            message: "Unexpected foo.",
+                            severity: 2,
+                            line: 5,
+                            column: 10,
+                            ruleId: "foo"
+                        }
+                    ]
+                }
+            ];
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`
+              "
+              foo.js
+                5:10  error  Unexpected foo  foo
+
+              ✖ 1 problem (1 error, 0 warnings, 0 infos)
+              "
+            `);
         });
 
         it("should return a string in the correct format for warnings", function () {
-            code[0].messages[0].severity = 1;
-            const result = formatter(code as any, { color: false });
-            assert.strictEqual(
-                result,
-                "\nfoo.js\n  5:10  warning  Unexpected foo  foo\n\n\u2716 1 problem (1 warning)\n"
-            );
-            assert.strictEqual(chalkStub.yellow.bold.callCount, 1);
-            assert.strictEqual(chalkStub.red.bold.callCount, 0);
+            const code = [
+                {
+                    filePath: "foo.js",
+                    messages: [
+                        {
+                            message: "Unexpected foo.",
+                            severity: 1,
+                            line: 5,
+                            column: 10,
+                            ruleId: "foo"
+                        }
+                    ]
+                }
+            ];
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`
+              "
+              foo.js
+                5:10  warning  Unexpected foo  foo
+
+              ✖ 1 problem (0 errors, 1 warning, 0 infos)
+              "
+            `);
         });
 
         it("should return a string in the correct format for info", function () {
-            code[0].messages[0].severity = 3;
-            const result = formatter(code as any, { color: false });
-            assert.strictEqual(result, "\nfoo.js\n  5:10  info  Unexpected foo  foo\n\n\u2716 1 problem (1 info)\n");
-            assert.strictEqual(chalkStub.yellow.bold.callCount, 1);
-            assert.strictEqual(chalkStub.red.bold.callCount, 0);
+            const code = [
+                {
+                    filePath: "foo.js",
+                    messages: [
+                        {
+                            message: "Unexpected foo.",
+                            severity: 3,
+                            line: 5,
+                            column: 10,
+                            ruleId: "foo"
+                        }
+                    ]
+                }
+            ];
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`
+              "
+              foo.js
+                5:10  info  Unexpected foo  foo
+
+              ✖ 1 problem (0 errors, 0 warnings, 1 info)
+              "
+            `);
         });
     });
 
@@ -122,10 +122,15 @@ describe("formatter:stylish", function () {
         ];
 
         it("should return a string in the correct format", function () {
-            const result = formatter(code as any, { color: false });
-            assert.strictEqual(result, "\nfoo.js\n  5:10  error  Unexpected foo  foo\n\n\u2716 1 problem (1 error)\n");
-            assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
-            assert.strictEqual(chalkStub.red.bold.callCount, 1);
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`
+              "
+              foo.js
+                5:10  error  Unexpected foo  foo
+
+              ✖ 1 problem (1 error, 0 warnings, 0 infos)
+              "
+            `);
         });
     });
 
@@ -153,13 +158,16 @@ describe("formatter:stylish", function () {
         ];
 
         it("should return a string with multiple entries", function () {
-            const result = formatter(code as any, { color: false });
-            assert.strictEqual(
-                result,
-                "\nfoo.js\n  5:10  error    Unexpected foo  foo\n  6:11  warning  Unexpected bar  bar\n\n\u2716 2 problems (1 error, 1 warning)\n"
-            );
-            assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
-            assert.strictEqual(chalkStub.red.bold.callCount, 1);
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`
+              "
+              foo.js
+                5:10  error    Unexpected foo  foo
+                6:11  warning  Unexpected bar  bar
+
+              ✖ 2 problems (1 error, 1 warning, 0 infos)
+              "
+            `);
         });
     });
 
@@ -192,13 +200,18 @@ describe("formatter:stylish", function () {
         ];
 
         it("should return a string with multiple entries", function () {
-            const result = formatter(code as any, { color: false });
-            assert.strictEqual(
-                result,
-                "\nfoo.js\n  5:10  error  Unexpected foo  foo\n\nbar.js\n  6:11  warning  Unexpected bar  bar\n\n\u2716 2 problems (1 error, 1 warning)\n"
-            );
-            assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
-            assert.strictEqual(chalkStub.red.bold.callCount, 1);
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`
+              "
+              foo.js
+                5:10  error  Unexpected foo  foo
+
+              bar.js
+                6:11  warning  Unexpected bar  bar
+
+              ✖ 2 problems (1 error, 1 warning, 0 infos)
+              "
+            `);
         });
     });
 
@@ -239,20 +252,23 @@ describe("formatter:stylish", function () {
         ];
 
         it("should return a string with multiple entries", function () {
-            const result = formatter(code as any, { color: false });
-            assert.strictEqual(
-                result,
-                "\nfoo.js\n  " +
-                    "5:10  \u2713 error  Unexpected foo  foo\n\nbar.js\n  " +
-                    "6:11  \u2713 warning  Unexpected bar  bar\n\n" +
-                    "\u2716 2 problems (1 error, 1 warning)\n" +
-                    "\u2713 2 fixable problems.\n" +
-                    "Try to run: $ textlint --fix [file]\n"
-            );
-            assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
-            assert.strictEqual(chalkStub.red.bold.callCount, 1);
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`
+              "
+              foo.js
+                5:10  ✓ error  Unexpected foo  foo
+
+              bar.js
+                6:11  ✓ warning  Unexpected bar  bar
+
+              ✖ 2 problems (1 error, 1 warning, 0 infos)
+              ✓ 2 fixable problems.
+              Try to run: $ textlint --fix [file]
+              "
+            `);
         });
     });
+
     describe("when passed one file not found message", function () {
         const code = [
             {
@@ -267,10 +283,15 @@ describe("formatter:stylish", function () {
         ];
 
         it("should return a string without line and column", function () {
-            const result = formatter(code as any, { color: false });
-            assert.strictEqual(result, "\nfoo.js\n  0:0  error  Couldn't find foo.js\n\n\u2716 1 problem (1 error)\n");
-            assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
-            assert.strictEqual(chalkStub.red.bold.callCount, 1);
+            const result = formatter(code);
+            expect(result).toMatchInlineSnapshot(`
+              "
+              foo.js
+                0:0  error  Couldn't find foo.js
+
+              ✖ 1 problem (1 error, 0 warnings, 0 infos)
+              "
+            `);
         });
     });
 });

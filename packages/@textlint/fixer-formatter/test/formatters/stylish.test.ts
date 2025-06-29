@@ -140,7 +140,7 @@ describe("formatter:stylish", function () {
                 6:11  ✔   Unexpected bar  bar
 
               ✔ Fixed 2 problems
-              ✖ Remaining 2 errors
+              ✖ Remaining 2 errors, 0 warnings, 0 infos
               "
             `);
         });
@@ -166,7 +166,7 @@ describe("formatter:stylish", function () {
                 6:11  ✔   Unexpected bar  bar
 
               ✔ Fixed 2 problems
-              ✖ Remaining 1 error
+              ✖ Remaining 1 error, 0 warnings, 0 infos
               "
             `);
         });

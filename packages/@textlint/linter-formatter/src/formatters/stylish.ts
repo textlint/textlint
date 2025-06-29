@@ -110,19 +110,13 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     });
 
     if (total > 0) {
-        const problemParts = [];
-        if (errors > 0) {
-            problemParts.push(`${errors} ${pluralize("error", errors)}`);
-        }
-        if (warnings > 0) {
-            problemParts.push(`${warnings} ${pluralize("warning", warnings)}`);
-        }
-        if (infos > 0) {
-            problemParts.push(`${infos} ${pluralize("info", infos)}`);
-        }
-
+        const summaryParts = [
+            `${errors} ${pluralize("error", errors)}`,
+            `${warnings} ${pluralize("warning", warnings)}`,
+            `${infos} ${pluralize("info", infos)}`
+        ];
         output += chalk[summaryColor].bold(
-            ["\u2716 ", total, pluralize(" problem", total), " (", problemParts.join(", "), ")\n"].join("")
+            ["\u2716 ", total, pluralize(" problem", total), " (", summaryParts.join(", "), ")\n"].join("")
         );
     }
 

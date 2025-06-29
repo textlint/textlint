@@ -104,17 +104,11 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
 
     const totalRemaining = errors + warnings + infos;
     if (totalRemaining > 0) {
-        const summaryParts = [];
-        if (errors > 0) {
-            summaryParts.push(`${errors} ${pluralize("error", errors)}`);
-        }
-        if (warnings > 0) {
-            summaryParts.push(`${warnings} ${pluralize("warning", warnings)}`);
-        }
-        if (infos > 0) {
-            summaryParts.push(`${infos} ${pluralize("info", infos)}`);
-        }
-
+        const summaryParts = [
+            `${errors} ${pluralize("error", errors)}`,
+            `${warnings} ${pluralize("warning", warnings)}`,
+            `${infos} ${pluralize("info", infos)}`
+        ];
         output += chalk[summaryColor].bold(
             [
                 // http://www.fileformat.info/info/unicode/char/2716/index.htm
