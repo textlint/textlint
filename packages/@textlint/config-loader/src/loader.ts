@@ -280,7 +280,38 @@ For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs
                   }
     };
 };
-
+/**
+ * prefer .textlintrc config than preset.rulesConfig
+ * Do not merge configs - user config takes complete precedence when provided
+ *
+ * Rule otions priority:
+ * 1. If userRuleConfig is defined, use user config
+ * 2. If userRuleConfig is false, use user config - the rule is disabled
+ * 3. If presetRuleConfig is true or presetRulesOptions[ruleKey] is not false, use preset config
+ *    - If presetRulesOptions[ruleKey] is false by default, user can enable the rule by setting it to true
+ **/
+const getRuleOptions = ({
+    userRuleConfig,
+    presetRulesConfig
+}: {
+    userRuleConfig: Record<string, unknown> | boolean;
+    presetRulesConfig: Record<string, unknown> | boolean;
+}) => {
+    // If user config is false, the rule is disabled
+    if (userRuleConfig === false) {
+        return false;
+    }
+    // If user config is defined, use user config
+    if (userRuleConfig !== true && userRuleConfig !== undefined) {
+        return userRuleConfig;
+    }
+    // If user config is true or undefined, use preset config
+    if (userRuleConfig === true) {
+        return presetRulesConfig;
+    }
+    // Use preset config
+    return presetRulesConfig;
+};
 export async function loadPreset({
     presetName,
     presetRulesOptions,
@@ -318,30 +349,17 @@ export async function loadPreset({
       - moduleName: "textlint-rule-preset-example"
       - ruleKey: "a",
       - inputModuleName: "preset-example"
-
      */
     return Object.keys(preset.rules).map((ruleKey) => {
         const normalizedKey = normalizeTextlintPresetSubRuleKey({ preset: presetName, rule: ruleKey });
         return {
             type: "RuleInPreset",
             ruleId: normalizedKey,
-            // prefer .textlintrc config than preset.rulesConfig
-            // merge preset config with user config to preserve preset severity when user provides partial config
-            //
-            // Fix for preset + severity combination issue:
-            // When user provides partial config (e.g., { customOption: true }) for a preset rule
-            // that has severity defined (e.g., { severity: "warning", defaultOption: false }),
-            // we need to merge both objects to preserve the preset's severity setting.
-            // The previous implementation used ?? operator which completely replaced
-            // preset config when user config was present, losing preset's severity.
             rule: preset.rules[ruleKey],
-            options:
-                presetRulesOptions[ruleKey] !== undefined
-                    ? typeof presetRulesOptions[ruleKey] === "boolean" ||
-                      typeof preset.rulesConfig[ruleKey] === "boolean"
-                        ? presetRulesOptions[ruleKey] // For boolean configs, user setting takes precedence completely
-                        : { ...preset.rulesConfig[ruleKey], ...presetRulesOptions[ruleKey] } // For object configs, merge them
-                    : preset.rulesConfig[ruleKey],
+            options: getRuleOptions({
+                userRuleConfig: presetRulesOptions[ruleKey],
+                presetRulesConfig: preset.rulesConfig[ruleKey]
+            }),
             filePath: presetPackageName.filePath,
             // preset package name
             moduleName: presetPackageName.moduleName,

@@ -8,7 +8,6 @@
                 "inputModuleName": "preset-abc-with-severity",
                 "moduleName": "textlint-rule-preset-abc-with-severity",
                 "options": {
-                    "presetOption": "default",
                     "severity": "error",
                     "userOption": true
                 },
@@ -21,9 +20,7 @@
                 "inputModuleName": "preset-abc-with-severity",
                 "moduleName": "textlint-rule-preset-abc-with-severity",
                 "options": {
-                    "anotherPresetOption": "value",
-                    "customOption": "value",
-                    "severity": "warning"
+                    "customOption": "value"
                 },
                 "ruleId": "abc-with-severity/b",
                 "ruleKey": "b",
