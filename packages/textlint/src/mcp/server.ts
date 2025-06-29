@@ -77,7 +77,10 @@ export const setupServer = async (): Promise<McpServer> => {
         {
             description: "Lint files using textlint",
             inputSchema: {
-                filePaths: z.array(z.string().min(1)).nonempty()
+                filePaths: z
+                    .array(z.string().min(1).describe("File path to lint"))
+                    .nonempty()
+                    .describe("Array of file paths to lint")
             },
             outputSchema: {
                 results: z.array(
@@ -87,18 +90,19 @@ export const setupServer = async (): Promise<McpServer> => {
                             z.object({
                                 ruleId: z.string().optional(),
                                 message: z.string(),
-                                line: z.number(),
-                                column: z.number(),
-                                severity: z.number(),
+                                line: z.number().describe("Line number (1-based)"),
+                                column: z.number().describe("Column number (1-based)"),
+                                severity: z.number().describe("Severity level: 1=warning, 2=error, 3=info"),
                                 fix: z
                                     .object({
-                                        range: z.array(z.number()),
-                                        text: z.string()
+                                        range: z.array(z.number()).describe("Text range [start, end] (0-based)"),
+                                        text: z.string().describe("Replacement text")
                                     })
                                     .optional()
+                                    .describe("Fix suggestion if available")
                             })
                         ),
-                        output: z.string().optional()
+                        output: z.string().optional().describe("Fixed content if available")
                     })
                 ),
                 isError: z.boolean(),
@@ -141,8 +145,8 @@ export const setupServer = async (): Promise<McpServer> => {
         {
             description: "Lint text using textlint",
             inputSchema: {
-                text: z.string().nonempty(),
-                stdinFilename: z.string().nonempty()
+                text: z.string().nonempty().describe("Text content to lint"),
+                stdinFilename: z.string().nonempty().describe("Filename for context (e.g., 'stdin.md')")
             },
             outputSchema: {
                 filePath: z.string(),
@@ -150,18 +154,19 @@ export const setupServer = async (): Promise<McpServer> => {
                     z.object({
                         ruleId: z.string().optional(),
                         message: z.string(),
-                        line: z.number(),
-                        column: z.number(),
-                        severity: z.number(),
+                        line: z.number().describe("Line number (1-based)"),
+                        column: z.number().describe("Column number (1-based)"),
+                        severity: z.number().describe("Severity level: 1=warning, 2=error, 3=info"),
                         fix: z
                             .object({
-                                range: z.array(z.number()),
-                                text: z.string()
+                                range: z.array(z.number()).describe("Text range [start, end] (0-based)"),
+                                text: z.string().describe("Replacement text")
                             })
                             .optional()
+                            .describe("Fix suggestion if available")
                     })
                 ),
-                output: z.string().optional(),
+                output: z.string().optional().describe("Fixed content if available"),
                 isError: z.boolean(),
                 timestamp: z.string().optional(),
                 error: z.string().optional(),
@@ -198,7 +203,10 @@ export const setupServer = async (): Promise<McpServer> => {
         {
             description: "Get lint-fixed content of files using textlint",
             inputSchema: {
-                filePaths: z.array(z.string().min(1)).nonempty()
+                filePaths: z
+                    .array(z.string().min(1).describe("File path to fix"))
+                    .nonempty()
+                    .describe("Array of file paths to get fixed content for")
             },
             outputSchema: {
                 results: z.array(
@@ -208,18 +216,19 @@ export const setupServer = async (): Promise<McpServer> => {
                             z.object({
                                 ruleId: z.string().optional(),
                                 message: z.string(),
-                                line: z.number(),
-                                column: z.number(),
-                                severity: z.number(),
+                                line: z.number().describe("Line number (1-based)"),
+                                column: z.number().describe("Column number (1-based)"),
+                                severity: z.number().describe("Severity level: 1=warning, 2=error, 3=info"),
                                 fix: z
                                     .object({
-                                        range: z.array(z.number()),
-                                        text: z.string()
+                                        range: z.array(z.number()).describe("Text range [start, end] (0-based)"),
+                                        text: z.string().describe("Replacement text")
                                     })
                                     .optional()
+                                    .describe("Fix suggestion if available")
                             })
                         ),
-                        output: z.string().optional()
+                        output: z.string().optional().describe("Fixed content")
                     })
                 ),
                 isError: z.boolean(),
@@ -262,8 +271,8 @@ export const setupServer = async (): Promise<McpServer> => {
         {
             description: "Get lint-fixed content of text using textlint",
             inputSchema: {
-                text: z.string().nonempty(),
-                stdinFilename: z.string().nonempty()
+                text: z.string().nonempty().describe("Text content to fix"),
+                stdinFilename: z.string().nonempty().describe("Filename for context (e.g., 'stdin.md')")
             },
             outputSchema: {
                 filePath: z.string(),
@@ -271,18 +280,19 @@ export const setupServer = async (): Promise<McpServer> => {
                     z.object({
                         ruleId: z.string().optional(),
                         message: z.string(),
-                        line: z.number(),
-                        column: z.number(),
-                        severity: z.number(),
+                        line: z.number().describe("Line number (1-based)"),
+                        column: z.number().describe("Column number (1-based)"),
+                        severity: z.number().describe("Severity level: 1=warning, 2=error, 3=info"),
                         fix: z
                             .object({
-                                range: z.array(z.number()),
-                                text: z.string()
+                                range: z.array(z.number()).describe("Text range [start, end] (0-based)"),
+                                text: z.string().describe("Replacement text")
                             })
                             .optional()
+                            .describe("Fix suggestion if available")
                     })
                 ),
-                output: z.string().optional(),
+                output: z.string().optional().describe("Fixed content"),
                 isError: z.boolean(),
                 timestamp: z.string().optional(),
                 error: z.string().optional(),

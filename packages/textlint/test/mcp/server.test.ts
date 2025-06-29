@@ -113,6 +113,17 @@ describe("MCP Server", () => {
                 assert.ok(lintFileTool, "lintFile tool should exist");
                 assert.ok(lintFileTool.outputSchema, "lintFile tool should have outputSchema defined");
 
+                // Verify that input schema contains descriptions
+                assert.ok(lintFileTool.inputSchema, "lintFile tool should have inputSchema defined");
+                const inputSchema = lintFileTool.inputSchema as Record<string, unknown>;
+                const inputProperties = inputSchema.properties as Record<string, { description?: string }>;
+                const filePathsProperty = inputProperties?.filePaths;
+                assert.ok(filePathsProperty?.description, "filePaths field should have description");
+                assert.ok(
+                    filePathsProperty.description?.includes("file paths to lint"),
+                    "filePaths description should mention linting"
+                );
+
                 // Use inline snapshot for schema structure
                 expect(lintFileTool.outputSchema).toMatchInlineSnapshot(`
                   {
@@ -137,18 +148,22 @@ describe("MCP Server", () => {
                                 "additionalProperties": false,
                                 "properties": {
                                   "column": {
+                                    "description": "Column number (1-based)",
                                     "type": "number",
                                   },
                                   "fix": {
                                     "additionalProperties": false,
+                                    "description": "Fix suggestion if available",
                                     "properties": {
                                       "range": {
+                                        "description": "Text range [start, end] (0-based)",
                                         "items": {
                                           "type": "number",
                                         },
                                         "type": "array",
                                       },
                                       "text": {
+                                        "description": "Replacement text",
                                         "type": "string",
                                       },
                                     },
@@ -159,6 +174,7 @@ describe("MCP Server", () => {
                                     "type": "object",
                                   },
                                   "line": {
+                                    "description": "Line number (1-based)",
                                     "type": "number",
                                   },
                                   "message": {
@@ -168,6 +184,7 @@ describe("MCP Server", () => {
                                     "type": "string",
                                   },
                                   "severity": {
+                                    "description": "Severity level: 1=warning, 2=error, 3=info",
                                     "type": "number",
                                   },
                                 },
@@ -182,6 +199,7 @@ describe("MCP Server", () => {
                               "type": "array",
                             },
                             "output": {
+                              "description": "Fixed content if available",
                               "type": "string",
                             },
                           },
@@ -215,6 +233,21 @@ describe("MCP Server", () => {
 
                 assert.ok(lintTextTool, "lintText tool should exist");
                 assert.ok(lintTextTool.outputSchema, "lintText tool should have outputSchema defined");
+
+                // Verify that schema contains descriptions for severity field
+                const schema = lintTextTool.outputSchema as Record<string, unknown>;
+                const properties = schema.properties as Record<string, unknown>;
+                const messagesProperty = properties?.messages as {
+                    items?: { properties?: Record<string, { description?: string }> };
+                };
+                if (messagesProperty?.items?.properties) {
+                    const severityProperty = messagesProperty.items.properties.severity;
+                    assert.ok(severityProperty?.description, "severity field should have description");
+                    assert.ok(
+                        severityProperty.description?.includes("1=warning, 2=error, 3=info"),
+                        "severity description should explain levels"
+                    );
+                }
             });
 
             it("should have proper schema for getLintFixedFileContent tool", async () => {
@@ -223,6 +256,17 @@ describe("MCP Server", () => {
 
                 assert.ok(fixFileTool, "getLintFixedFileContent tool should exist");
                 assert.ok(fixFileTool.outputSchema, "getLintFixedFileContent tool should have outputSchema defined");
+
+                // Verify that input schema contains descriptions
+                assert.ok(fixFileTool.inputSchema, "getLintFixedFileContent tool should have inputSchema defined");
+                const inputSchema = fixFileTool.inputSchema as Record<string, unknown>;
+                const inputProperties = inputSchema.properties as Record<string, { description?: string }>;
+                const filePathsProperty = inputProperties?.filePaths;
+                assert.ok(filePathsProperty?.description, "filePaths field should have description");
+                assert.ok(
+                    filePathsProperty.description?.includes("file paths"),
+                    "filePaths description should mention file paths"
+                );
             });
 
             it("should have proper schema for getLintFixedTextContent tool", async () => {
@@ -231,6 +275,19 @@ describe("MCP Server", () => {
 
                 assert.ok(fixTextTool, "getLintFixedTextContent tool should exist");
                 assert.ok(fixTextTool.outputSchema, "getLintFixedTextContent tool should have outputSchema defined");
+
+                // Verify that input schema contains descriptions
+                assert.ok(fixTextTool.inputSchema, "getLintFixedTextContent tool should have inputSchema defined");
+                const inputSchema = fixTextTool.inputSchema as Record<string, unknown>;
+                const inputProperties = inputSchema.properties as Record<string, { description?: string }>;
+                const textProperty = inputProperties?.text;
+                const stdinFilenameProperty = inputProperties?.stdinFilename;
+                assert.ok(textProperty?.description, "text field should have description");
+                assert.ok(stdinFilenameProperty?.description, "stdinFilename field should have description");
+                assert.ok(
+                    stdinFilenameProperty.description?.includes("context"),
+                    "stdinFilename description should mention context"
+                );
             });
 
             it("should validate output against defined schema", async () => {
@@ -318,6 +375,91 @@ describe("MCP Server", () => {
                     false,
                     "Structured content should have isError=false"
                 );
+            });
+        });
+
+        describe("Schema Descriptions", () => {
+            it("should have comprehensive descriptions for all schema fields", async () => {
+                const { tools } = await client.listTools();
+
+                for (const tool of tools) {
+                    // Check input schema descriptions
+                    const inputSchema = tool.inputSchema as Record<string, unknown>;
+                    const inputProperties = inputSchema?.properties as Record<string, { description?: string }>;
+
+                    if (inputProperties) {
+                        Object.entries(inputProperties).forEach(([fieldName, fieldSchema]) => {
+                            assert.ok(
+                                fieldSchema.description,
+                                `Input field ${fieldName} in tool ${tool.name} should have description`
+                            );
+                        });
+                    }
+
+                    // Check output schema descriptions for message fields
+                    const outputSchema = tool.outputSchema as Record<string, unknown>;
+                    const outputProperties = outputSchema?.properties as Record<string, unknown>;
+
+                    if (outputProperties) {
+                        // Check if messages array exists and has severity descriptions
+                        const checkMessageSchema = (schema: unknown) => {
+                            const messageSchema = schema as {
+                                items?: { properties?: Record<string, { description?: string }> };
+                            };
+                            if (messageSchema?.items?.properties) {
+                                const severityProperty = messageSchema.items.properties.severity;
+                                if (severityProperty) {
+                                    assert.ok(
+                                        severityProperty.description,
+                                        `severity field in tool ${tool.name} should have description`
+                                    );
+                                    assert.ok(
+                                        severityProperty.description?.includes("1=warning, 2=error, 3=info"),
+                                        `severity description in tool ${tool.name} should explain levels`
+                                    );
+                                }
+
+                                const lineProperty = messageSchema.items.properties.line;
+                                if (lineProperty) {
+                                    assert.ok(
+                                        lineProperty.description?.includes("1-based"),
+                                        `line description in tool ${tool.name} should mention 1-based indexing`
+                                    );
+                                }
+
+                                const columnProperty = messageSchema.items.properties.column;
+                                if (columnProperty) {
+                                    assert.ok(
+                                        columnProperty.description?.includes("1-based"),
+                                        `column description in tool ${tool.name} should mention 1-based indexing`
+                                    );
+                                }
+
+                                const fixProperty = messageSchema.items.properties.fix;
+                                if (fixProperty) {
+                                    assert.ok(
+                                        fixProperty.description?.includes("Fix suggestion"),
+                                        `fix description in tool ${tool.name} should mention fix suggestion`
+                                    );
+                                }
+                            }
+                        };
+
+                        // Check messages in different possible locations
+                        if (outputProperties.messages) {
+                            checkMessageSchema(outputProperties.messages);
+                        }
+
+                        if (outputProperties.results) {
+                            const resultsSchema = outputProperties.results as {
+                                items?: { properties?: Record<string, unknown> };
+                            };
+                            if (resultsSchema?.items?.properties?.messages) {
+                                checkMessageSchema(resultsSchema.items.properties.messages);
+                            }
+                        }
+                    }
+                }
             });
         });
     });
