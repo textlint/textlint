@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751205585649,
+  "lastUpdate": 1751205647144,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -66486,6 +66486,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5931306880000001,
             "unit": "seconds",
             "range": "± 0.007470736000000033"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "f78e5843d3353b13c99ead9074f7965cc99d2396",
+          "message": "docs: update formatter.md to document severity levels\n\n- Add detailed explanation of severity levels (1: warning, 2: error, 3: info)\n- Update examples to include severity property\n- Remove outdated reference to SeverityLevel.js file\n- Add practical examples showing info level usage",
+          "timestamp": "2025-06-29T22:57:51+09:00",
+          "tree_id": "960e275541711341ee32429fd917f494f8f8f2f7",
+          "url": "https://github.com/textlint/textlint/commit/f78e5843d3353b13c99ead9074f7965cc99d2396"
+        },
+        "date": 1751205643625,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22890935531999998,
+            "unit": "seconds",
+            "range": "± 0.103982348"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7575179629200002,
+            "unit": "seconds",
+            "range": "± 0.04063679499999995"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59469032952,
+            "unit": "seconds",
+            "range": "± 0.023393832999999975"
           }
         ]
       }
