@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751208299170,
+  "lastUpdate": 1751209074451,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -66612,6 +66612,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6085603842400001,
             "unit": "seconds",
             "range": "± 0.027707939999999986"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "e9e406f315bc2cdbed6d1c7486cbda9cb066b856",
+          "message": "refactor: remove unused dependencies from package.json and pnpm-lock.yaml",
+          "timestamp": "2025-06-29T23:54:54+09:00",
+          "tree_id": "eb793a96093e66ce2e5ba5378f87f50c31ac5f82",
+          "url": "https://github.com/textlint/textlint/commit/e9e406f315bc2cdbed6d1c7486cbda9cb066b856"
+        },
+        "date": 1751209070258,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23208228016000004,
+            "unit": "seconds",
+            "range": "± 0.13447494799999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.72741480476,
+            "unit": "seconds",
+            "range": "± 0.041144978999999804"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59030789496,
+            "unit": "seconds",
+            "range": "± 0.013871273000000017"
           }
         ]
       }
