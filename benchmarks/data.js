@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751209074451,
+  "lastUpdate": 1751209243507,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -66654,6 +66654,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59030789496,
             "unit": "seconds",
             "range": "± 0.013871273000000017"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7d56491ecefc1510819c6026efcb2c7cadbc3361",
+          "message": "feat: implement `info` severity level (#1610)\n\n* feat: add support for 'info' severity level in textlint rules and formatters\n\n* feat: implement 'info' severity level handling in stylish and checkstyle formatters\n\n* feat: add support for 'info' severity level in various formatters and tests\n\n* fix: correct stylish formatter test expectation for info severity level\n\nThe test was expecting '1 warning' but should expect '1 info' when severity is 3.\nThis aligns with the actual formatter output that correctly displays info messages.\n\n* refactor: remove @textlint/kernel dependency from formatters\n\n- Replace TextlintRuleSeverityLevelKeys with numeric values (1: warning, 2: error, 3: info)\n- Remove dependency on @textlint/kernel from formatter packages to maintain clean architecture\n- Update all 10 formatters: stylish, compact, unix, table, checkstyle, junit, tap, pretty-error, fixer-formatter\n- All tests continue to pass with numeric severity level checks\n\n* docs: update formatter.md to document severity levels\n\n- Add detailed explanation of severity levels (1: warning, 2: error, 3: info)\n- Update examples to include severity property\n- Remove outdated reference to SeverityLevel.js file\n- Add practical examples showing info level usage\n\n* test: add comprehensive tests for filter-severity-process\n\n- Add tests for filterWarningMessages function to ensure it filters out info messages (severity 3) and warning messages (severity 1)\n- Add tests for through function to verify it passes all messages unchanged\n- Add tests for createSeverityFilter to verify --quiet flag behavior\n- Ensure info messages are properly filtered when using --quiet mode\n- Tests validate that only error messages (severity 2) are shown in quiet mode\n\n* fix: correct table formatter test expectation for info severity\n\n- Fix test case to expect '1 Info' instead of '1 Warning' for info severity (3)\n- Update warningCount from 1 to 0 in test data to match actual behavior\n- Info messages should be counted separately from warnings and errors\n- Table formatter correctly displays info messages with their own category\n\n* refactor: remove deprecated createFormatter test from linter formatter tests\n\n* Add tests for various formatters in the linter-formatter package\n\n- Implement tests for the pretty-error formatter to validate error output formatting.\n- Add tests for the stylish formatter to ensure correct handling of messages and severity levels.\n- Create tests for the table formatter to verify the output structure for different message scenarios.\n- Introduce tests for the tap formatter to check the output format for single and multiple messages.\n- Develop tests for the unix formatter to confirm the correct formatting of error messages across multiple files.\n\n* refactor: update table formatter tests to use expect and inline snapshots\n\n* refactor: remove deprecated tests and add new comprehensive tests for formatter functionality\n\n* refactor: streamline error summary formatting in stylish formatter and tests\n\n* refactor: remove unused dependencies from package.json and pnpm-lock.yaml",
+          "timestamp": "2025-06-29T23:58:53+09:00",
+          "tree_id": "8ac8e0546a7c1c983e4848476fe6ea49b3e102c7",
+          "url": "https://github.com/textlint/textlint/commit/7d56491ecefc1510819c6026efcb2c7cadbc3361"
+        },
+        "date": 1751209240034,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21692810662000003,
+            "unit": "seconds",
+            "range": "± 0.037303984999999984"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.76337395442,
+            "unit": "seconds",
+            "range": "± 0.049133066"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6169798932200001,
+            "unit": "seconds",
+            "range": "± 0.011730390999999951"
           }
         ]
       }
