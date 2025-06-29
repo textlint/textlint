@@ -6,6 +6,7 @@
 "use strict";
 import type { TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
+import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 
 import chalk from "chalk";
 // @ts-expect-error no types
@@ -39,6 +40,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     let totalFixable = 0;
     let errors = 0;
     let warnings = 0;
+    let infos = 0;
     let summaryColor = "yellow" as "yellow" | "red";
     const greenColor = "green";
 
@@ -60,11 +62,19 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
                 if (message.fix) {
                     totalFixable++;
                 }
-                if ((message as any).fatal || message.severity === 2) {
+                const fatal = (message as { fatal?: boolean }).fatal;
+                if (fatal || message.severity === TextlintRuleSeverityLevelKeys.error) {
                     messageType = fixableIcon + chalk.red("error");
                     summaryColor = "red";
                     errors++;
+                } else if (message.severity === TextlintRuleSeverityLevelKeys.warning) {
+                    messageType = fixableIcon + chalk.yellow("warning");
+                    warnings++;
+                } else if (message.severity === TextlintRuleSeverityLevelKeys.info) {
+                    messageType = fixableIcon + chalk.green("info");
+                    infos++;
                 } else {
+                    // fallback for other severity levels
                     messageType = fixableIcon + chalk.yellow("warning");
                     warnings++;
                 }
@@ -101,19 +111,19 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     });
 
     if (total > 0) {
+        const problemParts = [];
+        if (errors > 0) {
+            problemParts.push(`${errors} ${pluralize("error", errors)}`);
+        }
+        if (warnings > 0) {
+            problemParts.push(`${warnings} ${pluralize("warning", warnings)}`);
+        }
+        if (infos > 0) {
+            problemParts.push(`${infos} ${pluralize("info", infos)}`);
+        }
+
         output += chalk[summaryColor].bold(
-            [
-                "\u2716 ",
-                total,
-                pluralize(" problem", total),
-                " (",
-                errors,
-                pluralize(" error", errors),
-                ", ",
-                warnings,
-                pluralize(" warning", warnings),
-                ")\n"
-            ].join("")
+            ["\u2716 ", total, pluralize(" problem", total), " (", problemParts.join(", "), ")\n"].join("")
         );
     }
 

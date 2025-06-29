@@ -7,6 +7,7 @@
 "use strict";
 import type { TextlintMessage } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
+import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 
 //------------------------------------------------------------------------------
 // Requirements
@@ -44,9 +45,14 @@ function drawTable(messages: TextlintMessage[]): string {
 
     messages.forEach(function (message: TextlintMessage) {
         let messageType;
+        const fatal = (message as { fatal?: boolean }).fatal;
 
-        if ((message as any).fatal || message.severity === 2) {
+        if (fatal || message.severity === TextlintRuleSeverityLevelKeys.error) {
             messageType = chalk.red("error");
+        } else if (message.severity === TextlintRuleSeverityLevelKeys.warning) {
+            messageType = chalk.yellow("warning");
+        } else if (message.severity === TextlintRuleSeverityLevelKeys.info) {
+            messageType = chalk.green("info");
         } else {
             messageType = chalk.yellow("warning");
         }
@@ -118,19 +124,38 @@ function formatter(report: any, options: FormatterOptions) {
     let output = "";
     let errorCount = 0;
     let warningCount = 0;
+    let infoCount = 0;
 
     report.forEach(function (fileReport: any) {
-        errorCount += fileReport.errorCount;
-        warningCount += fileReport.warningCount;
+        fileReport.messages.forEach(function (message: TextlintMessage) {
+            const fatal = (message as { fatal?: boolean }).fatal;
+            if (fatal || message.severity === TextlintRuleSeverityLevelKeys.error) {
+                errorCount++;
+            } else if (message.severity === TextlintRuleSeverityLevelKeys.warning) {
+                warningCount++;
+            } else if (message.severity === TextlintRuleSeverityLevelKeys.info) {
+                infoCount++;
+            }
+        });
     });
 
-    if (errorCount || warningCount) {
+    if (errorCount || warningCount || infoCount) {
         output = drawReport(report);
     }
 
-    output += `\n${table(
-        [[chalk.red(pluralize("Error", errorCount, true))], [chalk.yellow(pluralize("Warning", warningCount, true))]],
-        {
+    const tableData = [];
+    if (errorCount > 0) {
+        tableData.push([chalk.red(pluralize("Error", errorCount, true))]);
+    }
+    if (warningCount > 0) {
+        tableData.push([chalk.yellow(pluralize("Warning", warningCount, true))]);
+    }
+    if (infoCount > 0) {
+        tableData.push([chalk.green(pluralize("Info", infoCount, true))]);
+    }
+
+    if (tableData.length > 0) {
+        output += `\n${table(tableData, {
             columns: {
                 0: {
                     width: 110,
@@ -140,8 +165,8 @@ function formatter(report: any, options: FormatterOptions) {
             drawHorizontalLine() {
                 return true;
             }
-        }
-    )}`;
+        })}`;
+    }
 
     if (!useColor) {
         return stripAnsi(output);

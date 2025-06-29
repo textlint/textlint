@@ -6,6 +6,7 @@ import { TextlintRuleSeverityLevelKeys } from "../context/TextlintRuleSeverityLe
 
 /**
  * Filter messages by their severity.
+ * When quiet mode is enabled, only show error messages (severity 2).
  * @param {TextlintMessage[]} messages
  * @returns {TextlintMessage[]} filtered messages
  */

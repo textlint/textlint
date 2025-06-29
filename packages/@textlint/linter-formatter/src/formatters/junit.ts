@@ -4,6 +4,7 @@
  */
 "use strict";
 import type { TextlintResult } from "@textlint/types";
+import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 
 import lodash from "lodash";
 
@@ -11,9 +12,13 @@ import lodash from "lodash";
 // Helper Functions
 //------------------------------------------------------------------------------
 
-function getMessageType(message: any): string {
-    if (message.fatal || message.severity === 2) {
+function getMessageType(message: { fatal?: boolean; severity: number }): string {
+    if (message.fatal || message.severity === TextlintRuleSeverityLevelKeys.error) {
         return "Error";
+    } else if (message.severity === TextlintRuleSeverityLevelKeys.warning) {
+        return "Warning";
+    } else if (message.severity === TextlintRuleSeverityLevelKeys.info) {
+        return "Info";
     } else {
         return "Warning";
     }
@@ -37,7 +42,8 @@ function formatter(results: TextlintResult[]) {
         }
 
         messages.forEach(function (message) {
-            const type = (message as any).fatal ? "error" : "failure";
+            const fatal = (message as { fatal?: boolean }).fatal;
+            const type = fatal ? "error" : "failure";
             output += `<testcase time="0" name="org.eslint.${message.ruleId || "unknown"}">`;
             output += `<${type} message="${lodash.escape(message.message || "")}">`;
             output += "<![CDATA[";

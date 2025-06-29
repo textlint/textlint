@@ -5,6 +5,7 @@
 
 "use strict";
 import type { TextlintResult } from "@textlint/types";
+import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 
 import yaml from "js-yaml";
 
@@ -17,9 +18,13 @@ import yaml from "js-yaml";
  * @param {object} message Individual error message provided by eslint
  * @returns {String} Error level string
  */
-function getMessageType(message: any): string {
-    if (message.fatal || message.severity === 2) {
+function getMessageType(message: { fatal?: boolean; severity: number }): string {
+    if (message.fatal || message.severity === TextlintRuleSeverityLevelKeys.error) {
         return "error";
+    } else if (message.severity === TextlintRuleSeverityLevelKeys.warning) {
+        return "warning";
+    } else if (message.severity === TextlintRuleSeverityLevelKeys.info) {
+        return "info";
     } else {
         return "warning";
     }

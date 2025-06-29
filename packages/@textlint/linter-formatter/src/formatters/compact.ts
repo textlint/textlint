@@ -5,14 +5,19 @@
 
 "use strict";
 import type { TextlintResult } from "@textlint/types";
+import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 
 //------------------------------------------------------------------------------
 // Helper Functions
 //------------------------------------------------------------------------------
 
-function getMessageType(message: any): string {
-    if (message.fatal || message.severity === 2) {
+function getMessageType(message: { fatal?: boolean; severity: number }): string {
+    if (message.fatal || message.severity === TextlintRuleSeverityLevelKeys.error) {
         return "Error";
+    } else if (message.severity === TextlintRuleSeverityLevelKeys.warning) {
+        return "Warning";
+    } else if (message.severity === TextlintRuleSeverityLevelKeys.info) {
+        return "Info";
     } else {
         return "Warning";
     }

@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "a": {
+      "severity": "info"
+    }
+  }
+}

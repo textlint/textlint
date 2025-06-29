@@ -31,7 +31,7 @@ export function getSeverity(ruleConfig?: TextlintRuleOptions): TextlintRuleSever
         if (!isSeverityLevelValue(severityValue)) {
             throw new Error(`Please set following value to severity:
 "rule-key": {
-    "severity": "<warning|error>"
+    "severity": "<info|warning|error>"
 }`);
         }
         return severityValue;

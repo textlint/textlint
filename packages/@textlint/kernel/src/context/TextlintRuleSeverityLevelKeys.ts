@@ -7,7 +7,7 @@ export const TextlintRuleSeverityLevelKeys: {
     [index in TextlintRuleSeverityLevelKey]: TextlintRuleSeverityLevel;
 } = {
     none: 0,
-    info: 0,
     warning: 1,
-    error: 2
+    error: 2,
+    info: 3
 };
