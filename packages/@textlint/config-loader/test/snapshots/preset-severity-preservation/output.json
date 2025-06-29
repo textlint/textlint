@@ -30,7 +30,9 @@
                 "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-with-severity/index.js",
                 "inputModuleName": "preset-abc-with-severity",
                 "moduleName": "textlint-rule-preset-abc-with-severity",
-                "options": true,
+                "options": {
+                    "severity": "warning"
+                },
                 "ruleId": "abc-with-severity/c",
                 "ruleKey": "c",
                 "type": "RuleInPreset"

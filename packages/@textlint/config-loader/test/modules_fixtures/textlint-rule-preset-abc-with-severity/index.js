@@ -7,6 +7,6 @@ module.exports = {
     rulesConfig: {
         a: { severity: "warning", presetOption: "default" },
         b: { severity: "warning", anotherPresetOption: "value" },
-        c: true
+        c: { severity: "warning" }
     }
 };
