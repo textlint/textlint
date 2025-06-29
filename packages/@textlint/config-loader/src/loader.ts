@@ -305,11 +305,11 @@ const getRuleOptions = ({
     if (userRuleConfig !== true && userRuleConfig !== undefined) {
         return userRuleConfig;
     }
-    // If user config is true or undefined, use preset config
+    // If user config is true, use preset config
     if (userRuleConfig === true) {
         return presetRulesConfig;
     }
-    // Use preset config
+    // In other cases, use preset config
     return presetRulesConfig;
 };
 export async function loadPreset({
