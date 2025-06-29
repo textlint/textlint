@@ -1,0 +1,79 @@
+{
+    "exitCode": 1,
+    "output": [
+        {
+            "messages": [
+                {
+                    "type": "lint",
+                    "ruleId": "abc-with-severity/a",
+                    "message": "Rule A report",
+                    "index": 0,
+                    "line": 1,
+                    "column": 1,
+                    "range": [
+                        0,
+                        6
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 1
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 7
+                        }
+                    },
+                    "severity": 2
+                },
+                {
+                    "type": "lint",
+                    "ruleId": "abc-with-severity/b",
+                    "message": "Rule B report",
+                    "index": 0,
+                    "line": 1,
+                    "column": 1,
+                    "range": [
+                        0,
+                        6
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 1
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 7
+                        }
+                    },
+                    "severity": 1
+                },
+                {
+                    "type": "lint",
+                    "ruleId": "abc-with-severity/c",
+                    "message": "Rule C-sub1 report",
+                    "index": 0,
+                    "line": 1,
+                    "column": 1,
+                    "range": [
+                        0,
+                        6
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 1
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 7
+                        }
+                    },
+                    "severity": 1
+                }
+            ],
+            "filePath": "<snapshots>/preset-severity-preservation/input.md"
+        }
+    ]
+}

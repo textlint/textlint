@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "preset-abc-with-severity": {
+      "a": {
+        "severity": "error"
+      },
+      "b": {
+        "severity": "warning"
+      }
+    }
+  }
+}
