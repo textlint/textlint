@@ -38,6 +38,29 @@ foo.js
         });
     });
 
+    describe("when passed a single info message", function () {
+        const code = [
+            {
+                filePath: "foo.js",
+                applyingMessages: [{ message: "Unexpected foo.", severity: 3, line: 5, column: 10, ruleId: "foo" }],
+                remainingMessages: []
+            }
+        ];
+
+        it("should return a string in the correct format for info", function () {
+            const result = formatter(code, { color: false });
+            assert.equal(
+                result,
+                `
+foo.js
+  5:10  ✔   Unexpected foo  foo
+
+✔ Fixed 1 problem
+`
+            );
+        });
+    });
+
     describe("when passed multiple messages", function () {
         const code = [
             {

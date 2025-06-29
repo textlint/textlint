@@ -129,6 +129,46 @@ describe("formatter:table", function () {
             const result = formatter(code, { color: false });
             assert.equal(result, expectedOutput);
         });
+
+        it("should return a string in the correct format for info", function () {
+            const code = [
+                {
+                    filePath: "foo.js",
+                    messages: [
+                        {
+                            message: "Unexpected foo.",
+                            severity: 3,
+                            line: 5,
+                            column: 10,
+                            ruleId: "foo"
+                        }
+                    ],
+                    errorCount: 0,
+                    warningCount: 1
+                }
+            ];
+
+            let expectedOutput = [
+                "",
+                "foo.js",
+                "",
+                "║ Line     │ Column   │ Type     │ Message                                                │ Rule ID              ║",
+                "╟──────────┼──────────┼──────────┼────────────────────────────────────────────────────────┼──────────────────────╢",
+                "║ 5        │ 10       │ info     │ Unexpected foo.                                        │ foo                  ║",
+                "",
+                "╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗",
+                "║ 0 Errors                                                                                                       ║",
+                "╟────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢",
+                "║ 1 Warning                                                                                                      ║",
+                "╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝",
+                ""
+            ];
+
+            expectedOutput = expectedOutput.join("\n");
+
+            const result = formatter(code, { color: false });
+            assert.equal(result, expectedOutput);
+        });
     });
 
     describe("when passed a fatal error message", function () {

@@ -59,6 +59,12 @@ describe("formatter:compact", function () {
             const result = formatter(code, { color: false });
             assert.equal(result, "foo.js: line 5, col 10, Warning - Unexpected foo. (foo)\n\n1 problem");
         });
+
+        it("should return a string in the format filename: line x, col y, Info - z for info", function () {
+            code[0].messages[0].severity = 3;
+            const result = formatter(code, { color: false });
+            assert.equal(result, "foo.js: line 5, col 10, Info - Unexpected foo. (foo)\n\n1 problem");
+        });
     });
 
     describe("when passed a fatal error message", function () {

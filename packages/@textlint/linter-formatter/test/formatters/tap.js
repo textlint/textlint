@@ -66,6 +66,16 @@ describe("formatter:tap", function () {
             assert.ok(result.indexOf("severity: warning") !== -1);
             assert.ok(result.indexOf("1..1") !== -1);
         });
+
+        it("should return a string with line: x, column: y, severity: info for info", function () {
+            code[0].messages[0].severity = 3;
+            const result = formatter(code, { color: false });
+            assert.ok(result.indexOf("line: 5") !== -1);
+            assert.ok(result.indexOf("column: 10") !== -1);
+            assert.ok(result.indexOf("ruleId: foo") !== -1);
+            assert.ok(result.indexOf("severity: info") !== -1);
+            assert.ok(result.indexOf("1..1") !== -1);
+        });
     });
 
     describe("when passed a fatal error message", function () {

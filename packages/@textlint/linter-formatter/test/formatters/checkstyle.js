@@ -51,6 +51,15 @@ describe("formatter:checkstyle", function () {
                 '<?xml version="1.0" encoding="utf-8"?><checkstyle version="4.3"><file name="foo.js"><error line="5" column="10" severity="warning" message="Unexpected foo. (foo)" source="eslint.rules.foo" /></file></checkstyle>'
             );
         });
+
+        it("should return a string in the format filename: line x, col y, Info - z for info", function () {
+            code[0].messages[0].severity = 3;
+            const result = formatter(code, { color: false });
+            assert.equal(
+                result,
+                '<?xml version="1.0" encoding="utf-8"?><checkstyle version="4.3"><file name="foo.js"><error line="5" column="10" severity="info" message="Unexpected foo. (foo)" source="eslint.rules.foo" /></file></checkstyle>'
+            );
+        });
     });
 
     describe("when passed a message with XML control characters", function () {

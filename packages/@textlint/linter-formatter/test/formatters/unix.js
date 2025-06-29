@@ -60,6 +60,12 @@ describe("formatter:compact", function () {
             const result = formatter(code, { color: false });
             assert.equal(result, "foo.js:5:10: Unexpected foo. [Warning/foo]\n\n1 problem");
         });
+
+        it("should return a string in the format filename:line:column: info [Info/rule_id]", function () {
+            code[0].messages[0].severity = 3;
+            const result = formatter(code, { color: false });
+            assert.equal(result, "foo.js:5:10: Unexpected foo. [Info/foo]\n\n1 problem");
+        });
     });
 
     describe("when passed a fatal error message", function () {

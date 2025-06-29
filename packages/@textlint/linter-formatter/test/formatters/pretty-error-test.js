@@ -224,4 +224,40 @@ Try to run: $ textlint --fix [file]
             );
         });
     });
+    describe("when contain info severity", function () {
+        it("should return output for info level", function () {
+            const fooFile = path.join(__dirname, "../fixtures", "foo.md");
+            const code = [
+                {
+                    filePath: fooFile,
+                    messages: [
+                        {
+                            message: "Unexpected foo.",
+                            severity: 3,
+                            line: 5,
+                            column: 10,
+                            ruleId: "foo",
+                            source: "foo"
+                        }
+                    ]
+                }
+            ];
+            const output = prettyError(code, {
+                color: false
+            });
+            assert.equal(
+                output,
+                `foo: Unexpected foo.
+${fooFile}:5:10
+                v
+    4. 4th line
+    5. 5th line foo
+    6. 6th line
+                ^
+
+\u2716 1 problem (0 errors, 1 warning)
+`
+            );
+        });
+    });
 });

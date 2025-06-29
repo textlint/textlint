@@ -62,6 +62,15 @@ describe("formatter:junit", function () {
                 '<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite package="org.eslint" time="0" tests="1" errors="1" name="foo.js"><testcase time="0" name="org.eslint.foo"><failure message="Unexpected foo."><![CDATA[line 5, col 10, Warning - Unexpected foo. (foo)]]></failure></testcase></testsuite></testsuites>'
             );
         });
+
+        it("should return a single <testcase> with a message and the line and col number in the body (info)", function () {
+            code[0].messages[0].severity = 3;
+            const result = formatter(code, { color: false });
+            assert.equal(
+                result.replace(/\n/g, ""),
+                '<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite package="org.eslint" time="0" tests="1" errors="1" name="foo.js"><testcase time="0" name="org.eslint.foo"><failure message="Unexpected foo."><![CDATA[line 5, col 10, Info - Unexpected foo. (foo)]]></failure></testcase></testsuite></testsuites>'
+            );
+        });
     });
 
     describe("when passed a fatal error message", function () {
