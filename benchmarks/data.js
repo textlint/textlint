@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751201328939,
+  "lastUpdate": 1751205585649,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -66444,6 +66444,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60310431688,
             "unit": "seconds",
             "range": "± 0.012828842999999979"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "7a1cb4becbd92e53686a871494b4b10099223acb",
+          "message": "refactor: remove @textlint/kernel dependency from formatters\n\n- Replace TextlintRuleSeverityLevelKeys with numeric values (1: warning, 2: error, 3: info)\n- Remove dependency on @textlint/kernel from formatter packages to maintain clean architecture\n- Update all 10 formatters: stylish, compact, unix, table, checkstyle, junit, tap, pretty-error, fixer-formatter\n- All tests continue to pass with numeric severity level checks",
+          "timestamp": "2025-06-29T22:56:31+09:00",
+          "tree_id": "d48b627cc9ef2cc8c5140c57b93c886dcf5bf59d",
+          "url": "https://github.com/textlint/textlint/commit/7a1cb4becbd92e53686a871494b4b10099223acb"
+        },
+        "date": 1751205581308,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.209416192,
+            "unit": "seconds",
+            "range": "± 0.03352218400000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7210186024000003,
+            "unit": "seconds",
+            "range": "± 0.016966864000000026"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5931306880000001,
+            "unit": "seconds",
+            "range": "± 0.007470736000000033"
           }
         ]
       }
