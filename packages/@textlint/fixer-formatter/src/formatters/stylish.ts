@@ -1,6 +1,5 @@
 "use strict";
 import type { TextlintFixResult } from "@textlint/types";
-import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 
 import chalk from "chalk";
 // @ts-expect-error no types
@@ -40,11 +39,11 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
         // Count remaining messages by severity
         remainingMessages.forEach(function (message) {
             const fatal = (message as { fatal?: boolean }).fatal;
-            if (fatal || message.severity === TextlintRuleSeverityLevelKeys.error) {
+            if (fatal || message.severity === 2) {
                 errors++;
-            } else if (message.severity === TextlintRuleSeverityLevelKeys.warning) {
+            } else if (message.severity === 1) {
                 warnings++;
-            } else if (message.severity === TextlintRuleSeverityLevelKeys.info) {
+            } else if (message.severity === 3) {
                 infos++;
             }
         });

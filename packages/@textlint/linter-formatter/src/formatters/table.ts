@@ -7,7 +7,6 @@
 "use strict";
 import type { TextlintMessage } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
-import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 
 //------------------------------------------------------------------------------
 // Requirements
@@ -47,11 +46,11 @@ function drawTable(messages: TextlintMessage[]): string {
         let messageType;
         const fatal = (message as { fatal?: boolean }).fatal;
 
-        if (fatal || message.severity === TextlintRuleSeverityLevelKeys.error) {
+        if (fatal || message.severity === 2) {
             messageType = chalk.red("error");
-        } else if (message.severity === TextlintRuleSeverityLevelKeys.warning) {
+        } else if (message.severity === 1) {
             messageType = chalk.yellow("warning");
-        } else if (message.severity === TextlintRuleSeverityLevelKeys.info) {
+        } else if (message.severity === 3) {
             messageType = chalk.green("info");
         } else {
             messageType = chalk.yellow("warning");
@@ -129,11 +128,11 @@ function formatter(report: any, options: FormatterOptions) {
     report.forEach(function (fileReport: any) {
         fileReport.messages.forEach(function (message: TextlintMessage) {
             const fatal = (message as { fatal?: boolean }).fatal;
-            if (fatal || message.severity === TextlintRuleSeverityLevelKeys.error) {
+            if (fatal || message.severity === 2) {
                 errorCount++;
-            } else if (message.severity === TextlintRuleSeverityLevelKeys.warning) {
+            } else if (message.severity === 1) {
                 warningCount++;
-            } else if (message.severity === TextlintRuleSeverityLevelKeys.info) {
+            } else if (message.severity === 3) {
                 infoCount++;
             }
         });

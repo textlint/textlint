@@ -5,7 +5,6 @@
 "use strict";
 import type { TextlintMessage, TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
-import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 
 import chalk from "chalk";
 // @ts-expect-error no types
@@ -146,11 +145,11 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
                 totalFixable++;
             }
             const fatal = (message as { fatal?: boolean }).fatal;
-            if (fatal || message.severity === TextlintRuleSeverityLevelKeys.error) {
+            if (fatal || message.severity === 2) {
                 errors++;
-            } else if (message.severity === TextlintRuleSeverityLevelKeys.warning) {
+            } else if (message.severity === 1) {
                 warnings++;
-            } else if (message.severity === TextlintRuleSeverityLevelKeys.info) {
+            } else if (message.severity === 3) {
                 infos++;
             } else {
                 warnings++;
