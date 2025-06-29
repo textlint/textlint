@@ -39,6 +39,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     let totalFixable = 0;
     let errors = 0;
     let warnings = 0;
+    let infos = 0;
     let summaryColor = "yellow" as "yellow" | "red";
     const greenColor = "green";
 
@@ -60,11 +61,19 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
                 if (message.fix) {
                     totalFixable++;
                 }
-                if ((message as any).fatal || message.severity === 2) {
+                const fatal = (message as { fatal?: boolean }).fatal;
+                if (fatal || message.severity === 2) {
                     messageType = fixableIcon + chalk.red("error");
                     summaryColor = "red";
                     errors++;
+                } else if (message.severity === 1) {
+                    messageType = fixableIcon + chalk.yellow("warning");
+                    warnings++;
+                } else if (message.severity === 3) {
+                    messageType = fixableIcon + chalk.green("info");
+                    infos++;
                 } else {
+                    // fallback for other severity levels
                     messageType = fixableIcon + chalk.yellow("warning");
                     warnings++;
                 }
@@ -101,19 +110,13 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     });
 
     if (total > 0) {
+        const summaryParts = [
+            `${errors} ${pluralize("error", errors)}`,
+            `${warnings} ${pluralize("warning", warnings)}`,
+            `${infos} ${pluralize("info", infos)}`
+        ];
         output += chalk[summaryColor].bold(
-            [
-                "\u2716 ",
-                total,
-                pluralize(" problem", total),
-                " (",
-                errors,
-                pluralize(" error", errors),
-                ", ",
-                warnings,
-                pluralize(" warning", warnings),
-                ")\n"
-            ].join("")
+            ["\u2716 ", total, pluralize(" problem", total), " (", summaryParts.join(", "), ")\n"].join("")
         );
     }
 

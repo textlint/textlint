@@ -7,14 +7,6 @@ import { describe, it } from "vitest";
 import * as assert from "node:assert";
 
 describe("@textlint/linter-formatter-test", function () {
-    describe("deprecated createFormatter", function () {
-        it("should not be exported", async function () {
-            // Test that createFormatter is no longer exported
-            const index = await import("../src/index.js");
-            assert.strictEqual(typeof index.createFormatter, "undefined", "createFormatter should not be exported");
-        });
-    });
-
     describe("loadFormatter", function () {
         it("should load stylish formatter", async function () {
             const formatterResult = await loadFormatter({

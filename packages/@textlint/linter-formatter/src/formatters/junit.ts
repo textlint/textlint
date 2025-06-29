@@ -11,9 +11,13 @@ import lodash from "lodash";
 // Helper Functions
 //------------------------------------------------------------------------------
 
-function getMessageType(message: any): string {
+function getMessageType(message: { fatal?: boolean; severity: number }): string {
     if (message.fatal || message.severity === 2) {
         return "Error";
+    } else if (message.severity === 1) {
+        return "Warning";
+    } else if (message.severity === 3) {
+        return "Info";
     } else {
         return "Warning";
     }
@@ -37,7 +41,8 @@ function formatter(results: TextlintResult[]) {
         }
 
         messages.forEach(function (message) {
-            const type = (message as any).fatal ? "error" : "failure";
+            const fatal = (message as { fatal?: boolean }).fatal;
+            const type = fatal ? "error" : "failure";
             output += `<testcase time="0" name="org.eslint.${message.ruleId || "unknown"}">`;
             output += `<${type} message="${lodash.escape(message.message || "")}">`;
             output += "<![CDATA[";

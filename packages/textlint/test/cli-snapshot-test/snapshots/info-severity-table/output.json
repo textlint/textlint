@@ -1,0 +1,33 @@
+{
+    "exitCode": 0,
+    "output": [
+        {
+            "messages": [
+                {
+                    "type": "lint",
+                    "ruleId": "a",
+                    "message": "Rule A report",
+                    "index": 0,
+                    "line": 1,
+                    "column": 1,
+                    "range": [
+                        0,
+                        33
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 1
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 1
+                        }
+                    },
+                    "severity": 3
+                }
+            ],
+            "filePath": "<snapshots>/info-severity-table/input.md"
+        }
+    ]
+}

@@ -10,9 +10,13 @@ import type { TextlintResult } from "@textlint/types";
 // Helper Functions
 //------------------------------------------------------------------------------
 
-function getMessageType(message: any): string {
+function getMessageType(message: { fatal?: boolean; severity: number }): string {
     if (message.fatal || message.severity === 2) {
         return "Error";
+    } else if (message.severity === 1) {
+        return "Warning";
+    } else if (message.severity === 3) {
+        return "Info";
     } else {
         return "Warning";
     }

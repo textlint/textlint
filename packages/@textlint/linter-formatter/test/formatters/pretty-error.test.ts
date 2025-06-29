@@ -1,5 +1,5 @@
 // LICENSE : MIT
-"use strict";
+
 import prettyError from "../../src/formatters/pretty-error.js";
 
 import { describe, it } from "vitest";
@@ -39,7 +39,7 @@ ${fooFile}:1:1
     2. 2nd line
        ^
 
-\u2716 1 problem (1 error, 0 warnings)
+\u2716 1 problem (1 error)
 `
             );
         });
@@ -142,7 +142,7 @@ ${fooFile}:6:1
     7. 
        ^
 
-\u2716 1 problem (1 error, 0 warnings)
+\u2716 1 problem (1 error)
 `
             );
         });
@@ -178,7 +178,7 @@ ${fooFile}:6:1
     7. 
        ^
 
-\u2716 1 problem (1 error, 0 warnings)
+\u2716 1 problem (1 error)
 `
             );
         });
@@ -217,9 +217,45 @@ ${ckjFile}:2:16
     3. 3rd line
                              ^
 
-\u2716 1 problem (1 error, 0 warnings)
+\u2716 1 problem (1 error)
 \u2713 1 fixable problem.
 Try to run: $ textlint --fix [file]
+`
+            );
+        });
+    });
+    describe("when contain info severity", function () {
+        it("should return output for info level", function () {
+            const fooFile = path.join(__dirname, "../fixtures", "foo.md");
+            const code = [
+                {
+                    filePath: fooFile,
+                    messages: [
+                        {
+                            message: "Unexpected foo.",
+                            severity: 3,
+                            line: 5,
+                            column: 10,
+                            ruleId: "foo",
+                            source: "foo"
+                        }
+                    ]
+                }
+            ];
+            const output = prettyError(code, {
+                color: false
+            });
+            assert.equal(
+                output,
+                `foo: Unexpected foo.
+${fooFile}:5:10
+                v
+    4. 4th line
+    5. 5th line foo
+    6. 6th line
+                ^
+
+\u2716 1 problem (1 info)
 `
             );
         });

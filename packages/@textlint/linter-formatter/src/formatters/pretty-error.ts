@@ -129,6 +129,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     let total = 0;
     let errors = 0;
     let warnings = 0;
+    let infos = 0;
     let totalFixable = 0;
     results.forEach(function (result) {
         const code = readFileSync(result.filePath, "utf-8");
@@ -143,8 +144,13 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
             if (message.fix) {
                 totalFixable++;
             }
-            if ((message as any).fatal || message.severity === 2) {
+            const fatal = (message as { fatal?: boolean }).fatal;
+            if (fatal || message.severity === 2) {
                 errors++;
+            } else if (message.severity === 1) {
+                warnings++;
+            } else if (message.severity === 3) {
+                infos++;
             } else {
                 warnings++;
             }
@@ -156,19 +162,19 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     });
 
     if (total > 0) {
+        const problemParts = [];
+        if (errors > 0) {
+            problemParts.push(`${errors} ${pluralize("error", errors)}`);
+        }
+        if (warnings > 0) {
+            problemParts.push(`${warnings} ${pluralize("warning", warnings)}`);
+        }
+        if (infos > 0) {
+            problemParts.push(`${infos} ${pluralize("info", infos)}`);
+        }
+
         output += chalk[summaryColor].bold(
-            [
-                "\u2716 ",
-                total,
-                pluralize(" problem", total),
-                " (",
-                errors,
-                pluralize(" error", errors),
-                ", ",
-                warnings,
-                pluralize(" warning", warnings),
-                ")\n"
-            ].join("")
+            ["\u2716 ", total, pluralize(" problem", total), " (", problemParts.join(", "), ")\n"].join("")
         );
     }
 

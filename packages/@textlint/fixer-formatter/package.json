@@ -35,6 +35,7 @@
     "clean": "rimraf lib/",
     "prepack": "npm run build",
     "test": "vitest run",
+    "updateSnapshot": "UPDATE_SNAPSHOT=true vitest run -u",
     "test:watch": "vitest watch"
   },
   "dependencies": {

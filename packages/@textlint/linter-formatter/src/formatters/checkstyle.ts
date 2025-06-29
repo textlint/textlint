@@ -4,7 +4,7 @@
  */
 
 "use strict";
-import type { TextlintResult } from "@textlint/types";
+import type { TextlintMessage, TextlintResult } from "@textlint/types";
 
 //------------------------------------------------------------------------------
 // Helper Functions
@@ -16,9 +16,14 @@ import type { TextlintResult } from "@textlint/types";
  * @returns {string} severity level
  * @private
  */
-function getMessageType(message: any): string {
-    if (message.fatal || message.severity === 2) {
+function getMessageType(message: TextlintMessage): string {
+    const messageWithFatal = message as any;
+    if (messageWithFatal.fatal || message.severity === 2) {
         return "error";
+    } else if (message.severity === 1) {
+        return "warning";
+    } else if (message.severity === 3) {
+        return "info";
     } else {
         return "warning";
     }
