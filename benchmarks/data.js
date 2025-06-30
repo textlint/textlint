@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751265280669,
+  "lastUpdate": 1751288647871,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -67074,6 +67074,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6013747685,
             "unit": "seconds",
             "range": "± 0.021729676999999947"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e77ea85b30baad2f580d98580568cf17bf577ddc",
+          "message": "feat(mcp): add detailed descriptions to Zod schemas for better API documentation (#1613)\n\n* feat(mcp): enhance input/output schema descriptions for linting functions\n\n* test(mcp): update tests for schema descriptions\n\n- Update outputSchema snapshot to include new descriptions for severity, line, column, fix fields\n- Add comprehensive validation for input schema descriptions\n- Add test to verify all tools have proper descriptions for severity levels\n- Verify 1-based vs 0-based indexing documentation is correct",
+          "timestamp": "2025-06-30T22:02:15+09:00",
+          "tree_id": "548f737ef85f84809942bbd908308aaa918efc45",
+          "url": "https://github.com/textlint/textlint/commit/e77ea85b30baad2f580d98580568cf17bf577ddc"
+        },
+        "date": 1751288643563,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21483801538000002,
+            "unit": "seconds",
+            "range": "± 0.044474437000000006"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7436916607799997,
+            "unit": "seconds",
+            "range": "± 0.06975583099999971"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60323963818,
+            "unit": "seconds",
+            "range": "± 0.025811246000000065"
           }
         ]
       }
