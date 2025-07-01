@@ -105,11 +105,11 @@ export default (function () {
     /**
      * Time the run
      * @param {*} key key from the data object
-     * @param {Function} fn function to be called
-     * @returns {Function} function to be executed
+     * @param {(...args: any[]) => any} fn function to be called
+     * @returns {(...args: any[]) => any} function to be executed
      * @private
      */
-    function time(key: string, fn: Function) {
+    function time(key: string, fn: (...args: any[]) => any) {
         if (typeof data[key] === "undefined") {
             data[key] = 0;
         }

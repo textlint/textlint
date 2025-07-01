@@ -4,7 +4,7 @@
 /**
  * Processor Map object
  */
-export class PluginMap extends Map<string, Function> {
+export class PluginMap extends Map<string, (...args: any[]) => any> {
     toJSON() {
         const object = {};
         this.forEach((value, key) => {

@@ -37,7 +37,7 @@ const it =
 /**
  * get fixer function from ruleCreator
  * if not found, throw error
- * @param {Function|Object} ruleCreator
+ * @param {((...args: any[]) => any)|Object} ruleCreator
  * @param {string} ruleName
  */
 function assertHasFixer(ruleCreator: any, ruleName: string): any {

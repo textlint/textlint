@@ -235,7 +235,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
 
     /**
      * add all the node types as listeners of the rule
-     * @param {Function} ruleCreator
+     * @param {(...args: any[]) => any} ruleCreator
      * @param {Readonly<RuleContext>|Readonly<FilterRuleContext>} ruleContext
      * @param {Object|boolean|undefined} ruleOptions
      * @returns {Object}

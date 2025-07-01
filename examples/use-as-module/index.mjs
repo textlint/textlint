@@ -25,7 +25,7 @@ async function lintFile(filePath) {
     console.log(output);
 }
 
-lintFile(__dirname + "/README.md").catch(function(error) {
+lintFile(`${__dirname  }/README.md`).catch(function(error) {
     console.error(error);
     process.exit(1);
 });

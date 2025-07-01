@@ -1,5 +1,5 @@
 import unified from "unified";
-// @ts-ignore
+// @ts-expect-error - Package lacks TypeScript definitions
 import autolinkLiteral from "mdast-util-gfm-autolink-literal/from-markdown";
 // FIXME: Disable auto link literal transforms that break AST node
 // https://github.com/remarkjs/remark-gfm/issues/16

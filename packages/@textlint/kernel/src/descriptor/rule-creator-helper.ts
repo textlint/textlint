@@ -18,11 +18,11 @@ export function hasLinter(ruleCreator: any): boolean {
 /**
  * get linter function from ruleCreator
  * if not found, throw error
- * @param {Function|Object|any} ruleCreator
- * @returns {Function} linter function
+ * @param {((...args: any[]) => any)|Object|any} ruleCreator
+ * @returns {(...args: any[]) => any} linter function
  * @throws
  */
-export function getLinter(ruleCreator: Function | object | any): TextlintRuleReporter {
+export function getLinter(ruleCreator: ((...args: any[]) => any) | object | any): TextlintRuleReporter {
     if (typeof ruleCreator.linter === "function") {
         return ruleCreator.linter;
     }
@@ -44,11 +44,11 @@ export function hasFixer(ruleCreator: any): boolean {
 /**
  * get fixer function from ruleCreator
  * if not found, throw error
- * @param {Function|Object|any} ruleCreator
- * @returns {Function} fixer function
+ * @param {((...args: any[]) => any)|Object|any} ruleCreator
+ * @returns {(...args: any[]) => any} fixer function
  * @throws
  */
-export function getFixer(ruleCreator: Function | object | any): TextlintRuleReporter {
+export function getFixer(ruleCreator: ((...args: any[]) => any) | object | any): TextlintRuleReporter {
     if (!hasLinter(ruleCreator)) {
         throw new Error("fixer module should have also linter function.");
     }
@@ -97,7 +97,7 @@ module.exports = function(context){
  * get linter function from ruleCreator
  * if not found, throw error
  * @param {*} ruleCreator
- * @returns {Function} linter function
+ * @returns {(...args: any[]) => any} linter function
  * @throws
  */
 export function getFilter(ruleCreator: any): TextlintFilterRuleReporter {

@@ -22,7 +22,7 @@ export interface CreateBinaryPluginOptions {
  * https://github.com/textlint/textlint/issues/649
  */
 export const createBinaryPluginStub = (options?: CreateBinaryPluginOptions) => {
-    let assignedOptions: undefined | {};
+    let assignedOptions: undefined | Record<string, unknown>;
     let processorArgs: {
         extension: string;
     };
@@ -57,7 +57,7 @@ export const createBinaryPluginStub = (options?: CreateBinaryPluginOptions) => {
                         return (options && options.extensions) || [".out"];
                     }
 
-                    constructor(public options?: {}) {
+                    constructor(public options?: Record<string, unknown>) {
                         assignedOptions = options;
                     }
 

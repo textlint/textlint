@@ -28,7 +28,7 @@ export function through<T>(messages: T[] = []): T[] {
 /**
  * Create message filter by config.quiet.
  * @param {Config} config
- * @returns {Function} filter function for messages
+ * @returns {(...args: any[]) => any} filter function for messages
  */
 export default function createSeverityFilter(
     config: TextlintKernelConstructorOptions

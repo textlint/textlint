@@ -25,7 +25,7 @@ describe("TextlintLocator", () => {
         it("should throw when passed invalid range", () => {
             const locator = createPaddingLocator();
             assert.throws(() => {
-                // @ts-ignore
+                // @ts-expect-error Testing invalid input
                 locator.range([1, 2, 3, 4]);
             }, "range must be [start, end]");
         });
@@ -76,9 +76,9 @@ describe("TextlintLocator", () => {
             const locator = createPaddingLocator();
             assert.throws(() => {
                 locator.loc({
-                    // @ts-ignore
+                    // @ts-expect-error Testing invalid line property
                     line: 2,
-                    // @ts-ignore
+                    // @ts-expect-error Testing invalid column property
                     column: 1
                 });
             }, /loc must be/);

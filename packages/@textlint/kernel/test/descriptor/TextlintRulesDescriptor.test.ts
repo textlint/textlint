@@ -11,7 +11,7 @@ import { createTextlintRuleDescriptors } from "../../src/descriptor/DescriptorsF
 import { TextlintLintableRuleDescriptor } from "../../src/descriptor/TextlintLintableRuleDescriptor.js";
 import { TextlintFilterRuleReporter, TextlintKernelFilterRule } from "../../src/index.js";
 
-// @ts-expect-error
+// @ts-expect-error Package lacks TypeScript definitions
 import preset from "textlint-rule-preset-ja-spacing";
 
 /**

@@ -8,8 +8,8 @@
  * @returns {Array}
  */
 function getParents(node) {
-    var result = [];
-    var parent = node.parent;
+    const result = [];
+    let parent = node.parent;
     while (parent != null) {
         result.push(parent);
         parent = parent.parent;
@@ -23,8 +23,8 @@ function getParents(node) {
  * @returns {boolean}
  */
 function isNodeWrapped(node, types) {
-    var parents = getParents(node);
-    var parentsTypes = parents.map(function (parent) {
+    const parents = getParents(node);
+    const parentsTypes = parents.map(function (parent) {
         return parent.type;
     });
     return types.some(function (type) {
@@ -37,7 +37,7 @@ function isNodeWrapped(node, types) {
  * @param {RuleContext} context
  */
 module.exports = function (context) {
-    var exports = {};
+    const exports = {};
     // When `Node`'s type is `Str` come, call this callback.
     /*
     e.g.)
@@ -50,15 +50,15 @@ module.exports = function (context) {
     // "This is Str." and "Todo: quick fix this." are `Str` type.
     // This callback function is called twice.
     exports[context.Syntax.Str] = function (node) {
-        var Syntax = context.Syntax;
+        const Syntax = context.Syntax;
         if (isNodeWrapped(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote])) {
             return;
         }
         // get text from node
-        var text = context.getSource(node);
+        const text = context.getSource(node);
         // does text contain "todo:"?
         if (/todo:/i.test(text)) {
-            context.report(node, new context.RuleError("found TODO: '" + text + "'"));
+            context.report(node, new context.RuleError(`found TODO: '${  text  }'`));
         }
     };
     // When `node`'s type is `ListItem` come, call this callback.
@@ -71,9 +71,9 @@ module.exports = function (context) {
     */
     // `List` is "- list 1" and - [ ] todo", so called this callback twice.
     exports[context.Syntax.ListItem] = function (node) {
-        var text = context.getSource(node);
+        const text = context.getSource(node);
         if (/\[\s+\]\s/i.test(text)) {
-            context.report(node, new context.RuleError("found TODO: '" + text + "'"));
+            context.report(node, new context.RuleError(`found TODO: '${  text  }'`));
         }
     };
     return exports;

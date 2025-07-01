@@ -28,5 +28,5 @@ export declare type TextlintFilterRuleShouldIgnoreFunction = (args: TextlintFilt
  * @constructor
  */
 export interface TextlintFilterRuleContext extends TextlintBaseRuleContext {
-    shouldIgnore(range: readonly [startIndex: number, endIndex: number], optional: {}): void;
+    shouldIgnore(range: readonly [startIndex: number, endIndex: number], optional: Record<string, unknown>): void;
 }

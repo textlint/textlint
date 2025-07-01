@@ -12,7 +12,7 @@ export declare type TextlintPluginOptions = {
 export type TextlintPluginPreProcessResult = TxtDocumentNode | { text: string; ast: TxtDocumentNode };
 export type TextlintPluginPostProcessResult = { messages: Array<any>; filePath: string };
 
-export interface TextlintPluginProcessorConstructor extends Function {
+export interface TextlintPluginProcessorConstructor {
     new (options?: TextlintPluginOptions): TextlintPluginProcessor;
 
     /**

@@ -2,9 +2,9 @@
 "use strict";
 
 /**
- * @typedef {{key: Function}} RulesObject
+ * @typedef {{key: (...args: any[]) => any}} RulesObject
  */
-export class RuleMap extends Map<string, Function> {
+export class RuleMap extends Map<string, (...args: any[]) => any> {
     /**
      * has rule at least one > 0
      * @returns {boolean}
@@ -36,7 +36,7 @@ export class RuleMap extends Map<string, Function> {
      * @param {string} ruleKey
      * @param ruleHandler
      */
-    defineRule(ruleKey: string, ruleHandler: Function) {
+    defineRule(ruleKey: string, ruleHandler: (...args: any[]) => any) {
         this.set(ruleKey, ruleHandler);
     }
 

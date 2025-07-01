@@ -15,7 +15,7 @@ export interface CreateAsyncPluginOptions {
  * It is compatible with markdown plugin by default.
  */
 export const createAsyncPluginStub = (options?: CreateAsyncPluginOptions) => {
-    let assignedOptions: undefined | {};
+    let assignedOptions: undefined | Record<string, unknown>;
     let processorArgs: {
         extension: string;
     };
@@ -50,7 +50,7 @@ export const createAsyncPluginStub = (options?: CreateAsyncPluginOptions) => {
                         return (options && options.extensions) || [".md"];
                     }
 
-                    constructor(public options?: {}) {
+                    constructor(public options?: Record<string, unknown>) {
                         assignedOptions = options;
                     }
 
