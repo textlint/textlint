@@ -1,10 +1,12 @@
 // LICENSE : MIT
 "use strict";
 
+import type { TextlintRuleModule } from "@textlint/types";
+
 /**
- * @typedef {{key: (...args: any[]) => any}} RulesObject
+ * @typedef {{key: TextlintRuleModule}} RulesObject
  */
-export class RuleMap extends Map<string, (...args: any[]) => any> {
+export class RuleMap extends Map<string, TextlintRuleModule> {
     /**
      * has rule at least one > 0
      * @returns {boolean}
@@ -36,7 +38,7 @@ export class RuleMap extends Map<string, (...args: any[]) => any> {
      * @param {string} ruleKey
      * @param ruleHandler
      */
-    defineRule(ruleKey: string, ruleHandler: (...args: any[]) => any) {
+    defineRule(ruleKey: string, ruleHandler: TextlintRuleModule) {
         this.set(ruleKey, ruleHandler);
     }
 
@@ -48,7 +50,7 @@ export class RuleMap extends Map<string, (...args: any[]) => any> {
     }
 
     toJSON() {
-        const object: { [index: string]: any } = {};
+        const object: { [index: string]: TextlintRuleModule } = {};
         this.forEach((value, key) => {
             object[key] = value;
         });

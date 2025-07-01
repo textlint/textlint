@@ -7,13 +7,13 @@ import debug0 from "debug";
 
 const debug = debug0("textlint/ast-tester");
 
-const createMessage = ({ node, message }: { node: any; message: string }) => {
+const createMessage = ({ node, message }: { node: unknown; message: string }) => {
     return `${message}\n${JSON.stringify(node, null, 4)}`;
 };
 
-export function isTxtAST(node: any): node is TxtNode {
+export function isTxtAST(node: unknown): node is TxtNode {
     try {
-        test(node);
+        test(node as Record<string, unknown>);
     } catch (error) {
         debug("This is not TxtAST", error);
         return false;
@@ -21,7 +21,7 @@ export function isTxtAST(node: any): node is TxtNode {
     return true;
 }
 
-export function test(node: any) {
+export function test(node: Record<string, unknown>) {
     // test unist that is weak.
     UnistTest(node);
     assert.strictEqual(
@@ -41,7 +41,7 @@ export function test(node: any) {
         })
     );
     assert.ok(
-        node.type.length >= 1,
+        (node.type as string).length >= 1,
         createMessage({
             message: `invalid type: type is empty string`,
             node
@@ -97,7 +97,7 @@ export function test(node: any) {
         })
     );
     // loc
-    const loc = node.loc;
+    const loc = node.loc as Record<string, unknown>;
     assert.ok(
         loc !== null && loc !== undefined,
         createMessage({
@@ -113,24 +113,24 @@ export function test(node: any) {
             node
         })
     );
-    const start = loc.start;
-    const end = loc.end;
+    const start = loc.start as Record<string, unknown> | null | undefined;
+    const end = loc.end as Record<string, unknown> | null | undefined;
     if (start !== null && start !== undefined) {
         assert.strictEqual(typeof start, "object");
 
         if (start.line !== null && start.line !== undefined) {
             assert.strictEqual(typeof start.line, "number");
-            assert.ok(start.line >= 0); // allow `0` for `null`.
+            assert.ok((start.line as number) >= 0); // allow `0` for `null`.
         }
 
         if (start.column !== null && start.column !== undefined) {
             assert.strictEqual(typeof start.column, "number");
-            assert.ok(start.column >= 0); // allow `0` for `null`.
+            assert.ok((start.column as number) >= 0); // allow `0` for `null`.
         }
 
         if (start.offset !== null && start.offset !== undefined) {
             assert.strictEqual(typeof start.offset, "number");
-            assert.ok(start.offset >= 0);
+            assert.ok((start.offset as number) >= 0);
         }
     }
 
@@ -139,21 +139,21 @@ export function test(node: any) {
 
         if (end.line !== null && end.line !== undefined) {
             assert.strictEqual(typeof end.line, "number");
-            assert.ok(end.line >= 0); // allow `0` for `null`.
+            assert.ok((end.line as number) >= 0); // allow `0` for `null`.
         }
 
         if (end.column !== null && end.column !== undefined) {
             assert.strictEqual(typeof end.column, "number");
-            assert.ok(end.column >= 0); // allow `0` for `null`.
+            assert.ok((end.column as number) >= 0); // allow `0` for `null`.
         }
 
         if (end.offset !== null && end.offset !== undefined) {
             assert.strictEqual(typeof end.offset, "number");
-            assert.ok(end.offset >= 0);
+            assert.ok((end.offset as number) >= 0);
         }
     }
     // range
-    const range = node.range;
+    const range = node.range as number[];
     assert.ok(
         range !== null && range !== undefined,
         createMessage({

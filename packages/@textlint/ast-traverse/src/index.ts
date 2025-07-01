@@ -5,11 +5,12 @@ import type { AnyTxtNode, TxtNode, TxtParentNode } from "@textlint/ast-node-type
 /**
  * is TxtNode?
  */
-function isNode(node: any): node is TxtNode {
+function isNode(node: unknown): node is TxtNode {
     if (node == null) {
         return false;
     }
-    return typeof node === "object" && (typeof node.type === "string" || typeof node.t === "string");
+    const obj = node as Record<string, unknown>;
+    return typeof node === "object" && (typeof obj.type === "string" || typeof obj.t === "string");
 }
 
 export class TxtElement {
@@ -35,7 +36,7 @@ class Controller {
     }
 
     private __execute(
-        callback: ((this: Controller, current: AnyTxtNode, parent: TxtParentNode) => any) | undefined,
+        callback: ((this: Controller, current: AnyTxtNode, parent: TxtParentNode) => unknown) | undefined,
         element: TxtElement
     ) {
         let result = undefined;
@@ -148,8 +149,7 @@ class Controller {
                 let current = candidates.length;
                 while ((current -= 1) >= 0) {
                     const key = candidates[current];
-                    // @ts-expect-error: ignore dynamic access
-                    const candidate: keyof typeof node | undefined = node[key];
+                    const candidate = (node as unknown as Record<string, unknown>)[key];
                     if (!candidate) {
                         continue;
                     }
@@ -179,9 +179,9 @@ class Controller {
 }
 
 export interface Visitor {
-    enter?(node: TxtNode, parent?: TxtParentNode): any | void;
+    enter?(node: TxtNode, parent?: TxtParentNode): unknown | void;
 
-    leave?(node: TxtNode, parent?: TxtParentNode): any | void;
+    leave?(node: TxtNode, parent?: TxtParentNode): unknown | void;
 }
 
 function traverse(root: TxtParentNode, visitor: Visitor) {

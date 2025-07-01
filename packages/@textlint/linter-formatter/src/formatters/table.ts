@@ -5,7 +5,7 @@
  */
 
 "use strict";
-import type { TextlintMessage } from "@textlint/types";
+import type { TextlintMessage, TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
 
 //------------------------------------------------------------------------------
@@ -28,7 +28,7 @@ import stripAnsi from "strip-ansi";
  * @returns {string} A text table.
  */
 function drawTable(messages: TextlintMessage[]): string {
-    const rows: any = [];
+    const rows: (string | number)[][] = [];
 
     if (messages.length === 0) {
         return "";
@@ -95,10 +95,10 @@ function drawTable(messages: TextlintMessage[]): string {
  * @param {Array} results Report results for every file.
  * @returns {string} A column of text tables.
  */
-function drawReport(results: any): string {
+function drawReport(results: TextlintResult[]): string {
     let files;
 
-    files = results.map(function (result: any) {
+    files = results.map(function (result: TextlintResult) {
         if (!result.messages.length) {
             return "";
         }
@@ -117,7 +117,7 @@ function drawReport(results: any): string {
 // Public Interface
 //------------------------------------------------------------------------------
 
-function formatter(report: any, options: FormatterOptions) {
+function formatter(report: TextlintResult[], options: FormatterOptions) {
     // default: true
     const useColor = options.color !== undefined ? options.color : true;
     let output = "";
@@ -125,7 +125,7 @@ function formatter(report: any, options: FormatterOptions) {
     let warningCount = 0;
     let infoCount = 0;
 
-    report.forEach(function (fileReport: any) {
+    report.forEach(function (fileReport: TextlintResult) {
         fileReport.messages.forEach(function (message: TextlintMessage) {
             const fatal = (message as { fatal?: boolean }).fatal;
             if (fatal || message.severity === 2) {

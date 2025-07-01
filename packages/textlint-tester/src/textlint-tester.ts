@@ -23,14 +23,14 @@ const globalObject = globalThis;
 const describe =
     typeof globalObject.describe === "function"
         ? globalObject.describe
-        : function (this: any, _text: string, method: () => any) {
+        : function (this: unknown, _text: string, method: () => unknown) {
               return method.apply(this);
           };
 
 const it =
     typeof globalObject.it === "function"
         ? globalObject.it
-        : function (this: any, _text: string, method: () => any) {
+        : function (this: unknown, _text: string, method: () => unknown) {
               return method.apply(this);
           };
 
@@ -40,8 +40,8 @@ const it =
  * @param {((...args: any[]) => any)|Object} ruleCreator
  * @param {string} ruleName
  */
-function assertHasFixer(ruleCreator: any, ruleName: string): any {
-    if (typeof ruleCreator.fixer === "function") {
+function assertHasFixer(ruleCreator: unknown, ruleName: string): void {
+    if (typeof (ruleCreator as Record<string, unknown>).fixer === "function") {
         return;
     }
     if (typeof ruleCreator === "function") {
@@ -50,7 +50,7 @@ function assertHasFixer(ruleCreator: any, ruleName: string): any {
     throw new Error(`Not found \`fixer\` function in the ruleCreator: ${ruleName}`);
 }
 
-function assertTestConfig(testConfig: TestConfig): any {
+function assertTestConfig(testConfig: TestConfig): void {
     assert.notEqual(testConfig, null, "TestConfig is null");
     assert.notEqual(
         Object.keys(testConfig).length === 0 && testConfig.constructor === Object,
@@ -87,11 +87,11 @@ export type TestConfig = {
     rules: TestConfigRule[];
 };
 
-function isTestConfig(arg: any): arg is TestConfig {
+function isTestConfig(arg: unknown): arg is TestConfig {
     if (hasOwnProperty.call(arg, "rules")) {
         return true;
     }
-    if (typeof arg.fixer === "function" || typeof arg === "function") {
+    if (typeof (arg as Record<string, unknown>).fixer === "function" || typeof arg === "function") {
         return false;
     }
     return true;
@@ -103,7 +103,7 @@ export type TesterValid =
           text?: string;
           ext?: string;
           inputPath?: string;
-          options?: any;
+          options?: TextlintRuleOptions;
           description?: string;
       };
 
@@ -139,19 +139,19 @@ export type TesterInvalid = {
     output?: string;
     ext?: string;
     inputPath?: string;
-    options?: any;
+    options?: TextlintRuleOptions;
     description?: string;
     errors: TesterErrorDefinition[];
 };
 
 export type TestRuleSet = {
     rules: { [index: string]: TextlintRuleModule };
-    rulesOptions: any;
+    rulesOptions: Record<string, TextlintRuleOptions>;
 };
 
 export type TestPluginSet = {
     plugins: { [index: string]: TextlintPluginCreator };
-    pluginOptions: any;
+    pluginOptions: Record<string, TextlintPluginOptions>;
 };
 
 function createTestPluginSet(testConfigPlugins: TestConfigPlugin[]): TestPluginSet {

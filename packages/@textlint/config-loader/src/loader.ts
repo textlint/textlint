@@ -8,8 +8,8 @@ import { isTextlintRulePresetCreator, isTextlintFilterRuleModule, isTextlintRule
 import { normalizeTextlintPresetSubRuleKey } from "@textlint/utils";
 import { dynamicImport } from "@textlint/resolver";
 
-const isPluginCreator = (mod: any): mod is TextlintPluginCreator => {
-    return typeof mod === "object" && Object.prototype.hasOwnProperty.call(mod, "Processor");
+const isPluginCreator = (mod: unknown): mod is TextlintPluginCreator => {
+    return typeof mod === "object" && mod !== null && Object.prototype.hasOwnProperty.call(mod, "Processor");
 };
 export const loadPlugins = async ({
     pluginsObject,
@@ -226,7 +226,7 @@ export const loadRules = async ({
                 } else {
                     if (isPresetRuleKey(ruleId)) {
                         // load preset
-                        const presetRulesOptions = typeof ruleOptions === "boolean" ? {} : ruleOptions;
+                        const presetRulesOptions = typeof ruleOptions === "boolean" ? {} : (ruleOptions as Record<string, boolean | object>);
                         const rulesInPreset = await loadPreset({
                             presetName: ruleId,
                             presetRulesOptions,
@@ -357,8 +357,8 @@ export async function loadPreset({
             ruleId: normalizedKey,
             rule: preset.rules[ruleKey],
             options: getRuleOptions({
-                userRuleConfig: presetRulesOptions[ruleKey],
-                presetRulesConfig: preset.rulesConfig[ruleKey]
+                userRuleConfig: (presetRulesOptions[ruleKey] as Record<string, unknown> | boolean) ?? true,
+                presetRulesConfig: (preset.rulesConfig[ruleKey] as Record<string, unknown> | boolean) ?? true
             }),
             filePath: presetPackageName.filePath,
             // preset package name

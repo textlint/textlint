@@ -1,9 +1,16 @@
 "use strict";
 import type { TextlintFixResult } from "@textlint/types";
-import fs from "node:fs";
+import * as fs from "node:fs";
 import { diffLines } from "diff";
 import chalk from "chalk";
 import stripAnsi from "strip-ansi";
+
+interface DiffPart {
+    value: string;
+    count?: number;
+    added?: boolean;
+    removed?: boolean;
+}
 const isFile = (filePath: string) => {
     try {
         const stats = fs.statSync(filePath);
@@ -22,14 +29,14 @@ function pluralize(word: string, count: number): string {
     return count === 1 ? word : `${word}s`;
 }
 
-function isModified(part: any) {
+function isModified(part: DiffPart): boolean {
     if (!part) {
         return false;
     }
-    return typeof part === "object" && (part.removed || part.added);
+    return typeof part === "object" && part !== null && (!!part.removed || !!part.added);
 }
 
-function addMarkEachLine(mark: string, text: any) {
+function addMarkEachLine(mark: string, text: string) {
     if (text.length === 0) {
         return "\n";
     }
@@ -42,7 +49,7 @@ function addMarkEachLine(mark: string, text: any) {
     return `${markedLines.join("\n")}\n`;
 }
 
-export default function (results: TextlintFixResult[], options: any) {
+export default function (results: TextlintFixResult[], options: { color?: boolean } = {}) {
     // default: true
     const useColor = options.color !== undefined ? options.color : true;
     let output = "\n";
@@ -69,10 +76,10 @@ export default function (results: TextlintFixResult[], options: any) {
         const originalContent = fs.readFileSync(filePath, "utf-8");
         const diff = diffLines(originalContent, result.output);
 
-        diff.forEach(function (part: any, index: number) {
-            const prevLine = diff[index - 1];
-            const nextLine = diff[index + 1];
-            if (!isModified(part) && part.count > 1) {
+        diff.forEach(function (part: DiffPart, index: number) {
+            const prevLine = diff[index - 1] as DiffPart;
+            const nextLine = diff[index + 1] as DiffPart;
+            if (!isModified(part) && (part.count ?? 0) > 1) {
                 const greyColor = "grey";
                 /*
                     <MODIFIED>

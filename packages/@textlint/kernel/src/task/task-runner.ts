@@ -16,7 +16,7 @@ export default class TaskRunner {
         return new Promise((resolve, reject) => {
             const messages: Array<LintReportedMessage | IgnoreReportedMessage> = [];
             task.on(CoreTask.events.message, (message) => {
-                messages.push(message);
+                messages.push(message as LintReportedMessage | IgnoreReportedMessage);
             });
             task.on(CoreTask.events.error, (error) => {
                 reject(error);

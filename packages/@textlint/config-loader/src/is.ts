@@ -8,11 +8,11 @@ import { TextlintFilterRuleReporter } from "@textlint/types";
  * @param {*} ruleCreator
  * @returns {boolean}
  */
-export function hasLinter(ruleCreator: any): boolean {
+export function hasLinter(ruleCreator: unknown): boolean {
     if (!ruleCreator) {
         return false;
     }
-    if (typeof ruleCreator.linter === "function") {
+    if (typeof (ruleCreator as Record<string, unknown>)?.linter === "function") {
         return true;
     }
     if (typeof ruleCreator === "function") {
@@ -26,11 +26,11 @@ export function hasLinter(ruleCreator: any): boolean {
  * @param {*} ruleCreator
  * @returns {boolean}
  */
-export function hasFixer(ruleCreator: any): boolean {
+export function hasFixer(ruleCreator: unknown): boolean {
     if (!ruleCreator) {
         return false;
     }
-    return typeof ruleCreator.fixer === "function" && hasLinter(ruleCreator);
+    return typeof (ruleCreator as Record<string, unknown>)?.fixer === "function" && hasLinter(ruleCreator);
 }
 
 /**
