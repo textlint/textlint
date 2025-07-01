@@ -5,7 +5,9 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "composite": true
+    "composite": true,
+    "outDir": "./dist",
+    "declarationDir": "./dist"
   },
   "references": [
     {
