@@ -82,3 +82,9 @@ crashlytics.properties
 crashlytics-build.properties
 
 lib/
+
+# TypeScript compiled output
+src/**/*.js
+src/**/*.d.ts
+test/**/*.js
+test/**/*.d.ts

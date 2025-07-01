@@ -6,11 +6,30 @@
 /* jshint node:true */
 
 import formatter from "../../src/formatters/junit.js";
-import type { TextlintResult } from "@textlint/types";
+import type { TextlintResult, TextlintMessage } from "@textlint/types";
 
 import { describe, it } from "vitest";
 
 import * as assert from "node:assert";
+
+// Helper to create test message with minimal required properties
+function createTestMessage(overrides: Partial<TextlintMessage>): TextlintMessage {
+    return {
+        type: "lint",
+        ruleId: "",
+        message: "",
+        line: 1,
+        column: 1,
+        index: 0,
+        range: [0, 1] as const,
+        loc: {
+            start: { line: 1, column: 1 },
+            end: { line: 1, column: 1 }
+        },
+        severity: 1,
+        ...overrides
+    };
+}
 
 describe("formatter:junit", function () {
     describe("when there are no problems", function () {
@@ -27,13 +46,13 @@ describe("formatter:junit", function () {
             {
                 filePath: "foo.js",
                 messages: [
-                    {
+                    createTestMessage({
                         message: "Unexpected foo.",
                         severity: 2,
                         line: 5,
                         column: 10,
                         ruleId: "foo"
-                    }
+                    })
                 ]
             }
         ];

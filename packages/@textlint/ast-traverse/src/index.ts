@@ -150,7 +150,7 @@ class Controller {
                 if (typeof node !== "object" || node === null) {
                     continue;
                 }
-                const nodeRecord = node as Record<string, unknown>;
+                const nodeRecord = node as unknown as Record<string, unknown>;
                 const candidates = Object.keys(node);
 
                 let current = candidates.length;

@@ -78,7 +78,6 @@ describe("TextlintLocator", () => {
                 locator.loc({
                     // @ts-expect-error Testing invalid line property
                     line: 2,
-                    // @ts-expect-error Testing invalid column property
                     column: 1
                 });
             }, /loc must be/);

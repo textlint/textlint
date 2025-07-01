@@ -166,7 +166,7 @@ function createTestPluginSet(testConfigPlugins: TestConfigPlugin[]): TestPluginS
     };
     testConfigPlugins.forEach((plugin) => {
         const pluginName = plugin.pluginId;
-        const pluginOptions = plugin.options;
+        const pluginOptions = plugin.options ?? true;
         testPluginSet.plugins[pluginName] = plugin.plugin;
         testPluginSet.pluginOptions[pluginName] = pluginOptions;
     });
