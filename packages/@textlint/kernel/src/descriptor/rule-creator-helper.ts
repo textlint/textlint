@@ -1,12 +1,25 @@
 import type { TextlintFilterRuleReporter, TextlintRuleReporter } from "@textlint/types";
 
+// Type guards
+function isObjectWithProperty(obj: unknown, property: string): obj is Record<string, unknown> {
+    return typeof obj === "object" && obj !== null && property in obj;
+}
+
+function hasLinterProperty(obj: unknown): obj is { linter: unknown } {
+    return isObjectWithProperty(obj, "linter");
+}
+
+function hasFixerProperty(obj: unknown): obj is { fixer: unknown } {
+    return isObjectWithProperty(obj, "fixer");
+}
+
 /**
  * detect that ruleCreator has linter function
  * @param {*} ruleCreator
  * @returns {boolean}
  */
 export function hasLinter(ruleCreator: unknown): boolean {
-    if (typeof (ruleCreator as Record<string, unknown>).linter === "function") {
+    if (hasLinterProperty(ruleCreator) && typeof ruleCreator.linter === "function") {
         return true;
     }
     if (typeof ruleCreator === "function") {
@@ -23,8 +36,8 @@ export function hasLinter(ruleCreator: unknown): boolean {
  * @throws
  */
 export function getLinter(ruleCreator: unknown): TextlintRuleReporter {
-    if (typeof (ruleCreator as Record<string, unknown>).linter === "function") {
-        return (ruleCreator as { linter: TextlintRuleReporter }).linter;
+    if (hasLinterProperty(ruleCreator) && typeof ruleCreator.linter === "function") {
+        return ruleCreator.linter as TextlintRuleReporter;
     }
     if (typeof ruleCreator === "function") {
         return ruleCreator as TextlintRuleReporter;
@@ -38,7 +51,7 @@ export function getLinter(ruleCreator: unknown): TextlintRuleReporter {
  * @returns {boolean}
  */
 export function hasFixer(ruleCreator: unknown): boolean {
-    return typeof (ruleCreator as Record<string, unknown>).fixer === "function" && hasLinter(ruleCreator);
+    return hasFixerProperty(ruleCreator) && typeof ruleCreator.fixer === "function" && hasLinter(ruleCreator);
 }
 
 /**
@@ -52,8 +65,8 @@ export function getFixer(ruleCreator: unknown): TextlintRuleReporter {
     if (!hasLinter(ruleCreator)) {
         throw new Error("fixer module should have also linter function.");
     }
-    if (hasFixer(ruleCreator)) {
-        return (ruleCreator as { fixer: TextlintRuleReporter }).fixer;
+    if (hasFixerProperty(ruleCreator) && typeof ruleCreator.fixer === "function") {
+        return ruleCreator.fixer as TextlintRuleReporter;
     }
     throw new Error("Not found fixer function in the ruleCreator");
 }

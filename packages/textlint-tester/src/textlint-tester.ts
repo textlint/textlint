@@ -20,6 +20,11 @@ import { TextlintPluginOptions, TextlintRuleOptions } from "@textlint/types";
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 const globalObject = globalThis;
 
+// Type guard helper
+function isObjectWithProperty(obj: unknown, property: string): obj is Record<string, unknown> {
+    return typeof obj === "object" && obj !== null && property in obj;
+}
+
 const describe =
     typeof globalObject.describe === "function"
         ? globalObject.describe
@@ -41,7 +46,7 @@ const it =
  * @param {string} ruleName
  */
 function assertHasFixer(ruleCreator: unknown, ruleName: string): void {
-    if (typeof (ruleCreator as Record<string, unknown>).fixer === "function") {
+    if (isObjectWithProperty(ruleCreator, "fixer") && typeof ruleCreator.fixer === "function") {
         return;
     }
     if (typeof ruleCreator === "function") {
@@ -91,7 +96,7 @@ function isTestConfig(arg: unknown): arg is TestConfig {
     if (hasOwnProperty.call(arg, "rules")) {
         return true;
     }
-    if (typeof (arg as Record<string, unknown>).fixer === "function" || typeof arg === "function") {
+    if ((isObjectWithProperty(arg, "fixer") && typeof arg.fixer === "function") || typeof arg === "function") {
         return false;
     }
     return true;

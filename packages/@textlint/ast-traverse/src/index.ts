@@ -9,8 +9,11 @@ function isNode(node: unknown): node is TxtNode {
     if (node == null) {
         return false;
     }
+    if (typeof node !== "object") {
+        return false;
+    }
     const obj = node as Record<string, unknown>;
-    return typeof node === "object" && (typeof obj.type === "string" || typeof obj.t === "string");
+    return typeof obj.type === "string" || typeof obj.t === "string";
 }
 
 export class TxtElement {
@@ -144,12 +147,16 @@ class Controller {
                 }
 
                 const node = element.node;
+                if (typeof node !== "object" || node === null) {
+                    continue;
+                }
+                const nodeRecord = node as Record<string, unknown>;
                 const candidates = Object.keys(node);
 
                 let current = candidates.length;
                 while ((current -= 1) >= 0) {
                     const key = candidates[current];
-                    const candidate = (node as unknown as Record<string, unknown>)[key];
+                    const candidate = nodeRecord[key];
                     if (!candidate) {
                         continue;
                     }

@@ -3,6 +3,11 @@ import type { TextlintRuleModule } from "@textlint/types";
 import { TextlintConfigRulePreset } from "./TextlintConfigDescriptor.js";
 import { TextlintFilterRuleReporter } from "@textlint/types";
 
+// Type guards
+function isObjectWithProperty(obj: unknown, property: string): obj is Record<string, unknown> {
+    return typeof obj === "object" && obj !== null && property in obj;
+}
+
 /**
  * detect that ruleCreator has linter function
  * @param {*} ruleCreator
@@ -12,7 +17,7 @@ export function hasLinter(ruleCreator: unknown): boolean {
     if (!ruleCreator) {
         return false;
     }
-    if (typeof (ruleCreator as Record<string, unknown>)?.linter === "function") {
+    if (isObjectWithProperty(ruleCreator, "linter") && typeof ruleCreator.linter === "function") {
         return true;
     }
     if (typeof ruleCreator === "function") {
@@ -30,7 +35,7 @@ export function hasFixer(ruleCreator: unknown): boolean {
     if (!ruleCreator) {
         return false;
     }
-    return typeof (ruleCreator as Record<string, unknown>)?.fixer === "function" && hasLinter(ruleCreator);
+    return isObjectWithProperty(ruleCreator, "fixer") && typeof ruleCreator.fixer === "function" && hasLinter(ruleCreator);
 }
 
 /**
