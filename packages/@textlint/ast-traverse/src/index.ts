@@ -178,11 +178,11 @@ class Controller {
     }
 }
 
-export interface Visitor {
+export type Visitor = {
     enter?(node: TxtNode, parent?: TxtParentNode): unknown | void;
 
     leave?(node: TxtNode, parent?: TxtParentNode): unknown | void;
-}
+};
 
 function traverse(root: TxtParentNode, visitor: Visitor) {
     const controller = new Controller();

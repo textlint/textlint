@@ -5,12 +5,12 @@ import { diffLines } from "diff";
 import chalk from "chalk";
 import stripAnsi from "strip-ansi";
 
-interface DiffPart {
+type DiffPart = {
     value: string;
     count?: number;
     added?: boolean;
     removed?: boolean;
-}
+};
 const isFile = (filePath: string) => {
     try {
         const stats = fs.statSync(filePath);
