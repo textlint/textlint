@@ -20,6 +20,7 @@ const lintFile = (filePath: string, options: TextlintPluginOptions | boolean | u
                 options
             }
         ],
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
         rules: [{ ruleId: "no-todo", rule: require("textlint-rule-no-todo").default }]
     });
 };
@@ -34,6 +35,7 @@ const lintText = (text: string, options = true) => {
                 options
             }
         ],
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
         rules: [{ ruleId: "no-todo", rule: require("textlint-rule-no-todo").default }]
     });
 };

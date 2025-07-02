@@ -155,7 +155,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                 // FIXME: RuleReportedObject should be removed
                 // `error` is a any data.
                 const data = ruleError;
-                (message as any).data = data;
+                (message as LintReportedMessage & { data: unknown }).data = data;
             }
             this.emit(TextLintCoreTask.events.message, message);
         };

@@ -52,8 +52,8 @@ const getTextlintDependencyNames = async (dir: string): Promise<Array<string>> =
  * @param {*} defaultValue
  * @returns {Object}
  */
-const arrayToObject = (array: Array<any>, defaultValue: any): object => {
-    const object: { [index: string]: string } = {};
+const arrayToObject = (array: Array<string>, defaultValue: unknown): Record<string, unknown> => {
+    const object: Record<string, unknown> = {};
     array.forEach((item) => {
         object[item] = defaultValue;
     });

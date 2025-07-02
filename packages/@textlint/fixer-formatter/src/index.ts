@@ -21,7 +21,7 @@ const builtinFormatterList = {
     stylish: stylishFormatter
 } as const;
 type FormatterFunction = (results: TextlintFixResult[], formatterConfig: FormatterConfig) => string;
-const isFormatterFunction = (formatter: any): formatter is FormatterFunction => {
+const isFormatterFunction = (formatter: unknown): formatter is FormatterFunction => {
     return typeof formatter === "function";
 };
 type BuiltInFormatterName = keyof typeof builtinFormatterList;

@@ -1,6 +1,6 @@
 import { TextlintRuleModule, TextlintRuleOptions, TextlintRuleReporter } from "../../src/index.js";
 
-const noop = (..._args: any[]) => {};
+const noop = (..._args: unknown[]) => {};
 // test any
 const report0: TextlintRuleReporter = (context, options = {}) => {
     const { Syntax } = context;

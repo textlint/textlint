@@ -243,7 +243,7 @@ describe("new-style-of-test: invalid testConfig", () => {
     testConfigs.forEach((testConfig) => {
         it(`Should throw assertion error: ${testConfig.description}`, () => {
             try {
-                tester.run("invalid-testConfig-test", testConfig.config as any, testConfig.case);
+                tester.run("invalid-testConfig-test", testConfig.config as unknown, testConfig.case);
             } catch (err) {
                 assert.ok(err instanceof assert.AssertionError);
                 assert.equal(err.message, testConfig.expectedErrorMessage);

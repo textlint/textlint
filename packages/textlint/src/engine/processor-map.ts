@@ -4,11 +4,11 @@
 /**
  * Processor Map object
  */
-export class PluginMap extends Map<string, (...args: any[]) => any> {
+export class PluginMap extends Map<string, (...args: unknown[]) => unknown> {
     toJSON() {
-        const object = {};
+        const object: Record<string, unknown> = {};
         this.forEach((value, key) => {
-            (object as any)[key] = value;
+            object[key] = value;
         });
         return object;
     }

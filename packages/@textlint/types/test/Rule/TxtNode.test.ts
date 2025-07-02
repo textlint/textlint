@@ -25,7 +25,7 @@ import {
 import { TxtTableCellNode, TxtTableNode, TxtTableRowNode } from "@textlint/ast-node-types/lib/src/NodeType";
 import { TextlintRuleReporter } from "../../src/index.js";
 
-const noop = (..._args: any[]) => {};
+const noop = (..._args: unknown[]) => {};
 export const expectType = <Type>(_: Type): void => void 0;
 // Test: each node type match to AST node type
 const report: TextlintRuleReporter = (context) => {

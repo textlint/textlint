@@ -13,8 +13,8 @@ const normalizePath = (value: string) => {
     return path.sep === "\\" ? value.replace(/\\/g, "/") : value;
 };
 const pathReplacer = (dirPath: string) => {
-    return function replacer(key: string, value: any) {
-        if (key === "filePath") {
+    return function replacer(key: string, value: unknown) {
+        if (key === "filePath" && typeof value === "string") {
             return normalizePath(value.replace(dirPath, "<root>"));
         }
         return value;

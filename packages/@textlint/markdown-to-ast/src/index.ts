@@ -37,7 +37,9 @@ export { ASTNodeTypes as Syntax };
  * @returns Calculated position data or null if calculation fails
  */
 function calculatePositionFromSiblings(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     targetNode: any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     parentNode: any,
     source: StructuredSource,
     sourceText: string
@@ -179,6 +181,7 @@ export function parse(text: string): TxtDocumentNode {
     const source = new StructuredSource(textWithoutBOM);
 
     // Collect all nodes without position for advanced processing
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const nodesWithoutPosition: Array<{ node: any; parent: any }> = [];
 
     traverse(ast).forEach(function (node) {

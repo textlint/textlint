@@ -99,7 +99,7 @@ export class TextLintCore {
         filterRules: [],
     });
 
-    constructor(_THIS_ARG_IS_JUST_IGNORED: any[] = []) {
+    constructor(_THIS_ARG_IS_JUST_IGNORED: unknown[] = []) {
         // noop
     }
 

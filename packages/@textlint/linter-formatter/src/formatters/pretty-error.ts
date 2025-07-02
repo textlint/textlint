@@ -40,7 +40,7 @@ const template = style(
  * @param {TextLintMessage} message
  * @returns {*}
  */
-function failingCode(code: string, message: TextlintMessage): any {
+function failingCode(code: string, message: TextlintMessage): Array<{ line: number; code?: string; col?: number; failed?: boolean }> {
     const result = [];
     const lines = code.split("\n");
     let i = message.line - 3;
@@ -64,9 +64,9 @@ function failingCode(code: string, message: TextlintMessage): any {
     return result;
 }
 
-function showColumn(codes: string, ch: string): string {
+function showColumn(codes: Array<{ line: number; code?: string; col?: number; failed?: boolean }>, ch: string): string {
     let result = "";
-    const codeObject: any = codes[1];
+    const codeObject = codes[1] as { code: string; col: number };
     const sliced = codeObject.code.slice(0, codeObject.col);
     const width = widthOfString(sliced);
     if (width <= 0) {
@@ -88,7 +88,7 @@ function showColumn(codes: string, ch: string): string {
  * @param {TextLintMessage} message
  * @returns {*}
  */
-function prettyError(code: string, filePath: string, message: TextlintMessage): any {
+function prettyError(code: string, filePath: string, message: TextlintMessage): string | undefined {
     if (!code) {
         return;
     }

@@ -1,7 +1,7 @@
 import { createPluginStub } from "./helper/ExamplePlugin.js";
 import { describe, it } from "vitest";
 import { errorRule } from "./helper/ErrorRule.js";
-import { TextlintKernel, TextlintPluginCreator } from "../src/index";
+import { TextlintKernel, TextlintPluginCreator, TextlintMessage } from "../src/index";
 import * as path from "node:path";
 import * as assert from "node:assert";
 import { createBinaryPluginStub } from "./helper/BinaryPlugin.js";
@@ -207,9 +207,9 @@ describe("kernel-plugin", () => {
                             // THIS IS FOR TESTING
                             return {
                                 invalid: "THIS IS NOT TxtAST"
-                            } as any as TxtDocumentNode;
+                            } as unknown as TxtDocumentNode;
                         },
-                        postProcess(messages: Array<any>, filePath?: string) {
+                        postProcess(messages: Array<TextlintMessage>, filePath?: string) {
                             return {
                                 filePath: filePath ?? "<invalid>",
                                 messages

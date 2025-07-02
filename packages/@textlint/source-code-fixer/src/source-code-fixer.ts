@@ -21,6 +21,7 @@ function compareMessagesByLocation(a: TextlintMessage, b: TextlintMessage) {
     }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function clone<T extends { [index: string]: any }>(object: T): T {
     return JSON.parse(JSON.stringify(object));
 }

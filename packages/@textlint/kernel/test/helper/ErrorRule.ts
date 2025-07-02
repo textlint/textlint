@@ -14,13 +14,13 @@ export interface ReportOptions {
 
 export const report: TextlintRuleReporter = (
     context: Readonly<TextlintRuleContext>,
-    options: ReportOptions | any = {}
+    options: ReportOptions | unknown = {}
 ) => {
     const errors = options.errors || [];
     const { Syntax, RuleError, report, fixer, locator } = context;
     return {
         [Syntax.Document](node: TxtNode) {
-            errors.forEach((error: any) => {
+            errors.forEach((error: { range: readonly [number, number]; message: string; output?: string }) => {
                 assert.ok(Array.isArray(error.range), "range should be an array");
                 if (error.output) {
                     report(

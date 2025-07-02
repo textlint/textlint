@@ -9,11 +9,11 @@
  * Main purpose for helping linting.
  */
 export class Logger {
-    static log(...message: any[]) {
+    static log(...message: unknown[]) {
         console.log(...message);
     }
 
-    static warn(...message: any[]) {
+    static warn(...message: unknown[]) {
         console.warn(...message);
     }
 
@@ -32,7 +32,7 @@ If the NODE_OPTIONS=--trace-deprecation is used, the deprecation warning is prin
         });
     }
 
-    static error(...message: any[]) {
+    static error(...message: unknown[]) {
         console.error(...message);
     }
 }

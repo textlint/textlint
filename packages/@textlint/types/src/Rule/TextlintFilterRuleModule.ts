@@ -2,22 +2,22 @@
  * Filter rule reporter function
  */
 import { TextlintFilterRuleContext } from "./TextlintFilterRuleContext.js";
-import { ASTNodeTypes, TypeofTxtNode } from "@textlint/ast-node-types";
+import { ASTNodeTypes, TypeofTxtNode, AnyTxtNode } from "@textlint/ast-node-types";
 /**
  * textlint filter rule option values is object or boolean.
  * if this option value is false, disable the filter rule.
  */
 export type TextlintFilterRuleOptions = {
-    [index: string]: any;
+    [index: string]: unknown;
 };
 
 /**
  * Rule Reporter Handler object define handler for each TxtNode type.
  */
 export type TextlintFilterRuleReportHandler = {
-    [P in ASTNodeTypes]?: (node: TypeofTxtNode<P>) => void | Promise<any>;
+    [P in ASTNodeTypes]?: (node: TypeofTxtNode<P>) => void | Promise<void>;
 } & {
-    [index: string]: (node: any) => void | Promise<any>;
+    [index: string]: (node: AnyTxtNode) => void | Promise<void>;
 };
 
 /**

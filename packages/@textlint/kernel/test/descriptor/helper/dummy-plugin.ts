@@ -1,4 +1,4 @@
-import { TextlintPluginCreator } from "../../../src/index.js";
+import { TextlintPluginCreator, TextlintPluginPreProcessResult, TextlintMessage, TextlintPluginPostProcessResult } from "../../../src/index.js";
 
 export const createDummyPlugin = (extensions: string[] = [".dummy"]): TextlintPluginCreator => {
     return {
@@ -10,10 +10,10 @@ export const createDummyPlugin = (extensions: string[] = [".dummy"]): TextlintPl
             processor() {
                 return {
                     preProcess(_: string) {
-                        return {} as any;
+                        return {} as TextlintPluginPreProcessResult;
                     },
-                    postProcess(_messages: Array<any>, _filePath?: string) {
-                        return {} as any;
+                    postProcess(_messages: Array<TextlintMessage>, _filePath?: string) {
+                        return {} as TextlintPluginPostProcessResult;
                     }
                 };
             }

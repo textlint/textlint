@@ -1,3 +1,8 @@
+type ESModule<T> = {
+    __esModule: true;
+    default: T;
+};
+
 export function moduleInterop<T>(moduleExports: T): T {
-    return moduleExports && (moduleExports as any).__esModule ? (moduleExports as any).default! : moduleExports;
+    return moduleExports && (moduleExports as ESModule<T>).__esModule ? (moduleExports as ESModule<T>).default : moduleExports;
 }

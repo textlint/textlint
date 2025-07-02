@@ -4,9 +4,9 @@
 
 import { describe, it, expect } from "vitest";
 import stylish from "../../src/formatters/stylish.js";
+import type { TextlintResult } from "@textlint/types";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const formatter = (code: any) => {
+const formatter = (code: TextlintResult[]) => {
     return stylish(code, { color: false });
 };
 

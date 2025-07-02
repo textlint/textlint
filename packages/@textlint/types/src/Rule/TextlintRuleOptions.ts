@@ -5,6 +5,6 @@
 import { TextlintRuleSeverityLevelKey } from "./TextlintRuleSeverityLevelKey.js";
 
 export type TextlintRuleOptions<T extends object = object> = {
-    [index: string]: any;
+    [index: string]: unknown;
     severity?: TextlintRuleSeverityLevelKey;
 } & T;

@@ -5,7 +5,8 @@ import type {
     TextlintPluginProcessor,
     TextlintPluginOptions,
     TextlintPluginPreProcessResult,
-    TextlintPluginPostProcessResult
+    TextlintPluginPostProcessResult,
+    TextlintMessage
 } from "@textlint/types";
 
 export class TextProcessor implements TextlintPluginProcessor {
@@ -23,13 +24,13 @@ export class TextProcessor implements TextlintPluginProcessor {
 
     processor(_ext: string): {
         preProcess: (text: string, _filePath?: string) => TextlintPluginPreProcessResult;
-        postProcess: (messages: Array<any>, filePath?: string) => TextlintPluginPostProcessResult;
+        postProcess: (messages: Array<TextlintMessage>, filePath?: string) => TextlintPluginPostProcessResult;
     } {
         return {
             preProcess(text: string, _filePath?: string) {
                 return parse(text);
             },
-            postProcess(messages: Array<any>, filePath?: string): { messages: Array<any>; filePath: string } {
+            postProcess(messages: Array<TextlintMessage>, filePath?: string): { messages: Array<TextlintMessage>; filePath: string } {
                 return {
                     messages,
                     filePath: filePath ? filePath : "<text>"

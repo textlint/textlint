@@ -113,7 +113,7 @@ export type TextlintRuleErrorDetails = {
  */
 export type TextlintRuleReportedObject = TextlintRuleErrorDetails & {
     message: string;
-    [index: string]: any;
+    [index: string]: unknown;
 };
 
 export interface TextlintRuleErrorConstructor {

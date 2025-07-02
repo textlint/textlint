@@ -1,5 +1,5 @@
 import type { TxtDocumentNode } from "@textlint/ast-node-types";
-import type { TextlintPluginCreator, TextlintPluginOptions } from "@textlint/types";
+import type { TextlintPluginCreator, TextlintPluginOptions, TextlintMessage } from "@textlint/types";
 
 // MIT © 2017 azu
 export class ExampleProcessor {
@@ -31,7 +31,7 @@ export class ExampleProcessor {
                     }
                 };
             },
-            postProcess(messages: any[], filePath?: string) {
+            postProcess(messages: TextlintMessage[], filePath?: string) {
                 return {
                     messages,
                     filePath: filePath || "unknown"

@@ -1,7 +1,7 @@
 /**
  * Rule reporter function
  */
-import { ASTNodeTypes, TypeofTxtNode } from "@textlint/ast-node-types";
+import { ASTNodeTypes, TypeofTxtNode, AnyTxtNode } from "@textlint/ast-node-types";
 import { TextlintRuleOptions } from "./TextlintRuleOptions.js";
 import { TextlintRuleContext } from "./TextlintRuleContext.js";
 
@@ -13,9 +13,9 @@ import { TextlintRuleContext } from "./TextlintRuleContext.js";
  *
  * Each comment is example value of Markdown
  */
-export type TextlintRuleReportHandler = { [P in ASTNodeTypes]?: (node: TypeofTxtNode<P>) => void | Promise<any> } & {
+export type TextlintRuleReportHandler = { [P in ASTNodeTypes]?: (node: TypeofTxtNode<P>) => void | Promise<void> } & {
     // TODO: node should be AnyNodeType
-    [index: string]: (node: any) => void | Promise<any>;
+    [index: string]: (node: AnyTxtNode) => void | Promise<void>;
 };
 
 /**

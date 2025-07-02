@@ -13,7 +13,7 @@ export interface FilterOptions {
 export const report: TextlintFilterRuleReporter = (
     context: Readonly<TextlintFilterRuleContext>,
     // TODO: remove any
-    options: FilterOptions | any = {}
+    options: FilterOptions | unknown = {}
 ) => {
     const { Syntax, shouldIgnore } = context;
     return {
