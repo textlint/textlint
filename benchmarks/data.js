@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751470562412,
+  "lastUpdate": 1751470877668,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -67830,6 +67830,48 @@ window.BENCHMARK_DATA = {
             "value": 0.61818988638,
             "unit": "seconds",
             "range": "± 0.027757177999999993"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "96b064b61d1e08fd95e11b8375633f3c960d3b17",
+          "message": "refactor: fix all ESLint no-explicit-any warnings (#1620)\n\n* refactor: fix all ESLint no-explicit-any warnings\n\n- Replace any types with appropriate specific types (unknown, TxtNode, TextlintMessage, etc.)\n- Add ESLint disable comments for cases where any is necessary for functionality\n- Create test helper functions for better type safety in test files\n- Improve type safety across textlint packages while maintaining existing behavior\n\nFixes 135 ESLint warnings without breaking changes.\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\n\n* fix: revert problematic type changes that break builds\n\n- Revert any -> unknown changes that cause type compatibility issues\n- Add eslint-disable-next-line comments instead to suppress warnings\n- Keep existing behavior while maintaining ESLint compliance\n\n* fix: remove unused imports to reduce type errors\n\n- Remove unused AnyTxtNode imports\n- Keep ESLint compliance while reducing build errors\n\n* fix: resolve remaining type errors in tests and CLI utilities\n\n- Fix stylish formatter test by creating proper TextlintMessage objects\n- Update CLI test mocks to match Logger interface with spread parameters\n- Add proper type assertions for complex test objects\n- Remove unused imports to eliminate TypeScript warnings\n- Maintain all existing functionality while improving type safety\n\n* fix: resolve final type check errors and clean up ESLint warnings\n\n- Fix severity type mismatch in fixer and linter processors\n- Fix config loader plugin options type\n- Fix example TypeScript code to return Promise<void>\n- Clean up unused ESLint disable comments and improve type assertions\n\nAll ESLint warnings resolved and TypeScript builds successfully!\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-03T00:39:22+09:00",
+          "tree_id": "6878a8cef0440f525ba99b9e67691d68d1db5db4",
+          "url": "https://github.com/textlint/textlint/commit/96b064b61d1e08fd95e11b8375633f3c960d3b17"
+        },
+        "date": 1751470870859,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23762208842000004,
+            "unit": "seconds",
+            "range": "± 0.161450899"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7624269812200002,
+            "unit": "seconds",
+            "range": "± 0.032772318999999994"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59947770282,
+            "unit": "seconds",
+            "range": "± 0.009938449999999932"
           }
         ]
       }
