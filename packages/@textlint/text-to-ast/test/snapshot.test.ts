@@ -8,7 +8,7 @@ const fixturesDir = path.join(__dirname, "snapshots");
 describe("Snapshot testing", () => {
     fs.readdirSync(fixturesDir).map((caseName) => {
         const normalizedTestName = caseName.replace(/-/g, " ");
-        it(`Test ${normalizedTestName}`, function (this: any) {
+        it(`Test ${normalizedTestName}`, (context) => {
             const fixtureDir = path.join(fixturesDir, caseName);
             const actualFilePath = path.join(fixtureDir, "input.txt");
             const actualContent = fs.readFileSync(actualFilePath, "utf-8");
@@ -18,7 +18,7 @@ describe("Snapshot testing", () => {
             // UPDATE_SNAPSHOT=1 npm test
             if (!fs.existsSync(expectedFilePath) || process.env.UPDATE_SNAPSHOT) {
                 fs.writeFileSync(expectedFilePath, JSON.stringify(actual, null, 4));
-                this.skip(); // skip when updating snapshots
+                context.skip(); // skip when updating snapshots
                 return;
             }
             // compare input and output
