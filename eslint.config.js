@@ -58,6 +58,20 @@ module.exports = [
             "@typescript-eslint/no-unsafe-function-type": "warn"
         }
     },
+    // Console allowed in CLI files
+    {
+        files: [
+            "**/bin/**",
+            "**/scripts/**",
+            "examples/**",
+            "**/debug-*.{js,mjs,ts}",
+            "**/tools/**",
+            "**/*.test.ts"
+        ],
+        rules: {
+            "no-console": "off"
+        }
+    },
     // Ignore patterns
     {
         ignores: [
@@ -71,7 +85,9 @@ module.exports = [
             "dist/**",
             "build/**",
             "coverage/**",
-            "*.min.js"
+            "*.min.js",
+            ".nx/**",
+            "**/.nx/**"
         ]
     },
     // Prettier configuration (must be last)

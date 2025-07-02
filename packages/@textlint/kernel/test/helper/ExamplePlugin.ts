@@ -17,7 +17,7 @@ export interface CreatePluginOptions {
  * It is compatible with markdown plugin by default.
  */
 export const createPluginStub = (options?: CreatePluginOptions) => {
-    let assignedOptions: undefined | {};
+    let assignedOptions: undefined | Record<string, unknown>;
     let processorArgs: {
         extension: string;
     };
@@ -52,7 +52,7 @@ export const createPluginStub = (options?: CreatePluginOptions) => {
                         return (options && options.extensions) || [".md"];
                     }
 
-                    constructor(public options?: {}) {
+                    constructor(public options?: Record<string, unknown>) {
                         assignedOptions = options;
                     }
 

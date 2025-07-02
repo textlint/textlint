@@ -9,7 +9,7 @@ describe("Compliance tests", function () {
     describe("compatible for Unist", function () {
         it("should have position", function () {
             const AST: TxtNode & Node = parse("text");
-            astTest(AST);
+            astTest(AST as unknown as Record<string, unknown>);
             assert(typeof AST.position === "object");
             assert(typeof AST.position.start === "object");
             assert(typeof AST.position.start.line === "number");

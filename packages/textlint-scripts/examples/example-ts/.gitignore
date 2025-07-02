@@ -82,3 +82,6 @@ crashlytics.properties
 crashlytics-build.properties
 
 lib/
+
+# TypeScript compiled output
+dist/

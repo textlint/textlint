@@ -1,12 +1,25 @@
 import type { TextlintFilterRuleReporter, TextlintRuleReporter } from "@textlint/types";
 
+// Type guards
+function isObjectWithProperty(obj: unknown, property: string): obj is Record<string, unknown> {
+    return typeof obj === "object" && obj !== null && property in obj;
+}
+
+function hasLinterProperty(obj: unknown): obj is { linter: unknown } {
+    return isObjectWithProperty(obj, "linter");
+}
+
+function hasFixerProperty(obj: unknown): obj is { fixer: unknown } {
+    return isObjectWithProperty(obj, "fixer");
+}
+
 /**
  * detect that ruleCreator has linter function
  * @param {*} ruleCreator
  * @returns {boolean}
  */
-export function hasLinter(ruleCreator: any): boolean {
-    if (typeof ruleCreator.linter === "function") {
+export function hasLinter(ruleCreator: unknown): boolean {
+    if (hasLinterProperty(ruleCreator) && typeof ruleCreator.linter === "function") {
         return true;
     }
     if (typeof ruleCreator === "function") {
@@ -18,16 +31,16 @@ export function hasLinter(ruleCreator: any): boolean {
 /**
  * get linter function from ruleCreator
  * if not found, throw error
- * @param {Function|Object|any} ruleCreator
- * @returns {Function} linter function
+ * @param {((...args: any[]) => any)|Object|any} ruleCreator
+ * @returns {(...args: any[]) => any} linter function
  * @throws
  */
-export function getLinter(ruleCreator: Function | object | any): TextlintRuleReporter {
-    if (typeof ruleCreator.linter === "function") {
-        return ruleCreator.linter;
+export function getLinter(ruleCreator: unknown): TextlintRuleReporter {
+    if (hasLinterProperty(ruleCreator) && typeof ruleCreator.linter === "function") {
+        return ruleCreator.linter as TextlintRuleReporter;
     }
     if (typeof ruleCreator === "function") {
-        return ruleCreator;
+        return ruleCreator as TextlintRuleReporter;
     }
     throw new Error("Not found linter function in the ruleCreator");
 }
@@ -37,23 +50,23 @@ export function getLinter(ruleCreator: Function | object | any): TextlintRuleRep
  * @param {*} ruleCreator
  * @returns {boolean}
  */
-export function hasFixer(ruleCreator: any): boolean {
-    return typeof ruleCreator.fixer === "function" && hasLinter(ruleCreator);
+export function hasFixer(ruleCreator: unknown): boolean {
+    return hasFixerProperty(ruleCreator) && typeof ruleCreator.fixer === "function" && hasLinter(ruleCreator);
 }
 
 /**
  * get fixer function from ruleCreator
  * if not found, throw error
- * @param {Function|Object|any} ruleCreator
- * @returns {Function} fixer function
+ * @param {((...args: any[]) => any)|Object|any} ruleCreator
+ * @returns {(...args: any[]) => any} fixer function
  * @throws
  */
-export function getFixer(ruleCreator: Function | object | any): TextlintRuleReporter {
+export function getFixer(ruleCreator: unknown): TextlintRuleReporter {
     if (!hasLinter(ruleCreator)) {
         throw new Error("fixer module should have also linter function.");
     }
-    if (hasFixer(ruleCreator)) {
-        return ruleCreator.fixer;
+    if (hasFixerProperty(ruleCreator) && typeof ruleCreator.fixer === "function") {
+        return ruleCreator.fixer as TextlintRuleReporter;
     }
     throw new Error("Not found fixer function in the ruleCreator");
 }
@@ -63,7 +76,7 @@ export function getFixer(ruleCreator: Function | object | any): TextlintRuleRepo
  * @param {*} ruleCreator
  * @returns {boolean}
  **/
-export function isRuleModule(ruleCreator: any): boolean {
+export function isRuleModule(ruleCreator: unknown): boolean {
     return hasLinter(ruleCreator) || hasFixer(ruleCreator);
 }
 
@@ -74,7 +87,7 @@ export function isRuleModule(ruleCreator: any): boolean {
  * @param {string} [key]
  * @throws
  */
-export function assertRuleShape(ruleModule: any, key: string = "") {
+export function assertRuleShape(ruleModule: unknown, key: string = "") {
     if (ruleModule === undefined) {
         throw new Error(`Definition of rule '${key}' was not found.`);
     }
@@ -97,12 +110,12 @@ module.exports = function(context){
  * get linter function from ruleCreator
  * if not found, throw error
  * @param {*} ruleCreator
- * @returns {Function} linter function
+ * @returns {(...args: any[]) => any} linter function
  * @throws
  */
-export function getFilter(ruleCreator: any): TextlintFilterRuleReporter {
+export function getFilter(ruleCreator: unknown): TextlintFilterRuleReporter {
     if (typeof ruleCreator === "function") {
-        return ruleCreator;
+        return ruleCreator as TextlintFilterRuleReporter;
     }
     throw new Error("Not found filter function in the ruleCreator");
 }

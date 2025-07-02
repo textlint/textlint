@@ -22,10 +22,10 @@ function findFirstTypedNode(node: TxtNode, type: string, value?: string): TxtNod
         }
     });
     if (result == null) {
-        /* eslint-disable no-console */
+         
         console.log(inspect(node));
         throw new Error(`Not Found type:${type}`);
-        /* eslint-enable no-console */
+         
     }
     return result;
 }

@@ -4,8 +4,10 @@
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
-    "noEmit": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "composite": true,
+    "outDir": "./dist",
+    "declarationDir": "./dist"
   },
   "references": [
     {

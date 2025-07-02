@@ -3,7 +3,7 @@
 // https://github.com/59naga/carrack
 "use strict";
 
-export type Listener = (...args: any[]) => void;
+export type Listener = (...args: unknown[]) => void;
 
 export class EventEmitter<T extends Listener = Listener> {
     #listeners = new Map<string, Set<T>>();
@@ -15,7 +15,7 @@ export class EventEmitter<T extends Listener = Listener> {
         this.#listeners.set(type, listenerSet);
     }
 
-    emit(type: string, ...args: any[]): void {
+    emit(type: string, ...args: unknown[]): void {
         const listenerSet = this.#listeners.get(type);
         if (!listenerSet) {
             return;
@@ -51,7 +51,7 @@ export class EventEmitter<T extends Listener = Listener> {
 }
 
 export class PromiseEventEmitter {
-    private events: EventEmitter<(...args: any[]) => Promise<void> | void>;
+    private events: EventEmitter<(...args: unknown[]) => Promise<void> | void>;
 
     constructor() {
         this.events = new EventEmitter();
@@ -61,11 +61,11 @@ export class PromiseEventEmitter {
         return this.events.listenerCount(type);
     }
 
-    on(event: string, listener: (...args: any[]) => Promise<void> | void) {
+    on(event: string, listener: (...args: unknown[]) => Promise<void> | void) {
         return this.events.on(event, listener);
     }
 
-    emit(event: string, ...args: any[]): Promise<void[]> {
+    emit(event: string, ...args: unknown[]): Promise<void[]> {
         const promises: (Promise<void> | void)[] = [];
 
         this.events.listeners(event).forEach((listener) => {

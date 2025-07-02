@@ -50,7 +50,7 @@ describe("TextlintRuleError", function () {
     it("should throw when passed padding is not object ", () => {
         assert.throws(() => {
             new TextlintRuleErrorImpl("test", {
-                // @ts-ignore
+                // @ts-expect-error - Testing invalid padding type (number instead of object)
                 padding: 1
             });
         });
@@ -58,19 +58,19 @@ describe("TextlintRuleError", function () {
     it("should throw when passed wrong property ", () => {
         assert.throws(() => {
             new TextlintRuleErrorImpl("test", {
-                // @ts-ignore
+                // @ts-expect-error - Testing invalid property 'at' (should cause TypeError)
                 at: 1
             });
         });
         assert.throws(() => {
             new TextlintRuleErrorImpl("test", {
-                // @ts-ignore
+                // @ts-expect-error - Testing invalid property 'range' (should cause TypeError)
                 range: [1, 2]
             });
         });
         assert.throws(() => {
             new TextlintRuleErrorImpl("test", {
-                // @ts-ignore
+                // @ts-expect-error - Testing invalid property 'loc' (should cause TypeError)
                 loc: {}
             });
         });

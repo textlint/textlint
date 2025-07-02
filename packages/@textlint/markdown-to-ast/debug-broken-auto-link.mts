@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { parse } from "./src/index";
+import { parse } from "./src/index.js";
 
 const fixtureDir = "./test/fixtures";
 const inputPath = path.join(fixtureDir, "broken-auto-link", "input.md");

@@ -77,9 +77,9 @@ const runWithMockLogger = async (cb: (context: RunContext) => unknown): Promise<
     try {
         await cb(context);
     } catch (error) {
-        // eslint-disable-next-line no-console
+         
         console.log("Logs:", context.getLogs());
-        // eslint-disable-next-line no-console
+         
         console.log("Errors:", context.getErrors());
         throw error;
     }

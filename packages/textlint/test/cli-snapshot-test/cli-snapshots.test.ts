@@ -64,7 +64,7 @@ const runWithMockLog = async (cb: (context: RunContext) => unknown): Promise<unk
     try {
         await cb(context);
     } catch (error) {
-        // eslint-disable-next-line no-console
+         
         console.log("Logs", context.getLogs());
         throw error;
     }

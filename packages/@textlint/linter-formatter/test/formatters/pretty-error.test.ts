@@ -5,8 +5,27 @@ import prettyError from "../../src/formatters/pretty-error.js";
 import { describe, it } from "vitest";
 
 import * as assert from "node:assert";
+import type { TextlintMessage } from "@textlint/types";
 const path = require("node:path");
-const stripAnsi = require("strip-ansi");
+
+// Helper to create test message with minimal required properties
+function createTestMessage(overrides: Partial<TextlintMessage> & { source?: string; fix?: { range: number[]; text: string } } = {}): TextlintMessage & { source?: string; fix?: { range: number[]; text: string } } {
+    return {
+        type: "lint",
+        ruleId: "",
+        message: "",
+        line: 1,
+        column: 1,
+        index: 0,
+        range: [0, 1] as const,
+        loc: {
+            start: { line: 1, column: 1 },
+            end: { line: 1, column: 1 }
+        },
+        severity: 1,
+        ...overrides
+    };
+}
 describe("pretty-error", function () {
     describe("when first line", function () {
         it("should start 0 line", function () {
@@ -15,14 +34,14 @@ describe("pretty-error", function () {
                 {
                     filePath: fooFile,
                     messages: [
-                        {
+                        createTestMessage({
                             message: "Unexpected foo.",
                             severity: 2,
                             line: 1,
                             column: 1,
                             ruleId: "foo",
                             source: "foo"
-                        }
+                        })
                     ]
                 }
             ];
@@ -53,7 +72,7 @@ ${fooFile}:1:1
                 {
                     filePath: fooFile,
                     messages: [
-                        {
+                        createTestMessage({
                             message: "Unexpected foo.",
                             severity: 2,
                             line: 5,
@@ -63,13 +82,13 @@ ${fooFile}:1:1
                                 range: [40, 45],
                                 text: "fixed 1"
                             }
-                        }
+                        })
                     ]
                 },
                 {
                     filePath: barFile,
                     messages: [
-                        {
+                        createTestMessage({
                             message: "Unexpected bar.",
                             severity: 1,
                             line: 6,
@@ -79,7 +98,7 @@ ${fooFile}:1:1
                                 range: [50, 55],
                                 text: "fixed 2"
                             }
-                        }
+                        })
                     ]
                 }
             ];
@@ -118,14 +137,14 @@ Try to run: $ textlint --fix [file]
                 {
                     filePath: fooFile,
                     messages: [
-                        {
+                        createTestMessage({
                             message: "Unexpected foo.",
                             severity: 2,
                             line: 6,
                             column: 1,
                             ruleId: "foo",
                             source: "foo"
-                        }
+                        })
                     ]
                 }
             ];
@@ -154,14 +173,14 @@ ${fooFile}:6:1
                 {
                     filePath: fooFile,
                     messages: [
-                        {
+                        createTestMessage({
                             message: "Unexpected foo.",
                             severity: 2,
                             line: 6,
                             column: 1,
                             ruleId: "foo",
                             source: "foo"
-                        }
+                        })
                     ]
                 }
             ];
@@ -190,7 +209,7 @@ ${fooFile}:6:1
                 {
                     filePath: ckjFile,
                     messages: [
-                        {
+                        createTestMessage({
                             message: "Unexpected foo.",
                             severity: 2,
                             line: 2,
@@ -200,7 +219,7 @@ ${fooFile}:6:1
                                 range: [40, 45],
                                 text: "fixed 1"
                             }
-                        }
+                        })
                     ]
                 }
             ];
@@ -231,14 +250,14 @@ Try to run: $ textlint --fix [file]
                 {
                     filePath: fooFile,
                     messages: [
-                        {
+                        createTestMessage({
                             message: "Unexpected foo.",
                             severity: 3,
                             line: 5,
                             column: 10,
                             ruleId: "foo",
                             source: "foo"
-                        }
+                        })
                     ]
                 }
             ];

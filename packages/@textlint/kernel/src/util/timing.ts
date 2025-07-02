@@ -44,30 +44,33 @@ const ALIGN = [alignLeft, alignRight, alignRight];
  * @returns {string} modified string
  * @private
  */
-function display(data: any) {
+function display(data: Record<string, number>) {
     let total = 0;
-    const rows = Object.keys(data)
+    const sortedData = Object.keys(data)
         .map(function (key) {
             const time = data[key];
             total += time;
-            return [key, time] as any;
+            return [key, time] as [string, number];
         })
         .sort(function (a: [string, number], b: [string, number]) {
             return b[1] - a[1];
         })
         .slice(0, 10);
+    
+    const rows: (string | number)[][] = [...sortedData];
 
-    rows.forEach(function (row: any) {
-        row.push(`${((row[1] * 100) / total).toFixed(1)}%`);
-        row[1] = row[1].toFixed(3);
+    rows.forEach(function (row: (string | number)[]) {
+        const time = row[1] as number;
+        row.push(`${((time * 100) / total).toFixed(1)}%`);
+        row[1] = time.toFixed(3);
     });
 
-    rows.unshift(HEADERS);
+    rows.unshift(HEADERS as (string | number)[]);
 
     const widths: Array<number> = [];
     rows.forEach(function (row) {
         for (let i = 0; i < row.length; i++) {
-            const n = row[i].length;
+            const n = String(row[i]).length;
             if (!widths[i] || n > widths[i]) {
                 widths[i] = n;
             }
@@ -76,8 +79,8 @@ function display(data: any) {
 
     const table = rows.map(function (row) {
         return row
-            .map(function (cell: any, index: number) {
-                return ALIGN[index](cell, widths[index]);
+            .map(function (cell: string | number, index: number) {
+                return ALIGN[index](String(cell), widths[index]);
             })
             .join(" | ");
     });
@@ -105,16 +108,16 @@ export default (function () {
     /**
      * Time the run
      * @param {*} key key from the data object
-     * @param {Function} fn function to be called
-     * @returns {Function} function to be executed
+     * @param {(...args: any[]) => any} fn function to be called
+     * @returns {(...args: any[]) => any} function to be executed
      * @private
      */
-    function time(key: string, fn: Function) {
+    function time<T extends unknown[]>(key: string, fn: (...args: T) => unknown) {
         if (typeof data[key] === "undefined") {
             data[key] = 0;
         }
 
-        return async function (...args: any[]) {
+        return async function (...args: T) {
             let t = process.hrtime();
             await fn(...args);
             t = process.hrtime(t);

@@ -1,14 +1,15 @@
 // LICENSE : MIT
 "use strict";
 require("shelljs/make");
-var os = require("node:os");
+const os = require("node:os");
+/* eslint-env shelljs */
 /*
  * A little bit fuzzy. My computer has a first CPU speed of 3093 and the perf test
  * always completes in < 2000ms. However, Travis is less predictable due to
  * multiple different VM types. So I'm fudging this for now in the hopes that it
  * at least provides some sort of useful signal.
  */
-var PERF_MULTIPLIER = 7.5e6;
+const PERF_MULTIPLIER = 7.5e6;
 /**
  * Calculates the time for each run for performance
  * @param {string} cmd cmd
@@ -20,13 +21,13 @@ var PERF_MULTIPLIER = 7.5e6;
  * @private
  */
 function time(cmd, runs, runNumber, results, cb) {
-    var start = process.hrtime();
-    exec(cmd, { silent: true }, function () {
-        var diff = process.hrtime(start),
+    const start = process.hrtime();
+    exec(cmd, { silent: true }, function () { // eslint-disable-line no-undef
+        const diff = process.hrtime(start),
             actual = diff[0] * 1e3 + diff[1] / 1e6; // ms
 
         results.push(actual);
-        echo("Performance Run #" + runNumber + ":  %dms", actual);
+        echo(`Performance Run #${  runNumber  }:  %dms`, actual); // eslint-disable-line no-undef
         if (runs > 1) {
             time(cmd, runs - 1, runNumber + 1, results, cb);
         } else {
@@ -36,17 +37,17 @@ function time(cmd, runs, runNumber, results, cb) {
 }
 
 function run() {
-    var cpuSpeed = os.cpus()[0].speed;
-    var max = PERF_MULTIPLIER / cpuSpeed;
-    var TEXTLINT = "node " + __dirname + "/node_modules/.bin/textlint";
-    var target = __dirname + "/md/";
-    var cmd = TEXTLINT + " " + target;
+    const cpuSpeed = os.cpus()[0].speed;
+    const max = PERF_MULTIPLIER / cpuSpeed;
+    const TEXTLINT = `node ${  __dirname  }/node_modules/.bin/textlint`;
+    const target = `${__dirname  }/md/`;
+    const cmd = `${TEXTLINT  } ${  target}`;
     time(cmd, 5, 1, [], function (results) {
         results.sort(function (a, b) {
             return a - b;
         });
 
-        var median = results[~~(results.length / 2)];
+        const median = results[~~(results.length / 2)];
 
         if (median > max) {
             console.log("Performance budget exceeded: %dms (limit: %dms)", median, max);
