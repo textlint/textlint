@@ -12,10 +12,10 @@ import type {
 export class TextProcessor implements TextlintPluginProcessor {
     config: TextlintPluginOptions;
     extensions: Array<string>;
-    constructor(config = {}) {
+    constructor(config: TextlintPluginOptions = {}) {
         this.config = config;
         // support "extension" option
-        this.extensions = this.config.extensions ? this.config.extensions : [];
+        this.extensions = this.config.extensions ? this.config.extensions as string[] : [];
     }
 
     availableExtensions() {

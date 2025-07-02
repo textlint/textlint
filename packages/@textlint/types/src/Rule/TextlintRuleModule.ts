@@ -1,7 +1,7 @@
 /**
  * Rule reporter function
  */
-import { ASTNodeTypes, TypeofTxtNode, AnyTxtNode } from "@textlint/ast-node-types";
+import { ASTNodeTypes, TypeofTxtNode } from "@textlint/ast-node-types";
 import { TextlintRuleOptions } from "./TextlintRuleOptions.js";
 import { TextlintRuleContext } from "./TextlintRuleContext.js";
 

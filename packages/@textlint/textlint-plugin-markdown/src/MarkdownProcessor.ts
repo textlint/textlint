@@ -11,9 +11,9 @@ import type {
 export class MarkdownProcessor {
     config: TextlintPluginOptions;
     extensions: Array<string>;
-    constructor(config = {}) {
+    constructor(config: TextlintPluginOptions = {}) {
         this.config = config;
-        this.extensions = this.config.extensions ? this.config.extensions : [];
+        this.extensions = this.config.extensions ? this.config.extensions as string[] : [];
     }
 
     availableExtensions() {

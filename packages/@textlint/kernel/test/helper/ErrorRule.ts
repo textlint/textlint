@@ -14,7 +14,8 @@ export interface ReportOptions {
 
 export const report: TextlintRuleReporter = (
     context: Readonly<TextlintRuleContext>,
-    options: ReportOptions | unknown = {}
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    options: ReportOptions | any = {}
 ) => {
     const errors = options.errors || [];
     const { Syntax, RuleError, report, fixer, locator } = context;

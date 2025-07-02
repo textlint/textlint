@@ -103,7 +103,7 @@ describe("textlint-kernel", () => {
                 plugins: [{ pluginId: "example", plugin, options: expectedPluginOptions }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
-            return kernel.lintText("text", options).then((_result) => {
+            return kernel.lintText("text", options as unknown as TextlintKernelOptions).then((_result) => {
                 const actualPluginOptions = getOptions();
                 assert.deepEqual(actualPluginOptions, expectedPluginOptions);
             });
@@ -325,7 +325,7 @@ describe("textlint-kernel", () => {
                 plugins: [{ pluginId: "example", plugin, options: expectedPluginOptions }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
-            return kernel.lintText("text", options).then((_result) => {
+            return kernel.lintText("text", options as unknown as TextlintKernelOptions).then((_result) => {
                 const actualPluginOptions = getOptions();
                 assert.deepEqual(actualPluginOptions, expectedPluginOptions);
             });

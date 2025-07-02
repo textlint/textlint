@@ -96,7 +96,8 @@ export default class FixerProcessor {
             const messages = await TaskRunner.process(task);
             const result = await postProcess(messages, sourceCode.filePath);
             const filteredResult = {
-                messages: this.messageProcessManager.process(result.messages),
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                messages: this.messageProcessManager.process(result.messages as any),
                 filePath: result.filePath ? result.filePath : `<Unknown{sourceCode.ext}>`
             };
             // TODO: should be removed resultFilePath

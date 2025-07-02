@@ -1,4 +1,5 @@
-import { TextlintPluginCreator, TextlintPluginPreProcessResult, TextlintMessage, TextlintPluginPostProcessResult } from "../../../src/index.js";
+import { TextlintPluginCreator } from "../../../src/index.js";
+import type { TextlintPluginPreProcessResult, TextlintMessage, TextlintPluginPostProcessResult } from "@textlint/types";
 
 export const createDummyPlugin = (extensions: string[] = [".dummy"]): TextlintPluginCreator => {
     return {
