@@ -6,8 +6,8 @@ const report: TextlintRuleReporter = function (context, _options = {}) {
     const { Syntax, RuleError, report, getSource } = context;
     return {
         // async test
-        async [Syntax.Code]() {
-            return null;
+        async [Syntax.Code](): Promise<void> {
+            return;
         },
         [Syntax.Str](node) {
             // "Str" node

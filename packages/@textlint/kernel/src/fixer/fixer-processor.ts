@@ -94,7 +94,8 @@ export default class FixerProcessor {
             });
 
             const messages = await TaskRunner.process(task);
-            const result = await postProcess(messages, sourceCode.filePath);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const result = await postProcess(messages as any, sourceCode.filePath);
             const filteredResult = {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 messages: this.messageProcessManager.process(result.messages as any),

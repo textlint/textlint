@@ -145,7 +145,6 @@ describe("formatter:stylish", function () {
             {
                 filePath: "foo.js",
                 messages: [
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     createMessage({
                         message: "Unexpected foo.",
                         line: 5,
@@ -157,7 +156,7 @@ describe("formatter:stylish", function () {
                             end: { line: 5, column: 11 }
                         },
                         index: 40
-                    }) as any // Need any cast for fatal property
+                    }) as TextlintMessage & { fatal?: boolean } // Need cast for fatal property
                 ]
             }
         ];
@@ -351,7 +350,6 @@ describe("formatter:stylish", function () {
             {
                 filePath: "foo.js",
                 messages: [
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     createMessage({
                         message: "Couldn't find foo.js.",
                         ruleId: "",
@@ -363,7 +361,7 @@ describe("formatter:stylish", function () {
                             end: { line: 0, column: 0 }
                         },
                         index: 0
-                    }) as any // Need any cast for fatal property
+                    }) as TextlintMessage & { fatal?: boolean } // Need cast for fatal property
                 ]
             }
         ];
