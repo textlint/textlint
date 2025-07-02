@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751417001427,
+  "lastUpdate": 1751462827143,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -67704,6 +67704,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5977018257400001,
             "unit": "seconds",
             "range": "± 0.008447781000000099"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9329f4b2a9cf75017b0fde2f5b0df8d77d4cbcf3",
+          "message": "Delete eslint-suppressions.json",
+          "timestamp": "2025-07-02T22:25:13+09:00",
+          "tree_id": "25db207c51f1621fd5c24506a9376f5e9d8e6f24",
+          "url": "https://github.com/textlint/textlint/commit/9329f4b2a9cf75017b0fde2f5b0df8d77d4cbcf3"
+        },
+        "date": 1751462823326,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24606716594,
+            "unit": "seconds",
+            "range": "± 0.10792163600000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.82920222634,
+            "unit": "seconds",
+            "range": "± 0.08306506400000013"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6276070293400001,
+            "unit": "seconds",
+            "range": "± 0.02870165300000005"
           }
         ]
       }
