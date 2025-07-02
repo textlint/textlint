@@ -8,7 +8,8 @@ import { ASTNodeTypes, TypeofTxtNode, AnyTxtNode } from "@textlint/ast-node-type
  * if this option value is false, disable the filter rule.
  */
 export type TextlintFilterRuleOptions = {
-    [index: string]: unknown;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [index: string]: any;
 };
 
 /**
@@ -17,7 +18,8 @@ export type TextlintFilterRuleOptions = {
 export type TextlintFilterRuleReportHandler = {
     [P in ASTNodeTypes]?: (node: TypeofTxtNode<P>) => void | Promise<void>;
 } & {
-    [index: string]: (node: AnyTxtNode) => void | Promise<void>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [index: string]: (node: any) => void | Promise<void>;
 };
 
 /**
