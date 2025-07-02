@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751464978859,
+  "lastUpdate": 1751470562412,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -67788,6 +67788,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6070733945400001,
             "unit": "seconds",
             "range": "± 0.02733154300000007"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "3fb6e0df63a878979f275441f44da155c805ec98",
+          "message": "fix: resolve final type check errors and clean up ESLint warnings\n\n- Fix severity type mismatch in fixer and linter processors\n- Fix config loader plugin options type\n- Fix example TypeScript code to return Promise<void>\n- Clean up unused ESLint disable comments and improve type assertions\n\nAll ESLint warnings resolved and TypeScript builds successfully!",
+          "timestamp": "2025-07-03T00:32:59+09:00",
+          "tree_id": "6878a8cef0440f525ba99b9e67691d68d1db5db4",
+          "url": "https://github.com/textlint/textlint/commit/3fb6e0df63a878979f275441f44da155c805ec98"
+        },
+        "date": 1751470558571,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23068275718,
+            "unit": "seconds",
+            "range": "± 0.11808114000000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7627364141799997,
+            "unit": "seconds",
+            "range": "± 0.04917376500000015"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.61818988638,
+            "unit": "seconds",
+            "range": "± 0.027757177999999993"
           }
         ]
       }
