@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751416646026,
+  "lastUpdate": 1751417001427,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -67662,6 +67662,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59223133014,
             "unit": "seconds",
             "range": "± 0.014928478999999939"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "d38ab1c0c6692c0311890e12898e2374a3816d72",
+          "message": "fix(test): handle undefined line/column in junit formatter tests\n\nSet line and column to undefined for test cases that expect line 0, col 0 output.\nThis matches the junit formatter behavior where missing line/column defaults to 0.\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-02T09:39:41+09:00",
+          "tree_id": "5893c6164844866ddc8bc737b4ffdc1d7bb9e324",
+          "url": "https://github.com/textlint/textlint/commit/d38ab1c0c6692c0311890e12898e2374a3816d72"
+        },
+        "date": 1751416997338,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21220307274,
+            "unit": "seconds",
+            "range": "± 0.03968840400000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7402388045400001,
+            "unit": "seconds",
+            "range": "± 0.004595530000000014"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5977018257400001,
+            "unit": "seconds",
+            "range": "± 0.008447781000000099"
           }
         ]
       }
