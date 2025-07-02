@@ -7,7 +7,7 @@ import assert from "node:assert";
 describe("Compliance tests", function () {
     it("should pass the test", function () {
         const AST = parse("this is text.\n" + "m" + "test");
-        testAST(AST);
+        testAST(AST as unknown as Record<string, unknown>);
         assert(isTxtAST(AST));
     });
 });

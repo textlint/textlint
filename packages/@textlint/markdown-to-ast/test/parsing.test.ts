@@ -13,7 +13,7 @@ describe("parsing", function () {
         it(`${dirName} match AST`, function () {
             const input = fs.readFileSync(path.join(fixtureDir, filePath, "input.md"), "utf-8");
             const AST = parse(input);
-            astTest(AST);
+            astTest(AST as unknown as Record<string, unknown>);
             const output = JSON.parse(fs.readFileSync(path.join(fixtureDir, filePath, "output.json"), "utf-8"));
             assert.deepStrictEqual(AST, output);
         });

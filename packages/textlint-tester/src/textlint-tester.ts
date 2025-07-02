@@ -156,7 +156,7 @@ export type TestRuleSet = {
 
 export type TestPluginSet = {
     plugins: { [index: string]: TextlintPluginCreator };
-    pluginOptions: Record<string, TextlintPluginOptions>;
+    pluginOptions: Record<string, TextlintPluginOptions | boolean>;
 };
 
 function createTestPluginSet(testConfigPlugins: TestConfigPlugin[]): TestPluginSet {

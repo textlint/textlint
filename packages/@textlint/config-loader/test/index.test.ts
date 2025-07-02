@@ -1,14 +1,13 @@
 import * as fs from "node:fs";
 import { describe, it } from "vitest";
 import * as path from "node:path";
-import { fileURLToPath } from "node:url";
 import * as assert from "node:assert";
 import { loadRawConfig, loadPackagesFromRawConfig } from "../src/index.js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const fixturesDir = path.join(__dirname, "snapshots");
-const modulesDir = path.join(__dirname, "modules_fixtures");
-const replacer = (key: string, value: any) => {
+const currentDir = __dirname;
+const fixturesDir = path.join(currentDir, "snapshots");
+const modulesDir = path.join(currentDir, "modules_fixtures");
+const replacer = (key: string, value: unknown) => {
     // `moduleName` and `filePath` is a file path
     if ((key === "moduleName" || key === "filePath") && typeof value === "string") {
         return (
@@ -27,33 +26,49 @@ const replacer = (key: string, value: any) => {
 };
 
 // Helper function to sort arrays in deterministic order for comparison
-const sortConfigForComparison = (config: any): any => {
+const sortConfigForComparison = (config: unknown): unknown => {
     if (Array.isArray(config)) {
-        return config.map(sortConfigForComparison).sort((a, b) => {
+        return config.map(sortConfigForComparison).sort((a: unknown, b: unknown) => {
             // Compare strings directly
             if (typeof a === "string" && typeof b === "string") {
                 return a.localeCompare(b);
             }
             // Sort by ruleId first
-            if (a.ruleId && b.ruleId) {
-                return a.ruleId.localeCompare(b.ruleId);
+            if (typeof a === "object" && a !== null && "ruleId" in a &&
+                typeof b === "object" && b !== null && "ruleId" in b) {
+                const aRule = (a as { ruleId: unknown }).ruleId;
+                const bRule = (b as { ruleId: unknown }).ruleId;
+                if (typeof aRule === "string" && typeof bRule === "string") {
+                    return aRule.localeCompare(bRule);
+                }
             }
             // Sort by pluginId
-            if (a.pluginId && b.pluginId) {
-                return a.pluginId.localeCompare(b.pluginId);
+            if (typeof a === "object" && a !== null && "pluginId" in a &&
+                typeof b === "object" && b !== null && "pluginId" in b) {
+                const aPlugin = (a as { pluginId: unknown }).pluginId;
+                const bPlugin = (b as { pluginId: unknown }).pluginId;
+                if (typeof aPlugin === "string" && typeof bPlugin === "string") {
+                    return aPlugin.localeCompare(bPlugin);
+                }
             }
             // Sort by type
-            if (a.type && b.type) {
-                return a.type.localeCompare(b.type);
+            if (typeof a === "object" && a !== null && "type" in a &&
+                typeof b === "object" && b !== null && "type" in b) {
+                const aType = (a as { type: unknown }).type;
+                const bType = (b as { type: unknown }).type;
+                if (typeof aType === "string" && typeof bType === "string") {
+                    return aType.localeCompare(bType);
+                }
             }
             return 0;
         });
     } else if (config && typeof config === "object") {
-        const sorted: any = {};
-        Object.keys(config)
+        const sorted: Record<string, unknown> = {};
+        const configObj = config as Record<string, unknown>;
+        Object.keys(configObj)
             .sort()
             .forEach((key) => {
-                sorted[key] = sortConfigForComparison(config[key]);
+                sorted[key] = sortConfigForComparison(configObj[key]);
             });
         return sorted;
     }
@@ -96,7 +111,7 @@ describe("@textlint/config-loader", () => {
         it("should validate UTF-8 encoding and reject non-UTF-8 files", () => {
             const notUTF8Files = ["shift-jis.json", "euc-jp.json"];
             notUTF8Files.forEach(async (notUTF8File) => {
-                const configFile = path.join(__dirname, "fixtures", notUTF8File);
+                const configFile = path.join(currentDir, "fixtures", notUTF8File);
                 const result = await loadRawConfig({
                     configFilePath: configFile,
                     node_modulesDir: modulesDir

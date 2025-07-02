@@ -8,7 +8,7 @@ const fixturesDir = path.join(__dirname, "snapshots");
 describe("Snapshot testing", () => {
     fs.readdirSync(fixturesDir).map((caseName) => {
         const normalizedTestName = caseName.replace(/-/g, " ");
-        it(`Test ${normalizedTestName}`, function () {
+        it(`Test ${normalizedTestName}`, function (this: any) {
             const fixtureDir = path.join(fixturesDir, caseName);
             const actualFilePath = path.join(fixtureDir, "input.txt");
             const actualContent = fs.readFileSync(actualFilePath, "utf-8");

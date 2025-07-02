@@ -12,8 +12,8 @@ import { describe, it } from "vitest";
 
 import * as assert from "node:assert";
 
-// Helper to create test message with minimal required properties
-function createTestMessage(overrides: Partial<TextlintMessage>): TextlintMessage {
+// Helper to create test message with minimal required properties and support for fatal
+function createTestMessage(overrides: Partial<TextlintMessage> & { fatal?: boolean } = {}): TextlintMessage & { fatal?: boolean } {
     return {
         type: "lint",
         ruleId: "",
@@ -30,6 +30,7 @@ function createTestMessage(overrides: Partial<TextlintMessage>): TextlintMessage
         ...overrides
     };
 }
+
 
 describe("formatter:junit", function () {
     describe("when there are no problems", function () {
@@ -89,13 +90,13 @@ describe("formatter:junit", function () {
             {
                 filePath: "foo.js",
                 messages: [
-                    {
+                    createTestMessage({
                         fatal: true,
                         message: "Unexpected foo.",
                         line: 5,
                         column: 10,
                         ruleId: "foo"
-                    }
+                    })
                 ]
             }
         ];
@@ -114,10 +115,10 @@ describe("formatter:junit", function () {
             {
                 filePath: "foo.js",
                 messages: [
-                    {
+                    createTestMessage({
                         fatal: true,
                         message: "Unexpected foo."
-                    }
+                    })
                 ]
             }
         ];
@@ -136,9 +137,9 @@ describe("formatter:junit", function () {
             {
                 filePath: "foo.js",
                 messages: [
-                    {
+                    createTestMessage({
                         fatal: true
-                    }
+                    })
                 ]
             }
         ];
@@ -157,20 +158,20 @@ describe("formatter:junit", function () {
             {
                 filePath: "foo.js",
                 messages: [
-                    {
+                    createTestMessage({
                         message: "Unexpected foo.",
                         severity: 2,
                         line: 5,
                         column: 10,
                         ruleId: "foo"
-                    },
-                    {
+                    }),
+                    createTestMessage({
                         message: "Unexpected bar.",
                         severity: 1,
                         line: 6,
                         column: 11,
                         ruleId: "bar"
-                    }
+                    })
                 ]
             }
         ];
@@ -189,13 +190,13 @@ describe("formatter:junit", function () {
             {
                 filePath: "foo.js",
                 messages: [
-                    {
+                    createTestMessage({
                         message: "Unexpected <foo></foo>.",
                         severity: 1,
                         line: 5,
                         column: 10,
                         ruleId: "foo"
-                    }
+                    })
                 ]
             }
         ];
@@ -214,25 +215,25 @@ describe("formatter:junit", function () {
             {
                 filePath: "foo.js",
                 messages: [
-                    {
+                    createTestMessage({
                         message: "Unexpected foo.",
                         severity: 1,
                         line: 5,
                         column: 10,
                         ruleId: "foo"
-                    }
+                    })
                 ]
             },
             {
                 filePath: "bar.js",
                 messages: [
-                    {
+                    createTestMessage({
                         message: "Unexpected bar.",
                         severity: 2,
                         line: 6,
                         column: 11,
                         ruleId: "bar"
-                    }
+                    })
                 ]
             }
         ];
@@ -251,13 +252,13 @@ describe("formatter:junit", function () {
             {
                 filePath: "foo.js",
                 messages: [
-                    {
+                    createTestMessage({
                         message: "Unexpected foo.",
                         severity: 1,
                         line: 5,
                         column: 10,
                         ruleId: "foo"
-                    }
+                    })
                 ]
             },
             {
