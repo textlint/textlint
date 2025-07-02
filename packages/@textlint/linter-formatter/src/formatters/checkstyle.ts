@@ -17,7 +17,7 @@ import type { TextlintMessage, TextlintResult } from "@textlint/types";
  * @private
  */
 function getMessageType(message: TextlintMessage): string {
-    const messageWithFatal = message as any;
+    const messageWithFatal = message as TextlintMessage & { fatal?: boolean };
     if (messageWithFatal.fatal || message.severity === 2) {
         return "error";
     } else if (message.severity === 1) {
@@ -35,7 +35,7 @@ function getMessageType(message: TextlintMessage): string {
  * @returns {string} severity level
  * @private
  */
-function xmlEscape(s: any): string {
+function xmlEscape(s: unknown): string {
     return `${s}`.replace(/[<>&"']/g, function (c) {
         switch (c) {
             case "<":

@@ -36,7 +36,7 @@ type BuiltInFormatterName = keyof typeof builtinFormatterList;
 const builtinFormatterNames = Object.keys(builtinFormatterList);
 const debug = debug0("textlint:@textlint/linter-formatter");
 type FormatterFunction = (results: TextlintResult[], formatterConfig: FormatterConfig) => string;
-const isFormatterFunction = (formatter: any): formatter is FormatterFunction => {
+const isFormatterFunction = (formatter: unknown): formatter is FormatterFunction => {
     return typeof formatter === "function";
 };
 

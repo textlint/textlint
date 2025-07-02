@@ -19,8 +19,8 @@ const originLog = Logger.log;
 const runWithMockLog = async (cb: (context: RunContext) => unknown): Promise<unknown> => {
     const originLog = Logger.log;
     const messages: string[] = [];
-    Logger.log = function mockLog(message) {
-        messages.push(message);
+    Logger.log = function mockLog(...message: unknown[]) {
+        messages.push(message.join(' '));
     };
     const context = {
         getLogs() {

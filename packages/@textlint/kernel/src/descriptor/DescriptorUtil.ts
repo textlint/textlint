@@ -7,7 +7,7 @@ import { Descriptor } from "./Descriptor.js";
  * => filter
  * [A1, B]
  */
-export const filterDuplicateDescriptor = <T extends Descriptor<any>>(descriptors: T[]) => {
+export const filterDuplicateDescriptor = <T extends Descriptor<unknown>>(descriptors: T[]) => {
     const newDescriptorList: T[] = [];
     descriptors.forEach((descriptor) => {
         const existsDescriptor = newDescriptorList.some((existDescriptor) => {

@@ -53,8 +53,10 @@ export default class LinterProcessor {
             configBaseDir
         });
         const messages = await TaskRunner.process(task);
-        const result = await postProcess(messages, sourceCode.filePath);
-        result.messages = this.messageProcessManager.process(result.messages);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const result = await postProcess(messages as any, sourceCode.filePath);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        result.messages = this.messageProcessManager.process(result.messages as any);
         if (result.filePath == null) {
             result.filePath = `<Unknown{sourceCode.ext}>`;
         }

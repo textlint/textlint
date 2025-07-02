@@ -243,6 +243,7 @@ describe("new-style-of-test: invalid testConfig", () => {
     testConfigs.forEach((testConfig) => {
         it(`Should throw assertion error: ${testConfig.description}`, () => {
             try {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 tester.run("invalid-testConfig-test", testConfig.config as any, testConfig.case);
             } catch (err) {
                 assert.ok(err instanceof assert.AssertionError);

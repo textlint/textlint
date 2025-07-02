@@ -66,8 +66,9 @@ describe("config-initializer-test", function () {
             });
         });
         it("should create and show message if verbose:true", function () {
-            Logger.log = function mockErrorLog(message) {
-                assert.ok(/\.textlintrc.json is created/.test(message), "should show created message");
+            Logger.log = function mockErrorLog(...message: unknown[]) {
+                const logMessage = message.join(' ');
+                assert.ok(/\.textlintrc.json is created/.test(logMessage), "should show created message");
             };
             return createConfigFile({
                 dir: configDir,

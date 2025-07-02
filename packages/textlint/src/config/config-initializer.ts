@@ -52,8 +52,10 @@ const getTextlintDependencyNames = async (dir: string): Promise<Array<string>> =
  * @param {*} defaultValue
  * @returns {Object}
  */
-const arrayToObject = (array: Array<any>, defaultValue: any): object => {
-    const object: { [index: string]: string } = {};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const arrayToObject = (array: Array<string>, defaultValue: any): any => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const object: any = {};
     array.forEach((item) => {
         object[item] = defaultValue;
     });

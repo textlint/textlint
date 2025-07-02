@@ -103,7 +103,7 @@ describe("textlint-kernel", () => {
                 plugins: [{ pluginId: "example", plugin, options: expectedPluginOptions }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
-            return kernel.lintText("text", options).then((_result) => {
+            return kernel.lintText("text", options as unknown as TextlintKernelOptions).then((_result) => {
                 const actualPluginOptions = getOptions();
                 assert.deepEqual(actualPluginOptions, expectedPluginOptions);
             });
@@ -287,7 +287,7 @@ describe("textlint-kernel", () => {
         describe("when pass invalid options", () => {
             it("should throw validation error", () => {
                 const kernel = new TextlintKernel({});
-                return kernel.lintText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as any).catch((error) => {
+                return kernel.lintText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as unknown as TextlintKernelOptions).catch((error) => {
                     assert.ok(error instanceof Error);
                 });
             });
@@ -325,7 +325,7 @@ describe("textlint-kernel", () => {
                 plugins: [{ pluginId: "example", plugin, options: expectedPluginOptions }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
-            return kernel.lintText("text", options).then((_result) => {
+            return kernel.lintText("text", options as unknown as TextlintKernelOptions).then((_result) => {
                 const actualPluginOptions = getOptions();
                 assert.deepEqual(actualPluginOptions, expectedPluginOptions);
             });
@@ -333,7 +333,7 @@ describe("textlint-kernel", () => {
         describe("when pass invalid options", () => {
             it("should throw validation error", () => {
                 const kernel = new TextlintKernel({});
-                return kernel.fixText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as any).catch((error) => {
+                return kernel.fixText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as unknown as TextlintKernelOptions).catch((error) => {
                     assert.ok(error instanceof Error);
                 });
             });

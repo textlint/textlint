@@ -1,16 +1,17 @@
 // Plugin
 import type { TxtDocumentNode } from "@textlint/ast-node-types";
+import type { TextlintMessage } from "../Message/TextlintResult.js";
 
 /**
  * textlint plugin option values is object or boolean.
  * if this option value is false, disable the plugin.
  */
 export declare type TextlintPluginOptions = {
-    [index: string]: any;
+    [index: string]: unknown;
 };
 
 export type TextlintPluginPreProcessResult = TxtDocumentNode | { text: string; ast: TxtDocumentNode };
-export type TextlintPluginPostProcessResult = { messages: Array<any>; filePath: string };
+export type TextlintPluginPostProcessResult = { messages: Array<TextlintMessage>; filePath: string };
 
 export interface TextlintPluginProcessorConstructor {
     new (options?: TextlintPluginOptions): TextlintPluginProcessor;
@@ -48,7 +49,7 @@ export declare class TextlintPluginProcessor {
             filePath?: string
         ): TextlintPluginPreProcessResult | Promise<TextlintPluginPreProcessResult>;
         postProcess(
-            messages: Array<any>,
+            messages: Array<TextlintMessage>,
             filePath?: string
         ): TextlintPluginPostProcessResult | Promise<TextlintPluginPostProcessResult>;
     };

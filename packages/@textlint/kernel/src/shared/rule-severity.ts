@@ -3,7 +3,7 @@
 import type { TextlintRuleOptions, TextlintRuleSeverityLevel } from "@textlint/types";
 import { TextlintRuleSeverityLevelKeys } from "../context/TextlintRuleSeverityLevelKeys.js";
 
-const isSeverityLevelValue = (type: any): type is TextlintRuleSeverityLevel => {
+const isSeverityLevelValue = (type: unknown): type is TextlintRuleSeverityLevel => {
     if (type === undefined) {
         throw new Error(`Please set following value to severity:
 "rule-key": {

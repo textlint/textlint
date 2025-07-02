@@ -97,7 +97,8 @@ For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs
                             type: "Plugin",
                             pluginId,
                             plugin,
-                            options: pluginOptions,
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            options: pluginOptions as any,
                             filePath: resolvedPlugin.filePath,
                             moduleName: resolvedPlugin.moduleName,
                             inputModuleName: resolvedPlugin.inputModuleName

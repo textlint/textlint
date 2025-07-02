@@ -13,6 +13,7 @@ export interface FilterOptions {
 export const report: TextlintFilterRuleReporter = (
     context: Readonly<TextlintFilterRuleContext>,
     // TODO: remove any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     options: FilterOptions | any = {}
 ) => {
     const { Syntax, shouldIgnore } = context;

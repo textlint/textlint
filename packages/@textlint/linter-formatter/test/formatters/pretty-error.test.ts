@@ -6,7 +6,7 @@ import { describe, it } from "vitest";
 
 import * as assert from "node:assert";
 import type { TextlintMessage } from "@textlint/types";
-const path = require("node:path");
+import * as path from "node:path";
 
 // Helper to create test message with minimal required properties
 function createTestMessage(overrides: Partial<TextlintMessage> & { source?: string; fix?: { range: number[]; text: string } } = {}): TextlintMessage & { source?: string; fix?: { range: number[]; text: string } } {

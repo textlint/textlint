@@ -113,6 +113,7 @@ export type TextlintRuleErrorDetails = {
  */
 export type TextlintRuleReportedObject = TextlintRuleErrorDetails & {
     message: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [index: string]: any;
 };
 

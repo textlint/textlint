@@ -4,11 +4,13 @@
 /**
  * Processor Map object
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class PluginMap extends Map<string, (...args: any[]) => any> {
     toJSON() {
-        const object = {};
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const object: any = {};
         this.forEach((value, key) => {
-            (object as any)[key] = value;
+            object[key] = value;
         });
         return object;
     }

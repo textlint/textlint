@@ -199,8 +199,8 @@ describe("txt-traverse", () => {
         it("should return parent nodes", () => {
             const AST = parse("Hello*world*");
             const controller = new Controller();
-            let emParents: any[] = [];
-            let documentParents: any[] = [];
+            let emParents: TxtNode[] = [];
+            let documentParents: TxtNode[] = [];
             controller.traverse(AST, {
                 enter(node: TxtNode) {
                     if (node.type === Syntax.Document) {

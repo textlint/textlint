@@ -13,9 +13,10 @@ import { TextlintRuleContext } from "./TextlintRuleContext.js";
  *
  * Each comment is example value of Markdown
  */
-export type TextlintRuleReportHandler = { [P in ASTNodeTypes]?: (node: TypeofTxtNode<P>) => void | Promise<any> } & {
+export type TextlintRuleReportHandler = { [P in ASTNodeTypes]?: (node: TypeofTxtNode<P>) => void | Promise<void> } & {
     // TODO: node should be AnyNodeType
-    [index: string]: (node: any) => void | Promise<any>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [index: string]: (node: any) => void | Promise<void>;
 };
 
 /**

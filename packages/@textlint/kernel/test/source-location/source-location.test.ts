@@ -134,6 +134,7 @@ describe("source-location", function () {
         it("should throw error if pass invalid loc", function () {
             const source = createDummySourceCode("1234567890\n\n1234567890\n", "test.md");
             const node = source.ast;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const InvalidLocObject = [1, 2] as any;
             const ruleError = {
                 padding: InvalidLocObject,

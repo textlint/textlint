@@ -14,7 +14,7 @@ export interface TextlintMessage {
     ruleId: string;
     message: string;
     // optional data
-    data?: any;
+    data?: unknown;
     // FixCommand
     fix?: TextlintMessageFixCommand;
     /**

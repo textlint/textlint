@@ -1,5 +1,6 @@
 // LICENSE : MIT
 "use strict";
+import type { TextlintMessage } from "@textlint/types";
 
 export class ExampleProcessor {
     static availableExtensions() {
@@ -25,7 +26,7 @@ export class ExampleProcessor {
                     }
                 };
             },
-            postProcess(messages: any[], filePath?: string) {
+            postProcess(messages: TextlintMessage[], filePath?: string) {
                 return {
                     messages,
                     filePath: filePath || "unknown"

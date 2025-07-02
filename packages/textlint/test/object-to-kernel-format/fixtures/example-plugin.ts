@@ -1,5 +1,6 @@
 import type { TxtDocumentNode } from "@textlint/ast-node-types";
 import { TextlintPluginProcessorConstructor } from "@textlint/kernel";
+import type { TextlintMessage } from "@textlint/types";
 
 class ExampleProcessor {
     static availableExtensions() {
@@ -30,7 +31,7 @@ class ExampleProcessor {
                     }
                 };
             },
-            postProcess(messages: any[], filePath?: string) {
+            postProcess(messages: TextlintMessage[], filePath?: string) {
                 return {
                     messages,
                     filePath: filePath || "unknown"

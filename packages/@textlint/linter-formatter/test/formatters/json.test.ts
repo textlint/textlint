@@ -9,39 +9,39 @@ import formatter from "../../src/formatters/json.js";
 import { describe, it } from "vitest";
 
 import * as assert from "node:assert";
+import type { TextlintResult } from "@textlint/types";
+import { createTestMessage, createTestResult } from "../test-helper";
 
 describe("formatter:json", function () {
-    const code = [
-        {
+    const code: TextlintResult[] = [
+        createTestResult({
             filePath: "foo.js",
             messages: [
-                {
+                createTestMessage({
                     message: "Unexpected foo.",
                     severity: 2,
                     line: 5,
                     column: 10,
-                    ruleId: "foo",
-                    source: "foo"
-                }
+                    ruleId: "foo"
+                })
             ]
-        },
-        {
+        }),
+        createTestResult({
             filePath: "bar.js",
             messages: [
-                {
+                createTestMessage({
                     message: "Unexpected bar.",
                     severity: 1,
                     line: 6,
                     column: 11,
-                    ruleId: "bar",
-                    source: "bar"
-                }
+                    ruleId: "bar"
+                })
             ]
-        }
+        })
     ];
 
     it("should return passed results as a JSON string without any modification", function () {
-        const result = JSON.parse(formatter(code as any));
+        const result = JSON.parse(formatter(code as TextlintResult[]));
         assert.deepEqual(result, code);
     });
 });

@@ -5,6 +5,7 @@ import {
     TextlintRulePaddingLocator
 } from "@textlint/types";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isTextlintRuleErrorPaddingLocObject = (loc: any): loc is TextlintRuleErrorPaddingLocationLoc => {
     return (
         typeof loc === "object" &&
@@ -20,9 +21,11 @@ export const isTextlintRuleErrorPaddingLocObject = (loc: any): loc is TextlintRu
         !Number.isNaN(loc.end.column)
     );
 };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isTextlintRuleErrorPaddingLocRange = (range: any): range is TextlintRuleErrorPaddingLocationRange => {
     return Array.isArray(range) && range.length === 2;
 };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isTextlintRuleErrorPaddingLocation = (o: any): o is TextlintRuleErrorPaddingLocation => {
     return (
         typeof o === "object" &&

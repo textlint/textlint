@@ -12,7 +12,7 @@ import { isTextlintRuleErrorPaddingLocation } from "../context/TextlintRulePaddi
 
 export interface ReportMessage {
     ruleId: string;
-    node: any;
+    node: TxtNode;
     severity: number;
     ruleError: TextlintRuleError;
 }

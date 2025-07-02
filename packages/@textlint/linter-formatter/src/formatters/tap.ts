@@ -34,7 +34,7 @@ function getMessageType(message: { fatal?: boolean; severity: number }): string 
  * @param {object} diagnostic JavaScript object to be embedded as YAML into output.
  * @returns {string} diagnostics string with YAML embedded - TAP version 13 compliant
  */
-function outputDiagnostics(diagnostic: any): string {
+function outputDiagnostics(diagnostic: unknown): string {
     const prefix = "  ";
     let output = `${prefix}---\n`;
     output += prefix + yaml.safeDump(diagnostic).split("\n").join(`\n${prefix}`);
@@ -52,7 +52,7 @@ function formatter(results: TextlintResult[]) {
     results.forEach(function (result, id) {
         const messages = result.messages;
         let testResult = "ok";
-        let diagnostics: any = {};
+        let diagnostics: Record<string, unknown> = {};
 
         if (messages.length > 0) {
             testResult = "not ok";
@@ -75,7 +75,7 @@ function formatter(results: TextlintResult[]) {
                     if (typeof diagnostics.messages === "undefined") {
                         diagnostics.messages = [];
                     }
-                    diagnostics.messages.push(diagnostic);
+                    (diagnostics.messages as unknown[]).push(diagnostic);
                 } else {
                     diagnostics = diagnostic;
                 }
