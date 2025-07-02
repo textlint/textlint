@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751462827143,
+  "lastUpdate": 1751464978859,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -67746,6 +67746,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6276070293400001,
             "unit": "seconds",
             "range": "± 0.02870165300000005"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "da70632527c5c56affc5aa7670d9a50b93819168",
+          "message": "refactor(eslint): fix eslint warning (#1618)\n\n* refactor(eslint): fix eslint warning\n\n* refactor(eslint): replace any types with proper TypeScript types\n\n- Replace 'any' with 'unknown' for better type safety\n- Add proper type imports and interfaces where needed\n- Fix type assertions and property access patterns\n- Maintain existing behavior while improving type safety\n- Reduce ESLint @typescript-eslint/no-explicit-any warnings from 209 to 136\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\n\n* refactor: replace interface with type for consistency\n\n- Change DiffPart interface to type in diff.ts\n- Change Visitor interface to type in ast-traverse index.ts\n- Maintain consistency with project's preference for type over interface\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\n\n* refactor: replace unsafe type assertions with type guards\n\n- Add type guard functions to safely check object properties before access\n- Replace `as Record<string, unknown>` with proper type guards\n- Improve type safety while maintaining functionality\n- Reduce reliance on `as` type assertions for better runtime safety\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\n\n* fix: resolve TypeScript type errors from type assertion improvements\n\n- Fix AnyTxtNode to Record<string, unknown> casting in ast-traverse\n- Add null coalescing for plugin options in textlint-tester\n- Add helper function for creating test TextlintMessage objects\n- Remove unused @ts-expect-error directive\n- Improve type safety while maintaining functionality\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\n\n* chore: configure TypeScript outDir for example-ts project\n\n- Add outDir and declarationDir to tsconfig.json for organized build output\n- Update .gitignore to exclude dist/ directory instead of individual files\n- Prevent future commits of generated TypeScript compilation artifacts\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\n\n* fix(types): resolve TypeScript errors and improve type safety\n\n- Fix all TypeScript compilation errors from type-check\n- Add createTestMessage helper functions for test type safety\n- Replace unsafe type assertions with double assertions\n- Improve type guards in config-loader for unknown values\n- Fix import path for ES modules compatibility\n- Support both TextlintPluginOptions and boolean in TestPluginSet\n- Remove unused imports and add proper type annotations\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\n\n* fix(vitest): use context.skip() instead of this.skip() for Vitest compatibility\n\nReplace this.skip() with context.skip() according to Vitest API:\nhttps://vitest.dev/api/#test-skip\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\n\n* fix(test): handle undefined line/column in junit formatter tests\n\nSet line and column to undefined for test cases that expect line 0, col 0 output.\nThis matches the junit formatter behavior where missing line/column defaults to 0.\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\n\n* Delete eslint-suppressions.json\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-02T23:00:14+09:00",
+          "tree_id": "4b5bdcbb9d2136483991c41529f3cbc52727ecac",
+          "url": "https://github.com/textlint/textlint/commit/da70632527c5c56affc5aa7670d9a50b93819168"
+        },
+        "date": 1751464974896,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24902202534000004,
+            "unit": "seconds",
+            "range": "± 0.23312561300000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.74094571634,
+            "unit": "seconds",
+            "range": "± 0.042990116000000134"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6070733945400001,
+            "unit": "seconds",
+            "range": "± 0.02733154300000007"
           }
         ]
       }
