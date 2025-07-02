@@ -117,7 +117,9 @@ describe("formatter:junit", function () {
                 messages: [
                     createTestMessage({
                         fatal: true,
-                        message: "Unexpected foo."
+                        message: "Unexpected foo.",
+                        line: undefined as any,
+                        column: undefined as any
                     })
                 ]
             }
@@ -138,7 +140,9 @@ describe("formatter:junit", function () {
                 filePath: "foo.js",
                 messages: [
                     createTestMessage({
-                        fatal: true
+                        fatal: true,
+                        line: undefined as any,
+                        column: undefined as any
                     })
                 ]
             }
