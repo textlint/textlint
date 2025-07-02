@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751416232061,
+  "lastUpdate": 1751416546448,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -67578,6 +67578,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6029583289,
             "unit": "seconds",
             "range": "± 0.01732051499999998"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "ef525c3b5ccb99b1ef2a80d879a6a5f77578ed92",
+          "message": "fix(vitest): use context.skip() instead of this.skip() for Vitest compatibility\n\nReplace this.skip() with context.skip() according to Vitest API:\nhttps://vitest.dev/api/#test-skip\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-02T09:31:24+09:00",
+          "tree_id": "936bd78e6ba54c879c51bf4070b24e7f23da7610",
+          "url": "https://github.com/textlint/textlint/commit/ef525c3b5ccb99b1ef2a80d879a6a5f77578ed92"
+        },
+        "date": 1751416542419,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21953594946,
+            "unit": "seconds",
+            "range": "± 0.03503769399999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7581737930599999,
+            "unit": "seconds",
+            "range": "± 0.053718975000000224"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6116587108600002,
+            "unit": "seconds",
+            "range": "± 0.012519768999999958"
           }
         ]
       }
