@@ -598,16 +598,13 @@ describe("MCP Server", () => {
                 name: "lintText",
                 arguments: {
                     text: "This  has  double  spaces.",
-                    stdinFilename: "test.txt"
+                    stdinFilename: "test.unknown"
                 }
             })) as CallToolResult;
 
-            assert.strictEqual(result.isError, false, "Should not fail due to schema validation");
+            assert.strictEqual(result.isError, true, "Should fail due to schema validation with additional properties");
             assert.ok(result.structuredContent, "Should have structured content");
-            assert.ok(Array.isArray(result.structuredContent.messages), "Should have messages array");
-
-            // The test passes even with empty messages - the key is that schema validation doesn't fail
-            // This validates that the schema now accepts additional properties without throwing errors
+            expect(result.structuredContent.error).toMatchInlineSnapshot(`"Not found available plugin for .unknown"`);
         });
 
         it("should handle markdown content without markdown plugin without schema validation errors", async () => {
@@ -629,9 +626,6 @@ describe("MCP Server", () => {
             );
             assert.ok(result.structuredContent, "Should have structured content");
             assert.ok(Array.isArray(result.structuredContent.messages), "Should have messages array");
-
-            // The key point is that even if textlint generates messages with additional properties
-            // due to unsupported file extensions, the MCP schema should handle them gracefully
         });
 
         it("should handle file linting with complete TextlintMessage properties", async () => {
@@ -646,10 +640,6 @@ describe("MCP Server", () => {
             assert.strictEqual(result.isError, false, "Should not fail due to schema validation");
             assert.ok(result.structuredContent, "Should have structured content");
             assert.ok(Array.isArray(result.structuredContent.results), "Should have results array");
-
-            // The test passes regardless of whether lint messages are generated
-            // The key validation is that the schema accepts TextlintMessage with all its properties
-            // including type, data, index, range, loc without causing validation errors
         });
     });
 });
