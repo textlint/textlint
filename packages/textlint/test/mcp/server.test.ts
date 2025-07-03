@@ -10,6 +10,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { setupServer } from "../../src/mcp/server.js";
 
 const validFilePath = path.join(__dirname, "fixtures", "ok.md");
+const invalidFilePath = path.join(__dirname, "fixtures", "invalid.md");
 const stdinFilename = `textlint.txt`;
 
 describe("MCP Server", () => {
@@ -145,11 +146,14 @@ describe("MCP Server", () => {
                             },
                             "messages": {
                               "items": {
-                                "additionalProperties": false,
+                                "additionalProperties": true,
                                 "properties": {
                                   "column": {
                                     "description": "Column number (1-based)",
                                     "type": "number",
+                                  },
+                                  "data": {
+                                    "description": "Optional data associated with the message",
                                   },
                                   "fix": {
                                     "additionalProperties": false,
@@ -173,12 +177,72 @@ describe("MCP Server", () => {
                                     ],
                                     "type": "object",
                                   },
+                                  "index": {
+                                    "description": "Start index where the issue is located (0-based, deprecated)",
+                                    "type": "number",
+                                  },
                                   "line": {
                                     "description": "Line number (1-based)",
                                     "type": "number",
                                   },
+                                  "loc": {
+                                    "additionalProperties": false,
+                                    "description": "Location info where the issue is located",
+                                    "properties": {
+                                      "end": {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                          "column": {
+                                            "description": "End column number (1-based)",
+                                            "type": "number",
+                                          },
+                                          "line": {
+                                            "description": "End line number (1-based)",
+                                            "type": "number",
+                                          },
+                                        },
+                                        "required": [
+                                          "line",
+                                          "column",
+                                        ],
+                                        "type": "object",
+                                      },
+                                      "start": {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                          "column": {
+                                            "description": "Start column number (1-based)",
+                                            "type": "number",
+                                          },
+                                          "line": {
+                                            "description": "Start line number (1-based)",
+                                            "type": "number",
+                                          },
+                                        },
+                                        "required": [
+                                          "line",
+                                          "column",
+                                        ],
+                                        "type": "object",
+                                      },
+                                    },
+                                    "required": [
+                                      "start",
+                                      "end",
+                                    ],
+                                    "type": "object",
+                                  },
                                   "message": {
                                     "type": "string",
+                                  },
+                                  "range": {
+                                    "description": "Text range [start, end] (0-based)",
+                                    "items": {
+                                      "type": "number",
+                                    },
+                                    "maxItems": 2,
+                                    "minItems": 2,
+                                    "type": "array",
                                   },
                                   "ruleId": {
                                     "type": "string",
@@ -186,6 +250,10 @@ describe("MCP Server", () => {
                                   "severity": {
                                     "description": "Severity level: 1=warning, 2=error, 3=info",
                                     "type": "number",
+                                  },
+                                  "type": {
+                                    "description": "Message type",
+                                    "type": "string",
                                   },
                                 },
                                 "required": [
@@ -519,6 +587,69 @@ describe("MCP Server", () => {
             // Verify timestamp exists and is a string
             assert.ok(timestamp, "Should have timestamp");
             assert.strictEqual(typeof timestamp, "string", "Timestamp should be a string");
+        });
+    });
+
+    describe("Schema validation with additional properties", () => {
+        it("should handle textlint messages with additional properties (type, data, index, range, loc)", async () => {
+            // This test reproduces the issue reported in #1622
+            // TextlintMessage contains additional properties that are not in the current schema
+            const result = (await client.callTool({
+                name: "lintText",
+                arguments: {
+                    text: "This  has  double  spaces.",
+                    stdinFilename: "test.txt"
+                }
+            })) as CallToolResult;
+
+            assert.strictEqual(result.isError, false, "Should not fail due to schema validation");
+            assert.ok(result.structuredContent, "Should have structured content");
+            assert.ok(Array.isArray(result.structuredContent.messages), "Should have messages array");
+
+            // The test passes even with empty messages - the key is that schema validation doesn't fail
+            // This validates that the schema now accepts additional properties without throwing errors
+        });
+
+        it("should handle markdown content without markdown plugin without schema validation errors", async () => {
+            // This reproduces the specific case from #1622 where markdown content
+            // is linted without markdown plugin, causing schema validation errors
+            const markdownContent = "# Title\n\nThis is markdown content.";
+            const result = (await client.callTool({
+                name: "lintText",
+                arguments: {
+                    text: markdownContent,
+                    stdinFilename: "test.md"
+                }
+            })) as CallToolResult;
+
+            assert.strictEqual(
+                result.isError,
+                false,
+                "Should not fail due to schema validation even with unsupported extension"
+            );
+            assert.ok(result.structuredContent, "Should have structured content");
+            assert.ok(Array.isArray(result.structuredContent.messages), "Should have messages array");
+
+            // The key point is that even if textlint generates messages with additional properties
+            // due to unsupported file extensions, the MCP schema should handle them gracefully
+        });
+
+        it("should handle file linting with complete TextlintMessage properties", async () => {
+            // Test with a file that will generate lint messages with all properties
+            const result = (await client.callTool({
+                name: "lintFile",
+                arguments: {
+                    filePaths: [invalidFilePath]
+                }
+            })) as CallToolResult;
+
+            assert.strictEqual(result.isError, false, "Should not fail due to schema validation");
+            assert.ok(result.structuredContent, "Should have structured content");
+            assert.ok(Array.isArray(result.structuredContent.results), "Should have results array");
+
+            // The test passes regardless of whether lint messages are generated
+            // The key validation is that the schema accepts TextlintMessage with all its properties
+            // including type, data, index, range, loc without causing validation errors
         });
     });
 });

@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "no-doubled-spaces": true
+  },
+  "plugins": [
+    "@textlint/text"
+  ]
+}
