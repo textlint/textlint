@@ -51,7 +51,7 @@
   "devDependencies": {
     "@types/debug": "^4.1.12",
     "@types/js-yaml": "^3.12.10",
-    "@types/lodash": "^4.17.18",
+    "@types/lodash": "^4.17.19",
     "@types/node": "^18.19.112",
     "chai": "^4.5.0",
     "rimraf": "^6.0.1",
