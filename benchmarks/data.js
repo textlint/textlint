@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751516156050,
+  "lastUpdate": 1751552257629,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -67914,6 +67914,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5986631865200002,
             "unit": "seconds",
             "range": "± 0.015479475999999992"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "f072e105e0df7f12c337f795bcb138d6e064edd8",
+          "message": "fix(mcp): allow additional properties in TextlintMessage schema\n\nFixes schema validation errors in MCP server when TextlintMessage\ncontains additional properties like type, data, index, range, and loc.\n\n- Add explicit properties for all TextlintMessage fields\n- Enable additionalProperties via .passthrough() for future extensibility\n- Add comprehensive test coverage for schema validation\n- Ensure compatibility with complete TextlintMessage interface\n\nResolves #1622\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-03T23:14:37+09:00",
+          "tree_id": "2b078e6e6dabc4a470a6448b94314498b2a97aab",
+          "url": "https://github.com/textlint/textlint/commit/f072e105e0df7f12c337f795bcb138d6e064edd8"
+        },
+        "date": 1751552254078,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21365670210000004,
+            "unit": "seconds",
+            "range": "± 0.02951920700000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7396608009,
+            "unit": "seconds",
+            "range": "± 0.019429912999999965"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5992330109000001,
+            "unit": "seconds",
+            "range": "± 0.008255966999999975"
           }
         ]
       }
