@@ -63,6 +63,41 @@ const validateInputAndReturnError = (value: string, fieldName: string, errorType
     return null;
 };
 
+const TextlintMessageSchema = z
+    .object({
+        // Core properties
+        ruleId: z.string().optional(),
+        message: z.string(),
+        line: z.number().describe("Line number (1-based)"),
+        column: z.number().describe("Column number (1-based)"),
+        severity: z.number().describe("Severity level: 1=warning, 2=error, 3=info"),
+        fix: z
+            .object({
+                range: z.array(z.number()).describe("Text range [start, end] (0-based)"),
+                text: z.string().describe("Replacement text")
+            })
+            .optional()
+            .describe("Fix suggestion if available"),
+        type: z.string().optional().describe("Message type"),
+        data: z.unknown().optional().describe("Optional data associated with the message"),
+        index: z.number().optional().describe("Start index where the issue is located (0-based, deprecated)"),
+        range: z.array(z.number()).length(2).optional().describe("Text range [start, end] (0-based)"),
+        loc: z
+            .object({
+                start: z.object({
+                    line: z.number().describe("Start line number (1-based)"),
+                    column: z.number().describe("Start column number (1-based)")
+                }),
+                end: z.object({
+                    line: z.number().describe("End line number (1-based)"),
+                    column: z.number().describe("End column number (1-based)")
+                })
+            })
+            .optional()
+            .describe("Location info where the issue is located")
+    })
+    .passthrough();
+
 export const setupServer = async (): Promise<McpServer> => {
     const { readPackageUpSync } = await import("read-package-up");
     const version = readPackageUpSync({ cwd: __dirname })?.packageJson.version ?? "unknown";
@@ -71,7 +106,6 @@ export const setupServer = async (): Promise<McpServer> => {
         version
     });
 
-    // ツール登録
     server.registerTool(
         "lintFile",
         {
@@ -86,22 +120,7 @@ export const setupServer = async (): Promise<McpServer> => {
                 results: z.array(
                     z.object({
                         filePath: z.string(),
-                        messages: z.array(
-                            z.object({
-                                ruleId: z.string().optional(),
-                                message: z.string(),
-                                line: z.number().describe("Line number (1-based)"),
-                                column: z.number().describe("Column number (1-based)"),
-                                severity: z.number().describe("Severity level: 1=warning, 2=error, 3=info"),
-                                fix: z
-                                    .object({
-                                        range: z.array(z.number()).describe("Text range [start, end] (0-based)"),
-                                        text: z.string().describe("Replacement text")
-                                    })
-                                    .optional()
-                                    .describe("Fix suggestion if available")
-                            })
-                        ),
+                        messages: z.array(TextlintMessageSchema),
                         output: z.string().optional().describe("Fixed content if available")
                     })
                 ),
@@ -150,22 +169,7 @@ export const setupServer = async (): Promise<McpServer> => {
             },
             outputSchema: {
                 filePath: z.string(),
-                messages: z.array(
-                    z.object({
-                        ruleId: z.string().optional(),
-                        message: z.string(),
-                        line: z.number().describe("Line number (1-based)"),
-                        column: z.number().describe("Column number (1-based)"),
-                        severity: z.number().describe("Severity level: 1=warning, 2=error, 3=info"),
-                        fix: z
-                            .object({
-                                range: z.array(z.number()).describe("Text range [start, end] (0-based)"),
-                                text: z.string().describe("Replacement text")
-                            })
-                            .optional()
-                            .describe("Fix suggestion if available")
-                    })
-                ),
+                messages: z.array(TextlintMessageSchema),
                 output: z.string().optional().describe("Fixed content if available"),
                 isError: z.boolean(),
                 timestamp: z.string().optional(),
@@ -212,22 +216,7 @@ export const setupServer = async (): Promise<McpServer> => {
                 results: z.array(
                     z.object({
                         filePath: z.string(),
-                        messages: z.array(
-                            z.object({
-                                ruleId: z.string().optional(),
-                                message: z.string(),
-                                line: z.number().describe("Line number (1-based)"),
-                                column: z.number().describe("Column number (1-based)"),
-                                severity: z.number().describe("Severity level: 1=warning, 2=error, 3=info"),
-                                fix: z
-                                    .object({
-                                        range: z.array(z.number()).describe("Text range [start, end] (0-based)"),
-                                        text: z.string().describe("Replacement text")
-                                    })
-                                    .optional()
-                                    .describe("Fix suggestion if available")
-                            })
-                        ),
+                        messages: z.array(TextlintMessageSchema),
                         output: z.string().optional().describe("Fixed content")
                     })
                 ),
@@ -276,22 +265,7 @@ export const setupServer = async (): Promise<McpServer> => {
             },
             outputSchema: {
                 filePath: z.string(),
-                messages: z.array(
-                    z.object({
-                        ruleId: z.string().optional(),
-                        message: z.string(),
-                        line: z.number().describe("Line number (1-based)"),
-                        column: z.number().describe("Column number (1-based)"),
-                        severity: z.number().describe("Severity level: 1=warning, 2=error, 3=info"),
-                        fix: z
-                            .object({
-                                range: z.array(z.number()).describe("Text range [start, end] (0-based)"),
-                                text: z.string().describe("Replacement text")
-                            })
-                            .optional()
-                            .describe("Fix suggestion if available")
-                    })
-                ),
+                messages: z.array(TextlintMessageSchema),
                 output: z.string().optional().describe("Fixed content"),
                 isError: z.boolean(),
                 timestamp: z.string().optional(),
