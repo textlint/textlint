@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751553045352,
+  "lastUpdate": 1751553678835,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -68040,6 +68040,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6052471676,
             "unit": "seconds",
             "range": "± 0.014113036999999995"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "64c557c4f40fa3ae58ad124466527c190874c47b",
+          "message": "fix(mcp): allow additional properties in TextlintMessage schema (#1623)\n\n* fix(mcp): allow additional properties in TextlintMessage schema\n\nFixes schema validation errors in MCP server when TextlintMessage\ncontains additional properties like type, data, index, range, and loc.\n\n- Add explicit properties for all TextlintMessage fields\n- Enable additionalProperties via .passthrough() for future extensibility\n- Add comprehensive test coverage for schema validation\n- Ensure compatibility with complete TextlintMessage interface\n\nResolves #1622\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\n\n* refactor\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-03T23:38:28+09:00",
+          "tree_id": "dd34c796629e77c3311c123e67201fbd3e6db390",
+          "url": "https://github.com/textlint/textlint/commit/64c557c4f40fa3ae58ad124466527c190874c47b"
+        },
+        "date": 1751553674912,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24664105372000003,
+            "unit": "seconds",
+            "range": "± 0.17433306899999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7301197373200001,
+            "unit": "seconds",
+            "range": "± 0.032324624999999996"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5911191775200001,
+            "unit": "seconds",
+            "range": "± 0.023385322999999958"
           }
         ]
       }
