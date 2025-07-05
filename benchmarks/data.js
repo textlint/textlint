@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751694625854,
+  "lastUpdate": 1751695013356,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -68796,6 +68796,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6077979192,
             "unit": "seconds",
             "range": "± 0.010823918000000043"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "3138458b0eea2295a52ba9e502d06bf4cf88cd9f",
+          "message": "feat(mcp): add real configuration and rule tests with fixtures\n\n- Add comprehensive test suite using configFilePath and node_modulesDir\n- Create fake node_modules structure with custom rules and plugins\n- Implement test-rule that detects TODO items in documents\n- Implement test preset with multiple rules (test-rule and no-exclamation)\n- Add mock @textlint/textlint-plugin-text and markdown plugins\n- Add test fixtures with-todo.md and with-exclamation.md\n- Add configuration files for custom rule and preset testing\n- Verify that MCP server works with real textlint configurations\n- Follow cli-snapshot pattern for isolated fixture-based testing\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-05T14:54:39+09:00",
+          "tree_id": "2422cbb3d2661f3b42468acaa66a3dfebfd8ae16",
+          "url": "https://github.com/textlint/textlint/commit/3138458b0eea2295a52ba9e502d06bf4cf88cd9f"
+        },
+        "date": 1751695009446,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24276264242,
+            "unit": "seconds",
+            "range": "± 0.186919252"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.76272756362,
+            "unit": "seconds",
+            "range": "± 0.03671152899999974"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6001625932200001,
+            "unit": "seconds",
+            "range": "± 0.02012162399999995"
           }
         ]
       }
