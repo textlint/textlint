@@ -83,7 +83,7 @@ function pathReplacer(snapshotDir: string) {
                     replacement: "<rule_modules>/"
                 },
                 {
-                    // 4. Working directory -> <cwd> (fallback)
+                    // 3. Working directory -> <cwd> (fallback)
                     checkPaths: [`${process.cwd()}${path.sep}`],
                     replacement: "<cwd>/"
                 }
@@ -99,8 +99,13 @@ function pathReplacer(snapshotDir: string) {
                     if (stringValue.includes(pathToCheck) || stringValue.includes(jsonifiedPathToCheck)) {
                         // For snapshot files, use simple test-case/filename format
                         // Replace with <test-case>/filename format
-                        stringValue = stringValue.replaceAll(pathToCheck, replacement);
+                        // 1. JSON.stringify content replace
                         stringValue = stringValue.replaceAll(jsonifiedPathToCheck, jsonifiedReplacement);
+                        // Windows path normalization
+                        stringValue = stringValue.replaceAll("\\\\", "/");
+                        // 2. Direct string replace
+                        stringValue = stringValue.replaceAll(pathToCheck, replacement);
+                        stringValue = stringValue.replaceAll("\\", "/");
                         wasReplaced = true;
                         break;
                     }
