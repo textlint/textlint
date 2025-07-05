@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751728169811,
+  "lastUpdate": 1751728502330,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -69384,6 +69384,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5988742978999999,
             "unit": "seconds",
             "range": "± 0.007308058000000006"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "5d4b058128ab68edac3fab67d098d1dfb73c6ff4",
+          "message": "fix(mcp): improve cross-platform path normalization in snapshot tests\n\n- Replace complex regex-based path replacement with simple replaceAll\n- Use test-case names as placeholders (<test-case>/file.txt) instead of full paths\n- This eliminates Windows/Unix path separator differences in JSON content\n- Update snapshots with the new test-case-based placeholder format\n- Simplify pathReplacer logic from ~100 lines to ~40 lines for better maintainability\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-06T00:11:15+09:00",
+          "tree_id": "b8f63894a9f4428cb8feb5e19919edc8f259a7e1",
+          "url": "https://github.com/textlint/textlint/commit/5d4b058128ab68edac3fab67d098d1dfb73c6ff4"
+        },
+        "date": 1751728497958,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24817042128,
+            "unit": "seconds",
+            "range": "± 0.20157862300000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.72275233728,
+            "unit": "seconds",
+            "range": "± 0.029662177999999928"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59402618828,
+            "unit": "seconds",
+            "range": "± 0.007113101000000066"
           }
         ]
       }
