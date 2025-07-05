@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751724287684,
+  "lastUpdate": 1751724766220,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -69090,6 +69090,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6024743920600001,
             "unit": "seconds",
             "range": "± 0.028941931999999948"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "bf7d5a1746b287282d085523ea15c37702623892",
+          "message": "refactor(ci): improve indentation and formatting in CI workflow",
+          "timestamp": "2025-07-05T23:10:28+09:00",
+          "tree_id": "06e1bfeb6474be781c39be8c46879a7d85399674",
+          "url": "https://github.com/textlint/textlint/commit/bf7d5a1746b287282d085523ea15c37702623892"
+        },
+        "date": 1751724762508,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22465002262000003,
+            "unit": "seconds",
+            "range": "± 0.12274149300000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71991319902,
+            "unit": "seconds",
+            "range": "± 0.03795533900000003"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60781850262,
+            "unit": "seconds",
+            "range": "± 0.03579171200000009"
           }
         ]
       }
