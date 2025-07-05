@@ -1,0 +1,16 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"results\": [],\n  \"error\": \"stdinFilename cannot be empty\",\n  \"type\": \"fixText_error\",\n  \"timestamp\": \"<timestamp>\",\n  \"isError\": true\n}"
+    }
+  ],
+  "structuredContent": {
+    "results": [],
+    "error": "stdinFilename cannot be empty",
+    "type": "fixText_error",
+    "timestamp": "<timestamp>",
+    "isError": true
+  },
+  "isError": true
+}
