@@ -5,6 +5,9 @@ import { createLinter, loadTextlintrc, type CreateLinterOptions } from "../index
 import { existsSync } from "node:fs";
 import { TextlintMessageSchema } from "./schemas.js";
 
+// Define error types as a union type
+type TextlintMcpErrorType = "lintFile_error" | "lintText_error" | "fixFiles_error" | "fixText_error";
+
 const makeLinterOptions = async (
     options: { configFilePath?: string; node_modulesDir?: string } = {}
 ): Promise<CreateLinterOptions> => {
@@ -18,7 +21,7 @@ const makeLinterOptions = async (
 };
 
 // Helper functions for common MCP operations
-const createStructuredErrorResponse = (error: string, type: string, isError = true) => {
+const createStructuredErrorResponse = (error: string, type: TextlintMcpErrorType, isError = true) => {
     const structuredContent = {
         results: [],
         error,
@@ -62,7 +65,7 @@ const checkFilesExist = (filePaths: string[]) => {
     return filePaths.filter((filePath) => !existsSync(filePath));
 };
 
-const validateInputAndReturnError = (value: string, fieldName: string, errorType: string) => {
+const validateInputAndReturnError = (value: string, fieldName: string, errorType: TextlintMcpErrorType) => {
     if (!value.trim()) {
         return createStructuredErrorResponse(`${fieldName} cannot be empty`, errorType);
     }
