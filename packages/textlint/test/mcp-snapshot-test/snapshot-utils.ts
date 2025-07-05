@@ -2,7 +2,6 @@ import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import type { McpResponse, SnapshotContext, SnapshotInput, SnapshotInputFactory, SnapshotOutput } from "./types.js";
-import { string } from "zod";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
