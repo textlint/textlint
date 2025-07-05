@@ -73,18 +73,19 @@ function pathReplacer(snapshotDir: string) {
             const pathReplacements = [
                 {
                     // 1. Files within snapshot directory -> <test-case>/filename
-                    checkPaths: [snapshotDir, normalizePath(snapshotDir)],
-                    replacement: `<${testCaseName}>`
+                    // e.g. "snapshots/test-case/file.txt" -> "<test-case>/file.txt"
+                    checkPaths: [`${snapshotDir}${path.sep}`],
+                    replacement: `<${testCaseName}>/`
                 },
                 {
                     // 2. Rule modules directory -> <rule_modules>
-                    checkPaths: [FAKE_MODULES_DIRECTORY, normalizePath(FAKE_MODULES_DIRECTORY)],
-                    replacement: "<rule_modules>"
+                    checkPaths: [`${FAKE_MODULES_DIRECTORY}${path.sep}`],
+                    replacement: "<rule_modules>/"
                 },
                 {
                     // 4. Working directory -> <cwd> (fallback)
-                    checkPaths: [process.cwd(), normalizePath(process.cwd())],
-                    replacement: "<cwd>"
+                    checkPaths: [`${process.cwd()}${path.sep}`],
+                    replacement: "<cwd>/"
                 }
             ];
 
@@ -100,8 +101,6 @@ function pathReplacer(snapshotDir: string) {
                         // Replace with <test-case>/filename format
                         stringValue = stringValue.replaceAll(pathToCheck, replacement);
                         stringValue = stringValue.replaceAll(jsonifiedPathToCheck, jsonifiedReplacement);
-                        // windows path sep to forward slash
-                        stringValue = stringValue.replaceAll("\\", "/");
                         wasReplaced = true;
                         break;
                     }
