@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751724766220,
+  "lastUpdate": 1751725481813,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -69132,6 +69132,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60781850262,
             "unit": "seconds",
             "range": "± 0.03579171200000009"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "e760e60ee5e0ce75dc51e45e5b7e75882046f93a",
+          "message": "fix(textlint): improve cross-platform snapshot test compatibility\n\n- Enhanced path normalization for Windows/Unix compatibility\n- Improved timestamp replacement in JSON strings\n- Updated snapshot files to current format\n\nNote: Snapshot tests may still fail on different platforms due to\ntimestamp variations - this is expected behavior for now.\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-05T23:21:53+09:00",
+          "tree_id": "90fff4f9dcfb45ce3adcc93e88b2593cf53bf650",
+          "url": "https://github.com/textlint/textlint/commit/e760e60ee5e0ce75dc51e45e5b7e75882046f93a"
+        },
+        "date": 1751725477499,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2473749992,
+            "unit": "seconds",
+            "range": "± 0.20636866400000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7466231864000001,
+            "unit": "seconds",
+            "range": "± 0.027434922999999944"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6022470796,
+            "unit": "seconds",
+            "range": "± 0.012853625999999951"
           }
         ]
       }
