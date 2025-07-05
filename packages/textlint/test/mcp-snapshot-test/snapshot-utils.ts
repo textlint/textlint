@@ -274,5 +274,5 @@ export function resolveRequestPaths(request: unknown, snapshotDir: string): unkn
  * Check if UPDATE_SNAPSHOT environment variable is set
  */
 export function shouldUpdateSnapshots(): boolean {
-    return process.env.UPDATE_SNAPSHOT === "1";
+    return Boolean(process.env.UPDATE_SNAPSHOT);
 }

@@ -2,7 +2,7 @@
   "content": [
     {
       "type": "text",
-      "text": "{\n  \"results\": [\n    {\n      \"messages\": [\n        {\n          \"type\": \"lint\",\n          \"ruleId\": \"test-rule\",\n          \"message\": \"Found TODO in document\",\n          \"index\": 0,\n          \"line\": 1,\n          \"column\": 1,\n          \"range\": [\n            0,\n            140\n          ],\n          \"loc\": {\n            \"start\": {\n              \"line\": 1,\n              \"column\": 1\n            },\n            \"end\": {\n              \"line\": 7,\n              \"column\": 29\n            }\n          },\n          \"severity\": 2\n        }\n      ],\n      \"filePath\": \"<test-dir>/snapshots/custom-rule-todo/todo-file.md\"\n    }\n  ],\n  \"isError\": false,\n  \"timestamp\": \"<timestamp>\"\n}"
+      "text": "{\n  \"results\": [\n    {\n      \"messages\": [\n        {\n          \"type\": \"lint\",\n          \"ruleId\": \"test-rule\",\n          \"message\": \"Found TODO in document\",\n          \"index\": 0,\n          \"line\": 1,\n          \"column\": 1,\n          \"range\": [\n            0,\n            140\n          ],\n          \"loc\": {\n            \"start\": {\n              \"line\": 1,\n              \"column\": 1\n            },\n            \"end\": {\n              \"line\": 7,\n              \"column\": 29\n            }\n          },\n          \"severity\": 2\n        }\n      ],\n      \"filePath\": \"<custom-rule-todo>/todo-file.md\"\n    }\n  ],\n  \"isError\": false,\n  \"timestamp\": \"<timestamp>\"\n}"
     }
   ],
   "structuredContent": {
