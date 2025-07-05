@@ -2,7 +2,7 @@
   "content": [
     {
       "type": "text",
-      "text": "{\n  \"messages\": [],\n  \"filePath\": \"test.md\",\n  \"isError\": false,\n  \"timestamp\": \"<timestamp>\"\n}"
+      "text": "{\n  \"messages\": [],\n  \"filePath\": \"test.md\",\n  \"isError\": false,\n  \"timestamp\": \"2025-07-05T14:21:31.026Z\"\n}"
     }
   ],
   "structuredContent": {

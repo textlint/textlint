@@ -2,7 +2,7 @@
   "content": [
     {
       "type": "text",
-      "text": "{\n  \"results\": [],\n  \"error\": \"Not found available plugin for .xyz\",\n  \"type\": \"lintText_error\",\n  \"timestamp\": \"<timestamp>\",\n  \"isError\": true\n}"
+      "text": "{\n  \"results\": [],\n  \"error\": \"Not found available plugin for .xyz\",\n  \"type\": \"lintText_error\",\n  \"timestamp\": \"2025-07-05T14:21:31.012Z\",\n  \"isError\": true\n}"
     }
   ],
   "structuredContent": {

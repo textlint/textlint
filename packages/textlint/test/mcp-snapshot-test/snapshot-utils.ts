@@ -35,9 +35,18 @@ function pathReplacer(snapshotDir: string) {
         if (typeof value === "string") {
             let stringValue = value;
 
-            // Replace snapshot directory paths
-            if (stringValue.includes(snapshotDir)) {
-                stringValue = normalizePath(stringValue.replace(snapshotDir, "<snapshot>"));
+            // Replace __dirname based paths (test directory base)
+            if (stringValue.includes(__dirname)) {
+                const relativePath = path.relative(__dirname, stringValue);
+                if (relativePath.startsWith("snapshots/")) {
+                    // Extract the filename from snapshots/case-name/filename.ext
+                    const pathParts = relativePath.split(path.sep);
+                    if (pathParts.length >= 3) {
+                        stringValue = "<snapshot>/" + pathParts.slice(2).join("/");
+                    }
+                } else {
+                    stringValue = normalizePath(stringValue.replace(__dirname, "<test-dir>"));
+                }
             }
 
             // Replace fake modules directory paths
@@ -45,22 +54,31 @@ function pathReplacer(snapshotDir: string) {
                 stringValue = normalizePath(stringValue.replace(FAKE_MODULES_DIRECTORY, "<rule_modules>"));
             }
 
-            // Replace other absolute paths
+            // Replace other absolute paths with working directory
             const workingDir = process.cwd();
-            if (stringValue.includes(workingDir)) {
+            if (
+                stringValue.includes(workingDir) &&
+                !stringValue.includes("<snapshot>") &&
+                !stringValue.includes("<rule_modules>") &&
+                !stringValue.includes("<test-dir>")
+            ) {
                 stringValue = normalizePath(stringValue.replace(workingDir, "<cwd>"));
             }
 
-            // Handle JSON strings that contain timestamps
-            if (stringValue.includes('"timestamp"')) {
-                try {
-                    // Try to parse as JSON and replace timestamps in it
-                    const parsed = JSON.parse(stringValue);
-                    const cleanedJson = removeTimestamps(parsed);
-                    stringValue = JSON.stringify(cleanedJson, null, 2);
-                } catch {
-                    // If not valid JSON, use regex replacement
-                    stringValue = stringValue.replace(/"timestamp":\s*"[^"]*"/g, '"timestamp": "<timestamp>"');
+            // Handle JSON strings that may contain paths and timestamps
+            if (stringValue.includes('{"') || stringValue.includes("[{")) {
+                // Always use regex replacement for better control
+                // Replace timestamps in JSON strings first
+                stringValue = stringValue.replace(/"timestamp":\s*"[^"]*"/g, '"timestamp": "<timestamp>"');
+
+                // Also handle paths in JSON strings with regex
+                if (stringValue.includes(__dirname)) {
+                    // Replace paths in JSON strings using regex
+                    const regex = new RegExp(
+                        __dirname.replace(/[/\\]/g, "[/\\\\]") + '[/\\\\]snapshots[/\\\\]([^/\\\\]+)[/\\\\]([^"]+)',
+                        "g"
+                    );
+                    stringValue = stringValue.replace(regex, "<snapshot>/$2");
                 }
             }
 
@@ -95,7 +113,15 @@ function removeTimestamps(obj: unknown): unknown {
  * Normalize file paths for cross-platform compatibility
  */
 function normalizePath(value: string): string {
-    return path.sep === "\\" ? value.replace(/\\/g, "/") : value;
+    // Convert backslashes to forward slashes for Windows compatibility
+    let normalized = value.replace(/\\/g, "/");
+
+    // Handle Windows drive letters (C:/ -> /c/)
+    if (/^[A-Za-z]:\//.test(normalized)) {
+        normalized = "/" + normalized.toLowerCase();
+    }
+
+    return normalized;
 }
 
 /**
