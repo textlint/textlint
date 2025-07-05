@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751679666848,
+  "lastUpdate": 1751692184910,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -68670,6 +68670,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6051129540000001,
             "unit": "seconds",
             "range": "± 0.01123614500000003"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "4fb11203629227f8c8dcd0bc57f99c31d2e5f1c5",
+          "message": "refactor(mcp): improve test structure and add configuration options\n\n- Add comprehensive configuration options for MCP server\n- Refactor test helpers to reduce over-abstraction\n- Add test cases for error scenarios (unsupported file extensions)\n- Replace testFiles object with direct fixture path usage\n- Add detailed documentation for MCP server configuration\n- Improve test coverage for edge cases and configuration validation\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-05T14:06:50+09:00",
+          "tree_id": "f5686716f19745d145aa175d2ad3740d0ec66bd2",
+          "url": "https://github.com/textlint/textlint/commit/4fb11203629227f8c8dcd0bc57f99c31d2e5f1c5"
+        },
+        "date": 1751692180628,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24097581996,
+            "unit": "seconds",
+            "range": "± 0.15535557500000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.77321855836,
+            "unit": "seconds",
+            "range": "± 0.09550528899999988"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.61763983936,
+            "unit": "seconds",
+            "range": "± 0.025900531999999976"
           }
         ]
       }
