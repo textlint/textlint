@@ -2,6 +2,7 @@ import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import type { McpResponse, SnapshotContext, SnapshotInput, SnapshotInputFactory, SnapshotOutput } from "./types.js";
+import { string } from "zod";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -56,74 +57,40 @@ function pathReplacer(snapshotDir: string) {
                 {
                     // 1. Files within snapshot directory -> <test-case>/filename
                     checkPaths: [snapshotDir, normalizePath(snapshotDir)],
-                    replacement: `<${testCaseName}>`,
-                    shouldCalculateRelative: true
+                    replacement: `<${testCaseName}>`
                 },
                 {
                     // 2. Rule modules directory -> <rule_modules>
                     checkPaths: [FAKE_MODULES_DIRECTORY, normalizePath(FAKE_MODULES_DIRECTORY)],
-                    replacement: "<rule_modules>",
-                    shouldCalculateRelative: false
-                },
-                {
-                    // 3. Test directory paths -> <test-dir>
-                    checkPaths: [__dirname, normalizePath(__dirname)],
-                    replacement: "<test-dir>",
-                    shouldCalculateRelative: false
+                    replacement: "<rule_modules>"
                 },
                 {
                     // 4. Working directory -> <cwd> (fallback)
                     checkPaths: [process.cwd(), normalizePath(process.cwd())],
-                    replacement: "<cwd>",
-                    shouldCalculateRelative: false
+                    replacement: "<cwd>"
                 }
             ];
 
             // Try each replacement pattern
-            for (const { checkPaths, replacement, shouldCalculateRelative } of pathReplacements) {
+            for (const { checkPaths, replacement } of pathReplacements) {
                 let wasReplaced = false;
 
                 for (const pathToCheck of checkPaths) {
-                    if (stringValue.includes(pathToCheck)) {
-                        if (shouldCalculateRelative) {
-                            // For snapshot files, use simple test-case/filename format
-                            try {
-                                const relativePath = path.relative(snapshotDir, stringValue);
-                                if (relativePath && !relativePath.startsWith("..") && !path.isAbsolute(relativePath)) {
-                                    // Replace with <test-case>/filename format
-                                    stringValue = stringValue.replaceAll(pathToCheck, replacement);
-                                    // Always use forward slashes in output for consistency
-                                    stringValue = stringValue.replace(/\\\\/g, "/");
-                                    wasReplaced = true;
-                                    break;
-                                }
-                            } catch {
-                                // Ignore path calculation errors
-                            }
-                        } else {
-                            // Simple replacement
-                            stringValue = stringValue.replaceAll(pathToCheck, replacement);
-                            stringValue = normalizePath(stringValue);
-                            wasReplaced = true;
-                            break;
-                        }
+                    const jsonifiedPathToCheck = JSON.stringify(pathToCheck);
+                    const jsonifiedReplacement = JSON.stringify(replacement);
+                    if (stringValue.includes(pathToCheck) || stringValue.includes(jsonifiedPathToCheck)) {
+                        // For snapshot files, use simple test-case/filename format
+                        // Replace with <test-case>/filename format
+                        stringValue = stringValue.replaceAll(pathToCheck, replacement);
+                        stringValue = stringValue.replaceAll(jsonifiedPathToCheck, jsonifiedReplacement);
+                        // windows path sep to forward slash
+                        stringValue = stringValue.replace(/\\/g, "/");
+                        wasReplaced = true;
+                        break;
                     }
                 }
 
                 if (wasReplaced) break;
-            }
-
-            // Fallback: Extract meaningful part from any remaining absolute paths
-            if (stringValue.includes("mcp-snapshot-test") && stringValue.includes("snapshots")) {
-                const parts = stringValue.split(/[\/\\]/);
-                const snapshotsIndex = parts.findIndex((part) => part === "snapshots");
-
-                if (snapshotsIndex >= 0 && snapshotsIndex < parts.length - 2) {
-                    // Extract case-name and filename: snapshots/case-name/file.ext -> <case-name>/file.ext
-                    const caseName = parts[snapshotsIndex + 1];
-                    const fileName = parts[snapshotsIndex + 2];
-                    stringValue = `<${caseName}>/${fileName}`;
-                }
             }
 
             return stringValue;
