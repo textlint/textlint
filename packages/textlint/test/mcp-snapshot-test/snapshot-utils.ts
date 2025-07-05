@@ -17,6 +17,17 @@ export const SNAPSHOTS_DIRECTORY = path.join(__dirname, "snapshots");
 export const FAKE_MODULES_DIRECTORY = path.join(__dirname, "..", "mcp", "fixtures", "rule_modules");
 
 /**
+ * input: "C:\\path\\to\\file.txt"
+ * output: "C:\\\\path\\\\to\\\\file.txt"
+ * @param filePath
+ */
+const jsonStringifyPathValue = (filePath: string): string => {
+    // I want to match and replace paths contained in the result of JSON.stringify
+    // When using JSON.stringify, quotes are added at the beginning and end, so I remove the quotes themselves
+    return JSON.stringify(filePath).replace(/"/g, "");
+};
+
+/**
  * Normalize MCP response for snapshot comparison
  * Removes timestamps and dynamic paths
  */
@@ -82,31 +93,15 @@ function pathReplacer(snapshotDir: string) {
                 let wasReplaced = false;
 
                 for (const pathToCheck of checkPaths) {
-                    /**
-                     * input: "C:\\path\\to\\file.txt"
-                     * output: "C:\\\\path\\\\to\\\\file.txt"
-                     * @param filePath
-                     */
-                    const jsonStringifyValue = (filePath: string) => {
-                        // JSON.stringifyした中に含まれるパスにマッチして置き換えたい
-                        // JSON.stringifyすると、"がついてしまうので、"自体を消す
-                        return JSON.stringify(filePath).replace(/"/g, "");
-                    };
-                    const jsonifiedPathToCheck = jsonStringifyValue(pathToCheck);
-                    const jsonifiedReplacement = jsonStringifyValue(replacement);
-                    console.log({
-                        pathToCheck,
-                        jsonifiedPathToCheck,
-                        replacement,
-                        jsonifiedReplacement
-                    });
+                    const jsonifiedPathToCheck = jsonStringifyPathValue(pathToCheck);
+                    const jsonifiedReplacement = jsonStringifyPathValue(replacement);
                     if (stringValue.includes(pathToCheck) || stringValue.includes(jsonifiedPathToCheck)) {
                         // For snapshot files, use simple test-case/filename format
                         // Replace with <test-case>/filename format
                         stringValue = stringValue.replaceAll(pathToCheck, replacement);
                         stringValue = stringValue.replaceAll(jsonifiedPathToCheck, jsonifiedReplacement);
                         // windows path sep to forward slash
-                        stringValue = stringValue.replace(/\\/g, "/");
+                        stringValue = stringValue.replaceAll("\\", "/");
                         wasReplaced = true;
                         break;
                     }
