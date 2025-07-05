@@ -40,56 +40,87 @@ function pathReplacer(snapshotDir: string) {
             // Replace timestamps first
             stringValue = stringValue.replace(/"timestamp":\s*"[^"]*"/g, '"timestamp": "<timestamp>"');
 
-            // Simple string replacement approach - much more reliable across platforms
-            // We replace exact path strings to avoid regex complexity
+            // Use simple string operations instead of regex for path replacement
+            // This is more reliable across platforms
 
-            // 1. Replace snapshot directory paths with <snapshot>/filename
-            if (stringValue.includes(snapshotDir)) {
-                const relativePath = path.relative(snapshotDir, stringValue);
-                if (relativePath && !relativePath.startsWith("..") && !path.isAbsolute(relativePath)) {
-                    stringValue = stringValue.replace(new RegExp(escapeRegExp(snapshotDir), "g"), "<snapshot>");
-                    stringValue = normalizePath(stringValue);
+            // Define path patterns to replace
+            const pathReplacements = [
+                {
+                    // 1. Snapshot directory paths -> <snapshot>/filename
+                    checkPaths: [snapshotDir, normalizePath(snapshotDir)],
+                    replacement: "<snapshot>",
+                    shouldCalculateRelative: true
+                },
+                {
+                    // 2. Test directory paths -> <test-dir>
+                    checkPaths: [__dirname, normalizePath(__dirname)],
+                    replacement: "<test-dir>",
+                    shouldCalculateRelative: false
+                },
+                {
+                    // 3. Rule modules directory -> <rule_modules>
+                    checkPaths: [FAKE_MODULES_DIRECTORY, normalizePath(FAKE_MODULES_DIRECTORY)],
+                    replacement: "<rule_modules>",
+                    shouldCalculateRelative: false
+                },
+                {
+                    // 4. Working directory -> <cwd> (fallback)
+                    checkPaths: [process.cwd(), normalizePath(process.cwd())],
+                    replacement: "<cwd>",
+                    shouldCalculateRelative: false
                 }
+            ];
+
+            // Try each replacement pattern
+            for (const { checkPaths, replacement, shouldCalculateRelative } of pathReplacements) {
+                let wasReplaced = false;
+
+                for (const pathToCheck of checkPaths) {
+                    if (stringValue.includes(pathToCheck)) {
+                        if (shouldCalculateRelative) {
+                            // For snapshots, preserve relative structure
+                            try {
+                                const relativePath = path.relative(snapshotDir, stringValue);
+                                if (relativePath && !relativePath.startsWith("..") && !path.isAbsolute(relativePath)) {
+                                    stringValue = stringValue.replaceAll(pathToCheck, replacement);
+                                    stringValue = normalizePath(stringValue);
+                                    wasReplaced = true;
+                                    break;
+                                }
+                            } catch {
+                                // Ignore path calculation errors
+                            }
+                        } else {
+                            // Simple replacement
+                            stringValue = stringValue.replaceAll(pathToCheck, replacement);
+                            stringValue = normalizePath(stringValue);
+                            wasReplaced = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (wasReplaced) break;
             }
 
-            // 2. Replace test directory paths
-            if (stringValue.includes(__dirname)) {
-                stringValue = stringValue.replace(new RegExp(escapeRegExp(__dirname), "g"), "<test-dir>");
-                stringValue = normalizePath(stringValue);
-            }
+            // Fallback: Pattern-based replacement for Windows paths that weren't caught
+            if (stringValue.includes("mcp-snapshot-test") && stringValue.includes("snapshots")) {
+                // Use a simple pattern to extract the meaningful part
+                const parts = stringValue.split(/[\/\\]/);
+                const testIndex = parts.findIndex((part) => part === "mcp-snapshot-test");
+                const snapshotsIndex = parts.findIndex((part) => part === "snapshots");
 
-            // 3. Replace rule modules directory paths
-            if (stringValue.includes(FAKE_MODULES_DIRECTORY)) {
-                stringValue = stringValue.replace(
-                    new RegExp(escapeRegExp(FAKE_MODULES_DIRECTORY), "g"),
-                    "<rule_modules>"
-                );
-                stringValue = normalizePath(stringValue);
-            }
-
-            // 4. Replace working directory paths (fallback)
-            const workingDir = process.cwd();
-            if (
-                stringValue.includes(workingDir) &&
-                !stringValue.includes("<snapshot>") &&
-                !stringValue.includes("<test-dir>") &&
-                !stringValue.includes("<rule_modules>")
-            ) {
-                stringValue = stringValue.replace(new RegExp(escapeRegExp(workingDir), "g"), "<cwd>");
-                stringValue = normalizePath(stringValue);
+                if (testIndex >= 0 && snapshotsIndex > testIndex && snapshotsIndex < parts.length - 2) {
+                    // Extract case-name/file.ext from snapshots/case-name/file.ext
+                    const relevantParts = parts.slice(snapshotsIndex + 1);
+                    stringValue = `<test-dir>/snapshots/${relevantParts.join("/")}`;
+                }
             }
 
             return stringValue;
         }
         return value;
     };
-}
-
-/**
- * Escape special regex characters in a string
- */
-function escapeRegExp(string: string): string {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 /**
