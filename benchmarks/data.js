@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751723952191,
+  "lastUpdate": 1751724287684,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -69048,6 +69048,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6125674046400001,
             "unit": "seconds",
             "range": "± 0.014794527999999918"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "cba9bbd1a1fdbcee7dd608ef7dc642303b8a2494",
+          "message": "refactor(textlint): remove unnecessary testInvalidSchema tool\n\n- Remove testInvalidSchema tool from MCP server\n- Remove corresponding tests for the tool\n- Simplify test count expectations in test suite\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-05T23:02:06+09:00",
+          "tree_id": "8b860fc45f1639f74eec29f607baffc7d3c5747b",
+          "url": "https://github.com/textlint/textlint/commit/cba9bbd1a1fdbcee7dd608ef7dc642303b8a2494"
+        },
+        "date": 1751724283626,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22571715266,
+            "unit": "seconds",
+            "range": "± 0.10789326499999999"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.72697809366,
+            "unit": "seconds",
+            "range": "± 0.04996560200000011"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6024743920600001,
+            "unit": "seconds",
+            "range": "± 0.028941931999999948"
           }
         ]
       }
