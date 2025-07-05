@@ -428,54 +428,6 @@ describe("MCP Server", () => {
                 // The client would throw an error if structuredContent was missing
                 assert.ok(result.structuredContent, "Client enforces structuredContent for tools with outputSchema");
             });
-
-            it("should throw validation error when server returns invalid schema data", async () => {
-                // Test case: Verify that the MCP client throws an error when structuredContent
-                // doesn't match the defined outputSchema
-
-                // First verify that valid data works
-                const validResult = (await client.callTool({
-                    name: "testInvalidSchema",
-                    arguments: {
-                        triggerError: false
-                    }
-                })) as CallToolResult;
-
-                assert.ok(validResult.structuredContent, "Valid data should return structuredContent");
-                assert.strictEqual(validResult.structuredContent.requiredString, "valid string");
-                assert.strictEqual(validResult.structuredContent.requiredNumber, 42);
-
-                // Now test that invalid data triggers validation error
-                try {
-                    await client.callTool({
-                        name: "testInvalidSchema",
-                        arguments: {
-                            triggerError: true
-                        }
-                    });
-
-                    // If we reach this point, the validation didn't work as expected
-                    assert.fail("Expected validation error was not thrown");
-                } catch (error) {
-                    // Verify this is the expected MCP validation error
-                    assert.ok(error instanceof Error, "Should throw an Error");
-                    assert.ok(
-                        error.message.includes("Invalid structured content") ||
-                            error.message.includes("Expected string, received number") ||
-                            error.message.includes("Expected number, received string") ||
-                            error.message.includes("schema"),
-                        `Error message should mention schema validation, got: ${error.message}`
-                    );
-
-                    // The error should contain detailed validation information from Ajv
-                    assert.ok(
-                        error.message.includes("invalid_type") ||
-                            error.message.includes("Expected string") ||
-                            error.message.includes("Expected number"),
-                        "Error should contain Ajv validation details"
-                    );
-                }
-            });
         });
 
         describe("Error Handling", () => {
@@ -634,8 +586,7 @@ describe("MCP Server", () => {
     describe("Basic Tool Functionality", () => {
         it("should have all required tools", async () => {
             const { tools } = await client.listTools();
-            // In test environment, we have an additional test tool
-            const expectedToolCount = process.env.NODE_ENV === "test" ? 5 : 4;
+            const expectedToolCount = 4;
             assert.strictEqual(tools.length, expectedToolCount);
 
             const toolNames = tools.map((tool) => tool.name);
@@ -643,13 +594,6 @@ describe("MCP Server", () => {
             assert.ok(toolNames.includes("lintText"), "Should have lintText tool");
             assert.ok(toolNames.includes("getLintFixedFileContent"), "Should have getLintFixedFileContent tool");
             assert.ok(toolNames.includes("getLintFixedTextContent"), "Should have getLintFixedTextContent tool");
-
-            if (process.env.NODE_ENV === "test") {
-                assert.ok(
-                    toolNames.includes("testInvalidSchema"),
-                    "Should have testInvalidSchema tool in test environment"
-                );
-            }
         });
 
         it("should lint a valid file with zero messages", async () => {

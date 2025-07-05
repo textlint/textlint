@@ -271,66 +271,6 @@ export const setupServer = async (
         }
     );
 
-    // Test tool that intentionally returns invalid schema data for validation testing
-    // Note: This is for testing purposes only and should not be used in production
-    if (process.env.NODE_ENV === "test") {
-        server.registerTool(
-            "testInvalidSchema",
-            {
-                description: "Test tool that returns data not matching its output schema (for testing validation)",
-                inputSchema: {
-                    triggerError: z.boolean().optional().describe("Whether to trigger a schema validation error")
-                },
-                outputSchema: {
-                    requiredString: z.string(),
-                    requiredNumber: z.number(),
-                    isError: z.boolean()
-                }
-            },
-            async ({ triggerError = false }) => {
-                if (triggerError) {
-                    // Intentionally return data that doesn't match the schema
-                    const invalidStructuredContent = {
-                        requiredString: 123, // Should be string, but returning number
-                        requiredNumber: "invalid", // Should be number, but returning string
-                        isError: false,
-                        timestamp: new Date().toISOString()
-                    };
-
-                    return {
-                        content: [
-                            {
-                                type: "text" as const,
-                                text: JSON.stringify(invalidStructuredContent, null, 2)
-                            }
-                        ],
-                        structuredContent: invalidStructuredContent,
-                        isError: false
-                    };
-                } else {
-                    // Return valid data
-                    const validStructuredContent = {
-                        requiredString: "valid string",
-                        requiredNumber: 42,
-                        isError: false,
-                        timestamp: new Date().toISOString()
-                    };
-
-                    return {
-                        content: [
-                            {
-                                type: "text" as const,
-                                text: JSON.stringify(validStructuredContent, null, 2)
-                            }
-                        ],
-                        structuredContent: validStructuredContent,
-                        isError: false
-                    };
-                }
-            }
-        );
-    }
-
     return server;
 };
 
