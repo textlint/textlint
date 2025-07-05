@@ -1,7 +1,14 @@
 import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
-import type { McpResponse, SnapshotContext, SnapshotInput, SnapshotInputFactory, SnapshotOutput } from "./types.js";
+import {
+    McpResponse,
+    McpToolRequest,
+    SnapshotContext,
+    SnapshotInput,
+    SnapshotInputFactory,
+    SnapshotOutput
+} from "./types.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -75,8 +82,17 @@ function pathReplacer(snapshotDir: string) {
                 let wasReplaced = false;
 
                 for (const pathToCheck of checkPaths) {
-                    const jsonifiedPathToCheck = JSON.stringify(JSON.stringify(pathToCheck));
-                    const jsonifiedReplacement = JSON.stringify(JSON.stringify(replacement));
+                    /**
+                     * input: "C:\\path\\to\\file.txt"
+                     * output: "C:\\\\path\\\\to\\\\file.txt"
+                     * @param str
+                     */
+                    const jsonStringifyValue = (str: string) => {
+                        return JSON.stringify(str).replace(/\\"/g, "");
+                    };
+                    const jsonifiedPathToCheck = jsonStringifyValue(pathToCheck);
+                    const jsonifiedReplacement = jsonStringifyValue(replacement);
+                    console.log("stringValue:", stringValue);
                     console.log("pathToCheck:", pathToCheck);
                     console.log("jsonifiedPathToCheck:", jsonifiedPathToCheck);
                     if (stringValue.includes(pathToCheck) || stringValue.includes(jsonifiedPathToCheck)) {
@@ -253,7 +269,7 @@ export function writeSnapshotOutput(snapshotDir: string, output: SnapshotOutput)
 /**
  * Resolve file paths in request relative to snapshot directory
  */
-export function resolveRequestPaths(request: unknown, snapshotDir: string): unknown {
+export function resolveRequestPaths(request: unknown, snapshotDir: string): McpToolRequest {
     const resolved = JSON.parse(JSON.stringify(request)) as Record<string, unknown>;
 
     if (resolved.arguments && typeof resolved.arguments === "object") {
@@ -269,7 +285,7 @@ export function resolveRequestPaths(request: unknown, snapshotDir: string): unkn
         }
     }
 
-    return resolved as unknown;
+    return resolved as McpToolRequest;
 }
 
 /**
