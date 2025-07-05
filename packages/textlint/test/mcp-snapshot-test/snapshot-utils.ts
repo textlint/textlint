@@ -73,12 +73,12 @@ function pathReplacer(snapshotDir: string) {
 /**
  * Remove timestamps from response objects
  */
-function removeTimestamps(obj: any): any {
+function removeTimestamps(obj: unknown): unknown {
     if (Array.isArray(obj)) {
         return obj.map(removeTimestamps);
     } else if (obj && typeof obj === "object") {
-        const result: any = {};
-        for (const [key, value] of Object.entries(obj)) {
+        const result: Record<string, unknown> = {};
+        for (const [key, value] of Object.entries(obj as Record<string, unknown>)) {
             // Skip timestamp fields
             if (key === "timestamp") {
                 result[key] = "<timestamp>";
@@ -129,23 +129,24 @@ export function readSnapshotOutput(snapshotDir: string): SnapshotOutput {
  */
 export function writeSnapshotOutput(snapshotDir: string, output: SnapshotOutput): void {
     const outputPath = path.join(snapshotDir, "output.json");
-    fs.writeFileSync(outputPath, JSON.stringify(output, null, 2) + "\n");
+    fs.writeFileSync(outputPath, `${JSON.stringify(output, null, 2)}\n`);
 }
 
 /**
  * Resolve file paths in request relative to snapshot directory
  */
-export function resolveRequestPaths(request: any, snapshotDir: string): any {
-    const resolved = JSON.parse(JSON.stringify(request));
+export function resolveRequestPaths(request: unknown, snapshotDir: string): unknown {
+    const resolved = JSON.parse(JSON.stringify(request)) as Record<string, unknown>;
 
-    if (resolved.arguments) {
+    if (resolved.arguments && typeof resolved.arguments === "object") {
+        const args = resolved.arguments as Record<string, unknown>;
         // Resolve filePaths if present
-        if (resolved.arguments.filePaths && Array.isArray(resolved.arguments.filePaths)) {
-            resolved.arguments.filePaths = resolved.arguments.filePaths.map((filePath: string) => {
-                if (path.isAbsolute(filePath)) {
+        if (args.filePaths && Array.isArray(args.filePaths)) {
+            args.filePaths = args.filePaths.map((filePath) => {
+                if (typeof filePath === "string" && path.isAbsolute(filePath)) {
                     return filePath;
                 }
-                return path.join(snapshotDir, filePath);
+                return path.join(snapshotDir, String(filePath));
             });
         }
     }

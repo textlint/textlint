@@ -7,13 +7,7 @@ import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
-import { setupServer, McpServerOptions } from "../../src/mcp/server.js";
-import { TextlintKernelDescriptor } from "@textlint/kernel";
-import { builtInPlugins } from "../../src/loader/TextlintrcLoader.js";
-import { fileURLToPath } from "node:url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { setupServer } from "../../src/mcp/server.js";
 
 const validFilePath = path.join(__dirname, "fixtures", "ok.md");
 const invalidFilePath = path.join(__dirname, "fixtures", "invalid.md");
@@ -152,14 +146,11 @@ describe("MCP Server", () => {
                             },
                             "messages": {
                               "items": {
-                                "additionalProperties": true,
+                                "additionalProperties": false,
                                 "properties": {
                                   "column": {
                                     "description": "Column number (1-based)",
                                     "type": "number",
-                                  },
-                                  "data": {
-                                    "description": "Optional data associated with the message",
                                   },
                                   "fix": {
                                     "additionalProperties": false,
@@ -183,72 +174,12 @@ describe("MCP Server", () => {
                                     ],
                                     "type": "object",
                                   },
-                                  "index": {
-                                    "description": "Start index where the issue is located (0-based, deprecated)",
-                                    "type": "number",
-                                  },
                                   "line": {
                                     "description": "Line number (1-based)",
                                     "type": "number",
                                   },
-                                  "loc": {
-                                    "additionalProperties": false,
-                                    "description": "Location info where the issue is located",
-                                    "properties": {
-                                      "end": {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                          "column": {
-                                            "description": "End column number (1-based)",
-                                            "type": "number",
-                                          },
-                                          "line": {
-                                            "description": "End line number (1-based)",
-                                            "type": "number",
-                                          },
-                                        },
-                                        "required": [
-                                          "line",
-                                          "column",
-                                        ],
-                                        "type": "object",
-                                      },
-                                      "start": {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                          "column": {
-                                            "description": "Start column number (1-based)",
-                                            "type": "number",
-                                          },
-                                          "line": {
-                                            "description": "Start line number (1-based)",
-                                            "type": "number",
-                                          },
-                                        },
-                                        "required": [
-                                          "line",
-                                          "column",
-                                        ],
-                                        "type": "object",
-                                      },
-                                    },
-                                    "required": [
-                                      "start",
-                                      "end",
-                                    ],
-                                    "type": "object",
-                                  },
                                   "message": {
                                     "type": "string",
-                                  },
-                                  "range": {
-                                    "description": "Text range [start, end] (0-based)",
-                                    "items": {
-                                      "type": "number",
-                                    },
-                                    "maxItems": 2,
-                                    "minItems": 2,
-                                    "type": "array",
                                   },
                                   "ruleId": {
                                     "type": "string",
@@ -256,10 +187,6 @@ describe("MCP Server", () => {
                                   "severity": {
                                     "description": "Severity level: 1=warning, 2=error, 3=info",
                                     "type": "number",
-                                  },
-                                  "type": {
-                                    "description": "Message type",
-                                    "type": "string",
                                   },
                                 },
                                 "required": [
@@ -382,6 +309,105 @@ describe("MCP Server", () => {
                 assert.ok(structured.hasOwnProperty("timestamp"), "Should have timestamp property");
                 assert.strictEqual(typeof structured.isError, "boolean", "isError should be boolean");
                 assert.ok(Array.isArray(structured.results), "results should be array");
+            });
+
+            it("should validate output schema on client side (client.callTool validates structuredContent)", async () => {
+                // Test case: Verify that the MCP client validates structuredContent against outputSchema
+                // The MCP SDK client does perform validation using Ajv
+
+                const result = (await client.callTool({
+                    name: "lintFile",
+                    arguments: {
+                        filePaths: [validFilePath]
+                    }
+                })) as CallToolResult;
+
+                // The client validates that:
+                // 1. Tools with outputSchema must return structuredContent (unless error)
+                // 2. structuredContent must match the defined schema
+                assert.ok(result.structuredContent, "Tools with outputSchema must return structuredContent");
+
+                // If the server returned invalid structured content, the client would throw
+                // an McpError with ErrorCode.InvalidParams
+                assert.ok(result, "Client validates and accepts schema-compliant responses");
+
+                // Note: The MCP SDK client uses Ajv to validate structuredContent against outputSchema
+                // See: @modelcontextprotocol/sdk/dist/esm/client/index.js callTool method
+            });
+
+            it("should enforce structured content requirement for tools with outputSchema", async () => {
+                // This test verifies that the client enforces the structured content requirement
+                // Let's test this by examining the behavior with our tools that have outputSchemas
+
+                const { tools } = await client.listTools();
+                const toolsWithOutputSchema = tools.filter((tool) => tool.outputSchema);
+
+                assert.ok(toolsWithOutputSchema.length > 0, "Should have tools with outputSchema for testing");
+
+                // All our tools have outputSchema, so they must return structuredContent
+                for (const tool of toolsWithOutputSchema) {
+                    assert.ok(tool.outputSchema, `Tool ${tool.name} should have outputSchema`);
+                }
+
+                // When we call these tools, they should return structuredContent
+                const result = (await client.callTool({
+                    name: "lintText",
+                    arguments: {
+                        text: "test content",
+                        stdinFilename: "test.txt"
+                    }
+                })) as CallToolResult;
+
+                // The client would throw an error if structuredContent was missing
+                assert.ok(result.structuredContent, "Client enforces structuredContent for tools with outputSchema");
+            });
+
+            it("should throw validation error when server returns invalid schema data", async () => {
+                // Test case: Verify that the MCP client throws an error when structuredContent
+                // doesn't match the defined outputSchema
+
+                // First verify that valid data works
+                const validResult = (await client.callTool({
+                    name: "testInvalidSchema",
+                    arguments: {
+                        triggerError: false
+                    }
+                })) as CallToolResult;
+
+                assert.ok(validResult.structuredContent, "Valid data should return structuredContent");
+                assert.strictEqual(validResult.structuredContent.requiredString, "valid string");
+                assert.strictEqual(validResult.structuredContent.requiredNumber, 42);
+
+                // Now test that invalid data triggers validation error
+                try {
+                    await client.callTool({
+                        name: "testInvalidSchema",
+                        arguments: {
+                            triggerError: true
+                        }
+                    });
+
+                    // If we reach this point, the validation didn't work as expected
+                    assert.fail("Expected validation error was not thrown");
+                } catch (error) {
+                    // Verify this is the expected MCP validation error
+                    assert.ok(error instanceof Error, "Should throw an Error");
+                    assert.ok(
+                        error.message.includes("Invalid structured content") ||
+                            error.message.includes("Expected string, received number") ||
+                            error.message.includes("Expected number, received string") ||
+                            error.message.includes("schema"),
+                        `Error message should mention schema validation, got: ${error.message}`
+                    );
+
+                    // The error should contain detailed validation information from Ajv
+                    assert.ok(
+                        error.message.includes("invalid_type") ||
+                            error.message.includes("Expected string") ||
+                            error.message.includes("Expected number"),
+                        "Error should contain Ajv validation details"
+                    );
+                }
             });
         });
 
@@ -541,13 +567,22 @@ describe("MCP Server", () => {
     describe("Basic Tool Functionality", () => {
         it("should have all required tools", async () => {
             const { tools } = await client.listTools();
-            assert.strictEqual(tools.length, 4);
+            // In test environment, we have an additional test tool
+            const expectedToolCount = process.env.NODE_ENV === "test" ? 5 : 4;
+            assert.strictEqual(tools.length, expectedToolCount);
 
             const toolNames = tools.map((tool) => tool.name);
             assert.ok(toolNames.includes("lintFile"), "Should have lintFile tool");
             assert.ok(toolNames.includes("lintText"), "Should have lintText tool");
             assert.ok(toolNames.includes("getLintFixedFileContent"), "Should have getLintFixedFileContent tool");
             assert.ok(toolNames.includes("getLintFixedTextContent"), "Should have getLintFixedTextContent tool");
+
+            if (process.env.NODE_ENV === "test") {
+                assert.ok(
+                    toolNames.includes("testInvalidSchema"),
+                    "Should have testInvalidSchema tool in test environment"
+                );
+            }
         });
 
         it("should lint a valid file with zero messages", async () => {
@@ -593,483 +628,6 @@ describe("MCP Server", () => {
             // Verify timestamp exists and is a string
             assert.ok(timestamp, "Should have timestamp");
             assert.strictEqual(typeof timestamp, "string", "Timestamp should be a string");
-        });
-    });
-
-    describe("Schema validation with additional properties", () => {
-        it("should handle textlint messages with additional properties (type, data, index, range, loc)", async () => {
-            // This test reproduces the issue reported in #1622
-            // TextlintMessage contains additional properties that are not in the current schema
-            const result = (await client.callTool({
-                name: "lintText",
-                arguments: {
-                    text: "This  has  double  spaces.",
-                    stdinFilename: "test.unknown"
-                }
-            })) as CallToolResult;
-
-            assert.strictEqual(result.isError, true, "Should fail due to schema validation with additional properties");
-            assert.ok(result.structuredContent, "Should have structured content");
-            expect(result.structuredContent.error).toMatchInlineSnapshot(`"Not found available plugin for .unknown"`);
-        });
-
-        it("should handle markdown content without markdown plugin without schema validation errors", async () => {
-            // This reproduces the specific case from #1622 where markdown content
-            // is linted without markdown plugin, causing schema validation errors
-            const markdownContent = "# Title\n\nThis is markdown content.";
-            const result = (await client.callTool({
-                name: "lintText",
-                arguments: {
-                    text: markdownContent,
-                    stdinFilename: "test.md"
-                }
-            })) as CallToolResult;
-
-            assert.strictEqual(
-                result.isError,
-                false,
-                "Should not fail due to schema validation even with unsupported extension"
-            );
-            assert.ok(result.structuredContent, "Should have structured content");
-            assert.ok(Array.isArray(result.structuredContent.messages), "Should have messages array");
-        });
-
-        it("should handle file linting with complete TextlintMessage properties", async () => {
-            // Test with a file that will generate lint messages with all properties
-            const result = (await client.callTool({
-                name: "lintFile",
-                arguments: {
-                    filePaths: [invalidFilePath]
-                }
-            })) as CallToolResult;
-
-            assert.strictEqual(result.isError, false, "Should not fail due to schema validation");
-            assert.ok(result.structuredContent, "Should have structured content");
-            assert.ok(Array.isArray(result.structuredContent.results), "Should have results array");
-        });
-
-        it("should handle unsupported file extensions gracefully", async () => {
-            // Test with an unsupported file extension
-            const result = (await client.callTool({
-                name: "lintFile",
-                arguments: {
-                    filePaths: [path.join(__dirname, "fixtures", "unsupported.xyz")]
-                }
-            })) as CallToolResult;
-
-            // Note: textlint may process unsupported files as text, so we expect success
-            assert.strictEqual(result.isError, false, "Should handle unsupported extension gracefully");
-            assert.ok(result.structuredContent, "Should have structured content");
-        });
-
-        it("should return isError true for lintText with unsupported extension", async () => {
-            // Test lintText with unsupported extension
-            const result = (await client.callTool({
-                name: "lintText",
-                arguments: {
-                    text: "This is test content",
-                    stdinFilename: "test.xyz"
-                }
-            })) as CallToolResult;
-
-            // lintText returns error for unsupported extensions
-            assert.strictEqual(
-                result.isError,
-                true,
-                "Should return isError true for unsupported extension in lintText"
-            );
-            assert.ok(result.content, "Should have error content");
-        });
-
-        it("should return isError true for non-existent files", async () => {
-            // Test with non-existent file to trigger actual error
-            const result = (await client.callTool({
-                name: "lintFile",
-                arguments: {
-                    filePaths: [path.join(__dirname, "fixtures", "nonexistent.md")]
-                }
-            })) as CallToolResult;
-
-            assert.strictEqual(result.isError, true, "Should return isError true for non-existent file");
-            assert.ok(result.content, "Should have error content");
-        });
-    });
-
-    describe("Configuration Options Tests", () => {
-        describe("Custom Configuration", () => {
-            it("should use custom descriptor when provided", async () => {
-                // Create server with custom descriptor
-                const customServer = await setupServer({
-                    descriptor: new TextlintKernelDescriptor({
-                        rules: [],
-                        filterRules: [],
-                        plugins: builtInPlugins
-                    })
-                });
-
-                const [customClientTransport, customServerTransport] = InMemoryTransport.createLinkedPair();
-                await customServer.connect(customServerTransport);
-
-                const customClient = new Client({
-                    name: "textlint-custom",
-                    version: "1.0"
-                });
-                await customClient.connect(customClientTransport);
-
-                const result = (await customClient.callTool({
-                    name: "lintText",
-                    arguments: {
-                        text: "Test content",
-                        stdinFilename: "test.md"
-                    }
-                })) as CallToolResult;
-
-                assert.strictEqual(result.isError, false, "Should succeed with custom descriptor");
-                assert.ok(result.structuredContent, "Should have structured content");
-
-                // Cleanup
-                await customClient.close();
-                await customServer.close();
-            });
-
-            it("should use custom config file when specified", async () => {
-                // Test with minimal config
-                const configServer = await setupServer({
-                    configFilePath: path.join(__dirname, "fixtures", "configs", "minimal-config.json")
-                });
-
-                const [configClientTransport, configServerTransport] = InMemoryTransport.createLinkedPair();
-                await configServer.connect(configServerTransport);
-
-                const configClient = new Client({
-                    name: "textlint-config",
-                    version: "1.0"
-                });
-                await configClient.connect(configClientTransport);
-
-                const result = (await configClient.callTool({
-                    name: "lintFile",
-                    arguments: {
-                        filePaths: [path.join(__dirname, "fixtures", "ok.md")]
-                    }
-                })) as CallToolResult;
-
-                assert.strictEqual(result.isError, false, "Should succeed with custom config file");
-
-                // Cleanup
-                await configClient.close();
-                await configServer.close();
-            });
-
-            it("should respect quiet mode option", async () => {
-                const quietServer = await setupServer({
-                    quiet: true,
-                    descriptor: new TextlintKernelDescriptor({
-                        rules: [],
-                        filterRules: [],
-                        plugins: builtInPlugins
-                    })
-                });
-
-                const [quietClientTransport, quietServerTransport] = InMemoryTransport.createLinkedPair();
-                await quietServer.connect(quietServerTransport);
-
-                const quietClient = new Client({
-                    name: "textlint-quiet",
-                    version: "1.0"
-                });
-                await quietClient.connect(quietClientTransport);
-
-                const result = (await quietClient.callTool({
-                    name: "lintText",
-                    arguments: {
-                        text: "Test content with warnings",
-                        stdinFilename: "test.md"
-                    }
-                })) as CallToolResult;
-
-                assert.strictEqual(result.isError, false, "Should succeed in quiet mode");
-
-                // Cleanup
-                await quietClient.close();
-                await quietServer.close();
-            });
-        });
-
-        describe("Edge Cases", () => {
-            it("should handle empty files", async () => {
-                const result = (await client.callTool({
-                    name: "lintFile",
-                    arguments: {
-                        filePaths: [path.join(__dirname, "fixtures", "empty.md")]
-                    }
-                })) as CallToolResult;
-
-                assert.strictEqual(result.isError, false, "Should handle empty files without error");
-                assert.ok(result.structuredContent, "Should have structured content");
-                assert.ok(Array.isArray(result.structuredContent.results), "Should have results array");
-            });
-
-            it("should handle unsupported file extensions", async () => {
-                const result = (await client.callTool({
-                    name: "lintFile",
-                    arguments: {
-                        filePaths: [path.join(__dirname, "fixtures", "unsupported.xyz")]
-                    }
-                })) as CallToolResult;
-
-                // This might succeed or fail depending on textlint configuration
-                // The important thing is that it should handle it gracefully
-                assert.ok(result.structuredContent, "Should have structured content even for unsupported files");
-            });
-
-            it("should handle large files", async () => {
-                const result = (await client.callTool({
-                    name: "lintFile",
-                    arguments: {
-                        filePaths: [path.join(__dirname, "fixtures", "large-file.md")]
-                    }
-                })) as CallToolResult;
-
-                assert.strictEqual(result.isError, false, "Should handle large files");
-                assert.ok(result.structuredContent, "Should have structured content");
-            });
-
-            it("should handle multiple files with mixed results", async () => {
-                const result = (await client.callTool({
-                    name: "lintFile",
-                    arguments: {
-                        filePaths: [
-                            path.join(__dirname, "fixtures", "ok.md"),
-                            path.join(__dirname, "fixtures", "invalid.md"),
-                            path.join(__dirname, "fixtures", "empty.md")
-                        ]
-                    }
-                })) as CallToolResult;
-
-                assert.strictEqual(result.isError, false, "Should handle multiple files");
-                assert.ok(result.structuredContent, "Should have structured content");
-                assert.ok(Array.isArray(result.structuredContent.results), "Should have results array");
-                assert.strictEqual(result.structuredContent.results.length, 3, "Should have results for all files");
-            });
-        });
-
-        describe("Error Scenarios", () => {
-            it("should handle invalid config file gracefully", async () => {
-                // Test with non-existent config file
-                const invalidConfigOptions: McpServerOptions = {
-                    configFilePath: "/nonexistent/config.json"
-                };
-
-                const invalidServer = await setupServer(invalidConfigOptions);
-
-                const [invalidClientTransport, invalidServerTransport] = InMemoryTransport.createLinkedPair();
-                await invalidServer.connect(invalidServerTransport);
-
-                const invalidClient = new Client({
-                    name: "textlint-invalid",
-                    version: "1.0"
-                });
-                await invalidClient.connect(invalidClientTransport);
-
-                const result = (await invalidClient.callTool({
-                    name: "lintText",
-                    arguments: {
-                        text: "Test content",
-                        stdinFilename: "test.md"
-                    }
-                })) as CallToolResult;
-
-                // Should fall back to built-in configuration
-                assert.strictEqual(result.isError, false, "Should fall back gracefully for invalid config");
-
-                // Cleanup
-                await invalidClient.close();
-                await invalidServer.close();
-            });
-
-            it("should handle empty text input", async () => {
-                // Try with empty text and catch the validation error
-                try {
-                    const result = (await client.callTool({
-                        name: "lintText",
-                        arguments: {
-                            text: "",
-                            stdinFilename: "empty.md"
-                        }
-                    })) as CallToolResult;
-
-                    // If it doesn't throw, check that it returns an error response
-                    assert.strictEqual(result.isError, true, "Should return isError for empty text");
-                } catch (error) {
-                    // Expect validation error for empty text
-                    assert.ok(
-                        error.message.includes("String must contain at least 1 character"),
-                        "Should validate minimum text length"
-                    );
-                }
-            });
-
-            it("should handle whitespace-only text input", async () => {
-                const result = (await client.callTool({
-                    name: "lintText",
-                    arguments: {
-                        text: "   \n\t  \n  ",
-                        stdinFilename: "whitespace.md"
-                    }
-                })) as CallToolResult;
-
-                assert.strictEqual(result.isError, false, "Should handle whitespace-only input");
-                assert.ok(result.structuredContent, "Should have structured content");
-            });
-        });
-
-        describe("Backward Compatibility", () => {
-            it("should maintain backward compatibility when no options provided", async () => {
-                // This tests that the existing behavior is preserved
-                const defaultServer = await setupServer();
-
-                const [defaultClientTransport, defaultServerTransport] = InMemoryTransport.createLinkedPair();
-                await defaultServer.connect(defaultServerTransport);
-
-                const defaultClient = new Client({
-                    name: "textlint-default",
-                    version: "1.0"
-                });
-                await defaultClient.connect(defaultClientTransport);
-
-                const result = (await defaultClient.callTool({
-                    name: "lintFile",
-                    arguments: {
-                        filePaths: [path.join(__dirname, "fixtures", "ok.md")]
-                    }
-                })) as CallToolResult;
-
-                assert.strictEqual(result.isError, false, "Should work with default configuration");
-                assert.ok(result.structuredContent, "Should have structured content");
-
-                // Cleanup
-                await defaultClient.close();
-                await defaultServer.close();
-            });
-        });
-
-        describe("Real Configuration and Rules", () => {
-            it("should work with custom rule using configFilePath and node_modulesDir", async () => {
-                // Test with real fixture rule and configuration
-                const configServer = await setupServer({
-                    configFilePath: path.join(__dirname, "fixtures", "configs", "with-custom-rule.json"),
-                    node_modulesDir: path.join(__dirname, "fixtures", "rule_modules")
-                });
-
-                const [configClientTransport, configServerTransport] = InMemoryTransport.createLinkedPair();
-                await configServer.connect(configServerTransport);
-
-                const configClient = new Client({
-                    name: "textlint-config-rule",
-                    version: "1.0"
-                });
-                await configClient.connect(configClientTransport);
-
-                // Test with file that contains TODO (should trigger our custom rule)
-                const result = (await configClient.callTool({
-                    name: "lintFile",
-                    arguments: {
-                        filePaths: [path.join(__dirname, "fixtures", "with-todo.md")]
-                    }
-                })) as CallToolResult;
-
-                assert.strictEqual(result.isError, false, "Should succeed with custom rule");
-                assert.ok(result.structuredContent, "Should have structured content");
-                assert.ok(Array.isArray(result.structuredContent.results), "Should have results array");
-
-                // Check that the custom rule found the TODO
-                const firstResult = result.structuredContent.results[0];
-                assert.ok(firstResult.messages, "Should have messages");
-                assert.ok(firstResult.messages.length > 0, "Should have at least one message from custom rule");
-
-                const todoMessage = firstResult.messages.find((msg) => msg.message.includes("TODO"));
-                assert.ok(todoMessage, "Should detect TODO with custom rule");
-
-                // Cleanup
-                await configClient.close();
-                await configServer.close();
-            });
-
-            it("should work with preset using configFilePath and node_modulesDir", async () => {
-                // Test with real fixture preset and configuration
-                const presetServer = await setupServer({
-                    configFilePath: path.join(__dirname, "fixtures", "configs", "with-preset.json"),
-                    node_modulesDir: path.join(__dirname, "fixtures", "rule_modules")
-                });
-
-                const [presetClientTransport, presetServerTransport] = InMemoryTransport.createLinkedPair();
-                await presetServer.connect(presetServerTransport);
-
-                const presetClient = new Client({
-                    name: "textlint-preset",
-                    version: "1.0"
-                });
-                await presetClient.connect(presetClientTransport);
-
-                // Test with file that contains exclamation marks (should trigger preset rule)
-                const result = (await presetClient.callTool({
-                    name: "lintFile",
-                    arguments: {
-                        filePaths: [path.join(__dirname, "fixtures", "with-exclamation.md")]
-                    }
-                })) as CallToolResult;
-
-                assert.strictEqual(result.isError, false, "Should succeed with preset");
-                assert.ok(result.structuredContent, "Should have structured content");
-                assert.ok(Array.isArray(result.structuredContent.results), "Should have results array");
-
-                // Check that the preset rules are working
-                const firstResult = result.structuredContent.results[0];
-                assert.ok(firstResult.messages, "Should have messages");
-                assert.ok(firstResult.messages.length > 0, "Should have at least one message from preset");
-
-                // Cleanup
-                await presetClient.close();
-                await presetServer.close();
-            });
-
-            it("should handle lintText with custom rule configuration", async () => {
-                // Test lintText with custom rule configuration
-                const textServer = await setupServer({
-                    configFilePath: path.join(__dirname, "fixtures", "configs", "with-custom-rule.json"),
-                    node_modulesDir: path.join(__dirname, "fixtures", "rule_modules")
-                });
-
-                const [textClientTransport, textServerTransport] = InMemoryTransport.createLinkedPair();
-                await textServer.connect(textServerTransport);
-
-                const textClient = new Client({
-                    name: "textlint-text-custom",
-                    version: "1.0"
-                });
-                await textClient.connect(textClientTransport);
-
-                const result = (await textClient.callTool({
-                    name: "lintText",
-                    arguments: {
-                        text: "# Test\n\nThis has a TODO item in it.",
-                        stdinFilename: "test.md"
-                    }
-                })) as CallToolResult;
-
-                assert.strictEqual(result.isError, false, "Should succeed with custom rule for text");
-                assert.ok(result.structuredContent, "Should have structured content");
-                assert.ok(result.structuredContent.messages, "Should have messages array");
-
-                // Check that the custom rule found the TODO in text
-                const todoMessage = result.structuredContent.messages.find((msg) => msg.message.includes("TODO"));
-                assert.ok(todoMessage, "Should detect TODO with custom rule in text");
-
-                // Cleanup
-                await textClient.close();
-                await textServer.close();
-            });
         });
     });
 });

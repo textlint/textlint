@@ -3,36 +3,11 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import { createLinter, loadTextlintrc, type CreateLinterOptions } from "../index.js";
 import { existsSync } from "node:fs";
-import { TextlintKernelDescriptor } from "@textlint/kernel";
 
-export type McpServerOptions = {
-    // Configuration file options (based on LoadTextlintrcOptions)
-    configFilePath?: string; // Path to config file (.textlintrc, etc.)
-    node_modulesDir?: string; // Custom node_modules directory
-
-    // Linter options (based on CreateLinterOptions)
-    ignoreFilePath?: string; // Path to .textlintignore file
-    quiet?: boolean; // Report errors only
-    cwd?: string; // Current working directory
-
-    // Direct configuration (primarily for testing)
-    descriptor?: TextlintKernelDescriptor; // Direct configuration object
-};
-
-const makeLinterOptions = async (options?: McpServerOptions): Promise<CreateLinterOptions> => {
-    // If descriptor is provided directly, use it (primarily for testing)
-    const descriptor =
-        options?.descriptor ??
-        (await loadTextlintrc({
-            configFilePath: options?.configFilePath,
-            node_modulesDir: options?.node_modulesDir
-        }));
-
+const makeLinterOptions = async (): Promise<CreateLinterOptions> => {
+    const descriptor = await loadTextlintrc();
     return {
-        descriptor,
-        ignoreFilePath: options?.ignoreFilePath,
-        quiet: options?.quiet,
-        cwd: options?.cwd
+        descriptor
     };
 };
 
@@ -88,42 +63,7 @@ const validateInputAndReturnError = (value: string, fieldName: string, errorType
     return null;
 };
 
-const TextlintMessageSchema = z
-    .object({
-        // Core properties
-        ruleId: z.string().optional(),
-        message: z.string(),
-        line: z.number().describe("Line number (1-based)"),
-        column: z.number().describe("Column number (1-based)"),
-        severity: z.number().describe("Severity level: 1=warning, 2=error, 3=info"),
-        fix: z
-            .object({
-                range: z.array(z.number()).describe("Text range [start, end] (0-based)"),
-                text: z.string().describe("Replacement text")
-            })
-            .optional()
-            .describe("Fix suggestion if available"),
-        type: z.string().optional().describe("Message type"),
-        data: z.unknown().optional().describe("Optional data associated with the message"),
-        index: z.number().optional().describe("Start index where the issue is located (0-based, deprecated)"),
-        range: z.array(z.number()).length(2).optional().describe("Text range [start, end] (0-based)"),
-        loc: z
-            .object({
-                start: z.object({
-                    line: z.number().describe("Start line number (1-based)"),
-                    column: z.number().describe("Start column number (1-based)")
-                }),
-                end: z.object({
-                    line: z.number().describe("End line number (1-based)"),
-                    column: z.number().describe("End column number (1-based)")
-                })
-            })
-            .optional()
-            .describe("Location info where the issue is located")
-    })
-    .passthrough();
-
-export const setupServer = async (options?: McpServerOptions): Promise<McpServer> => {
+export const setupServer = async (): Promise<McpServer> => {
     const { readPackageUpSync } = await import("read-package-up");
     const version = readPackageUpSync({ cwd: __dirname })?.packageJson.version ?? "unknown";
     const server = new McpServer({
@@ -131,6 +71,7 @@ export const setupServer = async (options?: McpServerOptions): Promise<McpServer
         version
     });
 
+    // ツール登録
     server.registerTool(
         "lintFile",
         {
@@ -145,7 +86,50 @@ export const setupServer = async (options?: McpServerOptions): Promise<McpServer
                 results: z.array(
                     z.object({
                         filePath: z.string(),
-                        messages: z.array(TextlintMessageSchema),
+                        messages: z.array(
+                            z
+                                .object({
+                                    // Core properties
+                                    ruleId: z.string().optional(),
+                                    message: z.string(),
+                                    line: z.number().describe("Line number (1-based)"),
+                                    column: z.number().describe("Column number (1-based)"),
+                                    severity: z.number().describe("Severity level: 1=warning, 2=error, 3=info"),
+                                    fix: z
+                                        .object({
+                                            range: z.array(z.number()).describe("Text range [start, end] (0-based)"),
+                                            text: z.string().describe("Replacement text")
+                                        })
+                                        .optional()
+                                        .describe("Fix suggestion if available"),
+                                    // Additional TextlintMessage properties
+                                    type: z.string().optional().describe("Message type"),
+                                    data: z.unknown().optional().describe("Optional data associated with the message"),
+                                    index: z
+                                        .number()
+                                        .optional()
+                                        .describe("Start index where the issue is located (0-based, deprecated)"),
+                                    range: z
+                                        .array(z.number())
+                                        .length(2)
+                                        .optional()
+                                        .describe("Text range [start, end] (0-based)"),
+                                    loc: z
+                                        .object({
+                                            start: z.object({
+                                                line: z.number().describe("Start line number (1-based)"),
+                                                column: z.number().describe("Start column number (1-based)")
+                                            }),
+                                            end: z.object({
+                                                line: z.number().describe("End line number (1-based)"),
+                                                column: z.number().describe("End column number (1-based)")
+                                            })
+                                        })
+                                        .optional()
+                                        .describe("Location info where the issue is located")
+                                })
+                                .passthrough()
+                        ),
                         output: z.string().optional().describe("Fixed content if available")
                     })
                 ),
@@ -166,7 +150,7 @@ export const setupServer = async (options?: McpServerOptions): Promise<McpServer
                     );
                 }
 
-                const linterOptions = await makeLinterOptions(options);
+                const linterOptions = await makeLinterOptions();
                 const linter = createLinter(linterOptions);
 
                 const results = await linter.lintFiles(filePaths);
@@ -194,7 +178,22 @@ export const setupServer = async (options?: McpServerOptions): Promise<McpServer
             },
             outputSchema: {
                 filePath: z.string(),
-                messages: z.array(TextlintMessageSchema),
+                messages: z.array(
+                    z.object({
+                        ruleId: z.string().optional(),
+                        message: z.string(),
+                        line: z.number().describe("Line number (1-based)"),
+                        column: z.number().describe("Column number (1-based)"),
+                        severity: z.number().describe("Severity level: 1=warning, 2=error, 3=info"),
+                        fix: z
+                            .object({
+                                range: z.array(z.number()).describe("Text range [start, end] (0-based)"),
+                                text: z.string().describe("Replacement text")
+                            })
+                            .optional()
+                            .describe("Fix suggestion if available")
+                    })
+                ),
                 output: z.string().optional().describe("Fixed content if available"),
                 isError: z.boolean(),
                 timestamp: z.string().optional(),
@@ -210,7 +209,7 @@ export const setupServer = async (options?: McpServerOptions): Promise<McpServer
                     return validationError;
                 }
 
-                const linterOptions = await makeLinterOptions(options);
+                const linterOptions = await makeLinterOptions();
                 const linter = createLinter(linterOptions);
 
                 const result = await linter.lintText(text, stdinFilename);
@@ -241,7 +240,50 @@ export const setupServer = async (options?: McpServerOptions): Promise<McpServer
                 results: z.array(
                     z.object({
                         filePath: z.string(),
-                        messages: z.array(TextlintMessageSchema),
+                        messages: z.array(
+                            z
+                                .object({
+                                    // Core properties
+                                    ruleId: z.string().optional(),
+                                    message: z.string(),
+                                    line: z.number().describe("Line number (1-based)"),
+                                    column: z.number().describe("Column number (1-based)"),
+                                    severity: z.number().describe("Severity level: 1=warning, 2=error, 3=info"),
+                                    fix: z
+                                        .object({
+                                            range: z.array(z.number()).describe("Text range [start, end] (0-based)"),
+                                            text: z.string().describe("Replacement text")
+                                        })
+                                        .optional()
+                                        .describe("Fix suggestion if available"),
+                                    // Additional TextlintMessage properties
+                                    type: z.string().optional().describe("Message type"),
+                                    data: z.unknown().optional().describe("Optional data associated with the message"),
+                                    index: z
+                                        .number()
+                                        .optional()
+                                        .describe("Start index where the issue is located (0-based, deprecated)"),
+                                    range: z
+                                        .array(z.number())
+                                        .length(2)
+                                        .optional()
+                                        .describe("Text range [start, end] (0-based)"),
+                                    loc: z
+                                        .object({
+                                            start: z.object({
+                                                line: z.number().describe("Start line number (1-based)"),
+                                                column: z.number().describe("Start column number (1-based)")
+                                            }),
+                                            end: z.object({
+                                                line: z.number().describe("End line number (1-based)"),
+                                                column: z.number().describe("End column number (1-based)")
+                                            })
+                                        })
+                                        .optional()
+                                        .describe("Location info where the issue is located")
+                                })
+                                .passthrough()
+                        ),
                         output: z.string().optional().describe("Fixed content")
                     })
                 ),
@@ -262,7 +304,7 @@ export const setupServer = async (options?: McpServerOptions): Promise<McpServer
                     );
                 }
 
-                const linterOptions = await makeLinterOptions(options);
+                const linterOptions = await makeLinterOptions();
                 const linter = createLinter(linterOptions);
 
                 const results = await linter.fixFiles(filePaths);
@@ -290,7 +332,22 @@ export const setupServer = async (options?: McpServerOptions): Promise<McpServer
             },
             outputSchema: {
                 filePath: z.string(),
-                messages: z.array(TextlintMessageSchema),
+                messages: z.array(
+                    z.object({
+                        ruleId: z.string().optional(),
+                        message: z.string(),
+                        line: z.number().describe("Line number (1-based)"),
+                        column: z.number().describe("Column number (1-based)"),
+                        severity: z.number().describe("Severity level: 1=warning, 2=error, 3=info"),
+                        fix: z
+                            .object({
+                                range: z.array(z.number()).describe("Text range [start, end] (0-based)"),
+                                text: z.string().describe("Replacement text")
+                            })
+                            .optional()
+                            .describe("Fix suggestion if available")
+                    })
+                ),
                 output: z.string().optional().describe("Fixed content"),
                 isError: z.boolean(),
                 timestamp: z.string().optional(),
@@ -304,7 +361,7 @@ export const setupServer = async (options?: McpServerOptions): Promise<McpServer
                 const validationError = validateInputAndReturnError(stdinFilename, "stdinFilename", "fixText_error");
                 if (validationError) return validationError;
 
-                const linterOptions = await makeLinterOptions(options);
+                const linterOptions = await makeLinterOptions();
                 const linter = createLinter(linterOptions);
 
                 const result = await linter.fixText(text, stdinFilename);
@@ -322,11 +379,71 @@ export const setupServer = async (options?: McpServerOptions): Promise<McpServer
         }
     );
 
+    // Test tool that intentionally returns invalid schema data for validation testing
+    // Note: This is for testing purposes only and should not be used in production
+    if (process.env.NODE_ENV === "test") {
+        server.registerTool(
+            "testInvalidSchema",
+            {
+                description: "Test tool that returns data not matching its output schema (for testing validation)",
+                inputSchema: {
+                    triggerError: z.boolean().optional().describe("Whether to trigger a schema validation error")
+                },
+                outputSchema: {
+                    requiredString: z.string(),
+                    requiredNumber: z.number(),
+                    isError: z.boolean()
+                }
+            },
+            async ({ triggerError = false }) => {
+                if (triggerError) {
+                    // Intentionally return data that doesn't match the schema
+                    const invalidStructuredContent = {
+                        requiredString: 123, // Should be string, but returning number
+                        requiredNumber: "invalid", // Should be number, but returning string
+                        isError: false,
+                        timestamp: new Date().toISOString()
+                    };
+
+                    return {
+                        content: [
+                            {
+                                type: "text" as const,
+                                text: JSON.stringify(invalidStructuredContent, null, 2)
+                            }
+                        ],
+                        structuredContent: invalidStructuredContent,
+                        isError: false
+                    };
+                } else {
+                    // Return valid data
+                    const validStructuredContent = {
+                        requiredString: "valid string",
+                        requiredNumber: 42,
+                        isError: false,
+                        timestamp: new Date().toISOString()
+                    };
+
+                    return {
+                        content: [
+                            {
+                                type: "text" as const,
+                                text: JSON.stringify(validStructuredContent, null, 2)
+                            }
+                        ],
+                        structuredContent: validStructuredContent,
+                        isError: false
+                    };
+                }
+            }
+        );
+    }
+
     return server;
 };
 
-export const connectStdioMcpServer = async (options?: McpServerOptions) => {
-    const server = await setupServer(options);
+export const connectStdioMcpServer = async () => {
+    const server = await setupServer();
     const transport = new StdioServerTransport();
     await server.connect(transport);
     return server;

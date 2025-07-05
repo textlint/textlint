@@ -40,8 +40,8 @@ export type McpToolRequest =
 // MCP response types
 export type McpResponse = {
     isError: boolean;
-    content?: any;
-    structuredContent?: any;
+    content?: unknown;
+    structuredContent?: unknown;
 };
 
 // Test case configuration
@@ -64,6 +64,6 @@ export type SnapshotInput = {
 // Test snapshot output (normalized)
 export type SnapshotOutput = {
     isError: boolean;
-    content?: any;
-    structuredContent?: any;
+    content?: unknown;
+    structuredContent?: unknown;
 };
