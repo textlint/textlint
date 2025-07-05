@@ -1,7 +1,7 @@
 import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
-import type { SnapshotInput, SnapshotOutput, McpResponse } from "./types.js";
+import type { SnapshotInput, SnapshotOutput, McpResponse, SnapshotInputFactory, SnapshotContext } from "./types.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -204,16 +204,56 @@ function normalizePath(value: string): string {
 }
 
 /**
- * Read input.json from snapshot directory
+ * Read input.json or input.ts from snapshot directory
  */
-export function readSnapshotInput(snapshotDir: string): SnapshotInput {
-    const inputPath = path.join(snapshotDir, "input.json");
-    if (!fs.existsSync(inputPath)) {
-        throw new Error(`input.json not found in ${snapshotDir}`);
+export async function readSnapshotInput(snapshotDir: string): Promise<SnapshotInput> {
+    // Try input.ts first (preferred)
+    const inputTsPath = path.join(snapshotDir, "input.ts");
+    if (fs.existsSync(inputTsPath)) {
+        return await readSnapshotInputFromTs(snapshotDir);
     }
 
-    const content = fs.readFileSync(inputPath, "utf-8");
-    return JSON.parse(content) as SnapshotInput;
+    // Fallback to input.json
+    const inputJsonPath = path.join(snapshotDir, "input.json");
+    if (fs.existsSync(inputJsonPath)) {
+        const content = fs.readFileSync(inputJsonPath, "utf-8");
+        return JSON.parse(content) as SnapshotInput;
+    }
+
+    throw new Error(`Neither input.ts nor input.json found in ${snapshotDir}`);
+}
+
+/**
+ * Read and execute input.ts to get SnapshotInput
+ */
+async function readSnapshotInputFromTs(snapshotDir: string): Promise<SnapshotInput> {
+    const inputTsPath = path.join(snapshotDir, "input.ts");
+
+    // Create context for the input.ts file
+    const context: SnapshotContext = {
+        snapshotDir,
+        ruleModulesDir: FAKE_MODULES_DIRECTORY,
+        testDir: __dirname
+    };
+
+    try {
+        // Import the input.ts file
+        const inputModule = await import(inputTsPath);
+
+        // The input.ts should export either a default function or a SnapshotInput object
+        if (typeof inputModule.default === "function") {
+            const factory = inputModule.default as SnapshotInputFactory;
+            return factory(context);
+        } else if (inputModule.default && typeof inputModule.default === "object") {
+            return inputModule.default as SnapshotInput;
+        } else {
+            throw new Error(
+                `input.ts must export either a function(context) => SnapshotInput or a SnapshotInput object`
+            );
+        }
+    } catch (error) {
+        throw new Error(`Failed to load input.ts from ${snapshotDir}: ${error}`);
+    }
 }
 
 /**

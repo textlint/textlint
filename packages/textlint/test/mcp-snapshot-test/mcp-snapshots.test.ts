@@ -29,7 +29,10 @@ describe("MCP Server Snapshot Tests", () => {
 
     const snapshotCases = fs.readdirSync(SNAPSHOTS_DIRECTORY).filter((name) => {
         const snapshotDir = path.join(SNAPSHOTS_DIRECTORY, name);
-        return fs.statSync(snapshotDir).isDirectory() && fs.existsSync(path.join(snapshotDir, "input.json"));
+        return (
+            fs.statSync(snapshotDir).isDirectory() &&
+            (fs.existsSync(path.join(snapshotDir, "input.ts")) || fs.existsSync(path.join(snapshotDir, "input.json")))
+        );
     });
 
     // Skip if no test cases found
@@ -47,18 +50,12 @@ describe("MCP Server Snapshot Tests", () => {
 
             beforeEach(async () => {
                 snapshotDir = path.join(SNAPSHOTS_DIRECTORY, caseName);
-                input = readSnapshotInput(snapshotDir);
+                input = await readSnapshotInput(snapshotDir);
 
                 // Setup server with test case configuration
                 const serverOptions = input.serverOptions || {};
 
-                // If using custom node_modules, set it to our fake modules
-                if (
-                    serverOptions.node_modulesDir ||
-                    (serverOptions.configFilePath && serverOptions.configFilePath.includes("rule_modules"))
-                ) {
-                    serverOptions.node_modulesDir = FAKE_MODULES_DIRECTORY;
-                }
+                // Note: node_modulesDir is now resolved in input.ts files
 
                 // Resolve config file path relative to snapshot directory
                 if (serverOptions.configFilePath && !path.isAbsolute(serverOptions.configFilePath)) {

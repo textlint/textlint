@@ -52,13 +52,26 @@ export type McpTestCase = {
     expectedResponse: McpResponse;
 };
 
-// Test snapshot input
+// Test snapshot input (for JSON format)
 export type SnapshotInput = {
     description: string;
     serverOptions?: McpServerOptions;
     request: McpToolRequest;
     // Optional files referenced in the request (relative to snapshot directory)
     files?: Record<string, string>;
+};
+
+// Test snapshot input factory function (for TypeScript format)
+export type SnapshotInputFactory = (context: SnapshotContext) => SnapshotInput;
+
+// Context provided to input.ts files for dynamic path resolution
+export type SnapshotContext = {
+    // Absolute path to the test snapshot directory
+    snapshotDir: string;
+    // Absolute path to fake rule modules directory
+    ruleModulesDir: string;
+    // Absolute path to test directory
+    testDir: string;
 };
 
 // Test snapshot output (normalized)
