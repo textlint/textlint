@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751692184910,
+  "lastUpdate": 1751693913099,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -68712,6 +68712,48 @@ window.BENCHMARK_DATA = {
             "value": 0.61763983936,
             "unit": "seconds",
             "range": "± 0.025900531999999976"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "3783413f086fb957c4f5610b8e04ef87fc1e3882",
+          "message": "refactor(mcp): remove over-abstraction and add proper error test cases\n\n- Remove unnecessary mcp-server.md documentation (internal use only)\n- Remove over-abstracted test-helpers.ts file\n- Inline helper functions directly in test file for better clarity\n- Add proper isError test cases for actual error scenarios\n- Fix test expectations to match actual textlint behavior\n- Use real configuration files that work with available plugins\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-05T14:36:31+09:00",
+          "tree_id": "e7e74c9270a686af5ca61506bcf5c98ea4aeeada",
+          "url": "https://github.com/textlint/textlint/commit/3783413f086fb957c4f5610b8e04ef87fc1e3882"
+        },
+        "date": 1751693909248,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21374994726000002,
+            "unit": "seconds",
+            "range": "± 0.05549591899999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7554012172600004,
+            "unit": "seconds",
+            "range": "± 0.05021771800000008"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60525509006,
+            "unit": "seconds",
+            "range": "± 0.022751019999999955"
           }
         ]
       }
