@@ -10,7 +10,6 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { setupServer } from "../../src/mcp/server.js";
 
 const validFilePath = path.join(__dirname, "fixtures", "ok.md");
-const invalidFilePath = path.join(__dirname, "fixtures", "invalid.md");
 const stdinFilename = `textlint.txt`;
 
 describe("MCP Server", () => {

@@ -1,7 +1,7 @@
 import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
-import type { SnapshotInput, SnapshotOutput, McpResponse, SnapshotInputFactory, SnapshotContext } from "./types.js";
+import type { McpResponse, SnapshotContext, SnapshotInput, SnapshotInputFactory, SnapshotOutput } from "./types.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,96 +37,59 @@ function pathReplacer(snapshotDir: string) {
         if (typeof value === "string") {
             let stringValue = value;
 
-            // Handle JSON strings first to catch timestamps in content field
-            if (stringValue.includes("\n") && (stringValue.includes('{"') || stringValue.includes('"timestamp":'))) {
-                // This is likely a JSON string, normalize timestamps within it
-                stringValue = stringValue.replace(/"timestamp":\s*"[^"]*"/g, '"timestamp": "<timestamp>"');
+            // Replace timestamps first
+            stringValue = stringValue.replace(/"timestamp":\s*"[^"]*"/g, '"timestamp": "<timestamp>"');
 
-                // Also normalize paths in JSON strings - handle both Unix and Windows paths
-                // Replace any absolute path that contains "test/mcp-snapshot-test/snapshots"
-                stringValue = stringValue.replace(
-                    /"[^"]*[\/\\]test[\/\\]mcp-snapshot-test[\/\\]snapshots[\/\\]([^"]*)"/g,
-                    '"<test-dir>/snapshots/$1"'
-                );
-            }
+            // Simple string replacement approach - much more reliable across platforms
+            // We replace exact path strings to avoid regex complexity
 
-            // Replace __dirname based paths (test directory base) - cross-platform
-            const testDirPattern = /[\/\\]test[\/\\]mcp-snapshot-test(?:[\/\\]|$)/;
-            if (testDirPattern.test(stringValue)) {
-                // Check if this contains snapshots directory
-                if (stringValue.includes("snapshots")) {
-                    // Extract relative path from snapshots directory
-                    const snapshotMatch = stringValue.match(/.*[\/\\]snapshots[\/\\]([^[\/\\]]+[\/\\][^"]*)/);
-                    if (snapshotMatch) {
-                        stringValue = `<snapshot>/${snapshotMatch[1].replace(/\\/g, "/")}`;
-                    }
-                } else {
-                    // Replace with test-dir placeholder
-                    stringValue = stringValue.replace(/.*[\/\\]test[\/\\]mcp-snapshot-test/, "<test-dir>");
+            // 1. Replace snapshot directory paths with <snapshot>/filename
+            if (stringValue.includes(snapshotDir)) {
+                const relativePath = path.relative(snapshotDir, stringValue);
+                if (relativePath && !relativePath.startsWith("..") && !path.isAbsolute(relativePath)) {
+                    stringValue = stringValue.replace(new RegExp(escapeRegExp(snapshotDir), "g"), "<snapshot>");
                     stringValue = normalizePath(stringValue);
                 }
             }
 
-            // Fallback: Replace __dirname if it matches exactly (for local development)
+            // 2. Replace test directory paths
             if (stringValue.includes(__dirname)) {
-                const relativePath = path.relative(__dirname, stringValue);
-                if (relativePath.startsWith("snapshots/")) {
-                    // Extract the filename from snapshots/case-name/filename.ext
-                    const pathParts = relativePath.split(path.sep);
-                    if (pathParts.length >= 3) {
-                        stringValue = `<snapshot>/${pathParts.slice(2).join("/")}`;
-                    }
-                } else {
-                    stringValue = normalizePath(stringValue.replace(__dirname, "<test-dir>"));
-                }
+                stringValue = stringValue.replace(new RegExp(escapeRegExp(__dirname), "g"), "<test-dir>");
+                stringValue = normalizePath(stringValue);
             }
 
-            // Replace fake modules directory paths
+            // 3. Replace rule modules directory paths
             if (stringValue.includes(FAKE_MODULES_DIRECTORY)) {
-                stringValue = normalizePath(stringValue.replace(FAKE_MODULES_DIRECTORY, "<rule_modules>"));
+                stringValue = stringValue.replace(
+                    new RegExp(escapeRegExp(FAKE_MODULES_DIRECTORY), "g"),
+                    "<rule_modules>"
+                );
+                stringValue = normalizePath(stringValue);
             }
 
-            // Replace other absolute paths with working directory
+            // 4. Replace working directory paths (fallback)
             const workingDir = process.cwd();
             if (
                 stringValue.includes(workingDir) &&
                 !stringValue.includes("<snapshot>") &&
-                !stringValue.includes("<rule_modules>") &&
-                !stringValue.includes("<test-dir>")
+                !stringValue.includes("<test-dir>") &&
+                !stringValue.includes("<rule_modules>")
             ) {
-                stringValue = normalizePath(stringValue.replace(workingDir, "<cwd>"));
-            }
-
-            // Handle Windows absolute paths that weren't caught above
-            if (/^[A-Za-z]:[\\]/.test(stringValue) && stringValue.includes("textlint")) {
-                // This is a Windows absolute path, try to normalize it
-                if (stringValue.includes("snapshots")) {
-                    const snapshotMatch = stringValue.match(/.*[\/\\]snapshots[\/\\]([^[\/\\]]+[\/\\][^"]*)/);
-                    if (snapshotMatch) {
-                        stringValue = `<test-dir>/snapshots/${snapshotMatch[1].replace(/\\/g, "/")}`;
-                    }
-                } else if (stringValue.includes("test") && stringValue.includes("mcp-snapshot-test")) {
-                    stringValue = stringValue.replace(/.*[\/\\]test[\/\\]mcp-snapshot-test/, "<test-dir>");
-                    stringValue = normalizePath(stringValue);
-                }
-            }
-
-            // Additional JSON string handling for any remaining paths
-            if (stringValue.includes('{"') || stringValue.includes("[{") || stringValue.includes('"timestamp"')) {
-                // Replace timestamps in JSON strings - use more comprehensive regex
-                stringValue = stringValue.replace(/"timestamp":\s*"[^"]*"/g, '"timestamp": "<timestamp>"');
-
-                // Handle any remaining test directory paths in JSON
-                stringValue = stringValue.replace(
-                    /"[^"]*[\/\\]test[\/\\]mcp-snapshot-test[\/\\]snapshots[\/\\]([^"]*)"/g,
-                    '"<test-dir>/snapshots/$1"'
-                );
+                stringValue = stringValue.replace(new RegExp(escapeRegExp(workingDir), "g"), "<cwd>");
+                stringValue = normalizePath(stringValue);
             }
 
             return stringValue;
         }
         return value;
     };
+}
+
+/**
+ * Escape special regex characters in a string
+ */
+function escapeRegExp(string: string): string {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 /**
@@ -296,7 +259,7 @@ export function resolveRequestPaths(request: unknown, snapshotDir: string): unkn
         }
     }
 
-    return resolved;
+    return resolved as unknown;
 }
 
 /**

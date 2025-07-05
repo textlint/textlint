@@ -10,7 +10,6 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { setupServer } from "../../src/mcp/server.js";
 import {
     SNAPSHOTS_DIRECTORY,
-    FAKE_MODULES_DIRECTORY,
     normalizeResponse,
     readSnapshotInput,
     readSnapshotOutput,
@@ -89,6 +88,7 @@ describe("MCP Server Snapshot Tests", () => {
                 const resolvedRequest = resolveRequestPaths(input.request, snapshotDir);
 
                 // Execute MCP tool request
+                // @ts-expect-error -- resolvedRequest is unknown type
                 const result = (await client.callTool(resolvedRequest)) as CallToolResult;
 
                 // Normalize the response for snapshot comparison
