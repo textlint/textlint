@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751725856118,
+  "lastUpdate": 1751726282277,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -69216,6 +69216,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6015338409,
             "unit": "seconds",
             "range": "± 0.012535480000000043"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "ea965733ce0c38d10069d0c527e9e7674f8259db",
+          "message": "fix(mcp): Windows CIでのクロスプラットフォームパス正規化を修正\n\n- Windowsの絶対パス（D:\\a\\textlint\\...）を適切に正規化するように改善\n- JSON文字列内のパスも正規化されるよう修正\n- structuredContentのfilePathも正規化する専用関数を追加\n- テストディレクトリパターンをクロスプラットフォーム対応に変更\n- スナップショットファイルを更新してWindows CI対応\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-05T23:35:46+09:00",
+          "tree_id": "5208167519b4ba106bee446ab8f0f7a9e8169514",
+          "url": "https://github.com/textlint/textlint/commit/ea965733ce0c38d10069d0c527e9e7674f8259db"
+        },
+        "date": 1751726277917,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23740434387999998,
+            "unit": "seconds",
+            "range": "± 0.16340721099999997"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7410971286800003,
+            "unit": "seconds",
+            "range": "± 0.016388630999999876"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6022162636800001,
+            "unit": "seconds",
+            "range": "± 0.01275731899999999"
           }
         ]
       }
