@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751729787889,
+  "lastUpdate": 1751730075237,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -69510,6 +69510,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6022091494599999,
             "unit": "seconds",
             "range": "± 0.018608391000000002"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "63dfbe2c509c80a0a35377cdc4fc0a494988c7a6",
+          "message": "Update packages/@textlint/markdown-to-ast/test/fixtures/broken-auto-link/output.json+6",
+          "timestamp": "2025-07-06T00:39:09+09:00",
+          "tree_id": "eaa87a6ae914255d7e05269190d73b3755b3589a",
+          "url": "https://github.com/textlint/textlint/commit/63dfbe2c509c80a0a35377cdc4fc0a494988c7a6"
+        },
+        "date": 1751730070750,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23524358973999998,
+            "unit": "seconds",
+            "range": "± 0.12381820100000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.76357114314,
+            "unit": "seconds",
+            "range": "± 0.02043139199999988"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.61190761434,
+            "unit": "seconds",
+            "range": "± 0.016594286000000014"
           }
         ]
       }
