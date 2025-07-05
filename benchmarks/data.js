@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751759741970,
+  "lastUpdate": 1751759971146,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -70140,6 +70140,48 @@ window.BENCHMARK_DATA = {
             "value": 0.599734647,
             "unit": "seconds",
             "range": "± 0.015839205999999995"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7a0baf0231fbad70258c332fb56c35234e44607e",
+          "message": "test(mcp): add comprehensive tests for createStructuredErrorResponse (#1633)\n\n* test(mcp): add comprehensive tests for createStructuredErrorResponse\n\nAdd snapshot tests for error handling in MCP server:\n- Test file not found errors in lintFile\n- Test empty stdinFilename validation in lintText\n- Test file not found errors in getLintFixedFileContent\n- Test empty stdinFilename validation in getLintFixedTextContent\n\nThese tests ensure proper structured error responses are returned\nfor various error conditions in the MCP server implementation.\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\n\n* refactor(mcp): add union type for error types in createStructuredErrorResponse\n\nDefine TextlintMcpErrorType as a union type to improve type safety:\n- Prevents typos in error type strings\n- Enables IDE autocomplete for error types\n- Makes it easier to track all error types in one place\n- Improves maintainability when adding new error types\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-05T23:56:53Z",
+          "tree_id": "fb917851f6fa1b8dd8943aadbbf27fa7863c56b8",
+          "url": "https://github.com/textlint/textlint/commit/7a0baf0231fbad70258c332fb56c35234e44607e"
+        },
+        "date": 1751759967417,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23252919272,
+            "unit": "seconds",
+            "range": "± 0.15388026800000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71719880272,
+            "unit": "seconds",
+            "range": "± 0.04157144499999976"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60182984392,
+            "unit": "seconds",
+            "range": "± 0.018413937000000047"
           }
         ]
       }
