@@ -1,0 +1,16 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"results\": [],\n  \"error\": \"File(s) not found: <error-fix-file-not-found>/missing-file-to-fix.md\",\n  \"type\": \"fixFiles_error\",\n  \"timestamp\": \"<timestamp>\",\n  \"isError\": true\n}"
+    }
+  ],
+  "structuredContent": {
+    "results": [],
+    "error": "File(s) not found: <error-fix-file-not-found>/missing-file-to-fix.md",
+    "type": "fixFiles_error",
+    "timestamp": "<timestamp>",
+    "isError": true
+  },
+  "isError": true
+}
