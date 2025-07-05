@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751695013356,
+  "lastUpdate": 1751695824635,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -68838,6 +68838,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6001625932200001,
             "unit": "seconds",
             "range": "± 0.02012162399999995"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "b1817b6ebffc05bf2d7ac21311033e1bd49467c0",
+          "message": "feat(mcp): implement snapshot-based testing similar to cli-snapshots\n\n- Add comprehensive snapshot testing framework for MCP server\n- Implement type-safe input.json for MCP tool requests\n- Create output.json snapshots with normalized timestamps and paths\n- Add utilities for path normalization and timestamp masking\n- Support UPDATE_SNAPSHOT=1 environment variable for snapshot updates\n- Follow cli-snapshots pattern with directory-based test organization\n\nTest cases included:\n- basic-lint-file: Simple file linting with no errors\n- custom-rule-todo: Custom rule testing with fixture configuration\n- lint-text-basic: Text linting without configuration\n- error-unsupported-extension: Error case with unsupported file extension\n\nBenefits:\n- Type-safe test input definition with TypeScript\n- Deterministic snapshots with masked timestamps/paths\n- Easy test case addition by creating new directories\n- Clear separation of test data and test logic\n- Cross-platform compatibility with path normalization\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-05T15:08:05+09:00",
+          "tree_id": "58b620bfae92fb100a3914244f49b94fd31999cc",
+          "url": "https://github.com/textlint/textlint/commit/b1817b6ebffc05bf2d7ac21311033e1bd49467c0"
+        },
+        "date": 1751695820191,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24428375628000004,
+            "unit": "seconds",
+            "range": "± 0.179021238"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.74491075568,
+            "unit": "seconds",
+            "range": "± 0.044616927999999945"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60152746908,
+            "unit": "seconds",
+            "range": "± 0.024932705"
           }
         ]
       }
