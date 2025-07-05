@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751726979529,
+  "lastUpdate": 1751727683711,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -69300,6 +69300,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59542017428,
             "unit": "seconds",
             "range": "± 0.01110370500000002"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "049bdccdf588750ce99bd37e5dfc495a9d8f3d44",
+          "message": "refactor(mcp): simplify pathReplacer logic with direct string replacement\n\n- Replace complex regex-based path normalization with simple string replacement\n- Use exact path matching with escapeRegExp to avoid cross-platform issues\n- Eliminate Windows-specific logic by relying on Node.js path.relative()\n- Significantly reduce code complexity while maintaining functionality\n- Update snapshots with simplified path normalization\n- More reliable across different operating systems and path formats\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-05T23:59:20+09:00",
+          "tree_id": "efc499b9bec800f4d4998b702e2f299eb2a3f148",
+          "url": "https://github.com/textlint/textlint/commit/049bdccdf588750ce99bd37e5dfc495a9d8f3d44"
+        },
+        "date": 1751727680064,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21120835738000004,
+            "unit": "seconds",
+            "range": "± 0.03086963100000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7609079299799997,
+            "unit": "seconds",
+            "range": "± 0.021110366000000047"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6055305129799999,
+            "unit": "seconds",
+            "range": "± 0.016307036000000052"
           }
         ]
       }
