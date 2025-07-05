@@ -2,7 +2,7 @@
   "content": [
     {
       "type": "text",
-      "text": "{\n  \"results\": [\n    {\n      \"messages\": [],\n      \"filePath\": \"<test-dir>/snapshots/basic-lint-file/test-file.md\"\n    }\n  ],\n  \"isError\": false,\n  \"timestamp\": \"2025-07-05T14:21:30.945Z\"\n}"
+      "text": "{\n  \"results\": [\n    {\n      \"messages\": [],\n      \"filePath\": \"<test-dir>/snapshots/basic-lint-file/test-file.md\"\n    }\n  ],\n  \"isError\": false,\n  \"timestamp\": \"<timestamp>\"\n}"
     }
   ],
   "structuredContent": {

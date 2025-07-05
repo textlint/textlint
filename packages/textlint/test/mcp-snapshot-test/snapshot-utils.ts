@@ -35,6 +35,12 @@ function pathReplacer(snapshotDir: string) {
         if (typeof value === "string") {
             let stringValue = value;
 
+            // Handle JSON strings first to catch timestamps in content field
+            if (stringValue.includes("\n") && (stringValue.includes('{"') || stringValue.includes('"timestamp":'))) {
+                // This is likely a JSON string, normalize timestamps within it
+                stringValue = stringValue.replace(/"timestamp":\s*"[^"]*"/g, '"timestamp": "<timestamp>"');
+            }
+
             // Replace __dirname based paths (test directory base)
             if (stringValue.includes(__dirname)) {
                 const relativePath = path.relative(__dirname, stringValue);
@@ -42,7 +48,7 @@ function pathReplacer(snapshotDir: string) {
                     // Extract the filename from snapshots/case-name/filename.ext
                     const pathParts = relativePath.split(path.sep);
                     if (pathParts.length >= 3) {
-                        stringValue = "<snapshot>/" + pathParts.slice(2).join("/");
+                        stringValue = `<snapshot>/${pathParts.slice(2).join("/")}`;
                     }
                 } else {
                     stringValue = normalizePath(stringValue.replace(__dirname, "<test-dir>"));
@@ -66,16 +72,15 @@ function pathReplacer(snapshotDir: string) {
             }
 
             // Handle JSON strings that may contain paths and timestamps
-            if (stringValue.includes('{"') || stringValue.includes("[{")) {
-                // Always use regex replacement for better control
-                // Replace timestamps in JSON strings first
+            if (stringValue.includes('{"') || stringValue.includes("[{") || stringValue.includes('"timestamp"')) {
+                // Replace timestamps in JSON strings - use more comprehensive regex
                 stringValue = stringValue.replace(/"timestamp":\s*"[^"]*"/g, '"timestamp": "<timestamp>"');
 
                 // Also handle paths in JSON strings with regex
                 if (stringValue.includes(__dirname)) {
                     // Replace paths in JSON strings using regex
                     const regex = new RegExp(
-                        __dirname.replace(/[/\\]/g, "[/\\\\]") + '[/\\\\]snapshots[/\\\\]([^/\\\\]+)[/\\\\]([^"]+)',
+                        `${__dirname.replace(/[/\\]/g, "[/\\\\]")}[/\\\\]snapshots[/\\\\]([^/\\\\]+)[/\\\\]([^"]+)`,
                         "g"
                     );
                     stringValue = stringValue.replace(regex, "<snapshot>/$2");
@@ -118,7 +123,7 @@ function normalizePath(value: string): string {
 
     // Handle Windows drive letters (C:/ -> /c/)
     if (/^[A-Za-z]:\//.test(normalized)) {
-        normalized = "/" + normalized.toLowerCase();
+        normalized = `/${normalized.toLowerCase()}`;
     }
 
     return normalized;
