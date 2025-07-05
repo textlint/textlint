@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "no-doubled-conjunctive-particle-ga": true,
+    "no-doubled-conjunction": true,
+    "no-double-negative-ja": true,
+    "no-doubled-joshi": true
+  },
+  "plugins": [
+    "@textlint/textlint-plugin-text",
+    "@textlint/textlint-plugin-markdown"
+  ]
+}

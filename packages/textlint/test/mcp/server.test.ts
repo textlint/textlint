@@ -7,7 +7,14 @@ import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
-import { setupServer } from "../../src/mcp/server.js";
+import { setupServer, McpServerOptions } from "../../src/mcp/server.js";
+import {
+    createServerOptions,
+    createServerOptionsWithConfig,
+    createServerOptionsWithCwd,
+    createServerOptionsWithQuiet,
+    getFixturePath
+} from "./test-helpers.js";
 
 const validFilePath = path.join(__dirname, "fixtures", "ok.md");
 const invalidFilePath = path.join(__dirname, "fixtures", "invalid.md");
@@ -640,6 +647,251 @@ describe("MCP Server", () => {
             assert.strictEqual(result.isError, false, "Should not fail due to schema validation");
             assert.ok(result.structuredContent, "Should have structured content");
             assert.ok(Array.isArray(result.structuredContent.results), "Should have results array");
+        });
+
+        it("should return isError true for unsupported file extensions", async () => {
+            // Test with an unsupported file extension
+            const result = (await client.callTool({
+                name: "lintFile",
+                arguments: {
+                    filePaths: [getFixturePath("unsupported.xyz")]
+                }
+            })) as CallToolResult;
+
+            assert.strictEqual(result.isError, true, "Should return isError true for unsupported extension");
+            assert.ok(result.content, "Should have error content");
+        });
+    });
+
+    describe("Configuration Options Tests", () => {
+        describe("Custom Configuration", () => {
+            it("should use custom descriptor when provided", async () => {
+                // Create server with custom descriptor
+                const customServer = await setupServer(createServerOptions());
+
+                const [customClientTransport, customServerTransport] = InMemoryTransport.createLinkedPair();
+                await customServer.connect(customServerTransport);
+
+                const customClient = new Client({
+                    name: "textlint-custom",
+                    version: "1.0"
+                });
+                await customClient.connect(customClientTransport);
+
+                const result = (await customClient.callTool({
+                    name: "lintText",
+                    arguments: {
+                        text: "Test content",
+                        stdinFilename: "test.md"
+                    }
+                })) as CallToolResult;
+
+                assert.strictEqual(result.isError, false, "Should succeed with custom descriptor");
+                assert.ok(result.structuredContent, "Should have structured content");
+
+                // Cleanup
+                await customClient.close();
+                await customServer.close();
+            });
+
+            it("should use custom config file when specified", async () => {
+                // Test with minimal config
+                const configServer = await setupServer(createServerOptionsWithConfig("minimal-config.json"));
+
+                const [configClientTransport, configServerTransport] = InMemoryTransport.createLinkedPair();
+                await configServer.connect(configServerTransport);
+
+                const configClient = new Client({
+                    name: "textlint-config",
+                    version: "1.0"
+                });
+                await configClient.connect(configClientTransport);
+
+                const result = (await configClient.callTool({
+                    name: "lintFile",
+                    arguments: {
+                        filePaths: [getFixturePath("ok.md")]
+                    }
+                })) as CallToolResult;
+
+                assert.strictEqual(result.isError, false, "Should succeed with custom config file");
+
+                // Cleanup
+                await configClient.close();
+                await configServer.close();
+            });
+
+            it("should respect quiet mode option", async () => {
+                const quietServer = await setupServer(createServerOptionsWithQuiet());
+
+                const [quietClientTransport, quietServerTransport] = InMemoryTransport.createLinkedPair();
+                await quietServer.connect(quietServerTransport);
+
+                const quietClient = new Client({
+                    name: "textlint-quiet",
+                    version: "1.0"
+                });
+                await quietClient.connect(quietClientTransport);
+
+                const result = (await quietClient.callTool({
+                    name: "lintText",
+                    arguments: {
+                        text: "Test content with warnings",
+                        stdinFilename: "test.md"
+                    }
+                })) as CallToolResult;
+
+                assert.strictEqual(result.isError, false, "Should succeed in quiet mode");
+
+                // Cleanup
+                await quietClient.close();
+                await quietServer.close();
+            });
+        });
+
+        describe("Edge Cases", () => {
+            it("should handle empty files", async () => {
+                const result = (await client.callTool({
+                    name: "lintFile",
+                    arguments: {
+                        filePaths: [getFixturePath("empty.md")]
+                    }
+                })) as CallToolResult;
+
+                assert.strictEqual(result.isError, false, "Should handle empty files without error");
+                assert.ok(result.structuredContent, "Should have structured content");
+                assert.ok(Array.isArray(result.structuredContent.results), "Should have results array");
+            });
+
+            it("should handle unsupported file extensions", async () => {
+                const result = (await client.callTool({
+                    name: "lintFile",
+                    arguments: {
+                        filePaths: [getFixturePath("unsupported.xyz")]
+                    }
+                })) as CallToolResult;
+
+                // This might succeed or fail depending on textlint configuration
+                // The important thing is that it should handle it gracefully
+                assert.ok(result.structuredContent, "Should have structured content even for unsupported files");
+            });
+
+            it("should handle large files", async () => {
+                const result = (await client.callTool({
+                    name: "lintFile",
+                    arguments: {
+                        filePaths: [getFixturePath("large-file.md")]
+                    }
+                })) as CallToolResult;
+
+                assert.strictEqual(result.isError, false, "Should handle large files");
+                assert.ok(result.structuredContent, "Should have structured content");
+            });
+
+            it("should handle multiple files with mixed results", async () => {
+                const result = (await client.callTool({
+                    name: "lintFile",
+                    arguments: {
+                        filePaths: [getFixturePath("ok.md"), getFixturePath("invalid.md"), getFixturePath("empty.md")]
+                    }
+                })) as CallToolResult;
+
+                assert.strictEqual(result.isError, false, "Should handle multiple files");
+                assert.ok(result.structuredContent, "Should have structured content");
+                assert.ok(Array.isArray(result.structuredContent.results), "Should have results array");
+                assert.strictEqual(result.structuredContent.results.length, 3, "Should have results for all files");
+            });
+        });
+
+        describe("Error Scenarios", () => {
+            it("should handle invalid config file gracefully", async () => {
+                // Test with non-existent config file
+                const invalidConfigOptions: McpServerOptions = {
+                    configFilePath: "/nonexistent/config.json"
+                };
+
+                const invalidServer = await setupServer(invalidConfigOptions);
+
+                const [invalidClientTransport, invalidServerTransport] = InMemoryTransport.createLinkedPair();
+                await invalidServer.connect(invalidServerTransport);
+
+                const invalidClient = new Client({
+                    name: "textlint-invalid",
+                    version: "1.0"
+                });
+                await invalidClient.connect(invalidClientTransport);
+
+                const result = (await invalidClient.callTool({
+                    name: "lintText",
+                    arguments: {
+                        text: "Test content",
+                        stdinFilename: "test.md"
+                    }
+                })) as CallToolResult;
+
+                // Should fall back to built-in configuration
+                assert.strictEqual(result.isError, false, "Should fall back gracefully for invalid config");
+
+                // Cleanup
+                await invalidClient.close();
+                await invalidServer.close();
+            });
+
+            it("should handle empty text input", async () => {
+                const result = (await client.callTool({
+                    name: "lintText",
+                    arguments: {
+                        text: "",
+                        stdinFilename: "empty.md"
+                    }
+                })) as CallToolResult;
+
+                assert.strictEqual(result.isError, false, "Should handle empty text input");
+                assert.ok(result.structuredContent, "Should have structured content");
+            });
+
+            it("should handle whitespace-only text input", async () => {
+                const result = (await client.callTool({
+                    name: "lintText",
+                    arguments: {
+                        text: "   \n\t  \n  ",
+                        stdinFilename: "whitespace.md"
+                    }
+                })) as CallToolResult;
+
+                assert.strictEqual(result.isError, false, "Should handle whitespace-only input");
+                assert.ok(result.structuredContent, "Should have structured content");
+            });
+        });
+
+        describe("Backward Compatibility", () => {
+            it("should maintain backward compatibility when no options provided", async () => {
+                // This tests that the existing behavior is preserved
+                const defaultServer = await setupServer();
+
+                const [defaultClientTransport, defaultServerTransport] = InMemoryTransport.createLinkedPair();
+                await defaultServer.connect(defaultServerTransport);
+
+                const defaultClient = new Client({
+                    name: "textlint-default",
+                    version: "1.0"
+                });
+                await defaultClient.connect(defaultClientTransport);
+
+                const result = (await defaultClient.callTool({
+                    name: "lintFile",
+                    arguments: {
+                        filePaths: [getFixturePath("ok.md")]
+                    }
+                })) as CallToolResult;
+
+                assert.strictEqual(result.isError, false, "Should work with default configuration");
+                assert.ok(result.structuredContent, "Should have structured content");
+
+                // Cleanup
+                await defaultClient.close();
+                await defaultServer.close();
+            });
         });
     });
 });

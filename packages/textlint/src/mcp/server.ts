@@ -3,11 +3,36 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import { createLinter, loadTextlintrc, type CreateLinterOptions } from "../index.js";
 import { existsSync } from "node:fs";
+import { TextlintKernelDescriptor } from "@textlint/kernel";
 
-const makeLinterOptions = async (): Promise<CreateLinterOptions> => {
-    const descriptor = await loadTextlintrc();
+export type McpServerOptions = {
+    // Configuration file options (based on LoadTextlintrcOptions)
+    configFilePath?: string; // Path to config file (.textlintrc, etc.)
+    node_modulesDir?: string; // Custom node_modules directory
+
+    // Linter options (based on CreateLinterOptions)
+    ignoreFilePath?: string; // Path to .textlintignore file
+    quiet?: boolean; // Report errors only
+    cwd?: string; // Current working directory
+
+    // Direct configuration (primarily for testing)
+    descriptor?: TextlintKernelDescriptor; // Direct configuration object
+};
+
+const makeLinterOptions = async (options?: McpServerOptions): Promise<CreateLinterOptions> => {
+    // If descriptor is provided directly, use it (primarily for testing)
+    const descriptor =
+        options?.descriptor ??
+        (await loadTextlintrc({
+            configFilePath: options?.configFilePath,
+            node_modulesDir: options?.node_modulesDir
+        }));
+
     return {
-        descriptor
+        descriptor,
+        ignoreFilePath: options?.ignoreFilePath,
+        quiet: options?.quiet,
+        cwd: options?.cwd
     };
 };
 
@@ -98,7 +123,7 @@ const TextlintMessageSchema = z
     })
     .passthrough();
 
-export const setupServer = async (): Promise<McpServer> => {
+export const setupServer = async (options?: McpServerOptions): Promise<McpServer> => {
     const { readPackageUpSync } = await import("read-package-up");
     const version = readPackageUpSync({ cwd: __dirname })?.packageJson.version ?? "unknown";
     const server = new McpServer({
@@ -141,7 +166,7 @@ export const setupServer = async (): Promise<McpServer> => {
                     );
                 }
 
-                const linterOptions = await makeLinterOptions();
+                const linterOptions = await makeLinterOptions(options);
                 const linter = createLinter(linterOptions);
 
                 const results = await linter.lintFiles(filePaths);
@@ -185,7 +210,7 @@ export const setupServer = async (): Promise<McpServer> => {
                     return validationError;
                 }
 
-                const linterOptions = await makeLinterOptions();
+                const linterOptions = await makeLinterOptions(options);
                 const linter = createLinter(linterOptions);
 
                 const result = await linter.lintText(text, stdinFilename);
@@ -237,7 +262,7 @@ export const setupServer = async (): Promise<McpServer> => {
                     );
                 }
 
-                const linterOptions = await makeLinterOptions();
+                const linterOptions = await makeLinterOptions(options);
                 const linter = createLinter(linterOptions);
 
                 const results = await linter.fixFiles(filePaths);
@@ -279,7 +304,7 @@ export const setupServer = async (): Promise<McpServer> => {
                 const validationError = validateInputAndReturnError(stdinFilename, "stdinFilename", "fixText_error");
                 if (validationError) return validationError;
 
-                const linterOptions = await makeLinterOptions();
+                const linterOptions = await makeLinterOptions(options);
                 const linter = createLinter(linterOptions);
 
                 const result = await linter.fixText(text, stdinFilename);
@@ -300,8 +325,8 @@ export const setupServer = async (): Promise<McpServer> => {
     return server;
 };
 
-export const connectStdioMcpServer = async () => {
-    const server = await setupServer();
+export const connectStdioMcpServer = async (options?: McpServerOptions) => {
+    const server = await setupServer(options);
     const transport = new StdioServerTransport();
     await server.connect(transport);
     return server;
