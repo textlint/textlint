@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751759457953,
+  "lastUpdate": 1751759741970,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -70098,6 +70098,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6263740426400001,
             "unit": "seconds",
             "range": "± 0.02527216500000007"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "79b05abad72e46362ad493eb636e493f3978ba78",
+          "message": "refactor(mcp): add union type for error types in createStructuredErrorResponse\n\nDefine TextlintMcpErrorType as a union type to improve type safety:\n- Prevents typos in error type strings\n- Enables IDE autocomplete for error types\n- Makes it easier to track all error types in one place\n- Improves maintainability when adding new error types\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-06T08:53:09+09:00",
+          "tree_id": "fb917851f6fa1b8dd8943aadbbf27fa7863c56b8",
+          "url": "https://github.com/textlint/textlint/commit/79b05abad72e46362ad493eb636e493f3978ba78"
+        },
+        "date": 1751759737950,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2096236482,
+            "unit": "seconds",
+            "range": "± 0.030474609000000014"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7429099088000002,
+            "unit": "seconds",
+            "range": "± 0.04506046699999988"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.599734647,
+            "unit": "seconds",
+            "range": "± 0.015839205999999995"
           }
         ]
       }
