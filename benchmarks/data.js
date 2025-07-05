@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751758314563,
+  "lastUpdate": 1751759457953,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -70056,6 +70056,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59082513466,
             "unit": "seconds",
             "range": "± 0.01300404799999999"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "9fd97d42f866bd79885bbbb911c185b98c3518cb",
+          "message": "test(mcp): add comprehensive tests for createStructuredErrorResponse\n\nAdd snapshot tests for error handling in MCP server:\n- Test file not found errors in lintFile\n- Test empty stdinFilename validation in lintText\n- Test file not found errors in getLintFixedFileContent\n- Test empty stdinFilename validation in getLintFixedTextContent\n\nThese tests ensure proper structured error responses are returned\nfor various error conditions in the MCP server implementation.\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-06T08:48:41+09:00",
+          "tree_id": "89ac7c25389c5dd7096807c3fe35839c9a19d614",
+          "url": "https://github.com/textlint/textlint/commit/9fd97d42f866bd79885bbbb911c185b98c3518cb"
+        },
+        "date": 1751759453941,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24718371684,
+            "unit": "seconds",
+            "range": "± 0.17173233400000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7836099520400002,
+            "unit": "seconds",
+            "range": "± 0.04465004600000011"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6263740426400001,
+            "unit": "seconds",
+            "range": "± 0.02527216500000007"
           }
         ]
       }
