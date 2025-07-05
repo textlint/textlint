@@ -1,0 +1,6 @@
+{
+  "name": "@textlint/textlint-plugin-text",
+  "version": "1.0.0",
+  "description": "Test text plugin for MCP server testing",
+  "main": "index.js"
+}

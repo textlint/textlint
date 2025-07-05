@@ -1,0 +1,19 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"results\": [\n    {\n      \"messages\": [],\n      \"filePath\": \"<basic-lint-file>/test-file.md\"\n    }\n  ],\n  \"isError\": false,\n  \"timestamp\": \"<timestamp>\"\n}"
+    }
+  ],
+  "structuredContent": {
+    "results": [
+      {
+        "messages": [],
+        "filePath": "<basic-lint-file>/test-file.md"
+      }
+    ],
+    "isError": false,
+    "timestamp": "<timestamp>"
+  },
+  "isError": false
+}

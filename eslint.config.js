@@ -51,23 +51,16 @@ module.exports = [
             ...tsPlugin.configs.recommended.rules,
             // Override specific TypeScript rules if needed
             "@typescript-eslint/no-unused-vars": "off",
-            "@typescript-eslint/no-explicit-any": "warn",
-            "@typescript-eslint/no-empty-object-type": "warn",
-            "@typescript-eslint/no-require-imports": "warn",
-            "@typescript-eslint/ban-ts-comment": "warn",
-            "@typescript-eslint/no-unsafe-function-type": "warn"
+            "@typescript-eslint/no-explicit-any": "error",
+            "@typescript-eslint/no-empty-object-type": "error",
+            "@typescript-eslint/no-require-imports": "error",
+            "@typescript-eslint/ban-ts-comment": "error",
+            "@typescript-eslint/no-unsafe-function-type": "error"
         }
     },
     // Console allowed in CLI files
     {
-        files: [
-            "**/bin/**",
-            "**/scripts/**",
-            "examples/**",
-            "**/debug-*.{js,mjs,ts}",
-            "**/tools/**",
-            "**/*.test.ts"
-        ],
+        files: ["**/bin/**", "**/scripts/**", "examples/**", "**/debug-*.{js,mjs,ts}", "**/tools/**", "**/*.test.ts"],
         rules: {
             "no-console": "off"
         }
