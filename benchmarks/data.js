@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751719252738,
+  "lastUpdate": 1751723952191,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -69006,6 +69006,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5883991398000001,
             "unit": "seconds",
             "range": "± 0.011265023999999957"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "cd373d55c8e66dcc7906150f907cfee7f4db7968",
+          "message": "fix(textlint): add missing TextlintMessageSchema definition\n\n- Create schemas.ts with TextlintMessageSchema definition\n- Import and use TextlintMessageSchema consistently in MCP server\n- Fix test failures by ensuring proper schema validation\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-05T22:56:56+09:00",
+          "tree_id": "65a2f883a1aaffb755ee7e086546c375749a250f",
+          "url": "https://github.com/textlint/textlint/commit/cd373d55c8e66dcc7906150f907cfee7f4db7968"
+        },
+        "date": 1751723947896,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24342895884000004,
+            "unit": "seconds",
+            "range": "± 0.14823485700000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7659374252400002,
+            "unit": "seconds",
+            "range": "± 0.021719491999999896"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6125674046400001,
+            "unit": "seconds",
+            "range": "± 0.014794527999999918"
           }
         ]
       }
