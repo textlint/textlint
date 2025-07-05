@@ -22,8 +22,13 @@ export function normalizeResponse(response: McpResponse, snapshotDir: string): S
     }
     if (normalized.structuredContent) {
         normalized.structuredContent = removeTimestamps(normalized.structuredContent);
-        // Also normalize paths in structured content
-        normalized.structuredContent = normalizeStructuredPaths(normalized.structuredContent, snapshotDir);
+        // Also normalize paths in structured content using test case name
+        const testCaseName = path.basename(snapshotDir);
+        normalized.structuredContent = normalizeStructuredPaths(
+            normalized.structuredContent,
+            snapshotDir,
+            testCaseName
+        );
     }
 
     return normalized;
@@ -43,24 +48,27 @@ function pathReplacer(snapshotDir: string) {
             // Use simple string operations instead of regex for path replacement
             // This is more reliable across platforms
 
-            // Define path patterns to replace
+            // Extract test case name from snapshot directory
+            const testCaseName = path.basename(snapshotDir);
+
+            // Define path patterns to replace with simpler placeholders
             const pathReplacements = [
                 {
-                    // 1. Snapshot directory paths -> <snapshot>/filename
+                    // 1. Files within snapshot directory -> <test-case>/filename
                     checkPaths: [snapshotDir, normalizePath(snapshotDir)],
-                    replacement: "<snapshot>",
+                    replacement: `<${testCaseName}>`,
                     shouldCalculateRelative: true
                 },
                 {
-                    // 2. Test directory paths -> <test-dir>
-                    checkPaths: [__dirname, normalizePath(__dirname)],
-                    replacement: "<test-dir>",
+                    // 2. Rule modules directory -> <rule_modules>
+                    checkPaths: [FAKE_MODULES_DIRECTORY, normalizePath(FAKE_MODULES_DIRECTORY)],
+                    replacement: "<rule_modules>",
                     shouldCalculateRelative: false
                 },
                 {
-                    // 3. Rule modules directory -> <rule_modules>
-                    checkPaths: [FAKE_MODULES_DIRECTORY, normalizePath(FAKE_MODULES_DIRECTORY)],
-                    replacement: "<rule_modules>",
+                    // 3. Test directory paths -> <test-dir>
+                    checkPaths: [__dirname, normalizePath(__dirname)],
+                    replacement: "<test-dir>",
                     shouldCalculateRelative: false
                 },
                 {
@@ -78,12 +86,14 @@ function pathReplacer(snapshotDir: string) {
                 for (const pathToCheck of checkPaths) {
                     if (stringValue.includes(pathToCheck)) {
                         if (shouldCalculateRelative) {
-                            // For snapshots, preserve relative structure
+                            // For snapshot files, use simple test-case/filename format
                             try {
                                 const relativePath = path.relative(snapshotDir, stringValue);
                                 if (relativePath && !relativePath.startsWith("..") && !path.isAbsolute(relativePath)) {
+                                    // Replace with <test-case>/filename format
                                     stringValue = stringValue.replaceAll(pathToCheck, replacement);
-                                    stringValue = normalizePath(stringValue);
+                                    // Always use forward slashes in output for consistency
+                                    stringValue = stringValue.replace(/\\\\/g, "/");
                                     wasReplaced = true;
                                     break;
                                 }
@@ -103,17 +113,16 @@ function pathReplacer(snapshotDir: string) {
                 if (wasReplaced) break;
             }
 
-            // Fallback: Pattern-based replacement for Windows paths that weren't caught
+            // Fallback: Extract meaningful part from any remaining absolute paths
             if (stringValue.includes("mcp-snapshot-test") && stringValue.includes("snapshots")) {
-                // Use a simple pattern to extract the meaningful part
                 const parts = stringValue.split(/[\/\\]/);
-                const testIndex = parts.findIndex((part) => part === "mcp-snapshot-test");
                 const snapshotsIndex = parts.findIndex((part) => part === "snapshots");
 
-                if (testIndex >= 0 && snapshotsIndex > testIndex && snapshotsIndex < parts.length - 2) {
-                    // Extract case-name/file.ext from snapshots/case-name/file.ext
-                    const relevantParts = parts.slice(snapshotsIndex + 1);
-                    stringValue = `<test-dir>/snapshots/${relevantParts.join("/")}`;
+                if (snapshotsIndex >= 0 && snapshotsIndex < parts.length - 2) {
+                    // Extract case-name and filename: snapshots/case-name/file.ext -> <case-name>/file.ext
+                    const caseName = parts[snapshotsIndex + 1];
+                    const fileName = parts[snapshotsIndex + 2];
+                    stringValue = `<${caseName}>/${fileName}`;
                 }
             }
 
@@ -126,34 +135,36 @@ function pathReplacer(snapshotDir: string) {
 /**
  * Normalize paths in structured content
  */
-function normalizeStructuredPaths(obj: unknown, snapshotDir: string): unknown {
+function normalizeStructuredPaths(obj: unknown, snapshotDir: string, testCaseName: string): unknown {
     if (Array.isArray(obj)) {
-        return obj.map((item) => normalizeStructuredPaths(item, snapshotDir));
+        return obj.map((item) => normalizeStructuredPaths(item, snapshotDir, testCaseName));
     } else if (obj && typeof obj === "object") {
         const result: Record<string, unknown> = {};
         for (const [key, value] of Object.entries(obj as Record<string, unknown>)) {
             if (key === "filePath" && typeof value === "string") {
-                // Normalize filePath specifically
+                // Normalize filePath to <test-case>/filename format
                 let normalizedPath = value;
 
-                // Handle cross-platform test directory paths
-                const testDirPattern =
-                    /.*[\/\\]test[\/\\]mcp-snapshot-test[\/\\]snapshots[\/\\]([^[\/\\]]+[\/\\][^"]*)/;
-                const snapshotMatch = normalizedPath.match(testDirPattern);
-                if (snapshotMatch) {
-                    normalizedPath = `<snapshot>/${snapshotMatch[1].replace(/\\/g, "/")}`;
+                // Try direct replacement with snapshot directory first
+                if (normalizedPath.includes(snapshotDir)) {
+                    const relativePath = path.relative(snapshotDir, normalizedPath);
+                    if (relativePath && !relativePath.startsWith("..") && !path.isAbsolute(relativePath)) {
+                        normalizedPath = `<${testCaseName}>/${relativePath.replace(/\\/g, "/")}`;
+                    }
                 } else if (normalizedPath.includes("snapshots")) {
-                    // Fallback for other snapshot patterns
+                    // Fallback: extract from path structure
                     const parts = normalizedPath.split(/[\/\\]/);
                     const snapshotIndex = parts.findIndex((part) => part === "snapshots");
                     if (snapshotIndex >= 0 && snapshotIndex < parts.length - 2) {
-                        normalizedPath = `<snapshot>/${parts.slice(snapshotIndex + 2).join("/")}`;
+                        const caseName = parts[snapshotIndex + 1];
+                        const fileName = parts[snapshotIndex + 2];
+                        normalizedPath = `<${caseName}>/${fileName}`;
                     }
                 }
 
                 result[key] = normalizedPath;
             } else {
-                result[key] = normalizeStructuredPaths(value, snapshotDir);
+                result[key] = normalizeStructuredPaths(value, snapshotDir, testCaseName);
             }
         }
         return result;

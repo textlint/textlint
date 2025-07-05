@@ -9,7 +9,7 @@
     "results": [
       {
         "messages": [],
-        "filePath": "<snapshot>/test-file.md"
+        "filePath": "<basic-lint-file>/test-file.md"
       }
     ],
     "isError": false,

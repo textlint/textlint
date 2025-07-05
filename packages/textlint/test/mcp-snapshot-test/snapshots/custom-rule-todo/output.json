@@ -33,7 +33,7 @@
             "severity": 2
           }
         ],
-        "filePath": "<snapshot>/todo-file.md"
+        "filePath": "<custom-rule-todo>/todo-file.md"
       }
     ],
     "isError": false,
