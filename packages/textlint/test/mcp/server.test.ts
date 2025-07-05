@@ -15,16 +15,6 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Direct fixture path helper
-const getFixturePath = (filename: string): string => {
-    return path.join(__dirname, "fixtures", filename);
-};
-
-// Direct config path helper
-const getConfigPath = (filename: string): string => {
-    return path.join(__dirname, "fixtures", "configs", filename);
-};
-
 const validFilePath = path.join(__dirname, "fixtures", "ok.md");
 const invalidFilePath = path.join(__dirname, "fixtures", "invalid.md");
 const stdinFilename = `textlint.txt`;
@@ -663,7 +653,7 @@ describe("MCP Server", () => {
             const result = (await client.callTool({
                 name: "lintFile",
                 arguments: {
-                    filePaths: [getFixturePath("unsupported.xyz")]
+                    filePaths: [path.join(__dirname, "fixtures", "unsupported.xyz")]
                 }
             })) as CallToolResult;
 
@@ -696,7 +686,7 @@ describe("MCP Server", () => {
             const result = (await client.callTool({
                 name: "lintFile",
                 arguments: {
-                    filePaths: [getFixturePath("nonexistent.md")]
+                    filePaths: [path.join(__dirname, "fixtures", "nonexistent.md")]
                 }
             })) as CallToolResult;
 
@@ -745,7 +735,7 @@ describe("MCP Server", () => {
             it("should use custom config file when specified", async () => {
                 // Test with minimal config
                 const configServer = await setupServer({
-                    configFilePath: getConfigPath("minimal-config.json")
+                    configFilePath: path.join(__dirname, "fixtures", "configs", "minimal-config.json")
                 });
 
                 const [configClientTransport, configServerTransport] = InMemoryTransport.createLinkedPair();
@@ -760,7 +750,7 @@ describe("MCP Server", () => {
                 const result = (await configClient.callTool({
                     name: "lintFile",
                     arguments: {
-                        filePaths: [getFixturePath("ok.md")]
+                        filePaths: [path.join(__dirname, "fixtures", "ok.md")]
                     }
                 })) as CallToolResult;
 
@@ -811,7 +801,7 @@ describe("MCP Server", () => {
                 const result = (await client.callTool({
                     name: "lintFile",
                     arguments: {
-                        filePaths: [getFixturePath("empty.md")]
+                        filePaths: [path.join(__dirname, "fixtures", "empty.md")]
                     }
                 })) as CallToolResult;
 
@@ -824,7 +814,7 @@ describe("MCP Server", () => {
                 const result = (await client.callTool({
                     name: "lintFile",
                     arguments: {
-                        filePaths: [getFixturePath("unsupported.xyz")]
+                        filePaths: [path.join(__dirname, "fixtures", "unsupported.xyz")]
                     }
                 })) as CallToolResult;
 
@@ -837,7 +827,7 @@ describe("MCP Server", () => {
                 const result = (await client.callTool({
                     name: "lintFile",
                     arguments: {
-                        filePaths: [getFixturePath("large-file.md")]
+                        filePaths: [path.join(__dirname, "fixtures", "large-file.md")]
                     }
                 })) as CallToolResult;
 
@@ -849,7 +839,11 @@ describe("MCP Server", () => {
                 const result = (await client.callTool({
                     name: "lintFile",
                     arguments: {
-                        filePaths: [getFixturePath("ok.md"), getFixturePath("invalid.md"), getFixturePath("empty.md")]
+                        filePaths: [
+                            path.join(__dirname, "fixtures", "ok.md"),
+                            path.join(__dirname, "fixtures", "invalid.md"),
+                            path.join(__dirname, "fixtures", "empty.md")
+                        ]
                     }
                 })) as CallToolResult;
 
@@ -947,7 +941,7 @@ describe("MCP Server", () => {
                 const result = (await defaultClient.callTool({
                     name: "lintFile",
                     arguments: {
-                        filePaths: [getFixturePath("ok.md")]
+                        filePaths: [path.join(__dirname, "fixtures", "ok.md")]
                     }
                 })) as CallToolResult;
 
