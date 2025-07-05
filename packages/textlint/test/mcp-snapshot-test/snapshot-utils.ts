@@ -88,7 +88,7 @@ function pathReplacer(snapshotDir: string) {
                      * @param str
                      */
                     const jsonStringifyValue = (str: string) => {
-                        return JSON.stringify(str).replace(/\\"/g, "");
+                        return JSON.stringify(str).replace(/\\\\"/g, "");
                     };
                     const jsonifiedPathToCheck = jsonStringifyValue(pathToCheck);
                     const jsonifiedReplacement = jsonStringifyValue(replacement);
