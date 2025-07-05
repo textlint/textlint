@@ -85,10 +85,10 @@ function pathReplacer(snapshotDir: string) {
                     /**
                      * input: "C:\\path\\to\\file.txt"
                      * output: "C:\\\\path\\\\to\\\\file.txt"
-                     * @param str
+                     * @param filePath
                      */
-                    const jsonStringifyValue = (str: string) => {
-                        return JSON.stringify(str).replace(/\\\\"/g, "");
+                    const jsonStringifyValue = (filePath: string) => {
+                        return JSON.stringify(filePath).replaceAll(`\\"`, "");
                     };
                     const jsonifiedPathToCheck = jsonStringifyValue(pathToCheck);
                     const jsonifiedReplacement = jsonStringifyValue(replacement);
