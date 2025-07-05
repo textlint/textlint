@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751733096676,
+  "lastUpdate": 1751755868310,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -69762,6 +69762,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59929879928,
             "unit": "seconds",
             "range": "± 0.00969218999999999"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "638f528afc8e93675a39b8d05c73e0ccd8c41de3",
+          "message": "fix(mcp): add Windows path escaping support for JSON stringified paths\n\n- Handle Windows paths that are JSON stringified (D:\\path -> D:\\\\\\\\path)\n- Add jsonStringifyValue helper to handle escaped path patterns\n- Support both regular and JSON-escaped path replacements\n- Remove debug console logs\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-06T01:35:51+09:00",
+          "tree_id": "63a54824d4bb389198905c35f04c9a1e7bd38e14",
+          "url": "https://github.com/textlint/textlint/commit/638f528afc8e93675a39b8d05c73e0ccd8c41de3"
+        },
+        "date": 1751755864680,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22662669956,
+            "unit": "seconds",
+            "range": "± 0.11956113600000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.73296168716,
+            "unit": "seconds",
+            "range": "± 0.0388606170000001"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59254426916,
+            "unit": "seconds",
+            "range": "± 0.013731696000000015"
           }
         ]
       }
