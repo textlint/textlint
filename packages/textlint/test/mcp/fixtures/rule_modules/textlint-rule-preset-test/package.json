@@ -1,0 +1,6 @@
+{
+  "name": "textlint-rule-preset-test",
+  "version": "1.0.0",
+  "description": "Test preset for MCP server testing",
+  "main": "index.js"
+}

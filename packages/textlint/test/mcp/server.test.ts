@@ -953,5 +953,123 @@ describe("MCP Server", () => {
                 await defaultServer.close();
             });
         });
+
+        describe("Real Configuration and Rules", () => {
+            it("should work with custom rule using configFilePath and node_modulesDir", async () => {
+                // Test with real fixture rule and configuration
+                const configServer = await setupServer({
+                    configFilePath: path.join(__dirname, "fixtures", "configs", "with-custom-rule.json"),
+                    node_modulesDir: path.join(__dirname, "fixtures", "rule_modules")
+                });
+
+                const [configClientTransport, configServerTransport] = InMemoryTransport.createLinkedPair();
+                await configServer.connect(configServerTransport);
+
+                const configClient = new Client({
+                    name: "textlint-config-rule",
+                    version: "1.0"
+                });
+                await configClient.connect(configClientTransport);
+
+                // Test with file that contains TODO (should trigger our custom rule)
+                const result = (await configClient.callTool({
+                    name: "lintFile",
+                    arguments: {
+                        filePaths: [path.join(__dirname, "fixtures", "with-todo.md")]
+                    }
+                })) as CallToolResult;
+
+                assert.strictEqual(result.isError, false, "Should succeed with custom rule");
+                assert.ok(result.structuredContent, "Should have structured content");
+                assert.ok(Array.isArray(result.structuredContent.results), "Should have results array");
+
+                // Check that the custom rule found the TODO
+                const firstResult = result.structuredContent.results[0];
+                assert.ok(firstResult.messages, "Should have messages");
+                assert.ok(firstResult.messages.length > 0, "Should have at least one message from custom rule");
+
+                const todoMessage = firstResult.messages.find((msg) => msg.message.includes("TODO"));
+                assert.ok(todoMessage, "Should detect TODO with custom rule");
+
+                // Cleanup
+                await configClient.close();
+                await configServer.close();
+            });
+
+            it("should work with preset using configFilePath and node_modulesDir", async () => {
+                // Test with real fixture preset and configuration
+                const presetServer = await setupServer({
+                    configFilePath: path.join(__dirname, "fixtures", "configs", "with-preset.json"),
+                    node_modulesDir: path.join(__dirname, "fixtures", "rule_modules")
+                });
+
+                const [presetClientTransport, presetServerTransport] = InMemoryTransport.createLinkedPair();
+                await presetServer.connect(presetServerTransport);
+
+                const presetClient = new Client({
+                    name: "textlint-preset",
+                    version: "1.0"
+                });
+                await presetClient.connect(presetClientTransport);
+
+                // Test with file that contains exclamation marks (should trigger preset rule)
+                const result = (await presetClient.callTool({
+                    name: "lintFile",
+                    arguments: {
+                        filePaths: [path.join(__dirname, "fixtures", "with-exclamation.md")]
+                    }
+                })) as CallToolResult;
+
+                assert.strictEqual(result.isError, false, "Should succeed with preset");
+                assert.ok(result.structuredContent, "Should have structured content");
+                assert.ok(Array.isArray(result.structuredContent.results), "Should have results array");
+
+                // Check that the preset rules are working
+                const firstResult = result.structuredContent.results[0];
+                assert.ok(firstResult.messages, "Should have messages");
+                assert.ok(firstResult.messages.length > 0, "Should have at least one message from preset");
+
+                // Cleanup
+                await presetClient.close();
+                await presetServer.close();
+            });
+
+            it("should handle lintText with custom rule configuration", async () => {
+                // Test lintText with custom rule configuration
+                const textServer = await setupServer({
+                    configFilePath: path.join(__dirname, "fixtures", "configs", "with-custom-rule.json"),
+                    node_modulesDir: path.join(__dirname, "fixtures", "rule_modules")
+                });
+
+                const [textClientTransport, textServerTransport] = InMemoryTransport.createLinkedPair();
+                await textServer.connect(textServerTransport);
+
+                const textClient = new Client({
+                    name: "textlint-text-custom",
+                    version: "1.0"
+                });
+                await textClient.connect(textClientTransport);
+
+                const result = (await textClient.callTool({
+                    name: "lintText",
+                    arguments: {
+                        text: "# Test\n\nThis has a TODO item in it.",
+                        stdinFilename: "test.md"
+                    }
+                })) as CallToolResult;
+
+                assert.strictEqual(result.isError, false, "Should succeed with custom rule for text");
+                assert.ok(result.structuredContent, "Should have structured content");
+                assert.ok(result.structuredContent.messages, "Should have messages array");
+
+                // Check that the custom rule found the TODO in text
+                const todoMessage = result.structuredContent.messages.find((msg) => msg.message.includes("TODO"));
+                assert.ok(todoMessage, "Should detect TODO with custom rule in text");
+
+                // Cleanup
+                await textClient.close();
+                await textServer.close();
+            });
+        });
     });
 });
