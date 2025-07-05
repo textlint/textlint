@@ -1,0 +1,16 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"results\": [],\n  \"error\": \"Not found available plugin for .xyz\",\n  \"type\": \"lintText_error\",\n  \"timestamp\": \"<timestamp>\",\n  \"isError\": true\n}"
+    }
+  ],
+  "structuredContent": {
+    "results": [],
+    "error": "Not found available plugin for .xyz",
+    "type": "lintText_error",
+    "timestamp": "<timestamp>",
+    "isError": true
+  },
+  "isError": true
+}

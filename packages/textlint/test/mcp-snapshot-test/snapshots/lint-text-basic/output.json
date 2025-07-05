@@ -1,0 +1,15 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"messages\": [],\n  \"filePath\": \"test.md\",\n  \"isError\": false,\n  \"timestamp\": \"<timestamp>\"\n}"
+    }
+  ],
+  "structuredContent": {
+    "messages": [],
+    "filePath": "test.md",
+    "isError": false,
+    "timestamp": "<timestamp>"
+  },
+  "isError": false
+}
