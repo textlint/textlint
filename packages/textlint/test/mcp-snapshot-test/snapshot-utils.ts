@@ -22,6 +22,8 @@ export function normalizeResponse(response: McpResponse, snapshotDir: string): S
     }
     if (normalized.structuredContent) {
         normalized.structuredContent = removeTimestamps(normalized.structuredContent);
+        // Also normalize paths in structured content
+        normalized.structuredContent = normalizeStructuredPaths(normalized.structuredContent, snapshotDir);
     }
 
     return normalized;
@@ -39,9 +41,33 @@ function pathReplacer(snapshotDir: string) {
             if (stringValue.includes("\n") && (stringValue.includes('{"') || stringValue.includes('"timestamp":'))) {
                 // This is likely a JSON string, normalize timestamps within it
                 stringValue = stringValue.replace(/"timestamp":\s*"[^"]*"/g, '"timestamp": "<timestamp>"');
+
+                // Also normalize paths in JSON strings - handle both Unix and Windows paths
+                // Replace any absolute path that contains "test/mcp-snapshot-test/snapshots"
+                stringValue = stringValue.replace(
+                    /"[^"]*[\/\\]test[\/\\]mcp-snapshot-test[\/\\]snapshots[\/\\]([^"]*)"/g,
+                    '"<test-dir>/snapshots/$1"'
+                );
             }
 
-            // Replace __dirname based paths (test directory base)
+            // Replace __dirname based paths (test directory base) - cross-platform
+            const testDirPattern = /[\/\\]test[\/\\]mcp-snapshot-test(?:[\/\\]|$)/;
+            if (testDirPattern.test(stringValue)) {
+                // Check if this contains snapshots directory
+                if (stringValue.includes("snapshots")) {
+                    // Extract relative path from snapshots directory
+                    const snapshotMatch = stringValue.match(/.*[\/\\]snapshots[\/\\]([^[\/\\]]+[\/\\][^"]*)/);
+                    if (snapshotMatch) {
+                        stringValue = `<snapshot>/${snapshotMatch[1].replace(/\\/g, "/")}`;
+                    }
+                } else {
+                    // Replace with test-dir placeholder
+                    stringValue = stringValue.replace(/.*[\/\\]test[\/\\]mcp-snapshot-test/, "<test-dir>");
+                    stringValue = normalizePath(stringValue);
+                }
+            }
+
+            // Fallback: Replace __dirname if it matches exactly (for local development)
             if (stringValue.includes(__dirname)) {
                 const relativePath = path.relative(__dirname, stringValue);
                 if (relativePath.startsWith("snapshots/")) {
@@ -71,26 +97,74 @@ function pathReplacer(snapshotDir: string) {
                 stringValue = normalizePath(stringValue.replace(workingDir, "<cwd>"));
             }
 
-            // Handle JSON strings that may contain paths and timestamps
+            // Handle Windows absolute paths that weren't caught above
+            if (/^[A-Za-z]:[\\]/.test(stringValue) && stringValue.includes("textlint")) {
+                // This is a Windows absolute path, try to normalize it
+                if (stringValue.includes("snapshots")) {
+                    const snapshotMatch = stringValue.match(/.*[\/\\]snapshots[\/\\]([^[\/\\]]+[\/\\][^"]*)/);
+                    if (snapshotMatch) {
+                        stringValue = `<test-dir>/snapshots/${snapshotMatch[1].replace(/\\/g, "/")}`;
+                    }
+                } else if (stringValue.includes("test") && stringValue.includes("mcp-snapshot-test")) {
+                    stringValue = stringValue.replace(/.*[\/\\]test[\/\\]mcp-snapshot-test/, "<test-dir>");
+                    stringValue = normalizePath(stringValue);
+                }
+            }
+
+            // Additional JSON string handling for any remaining paths
             if (stringValue.includes('{"') || stringValue.includes("[{") || stringValue.includes('"timestamp"')) {
                 // Replace timestamps in JSON strings - use more comprehensive regex
                 stringValue = stringValue.replace(/"timestamp":\s*"[^"]*"/g, '"timestamp": "<timestamp>"');
 
-                // Also handle paths in JSON strings with regex
-                if (stringValue.includes(__dirname)) {
-                    // Replace paths in JSON strings using regex
-                    const regex = new RegExp(
-                        `${__dirname.replace(/[/\\]/g, "[/\\\\]")}[/\\\\]snapshots[/\\\\]([^/\\\\]+)[/\\\\]([^"]+)`,
-                        "g"
-                    );
-                    stringValue = stringValue.replace(regex, "<snapshot>/$2");
-                }
+                // Handle any remaining test directory paths in JSON
+                stringValue = stringValue.replace(
+                    /"[^"]*[\/\\]test[\/\\]mcp-snapshot-test[\/\\]snapshots[\/\\]([^"]*)"/g,
+                    '"<test-dir>/snapshots/$1"'
+                );
             }
 
             return stringValue;
         }
         return value;
     };
+}
+
+/**
+ * Normalize paths in structured content
+ */
+function normalizeStructuredPaths(obj: unknown, snapshotDir: string): unknown {
+    if (Array.isArray(obj)) {
+        return obj.map((item) => normalizeStructuredPaths(item, snapshotDir));
+    } else if (obj && typeof obj === "object") {
+        const result: Record<string, unknown> = {};
+        for (const [key, value] of Object.entries(obj as Record<string, unknown>)) {
+            if (key === "filePath" && typeof value === "string") {
+                // Normalize filePath specifically
+                let normalizedPath = value;
+
+                // Handle cross-platform test directory paths
+                const testDirPattern =
+                    /.*[\/\\]test[\/\\]mcp-snapshot-test[\/\\]snapshots[\/\\]([^[\/\\]]+[\/\\][^"]*)/;
+                const snapshotMatch = normalizedPath.match(testDirPattern);
+                if (snapshotMatch) {
+                    normalizedPath = `<snapshot>/${snapshotMatch[1].replace(/\\/g, "/")}`;
+                } else if (normalizedPath.includes("snapshots")) {
+                    // Fallback for other snapshot patterns
+                    const parts = normalizedPath.split(/[\/\\]/);
+                    const snapshotIndex = parts.findIndex((part) => part === "snapshots");
+                    if (snapshotIndex >= 0 && snapshotIndex < parts.length - 2) {
+                        normalizedPath = `<snapshot>/${parts.slice(snapshotIndex + 2).join("/")}`;
+                    }
+                }
+
+                result[key] = normalizedPath;
+            } else {
+                result[key] = normalizeStructuredPaths(value, snapshotDir);
+            }
+        }
+        return result;
+    }
+    return obj;
 }
 
 /**
