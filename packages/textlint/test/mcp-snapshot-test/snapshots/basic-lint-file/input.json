@@ -1,0 +1,9 @@
+{
+  "description": "Basic file linting with no errors",
+  "request": {
+    "name": "lintFile",
+    "arguments": {
+      "filePaths": ["test-file.md"]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "description": "Custom rule that detects TODO items",
+  "serverOptions": {
+    "configFilePath": "textlintrc.json",
+    "node_modulesDir": "<rule_modules>"
+  },
+  "request": {
+    "name": "lintFile",
+    "arguments": {
+      "filePaths": ["todo-file.md"]
+    }
+  }
+}
