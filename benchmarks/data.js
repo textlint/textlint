@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751726282277,
+  "lastUpdate": 1751726979529,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -69258,6 +69258,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6022162636800001,
             "unit": "seconds",
             "range": "± 0.01275731899999999"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "13f22894481be66ccd70303b719bf520c997f7a6",
+          "message": "feat(mcp): migrate snapshot test input.json to input.ts\n\n- Enable TypeScript files (input.ts) for test input definition instead of input.json\n- Add SnapshotInputFactory and SnapshotContext types for dynamic configuration\n- Eliminate string placeholders like <rule_modules> with dynamic path resolution\n- Inject actual paths via context.ruleModulesDir at runtime\n- Improve type safety and IDE code completion\n- Migrate all 4 existing snapshot tests to input.ts format\n- Maintain backward compatibility with both input.json and input.ts support\n- Remove legacy input.json files after successful migration\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-05T23:47:05+09:00",
+          "tree_id": "faef8036a5b7c1e58bf9f07ad0864f853b3a52d2",
+          "url": "https://github.com/textlint/textlint/commit/13f22894481be66ccd70303b719bf520c997f7a6"
+        },
+        "date": 1751726975895,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25083553568,
+            "unit": "seconds",
+            "range": "± 0.217465546"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.74834243128,
+            "unit": "seconds",
+            "range": "± 0.04069701300000017"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59542017428,
+            "unit": "seconds",
+            "range": "± 0.01110370500000002"
           }
         ]
       }
