@@ -77,6 +77,8 @@ function pathReplacer(snapshotDir: string) {
                 for (const pathToCheck of checkPaths) {
                     const jsonifiedPathToCheck = JSON.stringify(JSON.stringify(pathToCheck));
                     const jsonifiedReplacement = JSON.stringify(JSON.stringify(replacement));
+                    console.log("pathToCheck:", pathToCheck);
+                    console.log("jsonifiedPathToCheck:", jsonifiedPathToCheck);
                     if (stringValue.includes(pathToCheck) || stringValue.includes(jsonifiedPathToCheck)) {
                         // For snapshot files, use simple test-case/filename format
                         // Replace with <test-case>/filename format
