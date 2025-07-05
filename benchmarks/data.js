@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751725481813,
+  "lastUpdate": 1751725856118,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -69174,6 +69174,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6022470796,
             "unit": "seconds",
             "range": "± 0.012853625999999951"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "5c6081d492f857ca35d6f43e5e0e4e1c408a1d34",
+          "message": "fix(mcp): ESLintエラー修正とスナップショットのtimestamp正規化を改善\n\n- snapshot-utils.tsでprefer-templateエラーを修正（文字列連結からテンプレートリテラルに変更）\n- JSON文字列内のtimestamp正規化を改善\n- content fieldに含まれるJSONのtimestamp値も正しく<timestamp>に置換されるように修正\n- MCPスナップショットテストが全てパスするようになった\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-05T23:28:27+09:00",
+          "tree_id": "66bc10b88dbdd0b3af592984d40dc7444b440e09",
+          "url": "https://github.com/textlint/textlint/commit/5c6081d492f857ca35d6f43e5e0e4e1c408a1d34"
+        },
+        "date": 1751725852468,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2339796593,
+            "unit": "seconds",
+            "range": "± 0.122492835"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7441083921,
+            "unit": "seconds",
+            "range": "± 0.04049784299999981"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6015338409,
+            "unit": "seconds",
+            "range": "± 0.012535480000000043"
           }
         ]
       }
