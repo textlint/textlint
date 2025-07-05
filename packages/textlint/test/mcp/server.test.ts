@@ -152,6 +152,9 @@ describe("MCP Server", () => {
                                     "description": "Column number (1-based)",
                                     "type": "number",
                                   },
+                                  "data": {
+                                    "description": "Optional data associated with the message",
+                                  },
                                   "fix": {
                                     "additionalProperties": false,
                                     "description": "Fix suggestion if available",
@@ -174,12 +177,72 @@ describe("MCP Server", () => {
                                     ],
                                     "type": "object",
                                   },
+                                  "index": {
+                                    "description": "Start index where the issue is located (0-based, deprecated)",
+                                    "type": "number",
+                                  },
                                   "line": {
                                     "description": "Line number (1-based)",
                                     "type": "number",
                                   },
+                                  "loc": {
+                                    "additionalProperties": false,
+                                    "description": "Location info where the issue is located",
+                                    "properties": {
+                                      "end": {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                          "column": {
+                                            "description": "End column number (1-based)",
+                                            "type": "number",
+                                          },
+                                          "line": {
+                                            "description": "End line number (1-based)",
+                                            "type": "number",
+                                          },
+                                        },
+                                        "required": [
+                                          "line",
+                                          "column",
+                                        ],
+                                        "type": "object",
+                                      },
+                                      "start": {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                          "column": {
+                                            "description": "Start column number (1-based)",
+                                            "type": "number",
+                                          },
+                                          "line": {
+                                            "description": "Start line number (1-based)",
+                                            "type": "number",
+                                          },
+                                        },
+                                        "required": [
+                                          "line",
+                                          "column",
+                                        ],
+                                        "type": "object",
+                                      },
+                                    },
+                                    "required": [
+                                      "start",
+                                      "end",
+                                    ],
+                                    "type": "object",
+                                  },
                                   "message": {
                                     "type": "string",
+                                  },
+                                  "range": {
+                                    "description": "Text range [start, end] (0-based)",
+                                    "items": {
+                                      "type": "number",
+                                    },
+                                    "maxItems": 2,
+                                    "minItems": 2,
+                                    "type": "array",
                                   },
                                   "ruleId": {
                                     "type": "string",
@@ -187,6 +250,10 @@ describe("MCP Server", () => {
                                   "severity": {
                                     "description": "Severity level: 1=warning, 2=error, 3=info",
                                     "type": "number",
+                                  },
+                                  "type": {
+                                    "description": "Message type",
+                                    "type": "string",
                                   },
                                 },
                                 "required": [
