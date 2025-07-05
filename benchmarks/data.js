@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751693913099,
+  "lastUpdate": 1751694625854,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -68754,6 +68754,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60525509006,
             "unit": "seconds",
             "range": "± 0.022751019999999955"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "85620d6f0eba7e1fcc33590a9e59b0b2e7835cc8",
+          "message": "refactor(mcp): remove getFixturePath helper and use direct path.join\n\n- Remove getFixturePath and getConfigPath helper functions\n- Replace all usages with direct path.join(__dirname, \"fixtures\", filename)\n- Eliminate unnecessary abstraction for better clarity and directness\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-05T14:48:13+09:00",
+          "tree_id": "a8562daf5cf034db94f0250d4e0ccf51c89717d7",
+          "url": "https://github.com/textlint/textlint/commit/85620d6f0eba7e1fcc33590a9e59b0b2e7835cc8"
+        },
+        "date": 1751694621557,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2298597892,
+            "unit": "seconds",
+            "range": "± 0.11987056100000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7482238186000003,
+            "unit": "seconds",
+            "range": "± 0.0527685120000001"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6077979192,
+            "unit": "seconds",
+            "range": "± 0.010823918000000043"
           }
         ]
       }
