@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751695824635,
+  "lastUpdate": 1751696079202,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -68880,6 +68880,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60152746908,
             "unit": "seconds",
             "range": "± 0.024932705"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "e9534e6a8ad4ac2c36588e8ab50bcf0ce39ada32",
+          "message": "fix(mcp): fix ESLint errors in snapshot test code\n\n- Replace 'any' types with 'unknown' in types.ts and snapshot-utils.ts\n- Fix string concatenation to use template literals\n- Add proper type annotations for object entries and arrays\n- Ensure type safety throughout snapshot testing utilities\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-05T15:12:31+09:00",
+          "tree_id": "b20ceea2e27ac915a2986b3c35163dd1d853a38a",
+          "url": "https://github.com/textlint/textlint/commit/e9534e6a8ad4ac2c36588e8ab50bcf0ce39ada32"
+        },
+        "date": 1751696075298,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2103779932,
+            "unit": "seconds",
+            "range": "± 0.028326513000000025"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.77505163,
+            "unit": "seconds",
+            "range": "± 0.05511790799999994"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5944346722,
+            "unit": "seconds",
+            "range": "± 0.012291998000000026"
           }
         ]
       }
