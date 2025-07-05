@@ -88,11 +88,18 @@ function pathReplacer(snapshotDir: string) {
                      * @param filePath
                      */
                     const jsonStringifyValue = (filePath: string) => {
-                        // only filePath value
-                        return JSON.stringify(JSON.stringify(filePath)).replaceAll(`\\"`, "").replaceAll(`"`, "");
+                        // JSON.stringifyした中に含まれるパスにマッチして置き換えたい
+                        // JSON.stringifyすると、"がついてしまうので、"自体を消す
+                        return JSON.stringify(filePath).replace(/"/g, "");
                     };
                     const jsonifiedPathToCheck = jsonStringifyValue(pathToCheck);
                     const jsonifiedReplacement = jsonStringifyValue(replacement);
+                    console.log({
+                        pathToCheck,
+                        jsonifiedPathToCheck,
+                        replacement,
+                        jsonifiedReplacement
+                    });
                     if (stringValue.includes(pathToCheck) || stringValue.includes(jsonifiedPathToCheck)) {
                         // For snapshot files, use simple test-case/filename format
                         // Replace with <test-case>/filename format
