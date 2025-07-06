@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751760698524,
+  "lastUpdate": 1751761128201,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -70224,6 +70224,48 @@ window.BENCHMARK_DATA = {
             "value": 0.58898297662,
             "unit": "seconds",
             "range": "± 0.006071197000000028"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3e8a4743b14276a69427a193ab599f2d94239bf2",
+          "message": "feat(mcp): support CLI flags with --mcp option (#1634)\n\n- Add McpServerOptions type definition for enhanced flexibility\n- Update connectStdioMcpServer() to accept configuration options\n- Enable CLI flag combinations with --mcp (config, ignore-path, quiet, rules-base-directory)\n- Add comprehensive tests for McpServerOptions functionality\n- Update MCP documentation with CLI flag usage examples\n\nAddresses #1632 by providing API support for passing CLI arguments\nto the MCP server, enabling better test isolation and configuration\nflexibility while maintaining backward compatibility.\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-06T09:16:06+09:00",
+          "tree_id": "9bf35fea0495be16ad8ad82db6198f2162b34fd7",
+          "url": "https://github.com/textlint/textlint/commit/3e8a4743b14276a69427a193ab599f2d94239bf2"
+        },
+        "date": 1751761123748,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22992073432000004,
+            "unit": "seconds",
+            "range": "± 0.13071255599999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.73831980972,
+            "unit": "seconds",
+            "range": "± 0.034447297999999904"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60082524432,
+            "unit": "seconds",
+            "range": "± 0.011634323999999974"
           }
         ]
       }
