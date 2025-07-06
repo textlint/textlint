@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751761798533,
+  "lastUpdate": 1751765310531,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -70308,6 +70308,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5865610209800001,
             "unit": "seconds",
             "range": "± 0.010344599999999926"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "c35939b82b1b8458fba367091fc4a7daa265d839",
+          "message": "feat(mcp): add debug logging support for MCP server\n\n- Add debug option to McpServerOptions type\n- Pass debug option from CLI to MCP server\n- Add conditional debug logging for server initialization and connection\n- Uses existing debug library with 'textlint:mcp' namespace\n- Logs server setup, version, initialization, and connection status\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-06T10:25:31+09:00",
+          "tree_id": "a3f0e048c6c56bfabf90fadb280df833fd309fff",
+          "url": "https://github.com/textlint/textlint/commit/c35939b82b1b8458fba367091fc4a7daa265d839"
+        },
+        "date": 1751765305990,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22595007202,
+            "unit": "seconds",
+            "range": "± 0.10901709700000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.74722446442,
+            "unit": "seconds",
+            "range": "± 0.04894612500000006"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6012251128200001,
+            "unit": "seconds",
+            "range": "± 0.01533503699999994"
           }
         ]
       }
