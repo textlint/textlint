@@ -5,6 +5,9 @@ import { createLinter, loadTextlintrc, type CreateLinterOptions } from "../index
 import { existsSync } from "node:fs";
 import { TextlintMessageSchema } from "./schemas.js";
 import { TextlintKernelDescriptor } from "@textlint/kernel";
+import debug from "debug";
+
+const mcpDebug = debug("textlint:mcp");
 
 // Define error types as a union type
 type TextlintMcpErrorType = "lintFile_error" | "lintText_error" | "fixFiles_error" | "fixText_error";
@@ -15,6 +18,7 @@ export type McpServerOptions = {
     node_modulesDir?: string; // Custom node_modules directory
     ignoreFilePath?: string; // .textlintignore file path
     quiet?: boolean; // Report errors only
+    debug?: boolean; // Enable debug logging
     cwd?: string; // Current working directory
     descriptor?: TextlintKernelDescriptor; // Direct configuration
 };
@@ -91,10 +95,20 @@ const validateInputAndReturnError = (value: string, fieldName: string, errorType
 export const setupServer = async (options: McpServerOptions = {}): Promise<McpServer> => {
     const { readPackageUpSync } = await import("read-package-up");
     const version = readPackageUpSync({ cwd: __dirname })?.packageJson.version ?? "unknown";
+
+    if (options.debug) {
+        mcpDebug("Setting up MCP server with options: %j", options);
+        mcpDebug("Server version: %s", version);
+    }
+
     const server = new McpServer({
         name: "textlint",
         version
     });
+
+    if (options.debug) {
+        mcpDebug("MCP server initialized successfully");
+    }
 
     // ツール登録
     server.registerTool(
@@ -294,6 +308,14 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
 export const connectStdioMcpServer = async (options: McpServerOptions = {}) => {
     const server = await setupServer(options);
     const transport = new StdioServerTransport();
+
+    if (options.debug) {
+        mcpDebug("Connecting MCP server to stdio transport...");
+    }
     await server.connect(transport);
+    if (options.debug) {
+        mcpDebug("MCP server connected and ready to accept requests");
+    }
+
     return server;
 };
