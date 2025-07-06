@@ -7,6 +7,8 @@ import { TextlintMessageSchema } from "./schemas.js";
 import { TextlintKernelDescriptor } from "@textlint/kernel";
 import debug from "debug";
 
+const mcpDebug = debug("textlint:mcp");
+
 // Define error types as a union type
 type TextlintMcpErrorType = "lintFile_error" | "lintText_error" | "fixFiles_error" | "fixText_error";
 
@@ -91,7 +93,6 @@ const validateInputAndReturnError = (value: string, fieldName: string, errorType
 };
 
 export const setupServer = async (options: McpServerOptions = {}): Promise<McpServer> => {
-    const mcpDebug = debug("textlint:mcp");
     const { readPackageUpSync } = await import("read-package-up");
     const version = readPackageUpSync({ cwd: __dirname })?.packageJson.version ?? "unknown";
 
@@ -305,7 +306,6 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
 };
 
 export const connectStdioMcpServer = async (options: McpServerOptions = {}) => {
-    const mcpDebug = debug("textlint:mcp");
     const server = await setupServer(options);
     const transport = new StdioServerTransport();
 
