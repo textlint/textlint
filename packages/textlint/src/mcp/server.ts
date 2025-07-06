@@ -4,19 +4,35 @@ import { z } from "zod";
 import { createLinter, loadTextlintrc, type CreateLinterOptions } from "../index.js";
 import { existsSync } from "node:fs";
 import { TextlintMessageSchema } from "./schemas.js";
+import { TextlintKernelDescriptor } from "@textlint/kernel";
 
 // Define error types as a union type
 type TextlintMcpErrorType = "lintFile_error" | "lintText_error" | "fixFiles_error" | "fixText_error";
 
-const makeLinterOptions = async (
-    options: { configFilePath?: string; node_modulesDir?: string } = {}
-): Promise<CreateLinterOptions> => {
-    const descriptor = await loadTextlintrc({
-        configFilePath: options.configFilePath,
-        node_modulesDir: options.node_modulesDir
-    });
+// Define MCP server options type as specified in the issue
+export type McpServerOptions = {
+    configFilePath?: string; // Config file path
+    node_modulesDir?: string; // Custom node_modules directory
+    ignoreFilePath?: string; // .textlintignore file path
+    quiet?: boolean; // Report errors only
+    cwd?: string; // Current working directory
+    descriptor?: TextlintKernelDescriptor; // Direct configuration
+};
+
+const makeLinterOptions = async (options: McpServerOptions = {}): Promise<CreateLinterOptions> => {
+    // If descriptor is directly provided, use it; otherwise load from config
+    const descriptor =
+        options.descriptor ||
+        (await loadTextlintrc({
+            configFilePath: options.configFilePath,
+            node_modulesDir: options.node_modulesDir
+        }));
+
     return {
-        descriptor
+        descriptor,
+        ignoreFilePath: options.ignoreFilePath,
+        quiet: options.quiet,
+        cwd: options.cwd
     };
 };
 
@@ -72,9 +88,7 @@ const validateInputAndReturnError = (value: string, fieldName: string, errorType
     return null;
 };
 
-export const setupServer = async (
-    options: { configFilePath?: string; node_modulesDir?: string } = {}
-): Promise<McpServer> => {
+export const setupServer = async (options: McpServerOptions = {}): Promise<McpServer> => {
     const { readPackageUpSync } = await import("read-package-up");
     const version = readPackageUpSync({ cwd: __dirname })?.packageJson.version ?? "unknown";
     const server = new McpServer({
@@ -277,8 +291,8 @@ export const setupServer = async (
     return server;
 };
 
-export const connectStdioMcpServer = async () => {
-    const server = await setupServer({});
+export const connectStdioMcpServer = async (options: McpServerOptions = {}) => {
+    const server = await setupServer(options);
     const transport = new StdioServerTransport();
     await server.connect(transport);
     return server;

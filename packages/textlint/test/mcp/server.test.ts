@@ -7,7 +7,7 @@ import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
-import { setupServer } from "../../src/mcp/server.js";
+import { setupServer, connectStdioMcpServer } from "../../src/mcp/server.js";
 
 const validFilePath = path.join(__dirname, "fixtures", "ok.md");
 const stdinFilename = `textlint.txt`;
@@ -638,6 +638,93 @@ describe("MCP Server", () => {
             // Verify timestamp exists and is a string
             assert.ok(timestamp, "Should have timestamp");
             assert.strictEqual(typeof timestamp, "string", "Timestamp should be a string");
+        });
+    });
+
+    // Tests for McpServerOptions support (Issue #1632)
+    describe("McpServerOptions Support", () => {
+        it("should accept McpServerOptions with configFilePath", async () => {
+            const customConfigPath = path.join(__dirname, "fixtures", ".textlintrc.json");
+            const server = await setupServer({ configFilePath: customConfigPath });
+
+            assert.ok(server, "Server should be created with custom config path");
+
+            // Clean up
+            await server.close();
+        });
+
+        it("should accept McpServerOptions with ignoreFilePath", async () => {
+            const ignoreFilePath = ".textlintignore";
+            const server = await setupServer({ ignoreFilePath });
+
+            assert.ok(server, "Server should be created with ignore file path");
+
+            // Clean up
+            await server.close();
+        });
+
+        it("should accept McpServerOptions with quiet flag", async () => {
+            const server = await setupServer({ quiet: true });
+
+            assert.ok(server, "Server should be created with quiet flag");
+
+            // Clean up
+            await server.close();
+        });
+
+        it("should accept McpServerOptions with cwd option", async () => {
+            const cwd = process.cwd();
+            const server = await setupServer({ cwd });
+
+            assert.ok(server, "Server should be created with custom cwd");
+
+            // Clean up
+            await server.close();
+        });
+
+        it("should accept McpServerOptions with node_modulesDir", async () => {
+            const node_modulesDir = path.join(__dirname, "node_modules");
+            const server = await setupServer({ node_modulesDir });
+
+            assert.ok(server, "Server should be created with custom node_modules directory");
+
+            // Clean up
+            await server.close();
+        });
+
+        it("should work with multiple options combined", async () => {
+            const options = {
+                configFilePath: path.join(__dirname, "fixtures", ".textlintrc.json"),
+                quiet: true,
+                cwd: process.cwd(),
+                ignoreFilePath: ".textlintignore"
+            };
+
+            const server = await setupServer(options);
+
+            assert.ok(server, "Server should be created with multiple options");
+
+            // Clean up
+            await server.close();
+        });
+
+        it("connectStdioMcpServer should accept options", async () => {
+            // This test mainly ensures the function accepts the options parameter
+            // We can't fully test stdio connection in unit tests without complex mocking
+            const options = {
+                quiet: true,
+                cwd: process.cwd()
+            };
+
+            // Verify the function signature accepts McpServerOptions
+            // Note: We can't actually await this in tests as it would hang waiting for stdio
+            const serverPromise = connectStdioMcpServer(options);
+
+            // Just check that it returns a promise (doesn't throw immediately)
+            assert.ok(serverPromise instanceof Promise, "connectStdioMcpServer should return a Promise");
+
+            // Clean up: We can't properly close stdio connections in tests,
+            // but this verifies the function accepts the options parameter
         });
     });
 });
