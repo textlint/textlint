@@ -20,6 +20,38 @@ npx textlint --mcp
 
 This starts textlint as an MCP server using stdio transport, allowing AI assistants to interact with textlint's linting and fixing capabilities.
 
+## Using CLI Flags with MCP
+
+Starting with textlint v15.2.0, the `--mcp` flag supports combination with other CLI arguments for enhanced flexibility. You can now pass additional configuration options when starting the MCP server:
+
+```bash
+# Use a specific config file
+npx textlint --mcp --config .textlintrc.dev.json
+
+# Use a custom ignore file
+npx textlint --mcp --ignore-path .textlintignore.dev
+
+# Combine with quiet mode (errors only)
+npx textlint --mcp --quiet
+
+# Use a custom rules directory
+npx textlint --mcp --rules-base-directory ./custom-node-modules
+
+# Combine multiple options
+npx textlint --mcp --config .textlintrc.dev.json --quiet --ignore-path .textlintignore.dev
+```
+
+### Supported CLI Flags with MCP
+
+The following CLI flags can be combined with `--mcp`:
+
+- `--config <path>`: Specify a custom configuration file path
+- `--ignore-path <path>`: Specify a custom `.textlintignore` file path
+- `--quiet`: Report errors only (suppress warnings)
+- `--rules-base-directory <path>`: Set custom node_modules directory for loading rules
+
+These options provide the same functionality as the `McpServerOptions` type and allow for more flexible MCP server configuration without needing to modify your codebase.
+
 ## Setup in Different Editors
 
 ### VS Code with GitHub Copilot
@@ -33,6 +65,20 @@ To configure textlint MCP server in VS Code, create a `.vscode/mcp.json` file in
             "type": "stdio",
             "command": "npx",
             "args": ["textlint", "--mcp"]
+        }
+    }
+}
+```
+
+For custom configuration with CLI flags:
+
+```json
+{
+    "servers": {
+        "textlint": {
+            "type": "stdio",
+            "command": "npx",
+            "args": ["textlint", "--mcp", "--config", ".textlintrc.dev.json", "--quiet"]
         }
     }
 }
@@ -63,6 +109,20 @@ Create a `.cursor/mcp.json` file in your project directory:
 }
 ```
 
+For custom configuration with CLI flags:
+
+```json
+{
+    "mcpServers": {
+        "textlint": {
+            "command": "npx",
+            "args": ["textlint", "--mcp", "--config", ".textlintrc.dev.json", "--quiet"],
+            "env": {}
+        }
+    }
+}
+```
+
 For global configuration, create `~/.cursor/mcp.json` in your home directory with the same configuration.
 
 ### Windsurf
@@ -78,6 +138,20 @@ For global configuration, create `~/.cursor/mcp.json` in your home directory wit
         "textlint": {
             "command": "npx",
             "args": ["textlint", "--mcp"],
+            "env": {}
+        }
+    }
+}
+```
+
+For custom configuration with CLI flags:
+
+```json
+{
+    "mcpServers": {
+        "textlint": {
+            "command": "npx",
+            "args": ["textlint", "--mcp", "--config", ".textlintrc.dev.json", "--quiet"],
             "env": {}
         }
     }
