@@ -84,6 +84,7 @@ export const cli = {
                 node_modulesDir: currentOptions.rulesBaseDirectory,
                 ignoreFilePath: currentOptions.ignorePath,
                 quiet: currentOptions.quiet,
+                debug: currentOptions.debug,
                 cwd: process.cwd()
             };
 
