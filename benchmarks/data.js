@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1751765310531,
+  "lastUpdate": 1751765506847,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -70350,6 +70350,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6012251128200001,
             "unit": "seconds",
             "range": "± 0.01533503699999994"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "cf6f57f39fd32b2253749b5f10236aefd926a14b",
+          "message": "refactor(mcp): move debug instance to module scope for DRY\n\n- Move mcpDebug declaration to module scope\n- Remove duplicate debug() calls in setupServer and connectStdioMcpServer\n- Improves code maintainability by avoiding duplication\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-06T10:29:38+09:00",
+          "tree_id": "b72d63d00c1884a50f8166c97266fbc3cde9bb34",
+          "url": "https://github.com/textlint/textlint/commit/cf6f57f39fd32b2253749b5f10236aefd926a14b"
+        },
+        "date": 1751765502266,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23307174306,
+            "unit": "seconds",
+            "range": "± 0.13415141300000005"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.74469799126,
+            "unit": "seconds",
+            "range": "± 0.02912841300000002"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60438680906,
+            "unit": "seconds",
+            "range": "± 0.014410173999999998"
           }
         ]
       }
