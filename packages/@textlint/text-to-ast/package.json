@@ -1,6 +1,6 @@
 {
   "name": "@textlint/text-to-ast",
-  "version": "15.1.1",
+  "version": "15.2.0",
   "description": "Parse plain text to AST with location info.",
   "keywords": [
     "ast",
