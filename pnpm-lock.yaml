@@ -205,7 +205,7 @@ importers:
   packages/@textlint/ast-node-types:
     devDependencies:
       '@types/node':
-        specifier: ^22.15.34
+        specifier: ^22.15.35
         version: 22.16.0
       rimraf:
         specifier: ^6.0.1
@@ -230,7 +230,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       rimraf:
         specifier: ^6.0.1
@@ -252,7 +252,7 @@ importers:
         specifier: workspace:*
         version: link:../markdown-to-ast
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       rimraf:
         specifier: ^6.0.1
@@ -292,7 +292,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       prettier:
         specifier: ^2.3.0
@@ -310,7 +310,7 @@ importers:
   packages/@textlint/feature-flag:
     devDependencies:
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       rimraf:
         specifier: ^6.0.1
@@ -359,7 +359,7 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       rimraf:
         specifier: ^6.0.1
@@ -411,7 +411,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       rimraf:
         specifier: ^6.0.1
@@ -448,7 +448,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       prettier:
         specifier: ^2.7.1
@@ -509,10 +509,10 @@ importers:
         specifier: ^3.12.10
         version: 3.12.10
       '@types/lodash':
-        specifier: ^4.17.19
+        specifier: ^4.17.20
         version: 4.17.20
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       chai:
         specifier: ^4.5.0
@@ -567,7 +567,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       '@types/unist':
         specifier: ^3.0.3
@@ -588,7 +588,7 @@ importers:
   packages/@textlint/module-interop:
     devDependencies:
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       prettier:
         specifier: ^2.7.1
@@ -609,7 +609,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^20.19.2
+        specifier: ^20.19.4
         version: 20.19.4
       prettier:
         specifier: ^2.8.1
@@ -634,7 +634,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       prettier:
         specifier: ^2.7.1
@@ -659,7 +659,7 @@ importers:
         specifier: workspace:*
         version: link:../ast-tester
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       eol-converter-cli:
         specifier: ^1.1.0
@@ -687,7 +687,7 @@ importers:
         specifier: workspace:*
         version: link:../kernel
       '@types/node':
-        specifier: ^22.15.34
+        specifier: ^22.15.35
         version: 22.16.0
       '@types/react':
         specifier: ^18.3.23
@@ -718,7 +718,7 @@ importers:
         specifier: workspace:*
         version: link:../kernel
       '@types/node':
-        specifier: ^20.19.2
+        specifier: ^20.19.4
         version: 20.19.4
       '@types/react':
         specifier: ^18.3.23
@@ -746,7 +746,7 @@ importers:
         specifier: workspace:*
         version: link:../markdown-to-ast
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       prettier:
         specifier: ^2.7.1
@@ -767,7 +767,7 @@ importers:
   packages/@textlint/utils:
     devDependencies:
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       prettier:
         specifier: ^2.7.1
@@ -785,8 +785,8 @@ importers:
   packages/textlint:
     dependencies:
       '@modelcontextprotocol/sdk':
-        specifier: ^1.13.2
-        version: 1.13.2
+        specifier: ^1.13.3
+        version: 1.15.0
       '@textlint/ast-node-types':
         specifier: workspace:*
         version: link:../@textlint/ast-node-types
@@ -876,11 +876,11 @@ importers:
         specifier: ^8.1.0
         version: 8.1.0
       '@types/node':
-        specifier: ^20.19.2
+        specifier: ^20.19.4
         version: 20.19.4
       '@types/shelljs':
-        specifier: ^0.8.16
-        version: 0.8.16
+        specifier: ^0.8.17
+        version: 0.8.17
       clone:
         specifier: ^2.1.2
         version: 2.1.2
@@ -1027,7 +1027,7 @@ importers:
         specifier: ^9.1.1
         version: 9.1.1
       '@types/node':
-        specifier: ^18.19.113
+        specifier: ^18.19.115
         version: 18.19.115
       analyze-desumasu-dearu:
         specifier: ^4.0.1
@@ -2589,8 +2589,8 @@ packages:
       '@types/react': '>=16'
       react: '>=16'
 
-  '@modelcontextprotocol/sdk@1.13.2':
-    resolution: {integrity: sha512-Vx7qOcmoKkR3qhaQ9qf3GxiVKCEu+zfJddHv6x3dY/9P6+uIwJnmuAur5aB+4FDXf41rRrDnOEGkviX5oYZ67w==}
+  '@modelcontextprotocol/sdk@1.15.0':
+    resolution: {integrity: sha512-67hnl/ROKdb03Vuu0YOr+baKTvf1/5YBHBm9KnZdjdAh8hjt4FRCPD5ucwxGB237sBpzlqQsLy1PFu7z/ekZ9Q==}
     engines: {node: '>=18'}
 
   '@monorepo-utils/package-utils@2.11.0':
@@ -3207,9 +3207,6 @@ packages:
   '@types/express@4.17.23':
     resolution: {integrity: sha512-Crp6WY9aTYP3qPi2wGDo9iUe/rceX01UMhnF1jmwDcKCFM6cx7YhGP/Mpr3y9AASpfHixIG0E6azCcL5OcDHsQ==}
 
-  '@types/glob@7.2.0':
-    resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
-
   '@types/glob@8.1.0':
     resolution: {integrity: sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w==}
 
@@ -3342,8 +3339,8 @@ packages:
   '@types/serve-static@1.15.8':
     resolution: {integrity: sha512-roei0UY3LhpOJvjbIP6ZZFngyLKl5dskOtDhxY5THRSpO+ZI+nzJ+m5yUMzGrp89YRa7lvknKkMYjqQFGwA7Sg==}
 
-  '@types/shelljs@0.8.16':
-    resolution: {integrity: sha512-40SUXiH0tZfAg/oKkkGF1kdHPAmE4slv2xAmbfa8VtE6ztHYwdpW2phlzHTVdJh5JOGqA3Cx1Hzp7kxFalKHYA==}
+  '@types/shelljs@0.8.17':
+    resolution: {integrity: sha512-IDksKYmQA2W9MkQjiyptbMmcQx+8+Ol6b7h6dPU5S05JyiQDSb/nZKnrMrZqGwgV6VkVdl6/SPCKPDlMRvqECg==}
 
   '@types/sockjs@0.3.36':
     resolution: {integrity: sha512-MK9V6NzAS1+Ud7JV9lJLFqW85VbC9dq3LmwZCuBe4wBDgKC0Kj/jd8Xl+nSviU+Qc3+m7umHHyHg//2KSa0a0Q==}
@@ -12252,13 +12249,14 @@ snapshots:
       '@types/react': 19.1.8
       react: 19.1.0
 
-  '@modelcontextprotocol/sdk@1.13.2':
+  '@modelcontextprotocol/sdk@1.15.0':
     dependencies:
       ajv: 6.12.6
       content-type: 1.0.5
       cors: 2.8.5
       cross-spawn: 7.0.6
       eventsource: 3.0.7
+      eventsource-parser: 3.0.2
       express: 5.1.0
       express-rate-limit: 7.5.1(express@5.1.0)
       pkce-challenge: 5.0.0
@@ -13047,11 +13045,6 @@ snapshots:
       '@types/qs': 6.14.0
       '@types/serve-static': 1.15.8
 
-  '@types/glob@7.2.0':
-    dependencies:
-      '@types/minimatch': 5.1.2
-      '@types/node': 18.19.115
-
   '@types/glob@8.1.0':
     dependencies:
       '@types/minimatch': 5.1.2
@@ -13192,10 +13185,10 @@ snapshots:
       '@types/node': 18.19.115
       '@types/send': 0.17.5
 
-  '@types/shelljs@0.8.16':
+  '@types/shelljs@0.8.17':
     dependencies:
-      '@types/glob': 7.2.0
       '@types/node': 18.19.115
+      glob: 11.0.3
 
   '@types/sockjs@0.3.36':
     dependencies:
@@ -20298,7 +20291,7 @@ snapshots:
 
   textlint@15.2.0:
     dependencies:
-      '@modelcontextprotocol/sdk': 1.13.2
+      '@modelcontextprotocol/sdk': 1.15.0
       '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       '@textlint/ast-traverse': 15.2.0
       '@textlint/config-loader': 15.2.0
