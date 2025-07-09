@@ -44,7 +44,7 @@
     "tabWidth": 4
   },
   "devDependencies": {
-    "@types/node": "^18.19.113",
+    "@types/node": "^18.19.115",
     "prettier": "^2.7.1",
     "rimraf": "^6.0.1",
     "typescript": "~5.8.3",
