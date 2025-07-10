@@ -32,7 +32,7 @@
     ],
     "scripts": {
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
-        "test": "mocha"
+        "test": "node --test --experimental-strip-types test/**/*.{js,ts}"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,css}": [
@@ -54,7 +54,6 @@
         "babel-plugin-static-fs": "^3.0.0",
         "confirmer": "^1.1.2",
         "cross-spawn": "^7.0.6",
-        "mocha": "^10.8.2",
         "pkg-to-readme": "^3.0.1",
         "textlint-tester": "workspace:*"
     },
@@ -76,6 +75,6 @@
         }
     },
     "engines": {
-        "node": ">=20.0.0"
+        "node": ">=22.6.0"
     }
 }
