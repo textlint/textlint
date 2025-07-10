@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1752116001860,
+  "lastUpdate": 1752116252854,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -71316,6 +71316,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5989394285800002,
             "unit": "seconds",
             "range": "± 0.01115653900000002"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "234605cd07e7e2e6bdc64d030955f172edb098e3",
+          "message": "fix(deps): update babel monorepo to ^7.28.0 (minor) (#1645)\n\nThis PR contains the following updates:\n\n| Package | Change | Age | Confidence |\n|---|---|---|---|\n| [@babel/cli](https://babel.dev/docs/en/next/babel-cli)\n([source](https://redirect.github.com/babel/babel/tree/HEAD/packages/babel-cli))\n| [`^7.27.2` ->\n`^7.28.0`](https://renovatebot.com/diffs/npm/@babel%2fcli/7.27.2/7.28.0)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@babel%2fcli/7.28.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@babel%2fcli/7.27.2/7.28.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n| [@babel/preset-env](https://babel.dev/docs/en/next/babel-preset-env)\n([source](https://redirect.github.com/babel/babel/tree/HEAD/packages/babel-preset-env))\n| [`^7.27.2` ->\n`^7.28.0`](https://renovatebot.com/diffs/npm/@babel%2fpreset-env/7.27.2/7.28.0)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@babel%2fpreset-env/7.28.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@babel%2fpreset-env/7.27.2/7.28.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>babel/babel (@&#8203;babel/cli)</summary>\n\n###\n[`v7.28.0`](https://redirect.github.com/babel/babel/blob/HEAD/CHANGELOG.md#v7280-2025-07-02)\n\n[Compare\nSource](https://redirect.github.com/babel/babel/compare/v7.27.2...v7.28.0)\n\n##### :rocket: New Feature\n\n- `babel-node`\n- [#&#8203;17147](https://redirect.github.com/babel/babel/pull/17147)\nSupport top level await in node repl\n([@&#8203;liuxingbaoyu](https://redirect.github.com/liuxingbaoyu))\n- `babel-types`\n- [#&#8203;17258](https://redirect.github.com/babel/babel/pull/17258)\nfeat(matchesPattern): support super/private/meta\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n- `babel-compat-data`, `babel-preset-env`\n- [#&#8203;17355](https://redirect.github.com/babel/babel/pull/17355)\nAdd explicit resource management to preset-env\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n- `babel-core`, `babel-parser`\n- [#&#8203;17390](https://redirect.github.com/babel/babel/pull/17390)\nSupport `sourceType: \"commonjs\"`\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n- `babel-generator`, `babel-parser`\n- [#&#8203;17346](https://redirect.github.com/babel/babel/pull/17346)\nMaterialize `explicitResourceManagement` parser plugin\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n- `babel-plugin-proposal-destructuring-private`,\n`babel-plugin-proposal-do-expressions`,\n`babel-plugin-transform-object-rest-spread`, `babel-traverse`,\n`babel-types`\n- [#&#8203;17391](https://redirect.github.com/babel/babel/pull/17391)\nLVal coverage updates (Part 2)\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n- `babel-parser`, `babel-traverse`, `babel-types`\n- [#&#8203;17378](https://redirect.github.com/babel/babel/pull/17378)\nAccept bigints in `t.bigIntLiteral` factory\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n- `babel-generator`, `babel-plugin-proposal-destructuring-private`,\n`babel-plugin-proposal-discard-binding`,\n`babel-plugin-transform-destructuring`,\n`babel-plugin-transform-explicit-resource-management`,\n`babel-plugin-transform-react-display-name`, `babel-types`\n- [#&#8203;17277](https://redirect.github.com/babel/babel/pull/17277)\nTransform discard binding\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n- `babel-generator`, `babel-parser`,\n`babel-plugin-proposal-destructuring-private`,\n`babel-plugin-transform-block-scoping`,\n`babel-plugin-transform-object-rest-spread`,\n`babel-plugin-transform-typescript`, `babel-traverse`, `babel-types`\n- [#&#8203;17163](https://redirect.github.com/babel/babel/pull/17163)\nParse discard binding\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n\n##### :bug: Bug Fix\n\n- `babel-helper-globals`, `babel-plugin-transform-classes`,\n`babel-traverse`\n- [#&#8203;17297](https://redirect.github.com/babel/babel/pull/17297)\nCreate babel-helper-globals\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n- `babel-types`\n- [#&#8203;17009](https://redirect.github.com/babel/babel/pull/17009)\nfeature: TSTypeOperator: keyof\n([#&#8203;16799](https://redirect.github.com/babel/babel/issues/16799))\n([@&#8203;coderaiser](https://redirect.github.com/coderaiser))\n\n##### :house: Internal\n\n- `babel-compat-data`, `babel-plugin-proposal-decorators`,\n`babel-plugin-transform-async-generator-functions`,\n`babel-plugin-transform-json-modules`,\n`babel-plugin-transform-regenerator`, `babel-plugin-transform-runtime`,\n`babel-preset-env`, `babel-runtime-corejs3`\n- [#&#8203;17403](https://redirect.github.com/babel/babel/pull/17403)\nUpdate `babel-polyfill` packages\n([@&#8203;nicolo-ribaudo](https://redirect.github.com/nicolo-ribaudo))\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about these\nupdates again.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MS4yMy4yIiwidXBkYXRlZEluVmVyIjoiNDEuMjMuMiIsInRhcmdldEJyYW5jaCI6Im1hc3RlciIsImxhYmVscyI6WyJkZXBlbmRlbmNpZXMiXX0=-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-07-10T02:54:52Z",
+          "tree_id": "3fe9b788604eed7e27f538cf6d5e63dfbc3b4a86",
+          "url": "https://github.com/textlint/textlint/commit/234605cd07e7e2e6bdc64d030955f172edb098e3"
+        },
+        "date": 1752116248231,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24372598031999998,
+            "unit": "seconds",
+            "range": "± 0.15451612199999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7928729193200001,
+            "unit": "seconds",
+            "range": "± 0.04147809899999988"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6172095259200001,
+            "unit": "seconds",
+            "range": "± 0.017123270999999995"
           }
         ]
       }
