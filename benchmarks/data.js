@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1752275988172,
+  "lastUpdate": 1752280350787,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -71946,6 +71946,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6016802222400002,
             "unit": "seconds",
             "range": "± 0.0074223770000000355"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "a41f7f0803e3de2c81f5e58034e1cb686532b354",
+          "message": "docs: add Claude Code setup instructions to MCP documentation\n\n- Add Claude Code to the list of supported AI-powered code editors\n- Document `claude mcp add` CLI command for easy setup\n- Include manual configuration method via .claude/mcp.json\n- Remove global configuration option as requested\n- Update Claude Code MCP documentation link\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-12T09:29:29+09:00",
+          "tree_id": "07a4cd65a0480f75ee02b2c1d5ab750f6587dd0e",
+          "url": "https://github.com/textlint/textlint/commit/a41f7f0803e3de2c81f5e58034e1cb686532b354"
+        },
+        "date": 1752280346838,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2118491408,
+            "unit": "seconds",
+            "range": "± 0.045288211999999994"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7316716617999997,
+            "unit": "seconds",
+            "range": "± 0.011336454000000051"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6054245850000001,
+            "unit": "seconds",
+            "range": "± 0.024255691000000024"
           }
         ]
       }
