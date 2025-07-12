@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1752280350787,
+  "lastUpdate": 1752280630735,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -71988,6 +71988,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6054245850000001,
             "unit": "seconds",
             "range": "± 0.024255691000000024"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "091f3ccb4135a806ad997d73549728b3e84efd90",
+          "message": "docs: add Claude Code setup instructions to MCP documentation\n\n- Add Claude Code to the list of supported AI-powered code editors\n- Document `claude mcp add` CLI command for easy setup\n- Include manual configuration method via .claude/mcp.json\n- Remove global configuration option as requested\n- Update Claude Code MCP documentation link\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-12T09:34:00+09:00",
+          "tree_id": "6419d111f456c47cbf4cc5e5497a7eadbeac7538",
+          "url": "https://github.com/textlint/textlint/commit/091f3ccb4135a806ad997d73549728b3e84efd90"
+        },
+        "date": 1752280626697,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23707415967999998,
+            "unit": "seconds",
+            "range": "± 0.149069281"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.77983622468,
+            "unit": "seconds",
+            "range": "± 0.03606739500000011"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6101794096800001,
+            "unit": "seconds",
+            "range": "± 0.020976618000000058"
           }
         ]
       }
