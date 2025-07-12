@@ -5,7 +5,7 @@
 ## Prerequisites
 
 - textlint v14.8.0 or later
-- AI-powered code editor with MCP support (VS Code with Copilot Chat, Cursor, or Windsurf)
+- AI-powered code editor with MCP support (VS Code with Copilot Chat, Cursor, Windsurf, or Claude Code)
 - **A configured textlint project** - The MCP server requires an existing textlint configuration since textlint has no default rules
 
 ## Quick Start
@@ -160,6 +160,56 @@ For custom configuration with CLI flags:
 
 5. Press the refresh button to update the available MCP servers
 
+### Claude Code
+
+Claude Code automatically discovers MCP servers registered in various configuration locations.
+
+#### Using Claude Code CLI
+
+The easiest way to add textlint MCP server is using the `mcp add` command:
+
+```bash
+# Add textlint MCP server to your project
+cd /path/to/your/project
+claude mcp add textlint -- npx textlint --mcp
+```
+
+For custom configuration with CLI flags:
+
+```bash
+claude mcp add textlint -- npx textlint --mcp --config .textlintrc.dev.json --quiet
+```
+
+#### Manual Configuration
+
+Alternatively, create a `.claude/mcp.json` file in your project directory:
+
+```json
+{
+    "servers": {
+        "textlint": {
+            "command": "npx",
+            "args": ["textlint", "--mcp"],
+            "env": {}
+        }
+    }
+}
+```
+
+For custom configuration with CLI flags:
+
+```json
+{
+    "servers": {
+        "textlint": {
+            "command": "npx",
+            "args": ["textlint", "--mcp", "--config", ".textlintrc.dev.json", "--quiet"],
+            "env": {}
+        }
+    }
+}
+```
+
 ## Available Tools
 
 The textlint MCP server provides four main tools:
@@ -265,6 +315,7 @@ Common issues:
 - [textlint Documentation](https://textlint.github.io/)
 - [Model Context Protocol Documentation](https://modelcontextprotocol.io/introduction)
 - [VS Code MCP Servers Documentation](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
+- [Claude Code MCP Documentation](https://docs.anthropic.com/en/docs/claude-code/mcp) - Claude Code MCP integration guide
 - [GitHub Pull Request #1522](https://github.com/textlint/textlint/pull/1522) - Original MCP implementation
 
 ---
