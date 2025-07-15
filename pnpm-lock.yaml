@@ -860,7 +860,7 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
       zod:
-        specifier: ^3.25.75
+        specifier: ^3.25.76
         version: 3.25.76
     devDependencies:
       '@textlint/legacy-textlint-core':
