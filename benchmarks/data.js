@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1752783397835,
+  "lastUpdate": 1752794358151,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -72618,6 +72618,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59656636964,
             "unit": "seconds",
             "range": "± 0.013583338999999972"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7cd3e4353ba42d25df1ad6d5fb9b3d12417e80f7",
+          "message": "fix(deps): update patch updates (patch) (#1658)\n\nThis PR contains the following updates:\n\n| Package | Change | Age | Confidence |\n|---|---|---|---|\n| [@modelcontextprotocol/sdk](https://modelcontextprotocol.io)\n([source](https://redirect.github.com/modelcontextprotocol/typescript-sdk))\n| [`^1.15.0` ->\n`^1.15.1`](https://renovatebot.com/diffs/npm/@modelcontextprotocol%2fsdk/1.15.0/1.15.1)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@modelcontextprotocol%2fsdk/1.15.1?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@modelcontextprotocol%2fsdk/1.15.0/1.15.1?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n|\n[@types/node](https://redirect.github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/node)\n([source](https://redirect.github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node))\n| [`^20.19.6` ->\n`^20.19.7`](https://renovatebot.com/diffs/npm/@types%2fnode/20.19.8/20.19.7)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@types%2fnode/20.19.7?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@types%2fnode/20.19.8/20.19.7?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n|\n[@types/node](https://redirect.github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/node)\n([source](https://redirect.github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node))\n| [`^18.19.117` ->\n`^18.19.118`](https://renovatebot.com/diffs/npm/@types%2fnode/18.19.119/18.19.118)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@types%2fnode/18.19.118?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@types%2fnode/18.19.119/18.19.118?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n|\n[@types/node](https://redirect.github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/node)\n([source](https://redirect.github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node))\n| [`^22.16.2` ->\n`^22.16.3`](https://renovatebot.com/diffs/npm/@types%2fnode/22.16.4/22.16.3)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@types%2fnode/22.16.3?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@types%2fnode/22.16.4/22.16.3?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>modelcontextprotocol/typescript-sdk\n(@&#8203;modelcontextprotocol/sdk)</summary>\n\n###\n[`v1.15.1`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/releases/tag/1.15.1)\n\n[Compare\nSource](https://redirect.github.com/modelcontextprotocol/typescript-sdk/compare/1.15.0...1.15.1)\n\n#### What's Changed\n\n- fix(client): Some mcp server need default\nenv([#&#8203;393](https://redirect.github.com/modelcontextprotocol/typescript-sdk/issues/393),\n[#&#8203;196](https://redirect.github.com/modelcontextprotocol/typescript-sdk/issues/196))\nby [@&#8203;sunrabbit123](https://redirect.github.com/sunrabbit123) in\n[https://github.com/modelcontextprotocol/typescript-sdk/pull/394](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/394)\n- feat: Add CORS configuration for browser-based MCP clients by\n[@&#8203;jerome3o-anthropic](https://redirect.github.com/jerome3o-anthropic)\nin\n[https://github.com/modelcontextprotocol/typescript-sdk/pull/713](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/713)\n- Add onsessionclosed hook to StreamableHTTPServerTransport by\n[@&#8203;jerome3o-anthropic](https://redirect.github.com/jerome3o-anthropic)\nin\n[https://github.com/modelcontextprotocol/typescript-sdk/pull/743](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/743)\n- add custom headers on initial \\_startOrAuth call by\n[@&#8203;anthonjn](https://redirect.github.com/anthonjn) in\n[https://github.com/modelcontextprotocol/typescript-sdk/pull/318](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/318)\n- Improve stdio test Windows compatibility and refactor command logic by\n[@&#8203;HoberMin](https://redirect.github.com/HoberMin) in\n[https://github.com/modelcontextprotocol/typescript-sdk/pull/284](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/284)\n- Add missing app.listen error handling to server examples by\n[@&#8203;ochafik](https://redirect.github.com/ochafik) in\n[https://github.com/modelcontextprotocol/typescript-sdk/pull/749](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/749)\n- fix(server): validate expiresAt token value for non existence by\n[@&#8203;christian-bromann](https://redirect.github.com/christian-bromann)\nin\n[https://github.com/modelcontextprotocol/typescript-sdk/pull/446](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/446)\n- \\[auth]: support oauth client\\_secret\\_basic / none / custom methods\nby [@&#8203;jaredhanson](https://redirect.github.com/jaredhanson),\n[@&#8203;SightStudio](https://redirect.github.com/SightStudio),\n[@&#8203;ochafik](https://redirect.github.com/ochafik) in\n[https://github.com/modelcontextprotocol/typescript-sdk/pull/720](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/720)\n- feat: support async callbacks for onsessioninitialized and\nonsessionclosed by\n[@&#8203;jerome3o-anthropic](https://redirect.github.com/jerome3o-anthropic)\nin\n[https://github.com/modelcontextprotocol/typescript-sdk/pull/751](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/751)\n- Fix oauth well-known paths to retain path and query by\n[@&#8203;ihrpr](https://redirect.github.com/ihrpr) in\n[https://github.com/modelcontextprotocol/typescript-sdk/pull/756](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/756)\n- auth: fetch AS metadata in well-known subpath from serverUrl even when\nPRM returns external AS by\n[@&#8203;ochafik](https://redirect.github.com/ochafik) in\n[https://github.com/modelcontextprotocol/typescript-sdk/pull/752](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/752)\n\n#### New Contributors\n\n- [@&#8203;sunrabbit123](https://redirect.github.com/sunrabbit123) made\ntheir first contribution in\n[https://github.com/modelcontextprotocol/typescript-sdk/pull/394](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/394)\n- [@&#8203;anthonjn](https://redirect.github.com/anthonjn) made their\nfirst contribution in\n[https://github.com/modelcontextprotocol/typescript-sdk/pull/318](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/318)\n- [@&#8203;HoberMin](https://redirect.github.com/HoberMin) made their\nfirst contribution in\n[https://github.com/modelcontextprotocol/typescript-sdk/pull/284](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/284)\n\n**Full Changelog**:\nhttps://github.com/modelcontextprotocol/typescript-sdk/compare/1.15.0...1.15.1\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n👻 **Immortal**: This PR will be recreated if closed unmerged. Get\n[config\nhelp](https://redirect.github.com/renovatebot/renovate/discussions) if\nthat's undesired.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MS4yMy4yIiwidXBkYXRlZEluVmVyIjoiNDEuMjMuMiIsInRhcmdldEJyYW5jaCI6Im1hc3RlciIsImxhYmVscyI6WyJkZXBlbmRlbmNpZXMiXX0=-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-07-17T23:17:21Z",
+          "tree_id": "acd24935cad429e08b5ecd107facedfc0890da99",
+          "url": "https://github.com/textlint/textlint/commit/7cd3e4353ba42d25df1ad6d5fb9b3d12417e80f7"
+        },
+        "date": 1752794353823,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21760891718000003,
+            "unit": "seconds",
+            "range": "± 0.03979295899999999"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7769356469799997,
+            "unit": "seconds",
+            "range": "± 0.029913952000000243"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6156591705800001,
+            "unit": "seconds",
+            "range": "± 0.01434170400000001"
           }
         ]
       }
