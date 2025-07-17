@@ -205,7 +205,7 @@ importers:
   packages/@textlint/ast-node-types:
     devDependencies:
       '@types/node':
-        specifier: ^22.16.2
+        specifier: ^22.16.3
         version: 22.16.4
       rimraf:
         specifier: ^6.0.1
@@ -230,7 +230,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       rimraf:
         specifier: ^6.0.1
@@ -252,7 +252,7 @@ importers:
         specifier: workspace:*
         version: link:../markdown-to-ast
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       rimraf:
         specifier: ^6.0.1
@@ -292,7 +292,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       prettier:
         specifier: ^2.3.0
@@ -310,7 +310,7 @@ importers:
   packages/@textlint/feature-flag:
     devDependencies:
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       rimraf:
         specifier: ^6.0.1
@@ -359,7 +359,7 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       rimraf:
         specifier: ^6.0.1
@@ -411,7 +411,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       rimraf:
         specifier: ^6.0.1
@@ -448,7 +448,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       prettier:
         specifier: ^2.7.1
@@ -512,7 +512,7 @@ importers:
         specifier: ^4.17.20
         version: 4.17.20
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       chai:
         specifier: ^4.5.0
@@ -567,7 +567,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       '@types/unist':
         specifier: ^3.0.3
@@ -588,7 +588,7 @@ importers:
   packages/@textlint/module-interop:
     devDependencies:
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       prettier:
         specifier: ^2.7.1
@@ -609,7 +609,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^20.19.6
+        specifier: ^20.19.7
         version: 20.19.8
       prettier:
         specifier: ^2.8.1
@@ -634,7 +634,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       prettier:
         specifier: ^2.7.1
@@ -659,7 +659,7 @@ importers:
         specifier: workspace:*
         version: link:../ast-tester
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       eol-converter-cli:
         specifier: ^1.1.0
@@ -687,7 +687,7 @@ importers:
         specifier: workspace:*
         version: link:../kernel
       '@types/node':
-        specifier: ^22.16.2
+        specifier: ^22.16.3
         version: 22.16.4
       '@types/react':
         specifier: ^18.3.23
@@ -718,7 +718,7 @@ importers:
         specifier: workspace:*
         version: link:../kernel
       '@types/node':
-        specifier: ^20.19.6
+        specifier: ^20.19.7
         version: 20.19.8
       '@types/react':
         specifier: ^18.3.23
@@ -746,7 +746,7 @@ importers:
         specifier: workspace:*
         version: link:../markdown-to-ast
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       prettier:
         specifier: ^2.7.1
@@ -767,7 +767,7 @@ importers:
   packages/@textlint/utils:
     devDependencies:
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       prettier:
         specifier: ^2.7.1
@@ -785,8 +785,8 @@ importers:
   packages/textlint:
     dependencies:
       '@modelcontextprotocol/sdk':
-        specifier: ^1.15.0
-        version: 1.15.0
+        specifier: ^1.15.1
+        version: 1.16.0
       '@textlint/ast-node-types':
         specifier: workspace:*
         version: link:../@textlint/ast-node-types
@@ -876,7 +876,7 @@ importers:
         specifier: ^8.1.0
         version: 8.1.0
       '@types/node':
-        specifier: ^20.19.6
+        specifier: ^20.19.7
         version: 20.19.8
       '@types/shelljs':
         specifier: ^0.8.17
@@ -1027,7 +1027,7 @@ importers:
         specifier: ^9.1.1
         version: 9.1.1
       '@types/node':
-        specifier: ^18.19.117
+        specifier: ^18.19.118
         version: 18.19.119
       analyze-desumasu-dearu:
         specifier: ^4.0.1
@@ -2585,8 +2585,8 @@ packages:
       '@types/react': '>=16'
       react: '>=16'
 
-  '@modelcontextprotocol/sdk@1.15.0':
-    resolution: {integrity: sha512-67hnl/ROKdb03Vuu0YOr+baKTvf1/5YBHBm9KnZdjdAh8hjt4FRCPD5ucwxGB237sBpzlqQsLy1PFu7z/ekZ9Q==}
+  '@modelcontextprotocol/sdk@1.16.0':
+    resolution: {integrity: sha512-8ofX7gkZcLj9H9rSd50mCgm3SSF8C7XoclxJuLoV0Cz3rEQ1tv9MZRYYvJtm9n1BiEQQMzSmE/w2AEkNacLYfg==}
     engines: {node: '>=18'}
 
   '@monorepo-utils/package-utils@2.11.0':
@@ -12251,7 +12251,7 @@ snapshots:
       '@types/react': 19.1.8
       react: 19.1.0
 
-  '@modelcontextprotocol/sdk@1.15.0':
+  '@modelcontextprotocol/sdk@1.16.0':
     dependencies:
       ajv: 6.12.6
       content-type: 1.0.5
@@ -20315,7 +20315,7 @@ snapshots:
 
   textlint@15.2.0:
     dependencies:
-      '@modelcontextprotocol/sdk': 1.15.0
+      '@modelcontextprotocol/sdk': 1.16.0
       '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       '@textlint/ast-traverse': 15.2.0
       '@textlint/config-loader': 15.2.0
