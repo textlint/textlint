@@ -10,7 +10,7 @@ import { createLinter, TextlintFileSearchError } from "./createLinter.js";
 import { SeverityLevel } from "./shared/type/SeverityLevel.js";
 import { printResults, showEmptyRuleWarning } from "./cli-util.js";
 import { loadFixerFormatter, loadLinterFormatter } from "./formatter.js";
-import { connectStdioMcpServer } from "./mcp/server.js";
+import { connectStdioMcpServer, type McpServerOptions } from "./mcp/server.js";
 
 const debug = debug0("textlint:cli");
 type StdinExecuteOption = {
@@ -78,7 +78,17 @@ export const cli = {
             Logger.log(JSON.stringify(descriptor, null, 4));
             return Promise.resolve(0);
         } else if (currentOptions.mcp) {
-            const mcpServer = await connectStdioMcpServer();
+            // Map CLI options to MCP server options
+            const mcpOptions: McpServerOptions = {
+                configFilePath: currentOptions.config,
+                node_modulesDir: currentOptions.rulesBaseDirectory,
+                ignoreFilePath: currentOptions.ignorePath,
+                quiet: currentOptions.quiet,
+                debug: currentOptions.debug,
+                cwd: process.cwd()
+            };
+
+            const mcpServer = await connectStdioMcpServer(mcpOptions);
             process.on("SIGINT", () => {
                 mcpServer.close();
                 process.exitCode = 0;
