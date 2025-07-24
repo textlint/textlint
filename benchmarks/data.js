@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753315444104,
+  "lastUpdate": 1753315716675,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73080,6 +73080,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6079005793200001,
             "unit": "seconds",
             "range": "± 0.003505084000000047"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4f9aa15c043a5efd0ddc9d8ccc23d402f9039ea8",
+          "message": "fix(kernel): add browser compatibility for timing utility (#1663)\n\n## Summary\n- Fix `process is not defined` error when building @textlint/kernel with\nVite\n- Add browser environment detection to timing utility\n- Disable timing functionality in browser environments while preserving\nNode.js compatibility\n\n## Problem\nWhen building @textlint/kernel with Vite for browser environments, it\nthrows `Uncaught ReferenceError: process is not defined` at runtime\nbecause the timing utility uses Node.js-specific `process` object.\n\n## Solution\n- Added browser environment detection using `typeof process ===\n\"undefined\"`\n- Modified timing functions to return original functions unchanged in\nbrowser environments\n- Preserved full timing functionality in Node.js environments\n- Updated TypeScript types for better compatibility\n\n## Test plan\n- [x] Build @textlint/kernel successfully with TypeScript\n- [x] Verify timing functionality still works in Node.js environments\n- [x] Test that browser builds no longer throw process-related errors\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>\nCo-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>",
+          "timestamp": "2025-07-24T00:05:50Z",
+          "tree_id": "76018acdc464f5f749fd8deee54f286fa82ef3af",
+          "url": "https://github.com/textlint/textlint/commit/4f9aa15c043a5efd0ddc9d8ccc23d402f9039ea8"
+        },
+        "date": 1753315712428,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2418602909,
+            "unit": "seconds",
+            "range": "± 0.18061385300000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7420194407,
+            "unit": "seconds",
+            "range": "± 0.01052649200000011"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6026124935,
+            "unit": "seconds",
+            "range": "± 0.01724725599999999"
           }
         ]
       }
