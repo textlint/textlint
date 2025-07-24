@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753315716675,
+  "lastUpdate": 1753359928415,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73122,6 +73122,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6026124935,
             "unit": "seconds",
             "range": "± 0.01724725599999999"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "67a43cde58e7babe58bae3165e1d6c21bec0c14f",
+          "message": "v15.2.1 (#1664)\n\n<!-- Release notes generated using configuration in .github/release.yml\nat master -->\n\n## What's Changed\n### Bug Fixes\n* fix(kernel): add browser compatibility for timing utility by @azu in\nhttps://github.com/textlint/textlint/pull/1663\n### Documentation\n* docs: add Claude Code setup instructions to MCP documentation by @azu\nin https://github.com/textlint/textlint/pull/1652\n### CI\n* chore(deps): update github/codeql-action action to v3.29.2 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1638\n* chore(deps): update rossjrw/pr-preview-action action to v1.6.2 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1648\n### Dependency Updates\n* chore(deps): update dependency lerna to ^8.2.3 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1637\n* chore(deps): update eslint to ^8.35.1 (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1639\n* chore(deps): update dependency globals to ^16.3.0 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1640\n* chore(deps): update dependency @eslint/js to ^9.30.1 by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1641\n* fix(deps): update patch updates (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1642\n* chore(deps): update dependency @types/node to ^22.16.0 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1643\n* fix(deps): update dependency @babel/core to ^7.28.0 by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1644\n* fix(deps): update babel monorepo to ^7.28.0 (minor) by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1645\n* fix(deps): update dependency zod to ^3.25.71 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1646\n* fix(deps): update dependency @modelcontextprotocol/sdk to ^1.15.0 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1649\n* fix(deps): update dependency zod to ^3.25.73 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1650\n* fix(deps): update dependency zod to ^3.25.74 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1651\n* fix(deps): update dependency zod to ^3.25.75 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1653\n* chore(deps): update eslint to ^8.36.0 (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1654\n* fix(deps): update dependency zod to ^3.25.76 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1655\n* chore(deps): update patch updates (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1656\n* chore(deps): update pnpm to v10.13.1 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1657\n* fix(deps): update patch updates (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1658\n* chore(deps): update dependency @eslint/js to ^9.31.0 by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1659\n* chore(deps): update eslint to ^8.37.0 (minor) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1661\n* chore(deps): update patch updates (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1662\n### Other Changes\n* feat(mcp): add debug logging support for MCP server by @azu in\nhttps://github.com/textlint/textlint/pull/1636\n\n\n**Full Changelog**:\nhttps://github.com/textlint/textlint/compare/v15.2.0...v15.2.1\n\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2025-07-24T21:22:50+09:00",
+          "tree_id": "fd470f2c40c836d2fcf9d7e6629e22c7cb3a5293",
+          "url": "https://github.com/textlint/textlint/commit/67a43cde58e7babe58bae3165e1d6c21bec0c14f"
+        },
+        "date": 1753359924199,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24636018762000003,
+            "unit": "seconds",
+            "range": "± 0.22722070200000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71979381062,
+            "unit": "seconds",
+            "range": "± 0.03445927500000012"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5947965764200001,
+            "unit": "seconds",
+            "range": "± 0.012858802999999974"
           }
         ]
       }
