@@ -32,7 +32,8 @@ function alignRight(str: string, len: number, ch?: string) {
     return new Array(len - str.length + 1).join(ch || " ") + str;
 }
 
-const enabled = Boolean(process.env.TIMING);
+const isBrowser = typeof process === "undefined";
+const enabled = isBrowser ? false : Boolean(process.env.TIMING);
 
 const HEADERS = ["Rule", "Time (ms)", "Relative"];
 const ALIGN = [alignLeft, alignRight, alignRight];
@@ -56,7 +57,7 @@ function display(data: Record<string, number>) {
             return b[1] - a[1];
         })
         .slice(0, 10);
-    
+
     const rows: (string | number)[][] = [...sortedData];
 
     rows.forEach(function (row: (string | number)[]) {
@@ -112,7 +113,15 @@ export default (function () {
      * @returns {(...args: any[]) => any} function to be executed
      * @private
      */
-    function time<T extends unknown[]>(key: string, fn: (...args: T) => unknown) {
+    function time<T extends unknown[]>(
+        key: string,
+        fn: (...args: T) => void | Promise<void>
+    ): (...args: T) => void | Promise<void> {
+        if (isBrowser) {
+            // In browser environment, return function as-is without timing measurement
+            return fn;
+        }
+
         if (typeof data[key] === "undefined") {
             data[key] = 0;
         }
@@ -125,7 +134,7 @@ export default (function () {
         };
     }
 
-    if (enabled) {
+    if (enabled && !isBrowser) {
         process.on("exit", function () {
             display(data);
         });
