@@ -118,7 +118,7 @@ export default (function () {
         fn: (...args: T) => void | Promise<void>
     ): (...args: T) => void | Promise<void> {
         if (isBrowser) {
-            // ブラウザ環境では時間測定せずにそのまま関数を返す
+            // In browser environment, return function as-is without timing measurement
             return fn;
         }
 
