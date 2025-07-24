@@ -1,6 +1,6 @@
 {
   "name": "@textlint/source-code-fixer",
-  "version": "15.2.0",
+  "version": "15.2.1",
   "description": "Apply @textlint/kernel lint result to text.",
   "keywords": [
     "textlint",
