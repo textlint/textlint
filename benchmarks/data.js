@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753315318219,
+  "lastUpdate": 1753315444104,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73038,6 +73038,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60380032828,
             "unit": "seconds",
             "range": "± 0.013794191000000011"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "da44afa58a1d48b31aacafc0b33a496d0e474437",
+          "message": "Update packages/@textlint/kernel/src/util/timing.ts\n\nCo-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>",
+          "timestamp": "2025-07-24T09:02:13+09:00",
+          "tree_id": "4151dee57629ccdc74afcf2a14440387188b874b",
+          "url": "https://github.com/textlint/textlint/commit/da44afa58a1d48b31aacafc0b33a496d0e474437"
+        },
+        "date": 1753315439824,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21183782992000003,
+            "unit": "seconds",
+            "range": "± 0.03737671000000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7465338535200001,
+            "unit": "seconds",
+            "range": "± 0.027959828000000186"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6079005793200001,
+            "unit": "seconds",
+            "range": "± 0.003505084000000047"
           }
         ]
       }
