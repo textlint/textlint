@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753306714269,
+  "lastUpdate": 1753315318219,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -72996,6 +72996,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60990150066,
             "unit": "seconds",
             "range": "± 0.019833443000000006"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "6f24426dd5dfb0ade5d8232427e5100a7ffd14d5",
+          "message": "fix(kernel): add browser compatibility for timing utility\n\n- Fix 'process is not defined' error when building with Vite\n- Add browser environment detection\n- Disable timing functionality in browser environments\n- Preserve Node.js timing functionality when process is available\n- Update function type signatures for better TypeScript compatibility\n\nThis change allows @textlint/kernel to work in browser environments\nwhile maintaining full compatibility with Node.js environments.\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-24T08:58:36+09:00",
+          "tree_id": "b2214b9cbe4c237005544a61dced6d1d015696ec",
+          "url": "https://github.com/textlint/textlint/commit/6f24426dd5dfb0ade5d8232427e5100a7ffd14d5"
+        },
+        "date": 1753315313946,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21324282568000003,
+            "unit": "seconds",
+            "range": "± 0.051131175"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7540884972800002,
+            "unit": "seconds",
+            "range": "± 0.061853788000000076"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60380032828,
+            "unit": "seconds",
+            "range": "± 0.013794191000000011"
           }
         ]
       }
