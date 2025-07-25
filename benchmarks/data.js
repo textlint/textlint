@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753414152250,
+  "lastUpdate": 1753481600667,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73248,6 +73248,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5979067848999999,
             "unit": "seconds",
             "range": "± 0.009838914000000032"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8b67f30bcb1b8e3561b5649e6c0a4cee8862bf02",
+          "message": "chore(deps): update dependency eslint-config-prettier to ^10.1.8",
+          "timestamp": "2025-07-25T22:10:58Z",
+          "tree_id": "69083932a7b30343b533fbb4f1699d5389272a82",
+          "url": "https://github.com/textlint/textlint/commit/8b67f30bcb1b8e3561b5649e6c0a4cee8862bf02"
+        },
+        "date": 1753481596595,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21092862770000004,
+            "unit": "seconds",
+            "range": "± 0.039555907"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7150392589000003,
+            "unit": "seconds",
+            "range": "± 0.03957149900000001"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5934705119,
+            "unit": "seconds",
+            "range": "± 0.009346379999999987"
           }
         ]
       }
