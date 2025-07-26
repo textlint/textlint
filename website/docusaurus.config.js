@@ -181,6 +181,11 @@ export default {
         prism: {
             theme: prismThemes.github,
             darkTheme: prismThemes.dracula
+        },
+        docs : {
+            sidebar: {
+                hideable: true
+            }
         }
     }
 };
