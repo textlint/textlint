@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753528189285,
+  "lastUpdate": 1753538925752,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73500,6 +73500,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60800067524,
             "unit": "seconds",
             "range": "± 0.010669377000000035"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jambalaya.pyoncafe@outlook.jp",
+            "name": "Jam Balaya",
+            "username": "JamBalaya56562"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d4cccae0248b59ad72283bdc4c45f16a5cde437f",
+          "message": "feat(website): make the entire sidebar hideable (#1669)\n\n## Summary\n\nNew Features:\n- Allow the documentation sidebar to be hideable by setting hideable:\ntrue in the Docusaurus config\n\n## Appearance\n\n| Before | After |\n|--------|--------|\n| <img width=\"2792\" height=\"1738\" alt=\"before\"\nsrc=\"https://github.com/user-attachments/assets/cae9fd87-2595-4d65-b1f6-3c9c51349e36\"\n/> |\n![after](https://github.com/user-attachments/assets/66eb369b-4c5f-4db3-9bc2-ef462f61a852)\n|",
+          "timestamp": "2025-07-26T23:06:10+09:00",
+          "tree_id": "19fa757eeea090813896265157fdbbf6df1e5cd0",
+          "url": "https://github.com/textlint/textlint/commit/d4cccae0248b59ad72283bdc4c45f16a5cde437f"
+        },
+        "date": 1753538921325,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24440244942000003,
+            "unit": "seconds",
+            "range": "± 0.19372023700000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7425922764200004,
+            "unit": "seconds",
+            "range": "± 0.0515697089999998"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6125403936200001,
+            "unit": "seconds",
+            "range": "± 0.013919278000000035"
           }
         ]
       }
