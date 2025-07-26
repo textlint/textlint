@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753512585279,
+  "lastUpdate": 1753528189285,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73458,6 +73458,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5992961049000001,
             "unit": "seconds",
             "range": "± 0.013902470999999972"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "kouki_sakano@dwango.co.jp",
+            "name": "k8o",
+            "username": "k35o"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "dae74a3967dd2c9ae3f5b9e493b9fe1bb90fe2f7",
+          "message": "docs: add filterRules parameter to TextlintKernelDescriptor (#1668)\n\nUpdated documentation to include `filterRules` parameter, which is\nrequired for `TextlintKernelDescriptor` constructor.\n\nReferences\n-\nhttps://github.com/textlint/textlint/blob/3f0423bdfbf136caab71b76d7c0c0e496a03d49e/packages/%40textlint/kernel/src/descriptor/TextlintKernelDescriptor.ts#L17-L23\n-\nhttps://github.com/textlint/textlint/blob/3f0423bdfbf136caab71b76d7c0c0e496a03d49e/packages/%40textlint/kernel/src/descriptor/README.md?plain=1#L18-L36",
+          "timestamp": "2025-07-26T20:07:19+09:00",
+          "tree_id": "9dab6df42eef3d256a3a68b19344669e6ebe830d",
+          "url": "https://github.com/textlint/textlint/commit/dae74a3967dd2c9ae3f5b9e493b9fe1bb90fe2f7"
+        },
+        "date": 1753528184848,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23276964904000003,
+            "unit": "seconds",
+            "range": "± 0.13967069599999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7596292354399998,
+            "unit": "seconds",
+            "range": "± 0.00892141000000013"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60800067524,
+            "unit": "seconds",
+            "range": "± 0.010669377000000035"
           }
         ]
       }
