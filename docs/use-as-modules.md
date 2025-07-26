@@ -96,7 +96,8 @@ const customDescriptor = new TextlintKernelDescriptor({
             pluginId: "custom-plugin",
             plugin: moduleInterop((await import("./custom-plugin")).default)
         }
-    ]
+    ],
+    filterRules: []
 });
 const textlintrcDescriptor = await loadTextlintrc();
 const linter = createLinter({
