@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753585234851,
+  "lastUpdate": 1753585350150,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73752,6 +73752,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59374455252,
             "unit": "seconds",
             "range": "± 0.017187398999999992"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "2a4a7422b1a1ed9bcfec393c1532d07f418d198e",
+          "message": "docs: reorganize integrations structure and remove outdated sections\n\n- Reorder sections: Editors > MCP > CI/CD\n- Remove Build Systems section (gulp/grunt are outdated)\n- Remove App section (textlint-app)\n- Remove duplicate reviewdog reference from Other section\n- Focus on currently relevant integration methods\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-27T11:56:16+09:00",
+          "tree_id": "1af6831a09cd52d314ce6d76e28751e5ac4e72fb",
+          "url": "https://github.com/textlint/textlint/commit/2a4a7422b1a1ed9bcfec393c1532d07f418d198e"
+        },
+        "date": 1753585345359,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24679490588,
+            "unit": "seconds",
+            "range": "± 0.18704971099999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7565916732800002,
+            "unit": "seconds",
+            "range": "± 0.046694662000000164"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6087945706800001,
+            "unit": "seconds",
+            "range": "± 0.016468060000000007"
           }
         ]
       }
