@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753585642050,
+  "lastUpdate": 1753585921829,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73920,6 +73920,48 @@ window.BENCHMARK_DATA = {
             "value": 0.631962981,
             "unit": "seconds",
             "range": "± 0.019862230999999952"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "95873a574d5f286d036129c36b5f41cbc304c8ba",
+          "message": "docs: add GitHub Actions CI/CD integration examples (#1671)\n\n## Summary\n- Add GitHub Actions workflow examples for textlint CI/CD integration\n- Include basic setup and pull request specific configurations\n- Reference third-party actions for advanced use cases\n\n## Changes\n- Added CI/CD section to `docs/integrations.md`\n- Basic GitHub Actions workflow setup\n- Pull request workflow for checking only changed files\n- Third-party actions references (reviewdog, action-textlint)\n- Use Node.js LTS for better compatibility\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-27T03:10:06Z",
+          "tree_id": "d27382b247ba34744606b7d71ba6c6118aa4add8",
+          "url": "https://github.com/textlint/textlint/commit/95873a574d5f286d036129c36b5f41cbc304c8ba"
+        },
+        "date": 1753585917249,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23801022166000002,
+            "unit": "seconds",
+            "range": "± 0.14859624999999999"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.78135252066,
+            "unit": "seconds",
+            "range": "± 0.04515022000000002"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.61304853086,
+            "unit": "seconds",
+            "range": "± 0.014605259999999953"
           }
         ]
       }
