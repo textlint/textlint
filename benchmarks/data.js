@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753585350150,
+  "lastUpdate": 1753585519675,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73794,6 +73794,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6087945706800001,
             "unit": "seconds",
             "range": "± 0.016468060000000007"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "e391a4a1f6df5e0f5b9970160e329841987df1ec",
+          "message": "docs: add @textlint/editor browser extension\n\nAdd privacy-first browser extension for offline text linting\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-27T11:57:08+09:00",
+          "tree_id": "f42aa2f6c524a6484e7b5570e261340d3a416959",
+          "url": "https://github.com/textlint/textlint/commit/e391a4a1f6df5e0f5b9970160e329841987df1ec"
+        },
+        "date": 1753585515410,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.33689269682,
+            "unit": "seconds",
+            "range": "± 0.655578929"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7241956142200003,
+            "unit": "seconds",
+            "range": "± 0.024355176000000034"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6033157152199999,
+            "unit": "seconds",
+            "range": "± 0.00884538300000004"
           }
         ]
       }
