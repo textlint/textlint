@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753584722877,
+  "lastUpdate": 1753584840885,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73584,6 +73584,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6654949623,
             "unit": "seconds",
             "range": "± 0.017803540000000062"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "a7779a3d435cae3d5b2648ca45bec3837464f932",
+          "message": "docs: add action-textlint reference to reviewdog description\n\nProvide concrete implementation example for reviewdog integration with textlint\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-27T11:51:11+09:00",
+          "tree_id": "2280ce9666bee78b1a286f0f475eec6bac3a4080",
+          "url": "https://github.com/textlint/textlint/commit/a7779a3d435cae3d5b2648ca45bec3837464f932"
+        },
+        "date": 1753584836559,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23897491950000002,
+            "unit": "seconds",
+            "range": "± 0.18454990899999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7196341871,
+            "unit": "seconds",
+            "range": "± 0.03292144500000016"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5951150903,
+            "unit": "seconds",
+            "range": "± 0.015967822999999992"
           }
         ]
       }
