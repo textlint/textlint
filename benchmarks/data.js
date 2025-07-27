@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753585017629,
+  "lastUpdate": 1753585079493,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73668,6 +73668,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6006640468800001,
             "unit": "seconds",
             "range": "± 0.024173895999999973"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "144cc08c23b637541e4b16eee1ea531f2c65f7df",
+          "message": "docs: add prerequisites for GitHub Actions integration\n\n- Add configuration requirements before using textlint in CI\n- Reference configuring.md for detailed setup\n- Clarify npm script requirement for 'npm run textlint'\n- Follow MCP documentation pattern for prerequisites\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-27T11:52:46+09:00",
+          "tree_id": "820556b8f851b417acd70b13d4e703c766b3659e",
+          "url": "https://github.com/textlint/textlint/commit/144cc08c23b637541e4b16eee1ea531f2c65f7df"
+        },
+        "date": 1753585074541,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.26085776662,
+            "unit": "seconds",
+            "range": "± 0.23002253900000005"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8207788062200003,
+            "unit": "seconds",
+            "range": "± 0.0320698559999999"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6290849358200001,
+            "unit": "seconds",
+            "range": "± 0.01502200500000006"
           }
         ]
       }
