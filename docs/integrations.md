@@ -48,6 +48,71 @@ For detailed setup instructions, see [MCP Setup Guide](./mcp.md).
 - Grunt plugin
   - [grunt-textlint](https://github.com/textlint/grunt-textlint "grunt-textlint")
 
+## CI/CD
+
+### GitHub Actions
+
+You can integrate textlint into your GitHub Actions workflow to automatically check text content in pull requests and commits.
+
+#### Basic Setup
+
+Create `.github/workflows/textlint.yml`:
+
+```yaml
+name: textlint
+on:
+  push:
+  pull_request:
+
+jobs:
+  textlint:
+    name: textlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+      - run: npm ci
+      - run: npm run textlint
+```
+
+#### Pull Request Check
+
+For checking only changed files in pull requests:
+
+```yaml
+name: textlint
+on:
+  pull_request:
+
+jobs:
+  textlint:
+    name: textlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+      - run: npm ci
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v45
+        with:
+          files: '**/*.{md,txt}'
+      - name: Run textlint on changed files
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: npx textlint ${{ steps.changed-files.outputs.all_changed_files }}
+```
+
+#### Third-party Actions
+
+- [reviewdog](https://github.com/reviewdog/reviewdog): Automated code review tool that supports textlint
+- [action-textlint](https://github.com/tsuyoshicho/action-textlint): Dedicated GitHub Action for running textlint with reviewdog integration
+
 ## Browser
 
 - Chrome Extension
