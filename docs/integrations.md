@@ -1,6 +1,6 @@
 ---
 id: integrations
-title: Integrating with Editors, Tools, etc..
+title: Integrating with Editors, CI, Tools, etc..
 ---
 
 ## Editors
