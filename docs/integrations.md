@@ -36,18 +36,6 @@ The MCP server provides tools for linting and fixing text content, allowing AI a
 
 For detailed setup instructions, see [MCP Setup Guide](./mcp.md).
 
-## App
-
-- [textlint-app](https://github.com/textlint/textlint-app "textlint-app")
-  - Standalone cross platform app. No need Node.js environment.
-
-## Build Systems
-
-- gulp plugin
-  - [gulp-textlint](https://github.com/textlint/gulp-textlint "gulp-textlint")
-- Grunt plugin
-  - [grunt-textlint](https://github.com/textlint/grunt-textlint "grunt-textlint")
-
 ## CI/CD
 
 ### GitHub Actions
