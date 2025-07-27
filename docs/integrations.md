@@ -110,7 +110,7 @@ jobs:
 
 #### Third-party Actions
 
-- [reviewdog](https://github.com/reviewdog/reviewdog): Automated code review tool that supports textlint
+- [reviewdog](https://github.com/reviewdog/reviewdog): Automated code review tool that supports textlint (see [action-textlint](https://github.com/tsuyoshicho/action-textlint) for implementation example)
 - [action-textlint](https://github.com/tsuyoshicho/action-textlint): Dedicated GitHub Action for running textlint with reviewdog integration
 
 ## Browser
