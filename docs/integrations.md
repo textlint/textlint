@@ -58,9 +58,9 @@ You can integrate textlint into your GitHub Actions workflow to automatically ch
 
 Before setting up GitHub Actions, ensure your project has:
 
-1. **A textlint configuration file** (`.textlintrc.json`, `.textlintrc.js`, etc.)
-2. **Required textlint rules and plugins** installed as dependencies in `package.json`
-3. **A npm script** for running textlint (e.g., `"textlint": "textlint docs/**"` in `package.json`)
+1. A textlint configuration file (`.textlintrc.json`, `.textlintrc.js`, etc.)
+2. Required textlint rules and plugins installed as dependencies in `package.json`
+3. A npm script for running textlint (e.g., `"textlint": "textlint docs/**"` in `package.json`)
 
 textlint has no default rules, so proper configuration is essential. See [Configuring textlint](./configuring.md) for setup instructions.
 
