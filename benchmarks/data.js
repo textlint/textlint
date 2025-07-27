@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753585079493,
+  "lastUpdate": 1753585234851,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73710,6 +73710,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6290849358200001,
             "unit": "seconds",
             "range": "± 0.01502200500000006"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "54bc41c7c33a7d7cd19f91d08d742a29b020a80b",
+          "message": "docs: remove bold formatting from prerequisites list\n\nClean up unnecessary emphasis in prerequisites section\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-27T11:53:11+09:00",
+          "tree_id": "298061c9d517952298d44bf383368a4634e0dfb0",
+          "url": "https://github.com/textlint/textlint/commit/54bc41c7c33a7d7cd19f91d08d742a29b020a80b"
+        },
+        "date": 1753585230420,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22844740151999998,
+            "unit": "seconds",
+            "range": "± 0.123838018"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7174833747199998,
+            "unit": "seconds",
+            "range": "± 0.04813503699999999"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59374455252,
+            "unit": "seconds",
+            "range": "± 0.017187398999999992"
           }
         ]
       }
