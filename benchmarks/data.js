@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753585519675,
+  "lastUpdate": 1753585584695,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73836,6 +73836,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6033157152199999,
             "unit": "seconds",
             "range": "± 0.00884538300000004"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "2de8ceaa66bda34cda3b572728f47a5986df4009",
+          "message": "docs: update title to include CI integration\n\nReflect CI/CD content addition in document title\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-27T12:01:31+09:00",
+          "tree_id": "912bf782b122860028e46fa89474783e3375f4a5",
+          "url": "https://github.com/textlint/textlint/commit/2de8ceaa66bda34cda3b572728f47a5986df4009"
+        },
+        "date": 1753585580526,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24755996114000003,
+            "unit": "seconds",
+            "range": "± 0.222851086"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7292685203400002,
+            "unit": "seconds",
+            "range": "± 0.031236470999999932"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6009792525400001,
+            "unit": "seconds",
+            "range": "± 0.011475919000000001"
           }
         ]
       }
