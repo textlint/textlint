@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753538925752,
+  "lastUpdate": 1753584722877,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73542,6 +73542,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6125403936200001,
             "unit": "seconds",
             "range": "± 0.013919278000000035"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "c5e7d4eb751ba74b97fb4fb090aae2ad60c7177a",
+          "message": "docs: add GitHub Actions CI/CD integration examples\n\n- Add basic GitHub Actions workflow setup for textlint\n- Add pull request specific workflow for checking changed files only\n- Include third-party actions (reviewdog, action-textlint) references\n- Use Node.js LTS version for better compatibility\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-27T11:49:50+09:00",
+          "tree_id": "e4c2ae0bb0725b00c78a542da9054a26a435be8b",
+          "url": "https://github.com/textlint/textlint/commit/c5e7d4eb751ba74b97fb4fb090aae2ad60c7177a"
+        },
+        "date": 1753584718464,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2772138253,
+            "unit": "seconds",
+            "range": "± 0.24615421900000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 2.0441335857,
+            "unit": "seconds",
+            "range": "± 0.08027779200000018"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6654949623,
+            "unit": "seconds",
+            "range": "± 0.017803540000000062"
           }
         ]
       }
