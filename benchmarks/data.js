@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753585584695,
+  "lastUpdate": 1753585642050,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73878,6 +73878,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6009792525400001,
             "unit": "seconds",
             "range": "± 0.011475919000000001"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "16860c02678732398d0bfc069f3f4c43f89a5d71",
+          "message": "docs: update VSCode extension link to official repository\n\nChange from taichi/vscode-textlint to textlint/vscode-textlint\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-27T12:02:18+09:00",
+          "tree_id": "eadf33206e8a24eafffa2f6114e083b1cd7ee6d5",
+          "url": "https://github.com/textlint/textlint/commit/16860c02678732398d0bfc069f3f4c43f89a5d71"
+        },
+        "date": 1753585637489,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2434857218,
+            "unit": "seconds",
+            "range": "± 0.159095402"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8004557454,
+            "unit": "seconds",
+            "range": "± 0.04420223199999995"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.631962981,
+            "unit": "seconds",
+            "range": "± 0.019862230999999952"
           }
         ]
       }
