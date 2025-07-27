@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1753584840885,
+  "lastUpdate": 1753585017629,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -73626,6 +73626,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5951150903,
             "unit": "seconds",
             "range": "± 0.015967822999999992"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "7bcde08750d1e9abb0f02ad47e759635ab9c8769",
+          "message": "docs: remove redundant action-textlint reference\n\naction-textlint is already listed separately below\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-07-27T11:51:31+09:00",
+          "tree_id": "e4c2ae0bb0725b00c78a542da9054a26a435be8b",
+          "url": "https://github.com/textlint/textlint/commit/7bcde08750d1e9abb0f02ad47e759635ab9c8769"
+        },
+        "date": 1753585013519,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23740188508,
+            "unit": "seconds",
+            "range": "± 0.17301121399999997"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7303140134800004,
+            "unit": "seconds",
+            "range": "± 0.024226248000000172"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6006640468800001,
+            "unit": "seconds",
+            "range": "± 0.024173895999999973"
           }
         ]
       }
