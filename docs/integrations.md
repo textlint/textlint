@@ -15,7 +15,7 @@ title: Integrating with Editors, CI, Tools, etc..
   - [scrooloose/syntastic](https://github.com/vim-syntastic/syntastic "scrooloose/syntastic")
     - See [Markdown](https://github.com/vim-syntastic/syntastic/wiki/Markdown "Markdown"), [Text](https://github.com/vim-syntastic/syntastic/wiki/Text "Text") and [HTML](https://github.com/vim-syntastic/syntastic/wiki/HTML "HTML") of [scrooloose/syntastic Wiki](https://github.com/vim-syntastic/syntastic/wiki/Syntax-Checkers "Syntax Checkers · scrooloose/syntastic Wiki")
 - Visual Studio Code
-  - [taichi/vscode-textlint](https://github.com/taichi/vscode-textlint)
+  - [textlint/vscode-textlint](https://github.com/textlint/vscode-textlint)
 - [micro](https://github.com/zyedidia/micro "micro")
   - [hidaruma/micro-textlint-plugin](https://github.com/hidaruma/micro-textlint-plugin "hidaruma/micro-textlint-plugin: textlint plugin for micro-editor")
 - NetBeans
