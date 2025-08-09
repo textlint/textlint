@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",
-    "@types/node": "^20.19.9",
+    "@types/node": "^24.2.1",
     "prettier": "^2.8.1",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"
