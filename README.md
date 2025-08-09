@@ -300,7 +300,7 @@ textlint has no built-in rules, but there are 100+ pluggable rules:
 
 See [A Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki") for more details.
 
-If you create a new rule, and add it to the wiki :)
+If you create a new rule, please add it to the wiki :)
 
 ### Fixable
 
@@ -586,7 +586,7 @@ However, textlint is not different from most semver project.
 
 For bugs and feature requests, [please create an issue](https://github.com/textlint/textlint/issues).
 
-Pull requests is always welcome.
+Pull requests are always welcome.
 
 For more details, see [Contributing Guide](docs/CONTRIBUTING.md).
 
