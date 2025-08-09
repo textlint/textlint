@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1754729786052,
+  "lastUpdate": 1754729858003,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -75348,6 +75348,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5978434111800001,
             "unit": "seconds",
             "range": "± 0.010093706000000036"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "4fd4f03a8722832b3ad6ff516637bf36d03510ff",
+          "message": "chore(deps): update mochat 11",
+          "timestamp": "2025-08-09T17:55:37+09:00",
+          "tree_id": "413e393656ed6a214957eb5409eb9203fd718371",
+          "url": "https://github.com/textlint/textlint/commit/4fd4f03a8722832b3ad6ff516637bf36d03510ff"
+        },
+        "date": 1754729853204,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24295186278000003,
+            "unit": "seconds",
+            "range": "± 0.18654639800000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.72305854438,
+            "unit": "seconds",
+            "range": "± 0.01830210600000015"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6021173565800001,
+            "unit": "seconds",
+            "range": "± 0.017922300000000058"
           }
         ]
       }
