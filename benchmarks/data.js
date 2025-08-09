@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1754729858003,
+  "lastUpdate": 1754730117475,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -75390,6 +75390,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6021173565800001,
             "unit": "seconds",
             "range": "± 0.017922300000000058"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f86370ff17fef360ba68de04009c76a0581951c4",
+          "message": "chore: Node.js maintenance updates (#1682)\n\n## Summary\n- Migrate npm run commands to pnpm run in package.json\n- Update Node.js version to 22.18.0 LTS\n- Update GitHub Actions to support Node.js 24 in CI matrix\n- Update GitHub Actions dependencies (actions/cache,\ngithub/codeql-action)\n\n## Changes\n- Replace `npm run` with `pnpm run` in package.json scripts for\nconsistency\n- Update `.node-version` from 22.17.1 to 22.18.0\n- Add Node.js 24 to CI test matrix\n- Bump actions/cache from v4.2.3 to v4.2.4\n- Bump github/codeql-action from v3.29.7 to v3.29.8\n- Update mochat to v11 https://github.com/nodejs/node/issues/59364\n\n\n## Test plan\n- [ ] CI passes with all Node.js versions (20, 22, 24)\n- [ ] pnpm commands work correctly\n- [ ] GitHub Actions run successfully\n\n🤖 Generated with [Claude Code](https://claude.ai/code)",
+          "timestamp": "2025-08-09T09:00:06Z",
+          "tree_id": "413e393656ed6a214957eb5409eb9203fd718371",
+          "url": "https://github.com/textlint/textlint/commit/f86370ff17fef360ba68de04009c76a0581951c4"
+        },
+        "date": 1754730112960,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2732107535,
+            "unit": "seconds",
+            "range": "± 0.3660774680000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7060663865000003,
+            "unit": "seconds",
+            "range": "± 0.024164314999999936"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5925501977000001,
+            "unit": "seconds",
+            "range": "± 0.027336837999999974"
           }
         ]
       }
