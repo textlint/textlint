@@ -25,7 +25,7 @@
     "textlint-rule-no-todo": "^2.0.1"
   },
   "devDependencies": {
-    "@types/node": "^18.7.16",
+    "@types/node": "^24.2.1",
     "typescript": "~5.8.3"
   }
 }

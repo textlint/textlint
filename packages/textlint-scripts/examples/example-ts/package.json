@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@textlint/types": "workspace:*",
-    "@types/node": "^18.19.9",
+    "@types/node": "^24.2.1",
     "textlint-scripts": "workspace:*",
     "ts-node": "^10.9.2",
     "typescript": "~5.8.3"
