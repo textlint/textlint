@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1754613787548,
+  "lastUpdate": 1754714992233,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -75222,6 +75222,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59963633896,
             "unit": "seconds",
             "range": "± 0.017030188999999973"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "edf4a689b0106ccbd26fe08c80316ad40efe9f0f",
+          "message": "docs: fix typos in README\n\n- Fixed grammar: \"If you create a new rule, and add it\" → \"If you create a new rule, please add it\"\n- Fixed subject-verb agreement: \"Pull requests is\" → \"Pull requests are\"\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-08-09T13:47:42+09:00",
+          "tree_id": "5be448b6a59911d0af71b3a288c7878ec87600b4",
+          "url": "https://github.com/textlint/textlint/commit/edf4a689b0106ccbd26fe08c80316ad40efe9f0f"
+        },
+        "date": 1754714987607,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25441065640000005,
+            "unit": "seconds",
+            "range": "± 0.277156478"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.70556259,
+            "unit": "seconds",
+            "range": "± 0.02479707199999992"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5946313488,
+            "unit": "seconds",
+            "range": "± 0.013149889000000026"
           }
         ]
       }
