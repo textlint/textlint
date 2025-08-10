@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1754730209957,
+  "lastUpdate": 1754820006130,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -75474,6 +75474,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60951692294,
             "unit": "seconds",
             "range": "± 0.015915360999999906"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "91897b92e85f1a15396d1f0f1b814ea4679106e3",
+          "message": "docs: fix typos in README (#1681)\n\n## Summary\n- Fixed grammar issue: Added \"please\" for politeness in rule creation\ninstruction\n- Fixed subject-verb agreement: Changed \"is\" to \"are\" for plural subject\n\"Pull requests\"\n\n## Test plan\n- [x] Verified README renders correctly in GitHub markdown preview\n- [x] Grammar and spelling checked\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-08-10T18:57:31+09:00",
+          "tree_id": "434c3c830a416a766566c0ec7eb57ea47b81c799",
+          "url": "https://github.com/textlint/textlint/commit/91897b92e85f1a15396d1f0f1b814ea4679106e3"
+        },
+        "date": 1754820001805,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23655490786,
+            "unit": "seconds",
+            "range": "± 0.16167650000000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7141071550600002,
+            "unit": "seconds",
+            "range": "± 0.049143681000000106"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5996108444600001,
+            "unit": "seconds",
+            "range": "± 0.01042976700000009"
           }
         ]
       }
