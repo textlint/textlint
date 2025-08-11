@@ -838,9 +838,6 @@ importers:
       md5:
         specifier: ^2.3.0
         version: 2.3.0
-      mkdirp:
-        specifier: ^0.5.6
-        version: 0.5.6
       optionator:
         specifier: ^0.9.4
         version: 0.9.4
