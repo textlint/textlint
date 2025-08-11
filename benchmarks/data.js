@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1754857925845,
+  "lastUpdate": 1754915738991,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -75642,6 +75642,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6082370260400001,
             "unit": "seconds",
             "range": "± 0.007428452999999946"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "091ff8d763482599fca698d7ad726cbd7c59ecc3",
+          "message": "chore(deps): remove unused unique-concat dependency\n\nRemove the unique-concat dependency from textlint package as it is not\nbeing used anywhere in the codebase.\n\nFixes #1684\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-08-11T21:33:25+09:00",
+          "tree_id": "80ae4f0d25c26cc3f8d002c73e1ad8092a90a2f7",
+          "url": "https://github.com/textlint/textlint/commit/091ff8d763482599fca698d7ad726cbd7c59ecc3"
+        },
+        "date": 1754915734391,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23004186292,
+            "unit": "seconds",
+            "range": "± 0.142729475"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7150027727200001,
+            "unit": "seconds",
+            "range": "± 0.04765221200000003"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5972266363200001,
+            "unit": "seconds",
+            "range": "± 0.02213176700000008"
           }
         ]
       }
