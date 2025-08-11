@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1754916576400,
+  "lastUpdate": 1754916597736,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -75852,6 +75852,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59242660074,
             "unit": "seconds",
             "range": "± 0.016430564999999953"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c59c83a506c67b817fcf7135e23bdfa25962fdbc",
+          "message": "chore(deps): remove unused mkdirp dependency (#1688)\n\n## Summary\n- Remove the `mkdirp` dependency from the textlint package as it is not\nbeing used anywhere in the codebase\n\n## Changes\n- Removed `mkdirp` from `packages/textlint/package.json`\n- Updated `pnpm-lock.yaml` to reflect the dependency removal\n\n## Test plan\n- [x] Build all packages successfully (`pnpm run build`)\n- [x] Linting passes (`pnpm run lint`)\n- [x] CLI functionality verified (`textlint --version`)\n\nFixes #1686\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-08-11T21:47:24+09:00",
+          "tree_id": "6742d0d9113213176d06d8051977541b2f5ffc96",
+          "url": "https://github.com/textlint/textlint/commit/c59c83a506c67b817fcf7135e23bdfa25962fdbc"
+        },
+        "date": 1754916592214,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2646159223,
+            "unit": "seconds",
+            "range": "± 0.27679564200000006"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7535873381000002,
+            "unit": "seconds",
+            "range": "± 0.035927683000000155"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6083178699,
+            "unit": "seconds",
+            "range": "± 0.023188926"
           }
         ]
       }
