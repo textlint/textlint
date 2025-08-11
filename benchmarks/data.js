@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1754915960625,
+  "lastUpdate": 1754916038667,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -75726,6 +75726,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60410919262,
             "unit": "seconds",
             "range": "± 0.015062774000000001"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "da11925e134d668c6d104eec8e62eeef6cb1e84b",
+          "message": "chore(deps): remove unused unique-concat dependency (#1687)\n\n## Summary\n- Remove the `unique-concat` dependency from the textlint package as it\nis not being used anywhere in the codebase\n\n## Changes\n- Removed `unique-concat` from `packages/textlint/package.json`\n- Updated `pnpm-lock.yaml` to reflect the dependency removal\n\n## Test plan\n- [x] Build all packages successfully (`pnpm run build`)\n- [x] Linting passes (`pnpm run lint`)\n- [x] CLI functionality verified (`textlint --version`)\n\nFixes #1684\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-08-11T12:37:27Z",
+          "tree_id": "0712c4930fdb714e3ac89007d6cee50418e7ece2",
+          "url": "https://github.com/textlint/textlint/commit/da11925e134d668c6d104eec8e62eeef6cb1e84b"
+        },
+        "date": 1754916033523,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.27656175705999997,
+            "unit": "seconds",
+            "range": "± 0.31878724999999997"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8208341756600004,
+            "unit": "seconds",
+            "range": "± 0.05681652199999987"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.62001322246,
+            "unit": "seconds",
+            "range": "± 0.014583277999999922"
           }
         ]
       }
