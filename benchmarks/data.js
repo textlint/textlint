@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1754916073521,
+  "lastUpdate": 1754916576400,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -75810,6 +75810,48 @@ window.BENCHMARK_DATA = {
             "value": 0.61955737528,
             "unit": "seconds",
             "range": "± 0.010365262999999958"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "dbae4cf3f2d682f4b01c4d3cb4b5451cc8f0e64e",
+          "message": "chore(deps): remove unused mkdirp dependency\n\nRemove the mkdirp dependency from textlint package as it is not\nbeing used anywhere in the codebase.\n\nFixes #1686\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-08-11T21:43:18+09:00",
+          "tree_id": "1bbcd97bac78d46260db5f1506043e7b877fcf94",
+          "url": "https://github.com/textlint/textlint/commit/dbae4cf3f2d682f4b01c4d3cb4b5451cc8f0e64e"
+        },
+        "date": 1754916571673,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.33143853454,
+            "unit": "seconds",
+            "range": "± 0.652481571"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7014408867400004,
+            "unit": "seconds",
+            "range": "± 0.04015878500000003"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59242660074,
+            "unit": "seconds",
+            "range": "± 0.016430564999999953"
           }
         ]
       }
