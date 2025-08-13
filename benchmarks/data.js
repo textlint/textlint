@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1755095982621,
+  "lastUpdate": 1755098482201,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -76020,6 +76020,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6004427638000001,
             "unit": "seconds",
             "range": "± 0.01887536199999995"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "32e8c1ed9b86a27955901437484410bd0a20c202",
+          "message": "docs: clarify JSON comment support in configuration files (#1690)\n\n## Summary\n- Added documentation explaining that `.textlintrc.json` and\n`.textlintrc` files support JavaScript-style comments\n- Included example showing both single-line (`//`) and multi-line (`/*\n*/`) comment syntax\n- Addresses user confusion about whether comments are allowed in\nconfiguration files\n\n## Context\nAs discussed in #1689, textlint already supports comments in JSON\nconfiguration files through the\n[rc-config-loader](https://github.com/azu/rc-config-loader) library.\nThis PR updates the documentation to make this feature more\ndiscoverable.\n\n## Changes\n- Updated `docs/configuring.md` to note comment support in the file list\n- Added a clear note explaining JavaScript-style comment support\n- Provided a practical example showing how to use comments in\nconfiguration\n\nFixes #1689\n\n## Test plan\n- [x] Documentation change only - no code changes required\n- [x] Verified markdown formatting is correct\n- [x] Linting passes\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-08-14T00:18:32+09:00",
+          "tree_id": "7d516ff5d2beebc844ea04f272051c351efd4860",
+          "url": "https://github.com/textlint/textlint/commit/32e8c1ed9b86a27955901437484410bd0a20c202"
+        },
+        "date": 1755098477426,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.37806628574,
+            "unit": "seconds",
+            "range": "± 0.887046232"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7062515051399998,
+            "unit": "seconds",
+            "range": "± 0.05138113600000005"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5925011921400001,
+            "unit": "seconds",
+            "range": "± 0.008399712000000004"
           }
         ]
       }
