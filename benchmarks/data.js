@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1755093939586,
+  "lastUpdate": 1755095871428,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -75936,6 +75936,48 @@ window.BENCHMARK_DATA = {
             "value": 0.67057239938,
             "unit": "seconds",
             "range": "± 0.023635826000000026"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "40865955840321d879e9ea8f0ba95598e87d2fa3",
+          "message": "docs: clarify JSON comment support in configuration files\n\nAdd documentation to explain that .textlintrc.json and .textlintrc files\nsupport JavaScript-style comments (// and /* */). This addresses user\nconfusion about whether comments are allowed in configuration files.\n\nFixes #1689\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-08-13T23:34:59+09:00",
+          "tree_id": "05a70a41b1bde8c511b8b3ce483b5354b31c3a7e",
+          "url": "https://github.com/textlint/textlint/commit/40865955840321d879e9ea8f0ba95598e87d2fa3"
+        },
+        "date": 1755095866599,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.233382969,
+            "unit": "seconds",
+            "range": "± 0.15134175700000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7330695254,
+            "unit": "seconds",
+            "range": "± 0.0563800929999998"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6041164072,
+            "unit": "seconds",
+            "range": "± 0.009889665999999964"
           }
         ]
       }
