@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1755095871428,
+  "lastUpdate": 1755095982621,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -75978,6 +75978,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6041164072,
             "unit": "seconds",
             "range": "± 0.009889665999999964"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "766cb137ecb44b9443652c573e6cbf5e8090409b",
+          "message": "docs: clarify JSON comment support in configuration files\n\nAdd documentation to explain that .textlintrc.json and .textlintrc files\nsupport JavaScript-style comments (// and /* */). This addresses user\nconfusion about whether comments are allowed in configuration files.\n\nFixes #1689\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-08-13T23:37:36+09:00",
+          "tree_id": "7d516ff5d2beebc844ea04f272051c351efd4860",
+          "url": "https://github.com/textlint/textlint/commit/766cb137ecb44b9443652c573e6cbf5e8090409b"
+        },
+        "date": 1755095977602,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2471584348,
+            "unit": "seconds",
+            "range": "± 0.22345586300000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7151766748,
+            "unit": "seconds",
+            "range": "± 0.027858720000000003"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6004427638000001,
+            "unit": "seconds",
+            "range": "± 0.01887536199999995"
           }
         ]
       }
