@@ -9,11 +9,13 @@ You can use following file as configuration file:
 
 - `.textlintrc` – try parse it as JSON, YAML or JS
 - `.textlintrc.js` – parse it as JavaScript
-- `.textlintrc.json` – parse it as JSON
+- `.textlintrc.json` – parse it as JSON (with comment support)
 - `.textlintrc.yml` – parse it as YAML
 - `.textlintrc.yaml` – parse it as YAML
 
 `.textlintrc` is a config file which is loaded as JSON, YAML or JS via [azu/rc-config-loader](https://github.com/azu/rc-config-loader).
+
+**Note:** JSON configuration files (`.textlintrc.json` and `.textlintrc` with JSON format) support JavaScript-style comments (`//`) for better documentation of your configuration.
 
 You can put the config of rules into `.textlintrc`
 
@@ -31,6 +33,20 @@ Add rule name to `rules` field.
 {
   "rules": {
     "no-todo": true
+  }
+}
+```
+
+You can also add comments to your configuration:
+
+```json
+{
+  // Enable rules for checking text quality
+  "rules": {
+    "no-todo": true,  // Disallow TODO comments in text
+    "max-comma": {
+      "max": 3  // Maximum commas allowed in a sentence
+    }
   }
 }
 ```
