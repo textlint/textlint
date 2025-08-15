@@ -785,7 +785,7 @@ importers:
   packages/textlint:
     dependencies:
       '@modelcontextprotocol/sdk':
-        specifier: ^1.17.1
+        specifier: ^1.17.2
         version: 1.17.2
       '@textlint/ast-node-types':
         specifier: workspace:*
