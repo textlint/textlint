@@ -39,7 +39,7 @@ importers:
         specifier: ^8.2.3
         version: 8.2.3(encoding@0.1.13)
       lint-staged:
-        specifier: ^16.1.4
+        specifier: ^16.1.5
         version: 16.1.5
       npm-run-all2:
         specifier: ^8.0.4
@@ -949,7 +949,7 @@ importers:
         version: 5.6.3
     devDependencies:
       lint-staged:
-        specifier: ^16.1.4
+        specifier: ^16.1.5
         version: 16.1.5
       prettier:
         specifier: ^2.2.1
@@ -3986,10 +3986,6 @@ packages:
   chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
-
-  chalk@5.4.1:
-    resolution: {integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==}
-    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
   chalk@5.5.0:
     resolution: {integrity: sha512-1tm8DTaJhPBG3bIkVeZt1iZM9GfSX2lzOeDVZH9R9ffRHpmHvxZ/QhgQH/aDTkswQVt+YHdXAdS/In/30OjCbg==}
@@ -13828,7 +13824,7 @@ snapshots:
     dependencies:
       ansi-align: 3.0.1
       camelcase: 7.0.1
-      chalk: 5.4.1
+      chalk: 5.5.0
       cli-boxes: 3.0.0
       string-width: 5.1.2
       type-fest: 2.19.0
@@ -14000,8 +13996,6 @@ snapshots:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
-
-  chalk@5.4.1: {}
 
   chalk@5.5.0: {}
 
@@ -17901,7 +17895,7 @@ snapshots:
       tmp: 0.2.3
       tsconfig-paths: 4.2.0
       tslib: 2.8.1
-      yaml: 2.8.0
+      yaml: 2.8.1
       yargs: 17.7.2
       yargs-parser: 21.1.1
     optionalDependencies:
@@ -20757,7 +20751,7 @@ snapshots:
   update-notifier@6.0.2:
     dependencies:
       boxen: 7.1.1
-      chalk: 5.4.1
+      chalk: 5.5.0
       configstore: 6.0.0
       has-yarn: 3.0.0
       import-lazy: 4.0.0
