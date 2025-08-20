@@ -1,6 +1,6 @@
 {
   "name": "@textlint/types",
-  "version": "15.2.1",
+  "version": "15.2.2",
   "description": "Type definition package for textlint",
   "keywords": [
     "definition",
