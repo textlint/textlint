@@ -17,7 +17,10 @@ tester.run("no-todo", noTodo, {
         },
         {
             inputPath: path.join(__dirname, "fixtures/text/ok.md")
-        }
+        },
+
+        // empty string regression test
+        ""
     ],
     invalid: [
         // [deprecated] line, column
@@ -148,6 +151,20 @@ tester.run("max-number-of-lines", maxNumberOfLine, {
                 {
                     ruleId: "max-number-of-lines",
                     message: "Document is too long(number of lines: 3)."
+                }
+            ]
+        },
+
+        // empty string regression test
+        {
+            text: "",
+            options: {
+                max: 0
+            },
+            errors: [
+                {
+                    ruleId: "max-number-of-lines",
+                    message: "Document is too long(number of lines: 1)."
                 }
             ]
         }

@@ -301,7 +301,7 @@ export class TextLintTester {
                     inputPath,
                     description
                 });
-            } else if (text && ext) {
+            } else if (text !== undefined && ext) {
                 return testValid({
                     textlint,
                     text,
@@ -340,7 +340,7 @@ valid: [ "text", { text: "text" }, { inputPath: "path/to/file" } ]
                     errors,
                     description
                 });
-            } else if (text && ext) {
+            } else if (text !== undefined && ext) {
                 return testInvalid({
                     textlint,
                     text,
