@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1755649317108,
+  "lastUpdate": 1755649872419,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -76902,6 +76902,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60033550962,
             "unit": "seconds",
             "range": "± 0.014637593999999976"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ff0799fa4465bdf6afeac0d1f7d77647ca46807e",
+          "message": "v15.2.2 (#1701)\n\n<!-- Release notes generated using configuration in .github/release.yml\nat master -->\n\n## What's Changed\n### Bug Fixes\n* fix(textlint-tester): support empty string test cases by @kellyselden\nin https://github.com/textlint/textlint/pull/1698\n### Documentation\n* docs: add filterRules parameter to TextlintKernelDescriptor by @k35o\nin https://github.com/textlint/textlint/pull/1668\n* docs: add GitHub Actions CI/CD integration examples by @azu in\nhttps://github.com/textlint/textlint/pull/1671\n* docs: fix typos in README by @azu in\nhttps://github.com/textlint/textlint/pull/1681\n* docs: clarify JSON comment support in configuration files by @azu in\nhttps://github.com/textlint/textlint/pull/1690\n### Maintenance\n* chore: Node.js maintenance updates by @azu in\nhttps://github.com/textlint/textlint/pull/1682\n### CI\n* chore(deps): update github/codeql-action action to v3.29.3 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1672\n* chore(deps): update github/codeql-action action to v3.29.5 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1675\n* chore(deps): update github/codeql-action action to v3.29.7 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1679\n* chore(deps): update actions/checkout action to v4.3.0 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1695\n* CI(create-release-pr): remove unneeded --yes by @azu in\nhttps://github.com/textlint/textlint/pull/1699\n* chore(deps): update github/codeql-action action to v3.29.9 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1700\n### Dependency Updates\n* fix(deps): update dependency @modelcontextprotocol/sdk to ^1.16.0 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1665\n* chore(deps): update dependency eslint-config-prettier to ^10.1.8 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1666\n* chore(deps): update patch updates (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1667\n* chore(deps): update eslint to ^8.38.0 (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1674\n* fix(deps): update patch updates (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1676\n* chore(deps): update dependency @eslint/js to ^9.32.0 by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1678\n* fix(deps): update react monorepo to ^19.1.1 (patch) by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1677\n* fix(deps): update minor updates (minor) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1680\n* chore(deps): update dependency lint-staged to ^16.1.4 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1683\n* chore(deps): remove unused unique-concat dependency by @azu in\nhttps://github.com/textlint/textlint/pull/1687\n* chore(deps): remove unused mkdirp dependency by @azu in\nhttps://github.com/textlint/textlint/pull/1688\n* chore(deps): update eslint to ^8.39.0 (minor) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1691\n* fix(deps): update dependency @modelcontextprotocol/sdk to ^1.17.2 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1692\n* chore(deps): update dependency lint-staged to ^16.1.5 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1693\n* chore(deps): update dependency @eslint/js to ^9.33.0 by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1694\n* chore(deps): update eslint to ^8.39.1 (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1696\n### Other Changes\n* chore(deps): update node.js to v22.17.1 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1660\n* feat(website): make the entire sidebar hideable by @JamBalaya56562 in\nhttps://github.com/textlint/textlint/pull/1669\n\n## New Contributors\n* @JamBalaya56562 made their first contribution in\nhttps://github.com/textlint/textlint/pull/1669\n\n**Full Changelog**:\nhttps://github.com/textlint/textlint/compare/v15.2.1...v15.2.2\n\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2025-08-20T09:28:49+09:00",
+          "tree_id": "ccea0476340437d52fb5123245c9722110d8498c",
+          "url": "https://github.com/textlint/textlint/commit/ff0799fa4465bdf6afeac0d1f7d77647ca46807e"
+        },
+        "date": 1755649867554,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.26293732296,
+            "unit": "seconds",
+            "range": "± 0.29381435600000005"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.72948038456,
+            "unit": "seconds",
+            "range": "± 0.04512477700000006"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60972066676,
+            "unit": "seconds",
+            "range": "± 0.030010596"
           }
         ]
       }
