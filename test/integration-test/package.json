@@ -1,6 +1,6 @@
 {
   "name": "integration-test",
-  "version": "15.2.1",
+  "version": "15.2.2",
   "private": true,
   "description": "textlint testbot sandbox.",
   "keywords": [
