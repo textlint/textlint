@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1755622302971,
+  "lastUpdate": 1755648557228,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -76650,6 +76650,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59162616686,
             "unit": "seconds",
             "range": "± 0.005952332999999976"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "602423+kellyselden@users.noreply.github.com",
+            "name": "Kelly Selden",
+            "username": "kellyselden"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1db3b314230efaaa97baa858c2a5eb15dfd69da8",
+          "message": "fix(textlint-tester): support empty string test cases (#1698)\n\nCloses https://github.com/textlint/textlint/issues/1697.",
+          "timestamp": "2025-08-20T09:07:18+09:00",
+          "tree_id": "ea4e82eec3272defffe6067b84b1c9cbc62e4d69",
+          "url": "https://github.com/textlint/textlint/commit/1db3b314230efaaa97baa858c2a5eb15dfd69da8"
+        },
+        "date": 1755648551964,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25023452058,
+            "unit": "seconds",
+            "range": "± 0.21710192600000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7782032449800003,
+            "unit": "seconds",
+            "range": "± 0.0781416909999999"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.61475464278,
+            "unit": "seconds",
+            "range": "± 0.013568982000000007"
           }
         ]
       }
