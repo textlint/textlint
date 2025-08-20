@@ -33,7 +33,7 @@ jobs:
         run: |
           git config --global user.email "${GIT_AUTHOR_EMAIL}"
           git config --global user.name "${GIT_AUTHOR_NAME}"
-          pnpm run ci:versionup:${SEMVER} --yes
+          pnpm run ci:versionup:${SEMVER}
         env:
           SEMVER: ${{ github.event.inputs.semver }}
           GIT_AUTHOR_NAME: ${{ github.actor }}
