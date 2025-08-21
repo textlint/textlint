@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1755816194780,
+  "lastUpdate": 1755816214112,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -77112,6 +77112,48 @@ window.BENCHMARK_DATA = {
             "value": 0.59889654068,
             "unit": "seconds",
             "range": "± 0.015324044999999953"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3e17c5405c74f3067898c6756ecb657c6d9724a9",
+          "message": "fix(deps): update babel monorepo to ^7.28.3 (patch) (#1702)\n\nThis PR contains the following updates:\n\n| Package | Change | Age | Confidence |\n|---|---|---|---|\n| [@babel/cli](https://babel.dev/docs/en/next/babel-cli)\n([source](https://redirect.github.com/babel/babel/tree/HEAD/packages/babel-cli))\n| [`^7.28.0` ->\n`^7.28.3`](https://renovatebot.com/diffs/npm/@babel%2fcli/7.28.0/7.28.3)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@babel%2fcli/7.28.3?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@babel%2fcli/7.28.0/7.28.3?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n| [@babel/core](https://babel.dev/docs/en/next/babel-core)\n([source](https://redirect.github.com/babel/babel/tree/HEAD/packages/babel-core))\n| [`^7.28.0` ->\n`^7.28.3`](https://renovatebot.com/diffs/npm/@babel%2fcore/7.28.0/7.28.3)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@babel%2fcore/7.28.3?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@babel%2fcore/7.28.0/7.28.3?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n| [@babel/preset-env](https://babel.dev/docs/en/next/babel-preset-env)\n([source](https://redirect.github.com/babel/babel/tree/HEAD/packages/babel-preset-env))\n| [`^7.28.0` ->\n`^7.28.3`](https://renovatebot.com/diffs/npm/@babel%2fpreset-env/7.28.0/7.28.3)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@babel%2fpreset-env/7.28.3?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@babel%2fpreset-env/7.28.0/7.28.3?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>babel/babel (@&#8203;babel/cli)</summary>\n\n###\n[`v7.28.3`](https://redirect.github.com/babel/babel/blob/HEAD/CHANGELOG.md#v7283-2025-08-14)\n\n[Compare\nSource](https://redirect.github.com/babel/babel/compare/v7.28.0...v7.28.3)\n\n##### :eyeglasses: Spec Compliance\n\n- `babel-helper-create-class-features-plugin`,\n`babel-plugin-proposal-decorators`,\n`babel-plugin-transform-class-static-block`, `babel-preset-env`\n- [#&#8203;17443](https://redirect.github.com/babel/babel/pull/17443)\n\\[static blocks] Do not inject new static fields after static code\n([@&#8203;nicolo-ribaudo](https://redirect.github.com/nicolo-ribaudo))\n\n##### :bug: Bug Fix\n\n- `babel-parser`\n- [#&#8203;17465](https://redirect.github.com/babel/babel/pull/17465)\nfix(parser/typescript): parse `import(\"./a\", {with:{},})`\n([@&#8203;easrng](https://redirect.github.com/easrng))\n- [#&#8203;17478](https://redirect.github.com/babel/babel/pull/17478)\nfix(parser): stop subscript parsing on async arrow\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n\n##### :nail\\_care: Polish\n\n- `babel-plugin-transform-regenerator`, `babel-plugin-transform-runtime`\n- [#&#8203;17363](https://redirect.github.com/babel/babel/pull/17363) Do\nnot save last yield in call in temp var\n([@&#8203;nicolo-ribaudo](https://redirect.github.com/nicolo-ribaudo))\n\n##### :memo: Documentation\n\n- [#&#8203;17448](https://redirect.github.com/babel/babel/pull/17448)\nmove eslint-{parser,plugin} docs to the website\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n\n##### :house: Internal\n\n- [#&#8203;17454](https://redirect.github.com/babel/babel/pull/17454)\nEnable type checking for `scripts` and `babel-worker.cjs`\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n\n##### :microscope: Output optimization\n\n- `babel-plugin-proposal-destructuring-private`,\n`babel-plugin-proposal-do-expressions`\n- [#&#8203;17444](https://redirect.github.com/babel/babel/pull/17444)\nOptimize do expression output\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about these\nupdates again.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MS44MS4yIiwidXBkYXRlZEluVmVyIjoiNDEuODEuMiIsInRhcmdldEJyYW5jaCI6Im1hc3RlciIsImxhYmVscyI6WyJkZXBlbmRlbmNpZXMiXX0=-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-08-21T22:40:45Z",
+          "tree_id": "4391b7c501fb547a48877b369a194986c7244476",
+          "url": "https://github.com/textlint/textlint/commit/3e17c5405c74f3067898c6756ecb657c6d9724a9"
+        },
+        "date": 1755816208437,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24107559969999998,
+            "unit": "seconds",
+            "range": "± 0.20298340800000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7131519785000002,
+            "unit": "seconds",
+            "range": "± 0.05851548200000023"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5979942521000001,
+            "unit": "seconds",
+            "range": "± 0.01754513599999996"
           }
         ]
       }
