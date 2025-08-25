@@ -888,8 +888,8 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       textlint-rule-helper:
-        specifier: ^2.3.1
-        version: 2.3.1
+        specifier: ^2.5.0
+        version: 2.5.0
       textlint-rule-no-todo:
         specifier: ^2.0.1
         version: 2.0.1
@@ -1039,8 +1039,8 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       textlint-rule-helper:
-        specifier: ^2.3.1
-        version: 2.3.1
+        specifier: ^2.5.0
+        version: 2.5.0
       textlint-rule-max-number-of-lines:
         specifier: ^1.0.3
         version: 1.0.3
@@ -8936,6 +8936,9 @@ packages:
 
   textlint-rule-helper@2.3.1:
     resolution: {integrity: sha512-b1bijvyiUmKinfFE5hkQMSXs3Ky8jyZ3Y6SOoTRJKV9HLL2LWUVFAUezO7z4FpAkVvYruDYWCwA5qWV8GmvyUw==}
+
+  textlint-rule-helper@2.5.0:
+    resolution: {integrity: sha512-QIbFPtyqLy0g5BJn8mryk9iHzGYicNaFIpLFPiEnb4RXxrEGeQ2W2aARQ9yEXLIAqo+OwK4ndWBAWkbgJEPzTQ==}
 
   textlint-rule-ja-nakaguro-or-halfwidth-space-between-katakana@2.4.3:
     resolution: {integrity: sha512-xIpEAgpaPTnavzCMLcSB/tlZ3Tq9paclyyMEgAQxkM9adv8TrwddZ+Ys+BSd4zjuVa94NED0bajYWtahSjZ53g==}
@@ -20022,9 +20025,15 @@ snapshots:
       structured-source: 4.0.0
       unist-util-visit: 2.0.3
 
+  textlint-rule-helper@2.5.0:
+    dependencies:
+      '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
+      structured-source: 4.0.0
+      unist-util-visit: 2.0.3
+
   textlint-rule-ja-nakaguro-or-halfwidth-space-between-katakana@2.4.3:
     dependencies:
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
 
   textlint-rule-ja-no-abusage@3.0.0:
     dependencies:
@@ -20035,7 +20044,7 @@ snapshots:
   textlint-rule-ja-no-mixed-period@2.1.3:
     dependencies:
       check-ends-with-period: 1.0.1
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
 
   textlint-rule-ja-no-redundant-expression@4.0.1:
     dependencies:
@@ -20043,19 +20052,19 @@ snapshots:
       kuromojin: 3.0.1
       morpheme-match: 2.0.4
       morpheme-match-all: 2.0.5
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
       textlint-util-to-string: 3.3.4
 
   textlint-rule-ja-no-space-around-parentheses@2.4.2:
     dependencies:
       match-index: 1.0.3
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
 
   textlint-rule-ja-no-space-between-full-width@2.4.2:
     dependencies:
       match-index: 1.0.3
       regx: 1.0.4
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
 
   textlint-rule-ja-no-successive-word@2.0.1:
     dependencies:
@@ -20071,28 +20080,28 @@ snapshots:
   textlint-rule-ja-space-after-exclamation@2.4.2:
     dependencies:
       match-index: 1.0.3
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
 
   textlint-rule-ja-space-after-question@2.4.2:
     dependencies:
       match-index: 1.0.3
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
 
   textlint-rule-ja-space-around-code@2.4.2:
     dependencies:
       match-index: 1.0.3
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
 
   textlint-rule-ja-space-around-link@2.4.2:
     dependencies:
       match-index: 1.0.3
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
 
   textlint-rule-ja-space-between-half-and-full-width@2.4.2:
     dependencies:
       '@textlint/regexp-string-matcher': 2.0.2
       match-index: 1.0.3
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
 
   textlint-rule-ja-unnatural-alphabet@2.0.1:
     dependencies:
@@ -20109,7 +20118,7 @@ snapshots:
   textlint-rule-max-kanji-continuous-len@1.1.1:
     dependencies:
       match-index: 1.0.3
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
 
   textlint-rule-max-number-of-lines@1.0.3:
     dependencies:
@@ -20126,7 +20135,7 @@ snapshots:
     dependencies:
       kuromojin: 3.0.1
       sentence-splitter: 3.2.3
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
       textlint-util-to-string: 3.3.4
 
   textlint-rule-no-double-negative-ja@2.0.1:
@@ -20137,33 +20146,33 @@ snapshots:
     dependencies:
       kuromojin: 3.0.1
       sentence-splitter: 3.2.3
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
       textlint-util-to-string: 3.3.4
 
   textlint-rule-no-doubled-conjunctive-particle-ga@2.0.5:
     dependencies:
       kuromojin: 3.0.1
       sentence-splitter: 3.2.3
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
       textlint-util-to-string: 3.3.4
 
   textlint-rule-no-doubled-joshi@4.1.0:
     dependencies:
       kuromojin: 3.0.1
       sentence-splitter: 3.2.3
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
       textlint-util-to-string: 3.3.4
 
   textlint-rule-no-dropping-the-ra@3.0.0:
     dependencies:
       kuromojin: 3.0.1
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
 
   textlint-rule-no-exclamation-question-mark@1.1.0:
     dependencies:
       '@textlint/regexp-string-matcher': 1.1.1
       match-index: 1.0.3
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
 
   textlint-rule-no-hankaku-kana@1.0.2:
     dependencies:
@@ -20179,13 +20188,13 @@ snapshots:
   textlint-rule-no-mix-dearu-desumasu@5.0.0:
     dependencies:
       analyze-desumasu-dearu: 5.0.2
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
       unist-util-visit: 3.1.0
 
   textlint-rule-no-nfd@1.0.2:
     dependencies:
       match-index: 1.0.3
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
       unorm: 1.6.0
 
   textlint-rule-no-start-duplicated-conjunction@2.0.2:
@@ -20286,12 +20295,12 @@ snapshots:
     dependencies:
       '@babel/parser': 7.27.5
       prh: 5.4.4
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
 
   textlint-rule-rousseau@1.4.8(buffer@6.0.3):
     dependencies:
       '@textlint-rule/rousseau': 2.0.4(buffer@6.0.3)
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
       textlint-util-to-string: 3.3.4
       unist-util-map: 1.0.5
     transitivePeerDependencies:
@@ -20308,7 +20317,7 @@ snapshots:
     dependencies:
       '@textlint/regexp-string-matcher': 1.1.1
       sentence-splitter: 3.2.3
-      textlint-rule-helper: 2.3.1
+      textlint-rule-helper: 2.5.0
       textlint-util-to-string: 3.3.4
 
   textlint-rule-spellcheck-tech-word@5.0.0(textlint@packages+textlint):
