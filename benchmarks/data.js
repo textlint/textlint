@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756530608879,
+  "lastUpdate": 1756530709052,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -78918,6 +78918,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6342407223600001,
             "unit": "seconds",
             "range": "± 0.015938904000000087"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5fbce868e92037fad7153ccd65e21b0aff9c89b6",
+          "message": "CI: fix release workflow (#1715)\n\nCo-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>",
+          "timestamp": "2025-08-30T05:10:02Z",
+          "tree_id": "788184f683aec9f523de53412fe9378fb5fc257f",
+          "url": "https://github.com/textlint/textlint/commit/5fbce868e92037fad7153ccd65e21b0aff9c89b6"
+        },
+        "date": 1756530704219,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23377040262000004,
+            "unit": "seconds",
+            "range": "± 0.19367699700000005"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.69870344122,
+            "unit": "seconds",
+            "range": "± 0.07566266499999985"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.58875498582,
+            "unit": "seconds",
+            "range": "± 0.01693233099999991"
           }
         ]
       }
