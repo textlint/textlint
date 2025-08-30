@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756524461649,
+  "lastUpdate": 1756529397790,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -78750,6 +78750,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6026394310600002,
             "unit": "seconds",
             "range": "± 0.01218302799999993"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "db6c057d3c349f3a36b8830b797fe8e411cf39b9",
+          "message": "Delete oidc-migration-issue.md",
+          "timestamp": "2025-08-30T13:47:50+09:00",
+          "tree_id": "e2b9edcb041268fba779e73b066c8b9caa922fca",
+          "url": "https://github.com/textlint/textlint/commit/db6c057d3c349f3a36b8830b797fe8e411cf39b9"
+        },
+        "date": 1756529392663,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25292005522000005,
+            "unit": "seconds",
+            "range": "± 0.15702000100000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.84107642102,
+            "unit": "seconds",
+            "range": "± 0.05822368600000005"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.64173492942,
+            "unit": "seconds",
+            "range": "± 0.008522385999999993"
           }
         ]
       }
