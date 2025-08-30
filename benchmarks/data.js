@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756517495754,
+  "lastUpdate": 1756518754298,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -77952,6 +77952,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60558208366,
             "unit": "seconds",
             "range": "± 0.004657852000000018"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "8c80c519494d20909883f9e8e323fa3e33fd2a8b",
+          "message": "Update .github/workflows/release.yml",
+          "timestamp": "2025-08-30T10:50:29+09:00",
+          "tree_id": "54d7062cd25bb95c2f355a7606ca34d555df40d8",
+          "url": "https://github.com/textlint/textlint/commit/8c80c519494d20909883f9e8e323fa3e33fd2a8b"
+        },
+        "date": 1756518748893,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22849070206,
+            "unit": "seconds",
+            "range": "± 0.08851356599999996"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7485536184600001,
+            "unit": "seconds",
+            "range": "± 0.036429217999999874"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6123672684600001,
+            "unit": "seconds",
+            "range": "± 0.02340498599999996"
           }
         ]
       }
