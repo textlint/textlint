@@ -112,7 +112,7 @@ jobs:
         with:
           tag_name: v${{ env.PACKAGE_VERSION }}
           # Copy Pull Request's tile and body to Release Note
-          release_name: ${{ github.event.pull_request.title }}
+          name: ${{ github.event.pull_request.title }} 
           body: ${{ github.event.pull_request.body }}
           draft: false
           prerelease: false
@@ -126,7 +126,8 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '🎉 Release https://github.com/${{ github.repository }}/releases/tag/v${ PACKAGE_VERSION }'
+              body: `🎉 Release https://github.com/${process.env.GITHUB_REPO}/releases/tag/v${process.env.PACKAGE_VERSION}`
             })
         env:
+          GITHUB_REPO: ${{ github.repository }}
           PACKAGE_VERSION: ${{ env.PACKAGE_VERSION }}
