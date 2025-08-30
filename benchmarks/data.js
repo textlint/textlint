@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756520022546,
+  "lastUpdate": 1756524003721,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -78456,6 +78456,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6012139872800001,
             "unit": "seconds",
             "range": "± 0.0197928289999999"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "3dd3711bd80147e592eeb577956a747fff6fb82a",
+          "message": "chore: add version comments to GitHub Actions\n\n- Add version comments to all actions/checkout references\n- Update actions/setup-node from v3.9.1 to v4.4.0\n- Update some actions/checkout from v4.3.0 to v5.0.0",
+          "timestamp": "2025-08-30T12:17:48+09:00",
+          "tree_id": "293269cec8a5d18de4d13420cd159c04a76588f4",
+          "url": "https://github.com/textlint/textlint/commit/3dd3711bd80147e592eeb577956a747fff6fb82a"
+        },
+        "date": 1756523998332,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23081024694000005,
+            "unit": "seconds",
+            "range": "± 0.143139078"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71012876654,
+            "unit": "seconds",
+            "range": "± 0.04171343000000016"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59784287794,
+            "unit": "seconds",
+            "range": "± 0.02567149499999999"
           }
         ]
       }
