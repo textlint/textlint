@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
@@ -71,5 +73,8 @@ jobs:
           labels: "Type: Release"
       - name: Check Pull Request
         run: |
-          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+          echo "Pull Request Number - ${STEPS_CPR_OUTPUTS_PULL_REQUEST_NUMBER}"
+          echo "Pull Request URL - ${STEPS_CPR_OUTPUTS_PULL_REQUEST_URL}"
+        env:
+          STEPS_CPR_OUTPUTS_PULL_REQUEST_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
+          STEPS_CPR_OUTPUTS_PULL_REQUEST_URL: ${{ steps.cpr.outputs.pull-request-url }}
