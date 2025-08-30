@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756518754298,
+  "lastUpdate": 1756519110198,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -77994,6 +77994,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6123672684600001,
             "unit": "seconds",
             "range": "± 0.02340498599999996"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d11869631e5802aeb06ea4c2ebd3d3e264860640",
+          "message": "CI: fix actions (#1711)\n\napply https://docs.zizmor.sh/",
+          "timestamp": "2025-08-30T10:56:27+09:00",
+          "tree_id": "24f88d8d073f983ce589c663941682807eb629ff",
+          "url": "https://github.com/textlint/textlint/commit/d11869631e5802aeb06ea4c2ebd3d3e264860640"
+        },
+        "date": 1756519104353,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.28147380118,
+            "unit": "seconds",
+            "range": "± 0.414705051"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.69754707158,
+            "unit": "seconds",
+            "range": "± 0.03655434599999996"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59502200038,
+            "unit": "seconds",
+            "range": "± 0.019291276999999996"
           }
         ]
       }
