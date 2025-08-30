@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756524254614,
+  "lastUpdate": 1756524334812,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -78582,6 +78582,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5968857738000001,
             "unit": "seconds",
             "range": "± 0.013230086999999946"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "72e6ce79746c925b9ad081cb5b77f184f8243d5d",
+          "message": "chore: add version comments to GitHub Actions (#1714)\n\n## Summary\n\nThis PR improves the maintainability of GitHub Actions workflows by\nadding version comments to all action references. The changes include:\n- Added version comments to all\n`actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683` references\n(v4.2.2)\n- Updated `actions/setup-node` from v3.9.1 to v4.4.0 across all\nworkflows\n- Updated some `actions/checkout` references from v4.3.0 to v5.0.0 for\nconsistency\n\n## Changes\n\n### Updated Workflow Files\n- `.github/workflows/ci.yml` - Updated action versions and added version\ncomments\n- `.github/workflows/codeql-analysis.yml` - Added version comment to\ncheckout action\n- `.github/workflows/create-release-pr.yml` - Updated setup-node and\nadded version comments\n- `.github/workflows/release-canary.yml` - Updated setup-node and added\nversion comments\n- `.github/workflows/release.yml` - Updated action versions and added\nversion comments\n- `.github/workflows/website-preview.yml` - Updated setup-node and added\nversion comments\n- `.github/workflows/website.yml` - Updated setup-node and added version\ncomments\n\n### Version Updates\n- `actions/setup-node`: `v3.9.1` → `v4.4.0`\n- `actions/checkout`: `v4.3.0` → `v5.0.0` (in some workflows)\n- All actions now include inline version comments for better tracking\n\n## Motivation\n\nAdding version comments to GitHub Actions makes it easier to:\n- Track which specific version of an action is being used\n- Identify when updates are needed\n- Maintain consistency across workflows\n- Improve security by making version pinning more transparent\n\n## Test Plan\n\nN/A - This PR only adds comments and updates action versions. The\nchanges will be validated by the existing CI workflows.\n\n## Notes\n\nAll action references continue to use SHA pinning for security, with the\nversion comments added for human readability.\n\n🤖 Generated with [Claude Code](https://claude.ai/code)",
+          "timestamp": "2025-08-30T03:21:49Z",
+          "tree_id": "293269cec8a5d18de4d13420cd159c04a76588f4",
+          "url": "https://github.com/textlint/textlint/commit/72e6ce79746c925b9ad081cb5b77f184f8243d5d"
+        },
+        "date": 1756524328888,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22621304994,
+            "unit": "seconds",
+            "range": "± 0.09888055800000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7520643093400001,
+            "unit": "seconds",
+            "range": "± 0.06971840500000015"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60295827714,
+            "unit": "seconds",
+            "range": "± 0.005142526999999952"
           }
         ]
       }
