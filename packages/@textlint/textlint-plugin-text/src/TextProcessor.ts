@@ -15,7 +15,7 @@ export class TextProcessor implements TextlintPluginProcessor {
     constructor(config: TextlintPluginOptions = {}) {
         this.config = config;
         // support "extension" option
-        this.extensions = this.config.extensions ? this.config.extensions as string[] : [];
+        this.extensions = this.config.extensions ? (this.config.extensions as string[]) : [];
     }
 
     availableExtensions() {
@@ -30,7 +30,10 @@ export class TextProcessor implements TextlintPluginProcessor {
             preProcess(text: string, _filePath?: string) {
                 return parse(text);
             },
-            postProcess(messages: Array<TextlintMessage>, filePath?: string): { messages: Array<TextlintMessage>; filePath: string } {
+            postProcess(
+                messages: Array<TextlintMessage>,
+                filePath?: string
+            ): { messages: Array<TextlintMessage>; filePath: string } {
                 return {
                     messages,
                     filePath: filePath ? filePath : "<text>"

@@ -13,7 +13,9 @@ import { describe, it } from "vitest";
 import * as assert from "node:assert";
 
 // Helper to create test message with minimal required properties and support for fatal
-function createTestMessage(overrides: Partial<TextlintMessage> & { fatal?: boolean } = {}): TextlintMessage & { fatal?: boolean } {
+function createTestMessage(
+    overrides: Partial<TextlintMessage> & { fatal?: boolean } = {}
+): TextlintMessage & { fatal?: boolean } {
     return {
         type: "lint",
         ruleId: "",
@@ -30,7 +32,6 @@ function createTestMessage(overrides: Partial<TextlintMessage> & { fatal?: boole
         ...overrides
     };
 }
-
 
 describe("formatter:junit", function () {
     describe("when there are no problems", function () {

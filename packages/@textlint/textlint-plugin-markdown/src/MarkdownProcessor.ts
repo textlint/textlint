@@ -13,7 +13,7 @@ export class MarkdownProcessor {
     extensions: Array<string>;
     constructor(config: TextlintPluginOptions = {}) {
         this.config = config;
-        this.extensions = this.config.extensions ? this.config.extensions as string[] : [];
+        this.extensions = this.config.extensions ? (this.config.extensions as string[]) : [];
     }
 
     availableExtensions() {

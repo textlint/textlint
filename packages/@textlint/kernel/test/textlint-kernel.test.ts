@@ -287,9 +287,11 @@ describe("textlint-kernel", () => {
         describe("when pass invalid options", () => {
             it("should throw validation error", () => {
                 const kernel = new TextlintKernel({});
-                return kernel.lintText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as unknown as TextlintKernelOptions).catch((error) => {
-                    assert.ok(error instanceof Error);
-                });
+                return kernel
+                    .lintText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as unknown as TextlintKernelOptions)
+                    .catch((error) => {
+                        assert.ok(error instanceof Error);
+                    });
             });
         });
     });
@@ -333,9 +335,11 @@ describe("textlint-kernel", () => {
         describe("when pass invalid options", () => {
             it("should throw validation error", () => {
                 const kernel = new TextlintKernel({});
-                return kernel.fixText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as unknown as TextlintKernelOptions).catch((error) => {
-                    assert.ok(error instanceof Error);
-                });
+                return kernel
+                    .fixText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as unknown as TextlintKernelOptions)
+                    .catch((error) => {
+                        assert.ok(error instanceof Error);
+                    });
             });
         });
     });
