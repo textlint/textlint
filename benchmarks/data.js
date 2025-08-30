@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756529753551,
+  "lastUpdate": 1756530505449,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -78834,6 +78834,48 @@ window.BENCHMARK_DATA = {
             "value": 0.596651366,
             "unit": "seconds",
             "range": "± 0.028879173999999952"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2efacea77fb0456c38d377c6ca79bab85cdf55a2",
+          "message": "Update .github/workflows/release.yml\n\nCo-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>",
+          "timestamp": "2025-08-30T14:06:31+09:00",
+          "tree_id": "ec6fd59e5d7e61e45d900df6de4a3bf60b503e93",
+          "url": "https://github.com/textlint/textlint/commit/2efacea77fb0456c38d377c6ca79bab85cdf55a2"
+        },
+        "date": 1756530500306,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2316111385,
+            "unit": "seconds",
+            "range": "± 0.149530055"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7323750287000004,
+            "unit": "seconds",
+            "range": "± 0.03152322400000007"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6040601575,
+            "unit": "seconds",
+            "range": "± 0.016657900000000003"
           }
         ]
       }
