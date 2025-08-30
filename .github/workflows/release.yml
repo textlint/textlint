@@ -70,7 +70,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
         with:
-          cache: 'pnpm'
+          # Release workflow should not use cache for avoiding cache poisoning
+          # https://docs.zizmor.sh/audits/#cache-poisoning
+          # cache: 'pnpm'
           node-version: 22
           # for publishing packages to pnpm
           registry-url: https://registry.npmjs.org
@@ -124,5 +126,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '🎉 Release https://github.com/${{ github.repository }}/releases/tag/v${{ env.PACKAGE_VERSION }}'
+              body: '🎉 Release https://github.com/${{ github.repository }}/releases/tag/v${ PACKAGE_VERSION }'
             })
+        env:
+          PACKAGE_VERSION: ${{ env.PACKAGE_VERSION }}
