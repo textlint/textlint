@@ -112,7 +112,7 @@ jobs:
         with:
           tag_name: v${{ env.PACKAGE_VERSION }}
           # Copy Pull Request's tile and body to Release Note
-          name: ${{ github.event.pull_request.title }} 
+          name: ${{ github.event.pull_request.title }}
           body: ${{ github.event.pull_request.body }}
           draft: false
           prerelease: false
