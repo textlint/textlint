@@ -21,7 +21,7 @@ describe("formatter:tap", function () {
         ];
 
         it("should return nothing", function () {
-            const result = formatter(code as TextlintResult[]);
+            const result = formatter(code);
             assert.equal(result, "TAP version 13\n1..1\nok 1 - foo.js\n");
         });
     });
@@ -43,7 +43,7 @@ describe("formatter:tap", function () {
         ];
 
         it("should return a string with YAML severity, line and column", function () {
-            const result = formatter(code as TextlintResult[]);
+            const result = formatter(code);
             assert.equal(
                 result,
                 "TAP version 13\n1..1\nnot ok 1 - foo.js\n  ---\n  message: Unexpected foo.\n  severity: error\n  data:\n    line: 5\n    column: 10\n    ruleId: foo\n  ...\n"
@@ -52,7 +52,7 @@ describe("formatter:tap", function () {
 
         it("should return a string with line: x, column: y, severity: warning for warnings", function () {
             code[0].messages[0].severity = 1;
-            const result = formatter(code as TextlintResult[]);
+            const result = formatter(code);
             assert.ok(result.indexOf("line: 5") !== -1);
             assert.ok(result.indexOf("column: 10") !== -1);
             assert.ok(result.indexOf("ruleId: foo") !== -1);
@@ -62,7 +62,7 @@ describe("formatter:tap", function () {
 
         it("should return a string with line: x, column: y, severity: info for info", function () {
             code[0].messages[0].severity = 3;
-            const result = formatter(code as TextlintResult[]);
+            const result = formatter(code);
             assert.ok(result.indexOf("line: 5") !== -1);
             assert.ok(result.indexOf("column: 10") !== -1);
             assert.ok(result.indexOf("ruleId: foo") !== -1);
@@ -88,7 +88,7 @@ describe("formatter:tap", function () {
         ];
 
         it("should return a an error string", function () {
-            const result = formatter(code as TextlintResult[]);
+            const result = formatter(code);
             assert.ok(result.indexOf("not ok") !== -1);
             assert.ok(result.indexOf("error") !== -1);
         });
@@ -125,7 +125,7 @@ describe("formatter:tap", function () {
         ];
 
         it("should return a string with multiple entries", function () {
-            const result = formatter(code as TextlintResult[]);
+            const result = formatter(code);
             assert.ok(result.indexOf("not ok") !== -1);
             assert.ok(result.indexOf("messages") !== -1);
             assert.ok(result.indexOf("Unexpected foo.") !== -1);
@@ -169,7 +169,7 @@ describe("formatter:tap", function () {
         ];
 
         it("should return a string with multiple entries", function () {
-            const result = formatter(code as TextlintResult[]);
+            const result = formatter(code);
             assert.ok(result.indexOf("not ok 1") !== -1);
             assert.ok(result.indexOf("not ok 2") !== -1);
         });
@@ -191,7 +191,7 @@ describe("formatter:tap", function () {
         ];
 
         it("should return a string without line and column", function () {
-            const result = formatter(code as TextlintResult[]);
+            const result = formatter(code);
             assert.ok(result.indexOf("line: 0") !== -1);
             assert.ok(result.indexOf("column: 0") !== -1);
             assert.ok(result.indexOf("severity: error") !== -1);

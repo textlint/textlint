@@ -39,7 +39,7 @@ export class TextlintRuleDescriptors {
     get fixableDescriptors(): TextlintFixableRuleDescriptor[] {
         return this.descriptors.filter((descriptor) => {
             return descriptor instanceof TextlintFixableRuleDescriptor;
-        }) as TextlintFixableRuleDescriptor[];
+        });
     }
 
     /**
