@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756598769620,
+  "lastUpdate": 1756599716605,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -79170,6 +79170,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6170866639400001,
             "unit": "seconds",
             "range": "± 0.007005213999999982"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "arukimedesu1166777@gmail.com",
+            "name": "Noritaka Kobayashi",
+            "username": "noritaka1166"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e6f453d58c950ded068bda15301b7182d55ef4f4",
+          "message": "refactor: format code (#1720)\n\nrun `pnpm run format`",
+          "timestamp": "2025-08-31T09:19:23+09:00",
+          "tree_id": "b6daf8950f58cea3f27b1aa252e294c76adbcfda",
+          "url": "https://github.com/textlint/textlint/commit/e6f453d58c950ded068bda15301b7182d55ef4f4"
+        },
+        "date": 1756599711689,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22920183534,
+            "unit": "seconds",
+            "range": "± 0.12658499200000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7602495633399997,
+            "unit": "seconds",
+            "range": "± 0.05997589300000006"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60846185434,
+            "unit": "seconds",
+            "range": "± 0.013177991000000056"
           }
         ]
       }
