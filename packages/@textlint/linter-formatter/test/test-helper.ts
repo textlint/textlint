@@ -1,7 +1,9 @@
 import type { TextlintMessage, TextlintResult } from "@textlint/types";
 
 // Helper to create test message with minimal required properties
-export function createTestMessage(overrides: Partial<TextlintMessage> & { fatal?: boolean } = {}): TextlintMessage & { fatal?: boolean } {
+export function createTestMessage(
+    overrides: Partial<TextlintMessage> & { fatal?: boolean } = {}
+): TextlintMessage & { fatal?: boolean } {
     return {
         type: "lint",
         ruleId: "",

@@ -9,7 +9,9 @@ import type { TextlintMessage } from "@textlint/types";
 import * as path from "node:path";
 
 // Helper to create test message with minimal required properties
-function createTestMessage(overrides: Partial<TextlintMessage> & { source?: string; fix?: { range: number[]; text: string } } = {}): TextlintMessage & { source?: string; fix?: { range: number[]; text: string } } {
+function createTestMessage(
+    overrides: Partial<TextlintMessage> & { source?: string; fix?: { range: number[]; text: string } } = {}
+): TextlintMessage & { source?: string; fix?: { range: number[]; text: string } } {
     return {
         type: "lint",
         ruleId: "",

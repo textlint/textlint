@@ -22,12 +22,13 @@ const PERF_MULTIPLIER = 7.5e6;
  */
 function time(cmd, runs, runNumber, results, cb) {
     const start = process.hrtime();
-    exec(cmd, { silent: true }, function () { // eslint-disable-line no-undef
+    // eslint-disable-next-line no-undef
+    exec(cmd, { silent: true }, function () {
         const diff = process.hrtime(start),
             actual = diff[0] * 1e3 + diff[1] / 1e6; // ms
 
         results.push(actual);
-        echo(`Performance Run #${  runNumber  }:  %dms`, actual); // eslint-disable-line no-undef
+        echo(`Performance Run #${runNumber}:  %dms`, actual); // eslint-disable-line no-undef
         if (runs > 1) {
             time(cmd, runs - 1, runNumber + 1, results, cb);
         } else {
@@ -39,9 +40,9 @@ function time(cmd, runs, runNumber, results, cb) {
 function run() {
     const cpuSpeed = os.cpus()[0].speed;
     const max = PERF_MULTIPLIER / cpuSpeed;
-    const TEXTLINT = `node ${  __dirname  }/node_modules/.bin/textlint`;
-    const target = `${__dirname  }/md/`;
-    const cmd = `${TEXTLINT  } ${  target}`;
+    const TEXTLINT = `node ${__dirname}/node_modules/.bin/textlint`;
+    const target = `${__dirname}/md/`;
+    const cmd = `${TEXTLINT} ${target}`;
     time(cmd, 5, 1, [], function (results) {
         results.sort(function (a, b) {
             return a - b;

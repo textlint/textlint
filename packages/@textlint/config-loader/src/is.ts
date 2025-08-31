@@ -35,7 +35,9 @@ export function hasFixer(ruleCreator: unknown): boolean {
     if (!ruleCreator) {
         return false;
     }
-    return isObjectWithProperty(ruleCreator, "fixer") && typeof ruleCreator.fixer === "function" && hasLinter(ruleCreator);
+    return (
+        isObjectWithProperty(ruleCreator, "fixer") && typeof ruleCreator.fixer === "function" && hasLinter(ruleCreator)
+    );
 }
 
 /**

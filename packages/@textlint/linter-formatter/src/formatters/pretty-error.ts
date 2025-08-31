@@ -40,7 +40,10 @@ const template = style(
  * @param {TextLintMessage} message
  * @returns {*}
  */
-function failingCode(code: string, message: TextlintMessage): Array<{ line: number; code?: string; col?: number; failed?: boolean }> {
+function failingCode(
+    code: string,
+    message: TextlintMessage
+): Array<{ line: number; code?: string; col?: number; failed?: boolean }> {
     const result = [];
     const lines = code.split("\n");
     let i = message.line - 3;

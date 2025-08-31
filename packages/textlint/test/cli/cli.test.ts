@@ -20,7 +20,7 @@ const runWithMockLog = async (cb: (context: RunContext) => unknown): Promise<unk
     const originLog = Logger.log;
     const messages: string[] = [];
     Logger.log = function mockLog(...message: unknown[]) {
-        messages.push(message.join(' '));
+        messages.push(message.join(" "));
     };
     const context = {
         getLogs() {
@@ -39,7 +39,6 @@ const runWithMockLog = async (cb: (context: RunContext) => unknown): Promise<unk
     try {
         await cb(context);
     } catch (error) {
-         
         console.log("Logs", context.getLogs());
         throw error;
     }

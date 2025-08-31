@@ -22,10 +22,8 @@ function findFirstTypedNode(node: TxtNode, type: string, value?: string): TxtNod
         }
     });
     if (result == null) {
-         
         console.log(inspect(node));
         throw new Error(`Not Found type:${type}`);
-         
     }
     return result;
 }

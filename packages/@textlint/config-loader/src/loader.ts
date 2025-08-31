@@ -227,7 +227,8 @@ export const loadRules = async ({
                 } else {
                     if (isPresetRuleKey(ruleId)) {
                         // load preset
-                        const presetRulesOptions = typeof ruleOptions === "boolean" ? {} : (ruleOptions as Record<string, boolean | object>);
+                        const presetRulesOptions =
+                            typeof ruleOptions === "boolean" ? {} : (ruleOptions as Record<string, boolean | object>);
                         const rulesInPreset = await loadPreset({
                             presetName: ruleId,
                             presetRulesOptions,

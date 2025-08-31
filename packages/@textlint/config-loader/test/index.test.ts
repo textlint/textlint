@@ -34,8 +34,14 @@ const sortConfigForComparison = (config: unknown): unknown => {
                 return a.localeCompare(b);
             }
             // Sort by ruleId first
-            if (typeof a === "object" && a !== null && "ruleId" in a &&
-                typeof b === "object" && b !== null && "ruleId" in b) {
+            if (
+                typeof a === "object" &&
+                a !== null &&
+                "ruleId" in a &&
+                typeof b === "object" &&
+                b !== null &&
+                "ruleId" in b
+            ) {
                 const aRule = (a as { ruleId: unknown }).ruleId;
                 const bRule = (b as { ruleId: unknown }).ruleId;
                 if (typeof aRule === "string" && typeof bRule === "string") {
@@ -43,8 +49,14 @@ const sortConfigForComparison = (config: unknown): unknown => {
                 }
             }
             // Sort by pluginId
-            if (typeof a === "object" && a !== null && "pluginId" in a &&
-                typeof b === "object" && b !== null && "pluginId" in b) {
+            if (
+                typeof a === "object" &&
+                a !== null &&
+                "pluginId" in a &&
+                typeof b === "object" &&
+                b !== null &&
+                "pluginId" in b
+            ) {
                 const aPlugin = (a as { pluginId: unknown }).pluginId;
                 const bPlugin = (b as { pluginId: unknown }).pluginId;
                 if (typeof aPlugin === "string" && typeof bPlugin === "string") {
@@ -52,8 +64,14 @@ const sortConfigForComparison = (config: unknown): unknown => {
                 }
             }
             // Sort by type
-            if (typeof a === "object" && a !== null && "type" in a &&
-                typeof b === "object" && b !== null && "type" in b) {
+            if (
+                typeof a === "object" &&
+                a !== null &&
+                "type" in a &&
+                typeof b === "object" &&
+                b !== null &&
+                "type" in b
+            ) {
                 const aType = (a as { type: unknown }).type;
                 const bType = (b as { type: unknown }).type;
                 if (typeof aType === "string" && typeof bType === "string") {
