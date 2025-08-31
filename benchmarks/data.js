@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756533261004,
+  "lastUpdate": 1756598686823,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -79086,6 +79086,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6219008668200001,
             "unit": "seconds",
             "range": "± 0.014188592999999972"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "arukimedesu1166777@gmail.com",
+            "name": "Noritaka Kobayashi",
+            "username": "noritaka1166"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a8379d314f7554a9b27f9c73239b665646e7818f",
+          "message": "refactor: remove unnecessary assertion (#1719)\n\nremove unnecessary assertion",
+          "timestamp": "2025-08-31T09:02:16+09:00",
+          "tree_id": "a909cba134982f5fc2461547ca04dd749c4bd236",
+          "url": "https://github.com/textlint/textlint/commit/a8379d314f7554a9b27f9c73239b665646e7818f"
+        },
+        "date": 1756598681992,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22752465672000005,
+            "unit": "seconds",
+            "range": "± 0.130832156"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.72927353912,
+            "unit": "seconds",
+            "range": "± 0.07934860799999988"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60214800592,
+            "unit": "seconds",
+            "range": "± 0.016209934000000037"
           }
         ]
       }
