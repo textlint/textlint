@@ -41,7 +41,7 @@ describe("formatter:json", function () {
     ];
 
     it("should return passed results as a JSON string without any modification", function () {
-        const result = JSON.parse(formatter(code as TextlintResult[]));
+        const result = JSON.parse(formatter(code));
         assert.deepEqual(result, code);
     });
 });
