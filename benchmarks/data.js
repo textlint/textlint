@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757063591876,
+  "lastUpdate": 1757097145979,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -79548,6 +79548,48 @@ window.BENCHMARK_DATA = {
             "value": 0.57730533382,
             "unit": "seconds",
             "range": "± 0.006958314999999993"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "afcfb21d966818e53f11b162606276bd2c45c4c8",
+          "message": "fix(deps): update dependency @mdx-js/react to ^3.1.1",
+          "timestamp": "2025-09-05T18:30:19Z",
+          "tree_id": "ce42958ead750d837a2c80c602d878ac580fa0d0",
+          "url": "https://github.com/textlint/textlint/commit/afcfb21d966818e53f11b162606276bd2c45c4c8"
+        },
+        "date": 1757097140525,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.27569970836,
+            "unit": "seconds",
+            "range": "± 0.3627906430000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71466954096,
+            "unit": "seconds",
+            "range": "± 0.065324033"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5924890633600002,
+            "unit": "seconds",
+            "range": "± 0.027901158000000037"
           }
         ]
       }
