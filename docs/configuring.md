@@ -134,7 +134,13 @@ is equal to
 
 ### Severity config of rules
 
-- `severity` : `"<warning|error>"` - Default: "error"
+- `severity`: `"<warning|error|info>"` - Default: "error"
+  - `warning`: Warning (yellow) is not exit with error (exit status is `0`)
+  - `error`: Error (red) is exit with error (exit status is `1`)
+  - `info`: Informational (green) is not exit with error (exit status is `0`) (available since [v15.1.0](https://github.com/textlint/textlint/releases/tag/v15.1.0))
+    - This is particularly useful for AI-assisted writing rules, such as those in [textlint-ja/textlint-rule-preset-ai-writing](https://github.com/textlint-ja/textlint-rule-preset-ai-writing), which provides LLM-oriented rules for guidelines.
+
+For example, consider the following configuration:
 
 ```json
 {
@@ -149,7 +155,7 @@ is equal to
 It means that
 
 - enable "no-todo" rule
-- found thing match the rule and show warning message(exit status is `0`)
+- found thing match the rule and show warning message (exit status is `0`)
 
 **Summary**
 
@@ -259,7 +265,7 @@ textlint's built-in plugins are text and markdown.
 
 These plugin support custom "extensions" options.
 
-For example, if you want to treat `.hown` as markdown, put following config to `.textlintrc.json`    
+For example, if you want to treat `.hown` as markdown, put following config to `.textlintrc.json`
 
 ```json5
 {
