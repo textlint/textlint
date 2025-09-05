@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756634171367,
+  "lastUpdate": 1757051168512,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -79296,6 +79296,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60277190398,
             "unit": "seconds",
             "range": "± 0.02045172400000006"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "52315048+3w36zj6@users.noreply.github.com",
+            "name": "3w36zj6",
+            "username": "3w36zj6"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9647eacd308153db7b64f8d2a3d3962de9689a5b",
+          "message": "docs: add info severity level to configuring page (#1722)\n\nI added a description of the info severity level, which was introduced\nin [v15.1.0](https://github.com/textlint/textlint/releases/tag/v15.1.0),\nto the documentation's configuring page.",
+          "timestamp": "2025-09-05T14:43:58+09:00",
+          "tree_id": "b079804b0b799034c3ddee0c5a702fe5382d0ef6",
+          "url": "https://github.com/textlint/textlint/commit/9647eacd308153db7b64f8d2a3d3962de9689a5b"
+        },
+        "date": 1757051162703,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.29037274578000005,
+            "unit": "seconds",
+            "range": "± 0.40530946200000006"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7505950689799998,
+            "unit": "seconds",
+            "range": "± 0.10291003800000009"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6150326489800001,
+            "unit": "seconds",
+            "range": "± 0.007303775000000012"
           }
         ]
       }
