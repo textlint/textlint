@@ -54,12 +54,12 @@
         "babel-plugin-static-fs": "^3.0.0",
         "confirmer": "^1.1.2",
         "cross-spawn": "^7.0.6",
-        "mocha": "^11.7.1",
+        "mocha": "^11.7.2",
         "pkg-to-readme": "^3.0.1",
         "textlint-tester": "workspace:*"
     },
     "devDependencies": {
-        "lint-staged": "^16.1.5",
+        "lint-staged": "^16.1.6",
         "prettier": "^2.2.1",
         "shelljs": "^0.10.0"
     },
