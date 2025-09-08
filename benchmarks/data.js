@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757370725982,
+  "lastUpdate": 1757370751355,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -79884,6 +79884,48 @@ window.BENCHMARK_DATA = {
             "value": 0.5904057741600001,
             "unit": "seconds",
             "range": "± 0.02937715900000004"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5298a2c722cdd30c2b9dfb14f1a6eaf568fdf478",
+          "message": "fix(deps): update patch updates (patch) (#1728)\n\nThis PR contains the following updates:\n\n| Package | Change | Age | Confidence |\n|---|---|---|---|\n| [lint-staged](https://redirect.github.com/lint-staged/lint-staged) |\n[`^16.1.5` ->\n`^16.1.6`](https://renovatebot.com/diffs/npm/lint-staged/16.1.5/16.1.6)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/lint-staged/16.1.6?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/lint-staged/16.1.5/16.1.6?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n| [mocha](https://mochajs.org/)\n([source](https://redirect.github.com/mochajs/mocha)) | [`^11.7.1` ->\n`^11.7.2`](https://renovatebot.com/diffs/npm/mocha/11.7.1/11.7.2) |\n[![age](https://developer.mend.io/api/mc/badges/age/npm/mocha/11.7.2?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/mocha/11.7.1/11.7.2?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>lint-staged/lint-staged (lint-staged)</summary>\n\n###\n[`v16.1.6`](https://redirect.github.com/lint-staged/lint-staged/blob/HEAD/CHANGELOG.md#1616)\n\n[Compare\nSource](https://redirect.github.com/lint-staged/lint-staged/compare/v16.1.5...v16.1.6)\n\n##### Patch Changes\n\n-\n[#&#8203;1610](https://redirect.github.com/lint-staged/lint-staged/pull/1610)\n[`e93578e`](https://redirect.github.com/lint-staged/lint-staged/commit/e93578e265a69ed6b02fcaa11486078c1bdbdaaa)\nThanks [@&#8203;iiroj](https://redirect.github.com/iiroj)! - Try to\nimprove terminating of subprocess of tasks by using `SIGKILL`, and only\ncalling `pidtree` when the the main task process has a known pid.\n\n</details>\n\n<details>\n<summary>mochajs/mocha (mocha)</summary>\n\n###\n[`v11.7.2`](https://redirect.github.com/mochajs/mocha/blob/HEAD/CHANGELOG.md#1172-2025-09-01)\n\n[Compare\nSource](https://redirect.github.com/mochajs/mocha/compare/v11.7.1...v11.7.2)\n\n##### 🩹 Fixes\n\n- fail with an informative error message on a file with a broken default\nimport\n([#&#8203;5413](https://redirect.github.com/mochajs/mocha/issues/5413))\n([b0e6135](https://redirect.github.com/mochajs/mocha/commit/b0e61350594f2a044bf34ea153d1fab1e82e80cc))\n- load mjs files correctly\n([#&#8203;5429](https://redirect.github.com/mochajs/mocha/issues/5429))\n([a947b9b](https://redirect.github.com/mochajs/mocha/commit/a947b9b95501a35efa73c18aa57a74dad555c03a))\n\n##### 📚 Documentation\n\n- add banner from old site to new site, link from new to old\n([#&#8203;5414](https://redirect.github.com/mochajs/mocha/issues/5414))\n([dedef11](https://redirect.github.com/mochajs/mocha/commit/dedef110a2af2f8632fb6c1b864fa0a46ad6ca9c))\n- add info on spies to legacy docs\n([#&#8203;5421](https://redirect.github.com/mochajs/mocha/issues/5421))\n([21f5544](https://redirect.github.com/mochajs/mocha/commit/21f554459c75f5a75b22556b6e2ac70d6ac0e9fc))\n- explain node import swallowing error\n([#&#8203;5401](https://redirect.github.com/mochajs/mocha/issues/5401))\n([09f5b2c](https://redirect.github.com/mochajs/mocha/commit/09f5b2c9de67ef40d5bd1775c3fca3bdb138f371))\n- fix links in new site\n([#&#8203;5416](https://redirect.github.com/mochajs/mocha/issues/5416))\n([b2bc769](https://redirect.github.com/mochajs/mocha/commit/b2bc769c6c8d87311ba0bdc9df8b9b588494eba5))\n- migrate assertion libraries wiki link to main docs\n([#&#8203;5442](https://redirect.github.com/mochajs/mocha/issues/5442))\n([95f3ca8](https://redirect.github.com/mochajs/mocha/commit/95f3ca8bc3a6c6af2932f7fd59a404768c0c6693))\n- migrate count assertions wiki page to docs\n([#&#8203;5438](https://redirect.github.com/mochajs/mocha/issues/5438))\n([02a306c](https://redirect.github.com/mochajs/mocha/commit/02a306c6cbf31f4eef7d4c9bf5e06c917d3efc11))\n- migrate shared behaviours to docs-next\n([#&#8203;5432](https://redirect.github.com/mochajs/mocha/issues/5432))\n([1dc4aa9](https://redirect.github.com/mochajs/mocha/commit/1dc4aa98eb3793865fa2a4da3373534dafc1c9a7))\n- migrate Spies wiki page to explainers\n([#&#8203;5420](https://redirect.github.com/mochajs/mocha/issues/5420))\n([cbcf007](https://redirect.github.com/mochajs/mocha/commit/cbcf007c5ae25f203863aac0b43eca1e8aefe093))\n- Migrate tagging wiki page to docs\n([#&#8203;5435](https://redirect.github.com/mochajs/mocha/issues/5435))\n([876247a](https://redirect.github.com/mochajs/mocha/commit/876247a8a636cc7bb1c3bf31390e7771182a090a))\n- migrate third party reporters wiki page to docs\n([#&#8203;5433](https://redirect.github.com/mochajs/mocha/issues/5433))\n([f70764c](https://redirect.github.com/mochajs/mocha/commit/f70764c9a56fcf12e316d5539788c7be0693b6a9))\n- migrate to global leak wiki page to docs\n([#&#8203;5437](https://redirect.github.com/mochajs/mocha/issues/5437))\n([8a6fdca](https://redirect.github.com/mochajs/mocha/commit/8a6fdcafccd94c888fae5e8be47dd29a604241b6))\n- update /next bug report link to be docs issue template\n([#&#8203;5424](https://redirect.github.com/mochajs/mocha/issues/5424))\n([668cb66](https://redirect.github.com/mochajs/mocha/commit/668cb66e1288051369ab144ccb50c840ebe34267))\n\n##### 🧹 Chores\n\n- add issue form for ⚡️ Performance\n([#&#8203;5406](https://redirect.github.com/mochajs/mocha/issues/5406))\n([a908b3b](https://redirect.github.com/mochajs/mocha/commit/a908b3b86604d41d5751cccfaff505d7092c114f))\n- add test for `-R import-only-loader`\n([#&#8203;5391](https://redirect.github.com/mochajs/mocha/issues/5391))\n([6ee5b48](https://redirect.github.com/mochajs/mocha/commit/6ee5b483b8c29e0593c7765ad7a5c7b7f7764fc3))\n- also test Node.js 24 in CI\n([#&#8203;5405](https://redirect.github.com/mochajs/mocha/issues/5405))\n([15f5980](https://redirect.github.com/mochajs/mocha/commit/15f59805287f4c84ab8d057735a391a795be23f1))\n- bump CI to use 20.19.4, 22.18.0, 24.6.0\n([#&#8203;5430](https://redirect.github.com/mochajs/mocha/issues/5430))\n([ace5eb4](https://redirect.github.com/mochajs/mocha/commit/ace5eb47a7926fe9d56ebcd95fd659c557a5be4d))\n- bump Knip to 5.61.2\n([#&#8203;5394](https://redirect.github.com/mochajs/mocha/issues/5394))\n([f3d7430](https://redirect.github.com/mochajs/mocha/commit/f3d743061d6523f7077b21749089e6fb2f9c32e3))\n- cleanup references of --opts\n([#&#8203;5402](https://redirect.github.com/mochajs/mocha/issues/5402))\n([1096b37](https://redirect.github.com/mochajs/mocha/commit/1096b376c3c3bb9d4256c643ad35a459ed750928))\n- enabled ESLint's no-unused-vars\n([#&#8203;5399](https://redirect.github.com/mochajs/mocha/issues/5399))\n([d4168ae](https://redirect.github.com/mochajs/mocha/commit/d4168aef4c21f8fd119385da1cf1794a1ec5c2e1))\n- move callback and object typedefs to a new types.d.ts\n([#&#8203;5351](https://redirect.github.com/mochajs/mocha/issues/5351))\n([3300d21](https://redirect.github.com/mochajs/mocha/commit/3300d2155a1b06059fbe89c98a1d8bf979539019))\n- rewrite base path instead of copy-pasting\n([#&#8203;5431](https://redirect.github.com/mochajs/mocha/issues/5431))\n([c6c6740](https://redirect.github.com/mochajs/mocha/commit/c6c6740fb45da43510f86c1d22ea46ce9ee6a7ae))\n- unify caught errors as err\n([#&#8203;5439](https://redirect.github.com/mochajs/mocha/issues/5439))\n([d4912e7](https://redirect.github.com/mochajs/mocha/commit/d4912e705cf9ae1c3aa274b6449a6a0ff6d408c5))\n- Update experimental module detection test and pin exact Node versions\n([#&#8203;5417](https://redirect.github.com/mochajs/mocha/issues/5417))\n([2489090](https://redirect.github.com/mochajs/mocha/commit/2489090223f2629e4a380abe4cc6d46858ada922))\n\n##### 🤖 Automation\n\n- **deps:** bump actions/checkout in the github-actions group\n([#&#8203;5419](https://redirect.github.com/mochajs/mocha/issues/5419))\n([03ac2d0](https://redirect.github.com/mochajs/mocha/commit/03ac2d0e6e75e95b3dc7fb08f2e1a1117d9718ca))\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n👻 **Immortal**: This PR will be recreated if closed unmerged. Get\n[config\nhelp](https://redirect.github.com/renovatebot/renovate/discussions) if\nthat's undesired.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MS45Ny4xMCIsInVwZGF0ZWRJblZlciI6IjQxLjk3LjEwIiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-09-08T22:29:49Z",
+          "tree_id": "14d6076ebf3e924aedf8f9de0f049de3beff6bda",
+          "url": "https://github.com/textlint/textlint/commit/5298a2c722cdd30c2b9dfb14f1a6eaf568fdf478"
+        },
+        "date": 1757370746057,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2359766124,
+            "unit": "seconds",
+            "range": "± 0.18849162700000005"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6988439764000003,
+            "unit": "seconds",
+            "range": "± 0.04922334099999981"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5914010874000001,
+            "unit": "seconds",
+            "range": "± 0.015193662000000052"
           }
         ]
       }
