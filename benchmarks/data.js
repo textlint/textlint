@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757442976716,
+  "lastUpdate": 1757452333808,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -80052,6 +80052,48 @@ window.BENCHMARK_DATA = {
             "value": 0.60461257666,
             "unit": "seconds",
             "range": "± 0.0267364080000001"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8bd1ed9065db5505afd40f570fe093a11cc2ba5c",
+          "message": "fix(deps): update dependency @modelcontextprotocol/sdk to ^1.17.5",
+          "timestamp": "2025-09-09T21:09:07Z",
+          "tree_id": "a1b801383c2f12540caab721a9fb24058d8e3925",
+          "url": "https://github.com/textlint/textlint/commit/8bd1ed9065db5505afd40f570fe093a11cc2ba5c"
+        },
+        "date": 1757452326483,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.26961020844000005,
+            "unit": "seconds",
+            "range": "± 0.31811393200000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7572610912400002,
+            "unit": "seconds",
+            "range": "± 0.05041158400000012"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60737291744,
+            "unit": "seconds",
+            "range": "± 0.015776043000000017"
           }
         ]
       }
