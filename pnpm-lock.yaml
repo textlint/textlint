@@ -36,8 +36,8 @@ importers:
         specifier: ^16.3.0
         version: 16.3.0
       lerna:
-        specifier: ^8.2.3
-        version: 8.2.3(encoding@0.1.13)
+        specifier: ^8.2.4
+        version: 8.2.4(encoding@0.1.13)
       lint-staged:
         specifier: ^16.1.6
         version: 16.1.6
@@ -2579,8 +2579,8 @@ packages:
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
 
-  '@lerna/create@8.2.3':
-    resolution: {integrity: sha512-f+68+iojcQ0tZRMfCgQyJdsdz+YPu3/d+0Zo1RJz92bgBxTCiEU+dHACVq1n3sEjm/YWPnFGdag8U5EYYmP3WA==}
+  '@lerna/create@8.2.4':
+    resolution: {integrity: sha512-A8AlzetnS2WIuhijdAzKUyFpR5YbLLfV3luQ4lzBgIBgRfuoBDZeF+RSZPhra+7A6/zTUlrbhKZIOi/MNhqgvQ==}
     engines: {node: '>=18.0.0'}
 
   '@mdx-js/mdx@3.1.0':
@@ -3988,10 +3988,6 @@ packages:
   chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
-
-  chalk@5.5.0:
-    resolution: {integrity: sha512-1tm8DTaJhPBG3bIkVeZt1iZM9GfSX2lzOeDVZH9R9ffRHpmHvxZ/QhgQH/aDTkswQVt+YHdXAdS/In/30OjCbg==}
-    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
   chalk@5.6.2:
     resolution: {integrity: sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA==}
@@ -6268,8 +6264,8 @@ packages:
   launch-editor@2.10.0:
     resolution: {integrity: sha512-D7dBRJo/qcGX9xlvt/6wUYzQxjh5G1RvZPgPv8vi4KRU99DVQL/oW7tnVOCCTm2HGeo3C5HvGE5Yrh6UBoZ0vA==}
 
-  lerna@8.2.3:
-    resolution: {integrity: sha512-rmuDU+92eWUnnyaPg3Ise339pTxF+r2hu8ky/soCfbGpUoW4kCwsDza3P/LtQJWrKwZWHcosEitfYvxGUWZ16A==}
+  lerna@8.2.4:
+    resolution: {integrity: sha512-0gaVWDIVT7fLfprfwpYcQajb7dBJv3EGavjG7zvJ+TmGx3/wovl5GklnSwM2/WeE0Z2wrIz7ndWhBcDUHVjOcQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -12154,7 +12150,7 @@ snapshots:
 
   '@leichtgewicht/ip-codec@2.0.5': {}
 
-  '@lerna/create@8.2.3(encoding@0.1.13)(typescript@5.8.3)':
+  '@lerna/create@8.2.4(encoding@0.1.13)(typescript@5.8.3)':
     dependencies:
       '@npmcli/arborist': 7.5.4
       '@npmcli/package-json': 5.2.0
@@ -12189,7 +12185,6 @@ snapshots:
       js-yaml: 4.1.0
       libnpmpublish: 9.0.9
       load-json-file: 6.2.0
-      lodash: 4.17.21
       make-dir: 4.0.0
       minimatch: 3.0.5
       multimatch: 5.0.0
@@ -13835,7 +13830,7 @@ snapshots:
     dependencies:
       ansi-align: 3.0.1
       camelcase: 7.0.1
-      chalk: 5.5.0
+      chalk: 5.6.2
       cli-boxes: 3.0.0
       string-width: 5.1.2
       type-fest: 2.19.0
@@ -14007,8 +14002,6 @@ snapshots:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
-
-  chalk@5.5.0: {}
 
   chalk@5.6.2: {}
 
@@ -16524,9 +16517,9 @@ snapshots:
       picocolors: 1.1.1
       shell-quote: 1.8.3
 
-  lerna@8.2.3(encoding@0.1.13):
+  lerna@8.2.4(encoding@0.1.13):
     dependencies:
-      '@lerna/create': 8.2.3(encoding@0.1.13)(typescript@5.8.3)
+      '@lerna/create': 8.2.4(encoding@0.1.13)(typescript@5.8.3)
       '@npmcli/arborist': 7.5.4
       '@npmcli/package-json': 5.2.0
       '@npmcli/run-script': 8.1.0
@@ -16566,7 +16559,6 @@ snapshots:
       libnpmaccess: 8.0.6
       libnpmpublish: 9.0.9
       load-json-file: 6.2.0
-      lodash: 4.17.21
       make-dir: 4.0.0
       minimatch: 3.0.5
       multimatch: 5.0.0
@@ -20780,7 +20772,7 @@ snapshots:
   update-notifier@6.0.2:
     dependencies:
       boxen: 7.1.1
-      chalk: 5.5.0
+      chalk: 5.6.2
       configstore: 6.0.0
       has-yarn: 3.0.0
       import-lazy: 4.0.0
