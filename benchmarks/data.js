@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758314798838,
+  "lastUpdate": 1758315016368,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -81395,6 +81395,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.58147793946,
             "range": "± 0.012356044999999982",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4810fc598806dcb4bc02a1b5ba7038757fbdc5e5",
+          "message": "chore(deps): update pnpm to v10.16.0 (#1744)\n\nComing soon: The Renovate bot (GitHub App) will be renamed to Mend. PRs\nfrom Renovate will soon appear from 'Mend'. Learn more\n[here](https://redirect.github.com/renovatebot/renovate/discussions/37842).\n\nThis PR contains the following updates:\n\n| Package | Change | Age | Confidence |\n|---|---|---|---|\n| [pnpm](https://pnpm.io)\n([source](https://redirect.github.com/pnpm/pnpm/tree/HEAD/pnpm)) |\n[`10.15.1+sha512.34e538c329b5553014ca8e8f4535997f96180a1d0f614339357449935350d924e22f8614682191264ec33d1462ac21561aff97f6bb18065351c162c7e8f6de67`\n-> `10.16.0`](https://renovatebot.com/diffs/npm/pnpm/10.15.1/10.16.0) |\n[![age](https://developer.mend.io/api/mc/badges/age/npm/pnpm/10.16.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/pnpm/10.15.1/10.16.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>pnpm/pnpm (pnpm)</summary>\n\n###\n[`v10.16.0`](https://redirect.github.com/pnpm/pnpm/blob/HEAD/pnpm/CHANGELOG.md#10160)\n\n[Compare\nSource](https://redirect.github.com/pnpm/pnpm/compare/v10.15.1...v10.16.0)\n\n##### Minor Changes\n\n- There have been several incidents recently where popular packages were\nsuccessfully attacked. To reduce the risk of installing a compromised\nversion, we are introducing a new setting that delays the installation\nof newly released dependencies. In most cases, such attacks are\ndiscovered quickly and the malicious versions are removed from the\nregistry within an hour.\n\nThe new setting is called `minimumReleaseAge`. It specifies the number\nof minutes that must pass after a version is published before pnpm will\ninstall it. For example, setting `minimumReleaseAge: 1440` ensures that\nonly packages released at least one day ago can be installed.\n\nIf you set `minimumReleaseAge` but need to disable this restriction for\ncertain dependencies, you can list them under the\n`minimumReleaseAgeExclude` setting. For instance, with the following\nconfiguration pnpm will always install the latest version of webpack,\nregardless of its release time:\n\n  ```yaml\n  minimumReleaseAgeExclude:\n    - webpack\n  ```\n\nRelated issue:\n[#&#8203;9921](https://redirect.github.com/pnpm/pnpm/issues/9921).\n\n- Added support for `finders`\n[#&#8203;9946](https://redirect.github.com/pnpm/pnpm/pull/9946).\n\nIn the past, `pnpm list` and `pnpm why` could only search for\ndependencies by **name** (and optionally version). For example:\n\n  ```\n  pnpm why minimist\n  ```\n\nprints the chain of dependencies to any installed instance of\n`minimist`:\n\n  ```\n  verdaccio 5.20.1\n  ├─┬ handlebars 4.7.7\n  │ └── minimist 1.2.8\n  └─┬ mv 2.1.1\n    └─┬ mkdirp 0.5.6\n      └── minimist 1.2.8\n  ```\n\nWhat if we want to search by **other properties** of a dependency, not\njust its name? For instance, find all packages that have `react@17` in\ntheir peer dependencies?\n\nThis is now possible with \"finder functions\". Finder functions can be\ndeclared in `.pnpmfile.cjs` and invoked with the `--find-by=<function\nname>` flag when running `pnpm list` or `pnpm why`.\n\nLet's say we want to find any dependencies that have React 17 in peer\ndependencies. We can add this finder to our `.pnpmfile.cjs`:\n\n  ```js\n  module.exports = {\n    finders: {\n      react17: (ctx) => {\n        return ctx.readManifest().peerDependencies?.react === \"^17.0.0\";\n      },\n    },\n  };\n  ```\n\n  Now we can use this finder function by running:\n\n  ```\n  pnpm why --find-by=react17\n  ```\n\npnpm will find all dependencies that have this React in peer\ndependencies and print their exact locations in the dependency graph.\n\n  ```\n  @&#8203;apollo/client 4.0.4\n  ├── @&#8203;graphql-typed-document-node/core 3.2.0\n  └── graphql-tag 2.12.6\n  ```\n\nIt is also possible to print out some additional information in the\noutput by returning a string from the finder. For example, with the\nfollowing finder:\n\n  ```js\n  module.exports = {\n    finders: {\n      react17: (ctx) => {\n        const manifest = ctx.readManifest();\n        if (manifest.peerDependencies?.react === \"^17.0.0\") {\n          return `license: ${manifest.license}`;\n        }\n        return false;\n      },\n    },\n  };\n  ```\n\nEvery matched package will also print out the license from its\n`package.json`:\n\n  ```\n  @&#8203;apollo/client 4.0.4\n  ├── @&#8203;graphql-typed-document-node/core 3.2.0\n  │   license: MIT\n  └── graphql-tag 2.12.6\n      license: MIT\n  ```\n\n##### Patch Changes\n\n- Fix deprecation warning printed when executing pnpm with Node.js 24\n[#&#8203;9529](https://redirect.github.com/pnpm/pnpm/issues/9529).\n- Throw an error if `nodeVersion` is not set to an exact semver version\n[#&#8203;9934](https://redirect.github.com/pnpm/pnpm/issues/9934).\n- `pnpm publish` should be able to publish a `.tar.gz` file\n[#&#8203;9927](https://redirect.github.com/pnpm/pnpm/pull/9927).\n- Canceling a running process with Ctrl-C should make `pnpm run` return\na non-zero exit code\n[#&#8203;9626](https://redirect.github.com/pnpm/pnpm/issues/9626).\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about this update\nagain.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MS45Ny4xMCIsInVwZGF0ZWRJblZlciI6IjQxLjk3LjEwIiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-09-19T20:48:19Z",
+          "tree_id": "eda5cbff90dca8d58c03daee0f01f6e12cdaaa0f",
+          "url": "https://github.com/textlint/textlint/commit/4810fc598806dcb4bc02a1b5ba7038757fbdc5e5"
+        },
+        "date": 1758315010427,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2140651391,
+            "range": "± 0.097713404",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6723136001000003,
+            "range": "± 0.037186213000000023",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5736812665000001,
+            "range": "± 0.008877314999999997",
             "unit": "seconds"
           }
         ]
