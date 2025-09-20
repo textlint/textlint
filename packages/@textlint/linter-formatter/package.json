@@ -39,7 +39,7 @@
     "@textlint/resolver": "workspace:*",
     "@textlint/types": "workspace:*",
     "chalk": "^4.1.2",
-    "debug": "^4.4.1",
+    "debug": "^4.4.3",
     "js-yaml": "^3.14.1",
     "lodash": "^4.17.21",
     "pluralize": "^2.0.0",
