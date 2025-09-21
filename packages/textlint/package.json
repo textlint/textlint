@@ -62,7 +62,7 @@
     "@textlint/textlint-plugin-text": "workspace:*",
     "@textlint/types": "workspace:*",
     "@textlint/utils": "workspace:*",
-    "debug": "^4.4.1",
+    "debug": "^4.4.3",
     "file-entry-cache": "^10.1.4",
     "glob": "^10.4.5",
     "md5": "^2.3.0",

@@ -44,7 +44,7 @@
     "@textlint/source-code-fixer": "workspace:*",
     "@textlint/types": "workspace:*",
     "@textlint/utils": "workspace:*",
-    "debug": "^4.4.1",
+    "debug": "^4.4.3",
     "fast-equals": "^4.0.3",
     "structured-source": "^4.0.0"
   },
