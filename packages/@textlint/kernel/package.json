@@ -51,7 +51,7 @@
   "devDependencies": {
     "@textlint/markdown-to-ast": "workspace:*",
     "@types/debug": "^4.1.12",
-    "@types/node": "^24.5.1",
+    "@types/node": "^24.5.2",
     "rimraf": "^6.0.1",
     "shelljs": "^0.10.0",
     "textlint-rule-preset-ja-spacing": "^2.4.3",
