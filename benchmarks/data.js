@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758826601409,
+  "lastUpdate": 1758840089825,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -82235,6 +82235,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.59677551926,
             "range": "± 0.019255122999999985",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2e4964c2ecf198540b2c466845e4a17d0ea9e52b",
+          "message": "chore(deps): update node.js to v22.19.0",
+          "timestamp": "2025-09-25T22:38:05Z",
+          "tree_id": "fed6782db2dcdce68686c93d00ba09daf33e83a4",
+          "url": "https://github.com/textlint/textlint/commit/2e4964c2ecf198540b2c466845e4a17d0ea9e52b"
+        },
+        "date": 1758840083716,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21723190834,
+            "range": "± 0.08853659099999997",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.68454725914,
+            "range": "± 0.04100997999999989",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5821517207400001,
+            "range": "± 0.011452334000000008",
             "unit": "seconds"
           }
         ]
