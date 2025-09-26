@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758911186173,
+  "lastUpdate": 1758919765148,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -82361,6 +82361,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5908760412600002,
             "range": "± 0.016290079000000013",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f9f442ba5b6d7676843f10010daa0b0c4d7c8c6c",
+          "message": "chore(deps): update dependency @eslint/js to ^9.36.0 (#1754)\n\nComing soon: The Renovate bot (GitHub App) will be renamed to Mend. PRs\nfrom Renovate will soon appear from 'Mend'. Learn more\n[here](https://redirect.github.com/renovatebot/renovate/discussions/37842).\n\nThis PR contains the following updates:\n\n| Package | Change | Age | Confidence |\n|---|---|---|---|\n| [@eslint/js](https://eslint.org)\n([source](https://redirect.github.com/eslint/eslint/tree/HEAD/packages/js))\n| [`^9.35.0` ->\n`^9.36.0`](https://renovatebot.com/diffs/npm/@eslint%2fjs/9.35.0/9.36.0)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@eslint%2fjs/9.36.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@eslint%2fjs/9.35.0/9.36.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>eslint/eslint (@&#8203;eslint/js)</summary>\n\n###\n[`v9.36.0`](https://redirect.github.com/eslint/eslint/releases/tag/v9.36.0)\n\n[Compare\nSource](https://redirect.github.com/eslint/eslint/compare/v9.35.0...v9.36.0)\n\n#### Features\n\n-\n[`47afcf6`](https://redirect.github.com/eslint/eslint/commit/47afcf668df65eac68d7b04145d037037010a076)\nfeat: correct `preserve-caught-error` edge cases\n([#&#8203;20109](https://redirect.github.com/eslint/eslint/issues/20109))\n(Francesco Trotta)\n\n#### Bug Fixes\n\n-\n[`75b74d8`](https://redirect.github.com/eslint/eslint/commit/75b74d865d3b8e7fa3bcf5ad29f4bf6d18d1310e)\nfix: add missing rule option types\n([#&#8203;20127](https://redirect.github.com/eslint/eslint/issues/20127))\n(ntnyq)\n-\n[`1c0d850`](https://redirect.github.com/eslint/eslint/commit/1c0d85049e3f30a8809340c1abc881c63b7812ff)\nfix: update `eslint-all.js` to use `Object.freeze` for `rules` object\n([#&#8203;20116](https://redirect.github.com/eslint/eslint/issues/20116))\n(루밀LuMir)\n-\n[`7d61b7f`](https://redirect.github.com/eslint/eslint/commit/7d61b7fadc9c5c6f2b131e37e8a3cffa5aae8ee6)\nfix: add missing scope types to `Scope.type`\n([#&#8203;20110](https://redirect.github.com/eslint/eslint/issues/20110))\n(Pixel998)\n-\n[`7a670c3`](https://redirect.github.com/eslint/eslint/commit/7a670c301b58609017ce8cfda99ee81f95de3898)\nfix: correct rule option typings in `rules.d.ts`\n([#&#8203;20084](https://redirect.github.com/eslint/eslint/issues/20084))\n(Pixel998)\n\n#### Documentation\n\n-\n[`b73ab12`](https://redirect.github.com/eslint/eslint/commit/b73ab12acd3e87f8d8173cda03499f6cd1f26db6)\ndocs: update examples to use `defineConfig`\n([#&#8203;20131](https://redirect.github.com/eslint/eslint/issues/20131))\n(sethamus)\n-\n[`31d9392`](https://redirect.github.com/eslint/eslint/commit/31d93926990fba536846ec727d7a2625fc844649)\ndocs: fix typos\n([#&#8203;20118](https://redirect.github.com/eslint/eslint/issues/20118))\n(Pixel998)\n-\n[`c7f861b`](https://redirect.github.com/eslint/eslint/commit/c7f861b3f8c1ac961b4cd4f22483798f3324c62b)\ndocs: Update README (GitHub Actions Bot)\n-\n[`6b0c08b`](https://redirect.github.com/eslint/eslint/commit/6b0c08b106aa66f2e9fa484282f0eb63c64a1215)\ndocs: Update README (GitHub Actions Bot)\n-\n[`91f97c5`](https://redirect.github.com/eslint/eslint/commit/91f97c50468fbdc089c91e99c2ea0fe821911df2)\ndocs: Update README (GitHub Actions Bot)\n\n#### Chores\n\n-\n[`12411e8`](https://redirect.github.com/eslint/eslint/commit/12411e8d450ed26a5f7cca6a78ec05323c9323e8)\nchore: upgrade\n[@&#8203;eslint/js](https://redirect.github.com/eslint/js)@&#8203;9.36.0\n([#&#8203;20139](https://redirect.github.com/eslint/eslint/issues/20139))\n(Milos Djermanovic)\n-\n[`488cba6`](https://redirect.github.com/eslint/eslint/commit/488cba6b391b97b2cfc74bbb46fdeacb1361949e)\nchore: package.json update for\n[@&#8203;eslint/js](https://redirect.github.com/eslint/js) release\n(Jenkins)\n-\n[`bac82a2`](https://redirect.github.com/eslint/eslint/commit/bac82a2a9c80a3f69087852758d7737aea371f09)\nci: simplify renovate configuration\n([#&#8203;19907](https://redirect.github.com/eslint/eslint/issues/19907))\n(唯然)\n-\n[`c00bb37`](https://redirect.github.com/eslint/eslint/commit/c00bb37d62c1bcc0a37f094371be9c40064009f1)\nci: bump actions/labeler from 5 to 6\n([#&#8203;20090](https://redirect.github.com/eslint/eslint/issues/20090))\n(dependabot\\[bot])\n-\n[`fee751d`](https://redirect.github.com/eslint/eslint/commit/fee751dc8aeab54547af4538332ea5c069ef28b6)\nrefactor: use `defaultOptions` in rules\n([#&#8203;20121](https://redirect.github.com/eslint/eslint/issues/20121))\n(Pixel998)\n-\n[`1ace67d`](https://redirect.github.com/eslint/eslint/commit/1ace67d9f7903adc3d3f09868aa05b673e7d3f3b)\nchore: update example to use `defineConfig`\n([#&#8203;20111](https://redirect.github.com/eslint/eslint/issues/20111))\n(루밀LuMir)\n-\n[`4821963`](https://redirect.github.com/eslint/eslint/commit/4821963bf765532069c49e9da9ecbe9485b073fc)\ntest: add missing loc information to error objects in rule tests\n([#&#8203;20112](https://redirect.github.com/eslint/eslint/issues/20112))\n(루밀LuMir)\n-\n[`b42c42e`](https://redirect.github.com/eslint/eslint/commit/b42c42e7cd3ac9ee1b5a15f16ff25b325d0482e4)\nchore: disallow use of deprecated `type` property in core rule tests\n([#&#8203;20094](https://redirect.github.com/eslint/eslint/issues/20094))\n(Milos Djermanovic)\n-\n[`7bb498d`](https://redirect.github.com/eslint/eslint/commit/7bb498d720dcd054cc042ca4b60b138d8485f07c)\ntest: remove deprecated `type` property from core rule tests\n([#&#8203;20093](https://redirect.github.com/eslint/eslint/issues/20093))\n(Pixel998)\n-\n[`e10cf2a`](https://redirect.github.com/eslint/eslint/commit/e10cf2ab42fe5b481d980dc652f7504414747733)\nci: bump actions/setup-node from 4 to 5\n([#&#8203;20089](https://redirect.github.com/eslint/eslint/issues/20089))\n(dependabot\\[bot])\n-\n[`5cb0ce4`](https://redirect.github.com/eslint/eslint/commit/5cb0ce48ef6cfbbe6d09131c33a53f9d66fe9bd4)\nrefactor: use `meta.defaultOptions` in `preserve-caught-error`\n([#&#8203;20080](https://redirect.github.com/eslint/eslint/issues/20080))\n(Pixel998)\n-\n[`f9f7cb5`](https://redirect.github.com/eslint/eslint/commit/f9f7cb578dced3c14f635e17c75aa6744d291f4d)\nchore: package.json update for eslint-config-eslint release (Jenkins)\n-\n[`81764b2`](https://redirect.github.com/eslint/eslint/commit/81764b298065a328038cd067bc8fedef97e57500)\nchore: update `eslint` peer dependency in `eslint-config-eslint`\n([#&#8203;20079](https://redirect.github.com/eslint/eslint/issues/20079))\n(Milos Djermanovic)\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about this update\nagain.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MS4xMzAuMSIsInVwZGF0ZWRJblZlciI6IjQxLjEzMC4xIiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-09-26T20:46:40Z",
+          "tree_id": "c1cedd525e3fc38995396a4754e97fcdc1ccdd22",
+          "url": "https://github.com/textlint/textlint/commit/f9f442ba5b6d7676843f10010daa0b0c4d7c8c6c"
+        },
+        "date": 1758919759855,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21619951160000003,
+            "range": "± 0.03591439300000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7950369568000002,
+            "range": "± 0.08686862100000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6077915252000001,
+            "range": "± 0.009250156999999981",
             "unit": "seconds"
           }
         ]
