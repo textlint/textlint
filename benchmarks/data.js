@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1759157497772,
+  "lastUpdate": 1759157698443,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -82487,6 +82487,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.59018218784,
             "range": "± 0.01615747699999992",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a460118dd67a6f07530523b9a114b1476397a259",
+          "message": "chore(deps): update dependency lint-staged to ^16.2.0 (#1756)\n\nComing soon: The Renovate bot (GitHub App) will be renamed to Mend. PRs\nfrom Renovate will soon appear from 'Mend'. Learn more\n[here](https://redirect.github.com/renovatebot/renovate/discussions/37842).\n\nThis PR contains the following updates:\n\n| Package | Change | Age | Confidence |\n|---|---|---|---|\n| [lint-staged](https://redirect.github.com/lint-staged/lint-staged) |\n[`^16.1.6` ->\n`^16.2.0`](https://renovatebot.com/diffs/npm/lint-staged/16.1.6/16.2.0)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/lint-staged/16.2.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/lint-staged/16.1.6/16.2.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>lint-staged/lint-staged (lint-staged)</summary>\n\n###\n[`v16.2.0`](https://redirect.github.com/lint-staged/lint-staged/blob/HEAD/CHANGELOG.md#1620)\n\n[Compare\nSource](https://redirect.github.com/lint-staged/lint-staged/compare/v16.1.6...v16.2.0)\n\n##### Minor Changes\n\n-\n[#&#8203;1615](https://redirect.github.com/lint-staged/lint-staged/pull/1615)\n[`99eb742`](https://redirect.github.com/lint-staged/lint-staged/commit/99eb74200e8db69e72dba45314025953b8b0794e)\nThanks [@&#8203;iiroj](https://redirect.github.com/iiroj)! - Added a new\noption `--fail-on-changes` to make *lint-staged* exit with code 1 when\ntasks modify any files, making the `precommit` hook fail. This is\nsimilar to the `git diff --exit-code` option. Using this flag also\nimplies the `--no-revert` flag which means any changes made my tasks\nwill be left in the working tree after failing, so that they can be\nmanually staged and the commit tried again.\n\n-\n[#&#8203;1611](https://redirect.github.com/lint-staged/lint-staged/pull/1611)\n[`cd05fd3`](https://redirect.github.com/lint-staged/lint-staged/commit/cd05fd349594baf586fbafb05588ff07d86060b7)\nThanks [@&#8203;rlorenzo](https://redirect.github.com/rlorenzo)! - Added\na new option `--continue-on-error` so that *lint-staged* will run all\ntasks to completion even if some of them fail. By default, *lint-staded*\nwill exit early on the first failure.\n\n-\n[#&#8203;1637](https://redirect.github.com/lint-staged/lint-staged/pull/1637)\n[`82fcc07`](https://redirect.github.com/lint-staged/lint-staged/commit/82fcc0789c17bf6b2ea2649147abec77fa619375)\nThanks [@&#8203;iiroj](https://redirect.github.com/iiroj)! - Internal\n*lint-staged* errors are now thrown and visible in the console output.\nPreviously they were caught with the process exit code set to 1, but not\nlogged. This happens when, for example, there's a syntax error in the\n*lint-staged* configuration file.\n\n-\n[#&#8203;1647](https://redirect.github.com/lint-staged/lint-staged/pull/1647)\n[`a5ecc06`](https://redirect.github.com/lint-staged/lint-staged/commit/a5ecc0605d52756167417c84cb0007ea7bceaaa3)\nThanks [@&#8203;iiroj](https://redirect.github.com/iiroj)! - Remove\n[debug](https://redirect.github.com/debug-js/debug) as a dependency due\nto recent malware issue; read more at\n[debug-js/debug#1005](https://redirect.github.com/debug-js/debug/issues/1005).\nBecause of this, the `DEBUG` environment variable is no longer supported\n— use the `--debug` to enable debugging\n\n-\n[#&#8203;1636](https://redirect.github.com/lint-staged/lint-staged/pull/1636)\n[`8db2717`](https://redirect.github.com/lint-staged/lint-staged/commit/8db2717574ebfa2b80e0fc4eb0b24d705fd264fc)\nThanks [@&#8203;iiroj](https://redirect.github.com/iiroj)! - Added a new\noption `--hide-unstaged` so that *lint-staged* will hide all unstaged\nchanges to tracked files before running tasks. The changes will be\napplied back after running the tasks. Note that the combination of flags\n`--hide-unstaged --no-hide-partially-staged` isn't meaningful and\nbehaves the same as just `--hide-unstaged`.\n\nThanks to\n[@&#8203;ItsNickBarry](https://redirect.github.com/ItsNickBarry) for the\nidea and initial implementation in\n[#&#8203;1552](https://redirect.github.com/lint-staged/lint-staged/pull/1552).\n\n-\n[#&#8203;1648](https://redirect.github.com/lint-staged/lint-staged/pull/1648)\n[`7900b3b`](https://redirect.github.com/lint-staged/lint-staged/commit/7900b3b79c5e2e69662cb8b1bcbcae79c3549421)\nThanks [@&#8203;iiroj](https://redirect.github.com/iiroj)! - Remove\n[lilconfig](https://redirect.github.com/antonk52/lilconfig) to reduce\nreliance on third-party dependencies. It was used to find possible\nconfig files outside of those tracked in Git, including from the parent\ndirectories. This behavior has been moved directly into *lint-staged*\nand should work about the same.\n\n##### Patch Changes\n\n-\n[#&#8203;1633](https://redirect.github.com/lint-staged/lint-staged/pull/1633)\n[`7f9e485`](https://redirect.github.com/lint-staged/lint-staged/commit/7f9e485a981707897e0d417f6a62008f0c098e00)\nThanks\n[@&#8203;dependabot](https://redirect.github.com/apps/dependabot)! -\nBumps [listr2](https://redirect.github.com/listr2/listr2) from 9.0.3 to\n9.0.4.\n\n-\n[#&#8203;1626](https://redirect.github.com/lint-staged/lint-staged/pull/1626)\n[`99d5a9b`](https://redirect.github.com/lint-staged/lint-staged/commit/99d5a9b0ddcba7d471d39ff3969d37988f1e2705)\nThanks [@&#8203;iiroj](https://redirect.github.com/iiroj)! - Due to\nrecent phishing attacks, for example\n[chalk@5.6.1](https://redirect.github.com/chalk/chalk/issues/656) was\nreleased with malware. To avoid *lint-staged*'s users being at risk the\n**direct dependencies are pinned to exact versions**, instead of\nallowing future patch versions with the [caret (`^`)\nrange](https://docs.npmjs.com/cli/v6/using-npm/semver#caret-ranges-123-025-004).\n\n-\n[#&#8203;1588](https://redirect.github.com/lint-staged/lint-staged/pull/1588)\n[`035bbf2`](https://redirect.github.com/lint-staged/lint-staged/commit/035bbf268ac47bbaf2cfa737c3b2240d38feb22e)\nThanks [@&#8203;outslept](https://redirect.github.com/outslept)! -\nIncrease performance by listing staged files and searching for\nconfiguration concurrently.\n\n-\n[#&#8203;1645](https://redirect.github.com/lint-staged/lint-staged/pull/1645)\n[`deba3ad`](https://redirect.github.com/lint-staged/lint-staged/commit/deba3ad83581938dd71b86b563e62827b5fc2a0a)\nThanks [@&#8203;iiroj](https://redirect.github.com/iiroj)! - Remove\n[chalk](https://redirect.github.com/chalk/chalk) as a dependency due to\nrecent malware issue; read more at\n[chalk/chalk#656](https://redirect.github.com/chalk/chalk/issues/656).\n\nIf you are having trouble with ANSI color codes when using\n*lint-staged*, you can try setting either `FORCE_COLOR=true` or\n`NO_COLOR=true` env variables.\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about this update\nagain.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MS4xMzEuOSIsInVwZGF0ZWRJblZlciI6IjQxLjEzMS45IiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-09-29T14:52:53Z",
+          "tree_id": "cb0e911b6a3f12a2a51453783359c3d001a9ed26",
+          "url": "https://github.com/textlint/textlint/commit/a460118dd67a6f07530523b9a114b1476397a259"
+        },
+        "date": 1759157692847,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.30549538006000004,
+            "range": "± 0.5151479680000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71394260886,
+            "range": "± 0.09168531700000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59767802486,
+            "range": "± 0.015111913000000032",
             "unit": "seconds"
           }
         ]
