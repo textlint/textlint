@@ -29,16 +29,16 @@
     ]
   },
   "dependencies": {
-    "@docusaurus/core": "^3.8.1",
-    "@docusaurus/plugin-client-redirects": "^3.8.1",
-    "@docusaurus/preset-classic": "^3.8.1",
+    "@docusaurus/core": "^3.9.0",
+    "@docusaurus/plugin-client-redirects": "^3.9.0",
+    "@docusaurus/preset-classic": "^3.9.0",
     "@mdx-js/react": "^3.1.1",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.8.1",
+    "@docusaurus/module-type-aliases": "^3.9.0",
     "textlint": "workspace:*",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-eslint": "^4.0.2",
