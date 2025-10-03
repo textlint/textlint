@@ -39,7 +39,7 @@ importers:
         specifier: ^8.2.4
         version: 8.2.4(encoding@0.1.13)
       lint-staged:
-        specifier: ^16.2.0
+        specifier: ^16.2.1
         version: 16.2.3
       npm-run-all2:
         specifier: ^8.0.4
@@ -785,8 +785,8 @@ importers:
   packages/textlint:
     dependencies:
       '@modelcontextprotocol/sdk':
-        specifier: ^1.18.1
-        version: 1.18.1
+        specifier: ^1.18.2
+        version: 1.19.1
       '@textlint/ast-node-types':
         specifier: workspace:*
         version: link:../@textlint/ast-node-types
@@ -949,7 +949,7 @@ importers:
         version: 5.6.3
     devDependencies:
       lint-staged:
-        specifier: ^16.2.0
+        specifier: ^16.2.1
         version: 16.2.3
       prettier:
         specifier: ^2.2.1
@@ -2628,8 +2628,8 @@ packages:
       '@types/react': '>=16'
       react: '>=16'
 
-  '@modelcontextprotocol/sdk@1.18.1':
-    resolution: {integrity: sha512-d//GE8/Yh7aC3e7p+kZG8JqqEAwwDUmAfvH1quogtbk+ksS6E0RR6toKKESPYYZVre0meqkJb27zb+dhqE9Sgw==}
+  '@modelcontextprotocol/sdk@1.19.1':
+    resolution: {integrity: sha512-3Y2h3MZKjec1eAqSTBclATlX+AbC6n1LgfVzRMJLt3v6w0RCYgwLrjbxPDbhsYHt6Wdqc/aCceNJYgj448ELQQ==}
     engines: {node: '>=18'}
 
   '@monorepo-utils/package-utils@2.11.0':
@@ -12398,7 +12398,7 @@ snapshots:
       '@types/react': 19.1.8
       react: 19.1.1
 
-  '@modelcontextprotocol/sdk@1.18.1':
+  '@modelcontextprotocol/sdk@1.19.1':
     dependencies:
       ajv: 6.12.6
       content-type: 1.0.5
@@ -20471,7 +20471,7 @@ snapshots:
 
   textlint@15.2.2:
     dependencies:
-      '@modelcontextprotocol/sdk': 1.18.1
+      '@modelcontextprotocol/sdk': 1.19.1
       '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       '@textlint/ast-traverse': 15.2.2
       '@textlint/config-loader': 15.2.2
