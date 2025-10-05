@@ -59,7 +59,7 @@
         "textlint-tester": "workspace:*"
     },
     "devDependencies": {
-        "lint-staged": "^16.2.1",
+        "lint-staged": "^16.2.3",
         "prettier": "^2.2.1",
         "shelljs": "^0.10.0"
     },
