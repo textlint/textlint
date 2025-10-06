@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1759789687228,
+  "lastUpdate": 1759790002895,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -83831,6 +83831,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.61629898414,
             "range": "± 0.012496580999999951",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6d85d4859d17ba8dde2a852b64558d37051b1f5f",
+          "message": "chore(deps): update eslint to ^8.45.0 (minor) (#1767)\n\n> [!NOTE]\n> Mend has cancelled [the proposed\nrenaming](https://redirect.github.com/renovatebot/renovate/discussions/37842)\nof the Renovate GitHub app being renamed to `mend[bot]`.\n> \n> This notice will be removed on 2025-10-07.\n\n<hr>\n\nThis PR contains the following updates:\n\n| Package | Change | Age | Confidence |\n|---|---|---|---|\n|\n[@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin)\n([source](https://redirect.github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin))\n| [`^8.44.1` ->\n`^8.45.0`](https://renovatebot.com/diffs/npm/@typescript-eslint%2feslint-plugin/8.44.1/8.45.0)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@typescript-eslint%2feslint-plugin/8.45.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@typescript-eslint%2feslint-plugin/8.44.1/8.45.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n|\n[@typescript-eslint/parser](https://typescript-eslint.io/packages/parser)\n([source](https://redirect.github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser))\n| [`^8.44.1` ->\n`^8.45.0`](https://renovatebot.com/diffs/npm/@typescript-eslint%2fparser/8.44.1/8.45.0)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@typescript-eslint%2fparser/8.45.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@typescript-eslint%2fparser/8.44.1/8.45.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>typescript-eslint/typescript-eslint\n(@&#8203;typescript-eslint/eslint-plugin)</summary>\n\n###\n[`v8.45.0`](https://redirect.github.com/typescript-eslint/typescript-eslint/blob/HEAD/packages/eslint-plugin/CHANGELOG.md#8450-2025-09-29)\n\n[Compare\nSource](https://redirect.github.com/typescript-eslint/typescript-eslint/compare/v8.44.1...v8.45.0)\n\n##### 🚀 Features\n\n- **eslint-plugin:** expose rule name via RuleModule interface\n([#&#8203;11616](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11616))\n\n##### 🩹 Fixes\n\n- **eslint-plugin:** \\[prefer-nullish-coalescing] ignoreBooleanCoercion\nshould not apply to top-level ternary expressions\n([#&#8203;11614](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11614))\n- **eslint-plugin:** \\[no-base-to-string] check if superclass is ignored\n([#&#8203;11617](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11617))\n\n##### ❤️ Thank You\n\n- mdm317\n- Moses Odutusin\n[@&#8203;thebolarin](https://redirect.github.com/thebolarin)\n- Yukihiro Hasegawa [@&#8203;y-hsgw](https://redirect.github.com/y-hsgw)\n\nYou can read about our [versioning\nstrategy](https://typescript-eslint.io/users/versioning) and\n[releases](https://typescript-eslint.io/users/releases) on our website.\n\n</details>\n\n<details>\n<summary>typescript-eslint/typescript-eslint\n(@&#8203;typescript-eslint/parser)</summary>\n\n###\n[`v8.45.0`](https://redirect.github.com/typescript-eslint/typescript-eslint/blob/HEAD/packages/parser/CHANGELOG.md#8450-2025-09-29)\n\n[Compare\nSource](https://redirect.github.com/typescript-eslint/typescript-eslint/compare/v8.44.1...v8.45.0)\n\nThis was a version bump only for parser to align it with other projects,\nthere were no code changes.\n\nYou can read about our [versioning\nstrategy](https://typescript-eslint.io/users/versioning) and\n[releases](https://typescript-eslint.io/users/releases) on our website.\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about these\nupdates again.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MS4xMzEuOSIsInVwZGF0ZWRJblZlciI6IjQxLjEzMS45IiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-10-06T22:30:09Z",
+          "tree_id": "5c1fb8c979e06270ab0e34f93203fea31f9e0d03",
+          "url": "https://github.com/textlint/textlint/commit/6d85d4859d17ba8dde2a852b64558d37051b1f5f"
+        },
+        "date": 1759789997563,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2726558617,
+            "range": "± 0.37194424299999995",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6903396893,
+            "range": "± 0.07616146900000009",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5792352611,
+            "range": "± 0.023121291000000044",
             "unit": "seconds"
           }
         ]
