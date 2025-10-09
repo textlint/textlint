@@ -54,7 +54,7 @@
         "babel-plugin-static-fs": "^3.0.0",
         "confirmer": "^1.1.2",
         "cross-spawn": "^7.0.6",
-        "mocha": "^11.7.3",
+        "mocha": "^11.7.4",
         "pkg-to-readme": "^3.0.1",
         "textlint-tester": "workspace:*"
     },
