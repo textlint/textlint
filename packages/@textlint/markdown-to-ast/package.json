@@ -48,7 +48,7 @@
   "devDependencies": {
     "@textlint/ast-tester": "workspace:*",
     "@types/debug": "^4.1.12",
-    "@types/node": "^24.6.1",
+    "@types/node": "^24.6.2",
     "@types/unist": "^3.0.3",
     "mkdirp": "^1.0.4",
     "rimraf": "^6.0.1",
