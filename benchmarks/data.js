@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760188815877,
+  "lastUpdate": 1760189277974,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -85175,6 +85175,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.60467661098,
             "range": "± 0.01448230100000003",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "72aa5c8aff60bf1bd20a92856d2cf81be2974b13",
+          "message": "refactor(kernel): improve plugin preProcess results (#1778)\n\n## Summary\n\nThis PR improves type safety and documentation for the plugin system in\n`@textlint/kernel`, specifically focusing on the `preProcess` result\ntypes and descriptor APIs.\n\n- Extracted and documented `TextlintPluginPreProcessWithTransformedText`\ntype for better clarity on handling binary/intermediate format plugins\n- Added explicit return type annotations to descriptor methods for\nimproved type safety\n- Changed from wildcard exports to explicit named exports in kernel\nindex\n- Enhanced test coverage with actual plugin usage demonstration\n- Added comprehensive usage examples in README\n\nAdd an advanced example\n\n\n### Parse with descriptor\n\n```js\nimport { TextlintKernelDescriptor } from \"@textlint/kernel\";\nimport { exampleRule } from \"textlint-rule-example\";\nimport { createDummyPlugin } from \"./util/create-dummy-plugin.js\";\nconst descriptors = new TextlintKernelDescriptor({\n    plugins: [\n        {\n            pluginId: \"text\",\n            plugin: createDummyPlugin([\".txt\"])\n        },\n        {\n            pluginId: \"markdown\",\n            plugin: createDummyPlugin([\".md\"])\n        }\n    ],\n    rules: [\n        {\n            ruleId: \"example\",\n            rule: exampleRule\n        }\n    ],\n    filterRules: []\n});\n// get plugin instance\nconst markdownProcessor = descriptors.findPluginDescriptorWithExt(\".md\");\nassert.ok(markdownProcessor !== undefined);\nconst markdownPlugin = markdownProcessor.processor.processor(\".md\");\nconst result = await markdownPlugin.preProcess(\"# Hello World\");\n// TxtAST check\nassert.ok(isTxtAST(result));\nassert.strictEqual(result.type, \"Document\");\n```",
+          "timestamp": "2025-10-11T22:25:51+09:00",
+          "tree_id": "c2716096bdfb9f88cbc69b4496236373c116c9a2",
+          "url": "https://github.com/textlint/textlint/commit/72aa5c8aff60bf1bd20a92856d2cf81be2974b13"
+        },
+        "date": 1760189272477,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.5286698700800001,
+            "range": "± 1.637861435",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7266865928799997,
+            "range": "± 0.07090675400000013",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59279487568,
+            "range": "± 0.014114249000000023",
             "unit": "seconds"
           }
         ]
