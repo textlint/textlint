@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760193274347,
+  "lastUpdate": 1760193984449,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -85553,6 +85553,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5912291939600001,
             "range": "± 0.011614974999999972",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "f756dd1a12e01ec6fb6a28749cf563c966d4ce39",
+          "message": "fix: remove duplicate push trigger in check-provenance workflow\n\nThe workflow was triggering on both pull_request and push events,\ncausing duplicate PR comments/mentions when PRs are merged.\n\nRemove the push trigger to only run on pull_request and manual dispatch.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-10-11T23:43:17+09:00",
+          "tree_id": "5da88d2b1ee7d656b8cf71468df7eebc4d318a34",
+          "url": "https://github.com/textlint/textlint/commit/f756dd1a12e01ec6fb6a28749cf563c966d4ce39"
+        },
+        "date": 1760193978499,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2694750984,
+            "range": "± 0.353527162",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7228374454000002,
+            "range": "± 0.05225074899999993",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5952856132,
+            "range": "± 0.019209376000000056",
             "unit": "seconds"
           }
         ]
