@@ -38,7 +38,7 @@ export class TextlintKernelDescriptor {
     /**
      * Return available extensions of plugins
      */
-    get availableExtensions() {
+    get availableExtensions(): string[] {
         return this.plugin.availableExtensions;
     }
 
@@ -47,7 +47,7 @@ export class TextlintKernelDescriptor {
      * It shallow merge partialArgs.
      * It means that overwrite own properties by partialArgs.
      */
-    shallowMerge(partialArgs: Partial<TextlintKernelDescriptorArgs>) {
+    shallowMerge(partialArgs: Partial<TextlintKernelDescriptorArgs>): TextlintKernelDescriptor {
         return new TextlintKernelDescriptor({
             ...this.args,
             ...partialArgs
@@ -60,7 +60,7 @@ export class TextlintKernelDescriptor {
      * Note: withoutDuplicated pick A from [A, B] If A and B have same ruleId.
      * @param other
      */
-    concat(other: TextlintKernelDescriptor) {
+    concat(other: TextlintKernelDescriptor): TextlintKernelDescriptor {
         return new TextlintKernelDescriptor({
             configBaseDir: other.configBaseDir ?? this.configBaseDir,
             rules: this.rule.toKernelRulesFormat().concat(other.rule.toKernelRulesFormat()),
@@ -80,9 +80,11 @@ export class TextlintKernelDescriptor {
      * {
      *     "plugins": [MarkdownA, MarkdownB]
      * }
+     *
+     * @param extension file extension (e.g. ".md", ".txt")
      */
-    findPluginDescriptorWithExt(ext: string): TextlintPluginDescriptor | undefined {
-        return this.plugin.findPluginDescriptorWithExt(ext);
+    findPluginDescriptorWithExt(extension: string): TextlintPluginDescriptor | undefined {
+        return this.plugin.findPluginDescriptorWithExt(extension);
     }
 
     /**

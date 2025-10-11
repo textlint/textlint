@@ -1,5 +1,6 @@
 import { TextlintPluginCreator } from "../../../src/index.js";
-import type { TextlintPluginPreProcessResult, TextlintMessage, TextlintPluginPostProcessResult } from "@textlint/types";
+import type { TextlintMessage, TextlintPluginPostProcessResult } from "@textlint/types";
+import type { TxtDocumentNode } from "@textlint/ast-node-types";
 
 export const createDummyPlugin = (extensions: string[] = [".dummy"]): TextlintPluginCreator => {
     return {
@@ -11,10 +12,22 @@ export const createDummyPlugin = (extensions: string[] = [".dummy"]): TextlintPl
             processor() {
                 return {
                     preProcess(_: string) {
-                        return {} as TextlintPluginPreProcessResult;
+                        return {
+                            type: "Document",
+                            children: [],
+                            raw: "",
+                            loc: {
+                                start: { line: 1, column: 1 },
+                                end: { line: 1, column: 1 }
+                            },
+                            range: [0, 0]
+                        } as TxtDocumentNode;
                     },
-                    postProcess(_messages: Array<TextlintMessage>, _filePath?: string) {
-                        return {} as TextlintPluginPostProcessResult;
+                    postProcess(messages: Array<TextlintMessage>, _filePath?: string) {
+                        return {
+                            messages,
+                            filePath: "<dummy>"
+                        } as TextlintPluginPostProcessResult;
                     }
                 };
             }
