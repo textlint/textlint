@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760185545303,
+  "lastUpdate": 1760188815877,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -85133,6 +85133,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.60098637718,
             "range": "± 0.015348388000000046",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "56ccdc886be24298165b7970a67588a490c48632",
+          "message": "refactor(kernel): improve plugin preProcess results",
+          "timestamp": "2025-10-11T22:16:37+09:00",
+          "tree_id": "c2716096bdfb9f88cbc69b4496236373c116c9a2",
+          "url": "https://github.com/textlint/textlint/commit/56ccdc886be24298165b7970a67588a490c48632"
+        },
+        "date": 1760188810104,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.29503927098000005,
+            "range": "± 0.45665548",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.77356862618,
+            "range": "± 0.05494974500000005",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60467661098,
+            "range": "± 0.01448230100000003",
             "unit": "seconds"
           }
         ]
