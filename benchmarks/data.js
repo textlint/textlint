@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760190884686,
+  "lastUpdate": 1760191353134,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -85301,6 +85301,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6043787821000001,
             "range": "± 0.011983814000000037",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "cb22f35c81d8b37e1c6ddcb69629a2f76f3b4100",
+          "message": "feat: add npm OIDC Trusted Publisher support\n\n- Add OIDC authentication with id-token permission in workflows\n- Replace NPM_TOKEN with NPM_CONFIG_PROVENANCE for secure publishing\n- Add check-provenance.yml workflow to monitor OIDC setup status\n- Add CODEOWNERS to protect critical workflow files\n- Enable automatic provenance generation for all packages\n- Configure npm environment for both stable and canary releases\n\nThis change eliminates the need for long-lived npm tokens by using\nGitHub's OIDC integration with npm Trusted Publishers.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-10-11T22:59:10+09:00",
+          "tree_id": "f83e26d2b3b584249458cd9af673eb67dd9da8fc",
+          "url": "https://github.com/textlint/textlint/commit/cb22f35c81d8b37e1c6ddcb69629a2f76f3b4100"
+        },
+        "date": 1760191347596,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.29127965384000004,
+            "range": "± 0.45190894700000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7251934228399999,
+            "range": "± 0.09408944399999997",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5856703010400001,
+            "range": "± 0.012427170000000043",
             "unit": "seconds"
           }
         ]
