@@ -1,6 +1,6 @@
 {
   "name": "@textlint/fixer-formatter",
-  "version": "15.2.2",
+  "version": "15.2.3",
   "description": "textlint output formatter for fixer",
   "keywords": [
     "AST",
