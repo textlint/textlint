@@ -1,6 +1,6 @@
 {
   "name": "@textlint/ast-tester",
-  "version": "15.2.2",
+  "version": "15.2.3",
   "description": "Compliance tests for textlint's AST(Abstract Syntax Tree).",
   "keywords": [
     "ast",
