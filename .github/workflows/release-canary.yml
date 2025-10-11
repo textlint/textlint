@@ -4,11 +4,14 @@ on:
 
 permissions:
   contents: read # for checkout
+  id-token: write # for OIDC npm publishing
 
 jobs:
   canary-release:
     name: canary-release
     runs-on: ubuntu-latest
+    environment:
+      name: npm
     steps:
       - name: checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
@@ -29,5 +32,7 @@ jobs:
       - name: Publish
         run: pnpm exec -- lerna publish --canary --preid next --dist-tag next --force-publish='*' --no-push --no-git-tag-version --yes
         env:
+          # OIDC authentication for npm publishing
+          # https://docs.npmjs.com/generating-provenance-statements
+          NPM_CONFIG_PROVENANCE: true
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

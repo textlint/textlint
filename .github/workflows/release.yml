@@ -55,11 +55,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: check
     if: always() && (needs.check.outputs.EXISTS_TAG == 'false')
+    environment:
+      name: npm
     permissions:
       contents: write
       issues: write
       pull-requests: write
       packages: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -92,9 +95,9 @@ jobs:
       - name: Publish
         run: pnpm run ci:release
         env:
-          # actions/setup-node create .npmrc with `NODE_AUTH_TOKEN` env if `registry-url` is defined
-          # === `echo "${ registry-url }/:_authToken=${ NODE_AUTH_TOKEN }" > .npmrc`
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # textlint-user
+          # OIDC authentication for npm publishing
+          # https://docs.npmjs.com/generating-provenance-statements
+          NPM_CONFIG_PROVENANCE: true
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Git Tag
         uses: pkgdeps/git-tag-action@ef111413f44ebe5cc05994e7f5b5b9edaaada08d # v3.0.0
