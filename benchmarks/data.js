@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760192969718,
+  "lastUpdate": 1760193101841,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -85469,6 +85469,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5821537422399999,
             "range": "± 0.012638731999999986",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7f8c4ba7e87d589dd3f1bda6b4e83e39b11165b3",
+          "message": "feat: add npm OIDC Trusted Publisher support (#1779)\n\n## Summary\n\nThis PR implements npm OIDC (OpenID Connect) Trusted Publisher support\nfor the textlint project, enabling secure package publishing without\nstoring NPM_TOKEN secrets in GitHub. This modernizes our release\nworkflow by using GitHub's identity provider to authenticate with npm,\nfollowing the same approach used in secretlint.\n\nKey changes:\n- Migrated release workflows from NPM_TOKEN to OIDC authentication with\nprovenance\n- Added automated provenance verification workflow\n- Implemented CODEOWNERS to protect critical workflow files\n\nReference implementation: https://github.com/secretlint/secretlint  \nDocumentation: https://efcl.info/2025/09/07/npm-oidc/\n\n## Changes\n\n### Workflow Enhancements\n\n**Release Workflows** (`.github/workflows/release.yml`,\n`.github/workflows/release-canary.yml`):\n- Added `id-token: write` permission to enable OIDC token generation\n- Replaced `NPM_TOKEN` secret with `NPM_CONFIG_PROVENANCE=true`\nenvironment variable\n- Packages will now be published with cryptographic provenance\nattestations\n\n**Provenance Verification** (`.github/workflows/check-provenance.yml`):\n- New automated workflow to verify OIDC provenance for all published\npackages\n- Runs on schedule (daily), workflow dispatch, and PR changes to\nworkflow files\n- Checks all packages in the monorepo for proper provenance\nconfiguration\n- Provides detailed output of verification results with timestamps\n\n**Repository Protection** (`.github/CODEOWNERS`):\n- Added CODEOWNERS file requiring @textlint/admin review for workflow\nchanges\n- Protects `.github/workflows/` directory from unauthorized\nmodifications\n- Ensures security-critical changes receive appropriate scrutiny\n\n## Documentation\n\nRelated documentation:\n- Reference implementation: https://github.com/secretlint/secretlint\n- Technical details: https://efcl.info/2025/09/07/npm-oidc/\n- npm OIDC documentation:\nhttps://docs.npmjs.com/generating-provenance-statements\n- GitHub OIDC documentation:\nhttps://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect\n\n## Next Steps\n\nAfter merging this PR, complete the following setup:\n\n1. **Configure npm Trusted Publishers** (Critical - Must complete before\nnext release):\n   - Add GitHub Actions as Trusted Publisher for all packages on npm.js\n- See \"Test Plan → Prerequisites Setup\" section above for detailed steps\n\n2. **Verify Canary Release**:\n   - Run canary release to test OIDC authentication\n   - Confirm provenance appears on npm.js\n\n3. **Clean Up Secrets**:\n- After successful OIDC verification, remove NPM_TOKEN from GitHub\nrepository secrets\n   - Document the removal in release notes\n\n4. **Update Documentation**:\n   - Add OIDC setup instructions to CONTRIBUTING.md\n   - Document Trusted Publisher configuration for new maintainers\n\n5. **Monitor First Stable Release**:\n   - Closely monitor next stable release workflow\n   - Verify all packages publish successfully with provenance\n\n---\n\nGenerated with Claude Code\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-10-11T14:29:35Z",
+          "tree_id": "b2967771f9337bf7d738f77ef1ed952bd707e18f",
+          "url": "https://github.com/textlint/textlint/commit/7f8c4ba7e87d589dd3f1bda6b4e83e39b11165b3"
+        },
+        "date": 1760193096235,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.32217242836000004,
+            "range": "± 0.5030601060000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.82913186756,
+            "range": "± 0.06409835500000005",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.63074857376,
+            "range": "± 0.010570952999999994",
             "unit": "seconds"
           }
         ]
