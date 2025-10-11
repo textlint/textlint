@@ -1,0 +1,11 @@
+# GitHub CODEOWNERS
+# This file defines code ownership for automatic review requests
+
+# Critical workflow files must be reviewed by repository owner
+/.github/workflows/release.yml @textlint/admin
+/.github/workflows/release-canary.yml @textlint/admin
+/.github/workflows/create-release-pr.yml @textlint/admin
+/.github/workflows/check-provenance.yml @textlint/admin
+
+# CODEOWNERS file itself requires review to prevent bypassing protections
+/.github/CODEOWNERS @textlint/admin
