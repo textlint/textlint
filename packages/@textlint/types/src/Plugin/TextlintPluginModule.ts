@@ -10,7 +10,19 @@ export declare type TextlintPluginOptions = {
     [index: string]: unknown;
 };
 
-export type TextlintPluginPreProcessResult = TxtDocumentNode | { text: string; ast: TxtDocumentNode };
+/**
+ * Result with transformed text that differs from the input.
+ * Used when the plugin handles binary or other intermediate formats.
+ * The text property contains the transformed text, and ast corresponds to that transformed text.
+ * @see https://github.com/textlint/textlint/issues/649
+ */
+export type TextlintPluginPreProcessWithTransformedText = { text: string; ast: TxtDocumentNode };
+/**
+ * PreProcess result.
+ * Usually returns TxtDocumentNode as the parsed result where the AST corresponds to the input text.
+ * For special cases (binary or intermediate formats), returns TextlintPluginPreProcessWithTransformedText.
+ */
+export type TextlintPluginPreProcessResult = TxtDocumentNode | TextlintPluginPreProcessWithTransformedText;
 export type TextlintPluginPostProcessResult = { messages: Array<TextlintMessage>; filePath: string };
 
 export interface TextlintPluginProcessorConstructor {
@@ -41,13 +53,18 @@ export declare class TextlintPluginProcessor {
          * For example, a plugin for binary format.
          * textlint can not handle binary and the plugin should return Pseudo-text for original binary file.
          * @see https://github.com/textlint/textlint/issues/649
-         * @param text
-         * @param filePath
+         * @param text original text
+         * @param filePath optional file path
          */
         preProcess(
             text: string,
             filePath?: string
         ): TextlintPluginPreProcessResult | Promise<TextlintPluginPreProcessResult>;
+        /**
+         * postProcess return messages and the filePath for the result.
+         * @param messages
+         * @param filePath
+         */
         postProcess(
             messages: Array<TextlintMessage>,
             filePath?: string

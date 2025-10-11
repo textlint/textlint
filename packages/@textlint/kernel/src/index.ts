@@ -1,7 +1,16 @@
 // Kernel
 export { TextlintKernel } from "./textlint-kernel.js";
 // Kernel Descriptor
-export * from "./descriptor/index.js";
+export {
+    TextlintKernelDescriptor,
+    TextlintRuleDescriptors,
+    TextlintLintableRuleDescriptor,
+    TextlintFixableRuleDescriptor,
+    TextlintFilterRuleDescriptors,
+    TextlintFilterRuleDescriptor,
+    TextlintPluginDescriptors,
+    TextlintPluginDescriptor
+} from "./descriptor/index.js";
 // Kernel rule/filter/plugin format
 export {
     TextlintKernelRule,

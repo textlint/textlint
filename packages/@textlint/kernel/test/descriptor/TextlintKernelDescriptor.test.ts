@@ -4,6 +4,7 @@ import { createDummyPlugin } from "./helper/dummy-plugin.js";
 import { TextlintKernelDescriptor } from "../../src/descriptor/index.js";
 import exampleRule from "./helper/example-rule.js";
 import fixableExampleRule from "./helper/fixable-example-rule.js";
+import { isTxtAST } from "@textlint/ast-tester";
 
 describe("TextlintKernelDescriptor", () => {
     it("example code", () => {
@@ -33,6 +34,36 @@ describe("TextlintKernelDescriptor", () => {
         assert.ok(markdownProcessor !== undefined);
         // rules
         assert.strictEqual(descriptors.rule.lintableDescriptors.length, 1);
+    });
+    it("parse text with plugin", async () => {
+        const descriptors = new TextlintKernelDescriptor({
+            plugins: [
+                {
+                    pluginId: "text",
+                    plugin: createDummyPlugin([".txt"])
+                },
+                {
+                    pluginId: "markdown",
+                    plugin: createDummyPlugin([".md"])
+                }
+            ],
+            rules: [
+                {
+                    ruleId: "example",
+                    rule: exampleRule
+                }
+            ],
+            filterRules: []
+        });
+        // available extensions
+        assert.deepStrictEqual(descriptors.plugin.availableExtensions, [".txt", ".md"]);
+        // get plugin instance
+        const markdownProcessor = descriptors.findPluginDescriptorWithExt(".md");
+        assert.ok(markdownProcessor !== undefined);
+        const markdownPlugin = markdownProcessor.processor.processor(".md");
+        const result = await markdownPlugin.preProcess("# Hello World");
+        assert.ok(isTxtAST(result));
+        assert.strictEqual(result.type, "Document");
     });
     describe("#shallowMerge", () => {
         it("should merge partial arguments", () => {

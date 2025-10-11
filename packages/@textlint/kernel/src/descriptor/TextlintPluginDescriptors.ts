@@ -38,10 +38,11 @@ export class TextlintPluginDescriptors {
     /**
      * find PluginDescriptor with extension.
      * This is forward match.
+     * @param {string} extension - file extension (ex. ".md", ".txt")
      */
-    findPluginDescriptorWithExt(ext: string) {
+    findPluginDescriptorWithExt(extension: string) {
         return this.descriptors.find((descriptor) => {
-            return descriptor.availableExtensions.some((availableExtension) => ext.endsWith(availableExtension));
+            return descriptor.availableExtensions.some((availableExtension) => extension.endsWith(availableExtension));
         });
     }
 
