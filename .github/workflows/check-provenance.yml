@@ -13,15 +13,17 @@ on:
       - '**/package.json'
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pull-requests: write
-  statuses: write
+permissions: {}
 
 jobs:
   check-provenance:
     name: Check Package Provenance
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      has_missing: ${{ steps.check.outputs.has_missing }}
+      has_unpublished: ${{ steps.check.outputs.has_unpublished }}
     steps:
       - name: Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
@@ -163,8 +165,27 @@ jobs:
             core.setOutput('missing_packages', results.withoutProvenance);
             core.setOutput('unpublished_packages', results.notPublished);
 
+      - name: Upload results
+        uses: actions/upload-artifact@ef09cdac3e2d3e60d8ccadda691f4f1cec5035cb # v4.5.0
+        with:
+          name: provenance-results
+          path: provenance-results.json
+          retention-days: 1
+
+  post-comment:
+    name: Post PR Comment
+    runs-on: ubuntu-latest
+    needs: check-provenance
+    if: (needs.check-provenance.outputs.has_missing == 'true' || needs.check-provenance.outputs.has_unpublished == 'true') && github.event_name == 'pull_request'
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Download results
+        uses: actions/download-artifact@d3f86a8a84c1b682b4d0eb2ea3b995ea8067dc9b # v4.2.0
+        with:
+          name: provenance-results
+
       - name: Comment on PR
-        if: (steps.check.outputs.has_missing == 'true' || steps.check.outputs.has_unpublished == 'true') && github.event_name == 'pull_request'
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
