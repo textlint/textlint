@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760230381844,
+  "lastUpdate": 1760230556578,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -85679,6 +85679,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5871719437399999,
             "range": "± 0.014614286000000032",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "653e038dbbb76592d8ae30f5afc128f2d917f732",
+          "message": "refactor(workflows): use dynamic repository name in PR comments\n\nReplace hardcoded repository name with context.repo values to make\nthe workflow reusable across different repositories.\n\nChanges:\n- Use `${context.repo.owner}/${context.repo.repo}` instead of hardcoded 'textlint/textlint'\n- Allows copy-pasting this workflow to other repositories without modification\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-10-12T09:52:39+09:00",
+          "tree_id": "4364788d318d8340348b790268c27743cece30d1",
+          "url": "https://github.com/textlint/textlint/commit/653e038dbbb76592d8ae30f5afc128f2d917f732"
+        },
+        "date": 1760230550672,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.27861889992,
+            "range": "± 0.401947916",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7150337627199999,
+            "range": "± 0.05443278600000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5806137879200002,
+            "range": "± 0.014169082999999971",
             "unit": "seconds"
           }
         ]
