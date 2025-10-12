@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760230556578,
+  "lastUpdate": 1760230675914,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -85721,6 +85721,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5806137879200002,
             "range": "± 0.014169082999999971",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "1b387bbabba1a9578616d5d509bd89b96381420f",
+          "message": "chore(workflows): update artifact actions to latest versions\n\nUpdate artifact actions to use latest stable releases with verified commit hashes.\n\nChanges:\n- actions/upload-artifact: v4.5.0 → v4.6.2\n- actions/download-artifact: v4.2.0 → v5.0.0\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-10-12T09:54:06+09:00",
+          "tree_id": "1685dec80888182f5f06f3c96de9961614f8818d",
+          "url": "https://github.com/textlint/textlint/commit/1b387bbabba1a9578616d5d509bd89b96381420f"
+        },
+        "date": 1760230669715,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.30372681702000004,
+            "range": "± 0.519000679",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.69654726282,
+            "range": "± 0.03676789899999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.58313946922,
+            "range": "± 0.010507592999999926",
             "unit": "seconds"
           }
         ]
