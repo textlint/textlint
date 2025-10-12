@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760229405020,
+  "lastUpdate": 1760230381844,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -85637,6 +85637,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5877860883,
             "range": "± 0.012514994000000002",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "75a2141035fe319f87eab4ae3e63bd78e3676037",
+          "message": "style(workflows): use node: prefix for built-in modules\n\nUse node: prefix for Node.js built-in modules (fs, path, child_process)\nfollowing Node.js 16+ best practices.\n\nChanges:\n- require('fs') → require('node:fs')\n- require('path') → require('node:path')\n- require('child_process') → require('node:child_process')\n\nBenefits:\n- Makes it clear which modules are built-in\n- Prevents conflicts with third-party packages\n- Follows modern Node.js conventions\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-10-12T09:49:38+09:00",
+          "tree_id": "ffdaea4b61144a4bd62935ebc165275a8422ccfc",
+          "url": "https://github.com/textlint/textlint/commit/75a2141035fe319f87eab4ae3e63bd78e3676037"
+        },
+        "date": 1760230375382,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.28145729774,
+            "range": "± 0.424261836",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.70983728114,
+            "range": "± 0.06474335200000025",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5871719437399999,
+            "range": "± 0.014614286000000032",
             "unit": "seconds"
           }
         ]
