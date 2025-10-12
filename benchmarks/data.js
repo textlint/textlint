@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760232511134,
+  "lastUpdate": 1760233540096,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -85889,6 +85889,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.58710502456,
             "range": "± 0.017234917000000016",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "9af00495d48fbb06ec04584cceab9f706d485221",
+          "message": "ci: separate comment job and reduce permissions in release workflow",
+          "timestamp": "2025-10-12T10:41:45+09:00",
+          "tree_id": "7b2b1dffcd2d57416a6151e04febfd0383586232",
+          "url": "https://github.com/textlint/textlint/commit/9af00495d48fbb06ec04584cceab9f706d485221"
+        },
+        "date": 1760233533950,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.29287070268000004,
+            "range": "± 0.477388339",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6986143768800002,
+            "range": "± 0.05812842499999982",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5825176938800001,
+            "range": "± 0.010812908999999982",
             "unit": "seconds"
           }
         ]
