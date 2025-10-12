@@ -1,13 +1,6 @@
 # This workflow often runs following steps when a PR is merged to main branch.
 # 1. jobs.check checks if we need to release
 # 2. jobs.release publish packages
-#
-# Note: Force publish
-# You can publish packages manually by running workflow dispatch
-# This workflow dispatch skip jobs.check process
-# 1. dispatch "release" workflow
-# 2. Open Release Page
-# 3. Generate Release Note
 name: Release
 
 on:
@@ -16,7 +9,6 @@ on:
       - main
       - master
     types: [ closed ]
-  workflow_dispatch: # force release
 
 jobs:
   check:
@@ -25,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       EXISTS_TAG: ${{ steps.tag_check.outputs.EXISTS_TAG }}
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    if: github.event.pull_request.merged == true
     steps:
       - name: Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
@@ -39,17 +31,13 @@ jobs:
       - name: Tag Check
         id: tag_check
         run: |
-          GET_API_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/git/ref/tags/${TAG_NAME}"
-          http_status_code=$(curl -LI $GET_API_URL -o /dev/null -w '%{http_code}\n' -s \
-            -H "Authorization: token ${GITHUB_TOKEN}")
-          if [ "$http_status_code" -ne "404" ] ; then
+          if git ls-remote --tags origin | grep -q "refs/tags/v${PACKAGE_VERSION}$"; then
             echo "EXISTS_TAG=true" >> $GITHUB_OUTPUT
           else
             echo "EXISTS_TAG=false" >> $GITHUB_OUTPUT
           fi
         env:
-          TAG_NAME: v${{ env.PACKAGE_VERSION }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PACKAGE_VERSION: ${{ env.PACKAGE_VERSION }}
 
   release:
     runs-on: ubuntu-latest
@@ -57,11 +45,12 @@ jobs:
     if: always() && (needs.check.outputs.EXISTS_TAG == 'false')
     environment:
       name: npm
+    outputs:
+      version: ${{ steps.set_version.outputs.version }}
+      release-url: ${{ steps.create_release.outputs.release-url }}
+      released: ${{ steps.create_release.outputs.released }}
     permissions:
       contents: write
-      issues: write
-      pull-requests: write
-      packages: write
       id-token: write
     steps:
       - name: Checkout
@@ -87,7 +76,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set PACKAGE_VERSION
-        run: echo "PACKAGE_VERSION=$(cat lerna.json | jq -r .version)" >> $GITHUB_ENV
+        id: set_version
+        run: |
+          VERSION=$(cat lerna.json | jq -r .version)
+          echo "PACKAGE_VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
       - name: Install
         run: pnpm install
       - name: Build
@@ -100,37 +93,68 @@ jobs:
           NPM_CONFIG_PROVENANCE: true
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Git Tag
-        uses: pkgdeps/git-tag-action@ef111413f44ebe5cc05994e7f5b5b9edaaada08d # v3.0.0
-        with:
-          version: ${{ env.PACKAGE_VERSION }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          github_repo: ${{ github.repository }}
-          git_commit_sha: ${{ github.sha }}
-          git_tag_prefix: "v"
-      - name: Create Release
-        id: create_release
-        uses: softprops/action-gh-release@62c96d0c4e8a889135c1f3a25910db8dbe0e85f7 # v2.3.4
+        run: |
+          git tag "v${PACKAGE_VERSION}"
+          git push origin "v${PACKAGE_VERSION}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v${{ env.PACKAGE_VERSION }}
-          # Copy Pull Request's tile and body to Release Note
-          name: ${{ github.event.pull_request.title }}
-          body: ${{ github.event.pull_request.body }}
-          draft: false
-          prerelease: false
-          generate_release_notes: ${{ !github.event.pull_request.body }}
-      - uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
-        if: github.event_name != 'workflow_dispatch'
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `🎉 Release https://github.com/${process.env.GITHUB_REPO}/releases/tag/v${process.env.PACKAGE_VERSION}`
-            })
-        env:
-          GITHUB_REPO: ${{ github.repository }}
           PACKAGE_VERSION: ${{ env.PACKAGE_VERSION }}
+      - name: Create Release
+        id: create_release
+        run: |
+          RELEASE_URL=$(gh release create "v${PACKAGE_VERSION}" \
+            --title "${GITHUB_EVENT_PULL_REQUEST_TITLE}" \
+            --notes "${GITHUB_EVENT_PULL_REQUEST_BODY}" \
+            --json url -q .url)
+          echo "release-url=$RELEASE_URL" >> $GITHUB_OUTPUT
+          echo "released=true" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PACKAGE_VERSION: ${{ env.PACKAGE_VERSION }}
+          GITHUB_EVENT_PULL_REQUEST_TITLE: ${{ github.event.pull_request.title }}
+          GITHUB_EVENT_PULL_REQUEST_BODY: ${{ github.event.pull_request.body }}
+
+  comment:
+    needs: release
+    if: |
+      always() &&
+      github.event_name == 'pull_request' &&
+      needs.release.outputs.released == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Comment on PR - Success
+        if: needs.release.result == 'success'
+        run: |
+          gh pr comment "$PR_NUMBER" \
+            --repo "$REPOSITORY" \
+            --body "✅ **Release v$VERSION completed successfully!**
+
+          - 🏷️ GitHub Release: $RELEASE_URL
+          - 🔗 Workflow run: $SERVER_URL/$REPOSITORY/actions/runs/$RUN_ID"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          VERSION: ${{ needs.release.outputs.version }}
+          RELEASE_URL: ${{ needs.release.outputs.release-url }}
+          SERVER_URL: ${{ github.server_url }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+
+      - name: Comment on PR - Failure
+        if: needs.release.result == 'failure'
+        run: |
+          gh pr comment "$PR_NUMBER" \
+            --repo "$REPOSITORY" \
+            --body "❌ **Release v$VERSION failed**
+
+          Please check the workflow logs for details.
+          🔗 Workflow run: $SERVER_URL/$REPOSITORY/actions/runs/$RUN_ID"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          VERSION: ${{ needs.release.outputs.version }}
+          SERVER_URL: ${{ github.server_url }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}

@@ -91,37 +91,29 @@ jobs:
               }
             }
 
-            // Check if package has provenance
-            async function checkPackageProvenance(packageName) {
+            // Check package status (published + provenance) in a single fetch
+            async function checkPackageStatus(packageName) {
               try {
                 const response = await fetch(`https://registry.npmjs.org/${encodeURIComponent(packageName)}`);
                 if (!response.ok) {
-                  return false;
+                  return { published: false, hasProvenance: false };
                 }
                 const data = await response.json();
 
                 // Get latest version
                 const latestVersion = data['dist-tags']?.latest;
                 if (!latestVersion) {
-                  return false;
+                  return { published: true, hasProvenance: false };
                 }
 
                 // Check if the latest version has attestations
                 const versionData = data.versions?.[latestVersion];
-                return !!(versionData?.dist?.attestations);
-              } catch (error) {
-                console.error(`Error checking provenance for ${packageName}:`, error);
-                return false;
-              }
-            }
+                const hasProvenance = !!(versionData?.dist?.attestations);
 
-            // Check if package is published
-            async function isPackagePublished(packageName) {
-              try {
-                const response = await fetch(`https://registry.npmjs.org/${encodeURIComponent(packageName)}`);
-                return response.ok;
+                return { published: true, hasProvenance };
               } catch (error) {
-                return false;
+                console.error(`Error checking status for ${packageName}:`, error);
+                return { published: false, hasProvenance: false };
               }
             }
 
@@ -137,10 +129,12 @@ jobs:
             };
 
             for (const pkg of publicPackages) {
-              if (!(await isPackagePublished(pkg.name))) {
+              const status = await checkPackageStatus(pkg.name);
+
+              if (!status.published) {
                 results.notPublished.push(pkg.name);
                 console.log(`⏭️  ${pkg.name}: Not published yet`);
-              } else if (await checkPackageProvenance(pkg.name)) {
+              } else if (status.hasProvenance) {
                 results.withProvenance.push(pkg.name);
                 console.log(`✅ ${pkg.name}: Has provenance`);
               } else {
