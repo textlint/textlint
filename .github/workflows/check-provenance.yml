@@ -13,15 +13,17 @@ on:
       - '**/package.json'
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pull-requests: write
-  statuses: write
+permissions: {}
 
 jobs:
   check-provenance:
     name: Check Package Provenance
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      has_missing: ${{ steps.check.outputs.has_missing }}
+      has_unpublished: ${{ steps.check.outputs.has_unpublished }}
     steps:
       - name: Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
@@ -41,9 +43,9 @@ jobs:
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
         with:
           script: |
-            const fs = require('fs');
-            const path = require('path');
-            const { execSync } = require('child_process');
+            const fs = require('node:fs');
+            const path = require('node:path');
+            const { execSync } = require('node:child_process');
 
             // Get workspace packages using pnpm
             function getWorkspacePackages() {
@@ -90,26 +92,34 @@ jobs:
             }
 
             // Check if package has provenance
-            function checkPackageProvenance(packageName) {
+            async function checkPackageProvenance(packageName) {
               try {
-                const output = execSync(`npm view ${packageName} dist.attestations --json`, {
-                  encoding: 'utf-8',
-                  stdio: ['pipe', 'pipe', 'pipe']
-                });
-                return output && output.trim() !== 'null' && output.trim() !== '';
+                const response = await fetch(`https://registry.npmjs.org/${encodeURIComponent(packageName)}`);
+                if (!response.ok) {
+                  return false;
+                }
+                const data = await response.json();
+
+                // Get latest version
+                const latestVersion = data['dist-tags']?.latest;
+                if (!latestVersion) {
+                  return false;
+                }
+
+                // Check if the latest version has attestations
+                const versionData = data.versions?.[latestVersion];
+                return !!(versionData?.dist?.attestations);
               } catch (error) {
+                console.error(`Error checking provenance for ${packageName}:`, error);
                 return false;
               }
             }
 
             // Check if package is published
-            function isPackagePublished(packageName) {
+            async function isPackagePublished(packageName) {
               try {
-                const output = execSync(`npm view ${packageName} version`, {
-                  encoding: 'utf-8',
-                  stdio: ['pipe', 'pipe', 'pipe']
-                }).trim();
-                return !!output;
+                const response = await fetch(`https://registry.npmjs.org/${encodeURIComponent(packageName)}`);
+                return response.ok;
               } catch (error) {
                 return false;
               }
@@ -127,10 +137,10 @@ jobs:
             };
 
             for (const pkg of publicPackages) {
-              if (!isPackagePublished(pkg.name)) {
+              if (!(await isPackagePublished(pkg.name))) {
                 results.notPublished.push(pkg.name);
                 console.log(`⏭️  ${pkg.name}: Not published yet`);
-              } else if (checkPackageProvenance(pkg.name)) {
+              } else if (await checkPackageProvenance(pkg.name)) {
                 results.withProvenance.push(pkg.name);
                 console.log(`✅ ${pkg.name}: Has provenance`);
               } else {
@@ -155,13 +165,32 @@ jobs:
             core.setOutput('missing_packages', results.withoutProvenance);
             core.setOutput('unpublished_packages', results.notPublished);
 
+      - name: Upload results
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: provenance-results
+          path: provenance-results.json
+          retention-days: 1
+
+  post-comment:
+    name: Post PR Comment
+    runs-on: ubuntu-latest
+    needs: check-provenance
+    if: (needs.check-provenance.outputs.has_missing == 'true' || needs.check-provenance.outputs.has_unpublished == 'true') && github.event_name == 'pull_request'
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Download results
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
+        with:
+          name: provenance-results
+
       - name: Comment on PR
-        if: (steps.check.outputs.has_missing == 'true' || steps.check.outputs.has_unpublished == 'true') && github.event_name == 'pull_request'
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const fs = require('fs');
+            const fs = require('node:fs');
             const results = JSON.parse(fs.readFileSync('provenance-results.json', 'utf8'));
 
             let comment = '## 📦 NPM Package Status\n\n';
@@ -185,9 +214,9 @@ jobs:
               comment += '1. Click each package link above\n';
               comment += '2. Click "Add trusted publisher"\n';
               comment += '3. Configure with:\n';
-              comment += '   - Repository: `textlint/textlint`\n';
+              comment += `   - Repository: \`${context.repo.owner}/${context.repo.repo}\`\n`;
               comment += '   - Workflow: `.github/workflows/release.yml`\n';
-              comment += '   - Environment: (leave empty)\n';
+              comment += '   - Environment: npm\n';
             }
 
             // Find existing comment
