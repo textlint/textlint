@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760230675914,
+  "lastUpdate": 1760231239772,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -85763,6 +85763,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.58313946922,
             "range": "± 0.010507592999999926",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9b07a1d8701199cf08da46279be9312ae55d873e",
+          "message": "CI: improve check-provenance workflow (#1781)\n\n- reduce permissions\n- separate workflow jobs\n- remove execSync\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-10-12T01:04:12Z",
+          "tree_id": "1685dec80888182f5f06f3c96de9961614f8818d",
+          "url": "https://github.com/textlint/textlint/commit/9b07a1d8701199cf08da46279be9312ae55d873e"
+        },
+        "date": 1760231234113,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2744772804,
+            "range": "± 0.38905138",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6939454076,
+            "range": "± 0.093867527",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5852407974,
+            "range": "± 0.007255444",
             "unit": "seconds"
           }
         ]
