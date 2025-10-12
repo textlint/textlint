@@ -216,7 +216,7 @@ jobs:
               comment += '3. Configure with:\n';
               comment += '   - Repository: `textlint/textlint`\n';
               comment += '   - Workflow: `.github/workflows/release.yml`\n';
-              comment += '   - Environment: (leave empty)\n';
+              comment += '   - Environment: npm\n';
             }
 
             // Find existing comment
