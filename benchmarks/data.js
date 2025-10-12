@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760233540096,
+  "lastUpdate": 1760237597551,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -85931,6 +85931,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5825176938800001,
             "range": "± 0.010812908999999982",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a1c87888e32f58e303946a9e24c802a38a81cb99",
+          "message": "CI: optimize release workflows (#1782)\n\nFollow up https://github.com/textlint/textlint/pull/1781\n\n# Summary\n\nThis PR optimizes GitHub Actions workflows by reducing external\ndependencies and improving efficiency:\n\n- **Performance**: Reduced npm registry requests from 2 to 1 per package\nin provenance checks\n- **Simplification**: Replaced 3 external actions with native git/gh CLI\ncommands\n- **Security**: Fixed template injection vulnerabilities using\nenvironment variables\n- **Maintenance**: Removed workflow_dispatch complexity from release\nworkflow\n\n## Changes\n\n### Provenance Check Workflow (`check-provenance.yml`)\n- Consolidated `checkPackageProvenance()` and `isPackagePublished()`\ninto unified `checkPackageStatus()`\n- Single HTTP request now fetches both publication status and provenance\ndata\n- Returns structured status object: `{ published: boolean,\nhasProvenance: boolean }`\n\n### Release Workflow (`release.yml`)\n- Removed `workflow_dispatch` trigger and related conditional logic\n- Replaced external GitHub Actions with native commands:\n  - `pkgdeps/git-tag-action` → `git tag` + `git push`\n  - `softprops/action-gh-release` → `gh release create`\n  - `actions/github-script` → `gh pr comment`\n- Simplified tag existence check using `git ls-remote` instead of GitHub\nAPI calls\n- Fixed template injection vulnerabilities by using environment\nvariables (identified by zizmor)\n\n## Impact\n\n- Faster CI execution due to fewer HTTP requests\n- Reduced maintenance burden from fewer external action dependencies\n- Improved security posture\n- Simpler codebase with standard git/gh commands\n\n## Test Plan\n\n**Manual Verification Required:**\n\n1. **Provenance Check Workflow**\n   - Trigger workflow on a release with published packages\n   - Verify provenance check completes successfully\n   - Confirm workflow output shows correct published/provenance status\n\n2. **Release Workflow**\n   - Execute full release process from version bump to GitHub release\n   - Verify git tag creation and push succeeds\n   - Confirm GitHub release is created with correct content\n   - Check that PR comments are posted correctly\n   - Validate npm package publication completes\n\n3. **Security Verification**\n   - Review workflow runs for absence of template injection warnings\n   - Confirm environment variables are properly isolated\n\n---\n\nFollow-up to #1781\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+          "timestamp": "2025-10-12T11:49:56+09:00",
+          "tree_id": "7b2b1dffcd2d57416a6151e04febfd0383586232",
+          "url": "https://github.com/textlint/textlint/commit/a1c87888e32f58e303946a9e24c802a38a81cb99"
+        },
+        "date": 1760237592063,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.29172715858,
+            "range": "± 0.47476056",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.67833375618,
+            "range": "± 0.0455699540000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5851954445800001,
+            "range": "± 0.01668618799999999",
             "unit": "seconds"
           }
         ]
