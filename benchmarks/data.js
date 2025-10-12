@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760231675396,
+  "lastUpdate": 1760232511134,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -85847,6 +85847,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5818154507000001,
             "range": "± 0.007509934999999968",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "db50b2d131f36870812850a84670cbef543507b1",
+          "message": "ci: replace external actions with gh/git commands in release workflow",
+          "timestamp": "2025-10-12T10:26:05+09:00",
+          "tree_id": "5c8ce28574bfe6ecafe7ce139983811c1f80bdd4",
+          "url": "https://github.com/textlint/textlint/commit/db50b2d131f36870812850a84670cbef543507b1"
+        },
+        "date": 1760232504832,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.29088010016,
+            "range": "± 0.46526763599999993",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71198856876,
+            "range": "± 0.07133748499999992",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.58710502456,
+            "range": "± 0.017234917000000016",
             "unit": "seconds"
           }
         ]
