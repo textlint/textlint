@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760193984449,
+  "lastUpdate": 1760229405020,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -85595,6 +85595,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5952856132,
             "range": "± 0.019209376000000056",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "d2100fdd58cf8ea0d96538c703b0ccbcce28fb1d",
+          "message": "fix(workflows): replace execSync with fetch to prevent command injection\n\nReplace execSync-based npm view commands with fetch-based npm registry API calls\nto eliminate command injection vulnerability in check-provenance workflow.\n\nChanges:\n- Replace execSync npm view commands with direct fetch to npm registry API\n- Add encodeURIComponent for proper package name escaping\n- Maintain same functionality while improving security\n- Verified working with real textlint packages\n\nSecurity Impact:\n- Prevents arbitrary code execution through malicious package names\n- Eliminates shell command injection attack surface\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2025-10-12T09:33:23+09:00",
+          "tree_id": "4a9573bb6d95f8753a24bd158e0772ce0a0aaceb",
+          "url": "https://github.com/textlint/textlint/commit/d2100fdd58cf8ea0d96538c703b0ccbcce28fb1d"
+        },
+        "date": 1760229398820,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2741510857,
+            "range": "± 0.38241838699999997",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7262265237,
+            "range": "± 0.08096068400000012",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5877860883,
+            "range": "± 0.012514994000000002",
             "unit": "seconds"
           }
         ]
