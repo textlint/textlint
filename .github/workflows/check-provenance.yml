@@ -166,7 +166,7 @@ jobs:
             core.setOutput('unpublished_packages', results.notPublished);
 
       - name: Upload results
-        uses: actions/upload-artifact@ef09cdac3e2d3e60d8ccadda691f4f1cec5035cb # v4.5.0
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: provenance-results
           path: provenance-results.json
@@ -181,7 +181,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Download results
-        uses: actions/download-artifact@d3f86a8a84c1b682b4d0eb2ea3b995ea8067dc9b # v4.2.0
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
         with:
           name: provenance-results
 
