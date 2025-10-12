@@ -214,7 +214,7 @@ jobs:
               comment += '1. Click each package link above\n';
               comment += '2. Click "Add trusted publisher"\n';
               comment += '3. Configure with:\n';
-              comment += '   - Repository: `textlint/textlint`\n';
+              comment += `   - Repository: \`${context.repo.owner}/${context.repo.repo}\`\n`;
               comment += '   - Workflow: `.github/workflows/release.yml`\n';
               comment += '   - Environment: npm\n';
             }
