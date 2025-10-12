@@ -43,9 +43,9 @@ jobs:
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
         with:
           script: |
-            const fs = require('fs');
-            const path = require('path');
-            const { execSync } = require('child_process');
+            const fs = require('node:fs');
+            const path = require('node:path');
+            const { execSync } = require('node:child_process');
 
             // Get workspace packages using pnpm
             function getWorkspacePackages() {
@@ -190,7 +190,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const fs = require('fs');
+            const fs = require('node:fs');
             const results = JSON.parse(fs.readFileSync('provenance-results.json', 'utf8'));
 
             let comment = '## 📦 NPM Package Status\n\n';
