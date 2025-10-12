@@ -104,8 +104,7 @@ jobs:
         run: |
           RELEASE_URL=$(gh release create "v${PACKAGE_VERSION}" \
             --title "${GITHUB_EVENT_PULL_REQUEST_TITLE}" \
-            --notes "${GITHUB_EVENT_PULL_REQUEST_BODY}" \
-            --json url -q .url)
+            --notes "${GITHUB_EVENT_PULL_REQUEST_BODY}")
           echo "release-url=$RELEASE_URL" >> $GITHUB_OUTPUT
           echo "released=true" >> $GITHUB_OUTPUT
         env:
