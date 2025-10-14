@@ -690,7 +690,7 @@ importers:
         specifier: ^24.7.0
         version: 24.7.0
       '@types/react':
-        specifier: ^18.3.25
+        specifier: ^18.3.26
         version: 18.3.26
       rimraf:
         specifier: ^6.0.1
@@ -721,7 +721,7 @@ importers:
         specifier: ^24.7.0
         version: 24.7.0
       '@types/react':
-        specifier: ^18.3.25
+        specifier: ^18.3.26
         version: 18.3.26
       rimraf:
         specifier: ^6.0.1
