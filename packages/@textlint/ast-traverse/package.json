@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@textlint/markdown-to-ast": "workspace:*",
-    "@types/node": "^24.7.1",
+    "@types/node": "^24.7.2",
     "rimraf": "^6.0.1",
     "typescript": "~5.8.3",
     "vitest": "^3.2.4"
