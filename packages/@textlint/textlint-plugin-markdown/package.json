@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@textlint/kernel": "workspace:*",
-    "@types/node": "^24.7.2",
+    "@types/node": "^24.8.0",
     "@types/react": "^18.3.26",
     "rimraf": "^6.0.1",
     "textlint-rule-no-todo": "^2.0.1",
