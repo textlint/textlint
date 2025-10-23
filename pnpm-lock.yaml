@@ -205,7 +205,7 @@ importers:
   packages/@textlint/ast-node-types:
     devDependencies:
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       rimraf:
         specifier: ^6.0.1
@@ -230,7 +230,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       rimraf:
         specifier: ^6.0.1
@@ -252,7 +252,7 @@ importers:
         specifier: workspace:*
         version: link:../markdown-to-ast
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       rimraf:
         specifier: ^6.0.1
@@ -292,7 +292,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       prettier:
         specifier: ^2.3.0
@@ -310,7 +310,7 @@ importers:
   packages/@textlint/feature-flag:
     devDependencies:
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       rimraf:
         specifier: ^6.0.1
@@ -359,7 +359,7 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       rimraf:
         specifier: ^6.0.1
@@ -411,7 +411,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       rimraf:
         specifier: ^6.0.1
@@ -448,7 +448,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       prettier:
         specifier: ^2.7.1
@@ -512,7 +512,7 @@ importers:
         specifier: ^4.17.20
         version: 4.17.20
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       chai:
         specifier: ^4.5.0
@@ -567,7 +567,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       '@types/unist':
         specifier: ^3.0.3
@@ -588,7 +588,7 @@ importers:
   packages/@textlint/module-interop:
     devDependencies:
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       prettier:
         specifier: ^2.7.1
@@ -609,7 +609,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       prettier:
         specifier: ^2.8.1
@@ -634,7 +634,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       prettier:
         specifier: ^2.7.1
@@ -659,7 +659,7 @@ importers:
         specifier: workspace:*
         version: link:../ast-tester
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       eol-converter-cli:
         specifier: ^1.1.0
@@ -687,7 +687,7 @@ importers:
         specifier: workspace:*
         version: link:../kernel
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       '@types/react':
         specifier: ^18.3.26
@@ -718,7 +718,7 @@ importers:
         specifier: workspace:*
         version: link:../kernel
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       '@types/react':
         specifier: ^18.3.26
@@ -746,7 +746,7 @@ importers:
         specifier: workspace:*
         version: link:../markdown-to-ast
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       prettier:
         specifier: ^2.7.1
@@ -767,7 +767,7 @@ importers:
   packages/@textlint/utils:
     devDependencies:
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       prettier:
         specifier: ^2.7.1
@@ -870,7 +870,7 @@ importers:
         specifier: ^8.1.0
         version: 8.1.0
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       '@types/shelljs':
         specifier: ^0.8.17
@@ -1021,7 +1021,7 @@ importers:
         specifier: ^9.1.1
         version: 9.1.1
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.8.0
         version: 24.8.0
       analyze-desumasu-dearu:
         specifier: ^4.0.1
