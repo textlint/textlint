@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1761357810505,
+  "lastUpdate": 1761372122634,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -87527,6 +87527,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5902111324600001,
             "range": "± 0.030419000000000085",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "023c31f518e191d64b6779d4c2fde81ba9c0150c",
+          "message": "chore(deps): update dependency @eslint/js to ^9.38.0 (#1800)\n\nThis PR contains the following updates:\n\n| Package | Change | Age | Confidence |\n|---|---|---|---|\n| [@eslint/js](https://eslint.org)\n([source](https://redirect.github.com/eslint/eslint/tree/HEAD/packages/js))\n| [`^9.37.0` ->\n`^9.38.0`](https://renovatebot.com/diffs/npm/@eslint%2fjs/9.37.0/9.38.0)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@eslint%2fjs/9.38.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@eslint%2fjs/9.37.0/9.38.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>eslint/eslint (@&#8203;eslint/js)</summary>\n\n###\n[`v9.38.0`](https://redirect.github.com/eslint/eslint/releases/tag/v9.38.0)\n\n[Compare\nSource](https://redirect.github.com/eslint/eslint/compare/v9.37.0...v9.38.0)\n\n##### Features\n\n-\n[`ce40f74`](https://redirect.github.com/eslint/eslint/commit/ce40f74efd45f66d9fbfc6f78ce622ee72008485)\nfeat: update `complexity` rule to only highlight function header\n([#&#8203;20048](https://redirect.github.com/eslint/eslint/issues/20048))\n(Atul Nair)\n-\n[`e37e590`](https://redirect.github.com/eslint/eslint/commit/e37e590aae2a7fcca4d3a9adc1379ad466e5c5d1)\nfeat: correct `no-loss-of-precision` false positives with `e` notation\n([#&#8203;20187](https://redirect.github.com/eslint/eslint/issues/20187))\n(Francesco Trotta)\n\n##### Bug Fixes\n\n-\n[`50c3dfd`](https://redirect.github.com/eslint/eslint/commit/50c3dfd98065622765a51a8ddb1e70c44fc5a4cb)\nfix: improve type support for isolated dependencies in pnpm\n([#&#8203;20201](https://redirect.github.com/eslint/eslint/issues/20201))\n(Francesco Trotta)\n-\n[`a1f06a3`](https://redirect.github.com/eslint/eslint/commit/a1f06a350c4155c4dbf39bf932a38d71d70f1b65)\nfix: correct SourceCode typings\n([#&#8203;20114](https://redirect.github.com/eslint/eslint/issues/20114))\n(Pixel998)\n\n##### Documentation\n\n-\n[`462675a`](https://redirect.github.com/eslint/eslint/commit/462675af8a811f9ca984efaedbdc5b46b13ced7a)\ndocs: improve web accessibility by hiding non-semantic character\n([#&#8203;20205](https://redirect.github.com/eslint/eslint/issues/20205))\n(루밀LuMir)\n-\n[`c070e65`](https://redirect.github.com/eslint/eslint/commit/c070e65f6bb9e38d06a89ba2b3261781bec3d397)\ndocs: correct formatting in `no-irregular-whitespace` rule documentation\n([#&#8203;20203](https://redirect.github.com/eslint/eslint/issues/20203))\n(루밀LuMir)\n-\n[`b39e71a`](https://redirect.github.com/eslint/eslint/commit/b39e71a2130ae1ea3fbc19b19f5b951eb625722a)\ndocs: Update README (GitHub Actions Bot)\n-\n[`cd39983`](https://redirect.github.com/eslint/eslint/commit/cd3998314876a4fad6463d9011bc73778ccc1fd9)\ndocs: move `custom-formatters` type descriptions to `nodejs-api`\n([#&#8203;20190](https://redirect.github.com/eslint/eslint/issues/20190))\n(Percy Ma)\n\n##### Chores\n\n-\n[`d17c795`](https://redirect.github.com/eslint/eslint/commit/d17c795bf1624e0604998482b98e6bb6bff39045)\nchore: upgrade\n[@&#8203;eslint/js](https://redirect.github.com/eslint/js)[@&#8203;9](https://redirect.github.com/9).38.0\n([#&#8203;20221](https://redirect.github.com/eslint/eslint/issues/20221))\n(Milos Djermanovic)\n-\n[`25d0e33`](https://redirect.github.com/eslint/eslint/commit/25d0e33270e08baed09dbee2cdd56a8e5cd9da0f)\nchore: package.json update for\n[@&#8203;eslint/js](https://redirect.github.com/eslint/js) release\n(Jenkins)\n-\n[`c82b5ef`](https://redirect.github.com/eslint/eslint/commit/c82b5efa1fc91900e029efa23e688fad67fc17fa)\nrefactor: Use types from\n[@&#8203;eslint/core](https://redirect.github.com/eslint/core)\n([#&#8203;20168](https://redirect.github.com/eslint/eslint/issues/20168))\n(Nicholas C. Zakas)\n-\n[`ff31609`](https://redirect.github.com/eslint/eslint/commit/ff31609f195654d448954210ba4d31e921d463e8)\nci: add Node.js 25 to `ci.yml`\n([#&#8203;20220](https://redirect.github.com/eslint/eslint/issues/20220))\n(루밀LuMir)\n-\n[`004577e`](https://redirect.github.com/eslint/eslint/commit/004577eda2f2f4b2829e0364f8b41893cebfc859)\nci: bump github/codeql-action from 3 to 4\n([#&#8203;20211](https://redirect.github.com/eslint/eslint/issues/20211))\n(dependabot\\[bot])\n-\n[`eac71fb`](https://redirect.github.com/eslint/eslint/commit/eac71fb77113de7bf199ff20c6ee44cefcb59848)\ntest: remove use of `nodejsScope` option of eslint-scope from tests\n([#&#8203;20206](https://redirect.github.com/eslint/eslint/issues/20206))\n(Milos Djermanovic)\n-\n[`4168a18`](https://redirect.github.com/eslint/eslint/commit/4168a18b7efd8facbbd71cd44a62942a9f656a30)\nchore: fix typo in legacy-eslint.js\n([#&#8203;20202](https://redirect.github.com/eslint/eslint/issues/20202))\n(Sweta Tanwar)\n-\n[`205dbd2`](https://redirect.github.com/eslint/eslint/commit/205dbd2d9272e761574c478e3b0181f7b89ed0f6)\nchore: fix typos\n([#&#8203;20200](https://redirect.github.com/eslint/eslint/issues/20200))\n(ntnyq)\n-\n[`dbb200e`](https://redirect.github.com/eslint/eslint/commit/dbb200e3604e63bba23a18d40089ca44604835ed)\nchore: use team member's username when name is not available in data\n([#&#8203;20194](https://redirect.github.com/eslint/eslint/issues/20194))\n(Milos Djermanovic)\n-\n[`8962089`](https://redirect.github.com/eslint/eslint/commit/8962089edbd978b43513576387a134036b8e2d36)\nchore: mark deprecated rules as available until v11.0.0\n([#&#8203;20184](https://redirect.github.com/eslint/eslint/issues/20184))\n(Pixel998)\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about this update\nagain.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MS4xNTYuMSIsInVwZGF0ZWRJblZlciI6IjQxLjE1Ni4xIiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-10-25T05:57:33Z",
+          "tree_id": "2e4268090b9490a88c1187c089d4bf3b9a843b47",
+          "url": "https://github.com/textlint/textlint/commit/023c31f518e191d64b6779d4c2fde81ba9c0150c"
+        },
+        "date": 1761372116181,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.37017897819999995,
+            "range": "± 0.863837035",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7039660138000001,
+            "range": "± 0.03082777599999975",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5923027222,
+            "range": "± 0.02141855199999998",
             "unit": "seconds"
           }
         ]
