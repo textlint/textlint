@@ -2,7 +2,11 @@
 "use strict";
 import * as assert from "node:assert";
 import { afterEach, beforeEach, describe, it } from "vitest";
-import { resolveFixCommandLocation, resolveLocation } from "../../src/core/source-location.js";
+import {
+    resolveFixCommandLocation,
+    resolveLocation,
+    resolveSuggestionsLocation
+} from "../../src/core/source-location.js";
 import RuleFixer from "../../src/fixer/rule-fixer.js";
 import createDummySourceCode from "../util/dummy-source-code.js";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
@@ -315,6 +319,79 @@ describe("source-location", function () {
             const { fix } = resolveFixCommandLocation({ node, ruleError });
             assert.deepStrictEqual(fix?.range, [10, 20]);
             assert.deepStrictEqual(fix?.text, "");
+        });
+    });
+
+    describe("resolveSuggestionsLocation", function () {
+        it("should resolve relative suggestion fix ranges to absolute and fallback message", function () {
+            const node = {
+                type: "Str" as const,
+                range: [10, 20] as const,
+                raw: "1234567890",
+                loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
+            };
+            const ruleError = {
+                suggestions: [
+                    {
+                        id: 1,
+                        fix: { isAbsolute: false, range: [1, 5] as const, text: "replace" }
+                    }
+                ],
+                message: "original"
+            } as unknown as TextlintRuleError;
+
+            const result = resolveSuggestionsLocation({ node, ruleError });
+            const suggestions = result.suggestions;
+            assert.ok(Array.isArray(suggestions));
+            assert.strictEqual(suggestions.length, 1);
+            const first = suggestions[0];
+            assert.deepStrictEqual(first.fix.range, [11, 15]);
+        });
+
+        it("should keep absolute suggestion ranges and preserve message", function () {
+            const node = {
+                type: "Str" as const,
+                range: [10, 20] as const,
+                raw: "1234567890",
+                loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
+            };
+            const ruleError = {
+                suggestions: [
+                    {
+                        id: "a",
+                        message: "keep",
+                        fix: { isAbsolute: true, range: [0, 2] as const, text: "xx" }
+                    }
+                ],
+                message: "original"
+            } as unknown as TextlintRuleError;
+
+            const result = resolveSuggestionsLocation({ node, ruleError });
+            const suggestions = result.suggestions;
+            assert.ok(Array.isArray(suggestions));
+            assert.strictEqual(suggestions.length, 1);
+            const first = suggestions[0];
+            assert.deepStrictEqual(first.fix.range, [0, 2]);
+            assert.strictEqual(first.message, "keep");
+        });
+
+        it("should ignore invalid suggestion shapes", function () {
+            const node = {
+                type: "Str" as const,
+                range: [10, 20] as const,
+                raw: "1234567890",
+                loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
+            };
+            const ruleError = {
+                // invalid suggestion object
+                suggestions: [{ bad: true }],
+                message: "original"
+            } as unknown as TextlintRuleError;
+
+            const result = resolveSuggestionsLocation({ node, ruleError });
+            const suggestions = result.suggestions;
+            assert.ok(Array.isArray(suggestions));
+            assert.strictEqual(suggestions.length, 0);
         });
     });
 });
