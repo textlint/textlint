@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1761357593427,
+  "lastUpdate": 1761357714990,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -87443,6 +87443,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5782706200200001,
             "range": "± 0.006798978999999927",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3795f70f649b46a2bbe93d66909f8df7b185ecc1",
+          "message": "fix(deps): update docusaurus monorepo to ^3.9.2 (patch) (#1799)\n\nThis PR contains the following updates:\n\n| Package | Change | Age | Confidence |\n|---|---|---|---|\n| [@docusaurus/core](https://redirect.github.com/facebook/docusaurus)\n([source](https://redirect.github.com/facebook/docusaurus/tree/HEAD/packages/docusaurus))\n| [`^3.9.1` ->\n`^3.9.2`](https://renovatebot.com/diffs/npm/@docusaurus%2fcore/3.9.1/3.9.2)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@docusaurus%2fcore/3.9.2?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@docusaurus%2fcore/3.9.1/3.9.2?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n|\n[@docusaurus/module-type-aliases](https://redirect.github.com/facebook/docusaurus)\n([source](https://redirect.github.com/facebook/docusaurus/tree/HEAD/packages/docusaurus-module-type-aliases))\n| [`^3.9.1` ->\n`^3.9.2`](https://renovatebot.com/diffs/npm/@docusaurus%2fmodule-type-aliases/3.9.1/3.9.2)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@docusaurus%2fmodule-type-aliases/3.9.2?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@docusaurus%2fmodule-type-aliases/3.9.1/3.9.2?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n|\n[@docusaurus/plugin-client-redirects](https://redirect.github.com/facebook/docusaurus)\n([source](https://redirect.github.com/facebook/docusaurus/tree/HEAD/packages/docusaurus-plugin-client-redirects))\n| [`^3.9.1` ->\n`^3.9.2`](https://renovatebot.com/diffs/npm/@docusaurus%2fplugin-client-redirects/3.9.1/3.9.2)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@docusaurus%2fplugin-client-redirects/3.9.2?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@docusaurus%2fplugin-client-redirects/3.9.1/3.9.2?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n|\n[@docusaurus/preset-classic](https://redirect.github.com/facebook/docusaurus)\n([source](https://redirect.github.com/facebook/docusaurus/tree/HEAD/packages/docusaurus-preset-classic))\n| [`^3.9.1` ->\n`^3.9.2`](https://renovatebot.com/diffs/npm/@docusaurus%2fpreset-classic/3.9.1/3.9.2)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@docusaurus%2fpreset-classic/3.9.2?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@docusaurus%2fpreset-classic/3.9.1/3.9.2?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>facebook/docusaurus (@&#8203;docusaurus/core)</summary>\n\n###\n[`v3.9.2`](https://redirect.github.com/facebook/docusaurus/blob/HEAD/CHANGELOG.md#392-2025-10-17)\n\n[Compare\nSource](https://redirect.github.com/facebook/docusaurus/compare/v3.9.1...v3.9.2)\n\n##### :bug: Bug Fix\n\n- `docusaurus-plugin-content-docs`\n-\n[#&#8203;11490](https://redirect.github.com/facebook/docusaurus/pull/11490)\nfix(docs): add support for missing `sidebar_key` front matter attribute\n([@&#8203;slorber](https://redirect.github.com/slorber))\n- `docusaurus-cssnano-preset`\n-\n[#&#8203;11487](https://redirect.github.com/facebook/docusaurus/pull/11487)\nfix(cssnano-preset): disable CSS counter minification\n([@&#8203;YDKK](https://redirect.github.com/YDKK))\n- `docusaurus-theme-search-algolia`\n-\n[#&#8203;11468](https://redirect.github.com/facebook/docusaurus/pull/11468)\nfix(theme-search-algolia): Fix Algolia AskAI validation logic\n([@&#8203;slorber](https://redirect.github.com/slorber))\n- `docusaurus-theme-translations`\n-\n[#&#8203;11431](https://redirect.github.com/facebook/docusaurus/pull/11431)\nfix(theme-translation): add missing Polish (pl) theme translations\n([@&#8203;mariuszkrzaczkowski](https://redirect.github.com/mariuszkrzaczkowski))\n- `docusaurus-theme-classic`, `docusaurus-theme-common`\n-\n[#&#8203;11466](https://redirect.github.com/facebook/docusaurus/pull/11466)\nfix(theme): Fix CSS `scroll-margin-top` when clicking footnote items,\nfactorize code ([@&#8203;slorber](https://redirect.github.com/slorber))\n- `docusaurus`\n-\n[#&#8203;11452](https://redirect.github.com/facebook/docusaurus/pull/11452)\nfix(core): allow `i18n.localeConfigs.translate` in validation\n([@&#8203;trofim24](https://redirect.github.com/trofim24))\n- `docusaurus-theme-mermaid`\n-\n[#&#8203;11437](https://redirect.github.com/facebook/docusaurus/pull/11437)\nfix(theme-mermaid): Fix Mermaid ELK layout dependency required bug on\nv3.9 ([@&#8203;slorber](https://redirect.github.com/slorber))\n\n##### :running\\_woman: Performance\n\n- `docusaurus-theme-mermaid`\n-\n[#&#8203;11438](https://redirect.github.com/facebook/docusaurus/pull/11438)\nperf(theme-mermaid): lazy load the Mermaid library\n([@&#8203;slorber](https://redirect.github.com/slorber))\n\n##### :nail\\_care: Polish\n\n- `docusaurus-theme-classic`\n-\n[#&#8203;11463](https://redirect.github.com/facebook/docusaurus/pull/11463)\nfix(theme): remove \"Edit this page\" button from print view\n([@&#8203;richk21](https://redirect.github.com/richk21))\n\n##### :robot: Dependencies\n\n-\n[#&#8203;11479](https://redirect.github.com/facebook/docusaurus/pull/11479)\nchore(deps): bump stefanzweifel/git-auto-commit-action from 6 to 7\n([@&#8203;dependabot\\[bot\\]](https://redirect.github.com/apps/dependabot))\n-\n[#&#8203;11480](https://redirect.github.com/facebook/docusaurus/pull/11480)\nchore(deps): bump github/codeql-action from 3.26.5 to 4.30.8\n([@&#8203;dependabot\\[bot\\]](https://redirect.github.com/apps/dependabot))\n-\n[#&#8203;11481](https://redirect.github.com/facebook/docusaurus/pull/11481)\nchore(deps): bump actions/dependency-review-action from 4.8.0 to 4.8.1\n([@&#8203;dependabot\\[bot\\]](https://redirect.github.com/apps/dependabot))\n-\n[#&#8203;11446](https://redirect.github.com/facebook/docusaurus/pull/11446)\nchore(deps): bump actions/dependency-review-action from 4.7.3 to 4.8.0\n([@&#8203;dependabot\\[bot\\]](https://redirect.github.com/apps/dependabot))\n\n##### :globe\\_with\\_meridians: Translations\n\n- `docusaurus-theme-translations`\n-\n[#&#8203;11484](https://redirect.github.com/facebook/docusaurus/pull/11484)\nfix(translations): improve Arabic theme translations\n([@&#8203;maysara-elshewehy](https://redirect.github.com/maysara-elshewehy))\n\n##### Committers: 9\n\n- Alexander Trofimov\n([@&#8203;trofim24](https://redirect.github.com/trofim24))\n- Dan Roscigno\n([@&#8203;DanRoscigno](https://redirect.github.com/DanRoscigno))\n- Eleni Grosdouli\n([@&#8203;egrosdou01](https://redirect.github.com/egrosdou01))\n- Ethan ([@&#8203;ethanppl](https://redirect.github.com/ethanppl))\n- Mariusz Krzaczkowski\n([@&#8203;mariuszkrzaczkowski](https://redirect.github.com/mariuszkrzaczkowski))\n- Maysara\n([@&#8203;maysara-elshewehy](https://redirect.github.com/maysara-elshewehy))\n- Richa Kiran ([@&#8203;richk21](https://redirect.github.com/richk21))\n- Sébastien Lorber\n([@&#8203;slorber](https://redirect.github.com/slorber))\n- [@&#8203;YDKK](https://redirect.github.com/YDKK)\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about these\nupdates again.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MS4xNTYuMSIsInVwZGF0ZWRJblZlciI6IjQxLjE1Ni4xIiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-10-25T01:58:18Z",
+          "tree_id": "c83840d3549e1689926db4a633bc7b37e0911e62",
+          "url": "https://github.com/textlint/textlint/commit/3795f70f649b46a2bbe93d66909f8df7b185ecc1"
+        },
+        "date": 1761357708983,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2930905473,
+            "range": "± 0.476756147",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7253301047,
+            "range": "± 0.02682562200000005",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5862453782999999,
+            "range": "± 0.0269802950000001",
             "unit": "seconds"
           }
         ]
