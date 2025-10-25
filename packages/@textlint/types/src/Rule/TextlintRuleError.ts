@@ -1,6 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand.js";
+import { TextlintRuleSuggestion } from "./TextlintRuleSuggestion.js";
 
 export type TextlintRuleErrorPaddingLocationLoc = {
     start: {
@@ -101,6 +102,7 @@ export type TextlintRuleErrorDetails = {
      */
     padding?: TextlintRuleErrorPaddingLocation;
     fix?: TextlintRuleContextFixCommand;
+    suggestions?: TextlintRuleSuggestion[];
 };
 
 /**
@@ -137,4 +139,5 @@ export interface TextlintRuleError {
     readonly index?: number;
     readonly padding?: TextlintRuleErrorPaddingLocation;
     readonly fix?: TextlintRuleContextFixCommand;
+    readonly suggestions?: TextlintRuleSuggestion[];
 }

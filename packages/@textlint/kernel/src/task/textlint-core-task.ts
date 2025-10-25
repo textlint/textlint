@@ -2,7 +2,7 @@
 "use strict";
 import { TextlintRuleErrorImpl } from "../context/TextlintRuleErrorImpl.js";
 import { EventEmitter, PromiseEventEmitter } from "./promise-event-emitter.js";
-import { resolveLocation, resolveFixCommandLocation } from "../core/source-location.js";
+import { resolveLocation, resolveFixCommandLocation, resolveSuggestionsLocation } from "../core/source-location.js";
 import timing from "../util/timing.js";
 import { invariant } from "../util/invariant.js";
 import MessageType from "../shared/type/MessageType.js";
@@ -14,6 +14,7 @@ import type {
     TextlintFilterRuleShouldIgnoreFunction,
     TextlintFilterRuleShouldIgnoreFunctionArgs,
     TextlintMessageFixCommand,
+    TextlintMessageSuggestion,
     TextlintRuleContext,
     TextlintRuleContextReportFunction,
     TextlintRuleContextReportFunctionArgs,
@@ -69,6 +70,7 @@ export interface LintReportedMessage {
     };
     severity: number; // it's for compatible ESLint formatter
     fix?: TextlintMessageFixCommand;
+    suggestions?: TextlintMessageSuggestion[];
 }
 
 /**
@@ -137,6 +139,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                 node,
                 ruleError
             });
+            const { suggestions } = resolveSuggestionsLocation({ node, ruleError });
             debug("%s report %s", ruleId, ruleError);
             // add TextLintMessage
             const message: LintReportedMessage = {
@@ -149,7 +152,8 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                 range,
                 loc,
                 severity, // it's for compatible ESLint formatter
-                fix: fix !== undefined ? fix : undefined
+                fix: fix !== undefined ? fix : undefined,
+                suggestions: suggestions !== undefined ? suggestions : undefined
             };
             if (!(ruleError instanceof TextlintRuleErrorImpl)) {
                 // FIXME: RuleReportedObject should be removed

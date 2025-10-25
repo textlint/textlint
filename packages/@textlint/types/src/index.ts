@@ -27,6 +27,7 @@ export type {
 } from "./Rule/TextlintRuleError.js";
 export type { TextlintRuleSeverityLevel } from "./Rule/TextlintRuleSeverityLevel.js";
 export type { TextlintRuleSeverityLevelKey } from "./Rule/TextlintRuleSeverityLevelKey.js";
+export type { TextlintRuleSuggestion } from "./Rule/TextlintRuleSuggestion.js";
 // Rule
 export type {
     TextlintRuleContext,
@@ -68,4 +69,5 @@ export type {
     TextlintFixResult,
     TextlintMessage,
     TextlintMessageFixCommand,
+    TextlintMessageSuggestion,
 } from "./Message/TextlintResult.js";

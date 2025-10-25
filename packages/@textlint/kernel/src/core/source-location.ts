@@ -3,7 +3,9 @@ import type {
     TextlintRuleError,
     TextlintRuleErrorPaddingLocation,
     TextlintSourceCode,
-    TextlintRuleErrorDetails
+    TextlintRuleErrorDetails,
+    TextlintRuleSuggestion,
+    TextlintMessageSuggestion
 } from "@textlint/types";
 import { TxtNode } from "@textlint/ast-node-types";
 import { invariant } from "../util/invariant.js";
@@ -39,7 +41,7 @@ const assertReportArgs = (reportArgs: Pick<TextlintRuleContextReportFunctionArgs
         throw new Error(`${errorPrefix} This is un-document way:
 report(node, new RuleError("message", index);
 
-Please use { index }: 
+Please use { index }:
 
 report(node, new RuleError("message", {
     index: paddingLineColumn
@@ -50,7 +52,7 @@ report(node, new RuleError("message", {
     if (padding.line === undefined && padding.column !== undefined) {
         // FIXME: Backward compatible <= textlint.5.5
         throwIfTesting(`${errorPrefix} Have to use a sets with "line" and "column".
-See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/line-column-or-index.md            
+See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/line-column-or-index.md
 
 report(node, new RuleError("message", {
     line: paddingLineNumber,
@@ -80,7 +82,7 @@ report(node, new RuleError("message", {
     column: paddingLineColumn
 });
 
-OR 
+OR
 
 use "index" property
 
@@ -350,4 +352,45 @@ export const resolveLocation = (
         node,
         paddingIR
     });
+};
+
+/**
+ * Adjust `suggestions[].fix` command range
+ */
+export const resolveSuggestionsLocation = ({ node, ruleError }: { node: TxtNode; ruleError: TextlintRuleError }) => {
+    if (!Array.isArray(ruleError.suggestions) || ruleError.suggestions.length === 0) {
+        return {};
+    }
+
+    const isSuggestion = (value: unknown): value is TextlintRuleSuggestion => {
+        if (!value || typeof value !== "object") {
+            return false;
+        }
+        const fixCommand = (value as Record<string, unknown>).fix;
+        if (!fixCommand || typeof fixCommand !== "object") {
+            return false;
+        }
+        const fixCommandObject = fixCommand as Record<string, unknown>;
+        return typeof fixCommandObject.text === "string" && Array.isArray(fixCommandObject.range);
+    };
+
+    const resolvedSuggestions: TextlintMessageSuggestion[] = [];
+    for (const suggestion of ruleError.suggestions.filter(isSuggestion)) {
+        const resolvedFixCommand = resolveFixCommandLocation({
+            node,
+            ruleError: Object.assign({}, ruleError, { fix: suggestion.fix })
+        });
+        if (!resolvedFixCommand.fix) {
+            continue;
+        }
+        const suggestionMessage =
+            typeof suggestion.message === "string" ? suggestion.message : resolvedFixCommand.fix.text;
+        resolvedSuggestions.push({
+            id: String(suggestion.id),
+            message: suggestionMessage,
+            fix: { range: resolvedFixCommand.fix.range, text: resolvedFixCommand.fix.text }
+        });
+    }
+
+    return { suggestions: resolvedSuggestions };
 };

@@ -1,7 +1,12 @@
 // LICENSE : MIT
 "use strict";
 
-import type { TextlintRuleContextFixCommand, TextlintRuleErrorDetails, TextlintRuleError } from "@textlint/types";
+import type {
+    TextlintRuleContextFixCommand,
+    TextlintRuleErrorDetails,
+    TextlintRuleError,
+    TextlintRuleSuggestion
+} from "@textlint/types";
 import { TextlintRuleErrorPaddingLocation } from "@textlint/types";
 import { throwIfTesting } from "@textlint/feature-flag";
 import { isTextlintRuleErrorPaddingLocation } from "./TextlintRulePaddingLocator.js";
@@ -30,7 +35,7 @@ const assertTextlintRuleErrorDetail = (details: TextlintRuleErrorDetails) => {
     if ([useIndex, useLineColumn, usePadding].filter(Boolean).length > 1) {
         throwIfTesting(`RuleError details can not mixed usage: ${JSON.stringify(details)}
 
-You can not set { index, line, column, padding } at same time.        
+You can not set { index, line, column, padding } at same time.
 `);
     }
     // legacy usage
@@ -85,6 +90,10 @@ export class TextlintRuleErrorImpl implements TextlintRuleError {
      */
     public readonly padding?: TextlintRuleErrorPaddingLocation;
     public readonly fix?: TextlintRuleContextFixCommand;
+    /**
+     * list of suggestions to fix the issue.
+     */
+    public readonly suggestions?: TextlintRuleSuggestion[];
 
     /**
      * RuleError is like Error object.
@@ -118,6 +127,11 @@ export class TextlintRuleErrorImpl implements TextlintRuleError {
              */
             this.fix = details.fix;
             /**
+             * list of suggestion objects
+             * @type {TextlintRuleSuggestion[]}
+             */
+            this.suggestions = details.suggestions;
+            /**
              * padding location object
              */
             this.padding = details.padding;
@@ -134,7 +148,8 @@ export class TextlintRuleErrorImpl implements TextlintRuleError {
             line: this.line,
             column: this.column,
             index: this.index,
-            fix: this.fix
+            fix: this.fix,
+            suggestions: this.suggestions
         });
     }
 }
