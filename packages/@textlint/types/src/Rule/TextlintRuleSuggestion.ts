@@ -1,4 +1,4 @@
-import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand";
+import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand.js";
 
 export interface TextlintRuleSuggestion {
     id: string;
