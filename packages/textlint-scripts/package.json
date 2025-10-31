@@ -49,7 +49,7 @@
         "@babel/cli": "^7.28.3",
         "@babel/core": "^7.28.5",
         "@babel/preset-env": "^7.28.5",
-        "@babel/preset-typescript": "^7.27.1",
+        "@babel/preset-typescript": "^7.28.5",
         "@babel/register": "^7.28.3",
         "babel-plugin-static-fs": "^3.0.0",
         "confirmer": "^1.1.2",
