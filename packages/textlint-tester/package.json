@@ -51,7 +51,7 @@
         "analyze-desumasu-dearu": "^4.0.1",
         "match-index": "^1.0.3",
         "mocha": "^11.7.4",
-        "rimraf": "^6.0.1",
+        "rimraf": "^6.1.0",
         "textlint-plugin-html": "^0.3.0",
         "textlint-rule-helper": "^2.5.0",
         "textlint-rule-max-number-of-lines": "^1.0.3",
