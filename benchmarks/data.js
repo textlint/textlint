@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1762474389086,
+  "lastUpdate": 1762479499649,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -88871,6 +88871,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.53796921778,
             "range": "± 0.023391725999999946",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "64ceb087a6b5571f0914201f6ecb3361b56a09d6",
+          "message": "chore(deps): update dependency rimraf to ^6.1.0",
+          "timestamp": "2025-11-07T01:36:16Z",
+          "tree_id": "3256d0fbab8b76aef8c11c071f14f5278ad93aa6",
+          "url": "https://github.com/textlint/textlint/commit/64ceb087a6b5571f0914201f6ecb3361b56a09d6"
+        },
+        "date": 1762479493424,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24422686196,
+            "range": "± 0.21488729100000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.70208231336,
+            "range": "± 0.019296537000000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5893081091600001,
+            "range": "± 0.018047263000000036",
             "unit": "seconds"
           }
         ]
