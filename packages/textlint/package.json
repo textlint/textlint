@@ -81,7 +81,7 @@
     "@types/node": "^24.9.2",
     "@types/shelljs": "^0.8.17",
     "clone": "^2.1.2",
-    "rimraf": "^6.0.1",
+    "rimraf": "^6.1.0",
     "shelljs": "^0.10.0",
     "textlint-plugin-html": "^0.3.0",
     "textlint-rule-helper": "^2.5.0",
