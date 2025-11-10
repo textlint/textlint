@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1762755300110,
+  "lastUpdate": 1762755392658,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -89207,6 +89207,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5270707961000001,
             "range": "± 0.02259878999999998",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a54245d28d13f11a073a0073935391490c633886",
+          "message": "v15.3.0 (#1817)\n\n<!-- Release notes generated using configuration in .github/release.yml\nat master -->\n\n## What's Changed\n### Features\n* feat(kernel): add suggestions API by @3w36zj6 in\nhttps://github.com/textlint/textlint/pull/1801\n### CI\n* CI: improve check-provenance workflow by @azu in\nhttps://github.com/textlint/textlint/pull/1781\n* CI: optimize release workflows by @azu in\nhttps://github.com/textlint/textlint/pull/1782\n* chore(deps): update github/codeql-action action to v3.30.7 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1787\n* chore(deps): update pnpm/action-setup action to v4.2.0 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1788\n* CI: fix release workflow by @azu in\nhttps://github.com/textlint/textlint/pull/1783\n* chore(deps): update github/codeql-action action to v3.30.8 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1791\n* chore(deps): update github/codeql-action action to v3.30.9 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1798\n* chore(deps): update github/codeql-action action to v3.31.0 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1810\n* chore(deps): update github/codeql-action action to v3.31.2 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1813\n### Dependency Updates\n* chore(deps): update patch updates (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1784\n* chore(deps): update eslint to ^8.46.0 (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1786\n* chore(deps): update dependency @types/react to ^18.3.26 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1785\n* chore(deps): update patch updates (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1789\n* fix(deps): update dependency @modelcontextprotocol/sdk to ^1.20.0 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1790\n* chore(deps): update patch updates (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1792\n* chore(deps): update eslint to ^8.46.1 (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1793\n* chore(deps): update pnpm to v10.18.3 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1795\n* chore(deps): update dependency @types/node to ^24.8.0 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1796\n* fix(deps): update patch updates (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1797\n* fix(deps): update docusaurus monorepo to ^3.9.2 (patch) by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1799\n* chore(deps): update dependency @eslint/js to ^9.38.0 by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1800\n* chore(deps): update eslint to ^8.46.2 (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1803\n* chore(deps): update patch updates (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1804\n* chore(deps): update pnpm to v10.19.0 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1805\n* chore(deps): update dependency lint-staged to ^16.2.6 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1806\n* fix(deps): update babel monorepo to ^7.28.5 (patch) by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1807\n* fix(deps): update dependency @babel/preset-typescript to ^7.28.5 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1808\n* fix(deps): update dependency @modelcontextprotocol/sdk to ^1.20.2 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1809\n* chore(deps): update dependency @types/node to ^24.9.2 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1811\n* chore(deps): update pnpm to v10.20.0 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1812\n* chore(deps): update dependency rimraf to ^6.1.0 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1814\n* chore(deps): update dependency @eslint/js to ^9.39.0 by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1815\n* chore(deps): update dependency globals to ^16.5.0 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1816\n\n\n**Full Changelog**:\nhttps://github.com/textlint/textlint/compare/v15.2.3...v15.3.0\n\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2025-11-10T15:14:24+09:00",
+          "tree_id": "1e9b116fc0112b0baf9716e7867755b7b377b344",
+          "url": "https://github.com/textlint/textlint/commit/a54245d28d13f11a073a0073935391490c633886"
+        },
+        "date": 1762755386592,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23826754438000003,
+            "range": "± 0.181511572",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.71477578818,
+            "range": "± 0.059096999999999955",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59424074758,
+            "range": "± 0.01168058999999999",
             "unit": "seconds"
           }
         ]
