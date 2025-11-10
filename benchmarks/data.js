@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1762740377387,
+  "lastUpdate": 1762755300110,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -89165,6 +89165,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.62565654906,
             "range": "± 0.026943618000000003",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "52315048+3w36zj6@users.noreply.github.com",
+            "name": "3w36zj6",
+            "username": "3w36zj6"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e94e26003088d4ad67c8e4fd692830e71ac81acd",
+          "message": "feat(kernel): add suggestions API (#1801)\n\ncf. https://github.com/textlint/textlint/issues/1122\n\nThis pull request adds support for reporting and handling suggestions in\nlinting results, enabling rules to provide multiple suggested fixes for\na single problem. The implementation includes changes to core logic,\nerror handling, and corresponding tests to ensure suggestions are\nproperly processed and output.\n\nThese changes introduce a flexible and extensible way for rules to offer\nmultiple, context-aware suggestions to users, improving the overall\nusability and power of the linting engine.\n\n---------\n\nCo-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>",
+          "timestamp": "2025-11-10T15:13:06+09:00",
+          "tree_id": "900facad36c1d0ce7dd14fc0dd46ba983ef05883",
+          "url": "https://github.com/textlint/textlint/commit/e94e26003088d4ad67c8e4fd692830e71ac81acd"
+        },
+        "date": 1762755292406,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22344719790000003,
+            "range": "± 0.22064804400000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6182091021000002,
+            "range": "± 0.06054935300000008",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5270707961000001,
+            "range": "± 0.02259878999999998",
             "unit": "seconds"
           }
         ]
