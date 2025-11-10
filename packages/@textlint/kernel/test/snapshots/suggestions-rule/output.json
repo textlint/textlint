@@ -1,0 +1,146 @@
+{
+    "messages": [
+        {
+            "type": "lint",
+            "ruleId": "rule",
+            "message": "found problem",
+            "index": 0,
+            "line": 1,
+            "column": 1,
+            "range": [
+                0,
+                13
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "end": {
+                    "line": 1,
+                    "column": 14
+                }
+            },
+            "severity": 2,
+            "suggestions": [
+                {
+                    "id": "s1",
+                    "message": "use 'suggestion 1'",
+                    "fix": {
+                        "range": [
+                            0,
+                            13
+                        ],
+                        "text": "suggestion1"
+                    }
+                },
+                {
+                    "id": "s2",
+                    "message": "use 'suggestion 2'",
+                    "fix": {
+                        "range": [
+                            0,
+                            13
+                        ],
+                        "text": "suggestion2"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "lint",
+            "ruleId": "rule",
+            "message": "found problem",
+            "index": 15,
+            "line": 3,
+            "column": 1,
+            "range": [
+                15,
+                28
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 1
+                },
+                "end": {
+                    "line": 3,
+                    "column": 14
+                }
+            },
+            "severity": 2,
+            "suggestions": [
+                {
+                    "id": "s1",
+                    "message": "use 'suggestion 1'",
+                    "fix": {
+                        "range": [
+                            15,
+                            28
+                        ],
+                        "text": "suggestion1"
+                    }
+                },
+                {
+                    "id": "s2",
+                    "message": "use 'suggestion 2'",
+                    "fix": {
+                        "range": [
+                            15,
+                            28
+                        ],
+                        "text": "suggestion2"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "lint",
+            "ruleId": "rule",
+            "message": "found problem",
+            "index": 30,
+            "line": 5,
+            "column": 1,
+            "range": [
+                30,
+                46
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 1
+                },
+                "end": {
+                    "line": 5,
+                    "column": 17
+                }
+            },
+            "severity": 2,
+            "suggestions": [
+                {
+                    "id": "s1",
+                    "message": "use 'suggestion 1'",
+                    "fix": {
+                        "range": [
+                            30,
+                            46
+                        ],
+                        "text": "suggestion1"
+                    }
+                },
+                {
+                    "id": "s2",
+                    "message": "use 'suggestion 2'",
+                    "fix": {
+                        "range": [
+                            30,
+                            46
+                        ],
+                        "text": "suggestion2"
+                    }
+                }
+            ]
+        }
+    ],
+    "filePath": "<root>/suggestions-rule/input.md"
+}

@@ -4,6 +4,7 @@ import type { TextlintMessage } from "@textlint/types";
 import { describe, it } from "vitest";
 import { TextlintKernel } from "../src/textlint-kernel.js";
 import { errorRule } from "./helper/ErrorRule.js";
+import { suggestionRule } from "./helper/SuggestionRule.js";
 import { createPluginStub, ExampleProcessorOptions } from "./helper/ExamplePlugin.js";
 import { TextlintKernelOptions } from "../src/textlint-kernel-interface.js";
 import { filterRule } from "./helper/FilterRule.js";
@@ -90,6 +91,47 @@ describe("textlint-kernel", () => {
                         throw new Error("Not found `fix` object");
                     }
                     assert.deepStrictEqual(message.fix, expectedFixObject);
+                });
+            });
+        });
+        describe("when rule has suggestions", () => {
+            it("should return messages that has `suggestions` array", () => {
+                const kernel = new TextlintKernel();
+                const { plugin } = createPluginStub({
+                    extensions: [".md"]
+                });
+                const options = {
+                    filePath: "/path/to/file.md",
+                    ext: ".md",
+                    plugins: [{ pluginId: "markdown", plugin }],
+                    rules: [
+                        {
+                            ruleId: "suggestion-rule",
+                            rule: suggestionRule
+                        }
+                    ]
+                };
+                return kernel.lintText("text", options).then((result) => {
+                    assert.strictEqual(result.filePath, options.filePath);
+                    assert.strictEqual(result.messages.length, 1);
+                    const [message] = result.messages;
+                    assertMessage(message);
+                    assert.ok(Array.isArray(message.suggestions), "suggestions should be an array");
+                    assert.strictEqual(message.suggestions.length, 2);
+
+                    const s1 = message.suggestions[0];
+                    assert.strictEqual(s1.id, "suggestion-1");
+                    assert.strictEqual(s1.message, "use alternative");
+                    assert.ok(s1.fix);
+                    assert.strictEqual(s1.fix.text, "X");
+                    assert.deepStrictEqual(s1.fix.range, [0, 1]);
+
+                    const s2 = message.suggestions[1];
+                    assert.strictEqual(s2.id, "suggestion-2");
+                    assert.strictEqual(s2.message, "use another");
+                    assert.ok(s2.fix);
+                    assert.strictEqual(s2.fix.text, "Y");
+                    assert.deepStrictEqual(s2.fix.range, [0, 1]);
                 });
             });
         });

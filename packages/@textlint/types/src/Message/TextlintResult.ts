@@ -6,6 +6,12 @@ export interface TextlintMessageFixCommand {
     range: readonly [startIndex: number, endIndex: number];
 }
 
+export interface TextlintMessageSuggestion {
+    id: string;
+    message: string;
+    fix: TextlintMessageFixCommand;
+}
+
 export interface TextlintMessage {
     // See src/shared/type/MessageType.js
     // Message Type
@@ -60,6 +66,10 @@ export interface TextlintMessage {
     // Severity Level
     // See src/shared/type/SeverityLevel.js
     severity: TextlintRuleSeverityLevel;
+    /**
+     * List of suggestions to fix the issue.
+     */
+    suggestions?: TextlintMessageSuggestion[];
 }
 
 // Linting result
