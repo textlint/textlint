@@ -2,7 +2,7 @@ import { TxtNode } from "@textlint/ast-node-types";
 import type { TextlintRuleContext, TextlintRuleModule, TextlintRuleReporter } from "@textlint/types";
 
 export const report: TextlintRuleReporter = (context: Readonly<TextlintRuleContext>) => {
-    const { Syntax, report, RuleError } = context;
+    const { Syntax, report, RuleError, fixer } = context;
     return {
         [Syntax.Str](node: TxtNode) {
             report(
@@ -12,20 +12,12 @@ export const report: TextlintRuleReporter = (context: Readonly<TextlintRuleConte
                         {
                             id: "suggestion-1",
                             message: "use alternative",
-                            fix: {
-                                isAbsolute: false,
-                                range: [0, 1],
-                                text: "X"
-                            }
+                            fix: fixer.replaceTextRange([0, 1], "X")
                         },
                         {
                             id: "suggestion-2",
                             message: "use another",
-                            fix: {
-                                isAbsolute: false,
-                                range: [0, 1],
-                                text: "Y"
-                            }
+                            fix: fixer.replaceTextRange([0, 1], "Y")
                         }
                     ]
                 })
