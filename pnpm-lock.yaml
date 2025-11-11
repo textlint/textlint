@@ -785,8 +785,8 @@ importers:
   packages/textlint:
     dependencies:
       '@modelcontextprotocol/sdk':
-        specifier: ^1.20.2
-        version: 1.20.2
+        specifier: ^1.21.0
+        version: 1.21.1
       '@textlint/ast-node-types':
         specifier: workspace:*
         version: link:../@textlint/ast-node-types
@@ -2794,9 +2794,14 @@ packages:
       '@types/react': '>=16'
       react: '>=16'
 
-  '@modelcontextprotocol/sdk@1.20.2':
-    resolution: {integrity: sha512-6rqTdFt67AAAzln3NOKsXRmv5ZzPkgbfaebKBqUbts7vK1GZudqnrun5a8d3M/h955cam9RHZ6Jb4Y1XhnmFPg==}
+  '@modelcontextprotocol/sdk@1.21.1':
+    resolution: {integrity: sha512-UyLFcJLDvUuZbGnaQqXFT32CpPpGj7VS19roLut6gkQVhb439xUzYWbsUvdI3ZPL+2hnFosuugtYWE0Mcs1rmQ==}
     engines: {node: '>=18'}
+    peerDependencies:
+      '@cfworker/json-schema': ^4.1.1
+    peerDependenciesMeta:
+      '@cfworker/json-schema':
+        optional: true
 
   '@monorepo-utils/package-utils@2.11.0':
     resolution: {integrity: sha512-/JAFnXCnSGZmakLOL7oQNeKnRNF8oQMIOhA3zfywZcZaChpJEdcmDEZKm2zA9uNn4U0acCpdyvAXMwQOx8d+WA==}
@@ -3792,6 +3797,14 @@ packages:
 
   ajv-formats@2.1.1:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
+    peerDependencies:
+      ajv: ^8.0.0
+    peerDependenciesMeta:
+      ajv:
+        optional: true
+
+  ajv-formats@3.0.1:
+    resolution: {integrity: sha512-8iUql50EUR+uUcdRQ3HDqa6EVyo3docL8g5WJ3FNcWmu62IbkGUue/pEyLBW8VGKKucTPgqeks4fIU1DA4yowQ==}
     peerDependencies:
       ajv: ^8.0.0
     peerDependenciesMeta:
@@ -12762,9 +12775,10 @@ snapshots:
       '@types/react': 19.1.8
       react: 19.2.0
 
-  '@modelcontextprotocol/sdk@1.20.2':
+  '@modelcontextprotocol/sdk@1.21.1':
     dependencies:
-      ajv: 6.12.6
+      ajv: 8.17.1
+      ajv-formats: 3.0.1(ajv@8.17.1)
       content-type: 1.0.5
       cors: 2.8.5
       cross-spawn: 7.0.6
@@ -14040,6 +14054,10 @@ snapshots:
       indent-string: 4.0.0
 
   ajv-formats@2.1.1(ajv@8.17.1):
+    optionalDependencies:
+      ajv: 8.17.1
+
+  ajv-formats@3.0.1(ajv@8.17.1):
     optionalDependencies:
       ajv: 8.17.1
 
@@ -20930,7 +20948,7 @@ snapshots:
 
   textlint@15.3.0:
     dependencies:
-      '@modelcontextprotocol/sdk': 1.20.2
+      '@modelcontextprotocol/sdk': 1.21.1
       '@textlint/ast-node-types': link:packages/@textlint/ast-node-types
       '@textlint/ast-traverse': 15.3.0
       '@textlint/config-loader': 15.3.0
@@ -20955,6 +20973,7 @@ snapshots:
       structured-source: 4.0.0
       zod: 3.25.76
     transitivePeerDependencies:
+      - '@cfworker/json-schema'
       - supports-color
 
   textlintrc-to-package-list@3.0.3:
