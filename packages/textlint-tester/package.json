@@ -50,7 +50,7 @@
         "@types/node": "^24.10.0",
         "analyze-desumasu-dearu": "^4.0.1",
         "match-index": "^1.0.3",
-        "mocha": "^11.7.4",
+        "mocha": "^11.7.5",
         "rimraf": "^6.1.0",
         "textlint-plugin-html": "^0.3.0",
         "textlint-rule-helper": "^2.5.0",
