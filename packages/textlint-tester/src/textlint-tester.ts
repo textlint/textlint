@@ -138,6 +138,15 @@ export type TesterErrorDefinition = {
      */
     column?: number;
     message?: string;
+    /**
+     * array of suggestions for the error
+     */
+    suggestions?: {
+        id: string;
+        message?: string;
+        range?: readonly [startIndex: number, endIndex: number];
+        output?: string;
+    }[];
 };
 export type TesterInvalid = {
     text?: string;
@@ -310,7 +319,7 @@ export class TextLintTester {
                 });
             }
             throw new Error(`valid should have text or inputPath property.
-            
+
 valid: [ "text", { text: "text" }, { inputPath: "path/to/file" } ]
 
 `);
@@ -349,8 +358,8 @@ valid: [ "text", { text: "text" }, { inputPath: "path/to/file" } ]
                     description
                 });
             }
-            throw new Error(`invalid should have { text } or { inputPath } property. 
-            
+            throw new Error(`invalid should have { text } or { inputPath } property.
+
 invalid: [ { text: "text", errors: [...] }, { inputPath: "path/to/file", errors: [...] } ]
 
 `);
