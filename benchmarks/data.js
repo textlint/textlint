@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1763166016361,
+  "lastUpdate": 1763339648582,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -89879,6 +89879,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.61993106646,
             "range": "± 0.013462627999999977",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "52315048+3w36zj6@users.noreply.github.com",
+            "name": "3w36zj6",
+            "username": "3w36zj6"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "abe8aa6fc152dc80d0e6c49407940ee32ed828c0",
+          "message": "feat(textlint-tester): add suggestions API support (#1823)\n\ncf.\nhttps://github.com/textlint/textlint/issues/1122#issuecomment-3530867798",
+          "timestamp": "2025-11-17T09:32:18+09:00",
+          "tree_id": "cca792a8a25e15e0bdbd73a21c666c4be2f41dd5",
+          "url": "https://github.com/textlint/textlint/commit/abe8aa6fc152dc80d0e6c49407940ee32ed828c0"
+        },
+        "date": 1763339642569,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.32358795830000003,
+            "range": "± 0.6101336100000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7290267895,
+            "range": "± 0.037728859000000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6016209457,
+            "range": "± 0.02093346500000004",
             "unit": "seconds"
           }
         ]
