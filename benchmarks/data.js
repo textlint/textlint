@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1763339745067,
+  "lastUpdate": 1763339787302,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -89963,6 +89963,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5961865103400001,
             "range": "± 0.011273822999999905",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e409b359a296d6d645135660ed42a60c2eae489e",
+          "message": "v15.4.0 (#1825)\n\n<!-- Release notes generated using configuration in .github/release.yml\nat master -->\n\n## What's Changed\n### Features\n* feat(textlint-tester): add suggestions API support by @3w36zj6 in\nhttps://github.com/textlint/textlint/pull/1823\n### Dependency Updates\n* chore(deps): update dependency @eslint/js to ^9.39.1 by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1818\n* chore(deps): update dependency @types/node to ^24.10.0 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1819\n* chore(deps): update eslint to ^8.46.3 (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1820\n* fix(deps): update dependency @modelcontextprotocol/sdk to ^1.21.0 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1821\n* fix(deps): update dependency mocha to ^11.7.5 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1822\n* fix(deps): update dependency @modelcontextprotocol/sdk to ^1.21.1 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1824\n\n\n**Full Changelog**:\nhttps://github.com/textlint/textlint/compare/v15.3.0...v15.4.0\n\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2025-11-17T09:34:35+09:00",
+          "tree_id": "bc2714c92457f76267e5f0917b7a9a071ac9dcfe",
+          "url": "https://github.com/textlint/textlint/commit/e409b359a296d6d645135660ed42a60c2eae489e"
+        },
+        "date": 1763339781495,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25231580264000003,
+            "range": "± 0.25822598399999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.72774019764,
+            "range": "± 0.07047259800000005",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.60372465964,
+            "range": "± 0.018652436999999966",
             "unit": "seconds"
           }
         ]
