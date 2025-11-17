@@ -163,6 +163,48 @@ The result's column number should be less than ${columnText.length + 1}`
                 const resultLoc = resultMessageObject.loc;
                 assert.deepStrictEqual(resultLoc, loc, `"loc should be ${JSON.stringify(loc, null, 4)}`);
             }
+            if (error.suggestions !== undefined) {
+                const resultSuggestions = resultMessageObject.suggestions;
+                assert.ok(Array.isArray(resultSuggestions), `suggestions should be an array`);
+                assert.strictEqual(
+                    resultSuggestions.length,
+                    error.suggestions.length,
+                    `suggestions length should be ${error.suggestions.length}`
+                );
+                error.suggestions.forEach((expectedSuggestion, suggestionIndex) => {
+                    const resultSuggestion = resultSuggestions[suggestionIndex];
+                    assert.strictEqual(
+                        resultSuggestion.id,
+                        expectedSuggestion.id,
+                        `suggestions[${suggestionIndex}].id should be "${expectedSuggestion.id}"`
+                    );
+                    if (expectedSuggestion.message !== undefined) {
+                        assert.strictEqual(
+                            resultSuggestion.message,
+                            expectedSuggestion.message,
+                            `suggestions[${suggestionIndex}].message should be "${expectedSuggestion.message}"`
+                        );
+                    }
+                    if (expectedSuggestion.range !== undefined) {
+                        assert.deepStrictEqual(
+                            resultSuggestion.fix.range,
+                            expectedSuggestion.range,
+                            `suggestions[${suggestionIndex}].fix.range should be ${JSON.stringify(
+                                expectedSuggestion.range,
+                                null,
+                                4
+                            )}`
+                        );
+                    }
+                    if (expectedSuggestion.output !== undefined) {
+                        assert.strictEqual(
+                            resultSuggestion.fix.text,
+                            expectedSuggestion.output,
+                            `suggestions[${suggestionIndex}].fix.text should be "${expectedSuggestion.output}"`
+                        );
+                    }
+                });
+            }
         });
     });
 }
