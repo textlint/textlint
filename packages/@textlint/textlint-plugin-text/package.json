@@ -39,7 +39,7 @@
   "devDependencies": {
     "@textlint/kernel": "workspace:*",
     "@types/node": "^24.10.1",
-    "@types/react": "^18.3.26",
+    "@types/react": "^18.3.27",
     "rimraf": "^6.1.0",
     "textlint-rule-no-todo": "^2.0.1",
     "typescript": "~5.8.3",
