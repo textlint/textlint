@@ -51,7 +51,7 @@
     "@textlint/markdown-to-ast": "workspace:*",
     "@types/node": "^24.10.1",
     "prettier": "^2.7.1",
-    "rimraf": "^6.1.0",
+    "rimraf": "^6.1.2",
     "typescript": "~5.8.3",
     "unist-util-select": "^3.0.4",
     "vitest": "^3.2.4"
