@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1764205138750,
+  "lastUpdate": 1764225599101,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -91433,6 +91433,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6579508353000001,
             "range": "± 0.03069807400000002",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "78b41be0e2c1b6219af7ab8d7235d67703bbd481",
+          "message": "fix(deps): update minor updates (minor) (#1836)\n\nThis PR contains the following updates:\n\n| Package | Change | Age | Confidence |\n|---|---|---|---|\n| [@modelcontextprotocol/sdk](https://modelcontextprotocol.io)\n([source](https://redirect.github.com/modelcontextprotocol/typescript-sdk))\n| [`^1.21.1` ->\n`^1.22.0`](https://renovatebot.com/diffs/npm/@modelcontextprotocol%2fsdk/1.21.1/1.22.0)\n|\n[![age](https://developer.mend.io/api/mc/badges/age/npm/@modelcontextprotocol%2fsdk/1.22.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@modelcontextprotocol%2fsdk/1.21.1/1.22.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n| [glob](https://redirect.github.com/isaacs/node-glob) | [`^10.4.5` ->\n`^10.5.0`](https://renovatebot.com/diffs/npm/glob/10.4.5/10.5.0) |\n[![age](https://developer.mend.io/api/mc/badges/age/npm/glob/10.5.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/glob/10.4.5/10.5.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>modelcontextprotocol/typescript-sdk\n(@&#8203;modelcontextprotocol/sdk)</summary>\n\n###\n[`v1.22.0`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/releases/tag/1.22.0)\n\n[Compare\nSource](https://redirect.github.com/modelcontextprotocol/typescript-sdk/compare/1.21.2...1.22.0)\n\n#### What's Changed\n\n- `registerTool`: accept ZodType<object> for input and output schema by\n[@&#8203;ksinder](https://redirect.github.com/ksinder) in\n[#&#8203;816](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/816)\n- SEP-1319: Decouple Request Payloads, Remove passthrough iteration,\nTypecheck fixes by\n[@&#8203;KKonstantinov](https://redirect.github.com/KKonstantinov) in\n[#&#8203;1086](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1086)\n- add pkg-pr-new bot by\n[@&#8203;pcarleton](https://redirect.github.com/pcarleton) in\n[#&#8203;1088](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1088)\n- Upgrade to Node LTS by\n[@&#8203;mattzcarey](https://redirect.github.com/mattzcarey) in\n[#&#8203;1072](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1072)\n- change step name by\n[@&#8203;pcarleton](https://redirect.github.com/pcarleton) in\n[#&#8203;1089](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1089)\n- SEP-1034: Default values for Elicitation Schemas by\n[@&#8203;KKonstantinov](https://redirect.github.com/KKonstantinov) in\n[#&#8203;1096](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1096)\n- SEP-1330: Compatibility with SEP-1034 by\n[@&#8203;KKonstantinov](https://redirect.github.com/KKonstantinov) in\n[#&#8203;1100](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1100)\n- Implementation of SEP-986: Specify Format for Tool Names by\n[@&#8203;kentcdodds](https://redirect.github.com/kentcdodds) in\n[#&#8203;900](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/900)\n- \\[auth] Fix march spec fallback for metadata discovery by\n[@&#8203;pcarleton](https://redirect.github.com/pcarleton) in\n[#&#8203;1108](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1108)\n- chore: bump version for release by\n[@&#8203;felixweinberger](https://redirect.github.com/felixweinberger)\nin\n[#&#8203;1110](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1110)\n\n#### New Contributors\n\n- [@&#8203;ksinder](https://redirect.github.com/ksinder) made their\nfirst contribution in\n[#&#8203;816](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/816)\n\n**Full Changelog**:\n<https://github.com/modelcontextprotocol/typescript-sdk/compare/1.21.1...1.22.0>\n\n###\n[`v1.21.2`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/releases/tag/1.21.2)\n\n[Compare\nSource](https://redirect.github.com/modelcontextprotocol/typescript-sdk/compare/1.21.1...1.21.2)\n\n#### What's changed\n\nThis is a patch release for a regression highlighted by\n[#&#8203;1103](https://redirect.github.com/modelcontextprotocol/typescript-sdk/issues/1103)\n\nThis patch contains only the cherry picked fix in\n[#&#8203;1108](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1108)\n\n**Full Changelog**:\n<https://github.com/modelcontextprotocol/typescript-sdk/compare/1.21.1...1.21.2>\n\n</details>\n\n<details>\n<summary>isaacs/node-glob (glob)</summary>\n\n###\n[`v10.5.0`](https://redirect.github.com/isaacs/node-glob/compare/v10.4.5...v10.5.0)\n\n[Compare\nSource](https://redirect.github.com/isaacs/node-glob/compare/v10.4.5...v10.5.0)\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n👻 **Immortal**: This PR will be recreated if closed unmerged. Get\n[config\nhelp](https://redirect.github.com/renovatebot/renovate/discussions) if\nthat's undesired.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0Mi4xOS45IiwidXBkYXRlZEluVmVyIjoiNDIuMTkuOSIsInRhcmdldEJyYW5jaCI6Im1hc3RlciIsImxhYmVscyI6WyJkZXBlbmRlbmNpZXMiXX0=-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-11-27T06:38:06Z",
+          "tree_id": "50b676f91fb93de35a7a2ccecd5ee886f6b18eb6",
+          "url": "https://github.com/textlint/textlint/commit/78b41be0e2c1b6219af7ab8d7235d67703bbd481"
+        },
+        "date": 1764225592860,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24061670064000001,
+            "range": "± 0.19161697300000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8274068846400002,
+            "range": "± 0.053262962000000025",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6726540026400001,
+            "range": "± 0.015310343999999976",
             "unit": "seconds"
           }
         ]
