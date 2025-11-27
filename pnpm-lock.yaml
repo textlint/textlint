@@ -39,8 +39,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1(@types/node@24.10.1)
       lint-staged:
-        specifier: ^16.2.6
-        version: 16.2.6
+        specifier: ^16.2.7
+        version: 16.2.7
       npm-run-all2:
         specifier: ^8.0.4
         version: 8.0.4
@@ -208,8 +208,8 @@ importers:
         specifier: ^24.10.1
         version: 24.10.1
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -233,8 +233,8 @@ importers:
         specifier: ^24.10.1
         version: 24.10.1
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -255,8 +255,8 @@ importers:
         specifier: ^24.10.1
         version: 24.10.1
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -298,8 +298,8 @@ importers:
         specifier: ^2.3.0
         version: 2.8.8
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -313,8 +313,8 @@ importers:
         specifier: ^24.10.1
         version: 24.10.1
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -362,8 +362,8 @@ importers:
         specifier: ^24.10.1
         version: 24.10.1
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -414,8 +414,8 @@ importers:
         specifier: ^24.10.1
         version: 24.10.1
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       shelljs:
         specifier: ^0.10.0
         version: 0.10.0
@@ -481,8 +481,8 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3(supports-color@8.1.1)
       js-yaml:
-        specifier: ^3.14.1
-        version: 3.14.1
+        specifier: ^3.14.2
+        version: 3.14.2
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -518,8 +518,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -576,8 +576,8 @@ importers:
         specifier: ^1.0.4
         version: 1.0.4
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -594,8 +594,8 @@ importers:
         specifier: ^2.7.1
         version: 2.8.8
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -640,8 +640,8 @@ importers:
         specifier: ^2.7.1
         version: 2.8.8
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -665,8 +665,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -693,8 +693,8 @@ importers:
         specifier: ^18.3.27
         version: 18.3.27
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       textlint-rule-no-todo:
         specifier: ^2.0.1
         version: 2.0.1
@@ -724,8 +724,8 @@ importers:
         specifier: ^18.3.27
         version: 18.3.27
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       textlint-rule-no-todo:
         specifier: ^2.0.1
         version: 2.0.1
@@ -752,8 +752,8 @@ importers:
         specifier: ^2.7.1
         version: 2.8.8
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -773,8 +773,8 @@ importers:
         specifier: ^2.7.1
         version: 2.8.8
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -879,8 +879,8 @@ importers:
         specifier: ^2.1.2
         version: 2.1.2
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       shelljs:
         specifier: ^0.10.0
         version: 0.10.0
@@ -949,8 +949,8 @@ importers:
         version: 5.6.3
     devDependencies:
       lint-staged:
-        specifier: ^16.2.6
-        version: 16.2.6
+        specifier: ^16.2.7
+        version: 16.2.7
       prettier:
         specifier: ^2.2.1
         version: 2.8.8
@@ -1033,8 +1033,8 @@ importers:
         specifier: ^11.7.5
         version: 11.7.5
       rimraf:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.2
+        version: 6.1.2
       textlint-plugin-html:
         specifier: ^0.3.0
         version: 0.3.0
@@ -4439,8 +4439,8 @@ packages:
     resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
     engines: {node: '>=14'}
 
-  commander@14.0.1:
-    resolution: {integrity: sha512-2JkV3gUZUVrbNA+1sjBOYLsMZ5cEEl8GTFP2a4AVz5hvasAMCQ1D2l2le/cX+pV4N6ZU17zjUahLpIXRrnWL8A==}
+  commander@14.0.2:
+    resolution: {integrity: sha512-TywoWNNRbhoD0BXs1P3ZEScW8W5iKrnbithIl0YH+uCmBd0QpPOA8yc82DS3BIE5Ma6FnBVUsJ7wVUDz4dvOWQ==}
     engines: {node: '>=20'}
 
   commander@2.20.3:
@@ -5698,6 +5698,10 @@ packages:
     engines: {node: 20 || >=22}
     hasBin: true
 
+  glob@13.0.0:
+    resolution: {integrity: sha512-tvZgpqk6fz4BaNZ66ZsRaZnbHvP/jG3uKJvAZOwEVUL4RTA5nJeeLYfyN9/VA8NX/V3IBG+hkeuGpKjvELkVhA==}
+    engines: {node: 20 || >=22}
+
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
     deprecated: Glob versions prior to v9 are no longer supported
@@ -6451,8 +6455,8 @@ packages:
   js-tokens@9.0.1:
     resolution: {integrity: sha512-mxa9E9ITFOt0ban3j6L5MpjwegGz6lBQmM1IJkWeBZGcMxto50+eWdjC/52xDbS2vy0k7vIMK0Fe2wfL9OQSpQ==}
 
-  js-yaml@3.14.1:
-    resolution: {integrity: sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==}
+  js-yaml@3.14.2:
+    resolution: {integrity: sha512-PMSmkqxr106Xa156c2M265Z+FTrPl+oxd/rgOQy2tijQeK5TxQ43psO1ZCwhVOSdnn+RzkzlRz/eY4BgJBYVpg==}
     hasBin: true
 
   js-yaml@4.1.0:
@@ -6590,8 +6594,8 @@ packages:
     resolution: {integrity: sha512-cNOjgCnLB+FnvWWtyRTzmB3POJ+cXxTA81LoW7u8JdmhfXzriropYwpjShnz1QLLWsQwY7nIxoDmcPTwphDK9w==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  lint-staged@16.2.6:
-    resolution: {integrity: sha512-s1gphtDbV4bmW1eylXpVMk2u7is7YsrLl8hzrtvC70h4ByhcMLZFY01Fx05ZUDNuv1H8HO4E+e2zgejV1jVwNw==}
+  lint-staged@16.2.7:
+    resolution: {integrity: sha512-lDIj4RnYmK7/kXMya+qJsmkRFkGolciXjrsZ6PC25GdTfWOAWetR0ZbsNXRAj1EHHImRSalc+whZFg56F5DVow==}
     engines: {node: '>=20.17'}
     hasBin: true
 
@@ -8652,8 +8656,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  rimraf@6.1.0:
-    resolution: {integrity: sha512-DxdlA1bdNzkZK7JiNWH+BAx1x4tEJWoTofIopFo6qWUU94jYrFZ0ubY05TqH3nWPJ1nKa1JWVFDINZ3fnrle/A==}
+  rimraf@6.1.2:
+    resolution: {integrity: sha512-cFCkPslJv7BAXJsYlK1dZsbP8/ZNLkCAQ0bi1hf5EKX2QHegmDFEFA6QhuYJlk7UDdc+02JjO80YSOrWPpw06g==}
     engines: {node: 20 || >=22}
     hasBin: true
 
@@ -13454,7 +13458,7 @@ snapshots:
       '@textlint/types': 15.4.0
       chalk: 4.1.2
       debug: 4.4.3(supports-color@8.1.1)
-      js-yaml: 3.14.1
+      js-yaml: 3.14.2
       lodash: 4.17.21
       pluralize: 2.0.0
       string-width: 4.2.3
@@ -14001,7 +14005,7 @@ snapshots:
 
   '@yarnpkg/parsers@3.0.2':
     dependencies:
-      js-yaml: 3.14.1
+      js-yaml: 3.14.2
       tslib: 2.8.1
 
   '@zkochan/js-yaml@0.0.7':
@@ -14775,7 +14779,7 @@ snapshots:
 
   commander@10.0.1: {}
 
-  commander@14.0.1: {}
+  commander@14.0.2: {}
 
   commander@2.20.3: {}
 
@@ -16041,7 +16045,7 @@ snapshots:
 
   front-matter@4.0.2:
     dependencies:
-      js-yaml: 3.14.1
+      js-yaml: 3.14.2
 
   fs-constants@1.0.0: {}
 
@@ -16198,6 +16202,12 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 2.0.0
 
+  glob@13.0.0:
+    dependencies:
+      minimatch: 10.1.1
+      minipass: 7.1.2
+      path-scurry: 2.0.0
+
   glob@7.2.3:
     dependencies:
       fs.realpath: 1.0.0
@@ -16268,7 +16278,7 @@ snapshots:
 
   gray-matter@4.0.3:
     dependencies:
-      js-yaml: 3.14.1
+      js-yaml: 3.14.2
       kind-of: 6.0.3
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
@@ -17030,7 +17040,7 @@ snapshots:
 
   js-tokens@9.0.1: {}
 
-  js-yaml@3.14.1:
+  js-yaml@3.14.2:
     dependencies:
       argparse: 1.0.10
       esprima: 4.0.1
@@ -17246,9 +17256,9 @@ snapshots:
 
   lines-and-columns@2.0.3: {}
 
-  lint-staged@16.2.6:
+  lint-staged@16.2.7:
     dependencies:
-      commander: 14.0.1
+      commander: 14.0.2
       listr2: 9.0.5
       micromatch: 4.0.8
       nano-spawn: 2.0.0
@@ -19400,7 +19410,7 @@ snapshots:
     dependencies:
       commandpost: 1.4.0
       diff: 4.0.2
-      js-yaml: 3.14.1
+      js-yaml: 3.14.2
 
   prism-react-renderer@2.4.1(react@19.2.0):
     dependencies:
@@ -19933,9 +19943,9 @@ snapshots:
     dependencies:
       glob: 9.3.5
 
-  rimraf@6.1.0:
+  rimraf@6.1.2:
     dependencies:
-      glob: 11.0.3
+      glob: 13.0.0
       package-json-from-dist: 1.0.1
 
   rollup@4.43.0:
