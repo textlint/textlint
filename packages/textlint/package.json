@@ -48,7 +48,7 @@
     "watch": "tsc -b --watch"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.21.1",
+    "@modelcontextprotocol/sdk": "^1.22.0",
     "@textlint/ast-node-types": "workspace:*",
     "@textlint/ast-traverse": "workspace:*",
     "@textlint/config-loader": "workspace:*",
@@ -64,7 +64,7 @@
     "@textlint/utils": "workspace:*",
     "debug": "^4.4.3",
     "file-entry-cache": "^10.1.4",
-    "glob": "^10.4.5",
+    "glob": "^10.5.0",
     "md5": "^2.3.0",
     "optionator": "^0.9.4",
     "path-to-glob-pattern": "^2.0.1",
