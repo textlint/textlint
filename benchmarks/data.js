@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1764264578664,
+  "lastUpdate": 1764277702670,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -91601,6 +91601,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.58443894194,
             "range": "± 0.019919986",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1272dd11e16dcbb804a4d48a8dfb5b467096b8b8",
+          "message": "chore(deps): update pnpm to v10.23.0 (#1837)\n\nThis PR contains the following updates:\n\n| Package | Change | Age | Confidence |\n|---|---|---|---|\n| [pnpm](https://pnpm.io)\n([source](https://redirect.github.com/pnpm/pnpm/tree/HEAD/pnpm)) |\n[`10.22.0+sha512.bf049efe995b28f527fd2b41ae0474ce29186f7edcb3bf545087bd61fbbebb2bf75362d1307fda09c2d288e1e499787ac12d4fcb617a974718a6051f2eee741c`\n-> `10.23.0`](https://renovatebot.com/diffs/npm/pnpm/10.22.0/10.23.0) |\n[![age](https://developer.mend.io/api/mc/badges/age/npm/pnpm/10.23.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n[![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/pnpm/10.22.0/10.23.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>pnpm/pnpm (pnpm)</summary>\n\n###\n[`v10.23.0`](https://redirect.github.com/pnpm/pnpm/releases/tag/v10.23.0):\npnpm 10.23\n\n[Compare\nSource](https://redirect.github.com/pnpm/pnpm/compare/v10.22.0...v10.23.0)\n\n#### Minor Changes\n\n- Added `--lockfile-only` option to `pnpm list`\n[#&#8203;10020](https://redirect.github.com/pnpm/pnpm/issues/10020).\n\n#### Patch Changes\n\n- `pnpm self-update` should download pnpm from the configured npm\nregistry\n[#&#8203;10205](https://redirect.github.com/pnpm/pnpm/pull/10205).\n- `pnpm self-update` should always install the non-executable pnpm\npackage (pnpm in the registry) and never the `@pnpm/exe` package, when\ninstalling v11 or newer. We currently cannot ship `@pnpm/exe` as `pkg`\ndoesn't work with ESM\n[#&#8203;10190](https://redirect.github.com/pnpm/pnpm/pull/10190).\n- Node.js runtime is not added to \"dependencies\" on `pnpm add`, if\nthere's a `engines.runtime` setting declared in `package.json`\n[#&#8203;10209](https://redirect.github.com/pnpm/pnpm/issues/10209).\n- The installation should fail if an optional dependency cannot be\ninstalled due to a trust policy check failure\n[#&#8203;10208](https://redirect.github.com/pnpm/pnpm/issues/10208).\n- `pnpm list` and `pnpm why` now display npm: protocol for aliased\npackages (e.g., `foo npm:is-odd@3.0.1`)\n[#&#8203;8660](https://redirect.github.com/pnpm/pnpm/issues/8660).\n- Don't add an extra slash to the Node.js mirror URL\n[#&#8203;10204](https://redirect.github.com/pnpm/pnpm/pull/10204).\n- `pnpm store prune` should not fail if the store contains Node.js\npackages\n[#&#8203;10131](https://redirect.github.com/pnpm/pnpm/issues/10131).\n\n#### Platinum Sponsors\n\n<table>\n  <tbody>\n    <tr>\n      <td align=\"center\" valign=\"middle\">\n<a href=\"https://bit.dev/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\"><img src=\"https://pnpm.io/img/users/bit.svg\" width=\"80\"\nalt=\"Bit\"></a>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n#### Gold Sponsors\n\n<table>\n  <tbody>\n    <tr>\n      <td align=\"center\" valign=\"middle\">\n<a href=\"https://discord.com/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\">\n          <picture>\n<source media=\"(prefers-color-scheme: light)\"\nsrcset=\"https://pnpm.io/img/users/discord.svg\" />\n<source media=\"(prefers-color-scheme: dark)\"\nsrcset=\"https://pnpm.io/img/users/discord_light.svg\" />\n<img src=\"https://pnpm.io/img/users/discord.svg\" width=\"220\"\nalt=\"Discord\" />\n          </picture>\n        </a>\n      </td>\n      <td align=\"center\" valign=\"middle\">\n<a\nhref=\"https://coderabbit.ai/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\">\n          <picture>\n<source media=\"(prefers-color-scheme: light)\"\nsrcset=\"https://pnpm.io/img/users/coderabbit.svg\" />\n<source media=\"(prefers-color-scheme: dark)\"\nsrcset=\"https://pnpm.io/img/users/coderabbit_light.svg\" />\n<img src=\"https://pnpm.io/img/users/coderabbit.svg\" width=\"220\"\nalt=\"CodeRabbit\" />\n          </picture>\n        </a>\n      </td>\n      <td align=\"center\" valign=\"middle\">\n<a href=\"https://workleap.com/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\">\n          <picture>\n<source media=\"(prefers-color-scheme: light)\"\nsrcset=\"https://pnpm.io/img/users/workleap.svg\" />\n<source media=\"(prefers-color-scheme: dark)\"\nsrcset=\"https://pnpm.io/img/users/workleap_light.svg\" />\n<img src=\"https://pnpm.io/img/users/workleap.svg\" width=\"190\"\nalt=\"Workleap\" />\n          </picture>\n        </a>\n      </td>\n    </tr>\n    <tr>\n      <td align=\"center\" valign=\"middle\">\n<a\nhref=\"https://stackblitz.com/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\">\n          <picture>\n<source media=\"(prefers-color-scheme: light)\"\nsrcset=\"https://pnpm.io/img/users/stackblitz.svg\" />\n<source media=\"(prefers-color-scheme: dark)\"\nsrcset=\"https://pnpm.io/img/users/stackblitz_light.svg\" />\n<img src=\"https://pnpm.io/img/users/stackblitz.svg\" width=\"190\"\nalt=\"Stackblitz\" />\n          </picture>\n        </a>\n      </td>\n      <td align=\"center\" valign=\"middle\">\n<a href=\"https://vite.dev/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\">\n<img src=\"https://pnpm.io/img/users/vitejs.svg\" width=\"42\" alt=\"Vite\">\n        </a>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about this update\nagain.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0Mi4xOS45IiwidXBkYXRlZEluVmVyIjoiNDIuMTkuOSIsInRhcmdldEJyYW5jaCI6Im1hc3RlciIsImxhYmVscyI6WyJkZXBlbmRlbmNpZXMiXX0=-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-11-27T21:06:20Z",
+          "tree_id": "fff1e45df49ceef94c2f160e2d25b837847f5c25",
+          "url": "https://github.com/textlint/textlint/commit/1272dd11e16dcbb804a4d48a8dfb5b467096b8b8"
+        },
+        "date": 1764277695862,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.27469959286,
+            "range": "± 0.33491455000000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8130969330600002,
+            "range": "± 0.05812694699999987",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.66539324546,
+            "range": "± 0.021723594000000013",
             "unit": "seconds"
           }
         ]
