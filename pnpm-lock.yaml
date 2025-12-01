@@ -18,10 +18,10 @@ importers:
         specifier: ^2.11.0
         version: 2.11.0
       '@typescript-eslint/eslint-plugin':
-        specifier: ^8.47.0
+        specifier: ^8.48.0
         version: 8.48.0(@typescript-eslint/parser@8.48.0(eslint@9.29.0(jiti@1.21.7))(typescript@5.8.3))(eslint@9.29.0(jiti@1.21.7))(typescript@5.8.3)
       '@typescript-eslint/parser':
-        specifier: ^8.47.0
+        specifier: ^8.48.0
         version: 8.48.0(eslint@9.29.0(jiti@1.21.7))(typescript@5.8.3)
       ajv:
         specifier: ^8.17.1
