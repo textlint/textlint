@@ -37,7 +37,7 @@ function getMessageType(message: { fatal?: boolean; severity: number }): string 
 function outputDiagnostics(diagnostic: unknown): string {
     const prefix = "  ";
     let output = `${prefix}---\n`;
-    output += prefix + yaml.safeDump(diagnostic).split("\n").join(`\n${prefix}`);
+    output += prefix + yaml.dump(diagnostic).split("\n").join(`\n${prefix}`);
     output += "...\n";
     return output;
 }
