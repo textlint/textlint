@@ -1,6 +1,6 @@
 {
   "name": "@textlint/textlint-plugin-markdown",
-  "version": "15.4.0",
+  "version": "15.4.1",
   "description": "Markdown support for textlint.",
   "keywords": [
     "markdown",
