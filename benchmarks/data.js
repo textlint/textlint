@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1764720901315,
+  "lastUpdate": 1764721235726,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -92189,6 +92189,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.7004969303400002,
             "range": "± 0.02934249599999994",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "198982749+Copilot@users.noreply.github.com",
+            "name": "Copilot",
+            "username": "Copilot"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "726a278b691eb6f663315d45c327117773be0fff",
+          "message": "Fix js-yaml version conflict preventing dependabot updates (#1845)\n\nDependabot cannot resolve js-yaml security updates due to conflicting\nversion constraints: `@textlint/linter-formatter` requires `^3.14.2`\nwhile `rc-config-loader` (transitive dependency) requires `^4.1.0`.\n\n## Changes\n\n- **Dependency update**: Bumped `js-yaml` from `^3.14.2` to `^4.1.0` in\n`@textlint/linter-formatter`\n- **Type definitions**: Updated `@types/js-yaml` from `^3.12.10` to\n`^4.0.0`\n- **API migration**: Changed `yaml.safeDump()` to `yaml.dump()` in tap\nformatter (v4 API)\n\n```diff\n- output += prefix + yaml.safeDump(diagnostic).split(\"\\n\").join(`\\n${prefix}`);\n+ output += prefix + yaml.dump(diagnostic).split(\"\\n\").join(`\\n${prefix}`);\n```\n\nBoth packages now use `js-yaml@4.1.0`, unblocking dependabot's ability\nto apply security patches.\n\n> [!WARNING]\n>\n> <details>\n> <summary>Firewall rules blocked me from connecting to one or more\naddresses (expand for details)</summary>\n>\n> #### I tried to connect to the following addresses, but was blocked by\nfirewall rules:\n>\n> - `https://api.github.com//advisories`\n> - Triggering command:\n`/home/REDACTED/work/_temp/ghcca-node/node/bin/node\n/home/REDACTED/work/_temp/ghcca-node/node/bin/node --enable-source-maps\n/home/REDACTED/work/_temp/copilot-developer-action-main/dist/index.js`\n(http block)\n>\n> If you need me to access, download, or install something from one of\nthese locations, you can either:\n>\n> - Configure [Actions setup\nsteps](https://gh.io/copilot/actions-setup-steps) to set up my\nenvironment, which run before the firewall is enabled\n> - Add the appropriate URLs or hosts to the custom allowlist in this\nrepository's [Copilot coding agent\nsettings](https://github.com/textlint/textlint/settings/copilot/coding_agent)\n(admins only)\n>\n> </details>\n\n<!-- START COPILOT CODING AGENT SUFFIX -->\n\n\n\n<details>\n\n<summary>Original prompt</summary>\n\n> \n> ----\n> \n> *This section details on the original issue you should resolve*\n> \n> <issue_title>Inconsistent js-yaml dependency, not resolvable by\ndependabot</issue_title>\n> <issue_description>textlint appears to have two different,\ninconsistent dependencies on `js-yaml`, which is causing dependabot to\nraise a security alert in my repo, but then be unable to resolve it.\nScreenshot:\n> <img width=\"727\" height=\"207\" alt=\"Image\"\nsrc=\"https://github.com/user-attachments/assets/9cd9a743-4295-4b70-b1f5-9762aea32094\"\n/>\n> \n> The inconsistency comes from these two places in textlint code:\n> \n> 1. Direct dependency on \"^3.14.2\" here:\nhttps://github.com/textlint/textlint/blob/master/packages/%40textlint/linter-formatter/package.json#L43\n> 2. Transitive dependency on `rc-config-loader@4.1.3` here:\nhttps://github.com/textlint/textlint/blob/master/packages/textlint/package.json#L71...\nwhich is in turn is dependent on `js-yaml` \"^4.1.0\" here:\nhttps://github.com/azu/rc-config-loader/blob/master/package.json#L61\n> \n> The syntax \"^3.14.2\" means it can use any version of js-yaml >=\n3.14.2, but less than v4.x.x... which is inconptable with the\n`rc-config-loader@4.1.3` requirement that `js-yaml` be version 4.1.0 or\nhigher.</issue_description>\n> \n> <agent_instructions>update js-yaml in\nlinter-formatter</agent_instructions>\n> \n> ## Comments on the Issue (you are @copilot in this section)\n> \n> <comments>\n> </comments>\n> \n\n\n</details>\n\n- Fixes textlint/textlint#1844\n\n<!-- START COPILOT CODING AGENT TIPS -->\n---\n\n✨ Let Copilot coding agent [set things up for\nyou](https://github.com/textlint/textlint/issues/new?title=✨+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)\n— coding agent works faster and does higher quality work when set up for\nyour repo.\n\n---------\n\nCo-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.com>\nCo-authored-by: azu <19714+azu@users.noreply.github.com>",
+          "timestamp": "2025-12-03T00:18:42Z",
+          "tree_id": "84e9995b358261651cce2997c67d9460470202c0",
+          "url": "https://github.com/textlint/textlint/commit/726a278b691eb6f663315d45c327117773be0fff"
+        },
+        "date": 1764721229320,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25340640234000006,
+            "range": "± 0.232931052",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8197881251399999,
+            "range": "± 0.06505614699999995",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.67828205394,
+            "range": "± 0.021575345999999995",
             "unit": "seconds"
           }
         ]
