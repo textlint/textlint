@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1764720717199,
+  "lastUpdate": 1764720901315,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -92147,6 +92147,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.64734737122,
             "range": "± 0.009595160000000047",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "198982749+Copilot@users.noreply.github.com",
+            "name": "copilot-swe-agent[bot]",
+            "username": "Copilot"
+          },
+          "committer": {
+            "email": "198982749+Copilot@users.noreply.github.com",
+            "name": "copilot-swe-agent[bot]",
+            "username": "Copilot"
+          },
+          "distinct": true,
+          "id": "c0c0e3b94f899cb12dbccd08df05b961fadd1119",
+          "message": "Update js-yaml dependency from ^3.14.2 to ^4.1.0\n\nCo-authored-by: azu <19714+azu@users.noreply.github.com>",
+          "timestamp": "2025-12-03T00:09:14Z",
+          "tree_id": "84e9995b358261651cce2997c67d9460470202c0",
+          "url": "https://github.com/textlint/textlint/commit/c0c0e3b94f899cb12dbccd08df05b961fadd1119"
+        },
+        "date": 1764720894625,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21476494694,
+            "range": "± 0.03913401300000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8447665137399998,
+            "range": "± 0.023863044000000055",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7004969303400002,
+            "range": "± 0.02934249599999994",
             "unit": "seconds"
           }
         ]
