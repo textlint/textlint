@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1764725776035,
+  "lastUpdate": 1764725831281,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -92315,6 +92315,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6638532565200002,
             "range": "± 0.02515172500000007",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "499cd5784b60ecd1b394d247bba3d1f1678a35ab",
+          "message": "v15.4.1 (#1846)\n\n<!-- Release notes generated using configuration in .github/release.yml\nat master -->\n\n## What's Changed\n### CI\n* chore(deps): update patch updates by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1830\n* chore(deps): update github/codeql-action action to v3.31.4 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1834\n* chore(deps): update rossjrw/pr-preview-action action to v1.6.3 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1838\n* chore(deps): update peter-evans/create-pull-request action to v7.0.9\nby @renovate[bot] in https://github.com/textlint/textlint/pull/1840\n* chore(deps): update github/codeql-action action to v3.31.5 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1841\n### Dependency Updates\n* chore(deps): update pnpm to v10.21.0 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1826\n* chore(deps): update eslint to ^8.46.4 (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1827\n* chore(deps): update dependency @types/node to ^24.10.1 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1828\n* chore(deps): update pnpm to v10.22.0 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1829\n* chore(deps): update dependency lerna to ^9.0.1 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1831\n* chore(deps): update eslint to ^8.47.0 (minor) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1832\n* chore(deps): update dependency @types/react to ^18.3.27 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1833\n* fix(deps): update minor updates (minor) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1836\n* fix(deps): update patch updates (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1835\n* chore(deps): update pnpm to v10.23.0 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1837\n* chore(deps): update dependency @types/lodash to ^4.17.21 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1839\n* chore(deps): update eslint to ^8.48.0 (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1842\n* Fix js-yaml version conflict preventing dependabot updates by @Copilot\nin https://github.com/textlint/textlint/pull/1845\n### Other Changes\n* chore(deps): update node.js to v22.21.1 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1802\n\n## New Contributors\n* @Copilot made their first contribution in\nhttps://github.com/textlint/textlint/pull/1845\n\n**Full Changelog**:\nhttps://github.com/textlint/textlint/compare/v15.4.0...v15.4.1\n\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2025-12-03T10:35:17+09:00",
+          "tree_id": "1cb42d15d37b50999ac6a887ff125b23584c28d9",
+          "url": "https://github.com/textlint/textlint/commit/499cd5784b60ecd1b394d247bba3d1f1678a35ab"
+        },
+        "date": 1764725824078,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23256210174000005,
+            "range": "± 0.176527221",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.77716773014,
+            "range": "± 0.05439127899999985",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6574120245399999,
+            "range": "± 0.014083041000000018",
             "unit": "seconds"
           }
         ]
