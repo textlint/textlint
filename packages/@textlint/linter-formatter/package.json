@@ -40,7 +40,7 @@
     "@textlint/types": "workspace:*",
     "chalk": "^4.1.2",
     "debug": "^4.4.3",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^4.1.1",
     "lodash": "^4.17.21",
     "pluralize": "^2.0.0",
     "string-width": "^4.2.3",
@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",
-    "@types/js-yaml": "^4.0.0",
+    "@types/js-yaml": "^4.0.9",
     "@types/lodash": "^4.17.21",
     "@types/node": "^24.10.1",
     "chai": "^4.5.0",
