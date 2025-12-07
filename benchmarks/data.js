@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1765077697261,
+  "lastUpdate": 1765077831310,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -93197,6 +93197,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.67372880294,
             "range": "± 0.016531834999999995",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f3581439799807885624514f462fb9da3df336c1",
+          "message": "v15.5.0 (#1856)\n\n<!-- Release notes generated using configuration in .github/release.yml\nat master -->\n\n## What's Changed\n### Features\n* feat: GitHub lint formatter #1843 by @thompson-tomo in\nhttps://github.com/textlint/textlint/pull/1855\n### Dependency Updates\n* chore(deps): update dependency lerna to ^9.0.3 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1847\n* fix(deps): update patch updates (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1848\n* chore(deps): update pnpm to v10.24.0 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1849\n* chore(deps): update eslint to ^8.48.1 (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1850\n* fix(deps): update dependency @modelcontextprotocol/sdk to ^1.24.1 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1851\n* fix(deps): update dependency @modelcontextprotocol/sdk to ^1.24.2 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1853\n* fix(deps): update react monorepo to ^19.2.1 (patch) by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1854\n\n## New Contributors\n* @thompson-tomo made their first contribution in\nhttps://github.com/textlint/textlint/pull/1855\n\n**Full Changelog**:\nhttps://github.com/textlint/textlint/compare/v15.4.1...v15.5.0\n\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2025-12-07T12:21:56+09:00",
+          "tree_id": "685b57d5ba81b305c57af1311284ac445febf2cc",
+          "url": "https://github.com/textlint/textlint/commit/f3581439799807885624514f462fb9da3df336c1"
+        },
+        "date": 1765077824225,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23907483956000003,
+            "range": "± 0.18574530200000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.80703674256,
+            "range": "± 0.03841503600000018",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6645282919600001,
+            "range": "± 0.006905681999999969",
             "unit": "seconds"
           }
         ]
