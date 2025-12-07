@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1765093143483,
+  "lastUpdate": 1765094107770,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -93281,6 +93281,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6645208568600001,
             "range": "± 0.008997012000000026",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "eaec0d8c59d625475e03cc72f86fb3c4d811e73e",
+          "message": "fix: address security and consistency issues in GitHub Actions examples\n\n- Fix command injection vulnerability by quoting file names in loop\n- Convert partial YAML snippet to complete workflow example\n- Apply security fix to both changed-files examples\n\nBased on review comments from @Copilot in PR #1857\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
+          "timestamp": "2025-12-07T16:53:08+09:00",
+          "tree_id": "69f58a05f9effe757f77d429697bf64a0f8e1b10",
+          "url": "https://github.com/textlint/textlint/commit/eaec0d8c59d625475e03cc72f86fb3c4d811e73e"
+        },
+        "date": 1765094100825,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24556085134,
+            "range": "± 0.17150420900000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.83672635754,
+            "range": "± 0.04073662899999997",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6880919817400001,
+            "range": "± 0.017415112999999982",
             "unit": "seconds"
           }
         ]
