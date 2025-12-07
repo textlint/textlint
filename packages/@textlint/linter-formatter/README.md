@@ -12,7 +12,7 @@ npm install @textlint/linter-formatter
 
 See [formatters/](src/formatters).
 
-Currently, you can use "stylish" (defaults), "checkstyle", "compact", "jslint-xml", "json", "junit", "pretty-error", "table", "tap", and "unix".
+Currently, you can use "stylish" (defaults), "checkstyle", "compact", "github", "jslint-xml", "json", "junit", "pretty-error", "table", "tap", and "unix".
 
 ```js
 const { loadFormatter } = require("@textlint/linter-formatter");

@@ -128,7 +128,7 @@ Output:
   -o, --output-file path::String  Enable report to be written to a file.
   -f, --format String         Use a specific output format.
 
-                              Available formatter          : checkstyle, compact, jslint-xml, json, junit, pretty-error, stylish, table, tap, unix
+                              Available formatter          : checkstyle, compact, github, jslint-xml, json, junit, pretty-error, stylish, table, tap, unix
 
                               Available formatter for --fix: compats, diff, fixed-result, json, stylish - default: stylish
   --no-color                  Disable color in piped output.
@@ -335,6 +335,7 @@ Use the following formatters:
 - stylish (defaults)
 - compact
 - checkstyle
+- github
 - jslint-xml
 - junit
 - tap

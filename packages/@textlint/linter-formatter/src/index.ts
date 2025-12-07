@@ -11,6 +11,7 @@ import debug0 from "debug";
 // formatter
 import checkstyleFormatter from "./formatters/checkstyle.js";
 import compactFormatter from "./formatters/compact.js";
+import githubFormatter from "./formatters/github.js";
 import jslintXMLFormatter from "./formatters/jslint-xml.js";
 import jsonFormatter from "./formatters/json.js";
 import junitFormatter from "./formatters/junit.js";
@@ -23,6 +24,7 @@ import unixFormatter from "./formatters/unix.js";
 const builtinFormatterList = {
     checkstyle: checkstyleFormatter,
     compact: compactFormatter,
+    "github": githubFormatter,
     "jslint-xml": jslintXMLFormatter,
     json: jsonFormatter,
     junit: junitFormatter,

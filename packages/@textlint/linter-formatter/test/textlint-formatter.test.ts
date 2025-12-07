@@ -57,6 +57,7 @@ describe("@textlint/linter-formatter-test", function () {
             assert.deepEqual(getFormatterList(), [
                 { name: "checkstyle" },
                 { name: "compact" },
+                { name: "github" },
                 { name: "jslint-xml" },
                 { name: "json" },
                 { name: "junit" },
