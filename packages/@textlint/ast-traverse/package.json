@@ -1,6 +1,6 @@
 {
   "name": "@textlint/ast-traverse",
-  "version": "15.4.1",
+  "version": "15.5.0",
   "description": "TxtNode traverse library",
   "keywords": [
     "AST",
