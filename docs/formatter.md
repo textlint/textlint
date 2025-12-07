@@ -216,7 +216,6 @@ When used in GitHub Actions, lint errors will be displayed as:
 - Annotations in the job summary
 - Detailed error messages in job logs
 
-Note: Multi-line content is not supported in GitHub Actions annotations, so fix suggestions may not be displayed.
 
 ## Custom Formatter
 
