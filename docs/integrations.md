@@ -103,7 +103,10 @@ jobs:
           files: '**/*.{md,txt}'
       - name: Run textlint on changed files
         if: steps.changed-files.outputs.any_changed == 'true'
-        run: npm exec -- textlint ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            npm exec -- textlint "$file"
+          done
 ```
 
 #### GitHub Annotations
@@ -131,6 +134,22 @@ jobs:
 Or for changed files only:
 
 ```yaml
+name: textlint
+on:
+  pull_request:
+
+jobs:
+  textlint:
+    name: textlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+      - run: npm ci
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v45
@@ -138,7 +157,10 @@ Or for changed files only:
           files: '**/*.{md,txt}'
       - name: Run textlint with GitHub formatter
         if: steps.changed-files.outputs.any_changed == 'true'
-        run: npm exec -- textlint --format github ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            npm exec -- textlint --format github "$file"
+          done
 ```
 
 The `github` formatter displays lint messages as:
