@@ -196,6 +196,28 @@ textlint use `@textlint/linter-formatter` module as built-in formatter.
 
 - [@textlint/linter-formatter](https://github.com/textlint/textlint/blob/master/packages/%40textlint/linter-formatter/README.md "@textlint/linter-formatter")
 
+### GitHub Formatter
+
+The `github` formatter outputs lint results in GitHub Actions annotation format. This allows lint messages to appear directly in pull request file views, job logs, and the annotations panel.
+
+```sh
+textlint --format github README.md
+```
+
+This formatter is particularly useful in CI/CD environments like GitHub Actions:
+
+```yaml
+- name: Run textlint
+  run: npm exec -- textlint --format github "docs/**/*.md"
+```
+
+When used in GitHub Actions, lint errors will be displayed as:
+- Inline annotations in the Files tab of pull requests
+- Annotations in the job summary
+- Detailed error messages in job logs
+
+Note: Multi-line content is not supported in GitHub Actions annotations, so fix suggestions may not be displayed.
+
 ## Custom Formatter
 
 ```sh
