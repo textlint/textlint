@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1765140057828,
+  "lastUpdate": 1765147637040,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -93449,6 +93449,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.67635367116,
             "range": "± 0.01032746200000001",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b727c12a0a9d08c2f4fd48519b630cf9229d6f2f",
+          "message": "Update docs/formatter.md\n\nCo-authored-by: James Thompson <thompson.tomo@outlook.com>",
+          "timestamp": "2025-12-08T07:45:31+09:00",
+          "tree_id": "dd65d88559cdae29a4ebc87db00e5e05764c6bb0",
+          "url": "https://github.com/textlint/textlint/commit/b727c12a0a9d08c2f4fd48519b630cf9229d6f2f"
+        },
+        "date": 1765147630313,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2361404649,
+            "range": "± 0.204037082",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7769791373000001,
+            "range": "± 0.017243810999999942",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6597371463,
+            "range": "± 0.015575963999999942",
             "unit": "seconds"
           }
         ]
