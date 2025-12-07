@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1765058183242,
+  "lastUpdate": 1765077697261,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -93155,6 +93155,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.66671854062,
             "range": "± 0.0061514310000000405",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "thompson.tomo@outlook.com",
+            "name": "James Thompson",
+            "username": "thompson-tomo"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2da5d07071840e75762f3a854dc6d3193e0bbe61",
+          "message": "feat: GitHub lint formatter #1843  (#1855)\n\nCloses #1843 \n\nThis adds in a lint formatter which formats the content to be shown as\nannotations within github.\n\nThis is particularly useful in pr's as it will indicate within the files\nview, which files should be updated and it includes the line message.\nMulti-line content is not supported as per\nhttps://github.com/actions/toolkit/issues/193 otherwise we would add the\nfix command and suggestions to this message.\n\nAn example of what this would produce using the test data is:\n_Files tab_\n<img width=\"1536\" height=\"696\" alt=\"image\"\nsrc=\"https://github.com/user-attachments/assets/eb70fe34-40b6-41d6-850f-9ea1a871583c\"\n/>\n\n_Job Log_\n<img width=\"1506\" height=\"302\" alt=\"image\"\nsrc=\"https://github.com/user-attachments/assets/fa0c9149-ead2-4196-a5d3-0f3b99f3adbc\"\n/>\n\n_Annotations Panel_\n<img width=\"1534\" height=\"289\" alt=\"image\"\nsrc=\"https://github.com/user-attachments/assets/26a72e3e-cf05-43c7-bc83-973c76c37123\"\n/>\n\nNote: my github action was called annotations hence why it appears in\nthe title",
+          "timestamp": "2025-12-07T12:19:48+09:00",
+          "tree_id": "6bbb0f4769eeabe651777c60200dc5ab962c56e0",
+          "url": "https://github.com/textlint/textlint/commit/2da5d07071840e75762f3a854dc6d3193e0bbe61"
+        },
+        "date": 1765077690874,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24295782774000002,
+            "range": "± 0.19188114000000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8072625397400004,
+            "range": "± 0.015292604000000098",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.67372880294,
+            "range": "± 0.016531834999999995",
             "unit": "seconds"
           }
         ]
