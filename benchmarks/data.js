@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1765077831310,
+  "lastUpdate": 1765093143483,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -93239,6 +93239,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6645282919600001,
             "range": "± 0.006905681999999969",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "458d0075e0be0da26fdd92522a737236c64ebddc",
+          "message": "docs: add GitHub formatter documentation\n\n- Add GitHub formatter section to formatter.md\n- Add GitHub Actions integration examples using GitHub formatter\n- Use npm exec instead of npx for better CI performance\n- Provide examples for both full and changed file checking\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
+          "timestamp": "2025-12-07T16:36:48+09:00",
+          "tree_id": "c1c0d3404d39e38aabbf57bf8d9baafcba66b985",
+          "url": "https://github.com/textlint/textlint/commit/458d0075e0be0da26fdd92522a737236c64ebddc"
+        },
+        "date": 1765093137079,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25353333666,
+            "range": "± 0.25668288000000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.78405591906,
+            "range": "± 0.042002070999999974",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6645208568600001,
+            "range": "± 0.008997012000000026",
             "unit": "seconds"
           }
         ]
