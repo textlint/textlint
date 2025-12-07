@@ -103,8 +103,10 @@ jobs:
           files: '**/*.{md,txt}'
       - name: Run textlint on changed files
         if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          for file in ${ALL_CHANGED_FILES}; do
             npm exec -- textlint "$file"
           done
 ```
@@ -157,8 +159,10 @@ jobs:
           files: '**/*.{md,txt}'
       - name: Run textlint with GitHub formatter
         if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          for file in ${ALL_CHANGED_FILES}; do
             npm exec -- textlint --format github "$file"
           done
 ```
