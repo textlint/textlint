@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1765094107770,
+  "lastUpdate": 1765112905832,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -93323,6 +93323,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6880919817400001,
             "range": "± 0.017415112999999982",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "1d0ee6bfee9f2cd0304e2737015d5380b63380c1",
+          "message": "refactor: use environment variables for changed files list\n\nFollow tj-actions/changed-files recommended pattern by using\nenvironment variables instead of direct variable expansion.\nThis is safer and more readable.\n\nReferences:\n- https://github.com/tj-actions/changed-files\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
+          "timestamp": "2025-12-07T22:06:19+09:00",
+          "tree_id": "52eb079f957bc756e1972116383fa8f6745042a4",
+          "url": "https://github.com/textlint/textlint/commit/1d0ee6bfee9f2cd0304e2737015d5380b63380c1"
+        },
+        "date": 1765112898510,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24751520895999998,
+            "range": "± 0.174590219",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8794919139600001,
+            "range": "± 0.031639376",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.69161981696,
+            "range": "± 0.013314150999999996",
             "unit": "seconds"
           }
         ]
