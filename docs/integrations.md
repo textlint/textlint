@@ -103,8 +103,76 @@ jobs:
           files: '**/*.{md,txt}'
       - name: Run textlint on changed files
         if: steps.changed-files.outputs.any_changed == 'true'
-        run: npx textlint ${{ steps.changed-files.outputs.all_changed_files }}
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          for file in ${ALL_CHANGED_FILES}; do
+            npm exec -- textlint "$file"
+          done
 ```
+
+#### GitHub Annotations
+
+You can use the `github` formatter to display lint results as GitHub Actions annotations. This makes errors visible directly in the pull request file view:
+
+```yaml
+name: textlint
+on:
+  pull_request:
+
+jobs:
+  textlint:
+    name: textlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+      - run: npm ci
+      - run: npm run textlint -- --format github
+```
+
+Or for changed files only:
+
+```yaml
+name: textlint
+on:
+  pull_request:
+
+jobs:
+  textlint:
+    name: textlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+      - run: npm ci
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v45
+        with:
+          files: '**/*.{md,txt}'
+      - name: Run textlint with GitHub formatter
+        if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          for file in ${ALL_CHANGED_FILES}; do
+            npm exec -- textlint --format github "$file"
+          done
+```
+
+The `github` formatter displays lint messages as:
+- Inline annotations in pull request file views
+- Annotations in the job summary
+- Detailed error messages in job logs
+
+See [Formatter documentation](./formatter.md#github-formatter) for more details.
 
 #### Third-party Actions
 
