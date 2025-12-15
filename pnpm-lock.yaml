@@ -873,8 +873,8 @@ importers:
         specifier: ^24.10.3
         version: 24.10.3
       '@types/shelljs':
-        specifier: ^0.8.17
-        version: 0.8.17
+        specifier: ^0.10.0
+        version: 0.10.0
       clone:
         specifier: ^2.1.2
         version: 2.1.2
@@ -3562,8 +3562,8 @@ packages:
   '@types/serve-static@1.15.8':
     resolution: {integrity: sha512-roei0UY3LhpOJvjbIP6ZZFngyLKl5dskOtDhxY5THRSpO+ZI+nzJ+m5yUMzGrp89YRa7lvknKkMYjqQFGwA7Sg==}
 
-  '@types/shelljs@0.8.17':
-    resolution: {integrity: sha512-IDksKYmQA2W9MkQjiyptbMmcQx+8+Ol6b7h6dPU5S05JyiQDSb/nZKnrMrZqGwgV6VkVdl6/SPCKPDlMRvqECg==}
+  '@types/shelljs@0.10.0':
+    resolution: {integrity: sha512-OEfyhE5Ox+FeoHbhrEDwm0kXxntO6nsyMRCFvNsIBHPZu5rV1w2OjPcLclaC/IZ1TlzZPgbeMfwAZEi5N238yQ==}
 
   '@types/sockjs@0.3.36':
     resolution: {integrity: sha512-MK9V6NzAS1+Ud7JV9lJLFqW85VbC9dq3LmwZCuBe4wBDgKC0Kj/jd8Xl+nSviU+Qc3+m7umHHyHg//2KSa0a0Q==}
@@ -13763,10 +13763,10 @@ snapshots:
       '@types/node': 24.10.3
       '@types/send': 0.17.5
 
-  '@types/shelljs@0.8.17':
+  '@types/shelljs@0.10.0':
     dependencies:
       '@types/node': 24.10.3
-      glob: 11.0.3
+      fast-glob: 3.3.3
 
   '@types/sockjs@0.3.36':
     dependencies:

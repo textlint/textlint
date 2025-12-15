@@ -79,7 +79,7 @@
     "@types/debug": "^4.1.12",
     "@types/glob": "^8.1.0",
     "@types/node": "^24.10.3",
-    "@types/shelljs": "^0.8.17",
+    "@types/shelljs": "^0.10.0",
     "clone": "^2.1.2",
     "rimraf": "^6.1.2",
     "shelljs": "^0.10.0",
