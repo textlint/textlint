@@ -42,7 +42,7 @@
     "trailingComma": "none"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
+    "@eslint/js": "^9.39.2",
     "@monorepo-utils/workspaces-to-typescript-project-references": "^2.11.0",
     "@typescript-eslint/eslint-plugin": "^8.49.0",
     "@typescript-eslint/parser": "^8.49.0",
