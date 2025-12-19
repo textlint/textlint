@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1766113845454,
+  "lastUpdate": 1766113862625,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -94835,6 +94835,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6647970804400001,
             "range": "± 0.014115521999999991",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7e61b911d9596b47e98877294c55a6291e56905b",
+          "message": "fix(deps): update dependency @modelcontextprotocol/sdk to ^1.25.0 (#1875)\n\nThis PR contains the following updates:\n\n| Package | Change |\n[Age](https://docs.renovatebot.com/merge-confidence/) |\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n| [@modelcontextprotocol/sdk](https://modelcontextprotocol.io)\n([source](https://redirect.github.com/modelcontextprotocol/typescript-sdk))\n| [`^1.24.3` ->\n`^1.25.0`](https://renovatebot.com/diffs/npm/@modelcontextprotocol%2fsdk/1.24.3/1.25.0)\n|\n![age](https://developer.mend.io/api/mc/badges/age/npm/@modelcontextprotocol%2fsdk/1.25.0?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@modelcontextprotocol%2fsdk/1.24.3/1.25.0?slim=true)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>modelcontextprotocol/typescript-sdk\n(@&#8203;modelcontextprotocol/sdk)</summary>\n\n###\n[`v1.25.0`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/releases/tag/1.25.0)\n\n[Compare\nSource](https://redirect.github.com/modelcontextprotocol/typescript-sdk/compare/1.24.3...1.25.0)\n\n#### What's Changed\n\n- list changed handlers on client constructor by\n[@&#8203;mattzcarey](https://redirect.github.com/mattzcarey) in\n[#&#8203;1206](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1206)\n- Role - moved from inline to reusable type by\n[@&#8203;KKonstantinov](https://redirect.github.com/KKonstantinov) in\n[#&#8203;1221](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1221)\n- fix: use versioned npm tag for non-main branch releases by\n[@&#8203;pcarleton](https://redirect.github.com/pcarleton) in\n[#&#8203;1236](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1236)\n- No automatic completion support unless needed - Revisited yet again by\n[@&#8203;cliffhall](https://redirect.github.com/cliffhall) in\n[#&#8203;1237](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1237)\n- fix: Support updating output schema by\n[@&#8203;vincent0426](https://redirect.github.com/vincent0426) in\n[#&#8203;1048](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1048)\n- Remove type dependency on\n[@&#8203;cfworker/json-schema](https://redirect.github.com/cfworker/json-schema)\nby [@&#8203;LucaButBoring](https://redirect.github.com/LucaButBoring) in\n[#&#8203;1229](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1229)\n- Relocate tests under `/test` by\n[@&#8203;KKonstantinov](https://redirect.github.com/KKonstantinov) in\n[#&#8203;1220](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1220)\n- Fix tsconfig: remove tests by\n[@&#8203;KKonstantinov](https://redirect.github.com/KKonstantinov) in\n[#&#8203;1240](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1240)\n- tsconfig - tests and build fix by\n[@&#8203;KKonstantinov](https://redirect.github.com/KKonstantinov) in\n[#&#8203;1243](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1243)\n- fix a typo in examples README by\n[@&#8203;DaleSeo](https://redirect.github.com/DaleSeo) in\n[#&#8203;1246](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1246)\n- Protocol date validation by\n[@&#8203;mattzcarey](https://redirect.github.com/mattzcarey) in\n[#&#8203;1247](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1247)\n- Flaky test fix on Types.test.ts by\n[@&#8203;KKonstantinov](https://redirect.github.com/KKonstantinov) in\n[#&#8203;1244](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1244)\n- SPEC COMPLIANCE: Remove loose/passthrough types not allowed/defined by\nMCP spec + Task types by\n[@&#8203;KKonstantinov](https://redirect.github.com/KKonstantinov) in\n[#&#8203;1242](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1242)\n- Follow-up fixes for PR\n[#&#8203;1242](https://redirect.github.com/modelcontextprotocol/typescript-sdk/issues/1242)\nby\n[@&#8203;felixweinberger](https://redirect.github.com/felixweinberger)\nin\n[#&#8203;1274](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1274)\n- Update server examples and docs by\n[@&#8203;DaleSeo](https://redirect.github.com/DaleSeo) in\n[#&#8203;1285](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1285)\n- Update TypeScript config to ES2020 to fix AJV imports by\n[@&#8203;mattzcarey](https://redirect.github.com/mattzcarey) in\n[#&#8203;1297](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1297)\n- Fix Zod v4 schema description extraction by\n[@&#8203;felixweinberger](https://redirect.github.com/felixweinberger)\nin\n[#&#8203;1296](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1296)\n- Add optional description field to Implementation schema by\n[@&#8203;calclavia](https://redirect.github.com/calclavia) in\n[#&#8203;1295](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1295)\n- Add theme property to Icon schema by\n[@&#8203;DaleSeo](https://redirect.github.com/DaleSeo) in\n[#&#8203;1290](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1290)\n- feat: fetch transport by\n[@&#8203;mattzcarey](https://redirect.github.com/mattzcarey) in\n[#&#8203;1209](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1209)\n- chore: bump version for release by\n[@&#8203;felixweinberger](https://redirect.github.com/felixweinberger)\nin\n[#&#8203;1301](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1301)\n\n#### New Contributors\n\n- [@&#8203;vincent0426](https://redirect.github.com/vincent0426) made\ntheir first contribution in\n[#&#8203;1048](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/1048)\n\n**Full Changelog**:\n<https://github.com/modelcontextprotocol/typescript-sdk/compare/1.24.3...1.25.0>\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about this update\nagain.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0Mi41OS4wIiwidXBkYXRlZEluVmVyIjoiNDIuNTkuMCIsInRhcmdldEJyYW5jaCI6Im1hc3RlciIsImxhYmVscyI6WyJkZXBlbmRlbmNpZXMiXX0=-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2025-12-19T03:09:14Z",
+          "tree_id": "d7661f181b98301074004b2cda68bf346efe378e",
+          "url": "https://github.com/textlint/textlint/commit/7e61b911d9596b47e98877294c55a6291e56905b"
+        },
+        "date": 1766113855977,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24680299800000002,
+            "range": "± 0.229457364",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8027109639999999,
+            "range": "± 0.053201986000000145",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6670791468000001,
+            "range": "± 0.006199705",
             "unit": "seconds"
           }
         ]
