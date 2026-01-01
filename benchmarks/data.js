@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1767290686661,
+  "lastUpdate": 1767307195242,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -95507,6 +95507,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6691148556,
             "range": "± 0.01072499299999996",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "140855707c0da6ba86ea0b68855081a08e079f6b",
+          "message": "chore(deps): update eslint to ^8.51.0 (minor) (#1883)\n\nThis PR contains the following updates:\n\n| Package | Change |\n[Age](https://docs.renovatebot.com/merge-confidence/) |\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n|\n[@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin)\n([source](https://redirect.github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin))\n| [`^8.50.1` →\n`^8.51.0`](https://renovatebot.com/diffs/npm/@typescript-eslint%2feslint-plugin/8.50.1/8.51.0)\n|\n![age](https://developer.mend.io/api/mc/badges/age/npm/@typescript-eslint%2feslint-plugin/8.51.0?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@typescript-eslint%2feslint-plugin/8.50.1/8.51.0?slim=true)\n|\n|\n[@typescript-eslint/parser](https://typescript-eslint.io/packages/parser)\n([source](https://redirect.github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser))\n| [`^8.50.1` →\n`^8.51.0`](https://renovatebot.com/diffs/npm/@typescript-eslint%2fparser/8.50.1/8.51.0)\n|\n![age](https://developer.mend.io/api/mc/badges/age/npm/@typescript-eslint%2fparser/8.51.0?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@typescript-eslint%2fparser/8.50.1/8.51.0?slim=true)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>typescript-eslint/typescript-eslint\n(@&#8203;typescript-eslint/eslint-plugin)</summary>\n\n###\n[`v8.51.0`](https://redirect.github.com/typescript-eslint/typescript-eslint/blob/HEAD/packages/eslint-plugin/CHANGELOG.md#8510-2025-12-29)\n\n[Compare\nSource](https://redirect.github.com/typescript-eslint/typescript-eslint/compare/v8.50.1...v8.51.0)\n\n##### 🚀 Features\n\n- **eslint-plugin:** add namespace to plugin meta\n([#&#8203;11885](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11885))\n- **eslint-plugin:** \\[no-useless-default-assignment] fix some cases to\noptional syntax\n([#&#8203;11871](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11871))\n\n##### 🩹 Fixes\n\n- **eslint-plugin:** \\[prefer-optional-chain] handle MemberExpression in\nfinal chain position\n([#&#8203;11835](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11835))\n- **eslint-plugin:** bump ts-api-utils to 2.2.0\n([#&#8203;11881](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11881))\n- **eslint-plugin:** remove fixable from no-dynamic-delete rule\n([#&#8203;11876](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11876))\n- **eslint-plugin:** fix crash and false positives in\n`no-useless-default-assignment`\n([#&#8203;11845](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11845))\n\n##### ❤️ Thank You\n\n- Josh Goldberg ✨\n- Kirk Waiblinger\n[@&#8203;kirkwaiblinger](https://redirect.github.com/kirkwaiblinger)\n- mdm317\n- Ulrich Stark\n- Yannick Decat [@&#8203;mho22](https://redirect.github.com/mho22)\n\nYou can read about our [versioning\nstrategy](https://typescript-eslint.io/users/versioning) and\n[releases](https://typescript-eslint.io/users/releases) on our website.\n\n</details>\n\n<details>\n<summary>typescript-eslint/typescript-eslint\n(@&#8203;typescript-eslint/parser)</summary>\n\n###\n[`v8.51.0`](https://redirect.github.com/typescript-eslint/typescript-eslint/blob/HEAD/packages/parser/CHANGELOG.md#8510-2025-12-29)\n\n[Compare\nSource](https://redirect.github.com/typescript-eslint/typescript-eslint/compare/v8.50.1...v8.51.0)\n\nThis was a version bump only for parser to align it with other projects,\nthere were no code changes.\n\nYou can read about our [versioning\nstrategy](https://typescript-eslint.io/users/versioning) and\n[releases](https://typescript-eslint.io/users/releases) on our website.\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about these\nupdates again.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0Mi42OS4xIiwidXBkYXRlZEluVmVyIjoiNDIuNjkuMSIsInRhcmdldEJyYW5jaCI6Im1hc3RlciIsImxhYmVscyI6WyJkZXBlbmRlbmNpZXMiXX0=-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2026-01-01T22:38:00Z",
+          "tree_id": "59c081a14b00bd7e214a389e15242991ec5624d2",
+          "url": "https://github.com/textlint/textlint/commit/140855707c0da6ba86ea0b68855081a08e079f6b"
+        },
+        "date": 1767307187754,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24184373622000002,
+            "range": "± 0.19669403",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8090241764200001,
+            "range": "± 0.059029014000000046",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.67086314302,
+            "range": "± 0.009984668000000085",
             "unit": "seconds"
           }
         ]
