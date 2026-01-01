@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1766787026683,
+  "lastUpdate": 1767242207370,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -95381,6 +95381,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.66684390662,
             "range": "± 0.013511554000000037",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5869e5bf4e03ce4fcf4daa889391cdf101ed2f5a",
+          "message": "chore(deps): update rossjrw/pr-preview-action action to v1.7.0",
+          "timestamp": "2026-01-01T04:34:56Z",
+          "tree_id": "d381ee6139e8da0cfbe6054479926409d736805f",
+          "url": "https://github.com/textlint/textlint/commit/5869e5bf4e03ce4fcf4daa889391cdf101ed2f5a"
+        },
+        "date": 1767242198524,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22686505510000005,
+            "range": "± 0.21602982399999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7415334003000003,
+            "range": "± 0.01860188000000007",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5994526395,
+            "range": "± 0.01869563299999999",
             "unit": "seconds"
           }
         ]
