@@ -46,7 +46,7 @@ jobs:
           DOCUSAURUS_BASE_URL: "/textlint/pr-preview/pr-${{ github.event.number }}/"
 
       - name: Deploy PR preview
-        uses: rossjrw/pr-preview-action@55147b5848acb4ab980e55ff0bdc228addacdae0 # v1.7.0
+        uses: rossjrw/pr-preview-action@8e38e8c287c670eb2f8e29ba9399a27fb59c0355 # v1.7.1
         with:
           source-dir: ./website/build
           preview-branch: gh-pages
