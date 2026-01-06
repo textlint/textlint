@@ -1113,8 +1113,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/textlint
       textlint-filter-rule-comments:
-        specifier: ^1.2.2
-        version: 1.2.2(textlint@packages+textlint)
+        specifier: ^1.3.0
+        version: 1.3.0
       textlint-rule-eslint:
         specifier: ^4.0.2
         version: 4.0.2(eslint@9.29.0(jiti@1.21.7))
@@ -9240,6 +9240,9 @@ packages:
     resolution: {integrity: sha512-AtyxreCPb3Hq/bd6Qd6szY1OGgnW34LOjQXAHzE8NoXbTUudQqALPdRe+hvRsf81rnmGLxBiCUXZbnbpIseFyw==}
     peerDependencies:
       textlint: '>=6.8.0'
+
+  textlint-filter-rule-comments@1.3.0:
+    resolution: {integrity: sha512-kSk/XcZYKYe4sb44XhYAYPeMFtqKJIMtcju/jwyZxpkn8gRuRMZ4+rB0wJmGRrD0c8tx3hHDAH1JY9ccahMKcA==}
 
   textlint-plugin-html@0.2.0:
     resolution: {integrity: sha512-Gu4WZiY4mB/1A3ig3rNiB+evs/2G5TCKJA4RggY2ug4SR2CzBjcZUwKveXC96Dgmzq2MtAc9OHKwyqpuSxpv2w==}
@@ -20666,6 +20669,8 @@ snapshots:
   textlint-filter-rule-comments@1.2.2(textlint@packages+textlint):
     dependencies:
       textlint: link:packages/textlint
+
+  textlint-filter-rule-comments@1.3.0: {}
 
   textlint-plugin-html@0.2.0:
     dependencies:
