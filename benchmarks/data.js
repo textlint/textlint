@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1767736687581,
+  "lastUpdate": 1767751983964,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -95885,6 +95885,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6916097918200002,
             "range": "± 0.020817997000000088",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4cdcb0bdb740794b57e141232ecd14d07294d5f4",
+          "message": "chore(deps): update minor updates (#1887)\n\nThis PR contains the following updates:\n\n| Package | Type | Update | Change |\n[Age](https://docs.renovatebot.com/merge-confidence/) |\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|---|---|\n|\n[rossjrw/pr-preview-action](https://redirect.github.com/rossjrw/pr-preview-action)\n| action | minor | `v1.7.2` → `v1.8.0` |\n![age](https://developer.mend.io/api/mc/badges/age/github-tags/rossjrw%2fpr-preview-action/v1.8.0?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/github-tags/rossjrw%2fpr-preview-action/v1.7.2/v1.8.0?slim=true)\n|\n|\n[textlint-filter-rule-comments](https://redirect.github.com/textlint/textlint-filter-rule-comments)\n| devDependencies | minor | [`^1.2.2` →\n`^1.3.0`](https://renovatebot.com/diffs/npm/textlint-filter-rule-comments/1.2.2/1.3.0)\n|\n![age](https://developer.mend.io/api/mc/badges/age/npm/textlint-filter-rule-comments/1.3.0?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/textlint-filter-rule-comments/1.2.2/1.3.0?slim=true)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>rossjrw/pr-preview-action (rossjrw/pr-preview-action)</summary>\n\n###\n[`v1.8.0`](https://redirect.github.com/rossjrw/pr-preview-action/releases/tag/v1.8.0)\n\n[Compare\nSource](https://redirect.github.com/rossjrw/pr-preview-action/compare/v1.7.3...v1.8.0)\n\n#### Features\n\n- Add option to add QR code to comment by\n[@&#8203;lredoban](https://redirect.github.com/lredoban) in\n[#&#8203;98](https://redirect.github.com/rossjrw/pr-preview-action/pull/98)\n- New input parameter `qr-code`, default false, that toggles the\nbehaviour and can also be used to set the QR code provider\n- qr.rossjrw\\.com (<https://github.com/rossjrw/qrcode-worker>) created\nas the default QR code provider\n\n#### Bugfixes\n\n- Adjusted the timeouts for the wait-for-pages-deployment option -\nre-increased time for Pages build to start from 90s to 180s\n\n###\n[`v1.7.3`](https://redirect.github.com/rossjrw/pr-preview-action/releases/tag/v1.7.3)\n\n[Compare\nSource](https://redirect.github.com/rossjrw/pr-preview-action/compare/v1.7.2...v1.7.3)\n\n#### Bugfixes\n\n- Enable GitHub API requests to work with GHES by\n[@&#8203;Googlom](https://redirect.github.com/Googlom) in\n[#&#8203;126](https://redirect.github.com/rossjrw/pr-preview-action/pull/126)\n\n</details>\n\n<details>\n<summary>textlint/textlint-filter-rule-comments\n(textlint-filter-rule-comments)</summary>\n\n###\n[`v1.3.0`](https://redirect.github.com/textlint/textlint-filter-rule-comments/releases/tag/v1.3.0)\n\n[Compare\nSource](https://redirect.github.com/textlint/textlint-filter-rule-comments/compare/1.2.2...v1.3.0)\n\n<!-- Release notes generated using configuration in .github/release.yml\nat master -->\n\n#### What's Changed\n\n##### Features\n\n- feat: support comment description by\n[@&#8203;3w36zj6](https://redirect.github.com/3w36zj6) in\n[#&#8203;12](https://redirect.github.com/textlint/textlint-filter-rule-comments/pull/12)\n\n##### CI\n\n- Update braces by\n[@&#8203;massongit](https://redirect.github.com/massongit) in\n[#&#8203;11](https://redirect.github.com/textlint/textlint-filter-rule-comments/pull/11)\n- CI: add npm OIDC Trusted Publisher workflows by\n[@&#8203;azu](https://redirect.github.com/azu) in\n[#&#8203;14](https://redirect.github.com/textlint/textlint-filter-rule-comments/pull/14)\n- Add .github/release.yml by\n[@&#8203;azu](https://redirect.github.com/azu) in\n[#&#8203;15](https://redirect.github.com/textlint/textlint-filter-rule-comments/pull/15)\n\n##### Other Changes\n\n- CI test: Update Node.js versions by\n[@&#8203;massongit](https://redirect.github.com/massongit) in\n[#&#8203;10](https://redirect.github.com/textlint/textlint-filter-rule-comments/pull/10)\n\n#### New Contributors\n\n- [@&#8203;massongit](https://redirect.github.com/massongit) made their\nfirst contribution in\n[#&#8203;10](https://redirect.github.com/textlint/textlint-filter-rule-comments/pull/10)\n- [@&#8203;3w36zj6](https://redirect.github.com/3w36zj6) made their\nfirst contribution in\n[#&#8203;12](https://redirect.github.com/textlint/textlint-filter-rule-comments/pull/12)\n\n**Full Changelog**:\n<https://github.com/textlint/textlint-filter-rule-comments/compare/1.2.2...v1.3.0>\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n👻 **Immortal**: This PR will be recreated if closed unmerged. Get\n[config\nhelp](https://redirect.github.com/renovatebot/renovate/discussions) if\nthat's undesired.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0Mi42OS4xIiwidXBkYXRlZEluVmVyIjoiNDIuNjkuMSIsInRhcmdldEJyYW5jaCI6Im1hc3RlciIsImxhYmVscyI6WyJUeXBlOiBDSSIsImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2026-01-07T02:11:12Z",
+          "tree_id": "9c2a09117c5c90b2784a5a6051ebadeb4d106333",
+          "url": "https://github.com/textlint/textlint/commit/4cdcb0bdb740794b57e141232ecd14d07294d5f4"
+        },
+        "date": 1767751977028,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.26842237822000004,
+            "range": "± 0.314797457",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8475606114199998,
+            "range": "± 0.09262717599999992",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.67542226522,
+            "range": "± 0.01957539999999991",
             "unit": "seconds"
           }
         ]
