@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1768510303068,
+  "lastUpdate": 1768510470871,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -96557,6 +96557,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6656092097400002,
             "range": "± 0.02369662700000008",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "69743eb7f33afc786f314dd0ea54c45260a1578e",
+          "message": "chore(deps): update eslint to ^8.53.0 (minor) (#1894)\n\nThis PR contains the following updates:\n\n| Package | Change |\n[Age](https://docs.renovatebot.com/merge-confidence/) |\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n|\n[@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin)\n([source](https://redirect.github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin))\n| [`^8.52.0` →\n`^8.53.0`](https://renovatebot.com/diffs/npm/@typescript-eslint%2feslint-plugin/8.52.0/8.53.0)\n|\n![age](https://developer.mend.io/api/mc/badges/age/npm/@typescript-eslint%2feslint-plugin/8.53.0?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@typescript-eslint%2feslint-plugin/8.52.0/8.53.0?slim=true)\n|\n|\n[@typescript-eslint/parser](https://typescript-eslint.io/packages/parser)\n([source](https://redirect.github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser))\n| [`^8.52.0` →\n`^8.53.0`](https://renovatebot.com/diffs/npm/@typescript-eslint%2fparser/8.52.0/8.53.0)\n|\n![age](https://developer.mend.io/api/mc/badges/age/npm/@typescript-eslint%2fparser/8.53.0?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@typescript-eslint%2fparser/8.52.0/8.53.0?slim=true)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>typescript-eslint/typescript-eslint\n(@&#8203;typescript-eslint/eslint-plugin)</summary>\n\n###\n[`v8.53.0`](https://redirect.github.com/typescript-eslint/typescript-eslint/blob/HEAD/packages/eslint-plugin/CHANGELOG.md#8530-2026-01-12)\n\n[Compare\nSource](https://redirect.github.com/typescript-eslint/typescript-eslint/compare/v8.52.0...v8.53.0)\n\n##### 🚀 Features\n\n- **eslint-plugin:** add rule \\[strict-void-return]\n([#&#8203;9707](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/9707))\n- **eslint-plugin:** \\[no-unused-vars] add a fixer to remove unused\nimports\n([#&#8203;11922](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11922))\n\n##### 🩹 Fixes\n\n- **eslint-plugin:** \\[no-useless-default-assignment] fix false positive\nfor parameters corresponding to a rest parameter\n([#&#8203;11916](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11916))\n- **eslint-plugin:** replace unclear \"`error` typed\" with more helpful\ndescription\n([#&#8203;11704](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11704))\n- **typescript-estree:** forbid invalid `extends` and `implements` in\ninterface declaration\n([#&#8203;11935](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11935))\n- **typescript-estree:** forbid invalid class implements\n([#&#8203;11934](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11934))\n- **typescript-estree:** forbid type-only import with both default and\nnamed specifiers\n([#&#8203;11930](https://redirect.github.com/typescript-eslint/typescript-eslint/pull/11930))\n\n##### ❤️ Thank You\n\n- Brad Zacher\n[@&#8203;bradzacher](https://redirect.github.com/bradzacher)\n- fisker Cheung [@&#8203;fisker](https://redirect.github.com/fisker)\n- Josh Goldberg\n- Josh Goldberg ✨\n- Kirk Waiblinger\n- Niki [@&#8203;phaux](https://redirect.github.com/phaux)\n- Nikita\n- SungHyun627\n[@&#8203;SungHyun627](https://redirect.github.com/SungHyun627)\n- Will Harney [@&#8203;wjhsf](https://redirect.github.com/wjhsf)\n\nYou can read about our [versioning\nstrategy](https://typescript-eslint.io/users/versioning) and\n[releases](https://typescript-eslint.io/users/releases) on our website.\n\n</details>\n\n<details>\n<summary>typescript-eslint/typescript-eslint\n(@&#8203;typescript-eslint/parser)</summary>\n\n###\n[`v8.53.0`](https://redirect.github.com/typescript-eslint/typescript-eslint/blob/HEAD/packages/parser/CHANGELOG.md#8530-2026-01-12)\n\n[Compare\nSource](https://redirect.github.com/typescript-eslint/typescript-eslint/compare/v8.52.0...v8.53.0)\n\nThis was a version bump only for parser to align it with other projects,\nthere were no code changes.\n\nYou can read about our [versioning\nstrategy](https://typescript-eslint.io/users/versioning) and\n[releases](https://typescript-eslint.io/users/releases) on our website.\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - At any time (no schedule defined),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about these\nupdates again.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0Mi43NC41IiwidXBkYXRlZEluVmVyIjoiNDIuNzQuNSIsInRhcmdldEJyYW5jaCI6Im1hc3RlciIsImxhYmVscyI6WyJkZXBlbmRlbmNpZXMiXX0=-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2026-01-15T20:52:34Z",
+          "tree_id": "af4db200a9963250793b1d57bbc91af82e0bcaf2",
+          "url": "https://github.com/textlint/textlint/commit/69743eb7f33afc786f314dd0ea54c45260a1578e"
+        },
+        "date": 1768510464079,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24267307848000003,
+            "range": "± 0.21353126",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7840489650800002,
+            "range": "± 0.02620608400000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.66852941788,
+            "range": "± 0.007333147999999956",
             "unit": "seconds"
           }
         ]
