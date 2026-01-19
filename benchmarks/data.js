@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1768790020368,
+  "lastUpdate": 1768814995662,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -96809,6 +96809,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6845815193800001,
             "range": "± 0.010332922999999994",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "198982749+Copilot@users.noreply.github.com",
+            "name": "copilot-swe-agent[bot]",
+            "username": "Copilot"
+          },
+          "committer": {
+            "email": "198982749+Copilot@users.noreply.github.com",
+            "name": "copilot-swe-agent[bot]",
+            "username": "Copilot"
+          },
+          "distinct": true,
+          "id": "396a086ea6bc6d161d6d7e13e389aa20cdbac5ea",
+          "message": "Update diff dependency from ^5.2.0 to ^8.0.3 to fix security vulnerability\n\nCo-authored-by: azu <19714+azu@users.noreply.github.com>",
+          "timestamp": "2026-01-19T09:26:37Z",
+          "tree_id": "d45ae564e634f10819de78ea97cd3fbba2f13d67",
+          "url": "https://github.com/textlint/textlint/commit/396a086ea6bc6d161d6d7e13e389aa20cdbac5ea"
+        },
+        "date": 1768814988501,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.33640530672,
+            "range": "± 0.6927015430000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.78106323672,
+            "range": "± 0.04597758799999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.65696246192,
+            "range": "± 0.01268683100000001",
             "unit": "seconds"
           }
         ]
