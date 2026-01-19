@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1768815083660,
+  "lastUpdate": 1768815736362,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -96893,6 +96893,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6982611095,
             "range": "± 0.03022566900000001",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "198982749+Copilot@users.noreply.github.com",
+            "name": "Copilot",
+            "username": "Copilot"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f06d997481529c327950d5234cbdde8d80bf8897",
+          "message": "Update diff dependency to fix GHSA-73rr-hh4g-fpgx DoS vulnerability (#1900)\n\nThe `diff` package versions prior to 8.0.3 contain a DoS vulnerability\n(GHSA-73rr-hh4g-fpgx) where `parsePatch` and `applyPatch` can enter\ninfinite loops or exhibit O(n³) performance when parsing patches with\nmalformed filename headers containing line break characters.\n\n## Changes\n\n- Updated `diff` from `^5.2.0` to `^8.0.3` in\n`@textlint/fixer-formatter`\n- Removed `@types/diff` dependency (diff 8.x includes native TypeScript\ntypes)\n\nThe package uses only `diffLines` from the diff API, which remains\ncompatible across versions.\n\n<!-- START COPILOT ORIGINAL PROMPT -->\n\n\n\n<details>\n\n<summary>Original prompt</summary>\n\n> \n> ----\n> \n> *This section details on the original issue you should resolve*\n> \n> <issue_title>Vulnerable diff dependency in\n@textlint/fixer-formatter</issue_title>\n> <issue_description>Hi,\n> thanks for supporting textlint :)\n> \n> By running `npm audit` after installing the latest `textlint` version\n(`15.5.0`), it appears that it installs a vulnerable version of `diff`:\n> \n> ```\n> # npm audit report\n> \n> diff  <8.0.3\n> jsdiff has a Denial of Service vulnerability in parsePatch and\napplyPatch - https://github.com/advisories/GHSA-73rr-hh4g-fpgx\n> fix available via `npm audit fix --force`\n> Will install renovate@31.13.3, which is a breaking change\n> node_modules/diff\n>   @textlint/fixer-formatter  *\n>   Depends on vulnerable versions of diff\n>   node_modules/@textlint/fixer-formatter\n>     textlint  >=10.1.3\n>     Depends on vulnerable versions of @textlint/fixer-formatter\n>     node_modules/textlin\n> ```\n> \n> Updating using `npm audit fix` is not possible because of the\ndependency constraints:\n> \n>\nhttps://github.com/textlint/textlint/blob/baa7d3554dc9787cd7d13be52bce6be1b8a8515e/packages/%40textlint/fixer-formatter/package.json#L41-L51\n> \n> Would it be possible to release a new version that uses `diff >=\n8.0.3`, that according to\nhttps://github.com/advisories/GHSA-73rr-hh4g-fpgx, mitigates the\nvulnerability?\n> \n> thanks!</issue_description>\n> \n> <agent_instructions>Update diff and fix this issue and pass\ntest</agent_instructions>\n> \n> ## Comments on the Issue (you are @copilot in this section)\n> \n> <comments>\n> </comments>\n> \n\n\n</details>\n\n\n\n<!-- START COPILOT CODING AGENT SUFFIX -->\n\n- Fixes textlint/textlint#1899\n\n<!-- START COPILOT CODING AGENT TIPS -->\n---\n\n💬 We'd love your input! Share your thoughts on Copilot coding agent in\nour [2 minute survey](https://gh.io/copilot-coding-agent-survey).\n\n---------\n\nCo-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.com>\nCo-authored-by: azu <19714+azu@users.noreply.github.com>",
+          "timestamp": "2026-01-19T18:40:27+09:00",
+          "tree_id": "72692998bdbd2457f48af3a7e16bc904a5d26e6e",
+          "url": "https://github.com/textlint/textlint/commit/f06d997481529c327950d5234cbdde8d80bf8897"
+        },
+        "date": 1768815729259,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21293249084000002,
+            "range": "± 0.04461767700000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8503942438399998,
+            "range": "± 0.07046818100000007",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.68387544244,
+            "range": "± 0.022992758000000002",
             "unit": "seconds"
           }
         ]
