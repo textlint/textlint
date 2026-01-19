@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1768814995662,
+  "lastUpdate": 1768815083660,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -96851,6 +96851,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.65696246192,
             "range": "± 0.01268683100000001",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "198982749+Copilot@users.noreply.github.com",
+            "name": "copilot-swe-agent[bot]",
+            "username": "Copilot"
+          },
+          "committer": {
+            "email": "198982749+Copilot@users.noreply.github.com",
+            "name": "copilot-swe-agent[bot]",
+            "username": "Copilot"
+          },
+          "distinct": true,
+          "id": "4ddd7064211c09dbdec737741965992445af25ce",
+          "message": "Remove @types/diff as diff 8.x includes built-in TypeScript types\n\nCo-authored-by: azu <19714+azu@users.noreply.github.com>",
+          "timestamp": "2026-01-19T09:28:23Z",
+          "tree_id": "72692998bdbd2457f48af3a7e16bc904a5d26e6e",
+          "url": "https://github.com/textlint/textlint/commit/4ddd7064211c09dbdec737741965992445af25ce"
+        },
+        "date": 1768815076344,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2502434945,
+            "range": "± 0.22805607700000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8184437025000002,
+            "range": "± 0.012445737000000179",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6982611095,
+            "range": "± 0.03022566900000001",
             "unit": "seconds"
           }
         ]
