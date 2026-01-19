@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1768815736362,
+  "lastUpdate": 1768815962622,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -96935,6 +96935,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.68387544244,
             "range": "± 0.022992758000000002",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "75450e7f7fa2b0ea8ace1dd36a979cb6e4f43c29",
+          "message": "v15.5.1 (#1901)\n\n<!-- Release notes generated using configuration in .github/release.yml\nat master -->\n\n## What's Changed\n### Documentation\n* docs: add GitHub formatter documentation by @azu in\nhttps://github.com/textlint/textlint/pull/1857\n* Update CLI documentation for lint error handling by @thompson-tomo in\nhttps://github.com/textlint/textlint/pull/1861\n### CI\n* chore(deps): update github/codeql-action action to v3.31.6 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1860\n* chore(deps): update peter-evans/create-pull-request action to v7.0.11\nby @renovate[bot] in https://github.com/textlint/textlint/pull/1865\n* chore(deps): update github/codeql-action action to v3.31.7 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1870\n* chore(deps): update github/codeql-action action to v3.31.8 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1876\n* chore(deps): update github/codeql-action action to v3.31.9 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1879\n* chore(deps): update rossjrw/pr-preview-action action to v1.7.0 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1882\n* chore(deps): update rossjrw/pr-preview-action action to v1.7.1 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1885\n* chore(deps): update rossjrw/pr-preview-action action to v1.7.2 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1886\n* chore(deps): update minor updates by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1887\n### Dependency Updates\n* Update diff dependency to fix GHSA-73rr-hh4g-fpgx DoS vulnerability by\n@Copilot in https://github.com/textlint/textlint/pull/1900\n* fix(deps): update dependency @modelcontextprotocol/sdk to ^1.24.3 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1859\n* chore(deps): update eslint to ^8.49.0 (minor) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1862\n* chore(deps): update pnpm to v10.25.0 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1863\n* chore(deps): update dependency @types/node to ^24.10.2 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1864\n* chore(deps): update dependency @types/node to ^24.10.3 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1866\n* fix(deps): update react monorepo to ^19.2.3 (patch) by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1867\n* chore(deps): update dependency @types/shelljs to ^0.10.0 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1868\n* chore(deps): update dependency @eslint/js to ^9.39.2 by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1869\n* chore(deps): update dependency @types/node to ^24.10.4 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1871\n* chore(deps): update pnpm to v10.26.0 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1872\n* chore(deps): update eslint to ^8.50.0 (minor) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1874\n* fix(deps): update dependency @modelcontextprotocol/sdk to ^1.25.0 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1875\n* fix(deps): update dependency @modelcontextprotocol/sdk to ^1.25.1 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1877\n* chore(deps): update pnpm to v10.26.1 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1878\n* chore(deps): update eslint to ^8.50.1 (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1880\n* chore(deps): update pnpm to v10.26.2 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1881\n* chore(deps): update eslint to ^8.51.0 (minor) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1883\n* chore(deps): update pnpm to v10.27.0 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1884\n* chore(deps): update eslint to ^8.52.0 (minor) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1888\n* fix(deps): update dependency @modelcontextprotocol/sdk to ^1.25.2 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1889\n* chore(deps): update pnpm to v10.28.0 by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1890\n* chore(deps): update patch updates (patch) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1891\n* chore(deps): update dependency @types/node to ^24.10.7 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1892\n* fix(deps): update babel monorepo to ^7.28.6 (patch) by @renovate[bot]\nin https://github.com/textlint/textlint/pull/1893\n* chore(deps): update eslint to ^8.53.0 (minor) by @renovate[bot] in\nhttps://github.com/textlint/textlint/pull/1894\n* chore(deps): update dependency @types/node to ^24.10.8 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1895\n* chore(deps): update dependency @types/node to ^24.10.9 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/1897\n\n\n**Full Changelog**:\nhttps://github.com/textlint/textlint/compare/v15.5.0...v15.5.1\n\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-01-19T18:44:11+09:00",
+          "tree_id": "7331ade480c04fa41f476f649312651f8330ac02",
+          "url": "https://github.com/textlint/textlint/commit/75450e7f7fa2b0ea8ace1dd36a979cb6e4f43c29"
+        },
+        "date": 1768815955563,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21646661734,
+            "range": "± 0.045897960000000015",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8720161123400003,
+            "range": "± 0.05172449300000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7024771143399999,
+            "range": "± 0.023051567999999967",
             "unit": "seconds"
           }
         ]
