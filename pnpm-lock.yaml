@@ -340,8 +340,8 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3(supports-color@8.1.1)
       diff:
-        specifier: ^5.2.0
-        version: 5.2.0
+        specifier: ^8.0.3
+        version: 8.0.3
       string-width:
         specifier: ^4.2.3
         version: 4.2.3
@@ -356,8 +356,8 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/diff':
-        specifier: ^4.0.2
-        version: 4.0.2
+        specifier: ^8.0.0
+        version: 8.0.0
       '@types/node':
         specifier: ^24.10.9
         version: 24.10.9
@@ -3457,8 +3457,9 @@ packages:
   '@types/deep-eql@4.0.2':
     resolution: {integrity: sha512-c9h9dVVMigMPc4bwTvC5dxqtqJZwQPePsWjPlpSOnojbor6pGqdk541lfA7AqFQr5pB1BRdq0juY9db81BwyFw==}
 
-  '@types/diff@4.0.2':
-    resolution: {integrity: sha512-mIenTfsIe586/yzsyfql69KRnA75S8SVXQbTLpDejRrjH0QSJcpu3AUOi/Vjnt9IOsXKxPhJfGpQUNMueIU1fQ==}
+  '@types/diff@8.0.0':
+    resolution: {integrity: sha512-o7jqJM04gfaYrdCecCVMbZhNdG6T1MHg/oQoRFdERLV+4d+V7FijhiEAbFu0Usww84Yijk9yH58U4Jk4HbtzZw==}
+    deprecated: This is a stub types definition. diff provides its own type definitions, so you do not need this installed.
 
   '@types/eslint-scope@3.7.7':
     resolution: {integrity: sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg==}
@@ -5003,6 +5004,10 @@ packages:
 
   diff@7.0.0:
     resolution: {integrity: sha512-PJWHUb1RFevKCwaFA9RlG5tCd+FO5iRh9A8HEtkmBH2Li03iJriB6m6JIN4rGz3K3JLawI7/veA1xzRKP6ISBw==}
+    engines: {node: '>=0.3.1'}
+
+  diff@8.0.3:
+    resolution: {integrity: sha512-qejHi7bcSD4hQAZE0tNAawRK1ZtafHDmMTMkrrIGgSLl7hTnQHmKCeB45xAcbfTqK2zowkM3j3bHt/4b/ARbYQ==}
     engines: {node: '>=0.3.1'}
 
   dir-glob@3.0.1:
@@ -13730,7 +13735,9 @@ snapshots:
 
   '@types/deep-eql@4.0.2': {}
 
-  '@types/diff@4.0.2': {}
+  '@types/diff@8.0.0':
+    dependencies:
+      diff: 8.0.3
 
   '@types/eslint-scope@3.7.7':
     dependencies:
@@ -15426,6 +15433,8 @@ snapshots:
   diff@5.2.0: {}
 
   diff@7.0.0: {}
+
+  diff@8.0.3: {}
 
   dir-glob@3.0.1:
     dependencies:

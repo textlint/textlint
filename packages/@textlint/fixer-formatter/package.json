@@ -44,14 +44,14 @@
     "@textlint/types": "workspace:*",
     "chalk": "^4.1.2",
     "debug": "^4.4.3",
-    "diff": "^5.2.0",
+    "diff": "^8.0.3",
     "string-width": "^4.2.3",
     "strip-ansi": "^6.0.1",
     "text-table": "^0.2.0"
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",
-    "@types/diff": "^4.0.2",
+    "@types/diff": "^8.0.0",
     "@types/node": "^24.10.9",
     "rimraf": "^6.1.2",
     "typescript": "~5.8.3",
