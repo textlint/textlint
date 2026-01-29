@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1769521046867,
+  "lastUpdate": 1769710668411,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -97523,6 +97523,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5821419021600001,
             "range": "± 0.01418246099999998",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c9bd0bb83d1526a4cdb6fd7a7b0c1ded578ade53",
+          "message": "chore(deps): update pnpm to v10.28.2",
+          "timestamp": "2026-01-29T18:16:00Z",
+          "tree_id": "1be7c6bbd829e8bec51b6b8f259d8ed535997689",
+          "url": "https://github.com/textlint/textlint/commit/c9bd0bb83d1526a4cdb6fd7a7b0c1ded578ade53"
+        },
+        "date": 1769710661397,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23531863944000003,
+            "range": "± 0.17196702300000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.78566043804,
+            "range": "± 0.023639267999999936",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.66645957144,
+            "range": "± 0.016257812999999954",
             "unit": "seconds"
           }
         ]
