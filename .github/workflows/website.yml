@@ -34,3 +34,5 @@ jobs:
           external_repository: textlint/textlint.github.io
           publish_branch: master
           publish_dir: ./website/build
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
