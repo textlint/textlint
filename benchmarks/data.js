@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770600824874,
+  "lastUpdate": 1770644982031,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -98447,6 +98447,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6982861688399999,
             "range": "± 0.023175579",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "e8c69d3d162dc5190fe9da0ecd5968591f24f99a",
+          "message": "fix(website): use github-actions[bot] as deploy committer\n\nPreviously, the deploy commit to textlint.github.io used the\nGITHUB_ACTOR (the person who pushed to master) as the committer.\nThis changes it to use github-actions[bot] for consistent attribution.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+          "timestamp": "2026-02-09T22:47:36+09:00",
+          "tree_id": "06ff51ab92c49bf637bea5cfc24025b277561d9b",
+          "url": "https://github.com/textlint/textlint/commit/e8c69d3d162dc5190fe9da0ecd5968591f24f99a"
+        },
+        "date": 1770644974557,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.36502558073999997,
+            "range": "± 0.845253375",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7901054473400002,
+            "range": "± 0.035569243000000084",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6589650985400001,
+            "range": "± 0.018250397999999945",
             "unit": "seconds"
           }
         ]
