@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770644982031,
+  "lastUpdate": 1770645247861,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -98489,6 +98489,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6589650985400001,
             "range": "± 0.018250397999999945",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "559d78f3c1ac32ceba16943797df5f461e51e58a",
+          "message": "fix(website): use github-actions[bot] as deploy committer (#1918)\n\n## Summary\n\nThe deploy commit to textlint.github.io was using `GITHUB_ACTOR` (the\nperson who pushed to master) as the committer. This fixes it to always\nuse `github-actions[bot]`.\n\n## Changes\n\n- Explicitly set `user_name` and `user_email` in\n`peaceiris/actions-gh-pages`\n- Deploy commits are now always attributed to `github-actions[bot]`\n\n## Breaking Changes\n\nNone\n\n## Test Plan\n\n- After merging to master, verify that the deploy commit to\ntextlint.github.io has `github-actions[bot]` as the author\n\nCo-authored-by: Claude Opus 4.6 <noreply@anthropic.com>",
+          "timestamp": "2026-02-09T13:52:20Z",
+          "tree_id": "06ff51ab92c49bf637bea5cfc24025b277561d9b",
+          "url": "https://github.com/textlint/textlint/commit/559d78f3c1ac32ceba16943797df5f461e51e58a"
+        },
+        "date": 1770645240743,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24282462870000004,
+            "range": "± 0.221761123",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7927062031000003,
+            "range": "± 0.039540770999999975",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6636776681,
+            "range": "± 0.016749979999999942",
             "unit": "seconds"
           }
         ]
