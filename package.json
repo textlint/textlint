@@ -46,7 +46,7 @@
     "@monorepo-utils/workspaces-to-typescript-project-references": "^2.11.0",
     "@typescript-eslint/eslint-plugin": "^8.55.0",
     "@typescript-eslint/parser": "^8.55.0",
-    "ajv": "^8.17.1",
+    "ajv": "^8.18.0",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^16.5.0",
