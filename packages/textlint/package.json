@@ -77,7 +77,6 @@
     "@textlint/legacy-textlint-core": "workspace:*",
     "@types/clone": "^2.1.4",
     "@types/debug": "^4.1.12",
-
     "@types/node": "^24.10.13",
     "@types/shelljs": "^0.10.0",
     "clone": "^2.1.2",
