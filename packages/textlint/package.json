@@ -1,6 +1,6 @@
 {
   "name": "textlint",
-  "version": "15.5.1",
+  "version": "15.5.2",
   "description": "The pluggable linting tool for natural language.",
   "keywords": [
     "AST",
