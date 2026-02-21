@@ -1,5 +1,5 @@
 {
-  "version": "15.5.1",
+  "version": "15.5.2",
   "npmClient": "pnpm",
   "includeMergedTags": true,
   "ignoreChanges": [
