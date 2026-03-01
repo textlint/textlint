@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@textlint/ast-tester": "workspace:*",
-    "@types/node": "^24.10.13",
+    "@types/node": "^24.10.14",
     "eol-converter-cli": "^1.1.0",
     "rimraf": "^6.1.3",
     "typescript": "~5.8.3",
