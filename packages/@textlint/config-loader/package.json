@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",
-    "@types/node": "^24.10.13",
+    "@types/node": "^24.10.14",
     "prettier": "^2.3.0",
     "rimraf": "^6.1.3",
     "typescript": "~5.8.3",
