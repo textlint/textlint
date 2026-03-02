@@ -51,7 +51,7 @@
     "@textlint/types": "workspace:*",
     "@textlint/utils": "workspace:*",
     "debug": "^4.4.3",
-    "rc-config-loader": "^4.1.3"
+    "rc-config-loader": "^4.1.4"
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",
