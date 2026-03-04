@@ -39,7 +39,7 @@ importers:
         specifier: ^9.0.5
         version: 9.0.5(@types/node@24.11.0)
       lint-staged:
-        specifier: ^16.3.0
+        specifier: ^16.3.1
         version: 16.3.1
       npm-run-all2:
         specifier: ^8.0.4
@@ -943,7 +943,7 @@ importers:
         version: 5.6.3
     devDependencies:
       lint-staged:
-        specifier: ^16.3.0
+        specifier: ^16.3.1
         version: 16.3.1
       prettier:
         specifier: ^2.2.1
