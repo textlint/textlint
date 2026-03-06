@@ -151,8 +151,14 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
 
                 const results = await linter.lintFiles(filePaths);
 
+                // Check if any files have error-level messages
+                const hasErrors = results.some((result) => result.messages.some((message) => message.severity === 2));
+
                 // Return structured content as per MCP 2025-06-18 specification
                 // https://modelcontextprotocol.io/specification/2025-06-18/server/tools#structured-content
+                if (hasErrors) {
+                    return createStructuredErrorResponse("Lint errors found in one or more files", "lintFile_error");
+                }
                 return createStructuredSuccessResponse({ results });
             } catch (error) {
                 // Handle errors with isError flag for MCP compliance
@@ -247,8 +253,16 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
 
                 const results = await linter.fixFiles(filePaths);
 
+                // Check if any files have remaining error-level messages (not fixed)
+                const hasRemainingErrors = results.some((result) =>
+                    result.remainingMessages.some((message) => message.severity === 2)
+                );
+
                 // Return structured content as per MCP 2025-06-18 specification
                 // https://modelcontextprotocol.io/specification/2025-06-18/server/tools#structured-content
+                if (hasRemainingErrors) {
+                    return createStructuredErrorResponse("Some errors could not be fixed", "fixFiles_error");
+                }
                 return createStructuredSuccessResponse({ results });
             } catch (error) {
                 // Handle errors with isError flag for MCP compliance
@@ -289,8 +303,14 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
 
                 const result = await linter.fixText(text, stdinFilename);
 
+                // Check if there are remaining error-level messages
+                const hasRemainingErrors = result.remainingMessages.some((message) => message.severity === 2);
+
                 // Return structured content as per MCP 2025-06-18 specification
                 // https://modelcontextprotocol.io/specification/2025-06-18/server/tools#structured-content
+                if (hasRemainingErrors) {
+                    return createStructuredErrorResponse("Some errors could not be fixed", "fixText_error");
+                }
                 return createStructuredSuccessResponse(result);
             } catch (error) {
                 // Handle errors with isError flag for MCP compliance

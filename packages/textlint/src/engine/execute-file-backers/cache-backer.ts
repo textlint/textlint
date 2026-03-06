@@ -32,7 +32,14 @@ const createFileEntryCache = (cacheLocation: string): FileEntryCache => {
     const cacheDir = path.dirname(cacheLocation);
     try {
         // use the metadata for cache instead of the file content
-        // TODO: if we want to reuse the cache in CI, we should use the file content cache and save relative path into the cache
+        // Note: Cache using file metadata (mtime) may not work correctly in CI environments
+        // where files may be checked out with different timestamps
+        const isCI = process.env.CI !== undefined;
+        if (isCI) {
+            debug(
+                "Warning: Cache may not work correctly in CI due to file timestamp differences. Consider using content-based cache."
+            );
+        }
 
         return fileEntryCache.create(filename, cacheDir, false);
     } catch (error) {
