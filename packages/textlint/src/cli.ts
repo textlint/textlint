@@ -109,11 +109,17 @@ export const cli = {
                     cliOptions: currentOptions,
                     text,
                     stdinFilename
+                }).catch((error) => {
+                    Logger.error("Unexpected error during file processing:", error);
+                    return 1;
                 });
             } else {
                 return this.executeWithOptions({
                     cliOptions: currentOptions,
                     files
+                }).catch((error) => {
+                    Logger.error("Unexpected error during file processing:", error);
+                    return 1;
                 });
             }
         }
