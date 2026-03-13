@@ -65,10 +65,22 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
     const cwd = options.cwd ?? process.cwd();
     const ignoredPatterns: string[] = [...DEFAULT_IGNORE_PATTERNS];
 
-    // Only add ignore patterns if ignoreFilePath is explicitly provided
-    if (options.ignoreFilePath) {
-        const ignorePatterns = await createIgnorePatterns(cwd, options.ignoreFilePath);
-        ignoredPatterns.push(...ignorePatterns);
+    // Only add ignore patterns if ignoreFilePath is explicitly provided or default .textlintignore exists
+    const effectiveIgnorePath = options.ignoreFilePath || path.join(cwd, ".textlintignore");
+    try {
+        const ignorePatterns = await createIgnorePatterns(cwd, effectiveIgnorePath);
+        if (ignorePatterns.length > 0) {
+            ignoredPatterns.push(...ignorePatterns);
+        }
+    } catch (error) {
+        // Ignore if default file doesn't exist, but throw if explicitly specified
+        if (
+            options.ignoreFilePath ||
+            (error && typeof error === "object" && "code" in error && error.code !== "ENOENT")
+        ) {
+            throw error;
+        }
+        debug("ignore file not found: %s", effectiveIgnorePath);
     }
 
     debug("search patterns: %o", patterns);
@@ -90,21 +102,26 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
             items: files
         };
     }
-    // If ignore file is matched and result is empty, it should be ignored
-    const filesWithoutIgnoreFiles = await glob(patterns, {
-        cwd,
-        absolute: true,
-        nodir: true,
-        dot: true
-        // no ignore
-    });
-    const isEmptyResultByIgnoreFile = files.length === 0 && filesWithoutIgnoreFiles.length !== 0;
-    if (isEmptyResultByIgnoreFile) {
-        debug("all files are ignored by ignore files. ignored files: %o", filesWithoutIgnoreFiles);
-        return {
-            ok: true,
-            items: []
-        };
+    // Only check if files were ignored if there are custom ignore patterns
+    // (beyond the default node_modules and .git patterns)
+    const hasCustomIgnorePatterns = ignoredPatterns.length > DEFAULT_IGNORE_PATTERNS.length;
+    if (hasCustomIgnorePatterns) {
+        // If ignore file is matched and result is empty, it should be ignored
+        const filesWithoutIgnoreFiles = await glob(patterns, {
+            cwd,
+            absolute: true,
+            nodir: true,
+            dot: true
+            // no ignore
+        });
+        const isEmptyResultByIgnoreFile = files.length === 0 && filesWithoutIgnoreFiles.length !== 0;
+        if (isEmptyResultByIgnoreFile) {
+            debug("all files are ignored by ignore files. ignored files: %o", filesWithoutIgnoreFiles);
+            return {
+                ok: true,
+                items: []
+            };
+        }
     }
     // Not found target file
     debug("Not found target file");

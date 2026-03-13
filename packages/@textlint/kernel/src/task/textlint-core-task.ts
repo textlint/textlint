@@ -192,7 +192,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                 }
             }
         });
-        Promise.all(promiseQueue)
+        return Promise.all(promiseQueue)
             .then(() => {
                 this.emit(TextLintCoreTask.events.complete);
             })

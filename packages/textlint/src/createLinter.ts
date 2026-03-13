@@ -53,8 +53,8 @@ const createHashForDescriptor = async (descriptor: TextlintKernelDescriptor): Pr
         const { readPackageUpSync } = await import("read-package-up");
         const version = readPackageUpSync({ cwd: __dirname })?.packageJson.version ?? "unknown";
         const toString = JSON.stringify(descriptor.toJSON());
-        const md5 = crypto.createHash("md5");
-        return md5.update(`${version}-${toString}`, "utf8").digest("hex");
+        const sha256 = crypto.createHash("sha256");
+        return sha256.update(`${version}-${toString}`, "utf8").digest("hex");
     } catch (error) {
         // Fallback for some env
         // https://github.com/textlint/textlint/issues/597
@@ -114,7 +114,7 @@ export const createLinter = (options: CreateLinterOptions) => {
             debug("Process files: %j", availableFiles);
             debug("No Process files that are un-support extensions: %j", unAvailableFiles);
             const results = await executeFileBackerManager.process(availableFiles, async (filePath: string) => {
-                const absoluteFilePath = path.resolve(process.cwd(), filePath);
+                const absoluteFilePath = path.resolve(cwd, filePath);
                 const fileContent = await fs.readFile(filePath, "utf-8");
                 const kernelOptions = {
                     ext: path.extname(filePath),
@@ -171,7 +171,7 @@ export const createLinter = (options: CreateLinterOptions) => {
             debug("Process files: %j", availableFiles);
             debug("No Process files that are un-support extensions: %j", unAvailableFiles);
             const results = await executeFileBackerManager.process(availableFiles, async (filePath: string) => {
-                const absoluteFilePath = path.resolve(process.cwd(), filePath);
+                const absoluteFilePath = path.resolve(cwd, filePath);
                 const fileContent = await fs.readFile(filePath, "utf-8");
                 const kernelOptions = {
                     ext: path.extname(filePath),

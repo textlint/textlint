@@ -288,9 +288,9 @@ const toAbsoluteLocation = ({
  */
 export const resolveFixCommandLocation = ({ node, ruleError }: { node: TxtNode; ruleError: TextlintRuleError }) => {
     const nodeRange = node.range;
-    // if not found `fix`, return empty object
+    // if not found `fix`, return undefined
     if (ruleError.fix === undefined) {
-        return {}; // TODO: it should be undefined?
+        return undefined;
     }
     invariant(typeof ruleError.fix === "object", "fix should be FixCommand object");
     // if absolute position return self
@@ -380,7 +380,7 @@ export const resolveSuggestionsLocation = ({ node, ruleError }: { node: TxtNode;
             node,
             ruleError: Object.assign({}, ruleError, { fix: suggestion.fix })
         });
-        if (!resolvedFixCommand.fix) {
+        if (!resolvedFixCommand || !resolvedFixCommand.fix) {
             continue;
         }
         const suggestionMessage =
