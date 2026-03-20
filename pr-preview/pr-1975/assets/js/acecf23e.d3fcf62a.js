@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunktextlint_website=globalThis.webpackChunktextlint_website||[]).push([[1903],{1912:t=>{t.exports=JSON.parse('{"blogBasePath":"/textlint/pr-preview/pr-1975/blog","blogTitle":"Blog","authorsListPath":"/textlint/pr-preview/pr-1975/blog/authors"}')}}]);
