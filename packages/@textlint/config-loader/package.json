@@ -54,7 +54,7 @@
     "rc-config-loader": "^4.1.4"
   },
   "devDependencies": {
-    "@types/debug": "^4.1.12",
+    "@types/debug": "^4.1.13",
     "@types/node": "^24.12.0",
     "prettier": "^2.3.0",
     "rimraf": "^6.1.3",
