@@ -52,7 +52,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   examples/cli:
     devDependencies:
@@ -215,7 +215,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/ast-tester:
     dependencies:
@@ -227,8 +227,8 @@ importers:
         version: 4.4.3(supports-color@8.1.1)
     devDependencies:
       '@types/debug':
-        specifier: ^4.1.12
-        version: 4.1.12
+        specifier: ^4.1.13
+        version: 4.1.13
       '@types/node':
         specifier: ^24.12.0
         version: 24.12.0
@@ -240,7 +240,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/ast-traverse:
     dependencies:
@@ -262,7 +262,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/config-loader:
     dependencies:
@@ -289,8 +289,8 @@ importers:
         version: 4.1.4
     devDependencies:
       '@types/debug':
-        specifier: ^4.1.12
-        version: 4.1.12
+        specifier: ^4.1.13
+        version: 4.1.13
       '@types/node':
         specifier: ^24.12.0
         version: 24.12.0
@@ -305,7 +305,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/feature-flag:
     devDependencies:
@@ -320,7 +320,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/fixer-formatter:
     dependencies:
@@ -353,8 +353,8 @@ importers:
         version: 0.2.0
     devDependencies:
       '@types/debug':
-        specifier: ^4.1.12
-        version: 4.1.12
+        specifier: ^4.1.13
+        version: 4.1.13
       '@types/node':
         specifier: ^24.12.0
         version: 24.12.0
@@ -366,7 +366,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/kernel:
     dependencies:
@@ -405,8 +405,8 @@ importers:
         specifier: workspace:*
         version: link:../markdown-to-ast
       '@types/debug':
-        specifier: ^4.1.12
-        version: 4.1.12
+        specifier: ^4.1.13
+        version: 4.1.13
       '@types/node':
         specifier: ^24.12.0
         version: 24.12.0
@@ -427,7 +427,7 @@ importers:
         version: 3.0.4
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/legacy-textlint-core:
     dependencies:
@@ -442,8 +442,8 @@ importers:
         version: link:../textlint-plugin-text
     devDependencies:
       '@types/debug':
-        specifier: ^4.1.12
-        version: 4.1.12
+        specifier: ^4.1.13
+        version: 4.1.13
       '@types/node':
         specifier: ^24.12.0
         version: 24.12.0
@@ -500,8 +500,8 @@ importers:
         version: 0.2.0
     devDependencies:
       '@types/debug':
-        specifier: ^4.1.12
-        version: 4.1.12
+        specifier: ^4.1.13
+        version: 4.1.13
       '@types/js-yaml':
         specifier: ^4.0.9
         version: 4.0.9
@@ -522,7 +522,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/markdown-to-ast:
     dependencies:
@@ -561,8 +561,8 @@ importers:
         specifier: workspace:*
         version: link:../ast-tester
       '@types/debug':
-        specifier: ^4.1.12
-        version: 4.1.12
+        specifier: ^4.1.13
+        version: 4.1.13
       '@types/node':
         specifier: ^24.12.0
         version: 24.12.0
@@ -580,7 +580,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/module-interop:
     devDependencies:
@@ -598,13 +598,13 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/resolver:
     devDependencies:
       '@types/debug':
-        specifier: ^4.1.12
-        version: 4.1.12
+        specifier: ^4.1.13
+        version: 4.1.13
       '@types/node':
         specifier: ^24.12.0
         version: 24.12.0
@@ -616,7 +616,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/source-code-fixer:
     dependencies:
@@ -628,8 +628,8 @@ importers:
         version: 4.4.3(supports-color@8.1.1)
     devDependencies:
       '@types/debug':
-        specifier: ^4.1.12
-        version: 4.1.12
+        specifier: ^4.1.13
+        version: 4.1.13
       '@types/node':
         specifier: ^24.12.0
         version: 24.12.0
@@ -644,7 +644,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/text-to-ast:
     dependencies:
@@ -669,7 +669,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/textlint-plugin-markdown:
     dependencies:
@@ -700,7 +700,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/textlint-plugin-text:
     dependencies:
@@ -731,7 +731,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/types:
     dependencies:
@@ -759,7 +759,7 @@ importers:
         version: 3.0.4
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/@textlint/utils:
     devDependencies:
@@ -777,7 +777,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/textlint:
     dependencies:
@@ -861,8 +861,8 @@ importers:
         specifier: ^2.1.4
         version: 2.1.4
       '@types/debug':
-        specifier: ^4.1.12
-        version: 4.1.12
+        specifier: ^4.1.13
+        version: 4.1.13
       '@types/node':
         specifier: ^24.12.0
         version: 24.12.0
@@ -898,7 +898,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0)
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0)
 
   packages/textlint-scripts:
     dependencies:
@@ -3418,8 +3418,8 @@ packages:
   '@types/connect@3.4.38':
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
 
-  '@types/debug@4.1.12':
-    resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
+  '@types/debug@4.1.13':
+    resolution: {integrity: sha512-KSVgmQmzMwPlmtljOomayoR89W4FynCAi3E8PPs7vmDVPe84hT+vGPKkJfThkmXs0x0jAaa9U8uW8bbfyS2fWw==}
 
   '@types/deep-eql@4.0.2':
     resolution: {integrity: sha512-c9h9dVVMigMPc4bwTvC5dxqtqJZwQPePsWjPlpSOnojbor6pGqdk541lfA7AqFQr5pB1BRdq0juY9db81BwyFw==}
@@ -13453,7 +13453,7 @@ snapshots:
     dependencies:
       '@types/node': 24.12.0
 
-  '@types/debug@4.1.12':
+  '@types/debug@4.1.13':
     dependencies:
       '@types/ms': 2.1.0
 
@@ -17936,7 +17936,7 @@ snapshots:
 
   micromark@4.0.2:
     dependencies:
-      '@types/debug': 4.1.12
+      '@types/debug': 4.1.13
       debug: 4.4.3(supports-color@8.1.1)
       decode-named-character-reference: 1.1.0
       devlop: 1.1.0
@@ -21356,7 +21356,7 @@ snapshots:
       fsevents: 2.3.3
       terser: 5.42.0
 
-  vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(terser@5.42.0):
+  vitest@3.2.4(@types/debug@4.1.13)(@types/node@24.12.0)(terser@5.42.0):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
@@ -21382,7 +21382,7 @@ snapshots:
       vite-node: 3.2.4(@types/node@24.12.0)(terser@5.42.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/debug': 4.1.12
+      '@types/debug': 4.1.13
       '@types/node': 24.12.0
     transitivePeerDependencies:
       - less
