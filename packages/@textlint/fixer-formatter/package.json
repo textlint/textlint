@@ -44,7 +44,7 @@
     "@textlint/types": "workspace:*",
     "chalk": "^4.1.2",
     "debug": "^4.4.3",
-    "diff": "^8.0.3",
+    "diff": "^8.0.4",
     "string-width": "^4.2.3",
     "strip-ansi": "^6.0.1",
     "text-table": "^0.2.0"
