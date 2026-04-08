@@ -1,0 +1,67 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "typescript"
+  ],
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {
+    "no-console": "warn",
+    "no-var": "error",
+    "prefer-const": "error",
+    "prefer-rest-params": "error",
+    "prefer-spread": "error",
+    "prefer-template": "error",
+    "no-unused-vars": "off",
+    "typescript/no-require-imports": "off",
+    "typescript/no-explicit-any": "error",
+    "typescript/no-empty-object-type": "error",
+    "typescript/ban-ts-comment": "error",
+    "typescript/no-unsafe-function-type": "error",
+    "typescript/unbound-method": "off",
+    "typescript/restrict-template-expressions": "off",
+    "typescript/no-redundant-type-constituents": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts"],
+      "rules": {
+        "typescript/no-require-imports": "error"
+      }
+    },
+    {
+      "files": [
+        "**/bin/**",
+        "**/scripts/**",
+        "examples/**",
+        "**/debug-*.{js,mjs,ts}",
+        "**/tools/**",
+        "**/*.test.ts"
+      ],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ],
+  "ignorePatterns": [
+    "**/lib/**",
+    "**/module/**",
+    "out/",
+    "node_modules/**",
+    "packages/textlint-scripts/examples/",
+    "test/integration-test/",
+    "website/",
+    "dist/**",
+    "build/**",
+    "coverage/**",
+    "*.min.js"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2022": true,
+    "mocha": true,
+    "builtin": true
+  }
+}

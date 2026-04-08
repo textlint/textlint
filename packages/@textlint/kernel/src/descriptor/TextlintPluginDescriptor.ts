@@ -22,7 +22,7 @@ const getAvailableExtensions = (pluginProcessor: TextlintPluginProcessor): strin
     if (typeof PluginProcessorConstructor.availableExtensions === "function") {
         return PluginProcessorConstructor.availableExtensions();
     }
-    throw new Error(`Plugin(${pluginProcessor}) should implement availableExtensions() method`);
+    throw new Error(`Plugin(${pluginProcessor.constructor.name}) should implement availableExtensions() method`);
 };
 
 /**
@@ -32,7 +32,6 @@ export class TextlintPluginDescriptor implements Descriptor<TextlintKernelPlugin
     public processor: TextlintPluginProcessor;
 
     constructor(private plugin: TextlintKernelPlugin) {
-        this.plugin = plugin;
         if (!this.plugin.plugin.Processor) {
             throw new Error(`Plugin should have Processor property.
 module.exports = {

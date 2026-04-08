@@ -90,7 +90,7 @@ export const cli = {
 
             const mcpServer = await connectStdioMcpServer(mcpOptions);
             process.on("SIGINT", () => {
-                mcpServer.close();
+                void mcpServer.close();
                 process.exitCode = 0;
             });
             return 0;

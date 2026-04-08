@@ -141,7 +141,7 @@ function normalizeStructuredPaths(obj: unknown, snapshotDir: string, testCaseNam
                     }
                 } else if (normalizedPath.includes("snapshots")) {
                     // Fallback: extract from path structure
-                    const parts = normalizedPath.split(/[\/\\]/);
+                    const parts = normalizedPath.split(/[/\\]/);
                     const snapshotIndex = parts.findIndex((part) => part === "snapshots");
                     if (snapshotIndex >= 0 && snapshotIndex < parts.length - 2) {
                         const caseName = parts[snapshotIndex + 1];
