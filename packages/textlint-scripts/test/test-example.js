@@ -17,10 +17,9 @@ const exec = (command, { cwd }) => {
     }
 };
 
-// eslint-disable-next-line no-unused-vars
 for (const example of examples) {
-    fs.rmSync(path.join(exampleDir, "README.md"), { force: true });
-    exec("npm run init-readme", { cwd: exampleDir });
-    exec("npm run build", { cwd: exampleDir });
-    exec("npm test", { cwd: exampleDir });
+    fs.rmSync(path.join(example, "README.md"), { force: true });
+    exec("npm run init-readme", { cwd: example });
+    exec("npm run build", { cwd: example });
+    exec("npm test", { cwd: example });
 }

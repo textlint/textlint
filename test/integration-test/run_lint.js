@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
-import { execSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 import assert from "node:assert";
 import JSON5 from "json5";
 import { listPackageNames } from "textlintrc-to-package-list";
@@ -19,7 +19,7 @@ export default function runLint(projectDirName, sourceTarget) {
     const projectDirPath = path.resolve(currentDir, projectDirName);
     // Use direct Node.js execution of textlint CLI for reliability across npm/pnpm
     const textlintPackagePath = path.resolve(currentDir, "../../packages/textlint");
-    const textlintBin = `node ${path.join(textlintPackagePath, "bin/textlint.js")}`;
+    const textlintBin = path.join(textlintPackagePath, "bin/textlint.js");
 
     function echo(log) {
         const blue = "\u001b[34m";
@@ -46,14 +46,14 @@ export default function runLint(projectDirName, sourceTarget) {
     echo("📦 Install modules....");
     const packageListWithVersions = mapRuleWithVersion(pkg, packageList);
     console.log(packageListWithVersions.join(", "));
-    execSync("npm install --no-save --no-package-lock --ignore-scripts --silent", {
+    execFileSync("npm", ["install", "--no-save", "--no-package-lock", "--ignore-scripts", "--silent"], {
         cwd: projectDirPath,
-        stdio: "ignore"
+        stdio: "inherit"
     });
     echo("📝 Run textlint");
     const NODE_PATH = path.join(projectDirPath, "node_modules");
     process.env.NODE_PATH = NODE_PATH;
-    execSync(`${textlintBin} --rules-base-directory "${NODE_PATH}" ${sourceTarget}`, {
+    execFileSync("node", [textlintBin, "--rules-base-directory", NODE_PATH, sourceTarget], {
         cwd: projectDirPath,
         stdio: "inherit"
     });
