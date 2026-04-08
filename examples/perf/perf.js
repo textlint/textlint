@@ -23,12 +23,9 @@ const PERF_MULTIPLIER = 7.5e6;
  */
 function time(file, args, runs, runNumber, results, cb) {
     const start = process.hrtime();
-    execFile(file, args, function (error) {
-        if (error) {
-            console.error(`Performance Run #${runNumber} failed:`, error);
-            process.exitCode = 1;
-            return;
-        }
+    // textlint exits with a non-zero code when lint errors are found; this perf
+    // test only measures execution time, so the exit code is intentionally ignored.
+    execFile(file, args, function () {
         const diff = process.hrtime(start),
             actual = diff[0] * 1e3 + diff[1] / 1e6; // ms
 
