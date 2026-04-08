@@ -53,7 +53,10 @@ export default function runLint(projectDirName, sourceTarget) {
     echo("📝 Run textlint");
     const NODE_PATH = path.join(projectDirPath, "node_modules");
     process.env.NODE_PATH = NODE_PATH;
-    execFileSync("node", [textlintBin, "--rules-base-directory", NODE_PATH, sourceTarget], {
+    // sourceTarget may contain multiple space-separated paths (e.g., "chapter-01/ chapter-02/");
+    // split into individual arguments since execFileSync does not invoke a shell.
+    const sourceTargets = sourceTarget.split(/\s+/).filter(Boolean);
+    execFileSync("node", [textlintBin, "--rules-base-directory", NODE_PATH, ...sourceTargets], {
         cwd: projectDirPath,
         stdio: "inherit"
     });
