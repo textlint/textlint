@@ -4,6 +4,20 @@ verifyDepsBeforeRun: "install"
 # Automatically remove unused catalog entries on install
 # https://pnpm.io/settings#cleanupunusedcatalogs
 cleanupUnusedCatalogs: true
+
+# Delay installing newly-published versions to mitigate supply chain
+# attacks on hijacked npm packages. Value is in minutes (4320 = 3 days).
+# https://pnpm.io/settings#minimumreleaseage
+minimumReleaseAge: 4320
+# Exclude textlint's own packages from the delay since we publish them.
+minimumReleaseAgeExclude:
+  - "@textlint/*"
+  - textlint
+  - "textlint-*"
+
+# Allowlist for packages whose build/postinstall scripts may run.
+# pnpm 10 blocks scripts by default; only entries here are permitted.
+# https://pnpm.io/settings#onlybuiltdependencies
 onlyBuiltDependencies:
   - esbuild
 
