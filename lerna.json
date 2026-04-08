@@ -1,6 +1,10 @@
 {
   "version": "15.5.3",
   "npmClient": "pnpm",
+  "packages": [
+    "packages/*",
+    "packages/@textlint/*"
+  ],
   "includeMergedTags": true,
   "ignoreChanges": [
     "**/test/**",
