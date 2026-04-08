@@ -44,19 +44,19 @@
     "@textlint/source-code-fixer": "workspace:*",
     "@textlint/types": "workspace:*",
     "@textlint/utils": "workspace:*",
-    "debug": "^4.4.3",
-    "fast-equals": "^4.0.3",
-    "structured-source": "^4.0.0"
+    "debug": "catalog:",
+    "fast-equals": "catalog:",
+    "structured-source": "catalog:"
   },
   "devDependencies": {
     "@textlint/markdown-to-ast": "workspace:*",
-    "@types/debug": "^4.1.13",
-    "@types/node": "^24.12.2",
-    "rimraf": "^6.1.3",
-    "shelljs": "^0.10.0",
-    "textlint-rule-preset-ja-spacing": "^2.4.3",
-    "typescript": "~5.8.3",
-    "unist-util-select": "^3.0.4",
-    "vitest": "^3.2.4"
+    "@types/debug": "catalog:",
+    "@types/node": "catalog:",
+    "rimraf": "catalog:",
+    "shelljs": "catalog:",
+    "textlint-rule-preset-ja-spacing": "catalog:",
+    "typescript": "catalog:",
+    "unist-util-select": "catalog:",
+    "vitest": "catalog:"
   }
 }

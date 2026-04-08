@@ -42,22 +42,22 @@
     "trailingComma": "none"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.4",
-    "@lerna-lite/cli": "^4.11.5",
-    "@lerna-lite/publish": "^4.11.5",
-    "@lerna-lite/version": "^4.11.5",
-    "@monorepo-utils/workspaces-to-typescript-project-references": "^2.11.0",
-    "@typescript-eslint/eslint-plugin": "^8.58.0",
-    "@typescript-eslint/parser": "^8.58.0",
-    "ajv": "^8.18.0",
-    "eslint": "^9.0.0",
-    "eslint-config-prettier": "^10.1.8",
-    "globals": "^16.5.0",
-    "lint-staged": "^16.4.0",
-    "npm-run-all2": "^8.0.4",
-    "prettier": "^2.7.1",
-    "typescript": "~5.8.3",
-    "vitest": "^3.2.4"
+    "@eslint/js": "catalog:",
+    "@lerna-lite/cli": "catalog:",
+    "@lerna-lite/publish": "catalog:",
+    "@lerna-lite/version": "catalog:",
+    "@monorepo-utils/workspaces-to-typescript-project-references": "catalog:",
+    "@typescript-eslint/eslint-plugin": "catalog:",
+    "@typescript-eslint/parser": "catalog:",
+    "ajv": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-prettier": "catalog:",
+    "globals": "catalog:",
+    "lint-staged": "catalog:",
+    "npm-run-all2": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   },
   "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
 }

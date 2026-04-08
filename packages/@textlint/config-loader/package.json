@@ -50,16 +50,16 @@
     "@textlint/resolver": "workspace:*",
     "@textlint/types": "workspace:*",
     "@textlint/utils": "workspace:*",
-    "debug": "^4.4.3",
-    "rc-config-loader": "^4.1.4"
+    "debug": "catalog:",
+    "rc-config-loader": "catalog:"
   },
   "devDependencies": {
-    "@types/debug": "^4.1.13",
-    "@types/node": "^24.12.2",
-    "prettier": "^2.3.0",
-    "rimraf": "^6.1.3",
-    "typescript": "~5.8.3",
-    "vitest": "^3.2.4"
+    "@types/debug": "catalog:",
+    "@types/node": "catalog:",
+    "prettier": "catalog:",
+    "rimraf": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   },
   "publishConfig": {
     "access": "public"

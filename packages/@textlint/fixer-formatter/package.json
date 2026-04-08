@@ -42,19 +42,19 @@
     "@textlint/module-interop": "workspace:*",
     "@textlint/resolver": "workspace:*",
     "@textlint/types": "workspace:*",
-    "chalk": "^4.1.2",
-    "debug": "^4.4.3",
-    "diff": "^8.0.4",
-    "string-width": "^4.2.3",
-    "strip-ansi": "^6.0.1",
-    "text-table": "^0.2.0"
+    "chalk": "catalog:",
+    "debug": "catalog:",
+    "diff": "catalog:",
+    "string-width": "catalog:",
+    "strip-ansi": "catalog:",
+    "text-table": "catalog:"
   },
   "devDependencies": {
-    "@types/debug": "^4.1.13",
-    "@types/node": "^24.12.2",
-    "rimraf": "^6.1.3",
-    "typescript": "~5.8.3",
-    "vitest": "^3.2.4"
+    "@types/debug": "catalog:",
+    "@types/node": "catalog:",
+    "rimraf": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   },
   "publishConfig": {
     "access": "public"

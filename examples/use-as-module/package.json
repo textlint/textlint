@@ -18,6 +18,6 @@
   },
   "dependencies": {
     "textlint": "workspace:*",
-    "textlint-rule-no-todo": "^2.0.1"
+    "textlint-rule-no-todo": "catalog:"
   }
 }
