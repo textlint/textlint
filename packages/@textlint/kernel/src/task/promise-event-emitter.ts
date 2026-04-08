@@ -66,10 +66,10 @@ export class PromiseEventEmitter {
     }
 
     emit(event: string, ...args: unknown[]): Promise<void[]> {
-        const promises: (Promise<void> | void)[] = [];
+        const promises: Promise<void>[] = [];
 
         this.events.listeners(event).forEach((listener) => {
-            promises.push(listener(...args));
+            promises.push(Promise.resolve(listener(...args)));
         });
 
         return Promise.all(promises);

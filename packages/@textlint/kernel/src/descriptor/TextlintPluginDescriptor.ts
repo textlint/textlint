@@ -22,7 +22,7 @@ const getAvailableExtensions = (pluginProcessor: TextlintPluginProcessor): strin
     if (typeof PluginProcessorConstructor.availableExtensions === "function") {
         return PluginProcessorConstructor.availableExtensions();
     }
-    throw new Error(`Plugin(${pluginProcessor}) should implement availableExtensions() method`);
+    throw new Error(`Plugin(${pluginProcessor.constructor.name}) should implement availableExtensions() method`);
 };
 
 /**

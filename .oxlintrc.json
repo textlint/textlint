@@ -21,10 +21,7 @@
     "typescript/no-unsafe-function-type": "error",
     "typescript/unbound-method": "off",
     "typescript/restrict-template-expressions": "off",
-    "typescript/no-redundant-type-constituents": "off",
-    "typescript/no-floating-promises": "off",
-    "typescript/no-base-to-string": "off",
-    "typescript/await-thenable": "off"
+    "typescript/no-redundant-type-constituents": "off"
   },
   "overrides": [
     {
