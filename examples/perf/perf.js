@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
-require("shelljs/make");
 const os = require("node:os");
-/* eslint-env shelljs */
+const path = require("node:path");
+const { execFile } = require("node:child_process");
 /*
  * A little bit fuzzy. My computer has a first CPU speed of 3093 and the perf test
  * always completes in < 2000ms. However, Travis is less predictable due to
@@ -12,7 +12,8 @@ const os = require("node:os");
 const PERF_MULTIPLIER = 7.5e6;
 /**
  * Calculates the time for each run for performance
- * @param {string} cmd cmd
+ * @param {string} file executable to run
+ * @param {string[]} args arguments to pass to the executable
  * @param {int} runs Total number of runs to do
  * @param {int} runNumber Current run number
  * @param {int[]} results Collection results from each run
@@ -20,17 +21,18 @@ const PERF_MULTIPLIER = 7.5e6;
  * @returns {int[]} calls the cb with all the results
  * @private
  */
-function time(cmd, runs, runNumber, results, cb) {
+function time(file, args, runs, runNumber, results, cb) {
     const start = process.hrtime();
-    // eslint-disable-next-line no-undef
-    exec(cmd, { silent: true }, function () {
+    // textlint exits with a non-zero code when lint errors are found; this perf
+    // test only measures execution time, so the exit code is intentionally ignored.
+    execFile(file, args, function () {
         const diff = process.hrtime(start),
             actual = diff[0] * 1e3 + diff[1] / 1e6; // ms
 
         results.push(actual);
-        echo(`Performance Run #${runNumber}:  %dms`, actual); // eslint-disable-line no-undef
+        console.log(`Performance Run #${runNumber}:  %dms`, actual);
         if (runs > 1) {
-            time(cmd, runs - 1, runNumber + 1, results, cb);
+            time(file, args, runs - 1, runNumber + 1, results, cb);
         } else {
             return cb(results);
         }
@@ -40,10 +42,9 @@ function time(cmd, runs, runNumber, results, cb) {
 function run() {
     const cpuSpeed = os.cpus()[0].speed;
     const max = PERF_MULTIPLIER / cpuSpeed;
-    const TEXTLINT = `node ${__dirname}/node_modules/.bin/textlint`;
-    const target = `${__dirname}/md/`;
-    const cmd = `${TEXTLINT} ${target}`;
-    time(cmd, 5, 1, [], function (results) {
+    const textlintBin = path.join(__dirname, "node_modules", ".bin", "textlint");
+    const target = path.join(__dirname, "md");
+    time("node", [textlintBin, target], 5, 1, [], function (results) {
         results.sort(function (a, b) {
             return a - b;
         });

@@ -75,13 +75,9 @@
   },
   "devDependencies": {
     "@textlint/legacy-textlint-core": "workspace:*",
-    "@types/clone": "catalog:",
     "@types/debug": "catalog:",
     "@types/node": "catalog:",
-    "@types/shelljs": "catalog:",
-    "clone": "catalog:",
     "rimraf": "catalog:",
-    "shelljs": "catalog:",
     "textlint-plugin-html": "catalog:",
     "textlint-rule-helper": "catalog:",
     "textlint-rule-no-todo": "catalog:",

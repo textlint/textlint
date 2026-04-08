@@ -7,7 +7,6 @@
  */
 const fs = require("node:fs");
 const path = require("node:path");
-const mkdirp = require("mkdirp");
 const parse = require("../lib/src/index").parse;
 const testDir = path.join(__dirname, "..", "test");
 // remark_fixtures to fixtures
@@ -20,7 +19,7 @@ fs.readdirSync(remarkFixtures).forEach(function (filePath) {
     const originalPath = path.join(remarkFixtures, filePath);
     const dirName = path.basename(filePath);
     const testCaseDir = path.join(fixtureDir, dirName);
-    mkdirp.sync(testCaseDir);
+    fs.mkdirSync(testCaseDir, { recursive: true });
     const testInputFilePath = path.join(fixtureDir, dirName, "input.md");
     fs.renameSync(originalPath, testInputFilePath);
     const input = fs.readFileSync(testInputFilePath, "utf-8");

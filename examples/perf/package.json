@@ -15,7 +15,6 @@
     "perf": "node perf.js"
   },
   "devDependencies": {
-    "shelljs": "catalog:",
     "textlint": "workspace:*",
     "textlint-rule-max-ten": "catalog:",
     "textlint-rule-no-mix-dearu-desumasu": "catalog:",

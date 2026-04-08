@@ -50,7 +50,6 @@
     "@types/debug": "catalog:",
     "@types/node": "catalog:",
     "@types/unist": "catalog:",
-    "mkdirp": "catalog:",
     "rimraf": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
