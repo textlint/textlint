@@ -34,6 +34,11 @@ packages:
 # that cause TypeScript type incompatibility errors in monorepo
 overrides:
   "@textlint/ast-node-types": "workspace:*"
+  # minimatch@3.1.4 has a regression in partial directory matching for patterns
+  # with globstars (e.g. `**/*.ts`), which breaks ESLint's directory walker and
+  # causes `pnpm run eslint` to fail with "No files matching the pattern".
+  # Pin the 3.x line to 3.1.5+ (where the regression is fixed).
+  "minimatch@3": "^3.1.5"
 
 # Catalog: centralized external dependency versions
 # https://pnpm.io/catalogs
