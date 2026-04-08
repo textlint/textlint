@@ -1,7 +1,6 @@
 # https://pnpm.io/settings#verifydepsbeforerun
 verifyDepsBeforeRun: "install"
 onlyBuiltDependencies:
-  - nx
   - esbuild
 
 packages:
