@@ -13,7 +13,7 @@ import remainingFixture from "../fixtures/remaining.js";
 // Helper function to normalize paths to just filenames for cross-platform compatibility
 const normalizePaths = (output: string) => {
     // Replace any path ending with a filename and replace with just the filename
-    return output.replace(/[^\s]*[\/\\]([^\/\\]+\.md)/g, "$1");
+    return output.replace(/[^\s]*[/\\]([^/\\]+\.md)/g, "$1");
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

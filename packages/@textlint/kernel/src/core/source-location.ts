@@ -30,7 +30,7 @@ export type SourceLocationPaddingIR =
 
 const assertReportArgs = (reportArgs: Pick<TextlintRuleContextReportFunctionArgs, "node" | "ruleError" | "ruleId">) => {
     const { ruleError, ruleId } = reportArgs;
-    const errorPrefix = `[${ruleId}]` || "";
+    const errorPrefix = `[${ruleId}]`;
     const padding = ruleError;
 
     /*
