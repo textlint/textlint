@@ -4,7 +4,6 @@ import assert from "node:assert";
 import { describe, it, beforeAll, afterAll } from "vitest";
 import path from "node:path";
 import os from "node:os";
-import sh from "shelljs";
 import fs from "node:fs";
 import { CacheBacker, CacheBackerOptions } from "../../src/engine/execute-file-backers/cache-backer.js";
 import { TextlintMessage } from "@textlint/types";
@@ -13,15 +12,15 @@ describe("CacheBacker", function () {
     let configDir: string;
     beforeAll(function () {
         configDir = path.join(os.tmpdir(), "textlint-config");
-        sh.mkdir("-p", configDir);
+        fs.mkdirSync(configDir, { recursive: true });
     });
     afterAll(function () {
-        sh.rm("-r", configDir);
+        fs.rmSync(configDir, { recursive: true, force: true });
     });
     describe("when previously have success result", function () {
         it("shouldExecute return false", async () => {
             const testCacheDir = path.join(configDir, "success-test");
-            sh.mkdir("-p", testCacheDir);
+            fs.mkdirSync(testCacheDir, { recursive: true });
             const config: CacheBackerOptions = {
                 cache: true,
                 cacheLocation: path.resolve(testCacheDir, ".cache"),
@@ -54,7 +53,7 @@ describe("CacheBacker", function () {
     describe("when previously have failure result", function () {
         it("shouldExecute return true", () => {
             const testCacheDir = path.join(configDir, "failure-test");
-            sh.mkdir("-p", testCacheDir);
+            fs.mkdirSync(testCacheDir, { recursive: true });
             const config: CacheBackerOptions = {
                 cache: true,
                 cacheLocation: path.resolve(testCacheDir, ".cache"),
@@ -77,7 +76,7 @@ describe("CacheBacker", function () {
     describe("when specify `cacheLocation` options", function () {
         it("should save the specific path", () => {
             const testCacheDir = path.join(configDir, "location-test");
-            sh.mkdir("-p", testCacheDir);
+            fs.mkdirSync(testCacheDir, { recursive: true });
             const cacheFilePath = path.resolve(testCacheDir, ".cache");
             const config: CacheBackerOptions = {
                 cache: true,

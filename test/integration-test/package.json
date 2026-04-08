@@ -36,7 +36,6 @@
   },
   "devDependencies": {
     "json5": "catalog:",
-    "shelljs": "catalog:",
     "textlint": "workspace:*",
     "textlintrc-to-package-list": "catalog:"
   },

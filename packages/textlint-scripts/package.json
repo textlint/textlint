@@ -60,8 +60,7 @@
     },
     "devDependencies": {
         "lint-staged": "catalog:",
-        "prettier": "catalog:",
-        "shelljs": "catalog:"
+        "prettier": "catalog:"
     },
     "peerDependencies": {
         "ts-node": "*",

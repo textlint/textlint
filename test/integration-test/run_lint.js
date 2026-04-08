@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
-import shell from "shelljs";
+import { execSync } from "node:child_process";
 import assert from "node:assert";
 import JSON5 from "json5";
 import { listPackageNames } from "textlintrc-to-package-list";
@@ -37,8 +37,6 @@ export default function runLint(projectDirName, sourceTarget) {
     }
 
     // main
-    shell.set("-e");
-    shell.cd(projectDirPath);
     echo(`⭐️ Project: ${projectDirName}`);
     const textlintrcText = fs.readFileSync(path.resolve(projectDirPath, ".textlintrc"), "utf-8");
     const textlintrc = JSON5.parse(textlintrcText);
@@ -48,11 +46,17 @@ export default function runLint(projectDirName, sourceTarget) {
     echo("📦 Install modules....");
     const packageListWithVersions = mapRuleWithVersion(pkg, packageList);
     console.log(packageListWithVersions.join(", "));
-    shell.exec("npm install --no-save --no-package-lock --ignore-scripts --silent", { silent: true });
+    execSync("npm install --no-save --no-package-lock --ignore-scripts --silent", {
+        cwd: projectDirPath,
+        stdio: "ignore"
+    });
     echo("📝 Run textlint");
     const NODE_PATH = path.join(projectDirPath, "node_modules");
     process.env.NODE_PATH = NODE_PATH;
-    shell.exec(`${textlintBin} --rules-base-directory "${NODE_PATH}" ${sourceTarget}`);
+    execSync(`${textlintBin} --rules-base-directory "${NODE_PATH}" ${sourceTarget}`, {
+        cwd: projectDirPath,
+        stdio: "inherit"
+    });
     echo("💚 Pass textlint");
     echo("--------------------");
 };

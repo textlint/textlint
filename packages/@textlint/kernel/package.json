@@ -53,7 +53,6 @@
     "@types/debug": "catalog:",
     "@types/node": "catalog:",
     "rimraf": "catalog:",
-    "shelljs": "catalog:",
     "textlint-rule-preset-ja-spacing": "catalog:",
     "typescript": "catalog:",
     "unist-util-select": "catalog:",

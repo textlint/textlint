@@ -1,8 +1,7 @@
 // LICENSE : MIT
 "use strict";
-require("shelljs/make");
 const os = require("node:os");
-/* eslint-env shelljs */
+const { exec } = require("node:child_process");
 /*
  * A little bit fuzzy. My computer has a first CPU speed of 3093 and the perf test
  * always completes in < 2000ms. However, Travis is less predictable due to
@@ -22,13 +21,12 @@ const PERF_MULTIPLIER = 7.5e6;
  */
 function time(cmd, runs, runNumber, results, cb) {
     const start = process.hrtime();
-    // eslint-disable-next-line no-undef
-    exec(cmd, { silent: true }, function () {
+    exec(cmd, function () {
         const diff = process.hrtime(start),
             actual = diff[0] * 1e3 + diff[1] / 1e6; // ms
 
         results.push(actual);
-        echo(`Performance Run #${runNumber}:  %dms`, actual); // eslint-disable-line no-undef
+        console.log(`Performance Run #${runNumber}:  %dms`, actual);
         if (runs > 1) {
             time(cmd, runs - 1, runNumber + 1, results, cb);
         } else {

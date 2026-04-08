@@ -5,7 +5,6 @@ import { afterEach, beforeEach, describe, it } from "vitest";
 import { Logger } from "../../src/util/logger.js";
 import path from "node:path";
 import os from "node:os";
-import sh from "shelljs";
 import assert from "node:assert";
 import fs from "node:fs";
 
@@ -18,22 +17,22 @@ describe("config-initializer-test", function () {
         const timestamp = Date.now();
         const random = Math.random().toString(36).substring(7);
         configDir = `${os.tmpdir()}/textlint-config-${timestamp}-${random}`;
-        sh.mkdir("-p", configDir);
+        fs.mkdirSync(configDir, { recursive: true });
     });
 
     afterEach(function () {
         if (fs.existsSync(configDir)) {
-            sh.rm("-rf", configDir);
+            fs.rmSync(configDir, { recursive: true, force: true });
         }
     });
     describe("when package.json has textlint-rule-* packages", function () {
         beforeEach(function () {
             // Ensure directory exists and is accessible
             if (!fs.existsSync(configDir)) {
-                sh.mkdir("-p", configDir);
+                fs.mkdirSync(configDir, { recursive: true });
             }
             const packageFilePath = path.resolve(process.cwd(), "test/config-initializer/fixtures/package.json");
-            sh.cp(packageFilePath, configDir);
+            fs.cpSync(packageFilePath, path.join(configDir, path.basename(packageFilePath)));
         });
         it("should create new file with packages", function () {
             return createConfigFile({
