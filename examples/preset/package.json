@@ -20,6 +20,6 @@
   },
   "devDependencies": {
     "textlint": "workspace:*",
-    "textlint-rule-preset-jtf-style": "^2.3.12"
+    "textlint-rule-preset-jtf-style": "catalog:"
   }
 }

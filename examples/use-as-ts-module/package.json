@@ -22,10 +22,10 @@
   },
   "dependencies": {
     "textlint": "workspace:*",
-    "textlint-rule-no-todo": "^2.0.1"
+    "textlint-rule-no-todo": "catalog:"
   },
   "devDependencies": {
-    "@types/node": "^24.2.1",
-    "typescript": "~5.8.3"
+    "@types/node": "catalog:",
+    "typescript": "catalog:"
   }
 }

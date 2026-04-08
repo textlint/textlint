@@ -21,6 +21,6 @@
   },
   "devDependencies": {
     "textlint": "workspace:*",
-    "textlint-rule-prh": "^5.2.0"
+    "textlint-rule-prh": "catalog:"
   }
 }

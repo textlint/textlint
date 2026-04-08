@@ -50,10 +50,10 @@
     "@textlint/textlint-plugin-text": "workspace:*"
   },
   "devDependencies": {
-    "@types/debug": "^4.1.13",
-    "@types/node": "^24.12.2",
-    "prettier": "^2.7.1",
-    "typescript": "~5.8.3"
+    "@types/debug": "catalog:",
+    "@types/node": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
   },
   "publishConfig": {
     "access": "public"

@@ -46,17 +46,17 @@
         "@textlint/types": "workspace:*"
     },
     "devDependencies": {
-        "@types/mocha": "^9.1.1",
-        "@types/node": "^24.12.2",
-        "analyze-desumasu-dearu": "^4.0.1",
-        "match-index": "^1.0.3",
-        "mocha": "^11.7.5",
-        "rimraf": "^6.1.3",
-        "textlint-plugin-html": "^0.3.0",
-        "textlint-rule-helper": "^2.5.0",
-        "textlint-rule-max-number-of-lines": "^1.0.3",
-        "ts-node": "^10.9.2",
-        "typescript": "~5.8.3"
+        "@types/mocha": "catalog:",
+        "@types/node": "catalog:",
+        "analyze-desumasu-dearu": "catalog:",
+        "match-index": "catalog:",
+        "mocha": "catalog:",
+        "rimraf": "catalog:",
+        "textlint-plugin-html": "catalog:",
+        "textlint-rule-helper": "catalog:",
+        "textlint-rule-max-number-of-lines": "catalog:",
+        "ts-node": "catalog:",
+        "typescript": "catalog:"
     },
     "email": "azuciao@gmail.com"
 }

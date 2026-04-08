@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "textlint": "workspace:*",
-    "textlint-plugin-html": "^0.2.0",
-    "textlint-rule-sentence-length": "^2.1.2"
+    "textlint-plugin-html": "catalog:",
+    "textlint-rule-sentence-length": "catalog:"
   }
 }
