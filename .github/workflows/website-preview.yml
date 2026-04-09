@@ -45,6 +45,10 @@ jobs:
         env:
           DOCUSAURUS_BASE_URL: "/textlint/pr-preview/pr-${{ github.event.number }}/"
 
+      - name: Remove CNAME from preview build
+        if: github.event.action != 'closed'
+        run: rm -f ./website/build/CNAME
+
       - name: Deploy PR preview
         uses: rossjrw/pr-preview-action@ffa7509e91a3ec8dfc2e5536c4d5c1acdf7a6de9 # v1.8.1
         with:
