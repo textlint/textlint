@@ -10,7 +10,10 @@ export default {
     scripts: ["https://buttons.github.io/buttons.js"],
     favicon: "img/textlint-icon_256x256.png",
     markdown: {
-        format: "md"
+        format: "md",
+        hooks: {
+            onBrokenMarkdownLinks: "log"
+        }
     },
     customFields: {
         users: [
@@ -60,7 +63,6 @@ export default {
         repoUrl: "https://github.com/textlint/textlint"
     },
     onBrokenLinks: "log",
-    onBrokenMarkdownLinks: "log",
     presets: [
         [
             "@docusaurus/preset-classic",
