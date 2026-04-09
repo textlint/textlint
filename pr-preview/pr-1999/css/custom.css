@@ -1,0 +1,76 @@
+/* Color palette */
+
+:root {
+    --primaryColor: #259eac;
+    --textColor: #000000;
+}
+
+/* Link color */
+.post a {
+    color: #3344dd;
+}
+
+.post a:hover,
+.post a:active {
+    color: #bb1122;
+}
+
+.post a:visited {
+    color: #884488;
+}
+
+/* Override */
+.highlightBackground {
+    background-color: #f7f7f7;
+}
+
+/* Header */
+.navigationSlider .slidingNav ul {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Text styles */
+.heading {
+    font-family: HelveticaNeue, serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--textColor);
+}
+
+.mainContainer .wrapper p {
+    max-width: 100%;
+}
+
+.productShowcaseSection .logos {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+    align-items: left;
+}
+
+.header-has-icon:before {
+    content: "";
+    background: url(../img/textlint-header-logo.svg) no-repeat left center;
+    background-size: 0.8em;
+    padding-right: 1em;
+}
+
+/* your custom css */
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
+}
+
+@media only screen and (min-width: 1024px) {
+}
+
+@media only screen and (max-width: 1023px) {
+}
+
+@media only screen and (min-width: 1400px) {
+}
+
+@media only screen and (min-width: 1500px) {
+}
