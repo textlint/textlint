@@ -124,7 +124,7 @@ catalogs:
       specifier: ^4.1.1
       version: 4.1.1
     json5:
-      specifier: ^2.1.1
+      specifier: ^2.1.3
       version: 2.2.3
     lint-staged:
       specifier: ^16.4.0
@@ -205,7 +205,7 @@ catalogs:
       specifier: ^6.1.3
       version: 6.1.3
     semver:
-      specifier: ^5.3.0
+      specifier: ^5.7.2
       version: 5.7.2
     string-width:
       specifier: ^4.2.3
@@ -238,7 +238,7 @@ catalogs:
       specifier: ^1.0.3
       version: 1.0.3
     textlint-rule-max-ten:
-      specifier: ^2.0.3
+      specifier: ^2.0.4
       version: 2.0.4
     textlint-rule-no-mix-dearu-desumasu:
       specifier: ^3.0.3
@@ -256,8 +256,8 @@ catalogs:
       specifier: ^7.0.0
       version: 7.0.0
     textlint-rule-preset-jtf-style:
-      specifier: ^3.0.2
-      version: 3.0.2
+      specifier: ^3.0.3
+      version: 3.0.3
     textlint-rule-prh:
       specifier: ^5.3.0
       version: 5.3.0
@@ -265,7 +265,7 @@ catalogs:
       specifier: ^1.4.8
       version: 1.4.8
     textlint-rule-sentence-length:
-      specifier: ^2.1.2
+      specifier: ^2.2.0
       version: 2.2.0
     textlint-rule-spellcheck-tech-word:
       specifier: ^5.0.0
@@ -424,7 +424,7 @@ importers:
         version: 2.0.2
       textlint-rule-preset-jtf-style:
         specifier: 'catalog:'
-        version: 3.0.2
+        version: 3.0.3
       textlint-rule-prh:
         specifier: 'catalog:'
         version: 5.3.0
@@ -451,7 +451,7 @@ importers:
         version: link:../../packages/textlint
       textlint-rule-preset-jtf-style:
         specifier: 'catalog:'
-        version: 3.0.2
+        version: 3.0.3
 
   examples/rulesdir:
     devDependencies:
@@ -1156,7 +1156,7 @@ importers:
         version: 2.4.3
       textlint-rule-preset-jtf-style:
         specifier: 'catalog:'
-        version: 3.0.2
+        version: 3.0.3
       typescript:
         specifier: 'catalog:'
         version: 5.8.3
@@ -1316,7 +1316,7 @@ importers:
         version: 7.0.0(textlint@packages+textlint)
       textlint-rule-preset-jtf-style:
         specifier: 'catalog:'
-        version: 3.0.2
+        version: 3.0.3
 
   test/integration-test:
     dependencies:
@@ -9159,8 +9159,8 @@ packages:
     peerDependencies:
       textlint: '>= 5.6.0'
 
-  textlint-rule-preset-jtf-style@3.0.2:
-    resolution: {integrity: sha512-rpB1OCIK4KZqZOnM+vVxDCBkgzDH3XINCRiHQ+gV8SRydtfppPWx9WAoxCvq8lm7YuRdGiFU6XartIix2Fc2kA==}
+  textlint-rule-preset-jtf-style@3.0.3:
+    resolution: {integrity: sha512-NTvqjg3oMTGjSDoH6MnYu+DDWW6cEghA66Lb8N0bheTphAj99aaG10HGhwTfDbaH2P6NfPQvRP5ISxiXCT9zdg==}
 
   textlint-rule-prh@5.3.0:
     resolution: {integrity: sha512-gdod+lL1SWUDyXs1ICEwvQawaSshT3mvPGufBIjF2R5WFPdKQDMsiuzsjkLm+aF+9d97dA6pFsiyC8gSW7mSgg==}
@@ -19874,7 +19874,7 @@ snapshots:
       textlint-rule-helper: 2.5.0
       textlint-rule-prh: 5.3.0
 
-  textlint-rule-preset-jtf-style@3.0.2:
+  textlint-rule-preset-jtf-style@3.0.3:
     dependencies:
       analyze-desumasu-dearu: 2.1.5
       japanese-numerals-to-number: 1.0.2
