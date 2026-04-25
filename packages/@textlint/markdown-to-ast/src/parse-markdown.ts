@@ -12,9 +12,22 @@ import frontmatter from "remark-frontmatter";
 import footnotes from "remark-footnotes";
 import type { Node } from "unist";
 
-const remark = unified().use(remarkParse).use(frontmatter, ["yaml"]).use(remarkGfm).use(footnotes, {
-    inlineNotes: true
-});
+const remark = unified()
+    .use(remarkParse)
+    .use(frontmatter, [
+        "yaml",
+        "toml",
+        // Hexo style
+        { type: "json", fence: { open: ";;;", close: ";;;" } },
+        // 11ty style
+        { type: "json", fence: { open: "---json", close: "---" } },
+        // Hugo style
+        { type: "json", fence: { open: "{", close: "}" } }
+    ])
+    .use(remarkGfm)
+    .use(footnotes, {
+        inlineNotes: true
+    });
 export const parseMarkdown = (text: string): Node => {
     return remark.parse(text);
 };
