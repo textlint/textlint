@@ -13,10 +13,11 @@ jobs:
     # Restrict permissions of the GITHUB_TOKEN.
     # Docs: https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
     permissions:
+      actions: read
       checks: read
       statuses: read
     steps:
       - name: Run Merge Gatekeeper
-        uses: upsidr/merge-gatekeeper@09af7a82c1666d0e64d2bd8c01797a0bcfd3bb5d # v1.2.1
+        uses: starkware-libs/merge-gatekeeper@90b067dac75b94c354c3f47a0462d126eae40413 # v1.1.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
