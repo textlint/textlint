@@ -1,0 +1,79 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Yaml",
+            "value": "{\n    \"title\": \"My Article Title\",\n    \"date\": \"2024-01-15\",\n    \"author\": \"John Doe\",\n    \"tags\": [\"markdown\", \"tutorial\", \"web\"]\n}",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 8,
+                    "column": 3
+                }
+            },
+            "range": [
+                0,
+                140
+            ],
+            "raw": "---\n{\n    \"title\": \"My Article Title\",\n    \"date\": \"2024-01-15\",\n    \"author\": \"John Doe\",\n    \"tags\": [\"markdown\", \"tutorial\", \"web\"]\n}\n---"
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Article Content",
+                    "loc": {
+                        "start": {
+                            "line": 10,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        144,
+                        159
+                    ],
+                    "raw": "Article Content"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 10,
+                    "column": 0
+                },
+                "end": {
+                    "line": 10,
+                    "column": 17
+                }
+            },
+            "range": [
+                142,
+                159
+            ],
+            "raw": "# Article Content"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 11,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        160
+    ],
+    "raw": "---\n{\n    \"title\": \"My Article Title\",\n    \"date\": \"2024-01-15\",\n    \"author\": \"John Doe\",\n    \"tags\": [\"markdown\", \"tutorial\", \"web\"]\n}\n---\n\n# Article Content\n"
+}

@@ -26,6 +26,8 @@ export const SyntaxMap = {
     // remark(markdown) extension
     // Following type is not in @textlint/ast-node-types
     yaml: "Yaml",
+    toml: "Toml",
+    json: "Json",
     table: "Table",
     tableRow: "TableRow",
     tableCell: "TableCell",

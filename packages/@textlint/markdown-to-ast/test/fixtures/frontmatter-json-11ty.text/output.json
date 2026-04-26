@@ -1,0 +1,79 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Json",
+            "value": "{\n    \"title\": \"My Article Title\",\n    \"date\": \"2024-01-15\",\n    \"author\": \"John Doe\",\n    \"tags\": [\"markdown\", \"tutorial\", \"web\"]\n}",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 8,
+                    "column": 3
+                }
+            },
+            "range": [
+                0,
+                144
+            ],
+            "raw": "---json\n{\n    \"title\": \"My Article Title\",\n    \"date\": \"2024-01-15\",\n    \"author\": \"John Doe\",\n    \"tags\": [\"markdown\", \"tutorial\", \"web\"]\n}\n---"
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Article Content",
+                    "loc": {
+                        "start": {
+                            "line": 10,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        148,
+                        163
+                    ],
+                    "raw": "Article Content"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 10,
+                    "column": 0
+                },
+                "end": {
+                    "line": 10,
+                    "column": 17
+                }
+            },
+            "range": [
+                146,
+                163
+            ],
+            "raw": "# Article Content"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 11,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        164
+    ],
+    "raw": "---json\n{\n    \"title\": \"My Article Title\",\n    \"date\": \"2024-01-15\",\n    \"author\": \"John Doe\",\n    \"tags\": [\"markdown\", \"tutorial\", \"web\"]\n}\n---\n\n# Article Content\n"
+}
