@@ -1,5 +1,5 @@
 {
-  "version": "15.5.4",
+  "version": "15.6.0",
   "npmClient": "pnpm",
   "packages": [
     "packages/*",
