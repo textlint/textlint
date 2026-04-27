@@ -39,7 +39,7 @@ catalog:
   "@types/node": "^24.12.2"
   "@types/react": "^18.3.28"
   "@types/unist": "^3.0.3"
-  ajv: "^8.18.0"
+  ajv: "^8.20.0"
   analyze-desumasu-dearu: "^4.0.1"
   babel-plugin-static-fs: "^3.0.0"
   chai: "^4.5.0"
