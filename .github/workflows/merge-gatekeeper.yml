@@ -18,6 +18,6 @@ jobs:
       statuses: read
     steps:
       - name: Run Merge Gatekeeper
-        uses: starkware-libs/merge-gatekeeper@90b067dac75b94c354c3f47a0462d126eae40413 # v1.1.0
+        uses: starkware-libs/merge-gatekeeper@9ea5ad731de74662f5f42e9f8b3a72fe6e2159dc # v1.2.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
