@@ -1,0 +1,54 @@
+name: "ESLint"
+
+on: [push, pull_request]
+
+permissions:
+    contents: read
+
+jobs:
+    eslint:
+        name: ESLint
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+              with:
+                  persist-credentials: false
+
+            - name: Install pnpm
+              uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+
+            - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+              with:
+                  node-version: 22
+                  cache: "pnpm"
+
+            - name: Install
+              run: pnpm install
+
+            - name: Run ESLint
+              shell: bash
+              run: |
+                  set +e
+                  pnpm run lint:eslint --format json --output-file eslint-report.json
+                  status=$?
+                  set -e
+
+                  if [ -s eslint-report.json ]; then
+                      node .github/scripts/eslint-report.mjs eslint-report.json
+                  else
+                      {
+                          echo "### ESLint report"
+                          echo ""
+                          echo "ESLint did not produce a JSON report. Check the raw logs above for configuration or runtime errors."
+                      } >> "$GITHUB_STEP_SUMMARY"
+                  fi
+
+                  exit "$status"
+
+            - name: Upload ESLint report
+              if: always()
+              uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+              with:
+                  name: eslint-report
+                  path: eslint-report.json
+                  if-no-files-found: ignore

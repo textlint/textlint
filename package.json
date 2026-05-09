@@ -11,6 +11,7 @@
     "commit-version": "git add . && git commit -m \"chore(release): v`node -p 'require(\"./lerna.json\").version'`\"",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "lint": "oxlint --type-aware",
+    "lint:eslint": "eslint .",
     "lint:fix": "oxlint --type-aware --fix",
     "perf": "cd ./examples/perf && pnpm run test:ci",
     "prepare": "git config --local core.hooksPath .githooks",
@@ -45,12 +46,14 @@
     "@lerna-lite/version": "catalog:",
     "@monorepo-utils/workspaces-to-typescript-project-references": "catalog:",
     "ajv": "catalog:",
+    "eslint": "catalog:",
     "lint-staged": "catalog:",
     "npm-run-all2": "catalog:",
     "oxlint": "catalog:",
     "oxlint-tsgolint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:",
+    "typescript-eslint": "catalog:",
     "vitest": "catalog:"
   },
   "packageManager": "pnpm@10.33.3+sha512.a19744364a7e248b92657a4ca5973f9354d21caf982579674b1c539f32c7420c47138ad8b1254df07aba9bc782d9b3029e3db34d5dbff974326eb74dac8ff489"
