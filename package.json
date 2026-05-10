@@ -15,7 +15,7 @@
     "perf": "cd ./examples/perf && pnpm run test:ci",
     "prepare": "git config --local core.hooksPath .githooks",
     "release": "lerna publish from-package",
-    "test": "pnpm run lint & P1=$!; pnpm run test:projectReferences & P2=$!; pnpm run test:packages & P3=$!; E=0; wait $P1 || E=$?; wait $P2 || E=$?; wait $P3 || E=$?; exit $E",
+    "test": "pnpm run --parallel \"/^(lint|test:projectReferences|test:packages)$/\"",
     "test:all": "pnpm run test && pnpm run test:examples && pnpm run test:integration && pnpm run test:docs",
     "test:docs": "pnpm --filter textlint-website run test",
     "test:examples": "pnpm --filter \"textlint-example-*\" run test:ci",
