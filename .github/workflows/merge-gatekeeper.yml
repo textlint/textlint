@@ -1,23 +1,30 @@
 ---
-name: Merge Gatekeeper
+name: automerge-gate
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, auto_merge_enabled]
     branches:
       - main
       - master
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  merge-gatekeeper:
+  gate:
+    name: automerge-gate/all-passed
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     # Restrict permissions of the GITHUB_TOKEN.
     # Docs: https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
     permissions:
-      actions: read
       checks: read
-      statuses: read
+      pull-requests: read
+      actions: read
     steps:
-      - name: Run Merge Gatekeeper
-        uses: starkware-libs/merge-gatekeeper@9ea5ad731de74662f5f42e9f8b3a72fe6e2159dc # v1.2.0
+      - name: Run automerge-gate
+        uses: pkgdeps/automerge-gate@v4.0.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          gate-mode: public
