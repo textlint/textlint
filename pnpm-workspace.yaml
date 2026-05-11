@@ -53,7 +53,7 @@ catalog:
   expected-exit-status: "^1.0.2"
   fast-equals: "^4.0.3"
   file-entry-cache: "^10.1.4"
-  glob: "^11.1.0"
+  glob: "^13.0.6"
   js-yaml: "^4.1.1"
   json5: "^2.2.3"
   lint-staged: "^16.4.0"
