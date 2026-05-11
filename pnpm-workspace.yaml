@@ -10,6 +10,7 @@ packages:
 # pnpm blocks scripts by default; only entries set to `true` here are permitted.
 # https://pnpm.io/settings#allowbuilds
 allowBuilds:
+  core-js: false
   esbuild: true
 
 # Catalog: centralized external dependency versions
