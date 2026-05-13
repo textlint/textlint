@@ -10,6 +10,9 @@ textlint's AST(Abstract Syntax Tree) is defined at the page.
 
 Each rule are represented by an object with some properties.
 The properties are equivalent to AST node types from TxtNode.
+Rule visitor receives readonly AST nodes in TypeScript.
+Rules should not mutate nodes directly, such as assigning to `node.value` or pushing to `node.children`.
+Use `context.report()` to report issues and `context.fixer` to describe text changes.
 
 The basic source code format for a rule is:
 

@@ -28,14 +28,14 @@ Each node has own properties that is defined in each node type.
  * Probably, Real TxtNode implementation has more properties.
  */
 interface TxtNode {
-    type: string;
-    raw: string;
-    range: TxtNodeRange;
-    loc: TxtNodeLineLocation;
+    readonly type: string;
+    readonly raw: string;
+    readonly range: TxtNodeRange;
+    readonly loc: TxtNodeLineLocation;
     // parent is runtime information
     // Not need in AST
     // For example, top Root Node like `Document` has not parent.
-    parent?: TxtNode;
+    readonly parent?: TxtNode;
 }
 
 
@@ -43,8 +43,8 @@ interface TxtNode {
  * Location
  */
 interface TxtNodeLineLocation {
-    start: TxtNodePosition;
-    end: TxtNodePosition;
+    readonly start: TxtNodePosition;
+    readonly end: TxtNodePosition;
 }
 
 /**
@@ -54,8 +54,8 @@ interface TxtNodeLineLocation {
  * https://gist.github.com/azu/8866b2cb9b7a933e01fe
  */
 interface TxtNodePosition {
-    line: number; // start with 1
-    column: number; // start with 0
+    readonly line: number; // start with 1
+    readonly column: number; // start with 0
 }
 
 /**
@@ -75,6 +75,9 @@ export type TxtNodeRange = readonly [startIndex: number, endIndex: number];
     - It is attached in runtime
     - Parser user ignore this property
 
+These properties are readonly in TypeScript.
+Rules should read the AST and report issues or fixes through the rule APIs instead of mutating nodes directly.
+
 ### `TxtTextNode`
 
 `TxtTextNode` is an abstract node that inherit `TxtNode` interface.
@@ -86,7 +89,7 @@ export type TxtNodeRange = readonly [startIndex: number, endIndex: number];
  * For example, `Str` Node is a TxtTextNode.
  */
 interface TxtTextNode extends TxtNode {
-    value: string;
+    readonly value: string;
 }
 ```
 
@@ -106,7 +109,7 @@ Example: `Str` node is a `TxtTextNode`.
  * Parent Node has children that are consist of TxtNode or TxtTextNode
  */
 interface TxtParentNode extends TxtNode {
-    children: Array<TxtNode | TxtTextNode>;
+    readonly children: readonly (TxtNode | TxtTextNode)[];
 }
 ```
 
@@ -203,9 +206,9 @@ For example, `TxtHeaderNode` has `level` property.
 
 ```ts
 export interface TxtHeaderNode extends TxtParentNode {
-    type: "Header";
-    depth: 1 | 2 | 3 | 4 | 5 | 6;
-    children: PhrasingContent[];
+    readonly type: "Header";
+    readonly depth: 1 | 2 | 3 | 4 | 5 | 6;
+    readonly children: readonly PhrasingContent[];
 }
 ```
 
