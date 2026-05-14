@@ -26,16 +26,16 @@ export type AnyTxtNode = TxtNode | TxtTextNode | TxtParentNode;
  * https://gist.github.com/azu/8866b2cb9b7a933e01fe
  */
 export type TxtNodePosition = {
-    line: number; // start with 1
-    column: number; // start with 0
+    readonly line: number; // start with 1
+    readonly column: number; // start with 0
 };
 
 /**
  * Location
  */
 export type TxtNodeLocation = {
-    start: TxtNodePosition;
-    end: TxtNodePosition;
+    readonly start: TxtNodePosition;
+    readonly end: TxtNodePosition;
 };
 
 /**
@@ -48,12 +48,12 @@ export type TxtNodeRange = readonly [startIndex: number, endIndex: number];
  * Probably, Real TxtNode implementation has more properties.
  */
 export interface TxtNode {
-    type: TxtNodeType;
-    raw: string;
-    range: TxtNodeRange;
-    loc: TxtNodeLocation;
+    readonly type: TxtNodeType;
+    readonly raw: string;
+    readonly range: TxtNodeRange;
+    readonly loc: TxtNodeLocation;
     // `parent` is created by runtime
-    parent?: TxtParentNode;
+    readonly parent?: TxtParentNode;
 }
 
 /**
@@ -62,7 +62,7 @@ export interface TxtNode {
  * For example, `Str` Node is an TxtTextNode.
  */
 export interface TxtTextNode extends TxtNode {
-    value: string;
+    readonly value: string;
 }
 
 /**
@@ -70,7 +70,7 @@ export interface TxtTextNode extends TxtNode {
  * Parent Node has children that are consist of TxtParentNode or TxtTextNode
  */
 export interface TxtParentNode extends TxtNode {
-    children: Content[];
+    readonly children: readonly Content[];
 }
 
 // ================================================================================
@@ -129,137 +129,137 @@ export type StaticPhrasingContent =
     | TxtCommentNode;
 
 export interface TxtDocumentNode extends TxtParentNode {
-    type: "Document";
+    readonly type: "Document";
 }
 
 export interface TxtParagraphNode extends TxtParentNode {
-    type: "Paragraph";
-    children: PhrasingContent[];
+    readonly type: "Paragraph";
+    readonly children: readonly PhrasingContent[];
 }
 
 export interface TxtHeaderNode extends TxtParentNode {
-    type: "Header";
-    depth: 1 | 2 | 3 | 4 | 5 | 6;
-    children: PhrasingContent[];
+    readonly type: "Header";
+    readonly depth: 1 | 2 | 3 | 4 | 5 | 6;
+    readonly children: readonly PhrasingContent[];
 }
 
 export interface TxtHorizontalRuleNode extends TxtNode {
-    type: "HorizontalRule";
+    readonly type: "HorizontalRule";
 }
 
 export interface TxtBlockQuoteNode extends TxtParentNode {
-    type: "BlockQuote";
-    children: BlockContent[];
+    readonly type: "BlockQuote";
+    readonly children: readonly BlockContent[];
 }
 
 export interface TxtListNode extends TxtParentNode {
-    type: "List";
-    ordered?: boolean | null | undefined;
-    start?: number | null | undefined;
-    spread?: boolean | null | undefined;
-    children: ListContent[];
+    readonly type: "List";
+    readonly ordered?: boolean | null | undefined;
+    readonly start?: number | null | undefined;
+    readonly spread?: boolean | null | undefined;
+    readonly children: readonly ListContent[];
 }
 
 export interface TxtListItemNode extends TxtParentNode {
-    type: "ListItem";
-    checked?: boolean | null | undefined;
-    spread?: boolean | null | undefined;
-    children: BlockContent[];
+    readonly type: "ListItem";
+    readonly checked?: boolean | null | undefined;
+    readonly spread?: boolean | null | undefined;
+    readonly children: readonly BlockContent[];
 }
 
 export interface TxtTableNode extends TxtParentNode {
-    type: "Table";
-    align?: AlignType[] | null | undefined;
-    children: TableContent[];
+    readonly type: "Table";
+    readonly align?: readonly AlignType[] | null | undefined;
+    readonly children: readonly TableContent[];
 }
 
 export interface TxtTableRowNode extends TxtParentNode {
-    type: "TableRow";
-    children: RowContent[];
+    readonly type: "TableRow";
+    readonly children: readonly RowContent[];
 }
 
 export interface TxtTableCellNode extends TxtParentNode {
-    type: "TableCell";
-    children: PhrasingContent[];
+    readonly type: "TableCell";
+    readonly children: readonly PhrasingContent[];
 }
 
 export interface TxtHtmlNode extends TxtTextNode {
-    type: "Html";
+    readonly type: "Html";
 }
 
 export interface TxtCommentNode extends TxtTextNode {
-    type: "Comment";
+    readonly type: "Comment";
 }
 
 export interface TxtCodeBlockNode extends TxtTextNode {
-    type: "CodeBlock";
-    lang?: string | null | undefined;
-    meta?: string | null | undefined;
+    readonly type: "CodeBlock";
+    readonly lang?: string | null | undefined;
+    readonly meta?: string | null | undefined;
 }
 
 export interface TxtStrNode extends TxtTextNode {
-    type: "Str";
+    readonly type: "Str";
 }
 
 export interface TxtEmphasisNode extends TxtParentNode {
-    type: "Emphasis";
-    children: PhrasingContent[];
+    readonly type: "Emphasis";
+    readonly children: readonly PhrasingContent[];
 }
 
 export interface TxtStrongNode extends TxtParentNode {
-    type: "Strong";
-    children: PhrasingContent[];
+    readonly type: "Strong";
+    readonly children: readonly PhrasingContent[];
 }
 
 export interface TxtDeleteNode extends TxtParentNode {
-    type: "Delete";
-    children: PhrasingContent[];
+    readonly type: "Delete";
+    readonly children: readonly PhrasingContent[];
 }
 
 // Inline Code
 export interface TxtCodeNode extends TxtTextNode {
-    type: "Code";
+    readonly type: "Code";
 }
 
 export interface TxtBreakNode extends TxtNode {
-    type: "Break";
+    readonly type: "Break";
 }
 
 export interface TxtLinkNode extends TxtParentNode, TxtResource {
-    type: "Link";
-    children: StaticPhrasingContent[];
+    readonly type: "Link";
+    readonly children: readonly StaticPhrasingContent[];
 }
 
 export interface TxtLinkReferenceNode extends TxtParentNode, TxtReference {
-    type: "LinkReference";
-    children: StaticPhrasingContent[];
-    referenceType: ReferenceType;
+    readonly type: "LinkReference";
+    readonly children: readonly StaticPhrasingContent[];
+    readonly referenceType: ReferenceType;
 }
 
 export interface TxtImageNode extends TxtNode, TxtResource, TxtAlternative {
-    type: "Image";
+    readonly type: "Image";
 }
 
 export interface TxtImageReferenceNode extends TxtNode, TxtAlternative, TxtReference {
-    type: "ImageReference";
-    referenceType: ReferenceType;
+    readonly type: "ImageReference";
+    readonly referenceType: ReferenceType;
 }
 
 export interface TxtDefinitionNode extends TxtNode, TxtResource, TxtReference {
-    type: "Definition";
+    readonly type: "Definition";
 }
 
 // Mixin
 export interface TxtResource {
-    url: string;
-    title?: string | null | undefined;
+    readonly url: string;
+    readonly title?: string | null | undefined;
 }
 
 export interface TxtAlternative {
-    alt?: string | null | undefined;
+    readonly alt?: string | null | undefined;
 }
 
 export interface TxtReference {
-    identifier: string;
-    label: string;
+    readonly identifier: string;
+    readonly label: string;
 }
