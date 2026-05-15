@@ -37,7 +37,7 @@ catalog:
   "@types/js-yaml": "^4.0.9"
   "@types/lodash": "^4.17.24"
   "@types/mocha": "^9.1.1"
-  "@types/node": "^24.12.3"
+  "@types/node": "^24.12.4"
   "@types/react": "^18.3.28"
   "@types/unist": "^3.0.3"
   ajv: "^8.20.0"
