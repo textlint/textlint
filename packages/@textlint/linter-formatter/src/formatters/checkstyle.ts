@@ -81,7 +81,7 @@ function formatter(results: TextlintResult[]) {
         output += "</file>";
     });
 
-    output += "</checkstyle>";
+    output += "</checkstyle>\n";
 
     return output;
 }
