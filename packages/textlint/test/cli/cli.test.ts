@@ -17,15 +17,20 @@ type RunContext = {
 };
 const originLog = Logger.log;
 const originWrite = Logger.write;
+const originError = Logger.error;
 const runWithMockLog = async (cb: (context: RunContext) => unknown): Promise<unknown> => {
     const originLog = Logger.log;
     const originWrite = Logger.write;
+    const originError = Logger.error;
     const messages: string[] = [];
     Logger.log = function mockLog(...message: unknown[]) {
         messages.push(message.join(" "));
     };
     Logger.write = function mockWrite(message: string) {
         messages.push(message);
+    };
+    Logger.error = function mockError(...message: unknown[]) {
+        messages.push(message.join(" "));
     };
     const context = {
         getLogs() {
@@ -49,6 +54,7 @@ const runWithMockLog = async (cb: (context: RunContext) => unknown): Promise<unk
     }
     Logger.log = originLog;
     Logger.write = originWrite;
+    Logger.error = originError;
     return;
 };
 describe("cli-test", function () {
@@ -63,6 +69,7 @@ describe("cli-test", function () {
     afterEach(function () {
         Logger.log = originLog;
         Logger.write = originWrite;
+        Logger.error = originError;
     });
     describe("when pass linting", function () {
         it("should output checkstyle xml if the results length is 0", function () {
@@ -288,6 +295,16 @@ describe("cli-test", function () {
                     const result = await cli.execute(`--rulesdir ${ruleDir} --fix ${targetFile}`);
                     assert.strictEqual(result, 0);
                     assertNotHasLog();
+                });
+            });
+
+            it("should exit before processing with unavailable fixer formatter", function () {
+                return runWithMockLog(async ({ getLogs }) => {
+                    const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
+                    const targetFile = path.join(__dirname, "fixtures/not-found.md");
+                    const result = await cli.execute(`--rulesdir ${ruleDir} --fix -f pretty-error ${targetFile}`);
+                    assert.strictEqual(result, 1);
+                    assert.match(getLogs()[0], /Could not find formatter pretty-error/);
                 });
             });
         });

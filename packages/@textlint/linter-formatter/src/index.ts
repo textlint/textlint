@@ -24,7 +24,7 @@ import unixFormatter from "./formatters/unix.js";
 const builtinFormatterList = {
     checkstyle: checkstyleFormatter,
     compact: compactFormatter,
-    "github": githubFormatter,
+    github: githubFormatter,
     "jslint-xml": jslintXMLFormatter,
     json: jsonFormatter,
     junit: junitFormatter,
@@ -36,6 +36,7 @@ const builtinFormatterList = {
 } as const;
 type BuiltInFormatterName = keyof typeof builtinFormatterList;
 const builtinFormatterNames = Object.keys(builtinFormatterList);
+const fixerOnlyFormatterNames = ["compats", "diff", "fixed-result"];
 const debug = debug0("textlint:@textlint/linter-formatter");
 type FormatterFunction = (results: TextlintResult[], formatterConfig: FormatterConfig) => string;
 const isFormatterFunction = (formatter: unknown): formatter is FormatterFunction => {
@@ -47,10 +48,40 @@ export interface FormatterConfig {
     color?: boolean;
 }
 
+function findFormatterPath(formatterName: string): string | null {
+    if (builtinFormatterNames.includes(formatterName)) {
+        return formatterName;
+    }
+    if (fs.existsSync(formatterName)) {
+        return formatterName;
+    }
+    const formatterPath = path.resolve(process.cwd(), formatterName);
+    if (fs.existsSync(formatterPath)) {
+        return formatterPath;
+    }
+    return (
+        tryResolve(`textlint-formatter-${formatterName}`, {
+            parentModule: "linter-formatter"
+        }) ||
+        tryResolve(formatterName, {
+            parentModule: "linter-formatter"
+        }) ||
+        null
+    );
+}
+
+export function resolveFormatter(formatterName: string): string | null {
+    if (fixerOnlyFormatterNames.includes(formatterName)) {
+        return null;
+    }
+    return findFormatterPath(formatterName);
+}
+
 export async function loadFormatter(formatterConfig: FormatterConfig) {
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);
-    if (builtinFormatterNames.includes(formatterName)) {
+    const formatterPath = findFormatterPath(formatterName);
+    if (formatterPath === formatterName && builtinFormatterNames.includes(formatterName)) {
         return {
             format(results: TextlintResult[]) {
                 return builtinFormatterList[formatterName as BuiltInFormatterName](results, formatterConfig);
@@ -58,24 +89,6 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
         };
     }
     let formatter: FormatterFunction;
-    let formatterPath;
-    if (fs.existsSync(formatterName)) {
-        formatterPath = formatterName;
-    } else if (fs.existsSync(path.resolve(process.cwd(), formatterName))) {
-        formatterPath = path.resolve(process.cwd(), formatterName);
-    } else {
-        const pkgPath =
-            tryResolve(`textlint-formatter-${formatterName}`, {
-                parentModule: "linter-formatter"
-            }) ||
-            tryResolve(formatterName, {
-                parentModule: "linter-formatter"
-            });
-        if (pkgPath) {
-            formatterPath = pkgPath;
-        }
-    }
-
     if (!formatterPath) {
         throw new Error(`Could not find formatter ${formatterName}`);
     }

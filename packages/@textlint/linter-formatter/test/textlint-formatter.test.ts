@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { getFormatterList, loadFormatter } from "../src/index.js";
+import { getFormatterList, loadFormatter, resolveFormatter } from "../src/index.js";
 
 import { describe, it } from "vitest";
 
@@ -67,6 +67,17 @@ describe("@textlint/linter-formatter-test", function () {
                 { name: "tap" },
                 { name: "unix" }
             ]);
+        });
+    });
+
+    describe("resolveFormatter", function () {
+        it("should resolve built-in formatters", function () {
+            assert.strictEqual(resolveFormatter("stylish"), "stylish");
+            assert.strictEqual(resolveFormatter("pretty-error"), "pretty-error");
+        });
+
+        it("should return null for unavailable formatter", function () {
+            assert.strictEqual(resolveFormatter("unavailable-formatter"), null);
         });
     });
 });
