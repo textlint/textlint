@@ -116,6 +116,15 @@ describe("cli-test", function () {
                 assert.match(getLogs()[0], /No rules found/);
             });
         });
+        it("should exit before processing with unavailable linter formatter", function () {
+            return runWithMockLog(async ({ getLogs }) => {
+                const ruleDir = path.join(__dirname, "fixtures/rules");
+                const targetFile = path.join(__dirname, "fixtures/not-found.md");
+                const result = await cli.execute(`--rulesdir ${ruleDir} -f fixed-result ${targetFile}`);
+                assert.strictEqual(result, 1);
+                assert.match(getLogs()[0], /Could not find formatter fixed-result/);
+            });
+        });
         it("should report lint warning and error by using stylish reporter", function () {
             return runWithMockLog(async ({ getLogs }) => {
                 const targetFile = path.join(__dirname, "fixtures/todo.md");

@@ -36,6 +36,8 @@ const builtinFormatterList = {
 } as const;
 type BuiltInFormatterName = keyof typeof builtinFormatterList;
 const builtinFormatterNames = Object.keys(builtinFormatterList);
+// Keep this local to avoid a package dependency cycle with @textlint/fixer-formatter.
+// These fixer-only built-in names must not resolve to same-named npm packages.
 const fixerOnlyFormatterNames = ["compats", "diff", "fixed-result"];
 const debug = debug0("textlint:@textlint/linter-formatter");
 type FormatterFunction = (results: TextlintResult[], formatterConfig: FormatterConfig) => string;
@@ -80,14 +82,14 @@ export function resolveFormatter(formatterName: string): string | null {
 export async function loadFormatter(formatterConfig: FormatterConfig) {
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);
-    const formatterPath = findFormatterPath(formatterName);
-    if (formatterPath === formatterName && builtinFormatterNames.includes(formatterName)) {
+    if (builtinFormatterNames.includes(formatterName)) {
         return {
             format(results: TextlintResult[]) {
                 return builtinFormatterList[formatterName as BuiltInFormatterName](results, formatterConfig);
             }
         };
     }
+    const formatterPath = findFormatterPath(formatterName);
     let formatter: FormatterFunction;
     if (!formatterPath) {
         throw new Error(`Could not find formatter ${formatterName}`);

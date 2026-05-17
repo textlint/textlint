@@ -26,6 +26,8 @@ const isFormatterFunction = (formatter: unknown): formatter is FormatterFunction
 };
 type BuiltInFormatterName = keyof typeof builtinFormatterList;
 const builtinFormatterNames = Object.keys(builtinFormatterList);
+// Keep this local to avoid a package dependency cycle with @textlint/linter-formatter.
+// These linter-only built-in names must not resolve to same-named npm packages, such as pretty-error.
 const linterOnlyFormatterNames = [
     "checkstyle",
     "compact",
@@ -73,14 +75,14 @@ export function resolveFormatter(formatterName: string): string | null {
 export async function loadFormatter(formatterConfig: FormatterConfig) {
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);
-    const formatterPath = findFormatterPath(formatterName);
-    if (formatterPath === formatterName && builtinFormatterNames.includes(formatterName as BuiltInFormatterName)) {
+    if (builtinFormatterNames.includes(formatterName as BuiltInFormatterName)) {
         return {
             format(results: TextlintFixResult[]) {
                 return builtinFormatterList[formatterName as BuiltInFormatterName](results, formatterConfig);
             }
         };
     }
+    const formatterPath = findFormatterPath(formatterName);
     let formatter: FormatterFunction;
     if (!formatterPath) {
         throw new Error(`Could not find formatter ${formatterName}`);
