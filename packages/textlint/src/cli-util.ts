@@ -44,7 +44,10 @@ export function printResults(output: string, options: CliOptions): boolean {
             return false;
         }
     } else {
-        Logger.log(output);
+        // Use raw stdout write so the output is byte-identical to the
+        // content written when --output-file is specified.
+        // console.log would append an extra newline. See #2043.
+        Logger.write(output);
     }
     return true;
 }

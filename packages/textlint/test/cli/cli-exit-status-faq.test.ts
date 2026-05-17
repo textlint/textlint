@@ -39,12 +39,16 @@ type RunContext = {
 
 const runWithMockLogger = async (cb: (context: RunContext) => unknown): Promise<unknown> => {
     const originLog = Logger.log;
+    const originWrite = Logger.write;
     const originError = Logger.error;
     const logMessages: string[] = [];
     const errorMessages: string[] = [];
 
     Logger.log = function mockLog(...message: unknown[]) {
         logMessages.push(message.join(" "));
+    };
+    Logger.write = function mockWrite(message: string) {
+        logMessages.push(message);
     };
     Logger.error = function mockError(...message: unknown[]) {
         errorMessages.push(message.map(String).join(" "));
@@ -83,6 +87,7 @@ const runWithMockLogger = async (cb: (context: RunContext) => unknown): Promise<
     }
 
     Logger.log = originLog;
+    Logger.write = originWrite;
     Logger.error = originError;
     return;
 };

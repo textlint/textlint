@@ -16,11 +16,16 @@ type RunContext = {
     assertHasLog(): unknown;
 };
 const originLog = Logger.log;
+const originWrite = Logger.write;
 const runWithMockLog = async (cb: (context: RunContext) => unknown): Promise<unknown> => {
     const originLog = Logger.log;
+    const originWrite = Logger.write;
     const messages: string[] = [];
     Logger.log = function mockLog(...message: unknown[]) {
         messages.push(message.join(" "));
+    };
+    Logger.write = function mockWrite(message: string) {
+        messages.push(message);
     };
     const context = {
         getLogs() {
@@ -43,6 +48,7 @@ const runWithMockLog = async (cb: (context: RunContext) => unknown): Promise<unk
         throw error;
     }
     Logger.log = originLog;
+    Logger.write = originWrite;
     return;
 };
 describe("cli-test", function () {
@@ -50,9 +56,13 @@ describe("cli-test", function () {
         Logger.log = function mockLog() {
             // mock console API
         };
+        Logger.write = function mockWrite() {
+            // mock stdout write API
+        };
     });
     afterEach(function () {
         Logger.log = originLog;
+        Logger.write = originWrite;
     });
     describe("when pass linting", function () {
         it("should output checkstyle xml if the results length is 0", function () {
@@ -321,6 +331,28 @@ describe("cli-test", function () {
                     assert.strictEqual(getLogs()[0], `This is fixed.`);
                     assert.strictEqual(result, 0);
                 });
+            });
+            // Regression test for #2043
+            it("should output fixed-result to stdout without appending an extra newline", async () => {
+                const originWrite = Logger.write;
+                const chunks: string[] = [];
+                Logger.write = function mockWrite(message: string) {
+                    chunks.push(message);
+                };
+                try {
+                    const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
+                    const input = "This is fix<REMOVE_MARK>";
+                    const result = await cli.execute(
+                        `--rulesdir ${ruleDir} --fix --dry-run --stdin --stdin-filename test.md --format fixed-result`,
+                        input
+                    );
+                    assert.strictEqual(result, 0);
+                    // The combined stdout output must equal the formatter output exactly
+                    // (no trailing newline added by console.log). See #2043.
+                    assert.strictEqual(chunks.join(""), "This is fixed.");
+                } finally {
+                    Logger.write = originWrite;
+                }
             });
         });
     });

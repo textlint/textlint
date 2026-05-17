@@ -52,7 +52,7 @@ describe("formatter:github", function () {
             const result = formatter(code);
             assert.equal(
                 result,
-                "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint->foo::Unexpected foo."
+                "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint->foo::Unexpected foo.\n"
             );
         });
 
@@ -61,7 +61,7 @@ describe("formatter:github", function () {
             const result = formatter(code);
             assert.equal(
                 result,
-                "::warning file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint->foo::Unexpected foo."
+                "::warning file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint->foo::Unexpected foo.\n"
             );
         });
 
@@ -70,7 +70,7 @@ describe("formatter:github", function () {
             const result = formatter(code);
             assert.equal(
                 result,
-                "::notice file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint->foo::Unexpected foo."
+                "::notice file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint->foo::Unexpected foo.\n"
             );
         });
     });
@@ -103,7 +103,7 @@ describe("formatter:github", function () {
             const result = formatter(code);
             assert.equal(
                 result,
-                "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint->foo::Unexpected foo."
+                "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint->foo::Unexpected foo.\n"
             );
         });
     });
@@ -151,7 +151,7 @@ describe("formatter:github", function () {
             const result = formatter(code);
             assert.equal(
                 result,
-                "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint->foo::Unexpected foo.\n::warning file=foo.js,line=6,endLine=6,col=14,endColumn=16,title=TextLint->bar::Unexpected bar."
+                "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint->foo::Unexpected foo.\n::warning file=foo.js,line=6,endLine=6,col=14,endColumn=16,title=TextLint->bar::Unexpected bar.\n"
             );
         });
     });
@@ -204,7 +204,7 @@ describe("formatter:github", function () {
             const result = formatter(code);
             assert.equal(
                 result,
-                "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint->foo::Unexpected foo.\n::warning file=bar.js,line=6,endLine=6,col=14,endColumn=16,title=TextLint->bar::Unexpected bar."
+                "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint->foo::Unexpected foo.\n::warning file=bar.js,line=6,endLine=6,col=14,endColumn=16,title=TextLint->bar::Unexpected bar.\n"
             );
         });
     });
@@ -228,7 +228,7 @@ describe("formatter:github", function () {
             const result = formatter(code);
             assert.equal(
                 result,
-                "::error file=foo.js,line=1,endLine=1,col=1,endColumn=1,title=TextLint::Couldn't find foo.js."
+                "::error file=foo.js,line=1,endLine=1,col=1,endColumn=1,title=TextLint::Couldn't find foo.js.\n"
             );
         });
     });

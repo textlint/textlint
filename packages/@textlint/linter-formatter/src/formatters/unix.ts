@@ -51,7 +51,7 @@ function formatter(results: TextlintResult[]) {
     });
 
     if (total > 0) {
-        output += `\n${total} problem${total !== 1 ? "s" : ""}`;
+        output += `\n${total} problem${total !== 1 ? "s" : ""}\n`;
     }
 
     return output;

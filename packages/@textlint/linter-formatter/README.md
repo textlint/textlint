@@ -66,6 +66,19 @@ $ textlint -f json README.md --rule no-todo | textlint-formatter -f pretty-error
 - [azu/textlint-formatter-codecov: textlint formatter for codecov json.](https://github.com/azu/textlint-formatter-codecov)
 - [azu/textlint-formatter-lcov: textlint formatter for lcov format](https://github.com/azu/textlint-formatter-lcov)
 
+## Writing a formatter
+
+A formatter receives `TextlintResult[]` and returns a single `string`. The returned string is written **as-is** to the destination — both stdout and `--output-file` get byte-identical content. The CLI does not append a trailing newline.
+
+This means each formatter is responsible for its own trailing newline. By convention, every built-in formatter ends its non-empty output with `\n` so that:
+
+- the terminal prompt appears on the next line when output goes to stdout, and
+- output written to `--output-file` is a well-formed text file (POSIX text files end with `\n`).
+
+Empty output (no problems to report) returns `""`; no newline is added.
+
+See [textlint/textlint#2043](https://github.com/textlint/textlint/issues/2043) for the original discussion.
+
 ## Contributing
 
 1. Fork it!

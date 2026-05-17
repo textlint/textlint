@@ -30,7 +30,8 @@ describe("formatter:compats", function () {
               "Fixed✔ single.md: line 5, col 9, Error - Unexpected foo. (foo)
 
 
-              Fixed 1 problem"
+              Fixed 1 problem
+              "
             `);
         });
     });
@@ -42,7 +43,8 @@ describe("formatter:compats", function () {
               Fixed✔ double.md: line 6, col 1, Error - Unexpected bar. (foo)
 
 
-              Fixed 2 problems"
+              Fixed 2 problems
+              "
             `);
         });
     });
@@ -59,7 +61,8 @@ describe("formatter:compats", function () {
               Fixed✔ multiple.md: line 7, col 4, Error - Unexpected bar. (foo)
 
 
-              Fixed 7 problems"
+              Fixed 7 problems
+              "
             `);
         });
     });
@@ -71,7 +74,8 @@ describe("formatter:compats", function () {
               "Fixed✔ remaining.md: line 5, col 9, Error - Unexpected foo. (foo)
 
 
-              Fixed 1 problem"
+              Fixed 1 problem
+              "
             `);
         });
     });

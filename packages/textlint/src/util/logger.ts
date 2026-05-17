@@ -13,6 +13,15 @@ export class Logger {
         console.log(...message);
     }
 
+    /**
+     * Write to stdout without appending a newline.
+     * Use this for formatter output where the trailing newline must match
+     * the original content (e.g. fixed-result with --stdin).
+     */
+    static write(message: string) {
+        process.stdout.write(message);
+    }
+
     static warn(...message: unknown[]) {
         console.warn(...message);
     }

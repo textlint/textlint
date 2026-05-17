@@ -35,7 +35,7 @@ function formatter(results: TextlintResult[]) {
         output += "</file>";
     });
 
-    output += "</jslint>";
+    output += "</jslint>\n";
 
     return output;
 }
