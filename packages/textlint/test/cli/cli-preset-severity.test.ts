@@ -12,9 +12,13 @@ type RunContext = {
 
 const runWithMockLog = async (cb: (context: RunContext) => unknown): Promise<unknown> => {
     const originLog = Logger.log;
+    const originWrite = Logger.write;
     const messages: string[] = [];
     Logger.log = function mockLog(...message: unknown[]) {
         messages.push(message.join(" "));
+    };
+    Logger.write = function mockWrite(message: string) {
+        messages.push(message);
     };
     const context = {
         getLogs() {
@@ -28,6 +32,7 @@ const runWithMockLog = async (cb: (context: RunContext) => unknown): Promise<unk
         throw error;
     }
     Logger.log = originLog;
+    Logger.write = originWrite;
     return;
 };
 
