@@ -52,7 +52,7 @@ function formatter(results: TextlintResult[]) {
         });
     });
 
-    return output.trimEnd();
+    return output;
 }
 
 export default formatter;

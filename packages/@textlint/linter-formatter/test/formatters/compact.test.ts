@@ -42,19 +42,19 @@ describe("formatter:compact", function () {
 
         it("should return a string in the format filename: line x, col y, Error - z for errors", function () {
             const result = formatter(code);
-            assert.equal(result, "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\n\n1 problem");
+            assert.equal(result, "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\n\n1 problem\n");
         });
 
         it("should return a string in the format filename: line x, col y, Warning - z for warnings", function () {
             code[0].messages[0].severity = 1;
             const result = formatter(code);
-            assert.equal(result, "foo.js: line 5, col 10, Warning - Unexpected foo. (foo)\n\n1 problem");
+            assert.equal(result, "foo.js: line 5, col 10, Warning - Unexpected foo. (foo)\n\n1 problem\n");
         });
 
         it("should return a string in the format filename: line x, col y, Info - z for info", function () {
             code[0].messages[0].severity = 3;
             const result = formatter(code);
-            assert.equal(result, "foo.js: line 5, col 10, Info - Unexpected foo. (foo)\n\n1 problem");
+            assert.equal(result, "foo.js: line 5, col 10, Info - Unexpected foo. (foo)\n\n1 problem\n");
         });
     });
 
@@ -76,7 +76,7 @@ describe("formatter:compact", function () {
 
         it("should return a string in the format filename: line x, col y, Error - z", function () {
             const result = formatter(code);
-            assert.equal(result, "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\n\n1 problem");
+            assert.equal(result, "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\n\n1 problem\n");
         });
     });
 
@@ -107,7 +107,7 @@ describe("formatter:compact", function () {
             const result = formatter(code);
             assert.equal(
                 result,
-                "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\nfoo.js: line 6, col 11, Warning - Unexpected bar. (bar)\n\n2 problems"
+                "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\nfoo.js: line 6, col 11, Warning - Unexpected bar. (bar)\n\n2 problems\n"
             );
         });
     });
@@ -144,7 +144,7 @@ describe("formatter:compact", function () {
             const result = formatter(code);
             assert.equal(
                 result,
-                "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\nbar.js: line 6, col 11, Warning - Unexpected bar. (bar)\n\n2 problems"
+                "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\nbar.js: line 6, col 11, Warning - Unexpected bar. (bar)\n\n2 problems\n"
             );
         });
     });
@@ -166,7 +166,7 @@ describe("formatter:compact", function () {
 
         it("should return a string without line and column", function () {
             const result = formatter(code);
-            assert.equal(result, "foo.js: line 0, col 0, Error - Couldn't find foo.js.\n\n1 problem");
+            assert.equal(result, "foo.js: line 0, col 0, Error - Couldn't find foo.js.\n\n1 problem\n");
         });
     });
 });

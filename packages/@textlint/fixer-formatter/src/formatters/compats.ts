@@ -30,7 +30,7 @@ export default function (results: TextlintFixResult[]) {
     });
 
     if (total > 0) {
-        output += `\n\nFixed ${total} problem${total !== 1 ? "s" : ""}`;
+        output += `\n\nFixed ${total} problem${total !== 1 ? "s" : ""}\n`;
     }
 
     return output;
