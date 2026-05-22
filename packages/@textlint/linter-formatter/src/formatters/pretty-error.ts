@@ -23,7 +23,7 @@ import { readFileSync } from "node:fs";
 const formatTemplate = (text: string, context: Record<string, unknown>): string =>
     String(text).replace(/\{?\{([^{}]+)}}?/g, (tag, name: string) => {
         if (tag.startsWith("{{") && tag.endsWith("}}")) {
-            return "{" + name + "}";
+            return `{${name}}`;
         }
         if (!Object.prototype.hasOwnProperty.call(context, name)) {
             return tag;
