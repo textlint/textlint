@@ -6,12 +6,6 @@ settings:
 
 catalogs:
   default:
-    '@azu/format-text':
-      specifier: ^1.0.2
-      version: 1.0.2
-    '@azu/style-format':
-      specifier: ^1.0.1
-      version: 1.0.1
     '@babel/cli':
       specifier: ^7.28.6
       version: 7.28.6
@@ -735,12 +729,6 @@ importers:
 
   packages/@textlint/linter-formatter:
     dependencies:
-      '@azu/format-text':
-        specifier: 'catalog:'
-        version: 1.0.2
-      '@azu/style-format':
-        specifier: 'catalog:'
-        version: 1.0.1
       '@textlint/module-interop':
         specifier: workspace:*
         version: link:../module-interop
@@ -1474,12 +1462,6 @@ packages:
   '@algolia/requester-node-http@5.39.0':
     resolution: {integrity: sha512-6beG+egPwXmvhAg+m0STCj+ZssDcjrLzf4L05aKm2nGglMXSSPz0cH/rM+kVD9krNfldiMctURd4wjojW1fV0w==}
     engines: {node: '>= 14.0.0'}
-
-  '@azu/format-text@1.0.2':
-    resolution: {integrity: sha512-Swi4N7Edy1Eqq82GxgEECXSSLyn6GOb5htRFPzBDdUkECGXtlf12ynO5oJSpWKPwCaUssOu7NfhDcCWpIC6Ywg==}
-
-  '@azu/style-format@1.0.1':
-    resolution: {integrity: sha512-AHcTojlNBdD/3/KxIKlg8sxIWHfOtQszLvOpagLTO+bjC3u7SAszu1lf//u7JJC50aUSH+BVWDD/KvaA6Gfn5g==}
 
   '@babel/cli@7.28.6':
     resolution: {integrity: sha512-6EUNcuBbNkj08Oj4gAZ+BUU8yLCgKzgVX4gaTh09Ya2C8ICM4P+G30g4m3akRxSYAp3A/gnWchrNst7px4/nUQ==}
@@ -10128,12 +10110,6 @@ snapshots:
   '@algolia/requester-node-http@5.39.0':
     dependencies:
       '@algolia/client-common': 5.39.0
-
-  '@azu/format-text@1.0.2': {}
-
-  '@azu/style-format@1.0.1':
-    dependencies:
-      '@azu/format-text': 1.0.2
 
   '@babel/cli@7.28.6(@babel/core@7.29.0)':
     dependencies:
