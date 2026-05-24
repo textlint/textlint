@@ -61,7 +61,7 @@ catalog:
   match-index: "^1.0.3"
   md5: "^2.3.0"
   mdast-util-gfm-autolink-literal: "^0.1.3"
-  mocha: "^11.7.5"
+  mocha: "^11.7.6"
   neotraverse: "^0.6.18"
   npm-run-all2: "^8.0.4"
   optionator: "^0.9.4"
