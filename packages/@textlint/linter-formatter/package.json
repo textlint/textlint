@@ -33,8 +33,6 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@azu/format-text": "catalog:",
-    "@azu/style-format": "catalog:",
     "@textlint/module-interop": "workspace:*",
     "@textlint/resolver": "workspace:*",
     "@textlint/types": "workspace:*",

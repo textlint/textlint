@@ -7,10 +7,6 @@ import type { TextlintMessage, TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
 
 import chalk from "chalk";
-// @ts-expect-error no types
-import format from "@azu/format-text";
-// @ts-expect-error no types
-import style from "@azu/style-format";
 import stripAnsi from "strip-ansi";
 // @ts-expect-error no types
 import pluralize from "pluralize";
@@ -21,9 +17,31 @@ import widthOfString from "string-width";
 // color set
 import { readFileSync } from "node:fs";
 
+// Inlined replacement for @azu/format-text (BSD-3-Clause, https://github.com/azu/format-text)
+// and @azu/style-format (https://github.com/azu/style-format). Replaces `{name}` placeholders
+// from a context object, leaves unknown placeholders intact, and supports `{{name}}` escaping.
+const formatTemplate = (text: string, context: Record<string, unknown>): string =>
+    String(text).replace(/\{?\{([^{}]+)}}?/g, (tag, name: string) => {
+        if (tag.startsWith("{{") && tag.endsWith("}}")) {
+            return `{${name}}`;
+        }
+        if (!Object.prototype.hasOwnProperty.call(context, name)) {
+            return tag;
+        }
+        const value = context[name];
+        return String(typeof value === "function" ? (value as () => unknown)() : value);
+    });
+
+// Subset of @azu/style-format's ansi-codes (MIT) — only the styles used by the template below.
+const ansiStyles: Record<string, string> = {
+    reset: "\u001b[0m",
+    grey: "\u001b[90m",
+    red: "\u001b[31m"
+};
+
 const summaryColor = "yellow";
 const greenColor = "green";
-const template = style(
+const template = formatTemplate(
     "{grey}{ruleId}: {red}{title}{reset}\n" +
         "{grey}{filename}{reset}\n" +
         "    {red}{paddingForLineNo}  {v}{reset}\n" +
@@ -31,7 +49,8 @@ const template = style(
         "    {reset}{failingLineNo}. {failingLine}{reset}\n" +
         "    {grey}{nextLineNo}. {nextLine}{reset}\n" +
         "    {red}{paddingForLineNo}  {^}{reset}\n" +
-        ""
+        "",
+    ansiStyles
 );
 
 /**
@@ -100,7 +119,7 @@ function prettyError(code: string, filePath: string, message: TextlintMessage): 
     const failingLineNo = String(parsed[1].line);
     const nextLineNo = String(parsed[2].line);
     const linumlen = Math.max(previousLineNo.length, failingLineNo.length, nextLineNo.length);
-    return format(template, {
+    return formatTemplate(template, {
         ruleId: message.ruleId,
         title: message.message,
         filename: `${filePath}:${message.line}:${message.column}`,

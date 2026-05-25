@@ -16,8 +16,6 @@ allowBuilds:
 # Catalog: centralized external dependency versions
 # https://pnpm.io/catalogs
 catalog:
-  "@azu/format-text": "^1.0.2"
-  "@azu/style-format": "^1.0.1"
   "@babel/cli": "^7.28.6"
   "@babel/core": "^7.29.0"
   "@babel/preset-env": "^7.29.5"
