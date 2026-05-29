@@ -18,10 +18,10 @@ allowBuilds:
 catalog:
   "@azu/format-text": "^1.0.2"
   "@azu/style-format": "^1.0.1"
-  "@babel/cli": "^7.28.6"
+  "@babel/cli": "^7.29.7"
   "@babel/core": "^7.29.7"
   "@babel/preset-env": "^7.29.7"
-  "@babel/preset-typescript": "^7.28.5"
+  "@babel/preset-typescript": "^7.29.7"
   "@babel/register": "^7.29.7"
   "@docusaurus/core": "^3.10.1"
   "@docusaurus/module-type-aliases": "^3.10.1"
