@@ -38,7 +38,7 @@ catalog:
   "@types/lodash": "^4.17.24"
   "@types/mocha": "^9.1.1"
   "@types/node": "^24.13.0"
-  "@types/react": "^18.3.30"
+  "@types/react": "^18.3.31"
   "@types/unist": "^3.0.3"
   ajv: "^8.20.0"
   analyze-desumasu-dearu: "^4.0.1"
