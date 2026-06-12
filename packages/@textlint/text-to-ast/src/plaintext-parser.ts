@@ -149,38 +149,41 @@ export function parse(text: string): TxtDocumentNode {
     const isEmptyLine = (line: LineWithBreak | LastLine | EmptyLine, index: number): line is EmptyLine => {
         return index !== lastLineIndex && line.text === "";
     };
-    const children = textLineByLine.reduce(function (result, currentLine, index) {
-        const lineNumber = index + 1;
-        if (isLastEmptyLine(currentLine, index)) {
-            return result;
-        }
-        // \n
-        if (isEmptyLine(currentLine, index)) {
-            const emptyBreakNode = createBRNode({
-                lineBreak: currentLine.lineBreak,
-                lineNumber,
-                startIndex
-            });
-            startIndex += emptyBreakNode.raw.length;
-            result.push(emptyBreakNode);
-            return result;
-        }
+    const children = textLineByLine.reduce(
+        function (result, currentLine, index) {
+            const lineNumber = index + 1;
+            if (isLastEmptyLine(currentLine, index)) {
+                return result;
+            }
+            // \n
+            if (isEmptyLine(currentLine, index)) {
+                const emptyBreakNode = createBRNode({
+                    lineBreak: currentLine.lineBreak,
+                    lineNumber,
+                    startIndex
+                });
+                startIndex += emptyBreakNode.raw.length;
+                result.push(emptyBreakNode);
+                return result;
+            }
 
-        // (Paragraph > Str) -> Br?
-        const strNode = parseLine(currentLine.text, lineNumber, startIndex);
-        const paragraph = createParagraph([strNode]);
-        startIndex += paragraph.raw.length;
-        result.push(paragraph);
-        // add Break node with actual line break value
-        // It should support CRLF
-        // https://github.com/textlint/textlint/issues/656
-        if (currentLine.lineBreak !== null) {
-            const breakNode = createEndedBRNode({ prevNode: paragraph, lineBreakText: currentLine.lineBreak });
-            startIndex += breakNode.raw.length;
-            result.push(breakNode);
-        }
-        return result;
-    }, [] as (TxtBreakNode | TxtParagraphNode)[]);
+            // (Paragraph > Str) -> Br?
+            const strNode = parseLine(currentLine.text, lineNumber, startIndex);
+            const paragraph = createParagraph([strNode]);
+            startIndex += paragraph.raw.length;
+            result.push(paragraph);
+            // add Break node with actual line break value
+            // It should support CRLF
+            // https://github.com/textlint/textlint/issues/656
+            if (currentLine.lineBreak !== null) {
+                const breakNode = createEndedBRNode({ prevNode: paragraph, lineBreakText: currentLine.lineBreak });
+                startIndex += breakNode.raw.length;
+                result.push(breakNode);
+            }
+            return result;
+        },
+        [] as (TxtBreakNode | TxtParagraphNode)[]
+    );
     const lastLine = textLineByLine[textLineByLine.length - 1];
     if (lastLine === undefined) {
         return {

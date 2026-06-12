@@ -70,7 +70,7 @@ catalog:
   path-to-glob-pattern: "^2.0.1"
   pkg-to-readme: "^3.0.1"
   pluralize: "^2.0.0"
-  prettier: "^2.8.1"
+  prettier: "3.8.3"
   prh: "^5.4.4"
   prism-react-renderer: "^2.4.1"
   rc-config-loader: "^4.1.4"

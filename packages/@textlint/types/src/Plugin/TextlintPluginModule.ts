@@ -58,7 +58,7 @@ export declare class TextlintPluginProcessor {
          */
         preProcess(
             text: string,
-            filePath?: string
+            filePath?: string,
         ): TextlintPluginPreProcessResult | Promise<TextlintPluginPreProcessResult>;
         /**
          * postProcess return messages and the filePath for the result.
@@ -67,7 +67,7 @@ export declare class TextlintPluginProcessor {
          */
         postProcess(
             messages: Array<TextlintMessage>,
-            filePath?: string
+            filePath?: string,
         ): TextlintPluginPostProcessResult | Promise<TextlintPluginPostProcessResult>;
     };
 }
