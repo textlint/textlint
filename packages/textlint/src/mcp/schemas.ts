@@ -1,4 +1,4 @@
-import { z } from "zod";
+import * as z from "zod";
 
 /**
  * Zod schema for TextlintMessage that matches the TextlintMessage interface
