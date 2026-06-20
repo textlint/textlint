@@ -2,7 +2,7 @@
 import type { TextlintFixResult } from "@textlint/types";
 import * as fs from "node:fs";
 import { diffLines } from "diff";
-import chalk from "chalk";
+import { styleText } from "node:util";
 import stripAnsi from "strip-ansi";
 
 type DiffPart = {
@@ -71,7 +71,7 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
         if (!isFile(filePath)) {
             return;
         }
-        output += `${chalk.underline(result.filePath)}\n`;
+        output += `${styleText("underline", result.filePath)}\n`;
 
         const originalContent = fs.readFileSync(filePath, "utf-8");
         const diff = diffLines(originalContent, result.output);
@@ -88,12 +88,12 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
                  */
                 if (isModified(prevLine)) {
                     const lines = part.value.split("\n");
-                    output += `${chalk[greyColor](lines[0])}\n`;
+                    output += `${styleText(greyColor, lines[0])}\n`;
                 }
-                output += chalk[greyColor]("...");
+                output += styleText(greyColor, "...");
                 if (isModified(nextLine)) {
                     const lines = part.value.split("\n");
-                    output += `${chalk[greyColor](lines[lines.length - 1])}\n`;
+                    output += `${styleText(greyColor, lines[lines.length - 1])}\n`;
                 }
                 /*
                     ...
@@ -116,13 +116,14 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
                 lineColor = "grey";
                 diffMark = "";
             }
-            output += chalk[lineColor](addMarkEachLine(diffMark, part.value));
+            output += styleText(lineColor, addMarkEachLine(diffMark, part.value));
         });
         output += "\n\n";
     });
 
     if (totalFixed > 0) {
-        output += chalk[greenColor].bold(
+        output += styleText(
+            [greenColor, "bold"],
             [
                 // http://www.fileformat.info/info/unicode/char/2714/index.htm
                 "✔ Fixed ",
@@ -134,7 +135,8 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
     }
 
     if (errors > 0) {
-        output += chalk[summaryColor].bold(
+        output += styleText(
+            [summaryColor, "bold"],
             [
                 // http://www.fileformat.info/info/unicode/char/2716/index.htm
                 "✖ Remaining ",

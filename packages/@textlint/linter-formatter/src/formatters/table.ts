@@ -12,7 +12,7 @@ import { FormatterOptions } from "../FormatterOptions.js";
 // Requirements
 //------------------------------------------------------------------------------
 
-import chalk from "chalk";
+import { styleText } from "node:util";
 
 import { table } from "table";
 // @ts-expect-error no types
@@ -35,11 +35,11 @@ function drawTable(messages: TextlintMessage[]): string {
     }
 
     rows.push([
-        chalk.bold("Line"),
-        chalk.bold("Column"),
-        chalk.bold("Type"),
-        chalk.bold("Message"),
-        chalk.bold("Rule ID")
+        styleText("bold", "Line"),
+        styleText("bold", "Column"),
+        styleText("bold", "Type"),
+        styleText("bold", "Message"),
+        styleText("bold", "Rule ID")
     ]);
 
     messages.forEach(function (message: TextlintMessage) {
@@ -47,13 +47,13 @@ function drawTable(messages: TextlintMessage[]): string {
         const fatal = (message as { fatal?: boolean }).fatal;
 
         if (fatal || message.severity === 2) {
-            messageType = chalk.red("error");
+            messageType = styleText("red", "error");
         } else if (message.severity === 1) {
-            messageType = chalk.yellow("warning");
+            messageType = styleText("yellow", "warning");
         } else if (message.severity === 3) {
-            messageType = chalk.green("info");
+            messageType = styleText("green", "info");
         } else {
-            messageType = chalk.yellow("warning");
+            messageType = styleText("yellow", "warning");
         }
 
         rows.push([message.line || 0, message.column || 0, messageType, message.message, message.ruleId || ""]);
@@ -144,13 +144,13 @@ function formatter(report: TextlintResult[], options: FormatterOptions) {
 
     const tableData = [];
     if (errorCount > 0) {
-        tableData.push([chalk.red(pluralize("Error", errorCount, true))]);
+        tableData.push([styleText("red", pluralize("Error", errorCount, true))]);
     }
     if (warningCount > 0) {
-        tableData.push([chalk.yellow(pluralize("Warning", warningCount, true))]);
+        tableData.push([styleText("yellow", pluralize("Warning", warningCount, true))]);
     }
     if (infoCount > 0) {
-        tableData.push([chalk.green(pluralize("Info", infoCount, true))]);
+        tableData.push([styleText("green", pluralize("Info", infoCount, true))]);
     }
 
     if (tableData.length > 0) {
