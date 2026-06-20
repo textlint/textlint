@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { TextlintRuleErrorImpl } from "../context/TextlintRuleErrorImpl.js";
 import { EventEmitter, PromiseEventEmitter } from "./promise-event-emitter.js";
 import { resolveLocation, resolveFixCommandLocation, resolveSuggestionsLocation } from "../core/source-location.js";

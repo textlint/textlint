@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { TxtNode } from "@textlint/ast-node-types";
 import { describe, it } from "vitest";
 import RuleFixer from "../../src/fixer/rule-fixer.js";

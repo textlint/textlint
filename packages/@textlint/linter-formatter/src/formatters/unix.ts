@@ -4,7 +4,6 @@
  * @copyright 2015 oshi-shinobu. All rights reserved.
  */
 
-"use strict";
 import type { TextlintResult } from "@textlint/types";
 
 //------------------------------------------------------------------------------

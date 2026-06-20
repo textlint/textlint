@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 
 import type { TextlintFixResult, TextlintMessage, TextlintPluginProcessor, TextlintSourceCode } from "@textlint/types";
 import FixerTask from "../task/fixer-task.js";

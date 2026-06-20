@@ -1,4 +1,3 @@
-"use strict";
 import { describe, it, expect } from "vitest";
 import compats from "../../src/formatters/compats.js";
 // @ts-expect-error - fixture files don't have type definitions

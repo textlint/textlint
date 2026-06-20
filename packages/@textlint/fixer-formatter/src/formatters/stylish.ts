@@ -1,4 +1,3 @@
-"use strict";
 import type { TextlintFixResult } from "@textlint/types";
 
 import chalk from "chalk";

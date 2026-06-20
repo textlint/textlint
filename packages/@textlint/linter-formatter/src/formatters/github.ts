@@ -4,7 +4,6 @@
  * @copyright 2015 James Thompson 2025. All rights reserved.
  */
 
-"use strict";
 import type { TextlintResult } from "@textlint/types";
 
 //------------------------------------------------------------------------------

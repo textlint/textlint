@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { describe, it } from "vitest";
 import * as assert from "node:assert";
 import { getSeverity } from "../../src/shared/rule-severity.js";

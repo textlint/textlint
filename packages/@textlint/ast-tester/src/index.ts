@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import * as assert from "node:assert";
 import { TxtNode } from "@textlint/ast-node-types";
 import { test as UnistTest } from "./unist-test.js";

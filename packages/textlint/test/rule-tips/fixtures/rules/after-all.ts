@@ -1,5 +1,4 @@
 // MIT © 2017 azu
-"use strict";
 
 import { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types";
 

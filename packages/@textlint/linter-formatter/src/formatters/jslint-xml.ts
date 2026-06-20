@@ -2,7 +2,6 @@
  * @fileoverview JSLint XML reporter
  * @author Ian Christian Myers
  */
-"use strict";
 import type { TextlintResult } from "@textlint/types";
 
 import lodash from "lodash";

@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import * as assert from "assert";
 import { createTestLinter, createTextlintKernelDescriptor } from "../src/textlint-tester";
 import { testValid, testInvalid } from "../src/test-util";

@@ -4,7 +4,6 @@
  * @copyright 2016 Gajus Kuizinas <gajus@gajus.com>. All rights reserved.
  */
 
-"use strict";
 import type { TextlintMessage, TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
 

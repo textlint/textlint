@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 /**
  * @param {import("@textlint/types").TextlintRuleContext} context
  */

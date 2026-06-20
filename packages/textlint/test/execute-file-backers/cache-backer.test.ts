@@ -1,5 +1,4 @@
 // MIT © 2016 azu
-"use strict";
 import assert from "node:assert";
 import { describe, it, beforeAll, afterAll } from "vitest";
 import path from "node:path";

@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import * as assert from "assert";
 import { testInvalid, testValid } from "./test-util";
 import {

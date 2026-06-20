@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { TextlintKernel, TextlintKernelDescriptor, TextlintResult } from "@textlint/kernel";
 import {
     searchFiles,
@@ -28,8 +27,8 @@ export class TextlintFileSearchError extends Error {
 
     constructor({ errors, patterns }: { errors: SearchFilesResultError[]; patterns: string[] }) {
         super(`Not found target files.
-        
-Patterns: ${patterns.join(", ")}        
+
+Patterns: ${patterns.join(", ")}
 Reason: ${errors.map((e) => e.type).join(", ") || "Unknown error"}`);
         this.errors = errors;
         this.patterns = patterns;

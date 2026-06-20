@@ -3,7 +3,6 @@
  * @author Sindre Sorhus
  */
 
-"use strict";
 import type { TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
 

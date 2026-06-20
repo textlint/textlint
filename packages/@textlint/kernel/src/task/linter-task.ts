@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import CoreTask from "./textlint-core-task.js";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface.js";
 import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor/index.js";

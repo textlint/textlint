@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import CoreTask, {
     default as TextLintCoreTask,
     IgnoreReportedMessage,

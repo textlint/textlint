@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 function reporter(context) {
     const { Syntax, RuleError, fixer, report, getSource } = context;
     return {

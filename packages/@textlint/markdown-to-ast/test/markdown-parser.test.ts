@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { TxtNode } from "@textlint/ast-node-types";
 import { beforeEach, describe, it } from "vitest";
 import { parse, Syntax } from "../src/index";

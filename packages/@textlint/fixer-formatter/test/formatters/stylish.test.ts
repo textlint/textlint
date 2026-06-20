@@ -1,4 +1,3 @@
-"use strict";
 import stylish from "../../src/formatters/stylish.js";
 import { describe, it, expect } from "vitest";
 

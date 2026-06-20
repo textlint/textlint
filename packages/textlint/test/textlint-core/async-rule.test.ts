@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import assert from "node:assert";
 import { afterEach, beforeEach, describe, it } from "vitest";
 import { TextlintRuleModule } from "@textlint/kernel";

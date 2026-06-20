@@ -1,4 +1,3 @@
-"use strict";
 import common from "./common";
 import { TextlintRuleModule, TextlintRuleReporter } from "@textlint/types";
 

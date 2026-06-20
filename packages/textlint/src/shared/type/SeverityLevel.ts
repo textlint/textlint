@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 /**
  * Severity level
  * It is used in configuration and message

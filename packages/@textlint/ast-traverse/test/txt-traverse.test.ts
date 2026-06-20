@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 
 import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
 import { describe, it } from "vitest";

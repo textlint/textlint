@@ -1,5 +1,4 @@
 // MIT © 2016 azu
-"use strict";
 import fileEntryCache, { FileEntryCache } from "file-entry-cache";
 import debug0 from "debug";
 import path from "node:path";

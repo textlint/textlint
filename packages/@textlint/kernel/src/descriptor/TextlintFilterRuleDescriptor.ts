@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { getFilter } from "./rule-creator-helper.js";
 import { TextlintKernelFilterRule } from "../textlint-kernel-interface.js";
 import { Descriptor } from "./Descriptor.js";

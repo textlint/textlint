@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import MessageType from "../shared/type/MessageType.js";
 import { IgnoreReportedMessage, LintReportedMessage } from "../task/textlint-core-task.js";
 

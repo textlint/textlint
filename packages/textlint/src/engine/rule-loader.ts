@@ -1,4 +1,3 @@
-"use strict";
 import { moduleInterop } from "@textlint/module-interop";
 import * as fs from "node:fs";
 import * as path from "node:path";

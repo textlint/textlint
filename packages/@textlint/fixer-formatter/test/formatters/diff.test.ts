@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { describe, it, expect } from "vitest";
 import diff from "../../src/formatters/diff.js";
 // @ts-expect-error - fixture files don't have type definitions

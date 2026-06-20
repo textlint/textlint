@@ -1,4 +1,3 @@
-"use strict";
 import { TextlintKernelPlugin } from "../textlint-kernel-interface.js";
 import { TextlintPluginDescriptor } from "./TextlintPluginDescriptor.js";
 import { filterDuplicateDescriptor } from "./DescriptorUtil.js";

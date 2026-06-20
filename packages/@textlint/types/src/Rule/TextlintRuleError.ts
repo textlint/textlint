@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand.js";
 import { TextlintRuleSuggestion } from "./TextlintRuleSuggestion.js";
 

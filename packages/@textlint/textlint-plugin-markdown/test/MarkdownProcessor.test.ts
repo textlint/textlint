@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import assert from "node:assert";
 import { describe, it } from "vitest";
 import { TextlintKernel, TextlintPluginOptions } from "@textlint/kernel";

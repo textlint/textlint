@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 
 import { TextlintBaseRuleContext } from "./TextlintBaseRuleContext.js";
 import { TxtNode } from "@textlint/ast-node-types";

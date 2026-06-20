@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { TextlintKernelFilterRule } from "../textlint-kernel-interface.js";
 import { TextlintFilterRuleDescriptor } from "./TextlintFilterRuleDescriptor.js";
 import { filterDuplicateDescriptor } from "./DescriptorUtil.js";

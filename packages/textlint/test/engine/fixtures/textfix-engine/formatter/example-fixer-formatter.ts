@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 
 import { TextlintFixResult } from "@textlint/types";
 

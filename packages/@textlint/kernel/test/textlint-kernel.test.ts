@@ -1,5 +1,4 @@
 // MIT © 2017 azu
-"use strict";
 import type { TextlintMessage } from "@textlint/types";
 import { describe, it } from "vitest";
 import { TextlintKernel } from "../src/textlint-kernel.js";

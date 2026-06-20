@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import TextLintTester from "../src/index";
 import path from "path";
 import fixerRule from "./fixtures/rule/fixer-rule-add";

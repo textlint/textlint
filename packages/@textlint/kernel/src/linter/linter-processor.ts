@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import LinterTask from "../task/linter-task.js";
 import TaskRunner from "../task/task-runner.js";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface.js";
