@@ -6,6 +6,7 @@ import {
     TextlintKernel,
     TextlintKernelDescriptor,
     type TextlintKernelPlugin,
+    type TextlintKernelRule,
     type TextlintPluginCreator,
     type TextlintRuleModule
 } from "@textlint/kernel";
@@ -76,16 +77,8 @@ function assertTestConfig(testConfig: TestConfig): void {
     }
 }
 
-export type TestConfigPlugin = {
-    pluginId: string;
-    plugin: TextlintPluginCreator;
-    options?: TextlintPluginOptions | boolean;
-};
-export type TestConfigRule = {
-    ruleId: string;
-    rule: TextlintRuleModule;
-    options?: TextlintRuleOptions | boolean;
-};
+export type TestConfigPlugin = TextlintKernelPlugin;
+export type TestConfigRule = TextlintKernelRule;
 export type TestConfig = {
     plugins?: TestConfigPlugin[];
     rules: TestConfigRule[];
