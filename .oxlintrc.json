@@ -24,7 +24,7 @@
     "typescript/restrict-template-expressions": "off",
     "typescript/no-redundant-type-constituents": "off",
     "unicorn/prefer-node-protocol": "error",
-    "unicorn/prefer-string-starts-ends-with": "off",
+    "unicorn/prefer-string-starts-ends-with": "error",
     "unicorn/no-new-array": "off",
     "unicorn/no-empty-file": "off",
   },

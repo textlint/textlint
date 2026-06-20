@@ -6,7 +6,7 @@ const reporter: TextlintRuleModule = (context) => {
     return {
         [Syntax.Str](node) {
             const text = getSource(node);
-            if (/\.$/.test(text)) {
+            if (text.endsWith(".")) {
                 return;
             }
             report(

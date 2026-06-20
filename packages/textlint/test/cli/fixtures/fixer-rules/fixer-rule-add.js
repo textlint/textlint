@@ -10,7 +10,7 @@ const reporter = (context) => {
         },
         [Syntax.Str](node) {
             const text = getSource(node);
-            if (/\.$/.test(text)) {
+            if (text.endsWith(".")) {
                 return;
             }
             const add = fixer.insertTextAfter(node, ".");

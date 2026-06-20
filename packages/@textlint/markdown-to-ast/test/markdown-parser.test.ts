@@ -218,10 +218,10 @@ describe("markdown-parser", function () {
             let node: TxtNode, AST: TxtNode;
             AST = parse("- item");
             node = findFirstTypedNode(AST, Syntax.ListItem);
-            assert(/^-/.test(node.raw));
+            assert(node.raw.startsWith("- "));
             AST = parse("* item");
             node = findFirstTypedNode(AST, Syntax.ListItem);
-            assert(/^\*/.test(node.raw));
+            assert(node.raw.startsWith("* "));
         });
         it("should have marker_offser of each items", function () {
             const AST = parse("- item\n" + "   - item2"); // second line should has offset

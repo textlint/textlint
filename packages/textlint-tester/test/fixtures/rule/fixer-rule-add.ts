@@ -10,7 +10,7 @@ const reporter: TextlintRuleReporter = (context) => {
                 return;
             }
             const text = getSource(node);
-            if (/\.$/.test(text)) {
+            if (text.endsWith(".")) {
                 return;
             }
             const index = text.length;
