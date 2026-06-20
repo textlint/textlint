@@ -5,37 +5,15 @@
  */
 import Logger from "./logger.js";
 
-/* istanbul ignore next */
-/**
- * Align the string to left
- * @param {string} str string to evaluate
- * @param {int} len length of the string
- * @param {string} [ch] delimiter character
- * @returns {string} modified string
- * @private
- */
-function alignLeft(str: string, len: number, ch?: string) {
-    return str + new Array(len - str.length + 1).join(ch || " ");
-}
-
-/* istanbul ignore next */
-/**
- * Align the string to right
- * @param {string} str string to evaluate
- * @param {int} len length of the string
- * @param {string} [ch] delimiter character
- * @returns {string} modified string
- * @private
- */
-function alignRight(str: string, len: number, ch?: string) {
-    return new Array(len - str.length + 1).join(ch || " ") + str;
-}
-
 const isBrowser = typeof process === "undefined";
 const enabled = isBrowser ? false : Boolean(process.env.TIMING);
 
 const HEADERS = ["Rule", "Time (ms)", "Relative"];
-const ALIGN = [alignLeft, alignRight, alignRight];
+const ALIGN = [
+    (str: string, len: number, ch = " ") => str.padEnd(len, ch),
+    (str: string, len: number, ch = " ") => str.padStart(len, ch),
+    (str: string, len: number, ch = " ") => str.padStart(len, ch)
+];
 
 /* istanbul ignore next */
 /**

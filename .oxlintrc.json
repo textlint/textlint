@@ -25,7 +25,7 @@
     "typescript/no-redundant-type-constituents": "off",
     "unicorn/prefer-node-protocol": "error",
     "unicorn/prefer-string-starts-ends-with": "error",
-    "unicorn/no-new-array": "off",
+    "unicorn/no-new-array": "error",
     "unicorn/no-empty-file": "off",
   },
   "overrides": [
