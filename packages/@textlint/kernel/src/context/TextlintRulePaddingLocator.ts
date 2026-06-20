@@ -1,4 +1,4 @@
-import {
+import type {
     TextlintRuleErrorPaddingLocation,
     TextlintRuleErrorPaddingLocationLoc,
     TextlintRuleErrorPaddingLocationRange,
@@ -59,7 +59,7 @@ export const createPaddingLocator = (): TextlintRulePaddingLocator => {
             }
             if (aRange[0] === aRange[1]) {
                 throw new Error(`range must not be same: ${JSON.stringify(aRange)}
-                
+
 Probably, you need to use at() method instead.`);
             }
             return {

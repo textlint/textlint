@@ -1,6 +1,6 @@
 // LICENSE : MIT
 
-import { TextlintResult } from "@textlint/types";
+import type { TextlintResult } from "@textlint/types";
 
 export default function (results: TextlintResult[]) {
     return `example-formatter\n${results

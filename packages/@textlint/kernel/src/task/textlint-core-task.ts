@@ -5,7 +5,7 @@ import { resolveLocation, resolveFixCommandLocation, resolveSuggestionsLocation 
 import timing from "../util/timing.js";
 import { invariant } from "../util/invariant.js";
 import MessageType from "../shared/type/MessageType.js";
-import { AnyTxtNode, TxtParentNode } from "@textlint/ast-node-types";
+import type { AnyTxtNode, TxtParentNode } from "@textlint/ast-node-types";
 import type {
     TextlintFilterRuleContext,
     TextlintFilterRuleOptions,

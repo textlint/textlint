@@ -5,7 +5,7 @@ import type {
     TextlintSourceCodePosition,
     TextlintSourceCodeRange
 } from "@textlint/types";
-import { AnyTxtNode, ASTNodeTypes } from "@textlint/ast-node-types";
+import { type AnyTxtNode, ASTNodeTypes } from "@textlint/ast-node-types";
 import { StructuredSource } from "structured-source";
 import { invariant } from "../util/invariant.js";
 

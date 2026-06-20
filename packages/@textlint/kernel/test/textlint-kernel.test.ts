@@ -4,8 +4,8 @@ import { describe, it } from "vitest";
 import { TextlintKernel } from "../src/textlint-kernel.js";
 import { errorRule } from "./helper/ErrorRule.js";
 import { suggestionRule } from "./helper/SuggestionRule.js";
-import { createPluginStub, ExampleProcessorOptions } from "./helper/ExamplePlugin.js";
-import { TextlintKernelOptions } from "../src/textlint-kernel-interface.js";
+import { createPluginStub, type ExampleProcessorOptions } from "./helper/ExamplePlugin.js";
+import type { TextlintKernelOptions } from "../src/textlint-kernel-interface.js";
 import { filterRule } from "./helper/FilterRule.js";
 import { TextlintRuleSeverityLevelKeys } from "../src/context/TextlintRuleSeverityLevelKeys.js";
 

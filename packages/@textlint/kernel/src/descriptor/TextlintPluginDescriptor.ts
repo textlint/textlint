@@ -1,5 +1,5 @@
-import { TextlintKernelPlugin } from "../textlint-kernel-interface.js";
-import { Descriptor } from "./Descriptor.js";
+import type { TextlintKernelPlugin } from "../textlint-kernel-interface.js";
+import type { Descriptor } from "./Descriptor.js";
 import type {
     TextlintPluginOptions,
     TextlintPluginProcessor,

@@ -1,10 +1,7 @@
 // LICENSE : MIT
 
-import { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types";
+import type { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types";
 
-/**
- * @param {RuleContext} context
- */
 export default function (context: TextlintRuleContext): TextlintRuleReportHandler {
     return {
         [context.Syntax.Str](node) {

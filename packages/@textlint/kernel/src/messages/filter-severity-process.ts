@@ -1,6 +1,6 @@
 // LICENSE : MIT
 import type { TextlintMessage } from "@textlint/types";
-import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface.js";
+import type { TextlintKernelConstructorOptions } from "../textlint-kernel-interface.js";
 import { TextlintRuleSeverityLevelKeys } from "../context/TextlintRuleSeverityLevelKeys.js";
 
 /**

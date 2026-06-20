@@ -1,8 +1,8 @@
 // LICENSE : MIT
 import CoreTask, {
-    default as TextLintCoreTask,
-    IgnoreReportedMessage,
-    LintReportedMessage
+    type default as TextLintCoreTask,
+    type IgnoreReportedMessage,
+    type LintReportedMessage
 } from "./textlint-core-task.js";
 
 export default class TaskRunner {

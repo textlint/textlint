@@ -1,5 +1,5 @@
 // LICENSE : MIT
-import { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types";
+import type { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types";
 import { RuleHelper } from "textlint-rule-helper";
 export default function (context: TextlintRuleContext): TextlintRuleReportHandler {
     const helper = new RuleHelper(context);

@@ -1,4 +1,4 @@
-import { TextlintResult } from "@textlint/types";
+import type { TextlintResult } from "@textlint/types";
 
 // TODO: Fix can not support
 /**

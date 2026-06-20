@@ -1,5 +1,5 @@
 import common from "./common";
-import { TextlintRuleModule, TextlintRuleReporter } from "@textlint/types";
+import type { TextlintRuleModule, TextlintRuleReporter } from "@textlint/types";
 
 const report: TextlintRuleReporter = function (context, _options = {}) {
     const { Syntax, RuleError, report, getSource } = context;

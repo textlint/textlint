@@ -1,5 +1,5 @@
 // LICENSE : MIT
-import { TextlintKernelRule } from "../textlint-kernel-interface.js";
+import type { TextlintKernelRule } from "../textlint-kernel-interface.js";
 import { TextlintLintableRuleDescriptor } from "./TextlintLintableRuleDescriptor.js";
 import { filterDuplicateDescriptor } from "./DescriptorUtil.js";
 import { TextlintFixableRuleDescriptor } from "./TextlintFixableRuleDescriptor.js";

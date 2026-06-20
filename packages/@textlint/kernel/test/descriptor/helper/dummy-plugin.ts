@@ -1,4 +1,4 @@
-import { TextlintPluginCreator } from "../../../src/index.js";
+import type { TextlintPluginCreator } from "../../../src/index.js";
 import type { TextlintMessage, TextlintPluginPostProcessResult } from "@textlint/types";
 import type { TxtDocumentNode } from "@textlint/ast-node-types";
 

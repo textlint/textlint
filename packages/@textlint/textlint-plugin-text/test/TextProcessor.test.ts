@@ -3,7 +3,7 @@ import assert from "node:assert";
 import { describe, it } from "vitest";
 import fs from "node:fs";
 import TextPlugin from "../src/index.js";
-import { TextlintKernel, TextlintPluginOptions } from "@textlint/kernel";
+import { TextlintKernel, type TextlintPluginOptions } from "@textlint/kernel";
 import path from "node:path";
 
 const lintFile = (filePath: string, options: boolean | TextlintPluginOptions | undefined = true) => {

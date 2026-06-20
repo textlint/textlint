@@ -2,19 +2,19 @@
 import * as assert from "node:assert";
 import { testInvalid, testValid } from "./test-util";
 import {
-    TextlintFixResult,
+    type TextlintFixResult,
     TextlintKernel,
     TextlintKernelDescriptor,
-    TextlintKernelPlugin,
-    TextlintPluginCreator,
-    TextlintRuleModule
+    type TextlintKernelPlugin,
+    type TextlintPluginCreator,
+    type TextlintRuleModule
 } from "@textlint/kernel";
 import { coreFlags } from "@textlint/feature-flag";
 import textPlugin from "@textlint/textlint-plugin-text";
 import markdownPlugin from "@textlint/textlint-plugin-markdown";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { TextlintPluginOptions, TextlintRuleOptions } from "@textlint/types";
+import type { TextlintPluginOptions, TextlintRuleOptions } from "@textlint/types";
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 const globalObject = globalThis;

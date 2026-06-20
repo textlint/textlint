@@ -6,7 +6,7 @@ import type {
     TextlintRuleError,
     TextlintRuleSuggestion
 } from "@textlint/types";
-import { TextlintRuleErrorPaddingLocation } from "@textlint/types";
+import type { TextlintRuleErrorPaddingLocation } from "@textlint/types";
 import { throwIfTesting } from "@textlint/feature-flag";
 import { isTextlintRuleErrorPaddingLocation } from "./TextlintRulePaddingLocator.js";
 

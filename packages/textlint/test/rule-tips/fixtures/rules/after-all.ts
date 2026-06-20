@@ -1,6 +1,6 @@
 // MIT © 2017 azu
 
-import { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types";
+import type { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types";
 
 const callAsync = (text: string) => {
     // do something by async

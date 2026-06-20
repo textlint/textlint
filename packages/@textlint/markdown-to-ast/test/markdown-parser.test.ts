@@ -1,5 +1,5 @@
 // LICENSE : MIT
-import { TxtNode } from "@textlint/ast-node-types";
+import type { TxtNode } from "@textlint/ast-node-types";
 import { beforeEach, describe, it } from "vitest";
 import { parse, Syntax } from "../src/index";
 import assert from "node:assert";

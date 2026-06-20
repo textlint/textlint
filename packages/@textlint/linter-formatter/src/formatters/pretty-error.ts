@@ -3,7 +3,7 @@
 // Original code is https://github.com/azer/prettify-error
 // Author : azer
 import type { TextlintMessage, TextlintResult } from "@textlint/types";
-import { FormatterOptions } from "../FormatterOptions.js";
+import type { FormatterOptions } from "../FormatterOptions.js";
 
 import chalk from "chalk";
 // @ts-expect-error no types

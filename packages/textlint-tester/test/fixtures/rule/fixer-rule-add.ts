@@ -1,4 +1,4 @@
-import { TextlintRuleReporter } from "@textlint/types";
+import type { TextlintRuleReporter } from "@textlint/types";
 import { RuleHelper } from "textlint-rule-helper";
 
 const reporter: TextlintRuleReporter = (context) => {

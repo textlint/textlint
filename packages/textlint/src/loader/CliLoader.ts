@@ -1,6 +1,6 @@
 import { loadPackagesFromRawConfig } from "@textlint/config-loader";
-import { CliOptions } from "../options.js";
-import { TextlintKernelDescriptor, TextlintKernelRule } from "@textlint/kernel";
+import type { CliOptions } from "../options.js";
+import { TextlintKernelDescriptor, type TextlintKernelRule } from "@textlint/kernel";
 import { normalizeTextlintPluginKey, normalizeTextlintRuleKey } from "@textlint/utils";
 import debug_ from "debug";
 import { loadFromDirAsESM } from "../engine/rule-loader.js";

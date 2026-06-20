@@ -1,9 +1,9 @@
 // LICENSE : MIT
 
-import { TextlintBaseRuleContext } from "./TextlintBaseRuleContext.js";
-import { TxtNode } from "@textlint/ast-node-types";
-import { TextlintRuleError, TextlintRuleReportedObject } from "./TextlintRuleError.js";
-import { TextlintRuleContextFixCommandGenerator } from "./TextlintRuleContextFixCommandGenerator.js";
+import type { TextlintBaseRuleContext } from "./TextlintBaseRuleContext.js";
+import type { TxtNode } from "@textlint/ast-node-types";
+import type { TextlintRuleError, TextlintRuleReportedObject } from "./TextlintRuleError.js";
+import type { TextlintRuleContextFixCommandGenerator } from "./TextlintRuleContextFixCommandGenerator.js";
 
 /**
  * context.report function

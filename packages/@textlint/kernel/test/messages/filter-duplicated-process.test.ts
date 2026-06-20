@@ -2,7 +2,7 @@
 import filterMessages from "../../src/messages/filter-duplicated-process.js";
 import { describe, it } from "vitest";
 import * as assert from "node:assert";
-import { TextlintMessage } from "@textlint/types";
+import type { TextlintMessage } from "@textlint/types";
 
 describe("message-filter", function () {
     describe("when pass empty messages", function () {

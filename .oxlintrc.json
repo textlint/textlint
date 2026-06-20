@@ -27,6 +27,7 @@
     "unicorn/prefer-string-starts-ends-with": "error",
     "unicorn/no-new-array": "error",
     "unicorn/no-empty-file": "off",
+    "typescript/consistent-type-imports": "error"
   },
   "overrides": [
     {

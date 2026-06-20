@@ -1,7 +1,7 @@
 // LICENSE : MIT
 import assert from "node:assert";
 import { describe, it } from "vitest";
-import { TextlintKernel, TextlintPluginOptions } from "@textlint/kernel";
+import { TextlintKernel, type TextlintPluginOptions } from "@textlint/kernel";
 import fs from "node:fs";
 import path from "node:path";
 import MarkdownPlugin from "../src/index.js";

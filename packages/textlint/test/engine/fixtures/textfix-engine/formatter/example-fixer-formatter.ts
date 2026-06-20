@@ -1,6 +1,6 @@
 // LICENSE : MIT
 
-import { TextlintFixResult } from "@textlint/types";
+import type { TextlintFixResult } from "@textlint/types";
 
 module.exports = function (results: TextlintFixResult[]) {
     return `example-fixer-formatter\n${results

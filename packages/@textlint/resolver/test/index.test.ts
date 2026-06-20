@@ -4,7 +4,7 @@ import {
     registerResolveHook,
     registerImportHook,
     dynamicImport,
-    ResolverContext,
+    type ResolverContext,
     tryResolve,
     clearHooks,
 } from "../src/index.js";

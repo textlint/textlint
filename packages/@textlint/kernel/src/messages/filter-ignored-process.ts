@@ -1,6 +1,6 @@
 // LICENSE : MIT
 import MessageType from "../shared/type/MessageType.js";
-import { IgnoreReportedMessage, LintReportedMessage } from "../task/textlint-core-task.js";
+import type { IgnoreReportedMessage, LintReportedMessage } from "../task/textlint-core-task.js";
 
 /**
  * the `index` is in the `range` and return true.

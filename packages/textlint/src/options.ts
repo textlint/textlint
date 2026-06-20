@@ -1,6 +1,6 @@
 // LICENSE : MIT
-import { getFormatterList, FormatterDetail } from "@textlint/linter-formatter";
-import { getFixerFormatterList, FixerFormatterDetail } from "@textlint/fixer-formatter";
+import { getFormatterList, type FormatterDetail } from "@textlint/linter-formatter";
+import { getFixerFormatterList, type FixerFormatterDetail } from "@textlint/fixer-formatter";
 import path from "node:path";
 // @ts-expect-error: no type definition
 import optionator from "optionator";

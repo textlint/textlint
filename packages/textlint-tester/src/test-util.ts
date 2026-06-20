@@ -1,7 +1,7 @@
 import * as assert from "node:assert";
 import * as fs from "node:fs/promises";
-import { TextlintResult } from "@textlint/kernel";
-import { TesterErrorDefinition } from "./textlint-tester";
+import type { TextlintResult } from "@textlint/kernel";
+import type { TesterErrorDefinition } from "./textlint-tester";
 
 export type TestTextlintLinter = {
     lintText(text: string, ext: string): Promise<TextlintResult>;

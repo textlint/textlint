@@ -1,5 +1,5 @@
 // LICENSE : MIT
-import { TxtNode } from "@textlint/ast-node-types";
+import type { TxtNode } from "@textlint/ast-node-types";
 import { describe, it } from "vitest";
 import RuleFixer from "../../src/fixer/rule-fixer.js";
 // Original: https://github.com/eslint/eslint/blob/master/tests/src/util/rule-fixer.js

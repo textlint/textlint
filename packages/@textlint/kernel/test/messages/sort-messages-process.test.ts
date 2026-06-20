@@ -2,7 +2,7 @@
 import * as assert from "node:assert";
 import { describe, it } from "vitest";
 import sortMessages from "../../src/messages/sort-messages-process.js";
-import { TextlintMessage } from "@textlint/types";
+import type { TextlintMessage } from "@textlint/types";
 
 const createTextlintMessage = (
     message: Partial<TextlintMessage> & { line: number; column: number }
