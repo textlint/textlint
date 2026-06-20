@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as fs from "fs/promises";
+import * as assert from "node:assert";
+import * as fs from "node:fs/promises";
 import { TextlintResult } from "@textlint/kernel";
 import { TesterErrorDefinition } from "./textlint-tester";
 
