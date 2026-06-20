@@ -80,7 +80,7 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
             const prevLine = diff[index - 1] as DiffPart;
             const nextLine = diff[index + 1] as DiffPart;
             if (!isModified(part) && (part.count ?? 0) > 1) {
-                const greyColor = "grey";
+                const greyColor = "gray";
                 /*
                     <MODIFIED>
                     first line
@@ -103,8 +103,8 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
                 return;
             }
             // green for additions, red for deletions
-            // grey for common parts
-            let lineColor: "green" | "red" | "grey";
+            // gray for common parts
+            let lineColor: "green" | "red" | "gray";
             let diffMark = "";
             if (part.added) {
                 lineColor = "green";
@@ -113,7 +113,7 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
                 lineColor = "red";
                 diffMark = "- ";
             } else {
-                lineColor = "grey";
+                lineColor = "gray";
                 diffMark = "";
             }
             output += styleText(lineColor, addMarkEachLine(diffMark, part.value));
