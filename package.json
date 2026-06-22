@@ -53,5 +53,5 @@
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
-  "packageManager": "pnpm@10.34.2+sha512.9ae7e3fe477c52bbce1ddc8aa196ff243ed4b48f1ceaa7455820adfa7a48b5f57e817ed2d20e5f3c2c3646dfedba360567693e534572dccd252fb2eb8b7c044c"
+  "packageManager": "pnpm@10.34.4+sha512.8768be55200ae3f2226b6527fcca2687e14bc4e5f12d7721a0f25da3df47915177058648db4177baf348120fa0ba2752d8d8d93f6beaf1fe64ae18da8de961af"
 }
