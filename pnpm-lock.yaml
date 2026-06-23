@@ -90,9 +90,6 @@ catalogs:
     chai:
       specifier: ^4.5.0
       version: 4.5.0
-    chalk:
-      specifier: ^4.1.2
-      version: 4.1.2
     confirmer:
       specifier: ^1.1.2
       version: 1.1.2
@@ -615,9 +612,6 @@ importers:
       '@textlint/types':
         specifier: workspace:*
         version: link:../types
-      chalk:
-        specifier: 'catalog:'
-        version: 4.1.2
       debug:
         specifier: 'catalog:'
         version: 4.4.3(supports-color@8.1.1)
@@ -750,9 +744,6 @@ importers:
       '@textlint/types':
         specifier: workspace:*
         version: link:../types
-      chalk:
-        specifier: 'catalog:'
-        version: 4.1.2
       debug:
         specifier: 'catalog:'
         version: 4.4.3(supports-color@8.1.1)

@@ -6,7 +6,7 @@
 import type { TextlintMessage, TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
 
-import chalk from "chalk";
+import { styleText } from "node:util";
 // @ts-expect-error no types
 import format from "@azu/format-text";
 // @ts-expect-error no types
@@ -143,7 +143,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
         total += messages.length;
         messages.forEach(function (message) {
             // fixable
-            const fixableIcon = message.fix ? chalk[greenColor].bold("\u2713 ") : "";
+            const fixableIcon = message.fix ? styleText([greenColor, "bold"], "\u2713 ") : "";
             if (message.fix) {
                 totalFixable++;
             }
@@ -176,14 +176,15 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
             problemParts.push(`${infos} ${pluralize("info", infos)}`);
         }
 
-        output += chalk[summaryColor].bold(
+        output += styleText(
+            [summaryColor, "bold"],
             ["\u2716 ", total, pluralize(" problem", total), " (", problemParts.join(", "), ")\n"].join("")
         );
     }
 
     if (totalFixable > 0) {
-        output += chalk[greenColor].bold(`✓ ${totalFixable} fixable ${pluralize("problem", totalFixable)}.\n`);
-        output += `Try to run: $ ${chalk.underline("textlint --fix [file]")}\n`;
+        output += styleText([greenColor, "bold"], `✓ ${totalFixable} fixable ${pluralize("problem", totalFixable)}.\n`);
+        output += `Try to run: $ ${styleText("underline", "textlint --fix [file]")}\n`;
     }
 
     if (!useColor) {

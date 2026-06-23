@@ -38,7 +38,6 @@
     "@textlint/module-interop": "workspace:*",
     "@textlint/resolver": "workspace:*",
     "@textlint/types": "workspace:*",
-    "chalk": "catalog:",
     "debug": "catalog:",
     "js-yaml": "catalog:",
     "lodash": "catalog:",
@@ -60,5 +59,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "engines": {
+    "node": ">=20.18.0"
   }
 }

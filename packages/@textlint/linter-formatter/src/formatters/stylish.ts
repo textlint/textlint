@@ -7,7 +7,7 @@
 import type { TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
 
-import chalk from "chalk";
+import { styleText } from "node:util";
 // @ts-expect-error no types
 import table from "text-table";
 import widthOfString from "string-width";
@@ -51,30 +51,30 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
         }
 
         total += messages.length;
-        output += `${chalk.underline(result.filePath)}\n`;
+        output += `${styleText("underline", result.filePath)}\n`;
 
         output += `${table(
             messages.map(function (message) {
                 let messageType;
                 // fixable
-                const fixableIcon = message.fix ? chalk[greenColor].bold("\u2713 ") : "";
+                const fixableIcon = message.fix ? styleText([greenColor, "bold"], "\u2713 ") : "";
                 if (message.fix) {
                     totalFixable++;
                 }
                 const fatal = (message as { fatal?: boolean }).fatal;
                 if (fatal || message.severity === 2) {
-                    messageType = fixableIcon + chalk.red("error");
+                    messageType = fixableIcon + styleText("red", "error");
                     summaryColor = "red";
                     errors++;
                 } else if (message.severity === 1) {
-                    messageType = fixableIcon + chalk.yellow("warning");
+                    messageType = fixableIcon + styleText("yellow", "warning");
                     warnings++;
                 } else if (message.severity === 3) {
-                    messageType = fixableIcon + chalk.green("info");
+                    messageType = fixableIcon + styleText("green", "info");
                     infos++;
                 } else {
                     // fallback for other severity levels
-                    messageType = fixableIcon + chalk.yellow("warning");
+                    messageType = fixableIcon + styleText("yellow", "warning");
                     warnings++;
                 }
 
@@ -84,7 +84,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
                     message.column || 0,
                     messageType,
                     message.message.replace(/\.$/, ""),
-                    chalk.gray(message.ruleId || "")
+                    styleText("gray", message.ruleId || "")
                 ];
             }),
             {
@@ -103,7 +103,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
             .split("\n")
             .map(function (el: string) {
                 return el.replace(/(\d+)\s+(\d+)/, function (_, p1, p2) {
-                    return chalk.gray(`${p1}:${p2}`);
+                    return styleText("gray", `${p1}:${p2}`);
                 });
             })
             .join("\n")}\n\n`;
@@ -115,14 +115,16 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
             `${warnings} ${pluralize("warning", warnings)}`,
             `${infos} ${pluralize("info", infos)}`
         ];
-        output += chalk[summaryColor].bold(
+        output += styleText(
+            [summaryColor, "bold"],
+
             ["\u2716 ", total, pluralize(" problem", total), " (", summaryParts.join(", "), ")\n"].join("")
         );
     }
 
     if (totalFixable > 0) {
-        output += chalk[greenColor].bold(`✓ ${totalFixable} fixable ${pluralize("problem", totalFixable)}.\n`);
-        output += `Try to run: $ ${chalk.underline("textlint --fix [file]")}\n`;
+        output += styleText([greenColor, "bold"], `✓ ${totalFixable} fixable ${pluralize("problem", totalFixable)}.\n`);
+        output += `Try to run: $ ${styleText("underline", "textlint --fix [file]")}\n`;
     }
 
     const finalOutput = total > 0 ? output : "";
