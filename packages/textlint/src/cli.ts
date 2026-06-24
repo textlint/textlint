@@ -11,6 +11,8 @@ import { SeverityLevel } from "./shared/type/SeverityLevel.js";
 import { printResults, showEmptyRuleWarning } from "./cli-util.js";
 import { loadFixerFormatter, loadLinterFormatter } from "./formatter.js";
 import { connectStdioMcpServer, type McpServerOptions } from "./mcp/server.js";
+import { getFixerFormatterList } from "@textlint/fixer-formatter";
+import { getFormatterList } from "@textlint/linter-formatter";
 
 const debug = debug0("textlint:cli");
 type StdinExecuteOption = {
@@ -26,6 +28,33 @@ type ExecuteOptions =
     | StdinExecuteOption;
 const isStdinExecution = (executeOptions: ExecuteOptions): executeOptions is StdinExecuteOption => {
     return "text" in executeOptions;
+};
+const getFormatterNames = () => {
+    return getFormatterList().map((formatter) => formatter.name);
+};
+const getFixerFormatterNames = () => {
+    return getFixerFormatterList().map((formatter) => formatter.name);
+};
+const validateFormatterForMode = (cliOptions: CliOptions): boolean => {
+    const formatterName = cliOptions.format;
+    const formatterNames = getFormatterNames();
+    const fixerFormatterNames = getFixerFormatterNames();
+    if (cliOptions.fix) {
+        if (formatterNames.includes(formatterName) && !fixerFormatterNames.includes(formatterName)) {
+            Logger.error(
+                `Formatter "${formatterName}" is not available for --fix mode.\n` +
+                    `Available formatter for --fix: ${fixerFormatterNames.join(", ")}`
+            );
+            return false;
+        }
+    } else if (fixerFormatterNames.includes(formatterName) && !formatterNames.includes(formatterName)) {
+        Logger.error(
+            `Formatter "${formatterName}" is not available for lint mode.\n` +
+                `Available formatter: ${formatterNames.join(", ")}`
+        );
+        return false;
+    }
+    return true;
 };
 
 const loadDescriptor = async (cliOptions: CliOptions) => {
@@ -129,6 +158,9 @@ export const cli = {
      */
     async executeWithOptions(executeOptions: ExecuteOptions): Promise<number> {
         const cliOptions = executeOptions.cliOptions;
+        if (!validateFormatterForMode(cliOptions)) {
+            return 1;
+        }
         // cli > textlintrc
         // if cli and textlintrc have same option, cli option is prior.
         const descriptor = await loadDescriptor(cliOptions);
