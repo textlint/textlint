@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod";
+import * as z from "zod";
 import { createLinter, loadTextlintrc, type CreateLinterOptions } from "../index.js";
 import { existsSync } from "node:fs";
 import { TextlintMessageSchema } from "./schemas.js";
@@ -118,7 +118,7 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
             inputSchema: {
                 filePaths: z
                     .array(z.string().min(1).describe("File path to lint"))
-                    .nonempty()
+                    .min(1)
                     .describe("Array of file paths to lint")
             },
             outputSchema: {
@@ -169,8 +169,8 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
         {
             description: "Lint text using textlint",
             inputSchema: {
-                text: z.string().nonempty().describe("Text content to lint"),
-                stdinFilename: z.string().nonempty().describe("Filename for context (e.g., 'stdin.md')")
+                text: z.string().min(1).describe("Text content to lint"),
+                stdinFilename: z.string().min(1).describe("Filename for context (e.g., 'stdin.md')")
             },
             outputSchema: {
                 filePath: z.string(),
@@ -214,7 +214,7 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
             inputSchema: {
                 filePaths: z
                     .array(z.string().min(1).describe("File path to fix"))
-                    .nonempty()
+                    .min(1)
                     .describe("Array of file paths to get fixed content for")
             },
             outputSchema: {
@@ -265,8 +265,8 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
         {
             description: "Get lint-fixed content of text using textlint",
             inputSchema: {
-                text: z.string().nonempty().describe("Text content to fix"),
-                stdinFilename: z.string().nonempty().describe("Filename for context (e.g., 'stdin.md')")
+                text: z.string().min(1).describe("Text content to fix"),
+                stdinFilename: z.string().min(1).describe("Filename for context (e.g., 'stdin.md')")
             },
             outputSchema: {
                 filePath: z.string(),

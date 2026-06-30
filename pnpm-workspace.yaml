@@ -110,7 +110,7 @@ catalog:
   unified: "^9.2.2"
   unist-util-select: "^3.0.4"
   vitest: "^3.2.6"
-  zod: "^3.25.76"
+  zod: "^4.4.3"
 
 # Automatically remove unused catalog entries on install
 # https://pnpm.io/settings#cleanupunusedcatalogs
