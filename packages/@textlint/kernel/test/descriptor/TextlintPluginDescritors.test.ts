@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import * as assert from "node:assert";
 import { describe, it } from "vitest";
 import { TextlintPluginDescriptors } from "../../src/descriptor/index.js";

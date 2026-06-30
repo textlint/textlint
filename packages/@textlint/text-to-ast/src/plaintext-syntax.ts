@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { ASTNodeTypes } from "@textlint/ast-node-types";
 
 export const Syntax = {

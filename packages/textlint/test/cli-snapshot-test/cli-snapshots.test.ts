@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import * as fs from "node:fs";
 import { describe, it } from "vitest";
 import * as path from "node:path";

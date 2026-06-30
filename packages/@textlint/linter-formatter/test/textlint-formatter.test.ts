@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { getFormatterList, loadFormatter } from "../src/index.js";
 
 import { describe, it } from "vitest";

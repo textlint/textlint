@@ -1,14 +1,14 @@
 import { createPluginStub } from "./helper/ExamplePlugin.js";
 import { describe, it } from "vitest";
 import { errorRule } from "./helper/ErrorRule.js";
-import { TextlintKernel, TextlintPluginCreator, TextlintMessage } from "../src/index";
+import { TextlintKernel, type TextlintPluginCreator, type TextlintMessage } from "../src/index";
 import * as path from "node:path";
 import * as assert from "node:assert";
 import { createBinaryPluginStub } from "./helper/BinaryPlugin.js";
 import { createAsyncPluginStub } from "./helper/AsyncPlugin.js";
 import type { TextlintRuleReporter } from "@textlint/types";
-import { TextlintKernelOptions } from "../src/textlint-kernel-interface";
-import { TxtDocumentNode } from "@textlint/ast-node-types";
+import type { TextlintKernelOptions } from "../src/textlint-kernel-interface";
+import type { TxtDocumentNode } from "@textlint/ast-node-types";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 
 describe("kernel-plugin", () => {

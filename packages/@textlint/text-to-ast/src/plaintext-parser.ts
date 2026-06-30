@@ -1,8 +1,7 @@
 // LICENSE : MIT
-"use strict";
 import { Syntax } from "./plaintext-syntax.js";
 import type { TxtBreakNode, TxtDocumentNode, TxtNode, TxtParagraphNode } from "@textlint/ast-node-types";
-import { TxtStrNode } from "@textlint/ast-node-types";
+import type { TxtStrNode } from "@textlint/ast-node-types";
 
 function parseLine(lineText: string, lineNumber: number, startIndex: number): TxtStrNode {
     // Inline Node have `value`. It it not part of TxtNode.

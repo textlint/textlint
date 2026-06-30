@@ -1,5 +1,5 @@
 // Node type test
-import {
+import type {
     TxtBlockQuoteNode,
     TxtBreakNode,
     TxtCodeBlockNode,
@@ -22,8 +22,8 @@ import {
     TxtStrNode,
     TxtStrongNode,
 } from "@textlint/ast-node-types";
-import { TxtTableCellNode, TxtTableNode, TxtTableRowNode } from "@textlint/ast-node-types/lib/src/NodeType";
-import { TextlintRuleReporter } from "../../src/index.js";
+import type { TxtTableCellNode, TxtTableNode, TxtTableRowNode } from "@textlint/ast-node-types/lib/src/NodeType";
+import type { TextlintRuleReporter } from "../../src/index.js";
 
 const noop = (..._args: unknown[]) => {};
 export const expectType = <Type>(_: Type): void => void 0;

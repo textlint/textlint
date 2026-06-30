@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 
 /* eslint-disable no-console */
 

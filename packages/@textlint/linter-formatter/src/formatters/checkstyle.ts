@@ -3,7 +3,6 @@
  * @author Ian Christian Myers
  */
 
-"use strict";
 import type { TextlintMessage, TextlintResult } from "@textlint/types";
 
 //------------------------------------------------------------------------------

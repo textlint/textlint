@@ -7,7 +7,8 @@
     "skipLibCheck": true,
     "composite": true,
     "outDir": "./dist",
-    "declarationDir": "./dist"
+    "declarationDir": "./dist",
+    "types": ["node"]
   },
   "references": [
     {

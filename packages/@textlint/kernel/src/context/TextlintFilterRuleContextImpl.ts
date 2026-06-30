@@ -5,7 +5,7 @@ import type {
     TextlintRuleSeverityLevel,
     TextlintSourceCode
 } from "@textlint/types";
-import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
+import type { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl.js";
 import { createPaddingLocator } from "./TextlintRulePaddingLocator.js";
 import { invariant } from "../util/invariant.js";

@@ -1,6 +1,6 @@
 import { isPluginParsedObject } from "./isPluginParsedObject.js";
 import type { TextlintPluginProcessor } from "@textlint/types";
-import { TxtNode } from "@textlint/ast-node-types";
+import type { TxtNode } from "@textlint/ast-node-types";
 
 type PreProcess = ReturnType<TextlintPluginProcessor["processor"]>["preProcess"];
 /**

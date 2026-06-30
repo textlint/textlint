@@ -1,7 +1,6 @@
 // LICENSE : MIT
-"use strict";
 
-import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
+import type { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
 import { describe, it } from "vitest";
 import { Controller, traverse, VisitorOption } from "../src/index.js";
 import { parse, Syntax } from "@textlint/markdown-to-ast";

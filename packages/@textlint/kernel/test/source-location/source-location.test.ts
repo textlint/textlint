@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import * as assert from "node:assert";
 import { afterEach, beforeEach, describe, it } from "vitest";
 import {
@@ -11,9 +10,9 @@ import RuleFixer from "../../src/fixer/rule-fixer.js";
 import createDummySourceCode from "../util/dummy-source-code.js";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 import { TextlintRuleErrorImpl } from "../../src/context/TextlintRuleErrorImpl.js";
-import { TxtNode } from "@textlint/ast-node-types";
+import type { TxtNode } from "@textlint/ast-node-types";
 import { createPaddingLocator } from "../../src/context/TextlintRulePaddingLocator.js";
-import { TextlintRuleError } from "@textlint/types";
+import type { TextlintRuleError } from "@textlint/types";
 
 // Workaround for structured-source serialization
 const assertDeepStrictEqualAsJSON = (a: unknown, b: unknown, message?: string) => {

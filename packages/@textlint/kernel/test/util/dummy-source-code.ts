@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { parse } from "@textlint/markdown-to-ast";
 import * as path from "node:path";
 import { TextlintSourceCodeImpl } from "../../src/context/TextlintSourceCodeImpl.js";

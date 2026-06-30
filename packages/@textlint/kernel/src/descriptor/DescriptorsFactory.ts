@@ -1,6 +1,9 @@
 // LICENSE : MIT
-"use strict";
-import { TextlintKernelFilterRule, TextlintKernelPlugin, TextlintKernelRule } from "../textlint-kernel-interface.js";
+import type {
+    TextlintKernelFilterRule,
+    TextlintKernelPlugin,
+    TextlintKernelRule
+} from "../textlint-kernel-interface.js";
 import { TextlintFilterRuleDescriptor } from "./TextlintFilterRuleDescriptor.js";
 import { TextlintFilterRuleDescriptors } from "./TextlintFilterRuleDescriptors.js";
 import { TextlintRuleDescriptors } from "./TextlintRuleDescriptors.js";

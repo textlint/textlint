@@ -1,4 +1,4 @@
-import { TextlintPluginCreator } from "@textlint/types";
+import type { TextlintPluginCreator } from "@textlint/types";
 
 export const ThrowPlugin: TextlintPluginCreator = {
     Processor: class ThrowPluginProcessor {

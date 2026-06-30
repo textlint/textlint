@@ -2,7 +2,7 @@
     "filePath": "<root>/plugin-parse-error-should-be-lint-messages/input.md",
     "messages": [
         {
-            "message": "Failed to parse text by plugin: markdown\n\nPlease report this error with the content to plugin author.\n\n<ThrowPlugin Error's stack>            \n",
+            "message": "Failed to parse text by plugin: markdown\n\nPlease report this error with the content to plugin author.\n\n<ThrowPlugin Error's stack>\n",
             "type": "lint",
             "loc": {
                 "start": {

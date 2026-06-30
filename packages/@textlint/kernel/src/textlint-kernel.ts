@@ -9,7 +9,7 @@ import filterIgnoredProcess from "./messages/filter-ignored-process.js";
 import filterDuplicatedProcess from "./messages/filter-duplicated-process.js";
 import filterSeverityProcess from "./messages/filter-severity-process.js";
 import sortMessageProcess from "./messages/sort-messages-process.js";
-import { TextlintKernelConstructorOptions, TextlintKernelOptions } from "./textlint-kernel-interface.js";
+import type { TextlintKernelConstructorOptions, TextlintKernelOptions } from "./textlint-kernel-interface.js";
 import type { TextlintFixResult, TextlintResult } from "@textlint/types";
 import { TextlintKernelDescriptor } from "./descriptor/index.js";
 import { TextlintSourceCodeImpl } from "./context/TextlintSourceCodeImpl.js";
@@ -154,7 +154,7 @@ export class TextlintKernel {
 
 Please report this error with the content to plugin author.
 
-${preProcessResult.stack}            
+${preProcessResult.stack}
 `,
                 filePath
             );
@@ -169,7 +169,7 @@ ${preProcessResult.stack}
             invariant(
                 isTxtAST(ast),
                 `${plugin.id} processor return invalid AST object. Please check out @textlint/ast-tester.
-            
+
 You can check the validation result with "DEBUG=textlint*" env
 
 See https://textlint.org/docs/plugin.html`
@@ -238,7 +238,7 @@ See https://textlint.org/docs/plugin.html`
             invariant(
                 isTxtAST(ast),
                 `${plugin.id} processor return invalid AST object. Please check out @textlint/ast-tester.
-            
+
 You can check the validation result with "DEBUG=textlint*" env
 
 See https://textlint.org/docs/plugin.html`

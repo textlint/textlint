@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import type { TextlintMessage } from "@textlint/types";
 
 export class ExampleProcessor {

@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import type { TextlintFixResult } from "@textlint/types";
 import { moduleInterop } from "@textlint/module-interop";
 import fs from "node:fs";

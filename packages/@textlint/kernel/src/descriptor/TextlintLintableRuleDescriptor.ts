@@ -1,6 +1,5 @@
 // LICENSE : MIT
-"use strict";
-import { TextlintKernelRule } from "../textlint-kernel-interface.js";
+import type { TextlintKernelRule } from "../textlint-kernel-interface.js";
 import { assertRuleShape, getLinter } from "./rule-creator-helper.js";
 import type { TextlintRuleModule, TextlintRuleOptions, TextlintRuleReporter } from "@textlint/types";
 import { deepEqual } from "fast-equals";

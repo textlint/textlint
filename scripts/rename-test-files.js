@@ -3,9 +3,9 @@
  * Script to rename test files from `-test.ts` to `.test.ts` pattern
  * This ensures consistency with vitest's default test file patterns
  */
-const fs = require("fs");
-const path = require("path");
-const { execSync } = require("child_process");
+const fs = require("node:fs");
+const path = require("node:path");
+const { execSync } = require("node:child_process");
 
 // Find all -test.ts files recursively
 function findTestFiles(dir) {

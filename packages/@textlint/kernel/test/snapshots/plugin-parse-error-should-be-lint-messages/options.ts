@@ -1,4 +1,4 @@
-import { TextlintKernelOptions } from "../../../src/textlint-kernel-interface.js";
+import type { TextlintKernelOptions } from "../../../src/textlint-kernel-interface.js";
 import rule from "./index.js";
 import * as path from "node:path";
 import { ThrowPlugin } from "./parse-error-plugin.js";
