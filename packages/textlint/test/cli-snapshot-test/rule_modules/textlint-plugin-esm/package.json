@@ -1,5 +1,0 @@
-{
-  "name": "textlint-plugin-esm",
-  "main": "index.mjs",
-  "type": "module"
-}

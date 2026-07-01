@@ -1,5 +1,0 @@
-{
-  "name": "textlint-rule-cjs",
-  "main": "index.cjs",
-  "type": "commonjs"
-}

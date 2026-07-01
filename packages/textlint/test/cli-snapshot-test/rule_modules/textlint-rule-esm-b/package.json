@@ -1,5 +1,0 @@
-{
-  "name": "textlint-rule-esm-b",
-  "main": "index.js",
-  "type": "module"
-}

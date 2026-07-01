@@ -1,9 +1,0 @@
-{
-  "plugins": [
-    "@textlint/textlint-plugin-text",
-    "@textlint/textlint-plugin-markdown"
-  ],
-  "rules": {
-    "preset-test": true
-  }
-}

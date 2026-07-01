@@ -1,7 +1,0 @@
-{
-  "rules": {
-    "textlint-rule-no-todo": {
-      "severity": "warning"
-    }
-  }
-}

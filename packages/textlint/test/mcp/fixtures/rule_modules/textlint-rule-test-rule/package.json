@@ -1,6 +1,0 @@
-{
-  "name": "textlint-rule-test-rule",
-  "version": "1.0.0",
-  "description": "Test rule for MCP server testing",
-  "main": "index.js"
-}
