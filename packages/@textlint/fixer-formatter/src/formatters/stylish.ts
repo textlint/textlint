@@ -1,7 +1,7 @@
 "use strict";
 import type { TextlintFixResult } from "@textlint/types";
 
-import chalk from "chalk";
+import { styleText } from "node:util";
 // @ts-expect-error no types
 import table from "text-table";
 import widthOfString from "string-width";
@@ -51,13 +51,13 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
         if (messages.length === 0) {
             return;
         }
-        output += `${chalk.underline(result.filePath)}\n`;
+        output += `${styleText("underline", result.filePath)}\n`;
 
         output += `${table(
             messages.map(function (message) {
                 // fixable
                 totalFixed++;
-                const messageType = chalk[greenColor].bold("\u2714 ");
+                const messageType = styleText([greenColor, "bold"], "\u2714 ");
 
                 return [
                     "",
@@ -65,7 +65,7 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
                     message.column || 0,
                     messageType,
                     message.message.replace(/\.$/, ""),
-                    chalk.gray(message.ruleId || "")
+                    styleText("gray", message.ruleId || "")
                 ];
             }),
             {
@@ -84,14 +84,15 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
             .split("\n")
             .map(function (el: string) {
                 return el.replace(/(\d+)\s+(\d+)/, function (_m, p1, p2) {
-                    return chalk.gray(`${p1}:${p2}`);
+                    return styleText("gray", `${p1}:${p2}`);
                 });
             })
             .join("\n")}\n\n`;
     });
 
     if (totalFixed > 0) {
-        output += chalk[greenColor].bold(
+        output += styleText(
+            [greenColor, "bold"],
             [
                 // http://www.fileformat.info/info/unicode/char/2714/index.htm
                 "\u2714 Fixed ",
@@ -109,7 +110,8 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
             `${warnings} ${pluralize("warning", warnings)}`,
             `${infos} ${pluralize("info", infos)}`
         ];
-        output += chalk[summaryColor].bold(
+        output += styleText(
+            [summaryColor, "bold"],
             [
                 // http://www.fileformat.info/info/unicode/char/2716/index.htm
                 "\u2716 Remaining ",

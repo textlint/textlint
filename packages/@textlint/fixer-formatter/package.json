@@ -42,7 +42,6 @@
     "@textlint/module-interop": "workspace:*",
     "@textlint/resolver": "workspace:*",
     "@textlint/types": "workspace:*",
-    "chalk": "catalog:",
     "debug": "catalog:",
     "diff": "catalog:",
     "string-width": "catalog:",
@@ -58,5 +57,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "engines": {
+    "node": ">=20.18.0"
   }
 }
