@@ -109,7 +109,7 @@ catalog:
   typescript: "~5.8.3"
   unified: "^9.2.2"
   unist-util-select: "^3.0.4"
-  vitest: "^3.2.6"
+  vitest: "^3.2.7"
   zod: "^3.25.76"
 
 # Automatically remove unused catalog entries on install
