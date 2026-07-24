@@ -42,13 +42,13 @@ function formatter(results: TextlintResult[]) {
         messages.forEach(function (message) {
             output += `${result.filePath}: `;
             output += `line=${message.loc.start.line || 1}`;
-            output += `, col=${message.loc.start.column || 0}`;
+            output += `, col=${message.loc.start.column || 1}`;
             output += "\n";
             output += `::${getMessageType(message)} `;
             output += `file=${result.filePath},`;
             output += `line=${message.loc.start.line || 1},`;
             output += `endLine=${message.loc.end.line || message.loc.start.line || 1},`;
-            output += `col=${message.loc.start.column || 0},`;
+            output += `col=${message.loc.start.column || 1},`;
             output += `endColumn=${message.loc.end.column || message.loc.start.column || 1},`;
             output += `title=TextLint${message.ruleId ? ` [${message.ruleId}]` : ""}::`;
             output += `${message.message.trim()}`;

@@ -226,7 +226,7 @@ describe("formatter:github", function () {
             const result = formatter(code);
             assert.equal(
                 result,
-                "foo.js: line=1, col=0\n::error file=foo.js,line=1,endLine=1,col=0,endColumn=1,title=TextLint::Couldn't find foo.js.\n"
+                "foo.js: line=1, col=1\n::error file=foo.js,line=1,endLine=1,col=1,endColumn=1,title=TextLint::Couldn't find foo.js.\n"
             );
         });
     });
