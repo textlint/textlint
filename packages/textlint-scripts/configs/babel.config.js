@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require("node:fs");
 const paths = require("../configs/paths");
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 const NO_INLINE = !!process.env.NO_INLINE;

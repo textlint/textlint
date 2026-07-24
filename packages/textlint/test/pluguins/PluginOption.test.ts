@@ -1,5 +1,4 @@
 // MIT © 2017 azu
-"use strict";
 import assert from "node:assert";
 import { describe, it } from "vitest";
 import { createPluginStub } from "./fixtures/example-plugin.js";

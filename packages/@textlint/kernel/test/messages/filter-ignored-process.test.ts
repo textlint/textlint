@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import filterMessages from "../../src/messages/filter-ignored-process.js";
 import { describe, it } from "vitest";
 import * as assert from "node:assert";

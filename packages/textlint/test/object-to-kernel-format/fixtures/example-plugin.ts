@@ -1,5 +1,5 @@
 import type { TxtDocumentNode } from "@textlint/ast-node-types";
-import { TextlintPluginProcessorConstructor } from "@textlint/kernel";
+import type { TextlintPluginProcessorConstructor } from "@textlint/kernel";
 import type { TextlintMessage } from "@textlint/types";
 
 class ExampleProcessor {

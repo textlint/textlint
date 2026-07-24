@@ -2,7 +2,6 @@
  * @fileoverview jUnit Reporter
  * @author Jamund Ferguson
  */
-"use strict";
 import type { TextlintResult } from "@textlint/types";
 
 import lodash from "lodash";

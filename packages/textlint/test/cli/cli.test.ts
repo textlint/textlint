@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import * as assert from "node:assert";
 import { afterEach, beforeEach, describe, it } from "vitest";
 import { cli } from "../../src/cli.js";

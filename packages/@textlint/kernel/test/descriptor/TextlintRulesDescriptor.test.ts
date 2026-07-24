@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import * as assert from "node:assert";
 import { describe, it } from "vitest";
 import { TextlintRuleDescriptors } from "../../src/descriptor/index.js";
@@ -9,7 +8,7 @@ import type { TextlintRuleModule, TextlintPluginCreator, TextlintPluginOptions }
 import type { TextlintKernelPlugin, TextlintKernelRule } from "../../src/textlint-kernel-interface.js";
 import { createTextlintRuleDescriptors } from "../../src/descriptor/DescriptorsFactory.js";
 import { TextlintLintableRuleDescriptor } from "../../src/descriptor/TextlintLintableRuleDescriptor.js";
-import { TextlintFilterRuleReporter, TextlintKernelFilterRule } from "../../src/index.js";
+import type { TextlintFilterRuleReporter, TextlintKernelFilterRule } from "../../src/index.js";
 
 // @ts-expect-error Package lacks TypeScript definitions
 import preset from "textlint-rule-preset-ja-spacing";

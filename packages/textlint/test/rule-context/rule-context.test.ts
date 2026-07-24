@@ -1,11 +1,10 @@
 // LICENSE : MIT
-"use strict";
 import assert from "node:assert";
 import { afterEach, beforeEach, describe, it } from "vitest";
 import path from "node:path";
 import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
-import {
+import type {
     TextlintFilterRuleContext,
     TextlintFilterRuleReportHandler,
     TextlintRuleContext,

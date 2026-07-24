@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import type { TextlintRuleReporter } from "@textlint/types";
 
 const report: TextlintRuleReporter = function (context) {

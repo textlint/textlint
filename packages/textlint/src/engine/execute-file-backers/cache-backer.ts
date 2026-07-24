@@ -1,11 +1,10 @@
 // MIT © 2016 azu
-"use strict";
-import fileEntryCache, { FileEntryCache } from "file-entry-cache";
+import fileEntryCache, { type FileEntryCache } from "file-entry-cache";
 import debug0 from "debug";
 import path from "node:path";
 import fs from "node:fs";
-import { AbstractBacker } from "./abstruct-backer.js";
-import { TextlintResult } from "@textlint/kernel";
+import type { AbstractBacker } from "./abstruct-backer.js";
+import type { TextlintResult } from "@textlint/kernel";
 
 const debug = debug0("textlint:CacheBacker");
 

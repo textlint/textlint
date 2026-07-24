@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import type { TextlintRuleModule } from "@textlint/types";
 
 const reporter: TextlintRuleModule = (context) => {
@@ -7,7 +6,7 @@ const reporter: TextlintRuleModule = (context) => {
     return {
         [Syntax.Str](node) {
             const text = getSource(node);
-            if (/\.$/.test(text)) {
+            if (text.endsWith(".")) {
                 return;
             }
             const add = fixer.insertTextAfter(node, ".");

@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 
 /**
  * Command line interface

@@ -1,6 +1,6 @@
-import { TxtNode } from "@textlint/ast-node-types";
-import { TextlintSourceCodeRange } from "../Source/TextlintSourceCode.js";
-import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand.js";
+import type { TxtNode } from "@textlint/ast-node-types";
+import type { TextlintSourceCodeRange } from "../Source/TextlintSourceCode.js";
+import type { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand.js";
 
 /**
  * Creates code fixing commands for rules.

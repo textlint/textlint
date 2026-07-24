@@ -1,6 +1,6 @@
 // LICENSE : MIT
 import debug0 from "debug";
-import { CliOptions, options } from "./options.js";
+import { type CliOptions, options } from "./options.js";
 import { createConfigFile } from "./config/config-initializer.js";
 import { TextLintFixer } from "./fixer/textlint-fixer.js";
 import { Logger } from "./util/logger.js";

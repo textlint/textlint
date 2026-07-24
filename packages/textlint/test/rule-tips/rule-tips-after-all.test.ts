@@ -1,5 +1,4 @@
 // MIT © 2017 azu
-"use strict";
 import * as assert from "node:assert";
 import { describe, it } from "vitest";
 import { createAfterAllRule } from "./fixtures/rules/after-all.js";

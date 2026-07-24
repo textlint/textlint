@@ -1,4 +1,4 @@
-import { TxtNode } from "@textlint/ast-node-types";
+import type { TxtNode } from "@textlint/ast-node-types";
 import type { TextlintRuleContext, TextlintRuleModule, TextlintRuleReporter } from "@textlint/types";
 
 export const report: TextlintRuleReporter = (context: Readonly<TextlintRuleContext>) => {

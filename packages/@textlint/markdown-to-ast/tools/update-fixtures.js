@@ -1,5 +1,4 @@
 // MIT © 2017 azu
-"use strict";
 /*
     Update fixtures/output.json from fixtures/input.md
 

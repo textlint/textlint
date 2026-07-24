@@ -7,7 +7,7 @@ import type {
     TextlintRuleSuggestion,
     TextlintMessageSuggestion
 } from "@textlint/types";
-import { TxtNode } from "@textlint/ast-node-types";
+import type { TxtNode } from "@textlint/ast-node-types";
 import { invariant } from "../util/invariant.js";
 import { throwIfTesting } from "@textlint/feature-flag";
 import { isTextlintRuleErrorPaddingLocation } from "../context/TextlintRulePaddingLocator.js";

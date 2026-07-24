@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import type { TextlintRuleOptions, TextlintRuleSeverityLevel } from "@textlint/types";
 import { TextlintRuleSeverityLevelKeys } from "../context/TextlintRuleSeverityLevelKeys.js";
 

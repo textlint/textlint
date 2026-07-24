@@ -1,7 +1,6 @@
 // LICENSE : MIT
-"use strict";
 
-import { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types";
+import type { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types";
 
 // This module has not module.export, but has module.export.default
 // See https://github.com/textlint/textlint/issues/81

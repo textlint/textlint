@@ -1,4 +1,3 @@
-"use strict";
 // See https://github.com/textlint/textlint/tree/master/packages/textlint-tester
 import TextLintTester from "textlint-tester";
 // rule
