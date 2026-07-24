@@ -26,9 +26,51 @@ const isFormatterFunction = (formatter: unknown): formatter is FormatterFunction
 };
 type BuiltInFormatterName = keyof typeof builtinFormatterList;
 const builtinFormatterNames = Object.keys(builtinFormatterList);
+// Keep this local to avoid a package dependency cycle with @textlint/linter-formatter.
+// These linter-only built-in names must not resolve to same-named npm packages, such as pretty-error.
+const linterOnlyFormatterNames = [
+    "checkstyle",
+    "compact",
+    "github",
+    "jslint-xml",
+    "junit",
+    "pretty-error",
+    "table",
+    "tap",
+    "unix"
+];
 const debug = debug0("textlint:textfix-formatter");
 
 export type FormatterConfig = { color?: boolean; formatterName: string };
+
+function findFormatterPath(formatterName: string): string | null {
+    if (builtinFormatterNames.includes(formatterName as BuiltInFormatterName)) {
+        return formatterName;
+    }
+    if (fs.existsSync(formatterName)) {
+        return formatterName;
+    }
+    const formatterPath = path.resolve(process.cwd(), formatterName);
+    if (fs.existsSync(formatterPath)) {
+        return formatterPath;
+    }
+    return (
+        tryResolve(`textlint-formatter-${formatterName}`, {
+            parentModule: "fixer-formatter"
+        }) ||
+        tryResolve(formatterName, {
+            parentModule: "fixer-formatter"
+        }) ||
+        null
+    );
+}
+
+export function resolveFormatter(formatterName: string): string | null {
+    if (linterOnlyFormatterNames.includes(formatterName)) {
+        return null;
+    }
+    return findFormatterPath(formatterName);
+}
 
 export async function loadFormatter(formatterConfig: FormatterConfig) {
     const formatterName = formatterConfig.formatterName;
@@ -40,24 +82,8 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
             }
         };
     }
+    const formatterPath = findFormatterPath(formatterName);
     let formatter: FormatterFunction;
-    let formatterPath;
-    if (fs.existsSync(formatterName)) {
-        formatterPath = formatterName;
-    } else if (fs.existsSync(path.resolve(process.cwd(), formatterName))) {
-        formatterPath = path.resolve(process.cwd(), formatterName);
-    } else {
-        const pkgPath =
-            tryResolve(`textlint-formatter-${formatterName}`, {
-                parentModule: "fixer-formatter"
-            }) ||
-            tryResolve(formatterName, {
-                parentModule: "fixer-formatter"
-            });
-        if (pkgPath) {
-            formatterPath = pkgPath;
-        }
-    }
     if (!formatterPath) {
         throw new Error(`Could not find formatter ${formatterName}`);
     }

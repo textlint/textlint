@@ -9,7 +9,7 @@ import { loadCliDescriptor } from "./loader/CliLoader.js";
 import { createLinter, TextlintFileSearchError } from "./createLinter.js";
 import { SeverityLevel } from "./shared/type/SeverityLevel.js";
 import { printResults, showEmptyRuleWarning } from "./cli-util.js";
-import { loadFixerFormatter, loadLinterFormatter } from "./formatter.js";
+import { loadFixerFormatter, loadLinterFormatter, resolveFixerFormatter, resolveLinterFormatter } from "./formatter.js";
 import { connectStdioMcpServer, type McpServerOptions } from "./mcp/server.js";
 
 const debug = debug0("textlint:cli");
@@ -129,6 +129,13 @@ export const cli = {
      */
     async executeWithOptions(executeOptions: ExecuteOptions): Promise<number> {
         const cliOptions = executeOptions.cliOptions;
+        const formatterPath = cliOptions.fix
+            ? resolveFixerFormatter(cliOptions.format)
+            : resolveLinterFormatter(cliOptions.format);
+        if (!formatterPath) {
+            Logger.error(`Could not find formatter ${cliOptions.format}`);
+            return Promise.resolve(1);
+        }
         // cli > textlintrc
         // if cli and textlintrc have same option, cli option is prior.
         const descriptor = await loadDescriptor(cliOptions);
