@@ -38,15 +38,19 @@ function formatter(results: TextlintResult[]) {
     results.forEach(function (result) {
         const messages = result.messages;
 
-        // ::warning file={name},line={line},endLine={endLine},title={title}::{message}
+        // ::warning file={name},line={line},endLine={endLine},title={title}::{message} is the format used by github
         messages.forEach(function (message) {
+            output += `${result.filePath}: `;
+            output += `line=${message.loc.start.line || 1}`;
+            output += `, col=${message.loc.start.column || 1}`;
+            output += "\n";
             output += `::${getMessageType(message)} `;
             output += `file=${result.filePath},`;
             output += `line=${message.loc.start.line || 1},`;
             output += `endLine=${message.loc.end.line || message.loc.start.line || 1},`;
             output += `col=${message.loc.start.column || 1},`;
             output += `endColumn=${message.loc.end.column || message.loc.start.column || 1},`;
-            output += `title=TextLint${message.ruleId ? `->${message.ruleId}` : ""}::`;
+            output += `title=TextLint${message.ruleId ? ` [${message.ruleId}]` : ""}::`;
             output += `${message.message.trim()}`;
             output += "\n";
         });
