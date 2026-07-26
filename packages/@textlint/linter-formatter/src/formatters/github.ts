@@ -38,12 +38,14 @@ function formatter(results: TextlintResult[]) {
     results.forEach(function (result) {
         const messages = result.messages;
 
+        if (messages.length === 0) {
+            return;
+        }
+
+        output += `${result.filePath}\n`;
+
         // ::warning file={name},line={line},endLine={endLine},title={title}::{message} is the format used by github
         messages.forEach(function (message) {
-            output += `${result.filePath}: `;
-            output += `line=${message.loc.start.line || 1}`;
-            output += `, col=${message.loc.start.column || 1}`;
-            output += "\n";
             output += `::${getMessageType(message)} `;
             output += `file=${result.filePath},`;
             output += `line=${message.loc.start.line || 1},`;
@@ -52,6 +54,8 @@ function formatter(results: TextlintResult[]) {
             output += `endColumn=${message.loc.end.column || message.loc.start.column || 1},`;
             output += `title=TextLint${message.ruleId ? ` [${message.ruleId}]` : ""}::`;
             output += `${message.message.trim()}`;
+            output += ` @ ${message.loc.start.line || 1}:`;
+            output += `${message.loc.start.column || 1}`;
             output += "\n";
         });
     });
