@@ -22,19 +22,23 @@ export type CacheBackerOptions = {
      * Config hash value
      */
     hash: string;
+    /**
+     * Cache strategy for detecting changed files.
+     * - "metadata": use file mtime and size (fast, not CI-safe)
+     * - "content": use file content hash (accurate, CI-safe)
+     */
+    cacheStrategy: "metadata" | "content";
 };
 type FileEntryCacheCustomData = {
     hashOfConfig: string;
 };
 
-const createFileEntryCache = (cacheLocation: string): FileEntryCache => {
+const createFileEntryCache = (cacheLocation: string, strategy: "metadata" | "content"): FileEntryCache => {
     const filename = path.basename(cacheLocation);
     const cacheDir = path.dirname(cacheLocation);
+    const useCheckSum = strategy === "content";
     try {
-        // use the metadata for cache instead of the file content
-        // TODO: if we want to reuse the cache in CI, we should use the file content cache and save relative path into the cache
-
-        return fileEntryCache.create(filename, cacheDir, false);
+        return fileEntryCache.create(filename, cacheDir, useCheckSum);
     } catch (error) {
         debug(`Failed to create fileEntryCache, filename: ${filename}, cacheDir: ${cacheDir}`, error);
         // remove old cache file and retry
@@ -43,7 +47,7 @@ const createFileEntryCache = (cacheLocation: string): FileEntryCache => {
         } catch (error) {
             debug(`Failed to remove cache file, filename: ${filename}, cacheDir: ${cacheDir}`, error);
         }
-        return fileEntryCache.create(filename, cacheDir, false);
+        return fileEntryCache.create(filename, cacheDir, useCheckSum);
     }
 };
 
@@ -53,7 +57,7 @@ export class CacheBacker implements AbstractBacker {
 
     constructor(private config: CacheBackerOptions) {
         this.isEnabled = config.cache;
-        this.fileCache = createFileEntryCache(config.cacheLocation);
+        this.fileCache = createFileEntryCache(config.cacheLocation, config.cacheStrategy);
     }
 
     /**

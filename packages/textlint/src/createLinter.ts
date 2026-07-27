@@ -43,6 +43,7 @@ export type CreateLinterOptions = {
     quiet?: boolean;
     cache?: boolean;
     cacheLocation?: string;
+    cacheStrategy?: "metadata" | "content";
     /**
      * The current working directory
      */
@@ -69,7 +70,8 @@ const createExecutor = async (options: CreateLinterOptions): Promise<ExecuteFile
         const cacheBaker = new CacheBacker({
             cache: options.cache ?? false,
             cacheLocation: options.cacheLocation ?? path.resolve(process.cwd(), ".textlintcache"),
-            hash: await createHashForDescriptor(options.descriptor)
+            hash: await createHashForDescriptor(options.descriptor),
+            cacheStrategy: options.cacheStrategy ?? "content"
         });
         executeFileBackerManager.add(cacheBaker);
     }

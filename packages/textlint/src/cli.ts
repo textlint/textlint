@@ -140,6 +140,7 @@ export const cli = {
         const linter = createLinter({
             cache: cliOptions.cache,
             cacheLocation: cliOptions.cacheLocation,
+            cacheStrategy: cliOptions.cacheStrategy,
             quiet: cliOptions.quiet,
             ignoreFilePath: cliOptions.ignorePath,
             descriptor
