@@ -68,6 +68,7 @@ Specifying rules and plugins:
 Caching:
   --cache                     Only check changed files - default: false
   --cache-location path::String  Path to the cache file or directory - default: .textlintcache
+  --cache-strategy String     Strategy for detecting changed files - either: metadata or content - default: content
 
 Experimental:
   --experimental              Enable experimental flag.Some feature use on experimental.
@@ -102,6 +103,19 @@ You can enable it with the `--cache` option.
 
 ```bash
 $ textlint --cache README.md
+```
+
+You can specify the cache strategy with `--cache-strategy` option:
+
+- `content` (default): Use file content hash to detect changes. This is accurate and works in CI environments.
+- `metadata`: Use file metadata (mtime and size) to detect changes. This is faster but not reliable in CI.
+
+```bash
+# Use content hash (default, CI-safe)
+$ textlint --cache --cache-strategy content README.md
+
+# Use metadata (fast, local only)
+$ textlint --cache --cache-strategy metadata README.md
 ```
 
 If you want to clear the cache, you can use the `--no-cache` option or just remove `--cache` option.
