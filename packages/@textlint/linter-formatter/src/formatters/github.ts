@@ -42,7 +42,7 @@ function formatter(results: TextlintResult[]) {
             return;
         }
 
-        output += `${result.filePath}\n`;
+        output += `::group::${result.filePath}\n`;
 
         // ::warning file={name},line={line},endLine={endLine},title={title}::{message} is the format used by github to generate annotations
         messages.forEach(function (message) {
@@ -58,6 +58,7 @@ function formatter(results: TextlintResult[]) {
             output += `C${message.loc.start.column || 1}`;
             output += "\n";
         });
+        output += "::endgroup::\n"
     });
 
     return output;
