@@ -75,7 +75,7 @@ describe("formatter:github", function () {
             assert.equal(
                 result,
                 "::group::foo.js\n" +
-                "::notice file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint [foo]::Unexpected foo. | L5C10" +
+                "::notice file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint [foo]::Unexpected foo. | L5C10\n" +
                 "::endgroup::\n"
             );
         });
