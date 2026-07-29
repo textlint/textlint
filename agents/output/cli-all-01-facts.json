@@ -1,0 +1,981 @@
+{
+    "featureSlice": {
+        "id": "textlint-cli-all",
+        "name": "textlint CLI全体",
+        "baseline": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3"
+    },
+    "entrypoints": [
+        {
+            "artifact": "packages/textlint/bin/textlint.js",
+            "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+            "locator": "L1-L68"
+        },
+        {
+            "artifact": "packages/textlint/src/cli.ts",
+            "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+            "locator": "cli.execute L49-L121; cli.executeWithOptions L130-L213"
+        }
+    ],
+    "facts": [
+        {
+            "factId": "FACT-CLI-001",
+            "statement": "Node.js用のbinエントリポイントは、標準入力を使うかを判定した後にcli.executeを呼び、返された数値をprocess.exitCodeへ設定する。",
+            "factKind": "interface",
+            "source": {
+                "artifact": "packages/textlint/bin/textlint.js",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L1-L15, L41-L55",
+                "contentHash": "b95cb2ae82d9da6c79ff1646add44a26bc87e1135ff05b2c5ad021cf109baadd"
+            },
+            "sourceRole": "implements",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-002",
+            "statement": "公開option `--help`（alias `-h`）はBooleanで、help表示用として宣言されている。",
+            "factKind": "interface",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L55-L60",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-003",
+            "statement": "公開option `--config`（alias `-c`）はpath文字列で、設定ファイルまたは共有設定の指定として宣言されている。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L61-L67",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-004",
+            "statement": "公開option `--ignore-path`はpath文字列で、既定値は起動時のcwdにある`.textlintignore`の絶対パスである。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L68-L74",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-005",
+            "statement": "公開option `--init`は既定値falseのBooleanで、設定ファイル作成用として宣言されている。",
+            "factKind": "interface",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L75-L80",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-006",
+            "statement": "公開option `--fix`は既定値falseのBooleanで、自動修正用として宣言されている。",
+            "factKind": "interface",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L81-L87",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-007",
+            "statement": "公開option `--dry-run`は既定値falseのBooleanで、`--fix`の結果を表示するがファイルを変更しないモードとして宣言されている。",
+            "factKind": "interface",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L88-L94",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["--fixとの組み合わせとして説明される"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-008",
+            "statement": "公開option `--debug`は既定値falseのBooleanで、デバッグ情報出力用として宣言されている。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L95-L100",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-009",
+            "statement": "公開option `--print-config`は既定値falseのBooleanで、設定objectをstdoutへ出すために宣言されている。",
+            "factKind": "output",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L101-L106",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-010",
+            "statement": "公開option `--version`（alias `-v`）はBooleanで、version番号出力用として宣言されている。",
+            "factKind": "output",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L107-L112",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-011",
+            "statement": "公開option `--stdin`は既定値falseのBooleanで、標準入力のtextをlintするために宣言されている。",
+            "factKind": "input",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L114-L121",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-012",
+            "statement": "公開option `--stdin-filename`はStringで、標準入力を処理する際のファイル名指定として宣言されている。",
+            "factKind": "input",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L122-L127",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": ["stdin実行"] }
+        },
+        {
+            "factId": "FACT-CLI-013",
+            "statement": "公開option `--output-file`（alias `-o`）はpath文字列で、reportのファイル出力先として宣言されている。",
+            "factKind": "output",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L129-L136",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-014",
+            "statement": "公開option `--format`（alias `-f`）はStringで、既定値は`stylish`である。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L137-L146",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-015",
+            "statement": "公開option `--color`は既定値trueのBooleanで、`--no-color`の例が宣言されている。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L147-L153",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-016",
+            "statement": "公開option `--quiet`は既定値falseのBooleanで、errorだけをreportするoptionとして宣言されている。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L154-L159",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-017",
+            "statement": "公開option `--textlintrc`は既定値trueのBooleanで、`--no-textlintrc`により`.textlintrc`を無効化する形で宣言されている。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L161-L169",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-018",
+            "statement": "公開option `--plugin`は繰り返し可能なString配列で、plugin package名指定として宣言されている。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L170-L175",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-019",
+            "statement": "公開option `--rule`は繰り返し可能なString配列で、rule package名指定として宣言されている。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L176-L180",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-020",
+            "statement": "公開option `--preset`は繰り返し可能なString配列で、preset packageからruleをloadする指定として宣言されている。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L181-L185",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-021",
+            "statement": "公開option `--rulesdir`は繰り返し可能なpath文字列配列で、追加rule directory指定として宣言されている。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L186-L190",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-022",
+            "statement": "公開option `--cache`は既定値falseのBooleanで、変更されたfileだけをcheckするoptionとして宣言されている。",
+            "factKind": "performance",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L192-L200",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-023",
+            "statement": "公開option `--cache-location`はpath文字列で、既定値は起動時のcwdにある`.textlintcache`の絶対パスである。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L201-L207",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": ["--cache利用時"] }
+        },
+        {
+            "factId": "FACT-CLI-024",
+            "statement": "公開option `--experimental`は既定値falseのBooleanで、experimental flagを有効化するoptionとして宣言されている。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L208-L217",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": ["core.experimental"], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-025",
+            "statement": "公開option `--rules-base-directory`はpath文字列で、rule、preset、pluginをloadするmodule基準directory指定として宣言されている。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L218-L224",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-026",
+            "statement": "公開option `--mcp`は既定値falseのBooleanで、textlintをMCP serverとして起動するoptionとして宣言されている。",
+            "factKind": "interface",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L225-L231",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-027",
+            "statement": "binはCLI moduleをrequireする前に、argvに`--debug`があれば`textlint*` debug namespaceを有効化し、feature flag moduleはargvに`--experimental`があれば`core.experimental`をtrueにする。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/@textlint/feature-flag/src/index.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L41-L67; packages/textlint/bin/textlint.js L4-L15",
+                "contentHash": "61beaf88cd7e689900f93724018e0a8d1212298dcf4ea314252799f88a9dd4d7"
+            },
+            "sourceRole": "implements",
+            "confidence": 0.98,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": ["core.experimental", "core.runningCLI"],
+                "conditions": ["argvに完全一致の--debugまたは--experimentalがある"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-028",
+            "statement": "binは`--stdin`がargvにある場合にstdin全体をtextとして読み、cli.executeへ渡し、cli.executeはstdin textがあるのに`--stdin-filename`が無ければErrorをthrowする。",
+            "factKind": "validation",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L100-L112; packages/textlint/bin/textlint.js L3-L5, L41-L49",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "enforces",
+            "confidence": 0.99,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["stdin textが渡された"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-029",
+            "statement": "cli.executeはoption parse失敗時に1を返し、parse成功後はversion、init、print-config、mcp、help、通常実行の順で最初に一致したbranchだけを選ぶ。",
+            "factKind": "validation",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L56-L120",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "implements",
+            "confidence": 0.99,
+            "applicability": { "environment": "Node.js CLI", "featureFlags": [], "conditions": [] }
+        },
+        {
+            "factId": "FACT-CLI-030",
+            "statement": "CLI descriptorは`--rule`、`--preset`、`--plugin`、`--rulesdir`から構築され、`.textlintrc`側descriptorまたはbuilt-in plugin descriptorとconcatされる。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/loader/CliLoader.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L9-L56; packages/textlint/src/cli.ts L31-L44",
+                "contentHash": "b96b2dea12498b29470e3369a8c58c093ce06c370e1c2bdbc01fb24213127485"
+            },
+            "sourceRole": "implements",
+            "confidence": 0.98,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": [
+                    "--no-textlintrcではbuilt-in plugin descriptorを使う",
+                    "config load失敗時もbuilt-in plugin descriptorへfallbackする"
+                ]
+            }
+        },
+        {
+            "factId": "FACT-CLI-031",
+            "statement": "file実行はfile、directory、globを利用可能extensionのglobへ変換し、`.git`、`node_modules`、指定ignore fileのpatternを除外して絶対file pathを検索する。",
+            "factKind": "input",
+            "source": {
+                "artifact": "packages/textlint/src/util/find-util.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L8-L24, L43-L118; packages/textlint/src/createLinter.ts L92-L126, L149-L183",
+                "contentHash": "78de7257bfd6cfcb00eedcd006589e7662e6705dd9d92f84a620bc77f37256ab"
+            },
+            "sourceRole": "implements",
+            "confidence": 0.98,
+            "applicability": {
+                "environment": "filesystem",
+                "featureFlags": [],
+                "conditions": [
+                    "ignore file不在は空patternとして扱う",
+                    "全候補がignoreされた場合は成功かつ空配列",
+                    "候補自体が無い場合はsearch error"
+                ]
+            }
+        },
+        {
+            "factId": "FACT-CLI-032",
+            "statement": "通常lintはlintTextまたはlintFilesを呼び、`--fix`はfixTextまたはfixFilesを呼び、`--dry-run`時はformatter出力後にfile writeを行わない。",
+            "factKind": "state_change",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L148-L202",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "implements",
+            "confidence": 0.99,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["stdinのlintText/fixTextはignore fileを参照しない"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-033",
+            "statement": "lintとfixは別のformatter loaderへ`--format`と`--color`を渡し、`--quiet`はkernelへ渡され、整形済みoutputは`--output-file`があればfileへ、無ければ追加改行なしでstdoutへ書かれる。",
+            "factKind": "output",
+            "source": {
+                "artifact": "packages/textlint/src/cli-util.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L26-L52; packages/textlint/src/cli.ts L140-L160, L180-L190",
+                "contentHash": "75f9bed22b5eec4895c24afee3c247128e6a41699df4c3210f5ca7da0a09606c"
+            },
+            "sourceRole": "implements",
+            "confidence": 0.99,
+            "applicability": {
+                "environment": "Node.js CLI/filesystem",
+                "featureFlags": [],
+                "conditions": [
+                    "output fileの親directoryはrecursiveに作成される",
+                    "出力先がdirectoryまたはwrite失敗ならfalse"
+                ]
+            }
+        },
+        {
+            "factId": "FACT-CLI-034",
+            "statement": "`--cache`がtrueのときだけCacheBackerが追加され、そのkey用hashはtextlint versionとdescriptor JSONから作られ、`--cache-location`がbackerへ渡される。",
+            "factKind": "performance",
+            "source": {
+                "artifact": "packages/textlint/src/createLinter.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L51-L76, L92-L93, L149-L150",
+                "contentHash": "0d71251d9d6d028bd0a37f1ec50dd4a973515f5bb20e5e2aa72af3f9d81e348a"
+            },
+            "sourceRole": "implements",
+            "confidence": 0.98,
+            "applicability": { "environment": "filesystem", "featureFlags": [], "conditions": ["--cache=true"] }
+        },
+        {
+            "factId": "FACT-CLI-035",
+            "statement": "`--mcp` branchはconfig、rules base directory、ignore path、quiet、debug、cwdをMCP server optionへmapしてstdio serverへ接続し、SIGINT時にserverをcloseしてexitCodeを0にする。",
+            "factKind": "side_effect",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L80-L96",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "implements",
+            "confidence": 0.99,
+            "applicability": { "environment": "stdio MCP server", "featureFlags": [], "conditions": ["--mcp=true"] }
+        },
+        {
+            "factId": "FACT-CLI-036",
+            "statement": "実行descriptorにlint可能ruleが無い場合はwarningを出して1、lint errorは1、file search errorまたは出力失敗は2、その他のfile処理例外は1を返し、binで未捕捉になった例外はstackを表示してprocessを2で終了する。",
+            "factKind": "error",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L123-L146, L161-L211; packages/textlint/bin/textlint.js L17-L25, L51-L68",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "implements",
+            "confidence": 0.98,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": [
+                    "出力file指定かつ出力成功時はlint/fix errorの有無にかかわらず0",
+                    "fix後にerror severityのremainingMessagesがあれば1"
+                ]
+            }
+        },
+        {
+            "factId": "FACT-CLI-037",
+            "statement": "Issue #103は、reportをoutput fileへ正常出力した場合のexit statusを0にする要望を記録している。",
+            "factKind": "other",
+            "source": {
+                "artifact": "https://github.com/textlint/textlint/issues/103",
+                "revision": "updated_at=2022-12-29T13:20:29Z",
+                "locator": "issue title and body",
+                "contentHash": null
+            },
+            "sourceRole": "justifies",
+            "confidence": 0.95,
+            "applicability": {
+                "environment": "historical issue",
+                "featureFlags": [],
+                "conditions": ["現行仕様の宣言としては扱わない"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-038",
+            "statement": "Issue #500は、`.textlintignore`と既定pathを伴う`--ignore-path`の導入要望を記録している。",
+            "factKind": "other",
+            "source": {
+                "artifact": "https://github.com/textlint/textlint/issues/500",
+                "revision": "updated_at=2021-03-21T11:47:53Z",
+                "locator": "issue body, Task section",
+                "contentHash": null
+            },
+            "sourceRole": "explains-history",
+            "confidence": 0.95,
+            "applicability": {
+                "environment": "historical issue",
+                "featureFlags": [],
+                "conditions": ["現行仕様の宣言としては扱わない"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-039",
+            "statement": "open状態のIssue #739は、textlint v11.8.1で`--stdin`と`pretty-error`を組み合わせた際のENOENT例外を報告している。",
+            "factKind": "runtime_observation",
+            "source": {
+                "artifact": "https://github.com/textlint/textlint/issues/739",
+                "revision": "updated_at=2021-01-28T02:02:13Z",
+                "locator": "issue title, state, reproduction and actual output",
+                "contentHash": null
+            },
+            "sourceRole": "observes",
+            "confidence": 0.93,
+            "applicability": {
+                "environment": "textlint v11.8.1; Node.js v15.6.0",
+                "featureFlags": [],
+                "conditions": ["--stdin --stdin-filename foo.md -f pretty-error", "baselineでの再現を意味しない"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-040",
+            "statement": "Issue #1091は、textlint v13.3.0で`--fix --dry-run --stdin --format fixed-result`が修正結果を出力しなかった事例を記録している。",
+            "factKind": "runtime_observation",
+            "source": {
+                "artifact": "https://github.com/textlint/textlint/issues/1091",
+                "revision": "updated_at=2023-02-26T11:21:02Z",
+                "locator": "issue body, reproduction and actual output",
+                "contentHash": null
+            },
+            "sourceRole": "explains-history",
+            "confidence": 0.94,
+            "applicability": {
+                "environment": "textlint v13.3.0",
+                "featureFlags": [],
+                "conditions": ["baselineでの再現を意味しない"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-041",
+            "statement": "open状態のIssue #1327は、当時のcacheがfile metadataだけを見るためCIに不十分だという評価と、content strategy導入案を記録している。",
+            "factKind": "runtime_observation",
+            "source": {
+                "artifact": "https://github.com/textlint/textlint/issues/1327",
+                "revision": "updated_at=2024-02-04T05:17:55Z",
+                "locator": "issue body and TODO section",
+                "contentHash": null
+            },
+            "sourceRole": "observes",
+            "confidence": 0.9,
+            "applicability": {
+                "environment": "historical cache implementation",
+                "featureFlags": [],
+                "conditions": ["提案を現行仕様としては扱わない"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-042",
+            "statement": "Issue #1498は、`textlint --mcp`でMCP serverを起動する機能案と、想定tool候補を記録している。",
+            "factKind": "other",
+            "source": {
+                "artifact": "https://github.com/textlint/textlint/issues/1498",
+                "revision": "updated_at=2025-06-09T21:38:11Z",
+                "locator": "issue body, Objective and MCP tools sections",
+                "contentHash": null
+            },
+            "sourceRole": "justifies",
+            "confidence": 0.95,
+            "applicability": {
+                "environment": "historical design issue",
+                "featureFlags": [],
+                "conditions": ["提案をMCP protocolの現行仕様としては扱わない"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-043",
+            "statement": "Issue #1632は、`--mcp`とconfig path、module directory、ignore path、quiet、cwdなどのCLI引数を組み合わせるためのMcpServerOptions案を記録している。",
+            "factKind": "other",
+            "source": {
+                "artifact": "https://github.com/textlint/textlint/issues/1632",
+                "revision": "updated_at=2025-07-06T00:16:07Z",
+                "locator": "issue body, Proposed McpServerOptions and TODO",
+                "contentHash": null
+            },
+            "sourceRole": "explains-history",
+            "confidence": 0.95,
+            "applicability": {
+                "environment": "historical design issue",
+                "featureFlags": [],
+                "conditions": ["提案を現行仕様としては扱わない"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-044",
+            "statement": "Issue #1852は、rc fileが無い場合にも既定動作で実行してほしいという利用者要望を記録している。",
+            "factKind": "other",
+            "source": {
+                "artifact": "https://github.com/textlint/textlint/issues/1852",
+                "revision": "updated_at=2025-12-07T01:21:13Z",
+                "locator": "issue title and body",
+                "contentHash": null
+            },
+            "sourceRole": "justifies",
+            "confidence": 0.94,
+            "applicability": {
+                "environment": "historical issue",
+                "featureFlags": [],
+                "conditions": ["要望を現行仕様としては扱わない"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-045",
+            "statement": "Issue #2043は、textlint v15.7.0でfixed-resultをstdoutへ直接出す場合に`--output-file /dev/stdout`より末尾改行が1つ多かった再現結果を記録している。",
+            "factKind": "runtime_observation",
+            "source": {
+                "artifact": "https://github.com/textlint/textlint/issues/2043",
+                "revision": "updated_at=2026-05-18T01:12:09Z",
+                "locator": "issue body, Summary, reproduction, Actual Behavior",
+                "contentHash": null
+            },
+            "sourceRole": "explains-history",
+            "confidence": 0.96,
+            "applicability": {
+                "environment": "textlint v15.7.0; Markdown",
+                "featureFlags": [],
+                "conditions": ["baselineではLogger.writeを使う実装があるため、報告時点の挙動を現行仕様としては扱わない"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-046",
+            "statement": "CLI testは、stdin text実行とfile実行の両方でruleが無い場合にexit code 1と`No rules found`のlogを期待している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/cli/cli.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L97-L110",
+                "contentHash": "414174a17b4ccb2c775978f2c7bbec5145cbc22ec2fa91d1b19716b3ccfb4343"
+            },
+            "sourceRole": "verifies",
+            "confidence": 0.99,
+            "applicability": { "environment": "Vitest; Node.js", "featureFlags": [], "conditions": ["rule未指定"] }
+        },
+        {
+            "factId": "FACT-CLI-047",
+            "statement": "CLI testは、`--fix`がfixture fileを期待内容へ変更し、`--fix --dry-run`が元のfile内容を保持することを期待している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/cli/cli.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L294-L323",
+                "contentHash": "414174a17b4ccb2c775978f2c7bbec5145cbc22ec2fa91d1b19716b3ccfb4343"
+            },
+            "sourceRole": "verifies",
+            "confidence": 0.99,
+            "applicability": {
+                "environment": "Vitest; temporary filesystem",
+                "featureFlags": [],
+                "conditions": ["fixture fixer rulesを使用"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-048",
+            "statement": "CLI regression testは、stdinの`--fix --dry-run --format fixed-result`がexit code 0を返し、stdoutへ追加改行なしで`This is fixed.`を出すことを期待している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/cli/cli.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L324-L356",
+                "contentHash": "414174a17b4ccb2c775978f2c7bbec5145cbc22ec2fa91d1b19716b3ccfb4343"
+            },
+            "sourceRole": "verifies",
+            "confidence": 0.99,
+            "applicability": {
+                "environment": "Vitest; mocked Logger.write",
+                "featureFlags": [],
+                "conditions": ["--stdin --stdin-filename test.md"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-049",
+            "statement": "CLI testは、warningだけを生じるfixtureを`--quiet`で実行した場合にexit code 0となりreport logが無いことを期待している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/cli/cli.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L360-L369",
+                "contentHash": "414174a17b4ccb2c775978f2c7bbec5145cbc22ec2fa91d1b19716b3ccfb4343"
+            },
+            "sourceRole": "verifies",
+            "confidence": 0.99,
+            "applicability": {
+                "environment": "Vitest",
+                "featureFlags": [],
+                "conditions": ["warning severityのconfig fixture"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-050",
+            "statement": "CLI testは、`--cache --cache-location`実行が指定cache fileを作成してexit code 0を返し、既存cacheが旧形式でもthrowせず0を返すことを期待している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/cli/cli.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L379-L420",
+                "contentHash": "414174a17b4ccb2c775978f2c7bbec5145cbc22ec2fa91d1b19716b3ccfb4343"
+            },
+            "sourceRole": "verifies",
+            "confidence": 0.99,
+            "applicability": {
+                "environment": "Vitest; filesystem",
+                "featureFlags": [],
+                "conditions": ["明示cache-location"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-051",
+            "statement": "CLI testは、`--print-config`がbuilt-in plugin descriptorをJSON出力し、`--config`または`--rule`指定時にはそれぞれを反映したdescriptor JSONをexit code 0で出すことを期待している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/cli/cli.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L423-L482",
+                "contentHash": "414174a17b4ccb2c775978f2c7bbec5145cbc22ec2fa91d1b19716b3ccfb4343"
+            },
+            "sourceRole": "verifies",
+            "confidence": 0.99,
+            "applicability": {
+                "environment": "Vitest; mocked logger",
+                "featureFlags": [],
+                "conditions": ["--print-config"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-052",
+            "statement": "CLI testは、`--ignore-path`がglob指定と直接file path指定の両方で対象を除外し、不在ignore fileでは通常lintを続行することを期待している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/cli/cli.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L484-L529",
+                "contentHash": "414174a17b4ccb2c775978f2c7bbec5145cbc22ec2fa91d1b19716b3ccfb4343"
+            },
+            "sourceRole": "verifies",
+            "confidence": 0.99,
+            "applicability": {
+                "environment": "Vitest; filesystem",
+                "featureFlags": [],
+                "conditions": ["fixture ignore file"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-053",
+            "statement": "CLI testは、lint errorを含むglobを`--output-file`付きで実行した場合にexit code 0となり、指定fileへ`Found TODO`を含むreportが書かれることを期待している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/cli/cli.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L531-L555",
+                "contentHash": "414174a17b4ccb2c775978f2c7bbec5145cbc22ec2fa91d1b19716b3ccfb4343"
+            },
+            "sourceRole": "verifies",
+            "confidence": 0.99,
+            "applicability": {
+                "environment": "Vitest; temporary output file",
+                "featureFlags": [],
+                "conditions": ["--output-file"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-054",
+            "statement": "exit-status test suiteは、単独または全て不在のfile patternをTextlintFileSearchErrorかつexit code 2として検証し、既存fileと不在fileの混在時は既存fileのlint結果に基づくcodeを期待している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/cli/cli-exit-status-faq.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L295-L383, L386-L467",
+                "contentHash": "1fef1599de986baa5099dfd43c77dd66a69ad38e977bc2b7165330697990826f"
+            },
+            "sourceRole": "verifies",
+            "confidence": 0.98,
+            "applicability": {
+                "environment": "Vitest; temporary filesystem",
+                "featureFlags": [],
+                "conditions": ["file search scenario table"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-055",
+            "statement": "preset severity testは、部分configでpreset ruleのseverity 2が保持され、lint messageがある場合にCLIがexit code 1を返すことを期待している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/cli/cli-preset-severity.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L41-L67",
+                "contentHash": "021f1c75903ecbff3c916d15172866628f6e883e4a6a29292c1e68a1d24805ee"
+            },
+            "sourceRole": "verifies",
+            "confidence": 0.99,
+            "applicability": {
+                "environment": "Vitest; preset severity fixture",
+                "featureFlags": [],
+                "conditions": ["partial preset configuration"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-056",
+            "statement": "find-util testは、ignore対象の相対pathと絶対pathが空の検索結果になり、scanFilePathが通常fileを`ok`、ignore対象を`ignored`、不在fileを`error`として返すことを期待している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/util/find-util.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L89-L115, L144-L181",
+                "contentHash": "a7d8962a5a030676c503b88e6bf8ef5fff0077c234e1861e72762836a5c9cb69"
+            },
+            "sourceRole": "verifies",
+            "confidence": 0.99,
+            "applicability": {
+                "environment": "Vitest; filesystem fixtures",
+                "featureFlags": [],
+                "conditions": ["ignoreFilePath指定"]
+            }
+        },
+        {
+            "factId": "FACT-CLI-057",
+            "statement": "CacheBacker testは、同じhashで成功結果を保存した未変更fileは次回実行不要、messageを持つ失敗結果は再実行必要、指定cacheLocationにはcache fileが作成されることを期待している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/execute-file-backers/cache-backer.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "L20-L50, L53-L73, L76-L96",
+                "contentHash": "af8dffab92a40f40755c2b89a72aae8ae053a2edafc08a6fd5e011ecaa815df6"
+            },
+            "sourceRole": "verifies",
+            "confidence": 0.99,
+            "applicability": {
+                "environment": "Vitest; temporary filesystem",
+                "featureFlags": [],
+                "conditions": ["cache=true; stable fixture file"]
+            }
+        }
+    ],
+    "contradictions": [
+        {
+            "description": "docs/cli.md L121-L125はlint errorがある`--dry-run`をexit 1の例に含める一方、baselineのcli.ts L161-L165はdry-runのformatter出力に成功すれば0を返す。",
+            "factRefs": ["FACT-CLI-007", "FACT-CLI-032", "FACT-CLI-036"]
+        }
+    ],
+    "uncertainties": [
+        {
+            "question": "CLI descriptorとtextlintrc descriptorに同名ruleがある場合、concat後の最終optionsはどちらになるか。",
+            "reason": "cli.tsはCLI優先とコメントするが、TextlintKernelDescriptor.concat内部は今回の除外範囲であり確認していない。",
+            "relatedFactRefs": ["FACT-CLI-030"]
+        },
+        {
+            "question": "baselineでも`--stdin -f pretty-error`のIssue #739が再現するか。",
+            "reason": "issueは古いversionの観測で、今回確認した主要CLI testにはこの組み合わせの直接検証を確認できなかった。",
+            "relatedFactRefs": ["FACT-CLI-039"]
+        },
+        {
+            "question": "cacheがfile content変更だけを確実に検出できるか。",
+            "reason": "CLIからCacheBackerを組み込む経路は確認したが、cache protocol内部とstrategyは対象外とした。",
+            "relatedFactRefs": ["FACT-CLI-034", "FACT-CLI-041"]
+        }
+    ],
+    "uninspectedAreas": [
+        {
+            "area": "rule、filter rule、parser、pluginの実行内部",
+            "reason": "Feature Sliceから明示的に除外した。"
+        },
+        {
+            "area": "MCP tool schema、各tool handler、protocol responseの内部",
+            "reason": "CLIの`--mcp` dispatchとoption mappingだけを対象とした。"
+        },
+        {
+            "area": "TextlintKernelDescriptor.concatとCacheBackerの内部algorithm",
+            "reason": "主要sourceに限定し、CLIからの接続点だけを確認した。"
+        }
+    ]
+}

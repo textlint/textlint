@@ -1,0 +1,1026 @@
+{
+    "reviews": [
+        {
+            "clauseId": "CRC-CLI-001",
+            "reviewState": "partially_supported",
+            "confidence": 0.96,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/test/cli/cli.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L583-L590",
+                    "reason": "--help が出力を行い 0 を返すことを直接検証している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L69-L99",
+                    "reason": "--version、--init、--print-config、--mcp が先に分岐するため、--help と同時指定すると常に help が表示されるわけではない。"
+                }
+            ],
+            "alternativeExplanations": [
+                "--help は単独利用を想定した公開機能であり、複数 mode option の競合時挙動までは要件化されていない可能性がある。"
+            ],
+            "scopeCorrections": ["--help または -h が選択された branch で利用方法を表示し 0 を返す、と限定する。"],
+            "missingEvidence": ["他の top-level mode option との組合せ test。"],
+            "requiredHumanDecisions": ["相互排他的な mode option の同時指定を公開契約に含めるか。"],
+            "recommendedStatement": "Node.js CLIは、他の優先 mode が選択されない状態で--helpまたは-hが指定されると、利用方法を表示してexit code 0を返す。",
+            "recommendedKnowledgeType": "executable_expectation"
+        },
+        {
+            "clauseId": "CRC-CLI-002",
+            "reviewState": "supported_candidate",
+            "confidence": 0.99,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/test/cli/cli.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L573-L580",
+                    "reason": "package version に v を付けて出力し 0 を返すことを直接検証している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L58-L70",
+                    "reason": "package metadata を取得できない環境では文字列 vunknown となるため、常に正規の version 番号になる保証はない。"
+                }
+            ],
+            "alternativeExplanations": ["実装は package metadata の表示であり、version 形式自体は固定していない。"],
+            "scopeCorrections": ["通常の配布物で package metadata を読めることを前提にする。"],
+            "missingEvidence": [],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "Node.js CLIは、--versionまたは-vが指定された場合にpackage versionをv接頭辞付きで表示し、exit code 0を返す。",
+            "recommendedKnowledgeType": "executable_expectation"
+        },
+        {
+            "clauseId": "CRC-CLI-003",
+            "reviewState": "partially_supported",
+            "confidence": 0.95,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/config/config-initializer.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L72-L117",
+                    "reason": "--init の実処理は cwd に .textlintrc.json を作成し、成功時 0 を返す。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/config/config-initializer.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L80-L85",
+                    "reason": "既存 .textlintrc.json がある場合は作成せず 1 を返す。さらに --version 同時指定時は init branch に入らない。"
+                }
+            ],
+            "alternativeExplanations": [
+                "「処理を選択する」は branch 構造の記述であり、利用者が必要とする契約は設定ファイルの作成結果である。"
+            ],
+            "scopeCorrections": ["既存 .textlintrc.json がなく、より優先される mode がない場合に限定する。"],
+            "missingEvidence": ["bin entrypoint からの init 成功・既存ファイル失敗の integration test。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "Node.js CLIは、--initが選択されcwdに.textlintrc.jsonが存在しない場合、設定ファイルを作成して0を返し、既存なら変更せず1を返す。",
+            "recommendedKnowledgeType": "executable_expectation"
+        },
+        {
+            "clauseId": "CRC-CLI-004",
+            "reviewState": "partially_supported",
+            "confidence": 0.98,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/test/cli/cli.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L423-L480",
+                    "reason": "built-in、--config、--rule の descriptor JSON と exit code 0 を検証している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L69-L80",
+                    "reason": "--version または --init との同時指定では print-config branch は選ばれない。"
+                }
+            ],
+            "alternativeExplanations": [
+                "JSON は有効な実行設定の安定した公開形式ではなく、内部 descriptor の診断表示である可能性がある。"
+            ],
+            "scopeCorrections": [
+                "--print-config branch が選択され descriptor load が成功する場合に限定する。key 順序は契約から除く。"
+            ],
+            "missingEvidence": ["descriptor load 失敗時と複数 mode 同時指定時の test。"],
+            "requiredHumanDecisions": ["descriptor JSON schema を互換性保証の対象にするか。"],
+            "recommendedStatement": "Node.js CLIは、--print-config branchでloadしたdescriptorをJSONとしてstdoutへ出力し、成功時に0を返す。",
+            "recommendedKnowledgeType": "executable_expectation"
+        },
+        {
+            "clauseId": "CRC-CLI-005",
+            "reviewState": "partially_supported",
+            "confidence": 0.94,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L80-L96",
+                    "reason": "config、rules base directory、ignore path、quiet、debug、cwd を McpServerOptions に写し stdio server を接続する。"
+                },
+                {
+                    "artifact": "docs/mcp.md",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L23-L53",
+                    "reason": "--config、--ignore-path、--quiet、--rules-base-directory の併用を利用者向けに明記している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/test/cli/cli.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L567-L571",
+                    "reason": "CLI test は --mcp が 0 を返すことしか検証せず、option mapping、stdio 接続、SIGINT、他 mode との競合を検証していない。"
+                }
+            ],
+            "alternativeExplanations": ["debug と cwd は公開された併用 flag ではなく server 初期化の内部値である。"],
+            "scopeCorrections": [
+                "文書で保証される併用 option と、code で観測した debug/cwd mapping を分離する。--version、--init、--print-config は --mcp より先に選ばれる。"
+            ],
+            "missingEvidence": ["CLI option mapping と mode 組合せの test。"],
+            "requiredHumanDecisions": [
+                "--mcp と --fix、--stdin、--output-file 等の非対応 option を拒否するか無視するか。"
+            ],
+            "recommendedStatement": "Node.js CLIは、--mcp branchで--config、--ignore-path、--quiet、--rules-base-directoryを反映したstdio MCP serverを起動する。",
+            "recommendedKnowledgeType": "explicit_requirement"
+        },
+        {
+            "clauseId": "CRC-CLI-006",
+            "reviewState": "partially_supported",
+            "confidence": 0.93,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/bin/textlint.js",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L3-L4, L41-L50",
+                    "reason": "bin entrypoint は argv の --stdin を見て stdin 全体を text として cli.execute に渡す。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L97-L117",
+                    "reason": "空文字 stdin は truthy 判定を通らず help 扱いになり、module entrypoint は --stdin がなくても第2引数 text があれば stdin 相当処理を行う。"
+                }
+            ],
+            "alternativeExplanations": [
+                "--stdin は bin の入力取得指定であり、公開 module API の実行 mode 判定は text 引数の有無である。"
+            ],
+            "scopeCorrections": [
+                "非空 stdin、必要な filename、通常 lint/fix branch、Node.js bin entrypoint に限定する。"
+            ],
+            "missingEvidence": ["空 stdin、--stdin と他 mode の同時指定、bin pipe の integration test。"],
+            "requiredHumanDecisions": ["空 stdin を空文書として lint するか help とするか。"],
+            "recommendedStatement": "Node.js bin entrypointは、--stdin指定時に非空の標準入力全体を読み、通常実行branchでstdin filenameの文書としてlintまたはfixする。",
+            "recommendedKnowledgeType": "observed_behavior"
+        },
+        {
+            "clauseId": "CRC-CLI-007",
+            "reviewState": "partially_supported",
+            "confidence": 0.92,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L97-L112",
+                    "reason": "通常 branch で truthy な text があり stdin filename がない場合に Error を throw する。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "https://github.com/textlint/textlint/issues/739",
+                    "revision": "GitHub issue state observed 2026-07-29",
+                    "locator": "open issue; description L182-L257",
+                    "reason": "open の報告は v11.8.1 の pretty-error ENOENT であり、missing filename の反証ではなく baseline での再現も未検証である。"
+                },
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L69-L104",
+                    "reason": "空文字 text や優先 mode branch では filename 検証に到達しない。"
+                }
+            ],
+            "alternativeExplanations": [
+                "#739 は formatter が仮想 file path を実ファイルとして読む別問題であり、この precondition とは独立している。"
+            ],
+            "scopeCorrections": [
+                "通常実行 branch に到達した truthy な text 入力に限定する。bin ではこの throw は top-level で exit 2 になる。"
+            ],
+            "missingEvidence": ["baseline の --stdin --stdin-filename foo.md -f pretty-error regression test。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "cli.executeは、通常実行branchで非空textを処理するとき、--stdin-filenameがなければErrorをthrowする。",
+            "recommendedKnowledgeType": "observed_behavior"
+        },
+        {
+            "clauseId": "CRC-CLI-008",
+            "reviewState": "partially_supported",
+            "confidence": 0.94,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/createLinter.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L87-L126, L149-L183",
+                    "reason": "file/dir/glob を利用可能 extension の pattern に変換し、検索結果から処理対象を選ぶ。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/util/find-util.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L87-L118",
+                    "reason": "全候補が ignore された場合は空集合で成功する一方、実在候補がなければ path 集合を返さず search error となる。"
+                }
+            ],
+            "alternativeExplanations": [
+                "絶対 path 集合への解決は内部実装であり、公開要件は file、directory、glob を受け付けることに留められる。"
+            ],
+            "scopeCorrections": ["成功した file search に限定し、絶対 path という内部表現は推奨文から除く。"],
+            "missingEvidence": ["file、directory、glob の3種類をそれぞれ直接検証する CLI test。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "file実行のNode.js CLIは、file、directory、globをlint可能extensionの対象として解決し、対象不在時はsearch errorとして扱う。",
+            "recommendedKnowledgeType": "observed_behavior"
+        },
+        {
+            "clauseId": "CRC-CLI-009",
+            "reviewState": "supported_candidate",
+            "confidence": 0.99,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/test/cli/cli.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L294-L313",
+                    "reason": "fixture を複製して --fix 後の内容が期待する fixer output と一致することを検証している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L161-L178",
+                    "reason": "--dry-run では write を行わず、write 例外は catch され 1 となるため、無条件の書込み保証ではない。"
+                }
+            ],
+            "alternativeExplanations": ["fixer が変更を生成しない file では write を呼んでも内容は変わらない。"],
+            "scopeCorrections": ["--dry-run=false、書込み可能、fix result が変更を含む場合に限定する。"],
+            "missingEvidence": ["書込み権限エラー時の test。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "Node.js CLIは、--fixのfile実行で生成したfix resultを、--dry-runでない場合に対象fileへ書き込む。",
+            "recommendedKnowledgeType": "executable_expectation"
+        },
+        {
+            "clauseId": "CRC-CLI-010",
+            "reviewState": "supported_candidate",
+            "confidence": 0.99,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/test/cli/cli.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L314-L323",
+                    "reason": "--fix --dry-run 後に対象 file が入力内容のままであることを直接検証している。"
+                },
+                {
+                    "artifact": "packages/textlint/src/options.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L89-L93",
+                    "reason": "利用者向け説明が結果表示のみで file を変更しないと明記している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "docs/cli.md",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L121-L125",
+                    "reason": "dry-run の exit code は 1 と説明され、非変更 invariant ではなく終了状態について実装と衝突している。"
+                }
+            ],
+            "alternativeExplanations": ["docs の衝突は file 非変更ではなく exit status の古い契約だけに関係する。"],
+            "scopeCorrections": ["非変更 invariant と exit status を別 clause にする。"],
+            "missingEvidence": [],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "Node.js CLIは、--fix --dry-runのfile実行でfix結果を生成しても対象fileを変更しない。",
+            "recommendedKnowledgeType": "explicit_requirement"
+        },
+        {
+            "clauseId": "CRC-CLI-011",
+            "reviewState": "supported_candidate",
+            "confidence": 0.99,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/test/cli/cli.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L324-L356",
+                    "reason": "stdin fixed-result、exit 0、追加改行なしの exact output を regression test で検証している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "https://github.com/textlint/textlint/issues/1091",
+                    "revision": "GitHub issue state observed 2026-07-29",
+                    "locator": "closed issue; fixed by #1092",
+                    "reason": "v13.3.0 の不具合報告は closed であり、baseline の反証ではなく回帰 test の由来である。"
+                }
+            ],
+            "alternativeExplanations": [
+                "追加改行なしは fixed-result 固有ではなく Logger.write を用いる全 stdout report の共通挙動である。"
+            ],
+            "scopeCorrections": ["formatter が正常に load・format でき、非空の fix result を返す場合に限定する。"],
+            "missingEvidence": [],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "stdinの--fix --dry-run --format fixed-resultは、fix結果を追加改行なしでstdoutへ出し、成功時に0を返す。",
+            "recommendedKnowledgeType": "executable_expectation"
+        },
+        {
+            "clauseId": "CRC-CLI-012",
+            "reviewState": "supported_candidate",
+            "confidence": 0.98,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L149-L160, L180-L190",
+                    "reason": "fix と lint で対応する formatter loader に --format と --color を渡し結果を format する。"
+                },
+                {
+                    "artifact": "packages/textlint/src/options.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L138-L145",
+                    "reason": "--format と既定値 stylish を利用者向け option として宣言している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/options.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L142-L144",
+                    "reason": "lint formatter と fix formatter の利用可能集合は異なり、任意の formatter が両 mode で使えるわけではない。"
+                }
+            ],
+            "alternativeExplanations": ["--format は同名 option でも lint と fix で別 loader の選択子である。"],
+            "scopeCorrections": ["選択した mode で利用可能な formatter に限定する。"],
+            "missingEvidence": ["既定 stylish と不正 formatter の exit status test。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "Node.js CLIは、lintまたはfixの各modeで利用可能な--formatのformatterへ結果を渡し、未指定時はstylishを選ぶ。",
+            "recommendedKnowledgeType": "explicit_requirement"
+        },
+        {
+            "clauseId": "CRC-CLI-013",
+            "reviewState": "supported_candidate",
+            "confidence": 0.99,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli-util.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L26-L52",
+                    "reason": "output-file は file write、未指定は Logger.write で追加改行なしに出力する。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "https://github.com/textlint/textlint/issues/2043",
+                    "revision": "GitHub issue state observed 2026-07-29",
+                    "locator": "closed issue",
+                    "reason": "過去の stdout 追加改行差は closed で、baseline code と regression test では修正済みである。"
+                }
+            ],
+            "alternativeExplanations": [
+                "output が空なら printResults は file 作成も stdout write もせず成功扱いにする。"
+            ],
+            "scopeCorrections": ["非空の整形済み output に限定し、output-file write 失敗は別 clause とする。"],
+            "missingEvidence": [],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "Node.js CLIは、非空の整形済みreportを--output-file指定時はそのfileへ書き、未指定時は追加改行なしでstdoutへ書く。",
+            "recommendedKnowledgeType": "executable_expectation"
+        },
+        {
+            "clauseId": "CRC-CLI-014",
+            "reviewState": "supported_candidate",
+            "confidence": 0.99,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/test/cli/cli.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L531-L555",
+                    "reason": "lint error report の file 出力成功と exit 0 を直接検証している。"
+                },
+                {
+                    "artifact": "docs/faq/exit-status.md",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L74-L79",
+                    "reason": "output-file 指定時は常に 0 と公開文書に明記している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli-util.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L31-L45",
+                    "reason": "出力先が directory、mkdir/write 失敗の場合は false となり、cli.ts は 2 を返す。"
+                }
+            ],
+            "alternativeExplanations": [
+                "0 は lint 成功ではなく report artifact の生成成功を表す特別な互換挙動である。"
+            ],
+            "scopeCorrections": [
+                "report file の書込みが成功した場合に限定し、lint error がないことを意味しないと明記する。"
+            ],
+            "missingEvidence": ["出力先 directory と権限エラーで exit 2 を検証する test。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "Node.js CLIは、--output-fileへの非空report書込みに成功した場合、lint errorを含むreportでも0を返し、書込み失敗時は2を返す。",
+            "recommendedKnowledgeType": "executable_expectation"
+        },
+        {
+            "clauseId": "CRC-CLI-015",
+            "reviewState": "supported_candidate",
+            "confidence": 0.99,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/test/cli/cli.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L360-L368",
+                    "reason": "warning-only fixture で --quiet が report を出さず 0 を返すことを検証している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L135-L146",
+                    "reason": "rule が無い場合の No rules found 通知は quiet より前に行われ、--quiet でも 1 と通知を抑制しない。"
+                }
+            ],
+            "alternativeExplanations": [
+                "quiet は全ログ抑制ではなく kernel が warning message を report 対象から除く機能である。"
+            ],
+            "scopeCorrections": ["warning report に限定し、構成警告や fatal error の抑制を含めない。"],
+            "missingEvidence": [],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "Node.js CLIは、--quiet指定時にlint warningをreport対象から除き、warningだけなら0を返す。",
+            "recommendedKnowledgeType": "executable_expectation"
+        },
+        {
+            "clauseId": "CRC-CLI-016",
+            "reviewState": "partially_supported",
+            "confidence": 0.93,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/options.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L148-L152",
+                    "reason": "color option の既定 true と --no-color の利用者向け例を宣言している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L156-L159, L186-L189",
+                    "reason": "CLI が保証するのは formatter へ boolean を渡すことだけで、選択 formatter が実際に ANSI color を出すことまでは保証しない。"
+                }
+            ],
+            "alternativeExplanations": ["JSON 等 color を使わない formatter では true でも color output は生じない。"],
+            "scopeCorrections": ["color 出力の有無ではなく selected formatter に渡す color 設定として表現する。"],
+            "missingEvidence": ["color 対応 formatter で --no-color の出力を検証する test。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "Node.js CLIは、既定でcolor=trueをselected formatterへ渡し、--no-color指定時はfalseを渡す。",
+            "recommendedKnowledgeType": "observed_behavior"
+        },
+        {
+            "clauseId": "CRC-CLI-017",
+            "reviewState": "partially_supported",
+            "confidence": 0.96,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/loader/TextlintrcLoader.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L33-L56",
+                    "reason": "textlintrc load が !ok の場合、throw せず built-in plugin descriptor へ fallback する。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/loader/CliLoader.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L29-L40",
+                    "reason": "CLI 指定 rule/preset/plugin の load 失敗は fallback せず throw するため、全ての config/load 失敗を包含できない。"
+                },
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L134-L139",
+                    "reason": "normal 実行で fallback descriptor に lintable rule がなければ No rules found と 1 を返す。"
+                }
+            ],
+            "alternativeExplanations": [
+                "#1852 の意図は rc file 不在時の継続であり、明示 config の構文エラーまで黙って fallback する要件とは限らない。"
+            ],
+            "scopeCorrections": [
+                "textlintrc loader が返す !ok に限定する。--no-textlintrc は load 失敗ではなく明示的な built-in 選択である。"
+            ],
+            "missingEvidence": [
+                "rc 不在、明示 config 不在、構文不正、CLI module load 失敗の exit/status matrix test。"
+            ],
+            "requiredHumanDecisions": ["明示 --config の誤りを built-in fallback にするか fatal error にするか。"],
+            "recommendedStatement": "Node.js CLIは、--no-textlintrcまたはtextlintrc loaderが!okを返した場合にbuilt-in plugin descriptorを用い、normal実行でruleが無ければNo rules foundと1を返す。",
+            "recommendedKnowledgeType": "observed_behavior"
+        },
+        {
+            "clauseId": "CRC-CLI-018",
+            "reviewState": "partially_supported",
+            "confidence": 0.9,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/options.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L49-L52, L171-L190",
+                    "reason": "array option と concatRepeatedArrays により各指定を蓄積する parser 構成になっている。"
+                },
+                {
+                    "artifact": "packages/textlint/src/loader/CliLoader.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L9-L55",
+                    "reason": "rule、preset、plugin、rulesdir の配列を CLI descriptor に変換する。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "docs/cli.md",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L61-L66",
+                    "reason": "公開文書は各 option を列挙するが、同じ flag を複数回指定したときの concat 契約を明記していない。"
+                }
+            ],
+            "alternativeExplanations": [
+                "繰り返し可能性は optionator の parser 設定に由来する観測で、明示 requirement とは確認できない。"
+            ],
+            "scopeCorrections": ["knowledge type を explicit requirement から observed behavior に下げる。"],
+            "missingEvidence": ["各 option の repeated flag を実行 descriptor まで検証する test。"],
+            "requiredHumanDecisions": ["repeated option の順序と重複排除を互換性保証するか。"],
+            "recommendedStatement": "baselineのCLI parserは、繰り返された--rule、--preset、--plugin、--rulesdirを配列として蓄積し、CLI descriptorへ追加する。",
+            "recommendedKnowledgeType": "observed_behavior"
+        },
+        {
+            "clauseId": "CRC-CLI-019",
+            "reviewState": "supported_candidate",
+            "confidence": 0.97,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/loader/CliLoader.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L29-L35",
+                    "reason": "rulesBaseDirectory を rule/preset/plugin package の node_moduleDir として渡している。"
+                },
+                {
+                    "artifact": "packages/textlint/src/options.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L219-L223",
+                    "reason": "rule、preset、plugin の module base directory と利用者向けに明記している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/loader/CliLoader.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L42-L49",
+                    "reason": "--rulesdir は rulesBaseDirectory を基準にせず、渡された path を直接 load する。"
+                }
+            ],
+            "alternativeExplanations": ["名称は directory 一般ではなく node_modules 解決の基準を意味する。"],
+            "scopeCorrections": ["--rulesdir の path 解決は対象外と明記する。"],
+            "missingEvidence": ["CLI rule、preset、plugin の全3種類で custom base directory を検証する test。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "Node.js CLIは、--rules-base-directoryをrule、preset、plugin packageのmodule解決基準として使う。",
+            "recommendedKnowledgeType": "explicit_requirement"
+        },
+        {
+            "clauseId": "CRC-CLI-020",
+            "reviewState": "supported_candidate",
+            "confidence": 0.98,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/util/find-util.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L8-L9, L43-L57, L64-L85",
+                    "reason": ".git、node_modules、ignore file pattern を除外し、ENOENT の ignore file は空 pattern として継続する。"
+                },
+                {
+                    "artifact": "packages/textlint/test/cli/cli.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L484-L516",
+                    "reason": "glob、直接 file path、ignore file 不在を検証している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/util/find-util.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L43-L57",
+                    "reason": "ENOENT 以外の ignore file 読取失敗は throw され、検索継続しない。"
+                }
+            ],
+            "alternativeExplanations": [
+                "ignore file 不在の許容は default path を任意にするための互換挙動で、全読取エラーの許容ではない。"
+            ],
+            "scopeCorrections": [
+                "ignore file 不在は ENOENT に限定する。既定 path は options module 評価時の cwd で決まる。"
+            ],
+            "missingEvidence": ["permission error と不正 ignore pattern の test。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "file実行のNode.js CLIは、.git、node_modules、選択ignore fileのpatternを除外し、ignore fileがENOENTならpatternなしで検索を続ける。",
+            "recommendedKnowledgeType": "executable_expectation"
+        },
+        {
+            "clauseId": "CRC-CLI-021",
+            "reviewState": "supported_candidate",
+            "confidence": 0.97,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/test/cli/cli.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L379-L420",
+                    "reason": "明示 cache location の作成と旧形式 cache からの継続を検証している。"
+                },
+                {
+                    "artifact": "packages/textlint/src/options.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L195-L206",
+                    "reason": "--cache と既定 cache location を宣言している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/engine/execute-file-backers/cache-backer.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L30-L47",
+                    "reason": "旧形式 recovery は cache file 削除後の再作成であり、削除や再作成が失敗した場合まで継続を保証しない。"
+                }
+            ],
+            "alternativeExplanations": ["旧形式は migrate するのではなく破棄して新規 cache を作る。"],
+            "scopeCorrections": [
+                "cache location が作成・削除・書込み可能であることを前提にし、既定 location は options module 評価時 cwd を基準とする。"
+            ],
+            "missingEvidence": ["既定 location と書込み失敗の CLI test。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "Node.js CLIは、--cache指定時に選択cache locationへcacheを保存し、読めない旧形式cacheは削除・再作成できる場合に処理を継続する。",
+            "recommendedKnowledgeType": "executable_expectation"
+        },
+        {
+            "clauseId": "CRC-CLI-022",
+            "reviewState": "implementation_detail",
+            "confidence": 0.99,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/bin/textlint.js",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L4-L11",
+                    "reason": "bin は完全一致 --debug を調べ、CLI module require 前に debug.enable(textlint*) を呼ぶ。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/index.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L4-L8",
+                    "reason": "公開 module entrypoint から cli を利用する場合、この bin 前処理は通らず、cli.execute の --debug parse 自体は namespace を有効化しない。"
+                }
+            ],
+            "alternativeExplanations": [
+                "利用者向け要件は debugging information を出せることであり、namespace 名と require 前という時点は実装手段である。"
+            ],
+            "scopeCorrections": ["Node.js bin entrypoint の完全一致 --debug にのみ当てはまる。"],
+            "missingEvidence": ["debug output の公開内容と module API の期待を示す test。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": null,
+            "recommendedKnowledgeType": null
+        },
+        {
+            "clauseId": "CRC-CLI-023",
+            "reviewState": "implementation_detail",
+            "confidence": 0.99,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/@textlint/feature-flag/src/index.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L41-L45",
+                    "reason": "module 評価時だけ process.argv の完全一致 --experimental を読み core.experimental を設定する。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/options.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L209-L216",
+                    "reason": "cli.execute が parse した experimental option を feature flag に反映する code はなく、module import 後に execute args だけで指定しても状態は変わらない。"
+                }
+            ],
+            "alternativeExplanations": [
+                "process.argv の import-time 判定は bin 起動を実現する手段であり、公開要件として残すと module cache と entrypoint 差を誤って固定する。"
+            ],
+            "scopeCorrections": [
+                "配布 bin の process 起動時に限る。公開 module API の cli.execute args には一般化しない。"
+            ],
+            "missingEvidence": ["bin と module API を分けた experimental integration test。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": null,
+            "recommendedKnowledgeType": null
+        },
+        {
+            "clauseId": "CRC-CLI-024",
+            "reviewState": "conflicting",
+            "confidence": 0.98,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L134-L139",
+                    "reason": "stdin/file 共通で lintable rule が無ければ warning 後に 1 を返す。"
+                },
+                {
+                    "artifact": "packages/textlint/test/cli/cli.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L97-L110",
+                    "reason": "stdin と file の双方で No rules found と 1 を直接検証している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/test/cli/cli-exit-status-faq.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L279-L283, L433-L442",
+                    "reason": "別の table test は --no-textlintrc で rule が無いケースを 0 と期待し、例外処理もないため現行 code/test と直接矛盾する。"
+                }
+            ],
+            "alternativeExplanations": [
+                "FAQ suite の 1.11 は古い help behavior の残骸、または no-rule を success とする未反映の意図の可能性がある。"
+            ],
+            "scopeCorrections": [
+                "baseline の実装挙動としては 1 と記録し、repository 全体の executable expectation は矛盾解消まで確定しない。"
+            ],
+            "missingEvidence": ["bin entrypoint での no-rule integration test と矛盾 test の意図。"],
+            "requiredHumanDecisions": ["rule 無しを設定エラー 1 とするか、何もしない成功 0 とするか。"],
+            "recommendedStatement": "baseline実装の通常stdin/file実行は、lint可能ruleが無い場合にNo rules foundを通知して1を返す。",
+            "recommendedKnowledgeType": "observed_behavior"
+        },
+        {
+            "clauseId": "CRC-CLI-025",
+            "reviewState": "supported_candidate",
+            "confidence": 0.98,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L166-L176, L190-L198",
+                    "reason": "fix は remainingMessages、lint は messages の error severity を見て 1 を返す。"
+                },
+                {
+                    "artifact": "packages/textlint/test/cli/cli-preset-severity.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L35-L53",
+                    "reason": "severity 2 の lint message が残る場合の exit 1 を検証している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L161-L170, L191-L194",
+                    "reason": "dry-run の出力成功と output-file 書込み成功は error severity より先に 0 を返す明示例外である。"
+                },
+                {
+                    "artifact": "docs/cli.md",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L121-L125",
+                    "reason": "docs は dry-run の lint error を 1 とし、baseline の 0 と衝突する。"
+                }
+            ],
+            "alternativeExplanations": [
+                "dry-run の 0 は formatter 成功を表し、docs は未修正を lint error として扱う別の意味を採用している。"
+            ],
+            "scopeCorrections": [
+                "通常 lint、非-dry-run fix、output-file 未指定に限定し、fix は元 messages ではなく remainingMessages を対象にする。"
+            ],
+            "missingEvidence": ["remaining error を持つ fix、lint、dry-run、output-file の exit matrix test。"],
+            "requiredHumanDecisions": ["dry-run の error severity を exit status に反映するか。"],
+            "recommendedStatement": "通常lintまたは非-dry-run fixは、output-file未指定でerror severityのmessageまたはremainingMessageが残る場合に1を返す。",
+            "recommendedKnowledgeType": "executable_expectation"
+        },
+        {
+            "clauseId": "CRC-CLI-026",
+            "reviewState": "partially_supported",
+            "confidence": 0.96,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L61-L65, L203-L212",
+                    "reason": "parse error は 1、executeWithOptions 内の search error は 2、その他 catch は 1 に分類する。"
+                },
+                {
+                    "artifact": "packages/textlint/src/cli-util.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L31-L45",
+                    "reason": "report file 書込み失敗を false とし cli.ts が 2 に変換する。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L76-L91, L130-L148",
+                    "reason": "print-config/MCP の失敗と descriptor load 失敗は executeWithOptions の try 外であり、cli module では数値に分類されず reject する。"
+                },
+                {
+                    "artifact": "packages/textlint/bin/textlint.js",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L41-L59",
+                    "reason": "同じ reject は bin entrypoint では top-level catch により 2 になるため、entrypoint で結果が異なる。"
+                }
+            ],
+            "alternativeExplanations": [
+                "1/2 の分類は error category 全体ではなく、どの try/catch 境界で失敗したかに依存する。"
+            ],
+            "scopeCorrections": [
+                "parse error、executeWithOptions 内で捕捉される file processing、file search、printResults の失敗に限定する。"
+            ],
+            "missingEvidence": [
+                "descriptor load、formatter load、fix write、output write、bin top-level の exit matrix test。"
+            ],
+            "requiredHumanDecisions": ["load failure を docs 通り一律 2 にするか、現行 catch 境界を契約とするか。"],
+            "recommendedStatement": "baselineのcli.executeはparse失敗を1、executeWithOptions内の通常例外を1、TextlintFileSearchErrorとreport出力失敗を2として扱うが、同関数外へ伝播する失敗はbinで2になる。",
+            "recommendedKnowledgeType": "observed_behavior"
+        },
+        {
+            "clauseId": "CRC-CLI-027",
+            "reviewState": "partially_supported",
+            "confidence": 0.95,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/bin/textlint.js",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L17-L25, L41-L68",
+                    "reason": "top-level rejection、uncaughtException、unhandledRejection は message と stack を console.error し process.exit(2) する。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/index.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L4-L8",
+                    "reason": "公開 module entrypoint の cli.execute を直接呼ぶ利用者には bin の表示・process exit 処理は適用されない。"
+                }
+            ],
+            "alternativeExplanations": [
+                "process.exit(2) は CLI wrapper の障害境界であり、cli module 自体の postcondition ではない。"
+            ],
+            "scopeCorrections": ["配布 Node.js bin entrypoint のみに限定し、stderr と即時 process exit を明記する。"],
+            "missingEvidence": ["bin を subprocess として起動する top-level exception integration test。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": "Node.js bin entrypointは、cli.executeからの未捕捉rejectionをstderrへmessageとstackとして表示し、processをexit code 2で終了する。",
+            "recommendedKnowledgeType": "observed_behavior"
+        },
+        {
+            "clauseId": "CRC-CLI-028",
+            "reviewState": "partially_supported",
+            "confidence": 0.98,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/engine/execute-file-backers/cache-backer.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L63-L100",
+                    "reason": "metadata changed=false かつ config hash 一致なら skip し、messages があれば entry を除去して次回再実行する。"
+                },
+                {
+                    "artifact": "packages/textlint/test/execute-file-backers/cache-backer.test.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L20-L73",
+                    "reason": "成功結果の skip と message 付き結果の再実行を直接検証している。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/src/engine/execute-file-backers/cache-backer.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L30-L37",
+                    "reason": "baseline は file content ではなく metadata を使うと明記し、CI 再利用には content cache と relative path が必要としている。"
+                },
+                {
+                    "artifact": "https://github.com/textlint/textlint/issues/1327",
+                    "revision": "GitHub issue state observed 2026-07-29",
+                    "locator": "open issue; body L182-L220",
+                    "reason": "open proposal も metadata-only の現行制限と content strategy の必要性を記録しており、baseline code と一致する。"
+                }
+            ],
+            "alternativeExplanations": [
+                "「未変更」は content identity ではなく file-entry-cache が判定する metadata unchanged を意味する。"
+            ],
+            "scopeCorrections": [
+                "同じ絶対 path、metadata unchanged、同じ textlint version と descriptor hash に限定し、content-only 変更の確実な検出を含めない。"
+            ],
+            "missingEvidence": ["timestamp と size を保持した content 変更、CI checkout、path 移動の test。"],
+            "requiredHumanDecisions": [
+                "cache の公開契約を metadata strategy として明示するか、content strategy 実装後まで候補化を保留するか。"
+            ],
+            "recommendedStatement": "baselineのcache modeは、同じconfig hashでfile metadataが未変更の成功結果をskipし、message付き結果はcache entryを除去して再実行する。",
+            "recommendedKnowledgeType": "observed_behavior"
+        },
+        {
+            "clauseId": "CRC-CLI-029",
+            "reviewState": "implementation_detail",
+            "confidence": 0.99,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/src/cli.ts",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L69-L120",
+                    "reason": "if/else if の現行配置から version、init、print-config、mcp、help、normal の順が観測できる。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "docs/mcp.md",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L23-L53",
+                    "reason": "文書は MCP と共有 option の併用だけを定義し、top-level mode 同士の優先順位や非対応 option の黙示無視を公開仕様にしていない。"
+                }
+            ],
+            "alternativeExplanations": [
+                "順序は相互排他 validation がないため偶然露出した control-flow であり、意図した利用者契約とは確認できない。"
+            ],
+            "scopeCorrections": ["現行 cli.execute の branch layout にのみ該当する。"],
+            "missingEvidence": ["mode 組合せ matrix test と公開文書。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": null,
+            "recommendedKnowledgeType": null
+        },
+        {
+            "clauseId": "CRC-CLI-030",
+            "reviewState": "implementation_detail",
+            "confidence": 0.98,
+            "supportingEvidence": [
+                {
+                    "artifact": "packages/textlint/bin/textlint.js",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L41-L55",
+                    "reason": "cli.execute が number を resolve した場合に process.exitCode へ代入する実装である。"
+                }
+            ],
+            "counterEvidence": [
+                {
+                    "artifact": "packages/textlint/bin/textlint.js",
+                    "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                    "locator": "L56-L68",
+                    "reason": "reject、uncaughtException、unhandledRejection は返値 mapping を通らず process.exit(2) を直接呼ぶ。module entrypoint は process.exitCode を変更しない。"
+                }
+            ],
+            "alternativeExplanations": [
+                "利用者向け契約は最終 exit status であり、process.exitCode property への代入方法は wrapper 実装である。"
+            ],
+            "scopeCorrections": ["配布 bin で cli.execute が正常に number を返した場合だけに適用される。"],
+            "missingEvidence": ["bin subprocess で代表 exit status を確認する integration test。"],
+            "requiredHumanDecisions": [],
+            "recommendedStatement": null,
+            "recommendedKnowledgeType": null
+        }
+    ],
+    "summary": {
+        "approvedForHumanReview": [
+            "CRC-CLI-001",
+            "CRC-CLI-002",
+            "CRC-CLI-003",
+            "CRC-CLI-004",
+            "CRC-CLI-005",
+            "CRC-CLI-006",
+            "CRC-CLI-007",
+            "CRC-CLI-008",
+            "CRC-CLI-009",
+            "CRC-CLI-010",
+            "CRC-CLI-011",
+            "CRC-CLI-012",
+            "CRC-CLI-013",
+            "CRC-CLI-014",
+            "CRC-CLI-015",
+            "CRC-CLI-016",
+            "CRC-CLI-017",
+            "CRC-CLI-018",
+            "CRC-CLI-019",
+            "CRC-CLI-020",
+            "CRC-CLI-021",
+            "CRC-CLI-024",
+            "CRC-CLI-025",
+            "CRC-CLI-026",
+            "CRC-CLI-027",
+            "CRC-CLI-028"
+        ],
+        "rejected": ["CRC-CLI-022", "CRC-CLI-023", "CRC-CLI-029", "CRC-CLI-030"],
+        "requiresMoreRepositoryInspection": []
+    }
+}

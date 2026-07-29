@@ -1,0 +1,722 @@
+{
+    "featureSlice": {
+        "id": "textlint-cli-file-lint-formatter-exit",
+        "name": "textlint CLIが指定ファイルをlintし、診断をformatterで出力し、終了状態を返す経路",
+        "baseline": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3"
+    },
+    "entrypoints": [
+        {
+            "artifact": "packages/textlint/bin/textlint.js",
+            "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+            "locator": "lines 1-69"
+        },
+        {
+            "artifact": "packages/textlint/src/cli.ts",
+            "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+            "locator": "cli.execute, lines 49-121; cli.executeWithOptions, lines 130-213"
+        }
+    ],
+    "facts": [
+        {
+            "factId": "FACT-001",
+            "statement": "textlint packageは、コマンド名textlintを./bin/textlint.jsへ割り当てている。",
+            "factKind": "interface",
+            "source": {
+                "artifact": "packages/textlint/package.json",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "bin field, lines 28-30",
+                "contentHash": "4a2d35d25d5ac2c685aac25ec58382cc31a540acbf7ea23caa44e2e7466f0496"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js >=20.18.0 package installation",
+                "featureFlags": [],
+                "conditions": ["textlint packageのbinを実行する"]
+            }
+        },
+        {
+            "factId": "FACT-002",
+            "statement": "実行ファイルは、ファイル入力経路ではprocess.argvをcli.executeへ渡す。",
+            "factKind": "input",
+            "source": {
+                "artifact": "packages/textlint/bin/textlint.js",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "Promise chain file-input branch, lines 41-50",
+                "contentHash": "b95cb2ae82d9da6c79ff1646add44a26bc87e1135ff05b2c5ad021cf109baadd"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI process",
+                "featureFlags": [],
+                "conditions": ["--stdinがprocess.argvに含まれない"]
+            }
+        },
+        {
+            "factId": "FACT-003",
+            "statement": "cli.executeが数値を解決した場合、実行ファイルはその値をprocess.exitCodeへ設定する。",
+            "factKind": "output",
+            "source": {
+                "artifact": "packages/textlint/bin/textlint.js",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "resolved exit status handler, lines 51-55",
+                "contentHash": "b95cb2ae82d9da6c79ff1646add44a26bc87e1135ff05b2c5ad021cf109baadd"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI process",
+                "featureFlags": [],
+                "conditions": ["cli.executeの解決値がnumber"]
+            }
+        },
+        {
+            "factId": "FACT-004",
+            "statement": "実行ファイルは、Promise rejection、uncaughtException、unhandledRejectionでError見出し、message、Stack trace、stackをstderrへ出し、process.exit(2)を呼ぶ。",
+            "factKind": "error",
+            "source": {
+                "artifact": "packages/textlint/bin/textlint.js",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "showError and fatal handlers, lines 17-25 and 56-69",
+                "contentHash": "b95cb2ae82d9da6c79ff1646add44a26bc87e1135ff05b2c5ad021cf109baadd"
+            },
+            "sourceRole": "enforces",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI process",
+                "featureFlags": [],
+                "conditions": ["エラーがcli.executeの外までrejectまたはthrowされる"]
+            }
+        },
+        {
+            "factId": "FACT-005",
+            "statement": "cli.executeは引数をoptions.parseで解析し、解析結果の_プロパティをファイル指定として扱う。",
+            "factKind": "input",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "cli.execute argument parsing, lines 56-68",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js",
+                "featureFlags": [],
+                "conditions": []
+            }
+        },
+        {
+            "factId": "FACT-006",
+            "statement": "--formatの既定値はstylishである。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "format option, lines 138-145",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "declares-interface",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["--formatが指定されない"]
+            }
+        },
+        {
+            "factId": "FACT-007",
+            "statement": "--ignore-pathの既定値は、optionsモジュール評価時のprocess.cwd()から解決した.textlintignoreの絶対パスである。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/options.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "ignore-path option, lines 69-74",
+                "contentHash": "115dc1c960b6730fc5203544f9a8e7964571ec04ebcdad2a60d51f32cb4b4aea"
+            },
+            "sourceRole": "conditions",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["--ignore-pathが指定されない"]
+            }
+        },
+        {
+            "factId": "FACT-009",
+            "statement": "CLI指定から得たdescriptorは、textlintrcが有効なら設定ファイル由来のdescriptorと、無効なら組み込みpluginだけのdescriptorとconcatされる。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "loadDescriptor, lines 31-44",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["通常のlint実行"]
+            }
+        },
+        {
+            "factId": "FACT-010",
+            "statement": "merged descriptorにlint可能なruleが1件もない場合、CLIはNo rules found警告を出して1を返し、linterを生成しない。",
+            "factKind": "precondition",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "executeWithOptions rule guard, lines 134-140",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "enforces",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["descriptor.rule.lintableDescriptors.length === 0"]
+            }
+        },
+        {
+            "factId": "FACT-011",
+            "statement": "CLIはcreateLinterへcache、cacheLocation、quiet、ignorePath、merged descriptorを渡す。",
+            "factKind": "configuration",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "createLinter call, lines 140-146",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["lint可能なruleが1件以上ある"]
+            }
+        },
+        {
+            "factId": "FACT-012",
+            "statement": "--fixを使わないファイル入力経路はlinter.lintFilesへ解析済みのファイル指定配列を渡す。",
+            "factKind": "input",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "default lint branch, lines 180-185",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["--fixがfalse", "stdin実行ではない"]
+            }
+        },
+        {
+            "factId": "FACT-013",
+            "statement": "lintFilesは入力されたファイル、ディレクトリ、globの各指定を、descriptorのavailableExtensionsを使ってglob patternへ変換してから検索する。",
+            "factKind": "input",
+            "source": {
+                "artifact": "packages/textlint/src/createLinter.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "lintFiles pattern conversion and search, lines 92-100",
+                "contentHash": "0d71251d9d6d028bd0a37f1ec50dd4a973515f5bb20e5e2aa72af3f9d81e348a"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js filesystem",
+                "featureFlags": [],
+                "conditions": ["ファイル入力のlintFiles実行"]
+            }
+        },
+        {
+            "factId": "FACT-014",
+            "statement": "ファイル検索は常に**/.git/**と**/node_modules/**を除外パターンへ入れる。",
+            "factKind": "validation",
+            "source": {
+                "artifact": "packages/textlint/src/util/find-util.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "DEFAULT_IGNORE_PATTERNS and searchFiles initialization, lines 7-8 and 64-67",
+                "contentHash": "78de7257bfd6cfcb00eedcd006589e7662e6705dd9d92f84a620bc77f37256ab"
+            },
+            "sourceRole": "enforces",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js filesystem",
+                "featureFlags": [],
+                "conditions": ["searchFilesを実行する"]
+            }
+        },
+        {
+            "factId": "FACT-015",
+            "statement": "ignore fileは空行と#で始まる行を除いて行単位のpatternとして読み込まれ、ENOENTなら空配列になり、それ以外のread errorならcause付きErrorがthrowされる。",
+            "factKind": "error",
+            "source": {
+                "artifact": "packages/textlint/src/util/find-util.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "createIgnorePatterns, lines 43-58",
+                "contentHash": "78de7257bfd6cfcb00eedcd006589e7662e6705dd9d92f84a620bc77f37256ab"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js filesystem",
+                "featureFlags": [],
+                "conditions": ["ignoreFilePathがtruthy"]
+            }
+        },
+        {
+            "factId": "FACT-016",
+            "statement": "glob検索はcwdを基準にし、絶対パスだけを返し、ディレクトリを除外し、dot fileを候補に含める。",
+            "factKind": "validation",
+            "source": {
+                "artifact": "packages/textlint/src/util/find-util.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "primary glob call, lines 79-85",
+                "contentHash": "78de7257bfd6cfcb00eedcd006589e7662e6705dd9d92f84a620bc77f37256ab"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js filesystem and glob package",
+                "featureFlags": [],
+                "conditions": ["searchFilesを実行する"]
+            }
+        },
+        {
+            "factId": "FACT-017",
+            "statement": "除外適用後が0件でも除外なし検索では一致する場合は成功かつitems空配列になり、除外なしでも0件ならSearchFilesNoTargetFileErrorを含む失敗になる。",
+            "factKind": "error",
+            "source": {
+                "artifact": "packages/textlint/src/util/find-util.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "empty-result classification, lines 87-118",
+                "contentHash": "78de7257bfd6cfcb00eedcd006589e7662e6705dd9d92f84a620bc77f37256ab"
+            },
+            "sourceRole": "enforces",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js filesystem and glob package",
+                "featureFlags": [],
+                "conditions": ["primary glob検索結果が0件"]
+            }
+        },
+        {
+            "factId": "FACT-018",
+            "statement": "検索結果は拡張子がdescriptor.availableExtensionsに含まれるavailableFilesと、それ以外のunAvailableFilesへ分けられ、lint処理にはavailableFilesだけが渡される。",
+            "factKind": "validation",
+            "source": {
+                "artifact": "packages/textlint/src/createLinter.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "availability separation and processing, lines 109-116",
+                "contentHash": "0d71251d9d6d028bd0a37f1ec50dd4a973515f5bb20e5e2aa72af3f9d81e348a"
+            },
+            "sourceRole": "enforces",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js filesystem",
+                "featureFlags": [],
+                "conditions": ["ファイル検索が成功する"]
+            }
+        },
+        {
+            "factId": "FACT-019",
+            "statement": "各available fileはUTF-8文字列として読み込まれ、絶対filePathと拡張子とdescriptor由来optionsを伴ってTextlintKernel.lintTextへ渡される。",
+            "factKind": "side_effect",
+            "source": {
+                "artifact": "packages/textlint/src/createLinter.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "per-file lint callback, lines 116-125",
+                "contentHash": "0d71251d9d6d028bd0a37f1ec50dd4a973515f5bb20e5e2aa72af3f9d81e348a"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js filesystem",
+                "featureFlags": [],
+                "conditions": ["available fileがある", "cache backerが実行対象と判断する"]
+            }
+        },
+        {
+            "factId": "FACT-020",
+            "statement": "CLIはlint結果配列を、--formatで選ばれたlinter formatterと--color値を使って文字列へ変換する。",
+            "factKind": "output",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "linter formatter load and format, lines 185-190",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["--fixがfalse", "lintFilesが結果を返す"]
+            }
+        },
+        {
+            "factId": "FACT-021",
+            "statement": "linter formatter loaderは11個の組み込み名を直接処理し、それ以外は指定path、cwd相対path、textlint-formatter-接頭辞付きpackage、指定packageの順で解決を試み、解決不能またはdefault exportがfunctionでない場合にErrorをthrowする。",
+            "factKind": "validation",
+            "source": {
+                "artifact": "packages/@textlint/linter-formatter/src/index.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "builtinFormatterList and loadFormatter, lines 24-36 and 50-102",
+                "contentHash": "cca9d05382b44d94e6b355613583cf63f670aba8cba099415b45bc0be5c0b788"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js module resolution",
+                "featureFlags": [],
+                "conditions": ["linter formatterをloadする"]
+            }
+        },
+        {
+            "factId": "FACT-022",
+            "statement": "stylish formatterはmessageがあるresultについてfilePath、line、column、severityに応じたerror/warning/info、message、ruleIdを出力し、全resultのmessageが0件なら空文字列を返す。",
+            "factKind": "output",
+            "source": {
+                "artifact": "packages/@textlint/linter-formatter/src/formatters/stylish.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "formatter result rendering and finalOutput, lines 33-134",
+                "contentHash": "085867f64b6ea475c6752a086b1d895d4f6e03c3966413e34b1b40621623f379"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js",
+                "featureFlags": [],
+                "conditions": ["formatterNameがstylish"]
+            }
+        },
+        {
+            "factId": "FACT-023",
+            "statement": "formatter出力が空文字列の場合、printResultsはstdoutやoutput fileへ書かずtrueを返す。",
+            "factKind": "output",
+            "source": {
+                "artifact": "packages/textlint/src/cli-util.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "printResults empty-output branch, lines 26-29",
+                "contentHash": "75f9bed22b5eec4895c24afee3c247128e6a41699df4c3210f5ca7da0a09606c"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["formatter outputが空文字列"]
+            }
+        },
+        {
+            "factId": "FACT-024",
+            "statement": "--output-fileがない場合、printResultsはformatter出力をprocess.stdout.writeへ渡し、console.log由来の改行を追加しない。",
+            "factKind": "side_effect",
+            "source": {
+                "artifact": "packages/textlint/src/cli-util.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "printResults stdout branch, lines 46-51",
+                "contentHash": "75f9bed22b5eec4895c24afee3c247128e6a41699df4c3210f5ca7da0a09606c"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI stdout",
+                "featureFlags": [],
+                "conditions": ["formatter outputが非空", "--output-fileがない"]
+            }
+        },
+        {
+            "factId": "FACT-025",
+            "statement": "--output-fileがある場合、printResultsはcwd基準の絶対pathを作り、親directoryを再帰作成してformatter出力を同期書き込みする。",
+            "factKind": "state_change",
+            "source": {
+                "artifact": "packages/textlint/src/cli-util.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "printResults output-file branch, lines 30-45",
+                "contentHash": "75f9bed22b5eec4895c24afee3c247128e6a41699df4c3210f5ca7da0a09606c"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js filesystem",
+                "featureFlags": [],
+                "conditions": ["formatter outputが非空", "--output-fileが指定される"]
+            }
+        },
+        {
+            "factId": "FACT-026",
+            "statement": "output file pathが既存directoryの場合、またはdirectory作成・file書き込みがthrowした場合、printResultsはstderrへエラーを記録してfalseを返す。",
+            "factKind": "error",
+            "source": {
+                "artifact": "packages/textlint/src/cli-util.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "printResults output-file validation and catch, lines 31-45",
+                "contentHash": "75f9bed22b5eec4895c24afee3c247128e6a41699df4c3210f5ca7da0a09606c"
+            },
+            "sourceRole": "enforces",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js filesystem",
+                "featureFlags": [],
+                "conditions": ["formatter outputが非空", "--output-fileへの出力が完了しない"]
+            }
+        },
+        {
+            "factId": "FACT-027",
+            "statement": "lint結果の出力に成功し--output-fileが指定されている場合、CLIはresult.messagesのseverityにかかわらず0を返す。",
+            "factKind": "output",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "lint branch output-file exit, lines 191-194",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "enforces",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["--fixがfalse", "printResultsがtrue", "--output-fileが指定される"]
+            }
+        },
+        {
+            "factId": "FACT-028",
+            "statement": "lint結果の出力に成功し--output-fileがない場合、いずれかのresult.messagesにSeverityLevel.errorがあれば1を、なければ0を返す。",
+            "factKind": "output",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "lint branch severity-based exit, lines 191-199",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "enforces",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["--fixがfalse", "printResultsがtrue", "--output-fileがない"]
+            }
+        },
+        {
+            "factId": "FACT-029",
+            "statement": "TextlintFileSearchErrorはcreateLinter.ts内で宣言され、lintFilesのsearchFiles結果がok:falseの場合にthrowされる。",
+            "factKind": "error",
+            "source": {
+                "artifact": "packages/textlint/src/createLinter.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "TextlintFileSearchError declaration, lines 23-37; lintFiles throw, lines 101-108",
+                "contentHash": "0d71251d9d6d028bd0a37f1ec50dd4a973515f5bb20e5e2aa72af3f9d81e348a"
+            },
+            "sourceRole": "implements",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["searchFilesがok:falseを返す"]
+            }
+        },
+        {
+            "factId": "FACT-030",
+            "statement": "executeWithOptions内で捕捉されたTextlintFileSearchError以外のファイル処理errorは、Unexpected error during file processingとしてstderrへ記録され、1が返る。",
+            "factKind": "error",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "executeWithOptions catch, lines 203-212",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "enforces",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["errorがexecuteWithOptionsのtry内で発生", "errorがTextlintFileSearchErrorではない"]
+            }
+        },
+        {
+            "factId": "FACT-031",
+            "statement": "CLI testは、warning severity 1の診断をJSON formatterで出力した実行が0を返し、出力にfilePath、位置、message、ruleId、severity、typeを含むことを検証している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/cli/cli.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "warning JSON formatter test, lines 112-147",
+                "contentHash": "414174a17b4ccb2c775978f2c7bbec5145cbc22ec2fa91d1b19716b3ccfb4343"
+            },
+            "sourceRole": "verifies",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Vitest programmatic cli.execute test",
+                "featureFlags": [],
+                "conditions": ["fixture configがno-todoをwarningに設定", "--format json"]
+            }
+        },
+        {
+            "factId": "FACT-032",
+            "statement": "CLI testは、severity 2の診断があるファイル入力でcli.executeが1を返すことを検証している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/cli/cli-preset-severity.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "preset severity preservation test, lines 41-67",
+                "contentHash": "021f1c75903ecbff3c916d15172866628f6e883e4a6a29292c1e68a1d24805ee"
+            },
+            "sourceRole": "verifies",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Vitest programmatic cli.execute test",
+                "featureFlags": [],
+                "conditions": ["fixture configがno-todoをseverity 2に設定", "--format json"]
+            }
+        },
+        {
+            "factId": "FACT-033",
+            "statement": "table-driven CLI testは、ignored fileと全file ignoredを0、単独の存在しないfileと一致しないglobを2、存在するfileと存在しないfileの混在を既存fileの診断結果に応じた0または1として検証している。",
+            "factKind": "test_expectation",
+            "source": {
+                "artifact": "packages/textlint/test/cli/cli-exit-status-faq.test.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "success cases 1.2, 1.3, 1.5, lines 182-240; file-search cases 3.1-3.4, lines 302-355; mixed scenario 4.1, lines 386-401",
+                "contentHash": "1fef1599de986baa5099dfd43c77dd66a69ad38e977bc2b7165330697990826f"
+            },
+            "sourceRole": "verifies",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Vitest programmatic cli.execute test on temporary filesystem",
+                "featureFlags": [],
+                "conditions": ["test fixtureのrulesdirとno-todo ruleを使用"]
+            }
+        },
+        {
+            "factId": "FACT-034",
+            "statement": "Exit Status FAQは、file system access errorをexit status 2になるfile search errorの一例として記載している。",
+            "factKind": "other",
+            "source": {
+                "artifact": "docs/faq/exit-status.md",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "Exit Status 2 cases, lines 15-22",
+                "contentHash": "f28b9046109b50c0c1295627a0a4b463d94c7a74c454cc4a0cc4c4702159e41a"
+            },
+            "sourceRole": "declares",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "documented CLI behavior",
+                "featureFlags": [],
+                "conditions": ["file system access error"]
+            }
+        },
+        {
+            "factId": "FACT-035",
+            "statement": "Exit Status FAQは、file search用のcustom error classのartifactをpackages/textlint/src/error/FileSearchError.tsとして参照している。",
+            "factKind": "other",
+            "source": {
+                "artifact": "docs/faq/exit-status.md",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "Implementation Details, lines 159-165",
+                "contentHash": "f28b9046109b50c0c1295627a0a4b463d94c7a74c454cc4a0cc4c4702159e41a"
+            },
+            "sourceRole": "declares",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "documentation at baseline",
+                "featureFlags": [],
+                "conditions": []
+            }
+        },
+        {
+            "factId": "FACT-036",
+            "statement": "executeWithOptionsはTextlintFileSearchErrorをstderrへ記録して2を返す。",
+            "factKind": "error",
+            "source": {
+                "artifact": "packages/textlint/src/cli.ts",
+                "revision": "a103a703d87d8d8e02c98c9c3c6217a3be71faf3",
+                "locator": "executeWithOptions TextlintFileSearchError catch, lines 203-208",
+                "contentHash": "807117a3ed83a7b49b55b84ab87428a98fec25df269c58c266836b22760d8c8d"
+            },
+            "sourceRole": "enforces",
+            "confidence": 1.0,
+            "applicability": {
+                "environment": "Node.js CLI",
+                "featureFlags": [],
+                "conditions": ["errorがTextlintFileSearchErrorのinstance"]
+            }
+        }
+    ],
+    "contradictions": [
+        {
+            "description": "FAQはfile system access errorをstatus 2と記載する一方、ignore fileのENOENT以外のread errorはTextlintFileSearchErrorではないErrorとしてthrowされ、executeWithOptionsのcatch内へ到達した場合はstatus 1になる。",
+            "factRefs": ["FACT-015", "FACT-030", "FACT-034"]
+        },
+        {
+            "description": "FAQがcustom error classの所在として参照するpackages/textlint/src/error/FileSearchError.tsではなく、baselineの実装ではTextlintFileSearchErrorがpackages/textlint/src/createLinter.ts内に宣言されている。",
+            "factRefs": ["FACT-029", "FACT-035"]
+        }
+    ],
+    "uncertainties": [
+        {
+            "question": "glob package自体が権限エラーなどでrejectした場合、実際のNode.jsとfilesystemの組み合わせごとにどのerror型とstatusになるか。",
+            "reason": "検索実装にはglob rejectionの型変換がなく、対応するruntime testを確認していない。",
+            "relatedFactRefs": ["FACT-016", "FACT-029", "FACT-030", "FACT-034"]
+        },
+        {
+            "question": "対応外拡張子だけを明示指定した場合の0件結果が利用者向け仕様として意図されているか。",
+            "reason": "実装は検索成功後に対応外拡張子を除外するが、この組み合わせを直接検証するCLI testと明示文書を確認していない。",
+            "relatedFactRefs": ["FACT-017", "FACT-018", "FACT-023", "FACT-028"]
+        },
+        {
+            "question": "複数ファイルのformatter出力順が安定しているか。",
+            "reason": "globが返す順序と並列処理の順序保証を依存packageまで確認していない。",
+            "relatedFactRefs": ["FACT-016", "FACT-019", "FACT-020"]
+        },
+        {
+            "question": "任意に読み込まれるrule、plugin、custom formatterが外部通信、追加のfile write、独自loggingを行うか。",
+            "reason": "拡張moduleは利用者が選択でき、このFeature Sliceの共通CLI経路から副作用を確定できない。",
+            "relatedFactRefs": ["FACT-009", "FACT-019", "FACT-021"]
+        },
+        {
+            "question": "baselineのtest assertionsが現在の実行環境でもすべて通るか。",
+            "reason": "Artifactの静的抽出を行い、test suiteのruntime実行は行っていない。",
+            "relatedFactRefs": ["FACT-031", "FACT-032", "FACT-033"]
+        }
+    ],
+    "uninspectedAreas": [
+        {
+            "area": "--fix、--dry-run、fixer formatter、TextLintFixer",
+            "reason": "指定Feature Sliceから明示的に除外されている。"
+        },
+        {
+            "area": "stdin、Node API、LSP、MCP server経路",
+            "reason": "指定Feature SliceはCLIのファイル入力経路に限定されている。"
+        },
+        {
+            "area": "@textlint/kernel内部のparser、rule実行、diagnostic生成アルゴリズム",
+            "reason": "CLIからTextlintKernel.lintTextを呼ぶ境界までを確認し、各ruleとkernel内部へは展開していない。"
+        },
+        {
+            "area": "stylish以外の各組み込みformatter実装と任意custom formatter実装",
+            "reason": "formatter選択・load契約と既定formatterを優先し、全formatter固有の表現は確認していない。"
+        },
+        {
+            "area": "cache backerの完全な状態遷移とcache破損時の挙動",
+            "reason": "cacheは既定で無効であり、主要な非cache経路を優先した。"
+        },
+        {
+            "area": "Windows path、symlink、filesystem permission、TTY/color差",
+            "reason": "対応するplatform matrixとend-to-end process testを確認していない。"
+        },
+        {
+            "area": "timeoutとretry",
+            "reason": "inspected pathに専用設定は見つからなかったが、依存packageとcustom module内までは確認していない。"
+        },
+        {
+            "area": "authorization、authentication、database、notification、external service",
+            "reason": "共通CLI経路のinspected artifactでは専用処理を確認できず、任意rule、plugin、formatterの内部は未確認である。"
+        }
+    ]
+}

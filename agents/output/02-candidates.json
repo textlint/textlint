@@ -1,0 +1,637 @@
+{
+    "candidateClauses": [
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-001",
+            "statement": "lint可能なruleが1件もない場合、textlint CLIはNo rules found警告を出す。",
+            "kind": "postcondition",
+            "structure": {
+                "subject": "textlint CLI",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["merged descriptor"],
+                    "otherConditions": ["descriptor.rule.lintableDescriptors.length === 0"]
+                },
+                "preconditions": ["CLI指定と設定由来のdescriptorが統合済みである"],
+                "trigger": { "event": "ファイル入力のlint実行を開始する" },
+                "expected": {
+                    "predicate": "No rules found警告を出す",
+                    "operator": "equals",
+                    "value": true,
+                    "unit": null
+                },
+                "timing": { "relation": "before", "referenceEvent": "linter生成", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-010"],
+            "refutingFactRefs": [],
+            "confidence": 0.99,
+            "ambiguities": ["警告の出力先と完全な文字列表現はFactに含まれない"],
+            "openQuestions": [],
+            "requiredEvidence": ["警告内容と出力先を固定するCLI testまたは明示文書"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/cli.ts"]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-002",
+            "statement": "lint可能なruleが1件もない場合、textlint CLIは終了状態1を返す。",
+            "kind": "input_output_relation",
+            "structure": {
+                "subject": "textlint CLIの終了状態",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["merged descriptor"],
+                    "otherConditions": ["descriptor.rule.lintableDescriptors.length === 0"]
+                },
+                "preconditions": ["CLI指定と設定由来のdescriptorが統合済みである"],
+                "trigger": { "event": "ファイル入力のlint実行を開始する" },
+                "expected": { "predicate": "返却する終了状態", "operator": "equals", "value": 1, "unit": null },
+                "timing": { "relation": "before", "referenceEvent": "linter生成", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-010"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": [],
+            "openQuestions": ["ruleなしの終了状態を利用者向け契約として維持するか"],
+            "requiredEvidence": ["ruleなし経路のexit statusを固定するCLI testまたは明示文書"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/cli.ts"]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-003",
+            "statement": "ファイル検索では.git配下とnode_modules配下を常に対象外にする。",
+            "kind": "constraint",
+            "structure": {
+                "subject": "textlint CLIのファイル検索",
+                "scope": {
+                    "actors": [],
+                    "environments": ["Node.js filesystem"],
+                    "featureFlags": [],
+                    "resources": ["検索対象ファイル"],
+                    "otherConditions": ["searchFilesを実行する"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "ファイル、directoryまたはglobを検索する" },
+                "expected": {
+                    "predicate": "除外pattern集合",
+                    "operator": "contains",
+                    "value": ["**/.git/**", "**/node_modules/**"],
+                    "unit": null
+                },
+                "timing": { "relation": "always", "referenceEvent": "searchFiles実行中", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-014"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": ["明示指定した.gitまたはnode_modules内のfileにも例外を認めない意図かは不明"],
+            "openQuestions": [],
+            "requiredEvidence": ["明示指定時を含む除外方針の文書またはtest"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/util/find-util.ts"]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-004",
+            "statement": "ignore fileが存在しない場合、ファイル検索はignore file由来のpatternを0件として継続する。",
+            "kind": "scenario",
+            "structure": {
+                "subject": "ignore file reader",
+                "scope": {
+                    "actors": [],
+                    "environments": ["Node.js filesystem"],
+                    "featureFlags": [],
+                    "resources": ["ignore file"],
+                    "otherConditions": ["ignoreFilePathがtruthy", "read error codeがENOENT"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "ignore fileを読み込む" },
+                "expected": { "predicate": "ignore file由来pattern", "operator": "equals", "value": [], "unit": null },
+                "timing": { "relation": "after", "referenceEvent": "ENOENTの発生", "duration": null },
+                "exceptions": ["ENOENT以外のread error"]
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-015"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": [],
+            "openQuestions": [],
+            "requiredEvidence": ["ignore file不在時の継続動作を固定するtest"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/util/find-util.ts"]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-005",
+            "statement": "ignore fileの読み込みがENOENT以外で失敗した場合、元のerrorをcauseに持つErrorをthrowする。",
+            "kind": "postcondition",
+            "structure": {
+                "subject": "ignore file reader",
+                "scope": {
+                    "actors": [],
+                    "environments": ["Node.js filesystem"],
+                    "featureFlags": [],
+                    "resources": ["ignore file"],
+                    "otherConditions": ["ignoreFilePathがtruthy", "read error codeがENOENTではない"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "ignore fileの読み込みに失敗する" },
+                "expected": {
+                    "predicate": "throwされるErrorのcause",
+                    "operator": "equals",
+                    "value": "元のread error",
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "read error", "duration": null },
+                "exceptions": ["read error codeがENOENT"]
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-015"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": ["このErrorが最終的にstatus 1と2のどちらになるべきかは別Clauseで扱う"],
+            "openQuestions": [],
+            "requiredEvidence": ["cause保持とCLIでの最終処理を検証するtest"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/util/find-util.ts"]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-006",
+            "statement": "指定対象がすべてignoreされる場合、textlint CLIは終了状態0を返す。",
+            "kind": "scenario",
+            "structure": {
+                "subject": "textlint CLIの終了状態",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Vitest programmatic cli.execute test on temporary filesystem"],
+                    "featureFlags": [],
+                    "resources": ["指定対象file"],
+                    "otherConditions": ["除外なし検索では一致する", "除外適用後の検索結果が0件"]
+                },
+                "preconditions": ["lint可能なruleが存在する"],
+                "trigger": { "event": "すべてignoreされる対象をlintする" },
+                "expected": { "predicate": "返却する終了状態", "operator": "equals", "value": 0, "unit": null },
+                "timing": { "relation": "after", "referenceEvent": "lint実行", "duration": null },
+                "exceptions": ["除外なし検索でも一致する対象が0件"]
+            },
+            "knowledgeType": "executable_expectation",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-017", "FACT-033"],
+            "refutingFactRefs": [],
+            "confidence": 0.98,
+            "ambiguities": [],
+            "openQuestions": [],
+            "requiredEvidence": [],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/util/find-util.ts",
+                "packages/textlint/test/cli/cli-exit-status-faq.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-007",
+            "statement": "単独の存在しないfileまたは一致しないglobを指定した場合、textlint CLIは終了状態2を返す。",
+            "kind": "scenario",
+            "structure": {
+                "subject": "textlint CLIの終了状態",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI", "Vitest programmatic cli.execute test on temporary filesystem"],
+                    "featureFlags": [],
+                    "resources": ["file指定", "glob指定"],
+                    "otherConditions": ["除外なし検索でも一致する対象が0件"]
+                },
+                "preconditions": ["lint可能なruleが存在する"],
+                "trigger": { "event": "一致対象のない指定でlintする" },
+                "expected": { "predicate": "返却する終了状態", "operator": "equals", "value": 2, "unit": null },
+                "timing": { "relation": "after", "referenceEvent": "ファイル検索失敗", "duration": null },
+                "exceptions": ["存在するfileと存在しないfileを同時に指定した場合は、存在するfileの診断結果に従う"]
+            },
+            "knowledgeType": "executable_expectation",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-017", "FACT-029", "FACT-033", "FACT-036"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": [],
+            "openQuestions": [],
+            "requiredEvidence": [],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/util/find-util.ts",
+                "packages/textlint/src/createLinter.ts",
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/test/cli/cli-exit-status-faq.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-008",
+            "statement": "ファイル検索に成功した場合、descriptor.availableExtensionsに含まれる拡張子のfileだけをlint処理へ渡す。",
+            "kind": "constraint",
+            "structure": {
+                "subject": "textlint linter",
+                "scope": {
+                    "actors": [],
+                    "environments": ["Node.js filesystem"],
+                    "featureFlags": [],
+                    "resources": ["検索結果file"],
+                    "otherConditions": ["ファイル検索が成功する"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "検索結果をlint対象へ分類する" },
+                "expected": {
+                    "predicate": "lint処理へ渡すfileの拡張子",
+                    "operator": "in",
+                    "value": "descriptor.availableExtensions",
+                    "unit": null
+                },
+                "timing": { "relation": "before", "referenceEvent": "TextlintKernel.lintText", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-018"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": ["対応外拡張子だけを指定した場合の利用者向け終了状態は直接検証されていない"],
+            "openQuestions": ["対応外拡張子だけを明示指定した場合、成功扱いを要求するか"],
+            "requiredEvidence": ["対応外拡張子だけを指定するCLI testまたは明示文書"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/createLinter.ts"]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-009",
+            "statement": "--fixを使わないファイル入力経路では、lint結果配列を--formatで選択したformatterと--color値で文字列へ変換する。",
+            "kind": "input_output_relation",
+            "structure": {
+                "subject": "textlint CLIのformatter処理",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["lint結果配列"],
+                    "otherConditions": ["--fixがfalse", "lintFilesが結果を返す"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "lintFilesが結果配列を返す" },
+                "expected": {
+                    "predicate": "formatter入力に適用する選択",
+                    "operator": "equals",
+                    "value": { "formatter": "--format値", "color": "--color値" },
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "lintFiles完了", "duration": null },
+                "exceptions": ["formatterのloadまたはvalidationに失敗する"]
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-020"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": ["custom formatterの副作用は対象外"],
+            "openQuestions": [],
+            "requiredEvidence": ["formatter選択とcolor引き渡しを固定するtest"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/cli.ts"]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-010",
+            "statement": "stylish formatterはmessageを持つ各resultについてfilePath、line、column、severityに対応するlabel、message、ruleIdを出力する。",
+            "kind": "property",
+            "structure": {
+                "subject": "stylish formatterの診断表現",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js"],
+                    "featureFlags": [],
+                    "resources": ["lint result"],
+                    "otherConditions": ["formatterNameがstylish", "resultがmessageを持つ"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "stylish formatterがlint resultを整形する" },
+                "expected": {
+                    "predicate": "出力する診断field",
+                    "operator": "contains",
+                    "value": ["filePath", "line", "column", "severity label", "message", "ruleId"],
+                    "unit": null
+                },
+                "timing": { "relation": "during", "referenceEvent": "formatter実行", "duration": null },
+                "exceptions": ["全resultのmessageが0件"]
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-022"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": ["severity labelの色表現は--colorと実行環境に依存する"],
+            "openQuestions": [],
+            "requiredEvidence": ["stylish formatterのfield構成を固定するtest"],
+            "possibleImplementationArtifacts": ["packages/@textlint/linter-formatter/src/formatters/stylish.ts"]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-011",
+            "statement": "formatter出力が空文字列の場合、textlint CLIはstdoutにもoutput fileにも書き込まない。",
+            "kind": "postcondition",
+            "structure": {
+                "subject": "textlint CLIの結果出力",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["stdout", "output file"],
+                    "otherConditions": ["formatter出力が空文字列"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "formatter結果をprintResultsへ渡す" },
+                "expected": { "predicate": "出力先へのwrite回数", "operator": "equals", "value": 0, "unit": "writes" },
+                "timing": { "relation": "after", "referenceEvent": "printResults実行", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-023"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": [],
+            "openQuestions": [],
+            "requiredEvidence": ["stdoutとoutput fileの非書き込みを検証するtest"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/cli-util.ts"]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-012",
+            "statement": "formatter出力が非空で--output-fileがない場合、その文字列を追加改行なしでstdoutへ書き込む。",
+            "kind": "input_output_relation",
+            "structure": {
+                "subject": "textlint CLIのstdout出力",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI stdout"],
+                    "featureFlags": [],
+                    "resources": ["stdout"],
+                    "otherConditions": ["formatter出力が非空", "--output-fileがない"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "formatter結果をprintResultsへ渡す" },
+                "expected": {
+                    "predicate": "stdoutへ書く値",
+                    "operator": "equals",
+                    "value": "formatter出力そのもの",
+                    "unit": null
+                },
+                "timing": { "relation": "during", "referenceEvent": "printResults実行", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-024"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": ["formatter出力自体が末尾改行を含む可能性はある"],
+            "openQuestions": [],
+            "requiredEvidence": ["末尾文字を含むstdout byte列のtest"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/cli-util.ts"]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-013",
+            "statement": "formatter出力が非空で--output-fileがある場合、cwd基準で出力先を解決し、必要な親directoryを作成してformatter出力を書き込む。",
+            "kind": "state_transition",
+            "structure": {
+                "subject": "textlint CLIのoutput file",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js filesystem"],
+                    "featureFlags": [],
+                    "resources": ["--output-fileで指定したfile"],
+                    "otherConditions": ["formatter出力が非空", "--output-fileが指定される"]
+                },
+                "preconditions": ["出力先が既存directoryではない", "directory作成とfile書き込みが成功する"],
+                "trigger": { "event": "formatter結果をprintResultsへ渡す" },
+                "expected": {
+                    "predicate": "cwd基準の出力先file内容",
+                    "operator": "equals",
+                    "value": "formatter出力",
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "必要な親directoryの再帰作成", "duration": null },
+                "exceptions": ["出力先が既存directory", "directory作成またはfile書き込みが失敗する"]
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-025"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": ["同期書き込みであることを外部契約に含める必要性は不明"],
+            "openQuestions": [],
+            "requiredEvidence": ["相対path、親directory作成、file内容を検証するtest"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/cli-util.ts"]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-014",
+            "statement": "output fileへの出力が完了しない場合、printResultsはstderrへerrorを記録してfalseを返す。",
+            "kind": "postcondition",
+            "structure": {
+                "subject": "printResults",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js filesystem"],
+                    "featureFlags": [],
+                    "resources": ["--output-fileで指定したpath", "stderr"],
+                    "otherConditions": ["formatter出力が非空", "--output-fileが指定される"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "出力先が既存directoryであるか、directory作成またはfile書き込みがthrowする" },
+                "expected": {
+                    "predicate": "error記録後のprintResults返却値",
+                    "operator": "equals",
+                    "value": false,
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "output file処理失敗", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-026"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": ["このfalseからCLIが返す最終終了状態はFact集合に明示されていない"],
+            "openQuestions": ["output file書き込み失敗時の最終終了状態を何にするか"],
+            "requiredEvidence": ["printResults失敗からprocess exitまでを通すCLI testまたは明示文書"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/cli-util.ts", "packages/textlint/src/cli.ts"]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-015",
+            "statement": "lint結果の出力に成功し--output-fileが指定されている場合、診断severityにかかわらず終了状態0を返す。",
+            "kind": "input_output_relation",
+            "structure": {
+                "subject": "textlint CLIの終了状態",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["output file", "lint結果"],
+                    "otherConditions": ["--fixがfalse", "printResultsがtrue", "--output-fileが指定される"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "lint結果のoutput file出力に成功する" },
+                "expected": { "predicate": "返却する終了状態", "operator": "equals", "value": 0, "unit": null },
+                "timing": { "relation": "after", "referenceEvent": "printResults成功", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-027"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": [
+                "output file指定時にerror診断があっても成功扱いにすることが利用者向け要件かは明示されていない"
+            ],
+            "openQuestions": ["output file指定時にseverityを終了状態へ反映しない方針を維持するか"],
+            "requiredEvidence": ["error severityを含むoutput file実行のCLI testまたは明示文書"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/cli.ts"]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-016",
+            "statement": "lint結果の出力に成功し--output-fileがない場合、SeverityLevel.errorが1件以上あれば終了状態1を返し、なければ0を返す。",
+            "kind": "input_output_relation",
+            "structure": {
+                "subject": "textlint CLIの終了状態",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["lint結果"],
+                    "otherConditions": ["--fixがfalse", "printResultsがtrue", "--output-fileがない"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "lint結果の出力に成功する" },
+                "expected": {
+                    "predicate": "返却する終了状態",
+                    "operator": "equals",
+                    "value": { "SeverityLevel.errorが1件以上": 1, "それ以外": 0 },
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "printResults成功", "duration": null },
+                "exceptions": ["--output-fileが指定される"]
+            },
+            "knowledgeType": "executable_expectation",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-028", "FACT-031", "FACT-032"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": [],
+            "openQuestions": [],
+            "requiredEvidence": [],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/test/cli/cli.test.ts",
+                "packages/textlint/test/cli/cli-preset-severity.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-017",
+            "statement": "executeWithOptions内でTextlintFileSearchError以外のファイル処理errorを捕捉した場合、stderrへUnexpected error during file processingを記録して終了状態1を返す。",
+            "kind": "scenario",
+            "structure": {
+                "subject": "textlint CLIのファイル処理error handler",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["stderr"],
+                    "otherConditions": [
+                        "errorがexecuteWithOptionsのtry内で発生",
+                        "errorがTextlintFileSearchErrorではない"
+                    ]
+                },
+                "preconditions": [],
+                "trigger": { "event": "ファイル処理errorをcatchする" },
+                "expected": {
+                    "predicate": "stderr記録後の返却終了状態",
+                    "operator": "equals",
+                    "value": 1,
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "error捕捉", "duration": null },
+                "exceptions": ["TextlintFileSearchError", "cli.executeの外まで伝播するerror"]
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-030"],
+            "refutingFactRefs": ["FACT-034"],
+            "confidence": 0.78,
+            "ambiguities": [
+                "FAQはfile system access errorをstatus 2の例とするが、ignore fileのENOENT以外のread errorはこのstatus 1経路へ入る可能性がある"
+            ],
+            "openQuestions": [
+                "file system access errorを型にかかわらずstatus 2へ正規化するか",
+                "globがrejectした場合のerror型とstatusは何か"
+            ],
+            "requiredEvidence": [
+                "ignore file permission errorとglob permission errorのruntime test",
+                "FAQと実装のどちらを正とするかの判断"
+            ],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/src/util/find-util.ts",
+                "docs/faq/exit-status.md"
+            ]
+        },
+        {
+            "clauseId": "CRC-TEXTLINT-CLI-018",
+            "statement": "cli.executeの外までPromise rejectionまたは例外が伝播した場合、Error情報をstderrへ出しprocessを終了状態2で終了する。",
+            "kind": "scenario",
+            "structure": {
+                "subject": "textlint CLI実行ファイルのfatal error handler",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI process"],
+                    "featureFlags": [],
+                    "resources": ["stderr", "process"],
+                    "otherConditions": ["Promise rejection、uncaughtException、unhandledRejectionのいずれか"]
+                },
+                "preconditions": ["errorがcli.executeの外までrejectまたはthrowされる"],
+                "trigger": { "event": "fatal error handlerがerrorを受け取る" },
+                "expected": {
+                    "predicate": "Error見出し、message、Stack trace、stackをstderrへ出した後のprocess終了状態",
+                    "operator": "equals",
+                    "value": 2,
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "fatal error捕捉", "duration": null },
+                "exceptions": ["executeWithOptions内で捕捉され終了状態として返されるerror"]
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-004"],
+            "refutingFactRefs": [],
+            "confidence": 1.0,
+            "ambiguities": ["process.exit(2)による即時終了を外部契約に含めるかは明示されていない"],
+            "openQuestions": [],
+            "requiredEvidence": ["実processで各fatal eventとstderr、status 2を検証するtest"],
+            "possibleImplementationArtifacts": ["packages/textlint/bin/textlint.js"]
+        }
+    ],
+    "rejectedCandidates": [
+        {
+            "statement": "process.argvをcli.executeへ渡すこと自体をRequirementとする。",
+            "reason": "implementation_detail"
+        },
+        {
+            "statement": "createLinterへcache、cacheLocation、quiet、ignorePath、descriptorを同時に渡すことをRequirementとする。",
+            "reason": "implementation_detail"
+        },
+        {
+            "statement": "formatter moduleの解決試行順序を外部Requirementとする。",
+            "reason": "implementation_detail"
+        },
+        {
+            "statement": "file search用custom error classはpackages/textlint/src/error/FileSearchError.tsに存在する。",
+            "reason": "historical_only"
+        },
+        {
+            "statement": "複数ファイルのformatter出力順は常に安定する。",
+            "reason": "insufficient_evidence"
+        }
+    ]
+}

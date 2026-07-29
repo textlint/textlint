@@ -1,0 +1,1117 @@
+{
+    "candidateClauses": [
+        {
+            "clauseId": "CRC-CLI-001",
+            "statement": "Node.js CLIは、--helpまたは-hが指定された場合に利用方法を表示する。",
+            "kind": "capability",
+            "structure": {
+                "subject": "textlint Node.js CLI",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["help output"],
+                    "otherConditions": ["--helpまたは-hが指定される"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "CLI起動" },
+                "expected": { "predicate": "利用方法を表示する", "operator": "equals", "value": true, "unit": null },
+                "timing": { "relation": "after", "referenceEvent": "option parse成功", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "explicit_requirement",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-002"],
+            "refutingFactRefs": [],
+            "confidence": 0.99,
+            "ambiguities": ["表示内容の完全な文字列はFact集合に含まれない。"],
+            "openQuestions": [],
+            "requiredEvidence": ["help出力のsnapshot test"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/options.ts", "packages/textlint/src/cli.ts"]
+        },
+        {
+            "clauseId": "CRC-CLI-002",
+            "statement": "Node.js CLIは、--versionまたは-vが指定された場合にversion番号を表示する。",
+            "kind": "capability",
+            "structure": {
+                "subject": "textlint Node.js CLI",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["version output"],
+                    "otherConditions": ["--versionまたは-vが指定される"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "CLI起動" },
+                "expected": { "predicate": "version番号を表示する", "operator": "equals", "value": true, "unit": null },
+                "timing": { "relation": "after", "referenceEvent": "option parse成功", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "explicit_requirement",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-010"],
+            "refutingFactRefs": [],
+            "confidence": 0.99,
+            "ambiguities": ["version文字列の形式はFact集合に含まれない。"],
+            "openQuestions": [],
+            "requiredEvidence": ["version出力のCLI test"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/options.ts", "packages/textlint/src/cli.ts"]
+        },
+        {
+            "clauseId": "CRC-CLI-003",
+            "statement": "Node.js CLIは、--initが指定された場合に設定ファイルを作成する処理を選択する。",
+            "kind": "capability",
+            "structure": {
+                "subject": "textlint Node.js CLI",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI", "filesystem"],
+                    "featureFlags": [],
+                    "resources": ["textlint config file"],
+                    "otherConditions": ["--init=true"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "CLI起動" },
+                "expected": {
+                    "predicate": "設定ファイル作成処理を選択する",
+                    "operator": "equals",
+                    "value": true,
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "option parse成功", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "explicit_requirement",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-005", "FACT-CLI-029"],
+            "refutingFactRefs": [],
+            "confidence": 0.98,
+            "ambiguities": ["既存設定ファイルがある場合の扱いはFact集合に含まれない。"],
+            "openQuestions": [],
+            "requiredEvidence": ["設定ファイルの有無を分けたinit test"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/options.ts", "packages/textlint/src/cli.ts"]
+        },
+        {
+            "clauseId": "CRC-CLI-004",
+            "statement": "Node.js CLIは、--print-configが指定された場合に有効なdescriptorをJSONとしてstdoutへ出力し、正常時にexit code 0を返す。",
+            "kind": "input_output_relation",
+            "structure": {
+                "subject": "textlint Node.js CLI",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["active descriptor", "stdout"],
+                    "otherConditions": ["--print-config=true"]
+                },
+                "preconditions": ["option parseが成功する"],
+                "trigger": { "event": "print-config branchの選択" },
+                "expected": {
+                    "predicate": "active descriptorのJSONとexit codeを返す",
+                    "operator": "equals",
+                    "value": { "exitCode": 0, "output": "active descriptor JSON" },
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "descriptor load", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "executable_expectation",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-009", "FACT-CLI-030", "FACT-CLI-051"],
+            "refutingFactRefs": [],
+            "confidence": 0.99,
+            "ambiguities": ["JSONのkey順序は判定対象か不明である。"],
+            "openQuestions": [],
+            "requiredEvidence": ["built-in、--config、--ruleを分けたprint-config test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/options.ts",
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/test/cli/cli.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-005",
+            "statement": "Node.js CLIは、--mcpが指定された場合にconfig、rules base directory、ignore path、quiet、debug、cwdを渡したstdio MCP serverを起動する。",
+            "kind": "scenario",
+            "structure": {
+                "subject": "textlint MCP mode",
+                "scope": {
+                    "actors": ["MCP client", "CLI利用者"],
+                    "environments": ["Node.js CLI", "stdio MCP server"],
+                    "featureFlags": [],
+                    "resources": ["MCP server options", "stdin", "stdout"],
+                    "otherConditions": ["--mcp=true"]
+                },
+                "preconditions": ["option parseが成功する"],
+                "trigger": { "event": "mcp branchの選択" },
+                "expected": {
+                    "predicate": "指定された共有CLI optionでstdio serverへ接続する",
+                    "operator": "equals",
+                    "value": true,
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "MCP server生成", "duration": null },
+                "exceptions": ["SIGINT時はserverをcloseしprocess.exitCodeを0にする観測がある"]
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-026", "FACT-CLI-035", "FACT-CLI-042", "FACT-CLI-043"],
+            "refutingFactRefs": [],
+            "confidence": 0.97,
+            "ambiguities": [
+                "Issueで提案されたMCP tool候補は現行CLI契約に含めない。",
+                "通常lint用optionのうちMCP serverへ渡されないものの扱いは明示されていない。"
+            ],
+            "openQuestions": [
+                "--mcpと--fix、--stdin、--output-fileなどを同時指定した場合、無視、拒否、または別の意味になるか。"
+            ],
+            "requiredEvidence": ["MCP option組合せtest", "SIGINT shutdown test"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/options.ts", "packages/textlint/src/cli.ts"]
+        },
+        {
+            "clauseId": "CRC-CLI-006",
+            "statement": "Node.js CLIは、--stdinが指定された場合に標準入力全体をtextとして読み、指定されたstdin filenameの文書としてlintまたはfixする。",
+            "kind": "input_output_relation",
+            "structure": {
+                "subject": "textlint stdin mode",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["stdin text", "stdin filename"],
+                    "otherConditions": ["--stdin=true"]
+                },
+                "preconditions": ["標準入力が読み取り可能である"],
+                "trigger": { "event": "stdin input受信" },
+                "expected": {
+                    "predicate": "stdin全体を一つの文書として処理する",
+                    "operator": "equals",
+                    "value": true,
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "stdin読了", "duration": null },
+                "exceptions": ["stdinのlintTextまたはfixTextはignore fileを参照しない観測がある"]
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-011", "FACT-CLI-012", "FACT-CLI-028", "FACT-CLI-032"],
+            "refutingFactRefs": [],
+            "confidence": 0.98,
+            "ambiguities": ["空のstdin textがstdin modeとして扱われる条件はFact集合だけでは確定しない。"],
+            "openQuestions": [],
+            "requiredEvidence": ["stdin lint test", "stdin fix test"],
+            "possibleImplementationArtifacts": ["packages/textlint/bin/textlint.js", "packages/textlint/src/cli.ts"]
+        },
+        {
+            "clauseId": "CRC-CLI-007",
+            "statement": "stdin textを処理するNode.js CLIは、--stdin-filenameが無い場合に処理を成功させずErrorを発生させる。",
+            "kind": "precondition",
+            "structure": {
+                "subject": "textlint stdin mode",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["stdin text", "stdin filename"],
+                    "otherConditions": ["stdin textがcli.executeへ渡される"]
+                },
+                "preconditions": ["stdin textが存在する"],
+                "trigger": { "event": "stdin filenameの検証" },
+                "expected": {
+                    "predicate": "stdin filenameが無ければErrorとなる",
+                    "operator": "equals",
+                    "value": true,
+                    "unit": null
+                },
+                "timing": { "relation": "before", "referenceEvent": "lintまたはfix実行", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-012", "FACT-CLI-028"],
+            "refutingFactRefs": ["FACT-CLI-039"],
+            "confidence": 0.9,
+            "ambiguities": [
+                "open Issue #739は古いversionでstdin filenameを指定してもpretty-errorとの組合せがENOENTになった事例であり、baselineでの再現は未確認である。"
+            ],
+            "openQuestions": ["baselineでも--stdin --stdin-filename foo.md -f pretty-errorがENOENTなしで完了するか。"],
+            "requiredEvidence": ["pretty-errorを含むstdin regression test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/test/cli/cli.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-008",
+            "statement": "file実行のNode.js CLIは、file、directory、globの各入力をlint可能extensionの絶対file path集合へ解決する。",
+            "kind": "input_output_relation",
+            "structure": {
+                "subject": "textlint file target resolver",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI", "filesystem"],
+                    "featureFlags": [],
+                    "resources": ["file arguments", "available extensions"],
+                    "otherConditions": ["stdin modeではない"]
+                },
+                "preconditions": ["対象argumentが与えられる"],
+                "trigger": { "event": "file target検索" },
+                "expected": {
+                    "predicate": "入力を絶対file path集合へ解決する",
+                    "operator": "contains_only",
+                    "value": "lint可能extensionのfile",
+                    "unit": null
+                },
+                "timing": { "relation": "before", "referenceEvent": "lintまたはfix実行", "duration": null },
+                "exceptions": ["全候補がignoreされた場合は成功かつ空配列になる観測がある"]
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-031", "FACT-CLI-054", "FACT-CLI-056"],
+            "refutingFactRefs": [],
+            "confidence": 0.97,
+            "ambiguities": ["対応extensionの完全な集合はFact集合に含まれない。"],
+            "openQuestions": [],
+            "requiredEvidence": ["file、directory、glob別のCLI test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/util/find-util.ts",
+                "packages/textlint/src/createLinter.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-009",
+            "statement": "Node.js CLIは、--fixが指定されたfile実行でfixerの結果を対象fileへ書き込む。",
+            "kind": "state_transition",
+            "structure": {
+                "subject": "textlint fix mode",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI", "filesystem"],
+                    "featureFlags": [],
+                    "resources": ["target file"],
+                    "otherConditions": ["--fix=true", "--dry-run=false"]
+                },
+                "preconditions": ["fix可能なruleが有効である"],
+                "trigger": { "event": "fix実行" },
+                "expected": {
+                    "predicate": "対象file内容をfix結果へ遷移させる",
+                    "operator": "equals",
+                    "value": "fixer output",
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "fix結果の生成", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "executable_expectation",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-006", "FACT-CLI-032", "FACT-CLI-047"],
+            "refutingFactRefs": [],
+            "confidence": 0.99,
+            "ambiguities": [],
+            "openQuestions": [],
+            "requiredEvidence": ["fixer fixtureによるfile mutation test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/test/cli/cli.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-010",
+            "statement": "Node.js CLIは、--fix --dry-runのfile実行でfix結果を生成しても対象fileを変更しない。",
+            "kind": "invariant",
+            "structure": {
+                "subject": "textlint dry-run file mode",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI", "filesystem"],
+                    "featureFlags": [],
+                    "resources": ["target file"],
+                    "otherConditions": ["--fix=true", "--dry-run=true"]
+                },
+                "preconditions": ["fix結果が生成される"],
+                "trigger": { "event": "dry-run fix実行" },
+                "expected": {
+                    "predicate": "対象file内容を保持する",
+                    "operator": "equals",
+                    "value": "実行前の内容",
+                    "unit": null
+                },
+                "timing": { "relation": "always", "referenceEvent": "dry-run実行中", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "explicit_requirement",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-007", "FACT-CLI-032", "FACT-CLI-047"],
+            "refutingFactRefs": [],
+            "confidence": 0.99,
+            "ambiguities": ["dry-run時のexit codeについてdocs例とbaseline実装に矛盾が記録されている。"],
+            "openQuestions": ["lint errorを含むfileのdry-runはexit code 0と1のどちらを公開契約とするか。"],
+            "requiredEvidence": ["dry-run file非変更test", "dry-run exit status test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/options.ts",
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/test/cli/cli.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-011",
+            "statement": "stdinの--fix --dry-run --format fixed-resultは、fix結果を追加改行なしでstdoutへ出し、exit code 0を返す。",
+            "kind": "scenario",
+            "structure": {
+                "subject": "textlint stdin dry-run mode",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["stdin text", "stdout"],
+                    "otherConditions": ["--stdin", "--stdin-filename", "--fix", "--dry-run", "--format fixed-result"]
+                },
+                "preconditions": ["fix可能なruleが有効である"],
+                "trigger": { "event": "stdin dry-run fix実行" },
+                "expected": {
+                    "predicate": "fix結果とexit codeを返す",
+                    "operator": "equals",
+                    "value": { "stdout": "fix結果そのもの", "appendedNewline": false, "exitCode": 0 },
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "formatter実行", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "executable_expectation",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-007", "FACT-CLI-032", "FACT-CLI-048"],
+            "refutingFactRefs": ["FACT-CLI-040"],
+            "confidence": 0.98,
+            "ambiguities": [
+                "Issue #1091はv13.3.0で出力されなかった履歴であり、baselineではregression testが反対の期待を固定している。"
+            ],
+            "openQuestions": ["fixed-result以外のformatterでもdry-runのexit code 0を保証するか。"],
+            "requiredEvidence": ["stdin fixed-result regression test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/test/cli/cli.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-012",
+            "statement": "Node.js CLIは、--formatで選択されたformatterへlintまたはfix結果を渡し、既定ではstylishを選択する。",
+            "kind": "input_output_relation",
+            "structure": {
+                "subject": "textlint formatter selection",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["lint result", "fix result", "formatter"],
+                    "otherConditions": []
+                },
+                "preconditions": ["formatterをloadできる"],
+                "trigger": { "event": "report生成" },
+                "expected": {
+                    "predicate": "選択formatterで結果を整形する",
+                    "operator": "defaults_to",
+                    "value": "stylish",
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "lintまたはfix結果の生成", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "explicit_requirement",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-014", "FACT-CLI-033"],
+            "refutingFactRefs": [],
+            "confidence": 0.99,
+            "ambiguities": ["lintとfixで利用可能なformatter集合が同一かはFact集合に含まれない。"],
+            "openQuestions": [],
+            "requiredEvidence": ["custom formatter選択test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/options.ts",
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/src/cli-util.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-013",
+            "statement": "Node.js CLIは、整形済みreportを--output-file指定時はそのfileへ書き、未指定時は追加改行なしでstdoutへ書く。",
+            "kind": "input_output_relation",
+            "structure": {
+                "subject": "textlint report output",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI", "filesystem"],
+                    "featureFlags": [],
+                    "resources": ["formatted report", "stdout", "output file"],
+                    "otherConditions": []
+                },
+                "preconditions": ["formatter出力が生成される"],
+                "trigger": { "event": "report出力" },
+                "expected": {
+                    "predicate": "output destinationにreportを一度だけ書く",
+                    "operator": "routes_by",
+                    "value": "--output-fileの有無",
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "formatter実行", "duration": null },
+                "exceptions": ["output fileの親directoryはrecursiveに作成される観測がある"]
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-013", "FACT-CLI-033", "FACT-CLI-045"],
+            "refutingFactRefs": ["FACT-CLI-045"],
+            "confidence": 0.94,
+            "ambiguities": [
+                "Issue #2043はv15.7.0でdirect stdoutと--output-file /dev/stdoutの末尾改行数が異なったと報告するが、baselineではLogger.write経路がある。"
+            ],
+            "openQuestions": ["direct stdoutと--output-file /dev/stdoutのbyte列は同一であるべきか。"],
+            "requiredEvidence": ["direct stdoutとoutput-fileのbyte比較test"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/options.ts", "packages/textlint/src/cli-util.ts"]
+        },
+        {
+            "clauseId": "CRC-CLI-014",
+            "statement": "Node.js CLIは、--output-fileへのreport書き込みに成功した場合、lint errorを含むreportでもexit code 0を返す。",
+            "kind": "postcondition",
+            "structure": {
+                "subject": "textlint output-file mode",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI", "filesystem"],
+                    "featureFlags": [],
+                    "resources": ["output file", "exit code"],
+                    "otherConditions": ["--output-fileが指定される"]
+                },
+                "preconditions": ["reportのfile書き込みが成功する"],
+                "trigger": { "event": "report書き込み完了" },
+                "expected": { "predicate": "exit codeを返す", "operator": "equals", "value": 0, "unit": null },
+                "timing": { "relation": "after", "referenceEvent": "output file書き込み成功", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "executable_expectation",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-036", "FACT-CLI-037", "FACT-CLI-053"],
+            "refutingFactRefs": [],
+            "confidence": 0.99,
+            "ambiguities": ["このexit code契約はlint errorの有無を呼出元へ直接伝えない。"],
+            "openQuestions": [],
+            "requiredEvidence": ["lint errorを含むoutput-file test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/test/cli/cli.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-015",
+            "statement": "Node.js CLIは、--quiet指定時にwarning reportを抑制し、warningだけの実行ではexit code 0を返す。",
+            "kind": "scenario",
+            "structure": {
+                "subject": "textlint quiet mode",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["lint messages", "report output", "exit code"],
+                    "otherConditions": ["--quiet=true", "warningだけが発生する"]
+                },
+                "preconditions": ["warning severityのmessageが生成される"],
+                "trigger": { "event": "report生成" },
+                "expected": {
+                    "predicate": "warning reportを除外して成功する",
+                    "operator": "equals",
+                    "value": { "report": "empty", "exitCode": 0 },
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "lint実行", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "executable_expectation",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-016", "FACT-CLI-033", "FACT-CLI-049"],
+            "refutingFactRefs": [],
+            "confidence": 0.99,
+            "ambiguities": ["quietがwarning以外の補助logへ及ぼす範囲はFact集合に含まれない。"],
+            "openQuestions": [],
+            "requiredEvidence": ["warning-only quiet test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/options.ts",
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/test/cli/cli.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-016",
+            "statement": "Node.js CLIは、既定でcolor出力を有効にし、--no-color指定時はformatterのcolor出力を無効にする。",
+            "kind": "property",
+            "structure": {
+                "subject": "textlint formatter color option",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["formatted report"],
+                    "otherConditions": []
+                },
+                "preconditions": ["formatterがcolor optionを受け取る"],
+                "trigger": { "event": "formatter load" },
+                "expected": {
+                    "predicate": "color flagをformatterへ渡す",
+                    "operator": "defaults_to",
+                    "value": true,
+                    "unit": null
+                },
+                "timing": { "relation": "before", "referenceEvent": "report整形", "duration": null },
+                "exceptions": ["--no-color指定時の値はfalse"]
+            },
+            "knowledgeType": "explicit_requirement",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-015", "FACT-CLI-033"],
+            "refutingFactRefs": [],
+            "confidence": 0.99,
+            "ambiguities": ["colorを使わないformatterの動作はformatter側の責務である。"],
+            "openQuestions": [],
+            "requiredEvidence": ["colorとno-colorのformatter test"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/options.ts", "packages/textlint/src/cli.ts"]
+        },
+        {
+            "clauseId": "CRC-CLI-017",
+            "statement": "Node.js CLIは、--configで指定された設定または既定のtextlintrcを読み込み、--no-textlintrcまたは設定load失敗時はbuilt-in plugin descriptorで実行descriptorを構成する。",
+            "kind": "rule",
+            "structure": {
+                "subject": "textlint config selection",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI", "filesystem"],
+                    "featureFlags": [],
+                    "resources": ["config file", "execution descriptor"],
+                    "otherConditions": []
+                },
+                "preconditions": [],
+                "trigger": { "event": "descriptor構成" },
+                "expected": {
+                    "predicate": "選択されたconfig sourceからdescriptorを構成する",
+                    "operator": "fallback_to",
+                    "value": "built-in plugin descriptor",
+                    "unit": null
+                },
+                "timing": {
+                    "relation": "before",
+                    "referenceEvent": "lint、fix、print-config、MCP実行",
+                    "duration": null
+                },
+                "exceptions": ["--no-textlintrcではtextlintrcを読み込まない"]
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-003", "FACT-CLI-017", "FACT-CLI-030", "FACT-CLI-044", "FACT-CLI-051"],
+            "refutingFactRefs": [],
+            "confidence": 0.92,
+            "ambiguities": [
+                "Issue #1852は設定fileが無い場合にも既定動作で実行してほしいという要望であり、それ単独では現行要件を宣言しない。"
+            ],
+            "openQuestions": ["設定file不在と設定load時の構文errorは同じfallback対象か。"],
+            "requiredEvidence": ["設定不在、--no-textlintrc、設定構文errorを分けたCLI test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/options.ts",
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/src/loader/CliLoader.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-018",
+            "statement": "Node.js CLIは、--rule、--preset、--plugin、--rulesdirをそれぞれ繰り返し可能な入力として受け取り、execution descriptorへ追加する。",
+            "kind": "capability",
+            "structure": {
+                "subject": "textlint CLI extension inputs",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": [
+                        "rule packages",
+                        "preset packages",
+                        "plugin packages",
+                        "rule directories",
+                        "execution descriptor"
+                    ],
+                    "otherConditions": []
+                },
+                "preconditions": ["指定moduleまたはdirectoryをloadできる"],
+                "trigger": { "event": "descriptor構成" },
+                "expected": {
+                    "predicate": "各繰り返し入力をdescriptorへ追加する",
+                    "operator": "appends",
+                    "value": ["--rule", "--preset", "--plugin", "--rulesdir"],
+                    "unit": null
+                },
+                "timing": { "relation": "before", "referenceEvent": "lint、fix、print-config実行", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "explicit_requirement",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-018", "FACT-CLI-019", "FACT-CLI-020", "FACT-CLI-021", "FACT-CLI-030"],
+            "refutingFactRefs": [],
+            "confidence": 0.98,
+            "ambiguities": ["configとCLIに同名ruleがある場合の最終options優先順位は未確認である。"],
+            "openQuestions": ["同名ruleをconfigとCLIの両方で指定した場合にどちらのoptionsを採用するか。"],
+            "requiredEvidence": ["各optionの繰り返し指定test", "同名ruleの優先順位test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/options.ts",
+                "packages/textlint/src/loader/CliLoader.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-019",
+            "statement": "Node.js CLIは、--rules-base-directoryで指定されたdirectoryをrule、preset、pluginのmodule load基準として使う。",
+            "kind": "rule",
+            "structure": {
+                "subject": "textlint module resolution",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI", "filesystem"],
+                    "featureFlags": [],
+                    "resources": ["rule module", "preset module", "plugin module"],
+                    "otherConditions": ["--rules-base-directoryが指定される"]
+                },
+                "preconditions": ["指定directoryがmodule解決基準として利用可能である"],
+                "trigger": { "event": "rule、preset、plugin load" },
+                "expected": {
+                    "predicate": "module解決を指定directory基準で行う",
+                    "operator": "equals",
+                    "value": "--rules-base-directory",
+                    "unit": null
+                },
+                "timing": { "relation": "before", "referenceEvent": "descriptor構成完了", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "explicit_requirement",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-025", "FACT-CLI-035", "FACT-CLI-043"],
+            "refutingFactRefs": [],
+            "confidence": 0.98,
+            "ambiguities": ["relative pathの基準directoryはFact集合の記述だけでは明示されない。"],
+            "openQuestions": [],
+            "requiredEvidence": ["別directoryからのmodule resolution CLI test"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/options.ts", "packages/textlint/src/cli.ts"]
+        },
+        {
+            "clauseId": "CRC-CLI-020",
+            "statement": "file実行のNode.js CLIは、既定または--ignore-pathで指定されたignore fileのpatternに一致する対象と.gitおよびnode_modulesをlint対象から除外し、ignore file不在時は検索を継続する。",
+            "kind": "constraint",
+            "structure": {
+                "subject": "textlint file target resolver",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI", "filesystem"],
+                    "featureFlags": [],
+                    "resources": ["file targets", "ignore file"],
+                    "otherConditions": ["file実行"]
+                },
+                "preconditions": ["file target検索を行う"],
+                "trigger": { "event": "target filtering" },
+                "expected": {
+                    "predicate": "ignore対象を検索結果から除外する",
+                    "operator": "excludes",
+                    "value": ["ignore pattern matches", ".git", "node_modules"],
+                    "unit": null
+                },
+                "timing": { "relation": "before", "referenceEvent": "lintまたはfix実行", "duration": null },
+                "exceptions": ["ignore file不在は空patternとして扱う"]
+            },
+            "knowledgeType": "executable_expectation",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-004", "FACT-CLI-031", "FACT-CLI-038", "FACT-CLI-052", "FACT-CLI-056"],
+            "refutingFactRefs": [],
+            "confidence": 0.98,
+            "ambiguities": ["既定ignore pathはCLI起動時cwdの.textlintignore絶対pathである。"],
+            "openQuestions": [],
+            "requiredEvidence": ["glob、直接file、相対path、絶対path、不在ignore fileのtest"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/options.ts",
+                "packages/textlint/src/util/find-util.ts",
+                "packages/textlint/test/cli/cli.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-021",
+            "statement": "Node.js CLIは、--cache指定時に--cache-locationまたはcwd/.textlintcacheへcacheを保存し、旧形式cacheが存在しても処理を継続する。",
+            "kind": "scenario",
+            "structure": {
+                "subject": "textlint cache mode",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI", "filesystem"],
+                    "featureFlags": [],
+                    "resources": ["cache file"],
+                    "otherConditions": ["--cache=true"]
+                },
+                "preconditions": ["cache locationへ書き込み可能である"],
+                "trigger": { "event": "cache付きlint実行" },
+                "expected": {
+                    "predicate": "選択cache locationを利用して処理を完了する",
+                    "operator": "writes",
+                    "value": "cache file",
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "cache対象処理", "duration": null },
+                "exceptions": ["旧形式cacheはthrowせず処理するというtest期待がある"]
+            },
+            "knowledgeType": "executable_expectation",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-022", "FACT-CLI-023", "FACT-CLI-034", "FACT-CLI-050", "FACT-CLI-057"],
+            "refutingFactRefs": [],
+            "confidence": 0.98,
+            "ambiguities": ["旧形式cacheを破棄、移行、上書きのどれで扱うかはFact集合に含まれない。"],
+            "openQuestions": [],
+            "requiredEvidence": ["既定location、明示location、旧形式cacheのCLI test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/options.ts",
+                "packages/textlint/src/createLinter.ts",
+                "packages/textlint/test/cli/cli.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-022",
+            "statement": "Node.js CLIは、argvに--debugがある場合にCLI moduleのload前からtextlint debug namespaceを有効にする。",
+            "kind": "state_transition",
+            "structure": {
+                "subject": "textlint debug mode",
+                "scope": {
+                    "actors": ["CLI利用者", "開発者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["textlint debug namespace"],
+                    "otherConditions": ["argvに完全一致の--debugがある"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "bin entrypoint起動" },
+                "expected": {
+                    "predicate": "textlint debug namespaceを有効化する",
+                    "operator": "equals",
+                    "value": true,
+                    "unit": null
+                },
+                "timing": { "relation": "before", "referenceEvent": "CLI module require", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-008", "FACT-CLI-027"],
+            "refutingFactRefs": [],
+            "confidence": 0.97,
+            "ambiguities": ["debug outputの具体的内容は公開契約として抽出されていない。"],
+            "openQuestions": [],
+            "requiredEvidence": ["debug namespace有効化test"],
+            "possibleImplementationArtifacts": ["packages/textlint/bin/textlint.js", "packages/textlint/src/options.ts"]
+        },
+        {
+            "clauseId": "CRC-CLI-023",
+            "statement": "Node.js CLIは、argvに--experimentalがある場合にcore.experimental feature flagをtrueにする。",
+            "kind": "state_transition",
+            "structure": {
+                "subject": "textlint experimental mode",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": ["core.experimental"],
+                    "resources": ["feature flag state"],
+                    "otherConditions": ["argvに完全一致の--experimentalがある"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "feature flag module評価" },
+                "expected": {
+                    "predicate": "core.experimentalを有効化する",
+                    "operator": "equals",
+                    "value": true,
+                    "unit": null
+                },
+                "timing": { "relation": "during", "referenceEvent": "CLI初期化", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-024", "FACT-CLI-027"],
+            "refutingFactRefs": [],
+            "confidence": 0.98,
+            "ambiguities": ["有効になる個別experimental機能はFact集合に含まれない。"],
+            "openQuestions": [],
+            "requiredEvidence": ["feature flag state test"],
+            "possibleImplementationArtifacts": [
+                "packages/@textlint/feature-flag/src/index.ts",
+                "packages/textlint/src/options.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-024",
+            "statement": "Node.js CLIは、stdin実行またはfile実行でlint可能ruleが無い場合にNo rules foundを通知し、exit code 1を返す。",
+            "kind": "postcondition",
+            "structure": {
+                "subject": "textlint lint or fix execution",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["execution descriptor", "log", "exit code"],
+                    "otherConditions": ["lint可能ruleが無い"]
+                },
+                "preconditions": ["descriptor構成が完了する"],
+                "trigger": { "event": "rule存在検証" },
+                "expected": {
+                    "predicate": "No rules found通知と失敗codeを返す",
+                    "operator": "equals",
+                    "value": { "message": "No rules found", "exitCode": 1 },
+                    "unit": null
+                },
+                "timing": { "relation": "before", "referenceEvent": "lintまたはfix処理", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "executable_expectation",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-036", "FACT-CLI-046"],
+            "refutingFactRefs": [],
+            "confidence": 0.99,
+            "ambiguities": [
+                "設定fileが無くbuilt-in pluginだけある状態は、pluginが存在してもlint可能ruleが無ければこの条件に入る。"
+            ],
+            "openQuestions": [],
+            "requiredEvidence": ["stdinとfileのruleなしCLI test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/test/cli/cli.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-025",
+            "statement": "通常のlintまたはfix実行は、error severityのmessageが残る場合にexit code 1を返す。",
+            "kind": "postcondition",
+            "structure": {
+                "subject": "textlint lint or fix execution",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["lint messages", "exit code"],
+                    "otherConditions": ["--output-file成功時ではない", "--dry-run formatter成功時の矛盾ケースを除く"]
+                },
+                "preconditions": ["error severityのmessageが存在する"],
+                "trigger": { "event": "result評価" },
+                "expected": { "predicate": "exit codeを返す", "operator": "equals", "value": 1, "unit": null },
+                "timing": { "relation": "after", "referenceEvent": "lintまたはfix処理", "duration": null },
+                "exceptions": [
+                    "--output-fileへの出力成功時は0",
+                    "baselineのdry-runはformatter出力成功時に0を返す観測がある"
+                ]
+            },
+            "knowledgeType": "executable_expectation",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-036", "FACT-CLI-055"],
+            "refutingFactRefs": ["FACT-CLI-007", "FACT-CLI-032", "FACT-CLI-036"],
+            "confidence": 0.94,
+            "ambiguities": ["docsのdry-run exit 1例とbaselineのdry-run exit 0実装が矛盾する。"],
+            "openQuestions": ["dry-runのerror severityをexit statusへ反映するか。"],
+            "requiredEvidence": ["lint、fix、dry-run、output-fileを分けたexit status matrix test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/test/cli/cli-preset-severity.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-026",
+            "statement": "Node.js CLIは、option parse失敗と通常のfile処理例外をexit code 1、全file pattern不在のsearch errorとreport出力失敗をexit code 2として区別する。",
+            "kind": "rule",
+            "structure": {
+                "subject": "textlint handled failure classification",
+                "scope": {
+                    "actors": ["CLI利用者", "CI"],
+                    "environments": ["Node.js CLI", "filesystem"],
+                    "featureFlags": [],
+                    "resources": ["failure category", "exit code"],
+                    "otherConditions": ["例外がCLI内部で処理される"]
+                },
+                "preconditions": ["失敗が発生する"],
+                "trigger": { "event": "failure classification" },
+                "expected": {
+                    "predicate": "失敗categoryをexit codeへmapする",
+                    "operator": "maps_to",
+                    "value": { "parse_or_processing": 1, "file_search_or_output": 2 },
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "失敗検出", "duration": null },
+                "exceptions": ["既存fileと不在fileの混在時は既存fileのlint結果に基づくcodeを返す"]
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-029", "FACT-CLI-031", "FACT-CLI-033", "FACT-CLI-036", "FACT-CLI-054"],
+            "refutingFactRefs": [],
+            "confidence": 0.97,
+            "ambiguities": ["file処理例外とfile search errorの境界は例外typeに依存する。"],
+            "openQuestions": [],
+            "requiredEvidence": ["option parse、単独不在、全不在、混在、output失敗のexit status test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/cli.ts",
+                "packages/textlint/test/cli/cli-exit-status-faq.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-027",
+            "statement": "Node.js bin entrypointは、cli.executeから未捕捉例外が伝播した場合にstackを表示してprocessをexit code 2で終了する。",
+            "kind": "postcondition",
+            "structure": {
+                "subject": "textlint Node.js bin entrypoint",
+                "scope": {
+                    "actors": ["CLI利用者", "CI"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["stderr or log", "process exit status"],
+                    "otherConditions": ["未捕捉例外がbinへ伝播する"]
+                },
+                "preconditions": ["Errorが捕捉されずcli.executeから伝播する"],
+                "trigger": { "event": "top-level rejection handling" },
+                "expected": {
+                    "predicate": "stackを表示してprocessを終了する",
+                    "operator": "equals",
+                    "value": { "exitCode": 2, "output": "error stack" },
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "未捕捉例外", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-036"],
+            "refutingFactRefs": [],
+            "confidence": 0.97,
+            "ambiguities": ["stackの出力先はFact statement内で厳密に区別されていない。"],
+            "openQuestions": [],
+            "requiredEvidence": ["top-level exception CLI test"],
+            "possibleImplementationArtifacts": ["packages/textlint/bin/textlint.js"]
+        },
+        {
+            "clauseId": "CRC-CLI-028",
+            "statement": "cache modeは、同じdescriptor hashで成功した未変更fileを次回実行から省略し、messageを持つ失敗結果のfileは再実行する。",
+            "kind": "input_output_relation",
+            "structure": {
+                "subject": "textlint cache behavior",
+                "scope": {
+                    "actors": ["CLI利用者", "CI"],
+                    "environments": ["Node.js CLI", "filesystem"],
+                    "featureFlags": [],
+                    "resources": ["file result cache"],
+                    "otherConditions": ["--cache=true", "descriptor hashが同じ"]
+                },
+                "preconditions": ["前回結果がcacheに保存されている"],
+                "trigger": { "event": "次回file実行" },
+                "expected": {
+                    "predicate": "前回結果に基づいて実行要否を決める",
+                    "operator": "maps_to",
+                    "value": { "unchanged_success": "skip", "result_with_messages": "rerun" },
+                    "unit": null
+                },
+                "timing": { "relation": "before", "referenceEvent": "file lint実行", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "executable_expectation",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-022", "FACT-CLI-034", "FACT-CLI-057"],
+            "refutingFactRefs": ["FACT-CLI-041"],
+            "confidence": 0.88,
+            "ambiguities": [
+                "open Issue #1327は当時のcacheがfile metadata中心でCIには不十分と評価したが、baselineのcontent変更検出方式は今回未確認である。"
+            ],
+            "openQuestions": ["baselineのcacheはfile contentだけが変化した場合を確実に再実行するか。"],
+            "requiredEvidence": ["timestamp不変のcontent変更test", "CI checkoutを模したcache test"],
+            "possibleImplementationArtifacts": [
+                "packages/textlint/src/createLinter.ts",
+                "packages/textlint/test/execute-file-backers/cache-backer.test.ts"
+            ]
+        },
+        {
+            "clauseId": "CRC-CLI-029",
+            "statement": "複数のtop-level mode optionが同時指定された場合、Node.js CLIはversion、init、print-config、mcp、help、通常実行の順で最初に一致したbranchだけを実行する。",
+            "kind": "rule",
+            "structure": {
+                "subject": "textlint mode dispatch",
+                "scope": {
+                    "actors": ["CLI利用者"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["parsed options", "execution branch"],
+                    "otherConditions": ["option parse成功", "複数mode optionがtrue"]
+                },
+                "preconditions": [],
+                "trigger": { "event": "top-level mode dispatch" },
+                "expected": {
+                    "predicate": "最初に一致したbranchだけを選択する",
+                    "operator": "priority_order",
+                    "value": ["version", "init", "print-config", "mcp", "help", "normal"],
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "option parse成功", "duration": null },
+                "exceptions": []
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-029"],
+            "refutingFactRefs": [],
+            "confidence": 0.96,
+            "ambiguities": ["この優先順位が意図した公開仕様か、単なる実装順序かは明示されていない。"],
+            "openQuestions": ["相互排他的なmode optionの同時指定をparse errorにすべきか。"],
+            "requiredEvidence": ["mode option組合せmatrix test"],
+            "possibleImplementationArtifacts": ["packages/textlint/src/cli.ts"]
+        },
+        {
+            "clauseId": "CRC-CLI-030",
+            "statement": "Node.js bin entrypointは、cli.executeが返した数値をprocess.exitCodeへ設定する。",
+            "kind": "postcondition",
+            "structure": {
+                "subject": "textlint Node.js bin entrypoint",
+                "scope": {
+                    "actors": ["CLI利用者", "CI"],
+                    "environments": ["Node.js CLI"],
+                    "featureFlags": [],
+                    "resources": ["cli.execute result", "process.exitCode"],
+                    "otherConditions": ["cli.executeが正常に数値を返す"]
+                },
+                "preconditions": ["stdin利用判定と必要なstdin読取が完了する"],
+                "trigger": { "event": "cli.execute完了" },
+                "expected": {
+                    "predicate": "process.exitCodeを返値と同じ数値にする",
+                    "operator": "equals",
+                    "value": "cli.execute return value",
+                    "unit": null
+                },
+                "timing": { "relation": "after", "referenceEvent": "cli.execute return", "duration": null },
+                "exceptions": ["未捕捉例外は別のtop-level error pathでprocessを2として終了する"]
+            },
+            "knowledgeType": "observed_behavior",
+            "normativeStatus": "candidate",
+            "supportingFactRefs": ["FACT-CLI-001", "FACT-CLI-036"],
+            "refutingFactRefs": [],
+            "confidence": 0.99,
+            "ambiguities": [],
+            "openQuestions": [],
+            "requiredEvidence": ["binからの代表exit status integration test"],
+            "possibleImplementationArtifacts": ["packages/textlint/bin/textlint.js", "packages/textlint/src/cli.ts"]
+        }
+    ],
+    "rejectedCandidates": [
+        {
+            "statement": "CacheBackerのkey用hashはtextlint versionとdescriptor JSONの連結から作る。",
+            "reason": "implementation_detail"
+        },
+        { "statement": "lintとfixは異なるformatter loader関数を呼び分ける。", "reason": "implementation_detail" },
+        {
+            "statement": "scanFilePathは内部結果をok、ignored、errorの三値で表現する。",
+            "reason": "implementation_detail"
+        },
+        {
+            "statement": "CLI descriptorとtextlintrc descriptorに同名ruleがある場合は常にCLI optionsを優先する。",
+            "reason": "ambiguous"
+        },
+        { "statement": "MCP serverはIssue #1498に列挙されたtool候補をすべて公開する。", "reason": "historical_only" },
+        { "statement": "cacheはcontent strategyを使用する。", "reason": "ambiguous" },
+        { "statement": "direct stdoutと--output-file /dev/stdoutは常に同一byte列を出力する。", "reason": "ambiguous" },
+        {
+            "statement": "Issue #1852の要望どおり、設定fileが無い場合は常に既定ruleでlintする。",
+            "reason": "historical_only"
+        }
+    ]
+}
