@@ -52,8 +52,8 @@ catalogs:
       specifier: ^3.1.1
       version: 3.1.1
     '@modelcontextprotocol/sdk':
-      specifier: ^1.29.0
-      version: 1.29.0
+      specifier: ^1.30.0
+      version: 1.30.0
     '@monorepo-utils/workspaces-to-typescript-project-references':
       specifier: ^2.11.0
       version: 2.11.0
@@ -1050,7 +1050,7 @@ importers:
     dependencies:
       '@modelcontextprotocol/sdk':
         specifier: 'catalog:'
-        version: 1.29.0(zod@3.25.76)
+        version: 1.30.0(zod@3.25.76)
       '@textlint/ast-node-types':
         specifier: workspace:*
         version: link:../@textlint/ast-node-types
@@ -2989,8 +2989,8 @@ packages:
       '@types/react': '>=16'
       react: '>=16'
 
-  '@modelcontextprotocol/sdk@1.29.0':
-    resolution: {integrity: sha512-zo37mZA9hJWpULgkRpowewez1y6ML5GsXJPY8FI0tBBCd77HEvza4jDqRKOXgHNn867PVGCyTdzqpz0izu5ZjQ==}
+  '@modelcontextprotocol/sdk@1.30.0':
+    resolution: {integrity: sha512-xKd8OIzlqNzcqcNumGAa6g+PW2kjD5vrpcKOnfldAUPP3j7lnqMPwlTXQm8gF+UwH72z0lqaRbjr9hqGz0eITA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@cfworker/json-schema': ^4.1.1
@@ -12558,7 +12558,7 @@ snapshots:
       '@types/react': 19.1.8
       react: 19.2.8
 
-  '@modelcontextprotocol/sdk@1.29.0(zod@3.25.76)':
+  '@modelcontextprotocol/sdk@1.30.0(zod@3.25.76)':
     dependencies:
       '@hono/node-server': 1.19.9(hono@4.11.8)
       ajv: 8.20.0
