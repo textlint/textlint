@@ -94,7 +94,7 @@ describe("config-key-normalizer", function () {
                         preset: pattern.preset,
                         rule: pattern.rule,
                     }),
-                    pattern.result
+                    pattern.result,
                 );
             });
         });

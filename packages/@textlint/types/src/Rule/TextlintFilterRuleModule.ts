@@ -27,7 +27,7 @@ export type TextlintFilterRuleReportHandler = {
  */
 export type TextlintFilterRuleReporter = (
     context: Readonly<TextlintFilterRuleContext>,
-    options?: TextlintFilterRuleOptions
+    options?: TextlintFilterRuleOptions,
 ) => TextlintFilterRuleReportHandler;
 /**
  * textlint filter module exports

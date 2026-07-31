@@ -24,7 +24,7 @@ export type TextlintRuleReportHandler = { [P in ASTNodeTypes]?: (node: TypeofTxt
  */
 export type TextlintRuleReporter<T extends object = object> = (
     context: Readonly<TextlintRuleContext>,
-    options?: TextlintRuleOptions<T>
+    options?: TextlintRuleOptions<T>,
 ) => TextlintRuleReportHandler;
 /**
  * If Textlint rule has fixer, it should both of { linter, fixer }.

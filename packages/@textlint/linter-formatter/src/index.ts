@@ -24,7 +24,7 @@ import unixFormatter from "./formatters/unix.js";
 const builtinFormatterList = {
     checkstyle: checkstyleFormatter,
     compact: compactFormatter,
-    "github": githubFormatter,
+    github: githubFormatter,
     "jslint-xml": jslintXMLFormatter,
     json: jsonFormatter,
     junit: junitFormatter,
