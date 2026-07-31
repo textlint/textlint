@@ -1,5 +1,5 @@
 import { loadConfig } from "@textlint/config-loader";
-import { TextlintKernelDescriptor, TextlintKernelPlugin } from "@textlint/kernel";
+import { TextlintKernelDescriptor, type TextlintKernelPlugin } from "@textlint/kernel";
 import path from "node:path";
 import textPlugin from "@textlint/textlint-plugin-text";
 import markdownPlugin from "@textlint/textlint-plugin-markdown";

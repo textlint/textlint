@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 // run as app
 const cli = require("textlint").cli;
 cli.execute(process.argv.concat(`${__dirname}/md/`))

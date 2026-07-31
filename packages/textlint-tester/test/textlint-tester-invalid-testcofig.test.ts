@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import * as assert from "node:assert";
 // @ts-expect-error: no types
 import htmlPlugin from "textlint-plugin-html";
 import noTodoRule from "./fixtures/rule/no-todo";

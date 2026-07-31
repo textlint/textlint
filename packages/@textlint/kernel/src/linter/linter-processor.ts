@@ -1,11 +1,10 @@
 // LICENSE : MIT
-"use strict";
 import LinterTask from "../task/linter-task.js";
 import TaskRunner from "../task/task-runner.js";
-import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface.js";
+import type { TextlintKernelConstructorOptions } from "../textlint-kernel-interface.js";
 
-import MessageProcessManager from "../messages/MessageProcessManager.js";
-import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor/index.js";
+import type MessageProcessManager from "../messages/MessageProcessManager.js";
+import type { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor/index.js";
 import { invariant } from "../util/invariant.js";
 import type { TextlintSourceCode, TextlintPluginProcessor, TextlintResult } from "@textlint/types";
 

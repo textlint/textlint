@@ -1,12 +1,11 @@
 // LICENSE : MIT
-"use strict";
 
 import type { TextlintFixResult, TextlintMessage, TextlintPluginProcessor, TextlintSourceCode } from "@textlint/types";
 import FixerTask from "../task/fixer-task.js";
 import TaskRunner from "../task/task-runner.js";
-import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface.js";
-import MessageProcessManager from "../messages/MessageProcessManager.js";
-import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor/index.js";
+import type { TextlintKernelConstructorOptions } from "../textlint-kernel-interface.js";
+import type MessageProcessManager from "../messages/MessageProcessManager.js";
+import type { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor/index.js";
 import { TextlintSourceCodeImpl } from "../context/TextlintSourceCodeImpl.js";
 import _debug from "debug";
 import { applyFixesToSourceCode } from "@textlint/source-code-fixer";

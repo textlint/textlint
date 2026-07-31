@@ -3,7 +3,6 @@
  * @author Gajus Kuizinas <gajus@gajus.com>
  * @copyright 2016 Gajus Kuizinas <gajus@gajus.com>. All rights reserved.
  */
-"use strict";
 import formatter from "../../src/formatters/table.js";
 import type { TextlintResult } from "@textlint/types";
 import { createTestMessage, createTestResult } from "../test-helper";

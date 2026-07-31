@@ -1,4 +1,4 @@
-import { TxtNode } from "@textlint/ast-node-types";
+import type { TxtNode } from "@textlint/ast-node-types";
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 

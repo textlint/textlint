@@ -1,6 +1,4 @@
 // LICENSE : MIT
-"use strict";
-
 import type { TextlintRuleModule } from "@textlint/types";
 
 /**

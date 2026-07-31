@@ -1,5 +1,4 @@
 // MIT © 2017 azu
-"use strict";
 
 const flagMap = new Map<string, boolean>();
 /**

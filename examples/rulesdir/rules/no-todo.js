@@ -1,6 +1,4 @@
 // LICENSE : MIT
-"use strict";
-
 /**
  * Get parents of node.
  * The parent nodes are returned in order from the closest parent to the outer ones.

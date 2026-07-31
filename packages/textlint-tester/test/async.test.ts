@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import TextLintTester from "../src/index";
 import type { TextlintRuleReporter } from "@textlint/types";
 

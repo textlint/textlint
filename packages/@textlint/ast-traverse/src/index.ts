@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import type { AnyTxtNode, TxtNode, TxtParentNode } from "@textlint/ast-node-types";
 
 /**

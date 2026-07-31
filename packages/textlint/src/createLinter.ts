@@ -1,12 +1,11 @@
 // LICENSE : MIT
-"use strict";
-import { TextlintKernel, TextlintKernelDescriptor, TextlintResult } from "@textlint/kernel";
+import { TextlintKernel, type TextlintKernelDescriptor, type TextlintResult } from "@textlint/kernel";
 import {
     searchFiles,
     scanFilePath,
-    ScanFilePathResult,
+    type ScanFilePathResult,
     pathsToGlobPatterns,
-    SearchFilesResultError
+    type SearchFilesResultError
 } from "./util/find-util.js";
 import { ExecuteFileBackerManager } from "./engine/execute-file-backer-manager.js";
 import { CacheBacker } from "./engine/execute-file-backers/cache-backer.js";
@@ -14,7 +13,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import { Logger } from "./util/logger.js";
-import { TextlintFixResult } from "@textlint/types";
+import type { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
 import { separateByAvailability } from "./util/separate-by-availability.js";
 
@@ -28,8 +27,8 @@ export class TextlintFileSearchError extends Error {
 
     constructor({ errors, patterns }: { errors: SearchFilesResultError[]; patterns: string[] }) {
         super(`Not found target files.
-        
-Patterns: ${patterns.join(", ")}        
+
+Patterns: ${patterns.join(", ")}
 Reason: ${errors.map((e) => e.type).join(", ") || "Unknown error"}`);
         this.errors = errors;
         this.patterns = patterns;

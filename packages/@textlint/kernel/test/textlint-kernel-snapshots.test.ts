@@ -3,7 +3,7 @@ import { describe, it } from "vitest";
 import * as path from "node:path";
 import { pathToFileURL } from "node:url";
 import * as assert from "node:assert";
-import { TextlintKernelOptions } from "../src/textlint-kernel-interface.js";
+import type { TextlintKernelOptions } from "../src/textlint-kernel-interface.js";
 import { TextlintKernel } from "../src/index.js";
 
 // Use a relative path for test files in vitest

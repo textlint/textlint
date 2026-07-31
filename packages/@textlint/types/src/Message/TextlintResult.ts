@@ -1,5 +1,5 @@
 // "range" will be replaced by "text"
-import { TextlintRuleSeverityLevel } from "../Rule/TextlintRuleSeverityLevel.js";
+import type { TextlintRuleSeverityLevel } from "../Rule/TextlintRuleSeverityLevel.js";
 
 export interface TextlintMessageFixCommand {
     text: string;

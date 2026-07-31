@@ -1,4 +1,4 @@
-import { TxtNode } from "@textlint/ast-node-types";
+import type { TxtNode } from "@textlint/ast-node-types";
 import type { TextlintRuleContextFixCommandGenerator, TextlintSourceCodeRange } from "@textlint/types";
 import { invariant } from "../util/invariant.js";
 

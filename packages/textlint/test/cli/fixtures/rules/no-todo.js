@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { RuleHelper } from "textlint-rule-helper";
 
 /**

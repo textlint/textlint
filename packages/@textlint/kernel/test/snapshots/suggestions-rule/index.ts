@@ -1,4 +1,4 @@
-import { TextlintRuleModule } from "@textlint/types";
+import type { TextlintRuleModule } from "@textlint/types";
 
 // Rule that reports suggestions for Str nodes
 const report: TextlintRuleModule = (context) => {

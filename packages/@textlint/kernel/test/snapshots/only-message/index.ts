@@ -1,4 +1,4 @@
-import { TextlintRuleReporter } from "@textlint/types";
+import type { TextlintRuleReporter } from "@textlint/types";
 
 // disallow to write CodeBlock
 const report: TextlintRuleReporter = (context) => {

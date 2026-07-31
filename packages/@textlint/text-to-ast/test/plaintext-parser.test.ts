@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { parse, Syntax } from "../src/index.js";
 import { describe, it } from "vitest";
 import assert from "node:assert";

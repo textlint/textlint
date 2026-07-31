@@ -1,4 +1,4 @@
-import { TextlintRuleReporter } from "@textlint/types";
+import type { TextlintRuleReporter } from "@textlint/types";
 import { RuleHelper } from "textlint-rule-helper";
 
 const reporter: TextlintRuleReporter = (context) => {
@@ -10,7 +10,7 @@ const reporter: TextlintRuleReporter = (context) => {
                 return;
             }
             const text = getSource(node);
-            if (/\.$/.test(text)) {
+            if (text.endsWith(".")) {
                 return;
             }
             const index = text.length;

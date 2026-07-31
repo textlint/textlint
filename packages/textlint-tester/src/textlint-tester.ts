@@ -1,21 +1,21 @@
 // LICENSE : MIT
-"use strict";
-import * as assert from "assert";
+import * as assert from "node:assert";
 import { testInvalid, testValid } from "./test-util";
 import {
-    TextlintFixResult,
+    type TextlintFixResult,
     TextlintKernel,
     TextlintKernelDescriptor,
-    TextlintKernelPlugin,
-    TextlintPluginCreator,
-    TextlintRuleModule
+    type TextlintKernelPlugin,
+    type TextlintKernelRule,
+    type TextlintPluginCreator,
+    type TextlintRuleModule
 } from "@textlint/kernel";
 import { coreFlags } from "@textlint/feature-flag";
 import textPlugin from "@textlint/textlint-plugin-text";
 import markdownPlugin from "@textlint/textlint-plugin-markdown";
-import fs from "fs/promises";
-import path from "path";
-import { TextlintPluginOptions, TextlintRuleOptions } from "@textlint/types";
+import fs from "node:fs/promises";
+import path from "node:path";
+import type { TextlintPluginOptions, TextlintRuleOptions } from "@textlint/types";
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 const globalObject = globalThis;
@@ -77,16 +77,8 @@ function assertTestConfig(testConfig: TestConfig): void {
     }
 }
 
-export type TestConfigPlugin = {
-    pluginId: string;
-    plugin: TextlintPluginCreator;
-    options?: TextlintPluginOptions | boolean;
-};
-export type TestConfigRule = {
-    ruleId: string;
-    rule: TextlintRuleModule;
-    options?: TextlintRuleOptions | boolean;
-};
+export type TestConfigPlugin = TextlintKernelPlugin;
+export type TestConfigRule = TextlintKernelRule;
 export type TestConfig = {
     plugins?: TestConfigPlugin[];
     rules: TestConfigRule[];

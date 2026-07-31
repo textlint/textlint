@@ -1,8 +1,8 @@
 /**
  * Filter rule reporter function
  */
-import { TextlintFilterRuleContext } from "./TextlintFilterRuleContext.js";
-import { ASTNodeTypes, TypeofTxtNode } from "@textlint/ast-node-types";
+import type { TextlintFilterRuleContext } from "./TextlintFilterRuleContext.js";
+import type { ASTNodeTypes, TypeofTxtNode } from "@textlint/ast-node-types";
 /**
  * textlint filter rule option values is object or boolean.
  * if this option value is false, disable the filter rule.

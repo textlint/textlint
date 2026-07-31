@@ -1,7 +1,7 @@
-import { TextlintRuleErrorConstructor } from "./TextlintRuleError.js";
-import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
-import { TextlintRuleSeverityLevel } from "./TextlintRuleSeverityLevel.js";
-import { TextlintRulePaddingLocator } from "./TextlintRulePaddingLocator.js";
+import type { TextlintRuleErrorConstructor } from "./TextlintRuleError.js";
+import type { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
+import type { TextlintRuleSeverityLevel } from "./TextlintRuleSeverityLevel.js";
+import type { TextlintRulePaddingLocator } from "./TextlintRulePaddingLocator.js";
 
 /**
  * This Base class is internal.

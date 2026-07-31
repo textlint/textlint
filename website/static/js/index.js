@@ -1,5 +1,4 @@
 /* eslint-disable*/
-"use strict";
 
 function debounce(func, wait, immediate) {
     var timeout;

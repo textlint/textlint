@@ -1,8 +1,7 @@
 // LICENSE : MIT
-"use strict";
 import CoreTask from "./textlint-core-task.js";
-import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface.js";
-import { TextlintFilterRuleDescriptors, TextlintFixableRuleDescriptor } from "../descriptor/index.js";
+import type { TextlintKernelConstructorOptions } from "../textlint-kernel-interface.js";
+import type { TextlintFilterRuleDescriptors, TextlintFixableRuleDescriptor } from "../descriptor/index.js";
 import type { TextlintSourceCode } from "@textlint/types";
 import { getSeverity } from "../shared/rule-severity.js";
 import { TextlintFilterRuleContextImpl } from "../context/TextlintFilterRuleContextImpl.js";

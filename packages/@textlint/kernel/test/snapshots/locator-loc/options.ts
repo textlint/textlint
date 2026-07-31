@@ -1,4 +1,4 @@
-import { TextlintKernelOptions } from "../../../src/textlint-kernel-interface.js";
+import type { TextlintKernelOptions } from "../../../src/textlint-kernel-interface.js";
 import rule from "./index.js";
 import { createPluginStub } from "../../helper/ExamplePlugin.js";
 import * as path from "node:path";

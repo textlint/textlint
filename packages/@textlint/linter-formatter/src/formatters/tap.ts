@@ -3,7 +3,6 @@
  * @author Jonathan Kingston
  */
 
-"use strict";
 import type { TextlintResult } from "@textlint/types";
 
 import yaml from "js-yaml";

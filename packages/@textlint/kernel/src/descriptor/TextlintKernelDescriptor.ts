@@ -1,18 +1,18 @@
-import {
+import type {
     TextlintKernelFilterRule,
     TextlintKernelOptions,
     TextlintKernelPlugin,
     TextlintKernelRule
 } from "../textlint-kernel-interface.js";
-import { TextlintRuleDescriptors } from "./TextlintRuleDescriptors.js";
-import { TextlintPluginDescriptors } from "./TextlintPluginDescriptors.js";
-import { TextlintFilterRuleDescriptors } from "./TextlintFilterRuleDescriptors.js";
+import type { TextlintRuleDescriptors } from "./TextlintRuleDescriptors.js";
+import type { TextlintPluginDescriptors } from "./TextlintPluginDescriptors.js";
+import type { TextlintFilterRuleDescriptors } from "./TextlintFilterRuleDescriptors.js";
 import {
     createTextlintFilterRuleDescriptors,
     createTextlintPluginDescriptors,
     createTextlintRuleDescriptors
 } from "./DescriptorsFactory.js";
-import { TextlintPluginDescriptor } from "./TextlintPluginDescriptor.js";
+import type { TextlintPluginDescriptor } from "./TextlintPluginDescriptor.js";
 
 export interface TextlintKernelDescriptorArgs {
     // config base directory

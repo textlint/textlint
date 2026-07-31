@@ -1,4 +1,4 @@
-import { TextlintFixResult } from "@textlint/kernel";
+import type { TextlintFixResult } from "@textlint/kernel";
 import fs from "node:fs/promises";
 
 function overWriteResult(result: TextlintFixResult): Promise<void> {

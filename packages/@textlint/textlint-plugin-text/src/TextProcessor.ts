@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { parse } from "@textlint/text-to-ast";
 import type {
     TextlintPluginProcessor,

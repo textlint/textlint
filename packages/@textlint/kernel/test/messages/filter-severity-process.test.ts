@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { describe, it } from "vitest";
 import * as assert from "node:assert";
 import type { TextlintMessage } from "@textlint/types";

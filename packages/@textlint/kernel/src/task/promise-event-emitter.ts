@@ -1,7 +1,6 @@
 // MIT © 2017 azu
 // MIT © 2017 59naga
 // https://github.com/59naga/carrack
-"use strict";
 
 export type Listener = (...args: unknown[]) => void;
 

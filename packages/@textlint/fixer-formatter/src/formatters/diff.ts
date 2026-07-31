@@ -1,4 +1,3 @@
-"use strict";
 import type { TextlintFixResult } from "@textlint/types";
 import * as fs from "node:fs";
 import { diffLines } from "diff";

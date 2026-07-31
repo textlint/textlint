@@ -37,7 +37,7 @@ export const removePrefixFromPackageName = (prefixList: string[], packageName: s
     for (const prefix of prefixList) {
         // @scope/name -> @scope/name
         // @scope/textlint-rule-name -> @scope/name
-        if (packageName.charAt(0) === "@") {
+        if (packageName.startsWith("@")) {
             const [namespace, name] = packageName.split("/");
             if (name.startsWith(prefix)) {
                 return `${namespace}/${name.slice(prefix.length)}`;

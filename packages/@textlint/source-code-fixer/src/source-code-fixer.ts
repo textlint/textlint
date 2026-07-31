@@ -112,7 +112,7 @@ export function applyFixesToSourceCode(
                     prefix = "";
                     start = 0;
                 }
-                if (start === 0 && insertionText[0] === BOM) {
+                if (start === 0 && insertionText.startsWith(BOM)) {
                     // Set BOM.
                     prefix = BOM;
                     insertionText = insertionText.slice(1);

@@ -1,4 +1,4 @@
-import { AnyTxtNode, ASTNodeTypes } from "@textlint/ast-node-types";
+import type { AnyTxtNode, ASTNodeTypes } from "@textlint/ast-node-types";
 
 export interface TextlintSourceCodePosition {
     line: number;

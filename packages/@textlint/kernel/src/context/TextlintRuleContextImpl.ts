@@ -1,4 +1,4 @@
-import {
+import type {
     TextlintRuleContext,
     TextlintRuleContextReportFunction,
     TextlintRuleError,
@@ -7,7 +7,7 @@ import {
     TextlintRuleSeverityLevel,
     TextlintSourceCode
 } from "@textlint/types";
-import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
+import type { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import { TextlintRuleContextFixCommandGeneratorImpl } from "./TextlintRuleContextFixCommandGeneratorImpl.js";
 import { TextlintRuleSeverityLevelKeys } from "./TextlintRuleSeverityLevelKeys.js";
 import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl.js";

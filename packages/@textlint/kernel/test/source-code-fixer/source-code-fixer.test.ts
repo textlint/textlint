@@ -4,7 +4,7 @@ import { beforeEach, describe, it } from "vitest";
 import { applyFixesToSourceCode, revertSourceCode, applyFixesToText } from "@textlint/source-code-fixer";
 import { parse } from "@textlint/markdown-to-ast";
 import { TextlintSourceCodeImpl } from "../../src/context/TextlintSourceCodeImpl.js";
-import { TextlintMessage, TextlintSourceCode } from "@textlint/types";
+import type { TextlintMessage, TextlintSourceCode } from "@textlint/types";
 
 const TEST_CODE = "var answer = 6 * 7;";
 const TEST_AST = parse(TEST_CODE);

@@ -1,6 +1,5 @@
 // LICENSE : MIT
-"use strict";
-import { TextlintBaseRuleContext } from "./TextlintBaseRuleContext.js";
+import type { TextlintBaseRuleContext } from "./TextlintBaseRuleContext.js";
 
 /**
  * Message of ignoring

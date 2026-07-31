@@ -4,7 +4,7 @@ import { z } from "zod";
 import { createLinter, loadTextlintrc, type CreateLinterOptions } from "../index.js";
 import { existsSync } from "node:fs";
 import { TextlintMessageSchema } from "./schemas.js";
-import { TextlintKernelDescriptor } from "@textlint/kernel";
+import type { TextlintKernelDescriptor } from "@textlint/kernel";
 import debug from "debug";
 
 const mcpDebug = debug("textlint:mcp");

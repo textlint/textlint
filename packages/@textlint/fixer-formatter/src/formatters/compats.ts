@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import type { TextlintFixResult } from "@textlint/types";
 function getMessageType(message: TextlintFixResult["applyingMessages"][number] & { fatal?: boolean }) {
     if (message.fatal || message.severity === 2) {

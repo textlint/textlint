@@ -1,9 +1,9 @@
-import { TextLintModuleResolver } from "./textlint-module-resolver.js";
+import type { TextLintModuleResolver } from "./textlint-module-resolver.js";
 import { isPresetRuleKey } from "./config-util.js";
-import { TextlintRcConfig } from "./TextlintRcConfig.js";
+import type { TextlintRcConfig } from "./TextlintRcConfig.js";
 import { moduleInterop } from "@textlint/module-interop";
-import { TextlintConfigDescriptor } from "./TextlintConfigDescriptor.js";
-import { TextlintPluginCreator } from "@textlint/types";
+import type { TextlintConfigDescriptor } from "./TextlintConfigDescriptor.js";
+import type { TextlintPluginCreator } from "@textlint/types";
 import { isTextlintRulePresetCreator, isTextlintFilterRuleModule, isTextlintRuleModule } from "./is.js";
 import { normalizeTextlintPresetSubRuleKey } from "@textlint/utils";
 import { dynamicImport } from "@textlint/resolver";
@@ -245,11 +245,11 @@ export const loadRules = async ({
                         if (!isTextlintRuleModule(ruleModule)) {
                             ruleErrors.push(
                                 new Error(`Rule should have "rules" and "rulesConfig" properties. But ${ruleId} is not.
-                        
+
 Please check ${ruleId} is valid rule.
 FilePath: ${resolvePackage.filePath}
 
-For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md                        
+For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
 `)
                             );
                             return;

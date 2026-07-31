@@ -5,7 +5,7 @@
  * Note: It does not babel-plugin-static-fs
  * Some behavior is a bit of difference
  */
-const fs = require("fs");
+const fs = require("node:fs");
 const paths = require("../configs/paths");
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 if (!useTypeScript) {

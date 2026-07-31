@@ -1,5 +1,4 @@
 // MIT © 2016 azu
-"use strict";
 
 import type { TextlintResult } from "@textlint/kernel";
 

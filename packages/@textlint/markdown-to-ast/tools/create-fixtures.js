@@ -1,5 +1,4 @@
 // MIT © 2017 azu
-"use strict";
 /*
     Create fixtures from markdown_fixtures
 

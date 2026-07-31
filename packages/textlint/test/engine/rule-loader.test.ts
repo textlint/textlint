@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import path from "node:path";
 import { describe, it } from "vitest";
 import * as assert from "node:assert";

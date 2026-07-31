@@ -1,12 +1,11 @@
 // MIT © 2016 azu
-"use strict";
 import assert from "node:assert";
 import { describe, it, beforeAll, afterAll } from "vitest";
 import path from "node:path";
 import os from "node:os";
 import fs from "node:fs";
-import { CacheBacker, CacheBackerOptions } from "../../src/engine/execute-file-backers/cache-backer.js";
-import { TextlintMessage } from "@textlint/types";
+import { CacheBacker, type CacheBackerOptions } from "../../src/engine/execute-file-backers/cache-backer.js";
+import type { TextlintMessage } from "@textlint/types";
 
 describe("CacheBacker", function () {
     let configDir: string;

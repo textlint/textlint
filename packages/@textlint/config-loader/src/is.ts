@@ -1,7 +1,6 @@
 // TODO: share with @textlint/kernel
-import type { TextlintRuleModule } from "@textlint/types";
-import { TextlintConfigRulePreset } from "./TextlintConfigDescriptor.js";
-import { TextlintFilterRuleReporter } from "@textlint/types";
+import type { TextlintRuleModule, TextlintFilterRuleReporter } from "@textlint/types";
+import type { TextlintConfigRulePreset } from "./TextlintConfigDescriptor.js";
 
 // Type guards
 function isObjectWithProperty(obj: unknown, property: string): obj is Record<string, unknown> {

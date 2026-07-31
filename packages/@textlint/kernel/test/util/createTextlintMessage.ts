@@ -3,7 +3,7 @@ import createDummySourceCode from "./dummy-source-code.js";
 import { resolveLocation } from "../../src/core/source-location.js";
 import { TextlintRuleErrorImpl } from "../../src/context/TextlintRuleErrorImpl.js";
 import { createPaddingLocator } from "../../src/context/TextlintRulePaddingLocator.js";
-import { IgnoreReportedMessage } from "../../src/task/textlint-core-task.js";
+import type { IgnoreReportedMessage } from "../../src/task/textlint-core-task.js";
 
 /**
  * Create TextlintMessage from text and base message

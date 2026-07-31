@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { parse } from "../src/index.js";
 import { describe, it } from "vitest";
 import { test as testAST, isTxtAST } from "@textlint/ast-tester";

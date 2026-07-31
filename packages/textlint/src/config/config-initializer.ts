@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { TextlintPackageNamePrefix } from "@textlint/utils";
 
 import fs from "node:fs";

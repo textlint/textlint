@@ -3,9 +3,8 @@
  * @author Sindre Sorhus
  */
 
-"use strict";
 import type { TextlintResult } from "@textlint/types";
-import { FormatterOptions } from "../FormatterOptions.js";
+import type { FormatterOptions } from "../FormatterOptions.js";
 
 import { styleText } from "node:util";
 // @ts-expect-error no types

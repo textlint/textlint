@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-"use strict";
 const streamConsumers = require("node:stream/consumers");
 const useStdIn = process.argv.indexOf("--stdin") > -1;
 const isDebug = process.argv.indexOf("--debug") > -1;

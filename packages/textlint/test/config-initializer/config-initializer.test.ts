@@ -1,5 +1,4 @@
 // LICENSE : MIT
-"use strict";
 import { createConfigFile } from "../../src/config/config-initializer.js";
 import { afterEach, beforeEach, describe, it } from "vitest";
 import { Logger } from "../../src/util/logger.js";
