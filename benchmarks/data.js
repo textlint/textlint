@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785550514222,
+  "lastUpdate": 1785550618814,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -116801,6 +116801,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5305073483000001,
             "range": "± 0.012344573000000025",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "77012577+314systems@users.noreply.github.com",
+            "name": "Akihiro Nagai",
+            "username": "314systems"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fd81e30669d27f19bb7c96595671ad2dd02de858",
+          "message": "refactor(ast-node-types): simplify TypeofTxtNode with a lookup map (#2078)\n\nReplace the long nested conditional type with a TxtNodeTypeMap interface\nand an indexed access lookup. Behavior is unchanged for both single and\nunion node types, with AnyTxtNode kept as the fallback.\n\nAlso fix doc comment typos (TxtNodeTYpe, TxtNodeTypeOfNode).",
+          "timestamp": "2026-08-01T11:13:45+09:00",
+          "tree_id": "f10f26e19612759a74a38086f31d4d39cc8db4b8",
+          "url": "https://github.com/textlint/textlint/commit/fd81e30669d27f19bb7c96595671ad2dd02de858"
+        },
+        "date": 1785550606804,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21105308406,
+            "range": "± 0.036696986999999986",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8124858120599998,
+            "range": "± 0.043202050999999964",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.65875289806,
+            "range": "± 0.01423434899999998",
             "unit": "seconds"
           }
         ]
