@@ -2,7 +2,6 @@
 "use strict";
 import fileEntryCache, { FileEntryCache } from "file-entry-cache";
 import debug0 from "debug";
-import path from "node:path";
 import fs from "node:fs";
 import { AbstractBacker } from "./abstruct-backer.js";
 import { TextlintResult } from "@textlint/kernel";
@@ -34,20 +33,26 @@ type FileEntryCacheCustomData = {
 };
 
 const createFileEntryCache = (cacheLocation: string, strategy: "metadata" | "content"): FileEntryCache => {
-    const filename = path.basename(cacheLocation);
-    const cacheDir = path.dirname(cacheLocation);
     const useCheckSum = strategy === "content";
+    const createCache = (): FileEntryCache => {
+        const fileCache = fileEntryCache.createFromFile(cacheLocation, useCheckSum);
+        // file-entry-cache defaults `useModifiedTime` to true, but the "content" strategy must
+        // detect changes by content hash only. Comparing mtime would invalidate the whole cache
+        // in CI because checkout changes mtime while the content stays the same.
+        fileCache.useModifiedTime = !useCheckSum;
+        return fileCache;
+    };
     try {
-        return fileEntryCache.create(filename, cacheDir, useCheckSum);
+        return createCache();
     } catch (error) {
-        debug(`Failed to create fileEntryCache, filename: ${filename}, cacheDir: ${cacheDir}`, error);
+        debug(`Failed to create fileEntryCache, cacheLocation: ${cacheLocation}`, error);
         // remove old cache file and retry
         try {
-            fs.unlinkSync(path.join(cacheDir, filename));
+            fs.unlinkSync(cacheLocation);
         } catch (error) {
-            debug(`Failed to remove cache file, filename: ${filename}, cacheDir: ${cacheDir}`, error);
+            debug(`Failed to remove cache file, cacheLocation: ${cacheLocation}`, error);
         }
-        return fileEntryCache.create(filename, cacheDir, useCheckSum);
+        return createCache();
     }
 };
 
