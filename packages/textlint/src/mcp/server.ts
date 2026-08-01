@@ -1,6 +1,6 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod";
+import { McpServer } from "@modelcontextprotocol/server";
+import { serveStdio } from "@modelcontextprotocol/server/stdio";
+import { z } from "zod/v4";
 import { createLinter, loadTextlintrc, type CreateLinterOptions } from "../index.js";
 import { existsSync } from "node:fs";
 import { TextlintMessageSchema } from "./schemas.js";
@@ -115,13 +115,13 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
         "lintFile",
         {
             description: "Lint files using textlint",
-            inputSchema: {
+            inputSchema: z.object({
                 filePaths: z
                     .array(z.string().min(1).describe("File path to lint"))
                     .nonempty()
                     .describe("Array of file paths to lint")
-            },
-            outputSchema: {
+            }),
+            outputSchema: z.object({
                 results: z.array(
                     z.object({
                         filePath: z.string(),
@@ -133,7 +133,7 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
                 timestamp: z.string().optional(),
                 error: z.string().optional(),
                 type: z.string().optional()
-            }
+            })
         },
         async ({ filePaths }) => {
             try {
@@ -168,11 +168,11 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
         "lintText",
         {
             description: "Lint text using textlint",
-            inputSchema: {
+            inputSchema: z.object({
                 text: z.string().nonempty().describe("Text content to lint"),
                 stdinFilename: z.string().nonempty().describe("Filename for context (e.g., 'stdin.md')")
-            },
-            outputSchema: {
+            }),
+            outputSchema: z.object({
                 filePath: z.string(),
                 messages: z.array(TextlintMessageSchema),
                 output: z.string().optional().describe("Fixed content if available"),
@@ -180,7 +180,7 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
                 timestamp: z.string().optional(),
                 error: z.string().optional(),
                 type: z.string().optional()
-            }
+            })
         },
         async ({ text, stdinFilename }) => {
             try {
@@ -211,13 +211,13 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
         "getLintFixedFileContent",
         {
             description: "Get lint-fixed content of files using textlint",
-            inputSchema: {
+            inputSchema: z.object({
                 filePaths: z
                     .array(z.string().min(1).describe("File path to fix"))
                     .nonempty()
                     .describe("Array of file paths to get fixed content for")
-            },
-            outputSchema: {
+            }),
+            outputSchema: z.object({
                 results: z.array(
                     z.object({
                         filePath: z.string(),
@@ -229,7 +229,7 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
                 timestamp: z.string().optional(),
                 error: z.string().optional(),
                 type: z.string().optional()
-            }
+            })
         },
         async ({ filePaths }) => {
             try {
@@ -264,11 +264,11 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
         "getLintFixedTextContent",
         {
             description: "Get lint-fixed content of text using textlint",
-            inputSchema: {
+            inputSchema: z.object({
                 text: z.string().nonempty().describe("Text content to fix"),
                 stdinFilename: z.string().nonempty().describe("Filename for context (e.g., 'stdin.md')")
-            },
-            outputSchema: {
+            }),
+            outputSchema: z.object({
                 filePath: z.string(),
                 messages: z.array(TextlintMessageSchema),
                 output: z.string().optional().describe("Fixed content"),
@@ -276,7 +276,7 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
                 timestamp: z.string().optional(),
                 error: z.string().optional(),
                 type: z.string().optional()
-            }
+            })
         },
         async ({ text, stdinFilename }) => {
             try {
@@ -306,16 +306,13 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
 };
 
 export const connectStdioMcpServer = async (options: McpServerOptions = {}) => {
-    const server = await setupServer(options);
-    const transport = new StdioServerTransport();
-
     if (options.debug) {
         mcpDebug("Connecting MCP server to stdio transport...");
     }
-    await server.connect(transport);
+    const handle = serveStdio(() => setupServer(options));
     if (options.debug) {
         mcpDebug("MCP server connected and ready to accept requests");
     }
 
-    return server;
+    return handle;
 };
