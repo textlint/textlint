@@ -454,7 +454,7 @@ describe("cli-test", function () {
                 const second = await cli.execute(args);
                 assert.strictEqual(second, 0);
             });
-            it("should use 'content' strategy by default", async function () {
+            it("should use 'metadata' strategy by default", async function () {
                 const args = `--cache --cache-location "${cacheLocation}" --rule "${ruleModuleName}" ${tmpFilePath}`;
                 const first = await cli.execute(args);
                 assert.strictEqual(first, 0);
@@ -462,7 +462,7 @@ describe("cli-test", function () {
                 fs.writeFileSync(tmpFilePath, "todo:\n", "utf-8");
                 fs.utimesSync(tmpFilePath, stat.atime, stat.mtime);
                 const second = await cli.execute(args);
-                assert.strictEqual(second, 1);
+                assert.strictEqual(second, 0);
             });
         });
     });

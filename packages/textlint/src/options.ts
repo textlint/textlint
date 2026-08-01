@@ -209,7 +209,7 @@ export const options = optionator({
         {
             option: "cache-strategy",
             type: "String",
-            default: "content",
+            default: "metadata",
             enum: ["metadata", "content"],
             description: "Strategy for detecting changed files.",
             example: "textlint --cache --cache-strategy content docs/"

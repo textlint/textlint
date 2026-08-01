@@ -144,7 +144,7 @@ Specifying rules and plugins:
 Caching:
   --cache                     Only check changed files - default: false
   --cache-location path::String  Path to the cache file or directory - default: .textlintcache
-  --cache-strategy String     Strategy for detecting changed files - either: metadata or content - default: content
+  --cache-strategy String     Strategy for detecting changed files - either: metadata or content - default: metadata
 
 Experimental:
   --experimental              Enable experimental flag.Some feature use on experimental.

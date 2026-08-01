@@ -71,7 +71,7 @@ const createExecutor = async (options: CreateLinterOptions): Promise<ExecuteFile
             cache: options.cache ?? false,
             cacheLocation: options.cacheLocation ?? path.resolve(process.cwd(), ".textlintcache"),
             hash: await createHashForDescriptor(options.descriptor),
-            cacheStrategy: options.cacheStrategy ?? "content"
+            cacheStrategy: options.cacheStrategy ?? "metadata"
         });
         executeFileBackerManager.add(cacheBaker);
     }
