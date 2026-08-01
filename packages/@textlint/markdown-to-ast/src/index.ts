@@ -5,6 +5,7 @@ import traverse from "neotraverse/legacy";
 import debug0 from "debug";
 import { parseMarkdown } from "./parse-markdown";
 import { StructuredSource } from "structured-source";
+import { splitHtmlNodes } from "./split-html-nodes";
 
 const debug = debug0("@textlint/markdown-to-ast");
 
@@ -266,6 +267,12 @@ export function parse(text: string): TxtDocumentNode {
             node.range = [0, value.length];
         }
     }
+
+    // Workaround for https://github.com/textlint/textlint/issues/2008
+    // Split multi-line Html nodes where each line is a complete self-closed
+    // block-level tag, so that consecutive tags without blank lines between them
+    // are detected as individual nodes (mirroring the intent of the issue).
+    splitHtmlNodes(ast as TxtDocumentNode, source, textWithoutBOM);
 
     return ast as TxtDocumentNode;
 }
