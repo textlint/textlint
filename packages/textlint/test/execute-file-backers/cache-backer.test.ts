@@ -139,6 +139,45 @@ describe("CacheBacker", function () {
             });
         });
 
+        describe("when only mtime is changed", function () {
+            it("shouldExecute return false", async () => {
+                const testCacheDir = path.join(configDir, "content-mtime-test");
+                fs.mkdirSync(testCacheDir, { recursive: true });
+                const config: CacheBackerOptions = {
+                    cache: true,
+                    cacheLocation: path.resolve(testCacheDir, ".cache"),
+                    hash: "test-hash",
+                    cacheStrategy: "content"
+                };
+                const cacheBacker = new CacheBacker(config);
+                const testFilePath = path.resolve(process.cwd(), "test/execute-file-backers/fixtures/test.md");
+
+                // Ensure the file exists and is stable
+                if (!fs.existsSync(testFilePath)) {
+                    throw new Error(`Test file does not exist: ${testFilePath}`);
+                }
+
+                const prevResult = { filePath: testFilePath, messages: [] };
+                // prev
+                cacheBacker.didExecute({ result: prevResult });
+                cacheBacker.afterAll();
+
+                // Change only mtime while content stays same (e.g. CI checkout updates mtime)
+                const stat = fs.statSync(testFilePath);
+                const changedAtime = new Date(stat.atime.getTime() + 5000);
+                const changedMtime = new Date(stat.mtime.getTime() + 5000);
+                fs.utimesSync(testFilePath, changedAtime, changedMtime);
+
+                // next - create new instance to simulate next run
+                const nextCacheBacker = new CacheBacker(config);
+                const shouldExecute = nextCacheBacker.shouldExecute({
+                    filePath: prevResult.filePath
+                });
+                // "content" strategy must detect changes by content hash, not mtime
+                assert.strictEqual(shouldExecute, false);
+            });
+        });
+
         describe("when previously have failure result", function () {
             it("shouldExecute return true even if content unchanged", () => {
                 const testCacheDir = path.join(configDir, "content-failure-test");
