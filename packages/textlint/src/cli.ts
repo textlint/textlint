@@ -88,11 +88,14 @@ export const cli = {
                 cwd: process.cwd()
             };
 
-            const mcpServer = await connectStdioMcpServer(mcpOptions);
-            process.on("SIGINT", () => {
-                void mcpServer.close();
-                process.exitCode = 0;
-            });
+            const mcpServerHandle = await connectStdioMcpServer(mcpOptions);
+            const closeMcpServer = () => {
+                void mcpServerHandle.close().finally(() => {
+                    process.exitCode = 0;
+                });
+            };
+            process.once("SIGINT", closeMcpServer);
+            process.once("SIGTERM", closeMcpServer);
             return 0;
         } else if (currentOptions.help || (!files.length && !text)) {
             Logger.log(options.generateHelp());

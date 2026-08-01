@@ -1,6 +1,6 @@
 {
   "name": "textlint",
-  "version": "15.7.1",
+  "version": "15.8.0",
   "description": "The pluggable linting tool for natural language.",
   "keywords": [
     "AST",
@@ -48,7 +48,7 @@
     "watch": "tsc -b --watch"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "catalog:",
+    "@modelcontextprotocol/server": "catalog:",
     "@textlint/ast-node-types": "workspace:*",
     "@textlint/ast-traverse": "workspace:*",
     "@textlint/config-loader": "workspace:*",
@@ -74,6 +74,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@modelcontextprotocol/client": "catalog:",
     "@textlint/legacy-textlint-core": "workspace:*",
     "@types/debug": "catalog:",
     "@types/node": "catalog:",
