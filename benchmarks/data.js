@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785466289907,
+  "lastUpdate": 1785549067456,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -116591,6 +116591,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6643738311,
             "range": "± 0.013904165999999996",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "700a3b75fba76d13cf35e6d3633e0b7c6295d4e7",
+          "message": "feat(mcp): MCP TypeScript SDK v2へ移行",
+          "timestamp": "2026-08-01T10:49:16+09:00",
+          "tree_id": "0ca5717e3209deda07beaba1a413e0db47bd7b2f",
+          "url": "https://github.com/textlint/textlint/commit/700a3b75fba76d13cf35e6d3633e0b7c6295d4e7"
+        },
+        "date": 1785549055901,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22349967342000002,
+            "range": "± 0.045984476999999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8554847348200003,
+            "range": "± 0.03860716400000008",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.68959028462,
+            "range": "± 0.023052734999999935",
             "unit": "seconds"
           }
         ]
