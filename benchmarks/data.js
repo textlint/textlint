@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785549067456,
+  "lastUpdate": 1785549480411,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -116633,6 +116633,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.68959028462,
             "range": "± 0.023052734999999935",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "9cb4a378a2e91af584569f28e33c84d8630bc724",
+          "message": "Merge remote-tracking branch 'origin/master' into codex/issue-2101-mcp-sdk-v2\n\n# Conflicts:\n#\tpnpm-lock.yaml\n#\tpnpm-workspace.yaml",
+          "timestamp": "2026-08-01T10:56:11+09:00",
+          "tree_id": "62b0acb94389e107f5b6fe7ddfead363b565bcd8",
+          "url": "https://github.com/textlint/textlint/commit/9cb4a378a2e91af584569f28e33c84d8630bc724"
+        },
+        "date": 1785549468834,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25563288806,
+            "range": "± 0.23013497500000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8431439748599998,
+            "range": "± 0.05982621999999993",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6755287210600002,
+            "range": "± 0.019090410000000002",
             "unit": "seconds"
           }
         ]
