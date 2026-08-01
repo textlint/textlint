@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785549811308,
+  "lastUpdate": 1785550461916,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -116717,6 +116717,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6802437509599999,
             "range": "± 0.019017375999999975",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a66003234a585cff72d4f4596317e99766310695",
+          "message": "Upgrade textlint MCP server to SDK v2 (#2102)\n\n## Summary\n\nUpgrade the textlint MCP server to the MCP SDK v2 and update its related\nschemas, configuration, documentation, and tests.\n\n## Changes\n\n- Migrate MCP server implementation and schemas to SDK v2\n- Update package and workspace dependencies\n- Refresh MCP snapshot, server, and modern stdio tests\n- Document the updated MCP integration\n\n## Breaking Changes\n\n- MCP server behavior and integration may require SDK v2-compatible\nclients\n\n## Test Plan\n\n- Not run (not requested)",
+          "timestamp": "2026-08-01T11:12:37+09:00",
+          "tree_id": "786111da31e69f9e853044a0611a377a73a841f9",
+          "url": "https://github.com/textlint/textlint/commit/a66003234a585cff72d4f4596317e99766310695"
+        },
+        "date": 1785550451029,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.29892814355999997,
+            "range": "± 0.455386645",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.84549901956,
+            "range": "± 0.039958229000000234",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.67741992996,
+            "range": "± 0.015625548000000045",
             "unit": "seconds"
           }
         ]
