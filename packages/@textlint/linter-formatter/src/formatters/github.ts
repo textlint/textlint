@@ -54,8 +54,8 @@ function formatter(results: TextlintResult[]) {
             output += `endColumn=${message.loc.end.column || message.loc.start.column || 1},`;
             output += `title=TextLint${message.ruleId ? ` [${message.ruleId}]` : ""}::`;
             output += `${message.message.trim()}`;
-            output += ` | L${message.loc.start.line || 1}:`;
-            output += `C${message.loc.start.column || 1}`;
+            output += ` | ${message.loc.start.line || 1}:`;
+            output += `${message.loc.start.column || 1}`;
             output += "\n";
         });
         output += "::endgroup::\n"
