@@ -1,5 +1,5 @@
 import { McpServer } from "@modelcontextprotocol/server";
-import { serveStdio } from "@modelcontextprotocol/server/stdio";
+import { serveStdio, type StdioServerHandle } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod/v4";
 import { createLinter, loadTextlintrc, type CreateLinterOptions } from "../index.js";
 import { existsSync } from "node:fs";
@@ -305,7 +305,7 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
     return server;
 };
 
-export const connectStdioMcpServer = async (options: McpServerOptions = {}) => {
+export const connectStdioMcpServer = async (options: McpServerOptions = {}): Promise<StdioServerHandle> => {
     if (options.debug) {
         mcpDebug("Connecting MCP server to stdio transport...");
     }
