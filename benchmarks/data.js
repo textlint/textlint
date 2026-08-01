@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785550708434,
+  "lastUpdate": 1785556993121,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -116969,6 +116969,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.7057060554800001,
             "range": "± 0.006940351000000011",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "thompson.tomo@outlook.com",
+            "name": "James Thompson",
+            "username": "thompson-tomo"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "101cba6bd204525a7daaa8a1f9c992f0f6d33af6",
+          "message": "feat: group logs based on file when using gh formatter (#2094)\n\nThis groups the logs based on file just like the stylish formatter. This\nis so that when using the github format you can see what the messages\nrefer to without needing to check annotation.\n\nThe current scenario is\n\n![image](https://github.com/user-attachments/assets/da1b92d4-d750-4b16-a19f-ff8613292bf8)\n\n---------\n\nCo-authored-by: devin-ai-integration[bot] <158243242+devin-ai-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-08-01T13:01:27+09:00",
+          "tree_id": "1ad7ffc83ca6c7a3ca732c7e4af8f7845cfc88fa",
+          "url": "https://github.com/textlint/textlint/commit/101cba6bd204525a7daaa8a1f9c992f0f6d33af6"
+        },
+        "date": 1785556982320,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23761682905999998,
+            "range": "± 0.059356360999999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.94012388166,
+            "range": "± 0.056332382999999986",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7102272096600001,
+            "range": "± 0.00900172999999993",
             "unit": "seconds"
           }
         ]
