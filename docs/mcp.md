@@ -20,6 +20,10 @@ npx textlint --mcp
 
 This starts textlint as an MCP server using stdio transport, allowing AI assistants to interact with textlint's linting and fixing capabilities.
 
+### Protocol Support
+
+The textlint MCP server uses the MCP TypeScript SDK v2 and supports protocol version `2026-07-28` over stdio. Existing editor configuration does not need to change because the protocol version is selected when the MCP client opens the connection.
+
 ## Using CLI Flags with MCP
 
 Starting with textlint v15.2.0, the `--mcp` flag supports combination with other CLI arguments for enhanced flexibility. You can now pass additional configuration options when starting the MCP server:
@@ -314,6 +318,8 @@ Common issues:
 
 - [textlint Documentation](https://textlint.github.io/)
 - [Model Context Protocol Documentation](https://modelcontextprotocol.io/introduction)
+- [MCP TypeScript SDK v2](https://github.com/modelcontextprotocol/typescript-sdk)
+- [MCP 2026-07-28 Specification](https://blog.modelcontextprotocol.io/posts/2026-07-28/)
 - [VS Code MCP Servers Documentation](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
 - [Claude Code MCP Documentation](https://docs.anthropic.com/en/docs/claude-code/mcp) - Claude Code MCP integration guide
 - [GitHub Pull Request #1522](https://github.com/textlint/textlint/pull/1522) - Original MCP implementation

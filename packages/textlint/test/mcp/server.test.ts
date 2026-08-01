@@ -2,12 +2,21 @@ import assert from "node:assert";
 import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import path from "node:path";
 import { readFileSync } from "node:fs";
-import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
-import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { Client, InMemoryTransport, type CallToolResult } from "@modelcontextprotocol/client";
+import type { McpServer } from "@modelcontextprotocol/server";
 
 import { setupServer, connectStdioMcpServer } from "../../src/mcp/server.js";
+
+type TextlintStructuredContent = {
+    timestamp?: string;
+    error?: string;
+    isError?: boolean;
+    results?: Array<{
+        filePath: string;
+        messages: unknown[];
+    }>;
+    [key: string]: unknown;
+};
 
 const validFilePath = path.join(__dirname, "fixtures", "ok.md");
 const stdinFilename = `textlint.txt`;
@@ -94,7 +103,8 @@ describe("MCP Server", () => {
                 assert.strictEqual(result.isError, false, "isError should be false for successful operations");
 
                 // Verify structuredContent structure using inline snapshot
-                const { timestamp, ...structuredWithoutTimestamp } = result.structuredContent;
+                const { timestamp, ...structuredWithoutTimestamp } =
+                    result.structuredContent as TextlintStructuredContent;
                 expect(structuredWithoutTimestamp).toMatchInlineSnapshot(`
                   {
                     "filePath": "textlint.txt",
@@ -127,7 +137,7 @@ describe("MCP Server", () => {
                 // Use inline snapshot for schema structure
                 expect(lintFileTool.outputSchema).toMatchInlineSnapshot(`
                   {
-                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "$schema": "https://json-schema.org/draft/2020-12/schema",
                     "additionalProperties": false,
                     "properties": {
                       "error": {
@@ -369,7 +379,7 @@ describe("MCP Server", () => {
                 assert.ok(result.structuredContent, "Response should have structured content");
 
                 // Verify the structure matches expected schema
-                const structured = result.structuredContent;
+                const structured = result.structuredContent as TextlintStructuredContent;
                 assert.ok(structured.hasOwnProperty("results"), "Should have results property");
                 assert.ok(structured.hasOwnProperty("isError"), "Should have isError property");
                 assert.ok(structured.hasOwnProperty("timestamp"), "Should have timestamp property");
@@ -398,7 +408,7 @@ describe("MCP Server", () => {
                 assert.ok(result, "Client validates and accepts schema-compliant responses");
 
                 // Note: The MCP SDK client uses Ajv to validate structuredContent against outputSchema
-                // See: @modelcontextprotocol/sdk/dist/esm/client/index.js callTool method
+                // See: @modelcontextprotocol/client callTool method
             });
 
             it("should enforce structured content requirement for tools with outputSchema", async () => {
@@ -445,7 +455,8 @@ describe("MCP Server", () => {
 
                 // Error should still have structured content
                 assert.ok(result.structuredContent, "Error should have structured content"); // Use inline snapshot for structured error content (excluding timestamp and dynamic paths)
-                const { timestamp, error, ...structuredContentWithoutDynamic } = result.structuredContent;
+                const { timestamp, error, ...structuredContentWithoutDynamic } =
+                    result.structuredContent as TextlintStructuredContent;
                 expect(structuredContentWithoutDynamic).toMatchInlineSnapshot(`
                   {
                     "isError": true,
@@ -489,7 +500,7 @@ describe("MCP Server", () => {
                 );
                 assert.ok(result.structuredContent, "Successful response should have structured content");
                 assert.strictEqual(
-                    result.structuredContent.isError,
+                    (result.structuredContent as TextlintStructuredContent).isError,
                     false,
                     "Structured content should have isError=false"
                 );
@@ -604,10 +615,11 @@ describe("MCP Server", () => {
             })) as CallToolResult;
 
             assert.ok(result.structuredContent, "Should have structured content");
-            assert.ok(Array.isArray(result.structuredContent.results), "Should have results array");
+            const structuredContent = result.structuredContent as TextlintStructuredContent;
+            assert.ok(Array.isArray(structuredContent.results), "Should have results array");
 
-            if (result.structuredContent.results.length > 0) {
-                const firstResult = result.structuredContent.results[0];
+            if (structuredContent.results.length > 0) {
+                const firstResult = structuredContent.results[0];
                 assert.ok(Array.isArray(firstResult.messages), "Should have messages array");
                 assert.strictEqual(firstResult.filePath, validFilePath, "Should have correct file path");
             }
@@ -626,7 +638,8 @@ describe("MCP Server", () => {
             assert.ok(result.structuredContent, "Should have structured content");
 
             // Use inline snapshot for structured content verification (excluding timestamp)
-            const { timestamp, ...structuredContentWithoutTimestamp } = result.structuredContent;
+            const { timestamp, ...structuredContentWithoutTimestamp } =
+                result.structuredContent as TextlintStructuredContent;
             expect(structuredContentWithoutTimestamp).toMatchInlineSnapshot(`
               {
                 "filePath": "textlint.txt",
@@ -709,22 +722,14 @@ describe("MCP Server", () => {
         });
 
         it("connectStdioMcpServer should accept options", async () => {
-            // This test mainly ensures the function accepts the options parameter
-            // We can't fully test stdio connection in unit tests without complex mocking
             const options = {
                 quiet: true,
                 cwd: process.cwd()
             };
 
-            // Verify the function signature accepts McpServerOptions
-            // Note: We can't actually await this in tests as it would hang waiting for stdio
-            const serverPromise = connectStdioMcpServer(options);
-
-            // Just check that it returns a promise (doesn't throw immediately)
-            assert.ok(serverPromise instanceof Promise, "connectStdioMcpServer should return a Promise");
-
-            // Clean up: We can't properly close stdio connections in tests,
-            // but this verifies the function accepts the options parameter
+            const handle = await connectStdioMcpServer(options);
+            assert.ok(handle, "connectStdioMcpServer should return a server handle");
+            await handle.close();
         });
     });
 });
