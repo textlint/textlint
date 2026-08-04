@@ -27,6 +27,7 @@ export type CliOptions = {
     textlintrc: boolean;
     cache: boolean;
     cacheLocation: string;
+    cacheStrategy: "metadata" | "content";
     // custom node_module directory
     // textlint load modules(rules/presets/plugins) from the base directory.
     rulesBaseDirectory?: string;
@@ -204,6 +205,14 @@ export const options = optionator({
             default: path.resolve(process.cwd(), ".textlintcache"),
             description: "Path to the cache file or directory.",
             example: 'textlint --cache --cache-location "/Users/user/.textlintcache" docs/'
+        },
+        {
+            option: "cache-strategy",
+            type: "String",
+            default: "metadata",
+            enum: ["metadata", "content"],
+            description: "Strategy for detecting changed files.",
+            example: "textlint --cache --cache-strategy content docs/"
         },
         {
             heading: "Experimental"

@@ -419,6 +419,52 @@ describe("cli-test", function () {
                 assert.strictEqual(result, 0);
             });
         });
+        describe("--cache-strategy", function () {
+            const ruleModuleName = "textlint-rule-no-todo";
+            // passing content for textlint-rule-no-todo; "todo:\n" is the same
+            // byte length but triggers the rule
+            const tmpFilePath = path.join(os.tmpdir(), "cache-strategy-test.md");
+            beforeEach(() => {
+                fs.copyFileSync(path.join(__dirname, "fixtures/test.md"), tmpFilePath);
+            });
+            afterEach(() => {
+                try {
+                    fs.unlinkSync(tmpFilePath);
+                } catch {
+                    // nope
+                }
+            });
+            it("should re-lint when content is changed but mtime/size are preserved with 'content' strategy", async function () {
+                const args = `--cache --cache-location "${cacheLocation}" --cache-strategy content --rule "${ruleModuleName}" ${tmpFilePath}`;
+                const first = await cli.execute(args);
+                assert.strictEqual(first, 0);
+                const stat = fs.statSync(tmpFilePath);
+                fs.writeFileSync(tmpFilePath, "todo:\n", "utf-8");
+                fs.utimesSync(tmpFilePath, stat.atime, stat.mtime);
+                const second = await cli.execute(args);
+                assert.strictEqual(second, 1);
+            });
+            it("should not re-lint when only content is changed but mtime/size are preserved with 'metadata' strategy", async function () {
+                const args = `--cache --cache-location "${cacheLocation}" --cache-strategy metadata --rule "${ruleModuleName}" ${tmpFilePath}`;
+                const first = await cli.execute(args);
+                assert.strictEqual(first, 0);
+                const stat = fs.statSync(tmpFilePath);
+                fs.writeFileSync(tmpFilePath, "todo:\n", "utf-8");
+                fs.utimesSync(tmpFilePath, stat.atime, stat.mtime);
+                const second = await cli.execute(args);
+                assert.strictEqual(second, 0);
+            });
+            it("should use 'metadata' strategy by default", async function () {
+                const args = `--cache --cache-location "${cacheLocation}" --rule "${ruleModuleName}" ${tmpFilePath}`;
+                const first = await cli.execute(args);
+                assert.strictEqual(first, 0);
+                const stat = fs.statSync(tmpFilePath);
+                fs.writeFileSync(tmpFilePath, "todo:\n", "utf-8");
+                fs.utimesSync(tmpFilePath, stat.atime, stat.mtime);
+                const second = await cli.execute(args);
+                assert.strictEqual(second, 0);
+            });
+        });
     });
     describe("--print-config", function () {
         it("should print current descriptor.toJSON()", function () {
