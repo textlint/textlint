@@ -36,7 +36,7 @@ catalog:
   "@monorepo-utils/workspaces-to-typescript-project-references": "^2.11.0"
   "@types/debug": "^4.1.13"
   "@types/js-yaml": "^4.0.9"
-  "@types/lodash": "^4.17.24"
+  "@types/lodash": "^4.17.25"
   "@types/mocha": "^9.1.1"
   "@types/node": "^24.13.3"
   "@types/react": "^18.3.31"
@@ -111,7 +111,7 @@ catalog:
   unified: "^9.2.2"
   unist-util-select: "^3.0.4"
   vitest: "^3.2.7"
-  zod: "^4.2.1"
+  zod: "^4.4.3"
 
 # Automatically remove unused catalog entries on install
 # https://pnpm.io/settings#cleanupunusedcatalogs
