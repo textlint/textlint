@@ -67,8 +67,8 @@ catalogs:
       specifier: ^4.0.9
       version: 4.0.9
     '@types/lodash':
-      specifier: ^4.17.24
-      version: 4.17.24
+      specifier: ^4.17.25
+      version: 4.17.25
     '@types/mocha':
       specifier: ^9.1.1
       version: 9.1.1
@@ -292,7 +292,7 @@ catalogs:
       specifier: ^3.2.7
       version: 3.2.7
     zod:
-      specifier: ^4.2.1
+      specifier: ^4.4.3
       version: 4.4.3
 
 overrides:
@@ -780,7 +780,7 @@ importers:
         version: 4.0.9
       '@types/lodash':
         specifier: 'catalog:'
-        version: 4.17.24
+        version: 4.17.25
       '@types/node':
         specifier: 'catalog:'
         version: 24.13.3
@@ -3709,8 +3709,8 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/lodash@4.17.24':
-    resolution: {integrity: sha512-gIW7lQLZbue7lRSWEFql49QJJWThrTFFeIMJdp3eH4tKoxm1OvEPg02rm4wCCSHS0cL3/Fizimb35b7k8atwsQ==}
+  '@types/lodash@4.17.25':
+    resolution: {integrity: sha512-+K1NIO8I+F9/wNulfVvu23QYd0Pe9/OCqRrim4NoYIf1VoEDL90Ve4ClzpyqBLc7NpGGWRvYNCKZ1BE/Jpf8dQ==}
 
   '@types/mdast@3.0.15':
     resolution: {integrity: sha512-LnwD+mUEfxWMa1QpDraczIn6k0Ee3SMicuYSSzS6ZYl2gKS09EClnJYGd8Du6rfc5r/GZEk5o1mRb8TaTj03sQ==}
@@ -12071,7 +12071,7 @@ snapshots:
       globals: 14.0.0
       ignore: 5.3.2
       import-fresh: 3.3.1
-      js-yaml: 4.3.0
+      js-yaml: 4.3.1
       minimatch: 3.1.5
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
@@ -13179,7 +13179,7 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/lodash@4.17.24': {}
+  '@types/lodash@4.17.25': {}
 
   '@types/mdast@3.0.15':
     dependencies:
