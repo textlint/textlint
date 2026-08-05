@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785867419181,
+  "lastUpdate": 1785959144393,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -117557,6 +117557,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6881330551800001,
             "range": "± 0.006280371000000007",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c0bdf8b564b8e0a25ab479d3cdb85ba488ff6f23",
+          "message": "chore(deps): update dependency mocha to ^11.8.0",
+          "timestamp": "2026-08-05T19:44:00Z",
+          "tree_id": "a34e5181c20f21256c39385ccfe76656ac16d8c9",
+          "url": "https://github.com/textlint/textlint/commit/c0bdf8b564b8e0a25ab479d3cdb85ba488ff6f23"
+        },
+        "date": 1785959130518,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22246547158000002,
+            "range": "± 0.03874443299999997",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8769241061800002,
+            "range": "± 0.019984738999999863",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.69012682618,
+            "range": "± 0.013619904999999988",
             "unit": "seconds"
           }
         ]
