@@ -3,11 +3,12 @@ import assert from "node:assert";
 import { describe, it } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { test as astTest } from "@textlint/ast-tester";
-import { parse } from "../src/index";
+import { parse } from "../src/index.js";
 
 describe("parsing", function () {
-    const fixtureDir = path.join(__dirname, "fixtures");
+    const fixtureDir = fileURLToPath(new URL("fixtures", import.meta.url));
     fs.readdirSync(fixtureDir).forEach(function (filePath) {
         const dirName = path.basename(filePath);
         it(`${dirName} match AST`, function () {

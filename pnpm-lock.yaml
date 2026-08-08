@@ -138,9 +138,6 @@ catalogs:
     md5:
       specifier: ^2.3.0
       version: 2.3.0
-    mdast-util-gfm-autolink-literal:
-      specifier: ^0.1.3
-      version: 0.1.3
     mocha:
       specifier: ^11.8.0
       version: 11.8.0
@@ -193,14 +190,14 @@ catalogs:
       specifier: ^3.0.0
       version: 3.0.0
     remark-frontmatter:
-      specifier: ^3.0.0
-      version: 3.0.0
+      specifier: ^5.0.0
+      version: 5.0.0
     remark-gfm:
-      specifier: ^1.0.0
-      version: 1.0.0
+      specifier: ^4.0.1
+      version: 4.0.1
     remark-parse:
-      specifier: ^9.0.0
-      version: 9.0.0
+      specifier: ^11.0.0
+      version: 11.0.0
     rimraf:
       specifier: ^6.1.3
       version: 6.1.3
@@ -283,8 +280,8 @@ catalogs:
       specifier: ~5.8.3
       version: 5.8.3
     unified:
-      specifier: ^9.2.2
-      version: 9.2.2
+      specifier: ^11.0.5
+      version: 11.0.5
     unist-util-select:
       specifier: ^3.0.4
       version: 3.0.4
@@ -805,9 +802,6 @@ importers:
       debug:
         specifier: 'catalog:'
         version: 4.4.3(supports-color@8.1.1)
-      mdast-util-gfm-autolink-literal:
-        specifier: 'catalog:'
-        version: 0.1.3
       neotraverse:
         specifier: 'catalog:'
         version: 0.6.18
@@ -816,19 +810,19 @@ importers:
         version: 3.0.0
       remark-frontmatter:
         specifier: 'catalog:'
-        version: 3.0.0
+        version: 5.0.0
       remark-gfm:
         specifier: 'catalog:'
-        version: 1.0.0
+        version: 4.0.1
       remark-parse:
         specifier: 'catalog:'
-        version: 9.0.0
+        version: 11.0.0
       structured-source:
         specifier: 'catalog:'
         version: 4.0.0
       unified:
         specifier: 'catalog:'
-        version: 9.2.2
+        version: 11.0.5
     devDependencies:
       '@textlint/ast-tester':
         specifier: workspace:*
@@ -3712,9 +3706,6 @@ packages:
   '@types/lodash@4.17.25':
     resolution: {integrity: sha512-+K1NIO8I+F9/wNulfVvu23QYd0Pe9/OCqRrim4NoYIf1VoEDL90Ve4ClzpyqBLc7NpGGWRvYNCKZ1BE/Jpf8dQ==}
 
-  '@types/mdast@3.0.15':
-    resolution: {integrity: sha512-LnwD+mUEfxWMa1QpDraczIn6k0Ee3SMicuYSSzS6ZYl2gKS09EClnJYGd8Du6rfc5r/GZEk5o1mRb8TaTj03sQ==}
-
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
 
@@ -5409,9 +5400,6 @@ packages:
   fastq@1.19.1:
     resolution: {integrity: sha512-GwLTyxkCXjXbxqIhTsMI2Nui8huMPtnxg7krajPJAjnEG/iiOS7i+zCtWGZR9G0NBKbXKh6X9m9UIsYX/N6vvQ==}
 
-  fault@1.0.4:
-    resolution: {integrity: sha512-CJ0HCB5tL5fYTEA7ToAq5+kTwd++Borf1/bifxd9iT70QcXr4MRrO3Llf8Ifs70q+SJcGHFtnIE/Nw6giCtECA==}
-
   fault@2.0.1:
     resolution: {integrity: sha512-WtySTkS4OKev5JtpHXnib4Gxiurzh5NCGvWrFaZ34m6JehfTUhKZvn9njTfw48t6JumVQOmrKqpmGcdwxnhqBQ==}
 
@@ -6657,9 +6645,6 @@ packages:
     resolution: {integrity: sha512-o5vL7aDWatOTX8LzaS1WMoaoxIiLRQJuIKKe2wAw6IeULDHaqbiqiggmx+pKvZDb1Sj+pE46Sn1T7lCqfFtg1Q==}
     engines: {node: '>=16'}
 
-  markdown-table@2.0.0:
-    resolution: {integrity: sha512-Ezda85ToJUBhM6WGaG6veasyym+Tbs3cMAw/ZhOPqXiYsr0jgocBV3j3nx+4lk47plLlIqjwuTm/ywVI+zjJ/A==}
-
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
 
@@ -6676,29 +6661,17 @@ packages:
   mdast-util-directive@3.1.0:
     resolution: {integrity: sha512-I3fNFt+DHmpWCYAT7quoM6lHf9wuqtI+oCOfvILnoicNIqjh5E3dEJWiXuYME2gNe8vl1iMQwyUHa7bgFmak6Q==}
 
-  mdast-util-find-and-replace@1.1.1:
-    resolution: {integrity: sha512-9cKl33Y21lyckGzpSmEQnIDjEfeeWelN5s1kUW1LwdB0Fkuq2u+4GdqcGEygYxJE8GVqCl0741bYXHgamfWAZA==}
-
   mdast-util-find-and-replace@3.0.2:
     resolution: {integrity: sha512-Tmd1Vg/m3Xz43afeNxDIhWRtFZgM2VLyaf4vSTYwudTyeuTneoL3qtWMA5jeLyz/O1vDJmmV4QuScFCA2tBPwg==}
 
   mdast-util-footnote@0.1.7:
     resolution: {integrity: sha512-QxNdO8qSxqbO2e3m09KwDKfWiLgqyCurdWTQ198NpbZ2hxntdc+VKS4fDJCmNWbAroUdYnSthu+XbZ8ovh8C3w==}
 
-  mdast-util-from-markdown@0.8.5:
-    resolution: {integrity: sha512-2hkTXtYYnr+NubD/g6KGBS/0mFmBcifAsI0yIWRiRo0PjVs6SSOSOdtzbp6kSGnShDN6G5aWZpKQ2lWRy27mWQ==}
-
   mdast-util-from-markdown@2.0.2:
     resolution: {integrity: sha512-uZhTV/8NBuw0WHkPTrCqDOl0zVe1BIng5ZtHoDk49ME1qqcjYmmLmOf0gELgcRMxN4w2iuIeVso5/6QymSrgmA==}
 
-  mdast-util-frontmatter@0.2.0:
-    resolution: {integrity: sha512-FHKL4w4S5fdt1KjJCwB0178WJ0evnyyQr5kXTM3wrOVpytD0hrkvd+AOOjU9Td8onOejCkmZ+HQRT3CZ3coHHQ==}
-
   mdast-util-frontmatter@2.0.1:
     resolution: {integrity: sha512-LRqI9+wdgC25P0URIJY9vwocIzCcksduHQ9OF2joxQoyTNVduwLAFUzjoopuRJbJAReaKrNQKAZKL3uCMugWJA==}
-
-  mdast-util-gfm-autolink-literal@0.1.3:
-    resolution: {integrity: sha512-GjmLjWrXg1wqMIO9+ZsRik/s7PLwTaeCHVB7vRxUwLntZc8mzmTsLVr6HW1yLokcnhfURsn5zmSVdi3/xWWu1A==}
 
   mdast-util-gfm-autolink-literal@2.0.1:
     resolution: {integrity: sha512-5HVP2MKaP6L+G6YaxPNjuL0BPrq9orG3TsrZ9YXbA3vDw/ACI4MEsnoDpn6ZNm7GnZgtAcONJyPhOP8tNJQavQ==}
@@ -6706,26 +6679,14 @@ packages:
   mdast-util-gfm-footnote@2.1.0:
     resolution: {integrity: sha512-sqpDWlsHn7Ac9GNZQMeUzPQSMzR6Wv0WKRNvQRg0KqHh02fpTz69Qc1QSseNX29bhz1ROIyNyxExfawVKTm1GQ==}
 
-  mdast-util-gfm-strikethrough@0.2.3:
-    resolution: {integrity: sha512-5OQLXpt6qdbttcDG/UxYY7Yjj3e8P7X16LzvpX8pIQPYJ/C2Z1qFGMmcw+1PZMUM3Z8wt8NRfYTvCni93mgsgA==}
-
   mdast-util-gfm-strikethrough@2.0.0:
     resolution: {integrity: sha512-mKKb915TF+OC5ptj5bJ7WFRPdYtuHv0yTRxK2tJvi+BDqbkiG7h7u/9SI89nRAYcmap2xHQL9D+QG/6wSrTtXg==}
-
-  mdast-util-gfm-table@0.1.6:
-    resolution: {integrity: sha512-j4yDxQ66AJSBwGkbpFEp9uG/LS1tZV3P33fN1gkyRB2LoRL+RR3f76m0HPHaby6F4Z5xr9Fv1URmATlRRUIpRQ==}
 
   mdast-util-gfm-table@2.0.0:
     resolution: {integrity: sha512-78UEvebzz/rJIxLvE7ZtDd/vIQ0RHv+3Mh5DR96p7cS7HsBhYIICDBCu8csTNWNO6tBWfqXPWekRuj2FNOGOZg==}
 
-  mdast-util-gfm-task-list-item@0.1.6:
-    resolution: {integrity: sha512-/d51FFIfPsSmCIRNp7E6pozM9z1GYPIkSy1urQ8s/o4TC22BZ7DqfHFWiqBD23bc7J3vV1Fc9O4QIHBlfuit8A==}
-
   mdast-util-gfm-task-list-item@2.0.0:
     resolution: {integrity: sha512-IrtvNvjxC1o06taBAVJznEnkiHxLFTzgonUdy8hzFVeDun0uTjxxrRGVaNFqkU1wJR3RBPEfsxmU6jDWPofrTQ==}
-
-  mdast-util-gfm@0.1.2:
-    resolution: {integrity: sha512-NNkhDx/qYcuOWB7xHUGWZYVXvjPFFd6afg6/e2g+SV4r9q5XUcCbV4Wfa3DLYIiD+xAEZc6K4MGaE/m0KDcPwQ==}
 
   mdast-util-gfm@3.1.0:
     resolution: {integrity: sha512-0ulfdQOM3ysHhCJ1p06l0b0VKlhU0wuQs3thxZQagjcjPrlFRqY215uZGHHJan9GEAXd9MbfPjFJz+qMkVR6zQ==}
@@ -6812,14 +6773,8 @@ packages:
   micromark-extension-footnote@0.3.2:
     resolution: {integrity: sha512-gr/BeIxbIWQoUm02cIfK7mdMZ/fbroRpLsck4kvFtjbzP4yi+OPVbnukTc/zy0i7spC2xYE/dbX1Sur8BEDJsQ==}
 
-  micromark-extension-frontmatter@0.2.2:
-    resolution: {integrity: sha512-q6nPLFCMTLtfsctAuS0Xh4vaolxSFUWUWR6PZSrXXiRy+SANGllpcqdXFv2z07l0Xz/6Hl40hK0ffNCJPH2n1A==}
-
   micromark-extension-frontmatter@2.0.0:
     resolution: {integrity: sha512-C4AkuM3dA58cgZha7zVnuVxBhDsbttIMiytjgsM2XbHAB2faRVaHRle40558FBN+DJcrLNCoqG5mlrpdU4cRtg==}
-
-  micromark-extension-gfm-autolink-literal@0.5.7:
-    resolution: {integrity: sha512-ePiDGH0/lhcngCe8FtH4ARFoxKTUelMp4L7Gg2pujYD5CSMb9PbblnyL+AAMud/SNMyusbS2XDSiPIRcQoNFAw==}
 
   micromark-extension-gfm-autolink-literal@2.1.0:
     resolution: {integrity: sha512-oOg7knzhicgQ3t4QCjCWgTmfNhvQbDDnJeVu9v81r7NltNCVmhPy1fJRX27pISafdjL+SVc4d3l48Gb6pbRypw==}
@@ -6827,32 +6782,17 @@ packages:
   micromark-extension-gfm-footnote@2.1.0:
     resolution: {integrity: sha512-/yPhxI1ntnDNsiHtzLKYnE3vf9JZ6cAisqVDauhp4CEHxlb4uoOTxOCJ+9s51bIB8U1N1FJ1RXOKTIlD5B/gqw==}
 
-  micromark-extension-gfm-strikethrough@0.6.5:
-    resolution: {integrity: sha512-PpOKlgokpQRwUesRwWEp+fHjGGkZEejj83k9gU5iXCbDG+XBA92BqnRKYJdfqfkrRcZRgGuPuXb7DaK/DmxOhw==}
-
   micromark-extension-gfm-strikethrough@2.1.0:
     resolution: {integrity: sha512-ADVjpOOkjz1hhkZLlBiYA9cR2Anf8F4HqZUO6e5eDcPQd0Txw5fxLzzxnEkSkfnD0wziSGiv7sYhk/ktvbf1uw==}
-
-  micromark-extension-gfm-table@0.4.3:
-    resolution: {integrity: sha512-hVGvESPq0fk6ALWtomcwmgLvH8ZSVpcPjzi0AjPclB9FsVRgMtGZkUcpE0zgjOCFAznKepF4z3hX8z6e3HODdA==}
 
   micromark-extension-gfm-table@2.1.1:
     resolution: {integrity: sha512-t2OU/dXXioARrC6yWfJ4hqB7rct14e8f7m0cbI5hUmDyyIlwv5vEtooptH8INkbLzOatzKuVbQmAYcbWoyz6Dg==}
 
-  micromark-extension-gfm-tagfilter@0.3.0:
-    resolution: {integrity: sha512-9GU0xBatryXifL//FJH+tAZ6i240xQuFrSL7mYi8f4oZSbc+NvXjkrHemeYP0+L4ZUT+Ptz3b95zhUZnMtoi/Q==}
-
   micromark-extension-gfm-tagfilter@2.0.0:
     resolution: {integrity: sha512-xHlTOmuCSotIA8TW1mDIM6X2O1SiX5P9IuDtqGonFhEK0qgRI4yeC6vMxEV2dgyr2TiD+2PQ10o+cOhdVAcwfg==}
 
-  micromark-extension-gfm-task-list-item@0.3.3:
-    resolution: {integrity: sha512-0zvM5iSLKrc/NQl84pZSjGo66aTGd57C1idmlWmE87lkMcXrTxg1uXa/nXomxJytoje9trP0NDLvw4bZ/Z/XCQ==}
-
   micromark-extension-gfm-task-list-item@2.1.0:
     resolution: {integrity: sha512-qIBZhqxqI6fjLDYFTBIa4eivDMnP+OZqsNwmQ3xNLE4Cxwc+zfQEfbs6tzAo2Hjq+bh6q5F+Z8/cksrLFYWQQw==}
-
-  micromark-extension-gfm@0.3.3:
-    resolution: {integrity: sha512-oVN4zv5/tAIA+l3GbMi7lWeYpJ14oQyJ3uEim20ktYFAcfX1x3LNlFGGlmrZHt7u9YlKExmyJdDGaTt6cMSR/A==}
 
   micromark-extension-gfm@3.0.0:
     resolution: {integrity: sha512-vsKArQsicm7t0z2GugkCKtZehqUm31oeGBV/KVSorWSy8ZlNAv7ytjFhvaryUiCUJYqs+NoE6AFhpQvBTM6Q4w==}
@@ -8338,14 +8278,8 @@ packages:
   remark-footnotes@3.0.0:
     resolution: {integrity: sha512-ZssAvH9FjGYlJ/PBVKdSmfyPc3Cz4rTWgZLI4iE/SX8Nt5l3o3oEjv3wwG5VD7xOjktzdwp5coac+kJV9l4jgg==}
 
-  remark-frontmatter@3.0.0:
-    resolution: {integrity: sha512-mSuDd3svCHs+2PyO29h7iijIZx4plX0fheacJcAoYAASfgzgVIcXGYSq9GFyYocFLftQs8IOmmkgtOovs6d4oA==}
-
   remark-frontmatter@5.0.0:
     resolution: {integrity: sha512-XTFYvNASMe5iPN0719nPrdItC9aU0ssC4v14mH1BCi1u0n1gAocqcujWUrByftZTbLhRtiKRyjYTSIOcr69UVQ==}
-
-  remark-gfm@1.0.0:
-    resolution: {integrity: sha512-KfexHJCiqvrdBZVbQ6RopMZGwaXz6wFJEfByIuEwGf0arvITHjiKKZ1dpXujjH9KZdm1//XJQwgfnJ3lmXaDPA==}
 
   remark-gfm@4.0.1:
     resolution: {integrity: sha512-1quofZ2RQ9EWdeN34S79+KExV1764+wCUGop5CPL1WGdD0ocPpu91lzPGbwWMECpEpd42kJGQwzRfyov9j4yNg==}
@@ -8355,9 +8289,6 @@ packages:
 
   remark-parse@11.0.0:
     resolution: {integrity: sha512-FCxlKLNGknS5ba/1lmpYijMUzX2esxW5xQqjWxw2eHFfS2MSdaHVINFmhjo+qN1WhZhNimq0dZATN9pH0IDrpA==}
-
-  remark-parse@9.0.0:
-    resolution: {integrity: sha512-geKatMwSzEXKHuzBNU1z676sGcDcFoChMK38TgdHJNAYfFtsfHDQG7MoJAjs6sgYMqyLduCYWDIWZIxiPeafEw==}
 
   remark-rehype@11.1.2:
     resolution: {integrity: sha512-Dh7l57ianaEoIpzbp0PC9UKAdCSVklD8E5Rpw7ETfbTl3FqcOOgq5q2LVDhgGCkaBv7p24JXikPdvhhmHvKMsw==}
@@ -9351,9 +9282,6 @@ packages:
 
   unified@8.4.2:
     resolution: {integrity: sha512-JCrmN13jI4+h9UAyKEoGcDZV+i1E7BLFuG7OsaDvTXI5P0qhHX+vZO/kOhz9jn8HGENDKbwSeB0nVOg4gVStGA==}
-
-  unified@9.2.2:
-    resolution: {integrity: sha512-Sg7j110mtefBD+qunSLO1lqOEKdrwBFBrR6Qd8f4uwkhWNlbkaqwHse6e7QvD3AP/MNoJdEDLaf8OxYyoWgorQ==}
 
   unique-filename@4.0.0:
     resolution: {integrity: sha512-XSnEewXmQ+veP7xX2dS5Q4yZAvO40cBN2MWkJ7D/6sW4Dg6wYBNwM1Vrnz1FhH5AdeLIlUXRI9e28z1YZi71NQ==}
@@ -13177,10 +13105,6 @@ snapshots:
 
   '@types/lodash@4.17.25': {}
 
-  '@types/mdast@3.0.15':
-    dependencies:
-      '@types/unist': 2.0.11
-
   '@types/mdast@4.0.4':
     dependencies:
       '@types/unist': 3.0.3
@@ -15097,10 +15021,6 @@ snapshots:
     dependencies:
       reusify: 1.1.0
 
-  fault@1.0.4:
-    dependencies:
-      format: 0.2.2
-
   fault@2.0.1:
     dependencies:
       format: 0.2.2
@@ -16441,10 +16361,6 @@ snapshots:
 
   markdown-extensions@2.0.0: {}
 
-  markdown-table@2.0.0:
-    dependencies:
-      repeat-string: 1.6.1
-
   markdown-table@3.0.4: {}
 
   match-index@1.0.3:
@@ -16473,12 +16389,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  mdast-util-find-and-replace@1.1.1:
-    dependencies:
-      escape-string-regexp: 4.0.0
-      unist-util-is: 4.1.0
-      unist-util-visit-parents: 3.1.1
-
   mdast-util-find-and-replace@3.0.2:
     dependencies:
       '@types/mdast': 4.0.4
@@ -16490,16 +16400,6 @@ snapshots:
     dependencies:
       mdast-util-to-markdown: 0.6.5
       micromark: 2.11.4
-    transitivePeerDependencies:
-      - supports-color
-
-  mdast-util-from-markdown@0.8.5:
-    dependencies:
-      '@types/mdast': 3.0.15
-      mdast-util-to-string: 2.0.0
-      micromark: 2.11.4
-      parse-entities: 2.0.0
-      unist-util-stringify-position: 2.0.3
     transitivePeerDependencies:
       - supports-color
 
@@ -16520,10 +16420,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  mdast-util-frontmatter@0.2.0:
-    dependencies:
-      micromark-extension-frontmatter: 0.2.2
-
   mdast-util-frontmatter@2.0.1:
     dependencies:
       '@types/mdast': 4.0.4
@@ -16532,14 +16428,6 @@ snapshots:
       mdast-util-from-markdown: 2.0.2
       mdast-util-to-markdown: 2.1.2
       micromark-extension-frontmatter: 2.0.0
-    transitivePeerDependencies:
-      - supports-color
-
-  mdast-util-gfm-autolink-literal@0.1.3:
-    dependencies:
-      ccount: 1.1.0
-      mdast-util-find-and-replace: 1.1.1
-      micromark: 2.11.4
     transitivePeerDependencies:
       - supports-color
 
@@ -16561,10 +16449,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  mdast-util-gfm-strikethrough@0.2.3:
-    dependencies:
-      mdast-util-to-markdown: 0.6.5
-
   mdast-util-gfm-strikethrough@2.0.0:
     dependencies:
       '@types/mdast': 4.0.4
@@ -16572,11 +16456,6 @@ snapshots:
       mdast-util-to-markdown: 2.1.2
     transitivePeerDependencies:
       - supports-color
-
-  mdast-util-gfm-table@0.1.6:
-    dependencies:
-      markdown-table: 2.0.0
-      mdast-util-to-markdown: 0.6.5
 
   mdast-util-gfm-table@2.0.0:
     dependencies:
@@ -16588,26 +16467,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  mdast-util-gfm-task-list-item@0.1.6:
-    dependencies:
-      mdast-util-to-markdown: 0.6.5
-
   mdast-util-gfm-task-list-item@2.0.0:
     dependencies:
       '@types/mdast': 4.0.4
       devlop: 1.1.0
       mdast-util-from-markdown: 2.0.2
       mdast-util-to-markdown: 2.1.2
-    transitivePeerDependencies:
-      - supports-color
-
-  mdast-util-gfm@0.1.2:
-    dependencies:
-      mdast-util-gfm-autolink-literal: 0.1.3
-      mdast-util-gfm-strikethrough: 0.2.3
-      mdast-util-gfm-table: 0.1.6
-      mdast-util-gfm-task-list-item: 0.1.6
-      mdast-util-to-markdown: 0.6.5
     transitivePeerDependencies:
       - supports-color
 
@@ -16804,22 +16669,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  micromark-extension-frontmatter@0.2.2:
-    dependencies:
-      fault: 1.0.4
-
   micromark-extension-frontmatter@2.0.0:
     dependencies:
       fault: 2.0.1
       micromark-util-character: 2.1.1
       micromark-util-symbol: 2.0.1
       micromark-util-types: 2.0.2
-
-  micromark-extension-gfm-autolink-literal@0.5.7:
-    dependencies:
-      micromark: 2.11.4
-    transitivePeerDependencies:
-      - supports-color
 
   micromark-extension-gfm-autolink-literal@2.1.0:
     dependencies:
@@ -16839,12 +16694,6 @@ snapshots:
       micromark-util-symbol: 2.0.1
       micromark-util-types: 2.0.2
 
-  micromark-extension-gfm-strikethrough@0.6.5:
-    dependencies:
-      micromark: 2.11.4
-    transitivePeerDependencies:
-      - supports-color
-
   micromark-extension-gfm-strikethrough@2.1.0:
     dependencies:
       devlop: 1.1.0
@@ -16854,12 +16703,6 @@ snapshots:
       micromark-util-symbol: 2.0.1
       micromark-util-types: 2.0.2
 
-  micromark-extension-gfm-table@0.4.3:
-    dependencies:
-      micromark: 2.11.4
-    transitivePeerDependencies:
-      - supports-color
-
   micromark-extension-gfm-table@2.1.1:
     dependencies:
       devlop: 1.1.0
@@ -16868,17 +16711,9 @@ snapshots:
       micromark-util-symbol: 2.0.1
       micromark-util-types: 2.0.2
 
-  micromark-extension-gfm-tagfilter@0.3.0: {}
-
   micromark-extension-gfm-tagfilter@2.0.0:
     dependencies:
       micromark-util-types: 2.0.2
-
-  micromark-extension-gfm-task-list-item@0.3.3:
-    dependencies:
-      micromark: 2.11.4
-    transitivePeerDependencies:
-      - supports-color
 
   micromark-extension-gfm-task-list-item@2.1.0:
     dependencies:
@@ -16887,17 +16722,6 @@ snapshots:
       micromark-util-character: 2.1.1
       micromark-util-symbol: 2.0.1
       micromark-util-types: 2.0.2
-
-  micromark-extension-gfm@0.3.3:
-    dependencies:
-      micromark: 2.11.4
-      micromark-extension-gfm-autolink-literal: 0.5.7
-      micromark-extension-gfm-strikethrough: 0.6.5
-      micromark-extension-gfm-table: 0.4.3
-      micromark-extension-gfm-tagfilter: 0.3.0
-      micromark-extension-gfm-task-list-item: 0.3.3
-    transitivePeerDependencies:
-      - supports-color
 
   micromark-extension-gfm@3.0.0:
     dependencies:
@@ -18660,24 +18484,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  remark-frontmatter@3.0.0:
-    dependencies:
-      mdast-util-frontmatter: 0.2.0
-      micromark-extension-frontmatter: 0.2.2
-
   remark-frontmatter@5.0.0:
     dependencies:
       '@types/mdast': 4.0.4
       mdast-util-frontmatter: 2.0.1
       micromark-extension-frontmatter: 2.0.0
       unified: 11.0.5
-    transitivePeerDependencies:
-      - supports-color
-
-  remark-gfm@1.0.0:
-    dependencies:
-      mdast-util-gfm: 0.1.2
-      micromark-extension-gfm: 0.3.3
     transitivePeerDependencies:
       - supports-color
 
@@ -18705,12 +18517,6 @@ snapshots:
       mdast-util-from-markdown: 2.0.2
       micromark-util-types: 2.0.2
       unified: 11.0.5
-    transitivePeerDependencies:
-      - supports-color
-
-  remark-parse@9.0.0:
-    dependencies:
-      mdast-util-from-markdown: 0.8.5
     transitivePeerDependencies:
       - supports-color
 
@@ -19961,16 +19767,6 @@ snapshots:
       '@types/unist': 2.0.11
       bail: 1.0.5
       extend: 3.0.2
-      is-plain-obj: 2.1.0
-      trough: 1.0.5
-      vfile: 4.2.1
-
-  unified@9.2.2:
-    dependencies:
-      '@types/unist': 2.0.11
-      bail: 1.0.5
-      extend: 3.0.2
-      is-buffer: 2.0.5
       is-plain-obj: 2.1.0
       trough: 1.0.5
       vfile: 4.2.1
