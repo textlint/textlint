@@ -3,7 +3,9 @@ import { describe, it } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import assert from "node:assert";
-const fixturesDir = path.join(__dirname, "snapshots");
+import { fileURLToPath } from "node:url";
+
+const fixturesDir = fileURLToPath(new URL("snapshots", import.meta.url));
 
 describe("Snapshot testing", () => {
     fs.readdirSync(fixturesDir).map((caseName) => {

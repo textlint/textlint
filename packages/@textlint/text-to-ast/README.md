@@ -31,10 +31,10 @@ npm install @textlint/text-to-ast
 ## Usage
 
 ```js
-var parse = require("@textlint/text-to-ast").parse;
-var text = "This is a text\nParse text to AST";
-var AST = parse(text);
-console.log(JSON.stringify(AST, null ,4))
+import { parse } from "@textlint/text-to-ast";
+const text = "This is a text\nParse text to AST";
+const AST = parse(text);
+console.log(JSON.stringify(AST, null, 4));
 /*
 {
     "type": "Document",
