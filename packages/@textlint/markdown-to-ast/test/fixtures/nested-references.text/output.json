@@ -49,8 +49,8 @@
                         {
                             "type": "ImageReference",
                             "alt": "Foo",
-                            "identifier": "bar",
                             "label": "bar",
+                            "identifier": "bar",
                             "referenceType": "full",
                             "loc": {
                                 "start": {
@@ -69,8 +69,8 @@
                             "raw": "![Foo][bar]"
                         }
                     ],
-                    "identifier": "baz",
                     "label": "baz",
+                    "identifier": "baz",
                     "referenceType": "full",
                     "loc": {
                         "start": {
@@ -189,8 +189,8 @@
                             "raw": "Foo"
                         }
                     ],
-                    "identifier": "bar",
                     "label": "bar",
+                    "identifier": "bar",
                     "referenceType": "full",
                     "loc": {
                         "start": {
@@ -250,8 +250,8 @@
                             "raw": "baz"
                         }
                     ],
-                    "identifier": "baz",
                     "label": "baz",
+                    "identifier": "baz",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -352,8 +352,8 @@
                             "raw": "[^foo]"
                         }
                     ],
-                    "identifier": "baz",
                     "label": "baz",
+                    "identifier": "baz",
                     "referenceType": "full",
                     "loc": {
                         "start": {

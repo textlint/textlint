@@ -82,14 +82,14 @@
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 8
+                                    "column": 7
                                 }
                             },
                             "range": [
                                 7,
-                                15
+                                14
                             ],
-                            "raw": "| Name |"
+                            "raw": "| Name "
                         },
                         {
                             "type": "TableCell",
@@ -117,18 +117,18 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 8
+                                    "column": 7
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 17
+                                    "column": 16
                                 }
                             },
                             "range": [
-                                15,
-                                24
+                                14,
+                                23
                             ],
-                            "raw": " GitHub |"
+                            "raw": "| GitHub "
                         },
                         {
                             "type": "TableCell",
@@ -156,7 +156,7 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 17
+                                    "column": 16
                                 },
                                 "end": {
                                     "line": 3,
@@ -164,10 +164,10 @@
                                 }
                             },
                             "range": [
-                                24,
+                                23,
                                 34
                             ],
-                            "raw": " Twitter |"
+                            "raw": "| Twitter |"
                         }
                     ],
                     "loc": {

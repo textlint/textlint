@@ -9,7 +9,7 @@
                     "children": [
                         {
                             "type": "Str",
-                            "value": "hello\n",
+                            "value": "hello\n[1]: hello",
                             "loc": {
                                 "start": {
                                     "line": 1,
@@ -17,75 +17,14 @@
                                 },
                                 "end": {
                                     "line": 2,
-                                    "column": 0
-                                }
-                            },
-                            "range": [
-                                2,
-                                8
-                            ],
-                            "raw": "hello\n"
-                        },
-                        {
-                            "type": "LinkReference",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "1",
-                                    "loc": {
-                                        "start": {
-                                            "line": 2,
-                                            "column": 3
-                                        },
-                                        "end": {
-                                            "line": 2,
-                                            "column": 4
-                                        }
-                                    },
-                                    "range": [
-                                        11,
-                                        12
-                                    ],
-                                    "raw": "1"
-                                }
-                            ],
-                            "identifier": "1",
-                            "label": "1",
-                            "referenceType": "shortcut",
-                            "loc": {
-                                "start": {
-                                    "line": 2,
-                                    "column": 2
-                                },
-                                "end": {
-                                    "line": 2,
-                                    "column": 5
-                                }
-                            },
-                            "range": [
-                                10,
-                                13
-                            ],
-                            "raw": "[1]"
-                        },
-                        {
-                            "type": "Str",
-                            "value": ": hello",
-                            "loc": {
-                                "start": {
-                                    "line": 2,
-                                    "column": 5
-                                },
-                                "end": {
-                                    "line": 2,
                                     "column": 12
                                 }
                             },
                             "range": [
-                                13,
+                                2,
                                 20
                             ],
-                            "raw": ": hello"
+                            "raw": "hello\n> [1]: hello"
                         }
                     ],
                     "loc": {
@@ -147,22 +86,22 @@
                     "children": [
                         {
                             "type": "Str",
-                            "value": "hello",
+                            "value": "hello\n[2]: hello",
                             "loc": {
                                 "start": {
                                     "line": 6,
                                     "column": 2
                                 },
                                 "end": {
-                                    "line": 6,
-                                    "column": 7
+                                    "line": 7,
+                                    "column": 10
                                 }
                             },
                             "range": [
                                 31,
-                                36
+                                47
                             ],
-                            "raw": "hello"
+                            "raw": "hello\n[2]: hello"
                         }
                     ],
                     "loc": {
@@ -171,42 +110,20 @@
                             "column": 2
                         },
                         "end": {
-                            "line": 6,
-                            "column": 7
+                            "line": 7,
+                            "column": 10
                         }
                     },
                     "range": [
                         31,
-                        36
+                        47
                     ],
-                    "raw": "hello"
+                    "raw": "hello\n[2]: hello"
                 }
             ],
             "loc": {
                 "start": {
                     "line": 6,
-                    "column": 0
-                },
-                "end": {
-                    "line": 6,
-                    "column": 7
-                }
-            },
-            "range": [
-                29,
-                36
-            ],
-            "raw": "> hello"
-        },
-        {
-            "type": "Definition",
-            "identifier": "2",
-            "label": "2",
-            "title": null,
-            "url": "hello",
-            "loc": {
-                "start": {
-                    "line": 7,
                     "column": 0
                 },
                 "end": {
@@ -215,10 +132,10 @@
                 }
             },
             "range": [
-                37,
+                29,
                 47
             ],
-            "raw": "[2]: hello"
+            "raw": "> hello\n[2]: hello"
         },
         {
             "type": "List",
@@ -341,22 +258,22 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "hello",
+                                    "value": "hello\n[4]: hello",
                                     "loc": {
                                         "start": {
                                             "line": 14,
                                             "column": 2
                                         },
                                         "end": {
-                                            "line": 14,
-                                            "column": 7
+                                            "line": 15,
+                                            "column": 10
                                         }
                                     },
                                     "range": [
                                         75,
-                                        80
+                                        91
                                     ],
-                                    "raw": "hello"
+                                    "raw": "hello\n[4]: hello"
                                 }
                             ],
                             "loc": {
@@ -365,15 +282,15 @@
                                     "column": 2
                                 },
                                 "end": {
-                                    "line": 14,
-                                    "column": 7
+                                    "line": 15,
+                                    "column": 10
                                 }
                             },
                             "range": [
                                 75,
-                                80
+                                91
                             ],
-                            "raw": "hello"
+                            "raw": "hello\n[4]: hello"
                         }
                     ],
                     "loc": {
@@ -382,15 +299,15 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 14,
-                            "column": 7
+                            "line": 15,
+                            "column": 10
                         }
                     },
                     "range": [
                         73,
-                        80
+                        91
                     ],
-                    "raw": "* hello"
+                    "raw": "* hello\n[4]: hello"
                 }
             ],
             "loc": {
@@ -399,37 +316,15 @@
                     "column": 0
                 },
                 "end": {
-                    "line": 14,
-                    "column": 7
-                }
-            },
-            "range": [
-                50,
-                80
-            ],
-            "raw": "* hello\n* [3]: hello\n\n\n* hello"
-        },
-        {
-            "type": "Definition",
-            "identifier": "4",
-            "label": "4",
-            "title": null,
-            "url": "hello",
-            "loc": {
-                "start": {
-                    "line": 15,
-                    "column": 0
-                },
-                "end": {
                     "line": 15,
                     "column": 10
                 }
             },
             "range": [
-                81,
+                50,
                 91
             ],
-            "raw": "[4]: hello"
+            "raw": "* hello\n* [3]: hello\n\n\n* hello\n[4]: hello"
         },
         {
             "type": "BlockQuote",
@@ -439,22 +334,22 @@
                     "children": [
                         {
                             "type": "Str",
-                            "value": "foo\nbar",
+                            "value": "foo\nbar\n[1]: foo\nbar",
                             "loc": {
                                 "start": {
                                     "line": 18,
                                     "column": 2
                                 },
                                 "end": {
-                                    "line": 19,
+                                    "line": 21,
                                     "column": 5
                                 }
                             },
                             "range": [
                                 96,
-                                105
+                                120
                             ],
-                            "raw": "foo\n> bar"
+                            "raw": "foo\n> bar\n[1]: foo\n> bar"
                         }
                     ],
                     "loc": {
@@ -463,15 +358,15 @@
                             "column": 2
                         },
                         "end": {
-                            "line": 19,
+                            "line": 21,
                             "column": 5
                         }
                     },
                     "range": [
                         96,
-                        105
+                        120
                     ],
-                    "raw": "foo\n> bar"
+                    "raw": "foo\n> bar\n[1]: foo\n> bar"
                 }
             ],
             "loc": {
@@ -480,96 +375,15 @@
                     "column": 0
                 },
                 "end": {
-                    "line": 19,
+                    "line": 21,
                     "column": 5
                 }
             },
             "range": [
                 94,
-                105
-            ],
-            "raw": "> foo\n> bar"
-        },
-        {
-            "type": "Definition",
-            "identifier": "1",
-            "label": "1",
-            "title": null,
-            "url": "foo",
-            "loc": {
-                "start": {
-                    "line": 20,
-                    "column": 0
-                },
-                "end": {
-                    "line": 20,
-                    "column": 8
-                }
-            },
-            "range": [
-                106,
-                114
-            ],
-            "raw": "[1]: foo"
-        },
-        {
-            "type": "BlockQuote",
-            "children": [
-                {
-                    "type": "Paragraph",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "bar",
-                            "loc": {
-                                "start": {
-                                    "line": 21,
-                                    "column": 2
-                                },
-                                "end": {
-                                    "line": 21,
-                                    "column": 5
-                                }
-                            },
-                            "range": [
-                                117,
-                                120
-                            ],
-                            "raw": "bar"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 21,
-                            "column": 2
-                        },
-                        "end": {
-                            "line": 21,
-                            "column": 5
-                        }
-                    },
-                    "range": [
-                        117,
-                        120
-                    ],
-                    "raw": "bar"
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 21,
-                    "column": 0
-                },
-                "end": {
-                    "line": 21,
-                    "column": 5
-                }
-            },
-            "range": [
-                115,
                 120
             ],
-            "raw": "> bar"
+            "raw": "> foo\n> bar\n[1]: foo\n> bar"
         }
     ],
     "loc": {

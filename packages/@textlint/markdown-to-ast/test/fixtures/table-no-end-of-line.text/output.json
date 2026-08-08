@@ -41,14 +41,14 @@
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 5
+                                    "column": 4
                                 }
                             },
                             "range": [
                                 0,
-                                5
+                                4
                             ],
-                            "raw": "|foo|"
+                            "raw": "|foo"
                         },
                         {
                             "type": "TableCell",
@@ -76,7 +76,7 @@
                             "loc": {
                                 "start": {
                                     "line": 1,
-                                    "column": 5
+                                    "column": 4
                                 },
                                 "end": {
                                     "line": 1,
@@ -84,10 +84,10 @@
                                 }
                             },
                             "range": [
-                                5,
+                                4,
                                 9
                             ],
-                            "raw": "bar|"
+                            "raw": "|bar|"
                         }
                     ],
                     "loc": {
@@ -139,14 +139,14 @@
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 3
+                                    "column": 2
                                 }
                             },
                             "range": [
                                 16,
-                                19
+                                18
                             ],
-                            "raw": "|1|"
+                            "raw": "|1"
                         },
                         {
                             "type": "TableCell",
@@ -174,7 +174,7 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 3
+                                    "column": 2
                                 },
                                 "end": {
                                     "line": 3,
@@ -182,10 +182,10 @@
                                 }
                             },
                             "range": [
-                                19,
+                                18,
                                 21
                             ],
-                            "raw": "2|"
+                            "raw": "|2|"
                         }
                     ],
                     "loc": {

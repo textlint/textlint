@@ -46,8 +46,8 @@
                             "raw": "b\\*r*"
                         }
                     ],
-                    "identifier": "b\\*r*",
                     "label": "b*r*",
+                    "identifier": "b\\*r*",
                     "referenceType": "collapsed",
                     "loc": {
                         "start": {
@@ -107,8 +107,8 @@
                             "raw": "b\\*r*"
                         }
                     ],
-                    "identifier": "b\\*r*",
                     "label": "b*r*",
+                    "identifier": "b\\*r*",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -168,8 +168,8 @@
                 {
                     "type": "ImageReference",
                     "alt": "foo",
-                    "identifier": "b\\*r*",
                     "label": "b*r*",
+                    "identifier": "b\\*r*",
                     "referenceType": "full",
                     "loc": {
                         "start": {
@@ -209,8 +209,8 @@
                 {
                     "type": "ImageReference",
                     "alt": "b*r*",
-                    "identifier": "b\\*r*",
                     "label": "b*r*",
+                    "identifier": "b\\*r*",
                     "referenceType": "collapsed",
                     "loc": {
                         "start": {
@@ -250,8 +250,8 @@
                 {
                     "type": "ImageReference",
                     "alt": "b*r*",
-                    "identifier": "b\\*r*",
                     "label": "b*r*",
+                    "identifier": "b\\*r*",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {

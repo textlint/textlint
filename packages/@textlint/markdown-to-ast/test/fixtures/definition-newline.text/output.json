@@ -159,8 +159,8 @@
                             "raw": "baz"
                         }
                     ],
-                    "identifier": "baz",
                     "label": "baz",
+                    "identifier": "baz",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {

@@ -1621,14 +1621,14 @@
                                 },
                                 "end": {
                                     "line": 56,
-                                    "column": 10
+                                    "column": 9
                                 }
                             },
                             "range": [
                                 1045,
-                                1055
+                                1054
                             ],
-                            "raw": "| here   |"
+                            "raw": "| here   "
                         },
                         {
                             "type": "TableCell",
@@ -1656,7 +1656,7 @@
                             "loc": {
                                 "start": {
                                     "line": 56,
-                                    "column": 10
+                                    "column": 9
                                 },
                                 "end": {
                                     "line": 56,
@@ -1664,10 +1664,10 @@
                                 }
                             },
                             "range": [
-                                1055,
+                                1054,
                                 1066
                             ],
-                            "raw": " they     |"
+                            "raw": "| they     |"
                         }
                     ],
                     "loc": {
@@ -1719,14 +1719,14 @@
                                 },
                                 "end": {
                                     "line": 58,
-                                    "column": 10
+                                    "column": 9
                                 }
                             },
                             "range": [
                                 1089,
-                                1099
+                                1098
                             ],
-                            "raw": "| should |"
+                            "raw": "| should "
                         },
                         {
                             "type": "TableCell",
@@ -1754,18 +1754,18 @@
                             "loc": {
                                 "start": {
                                     "line": 58,
-                                    "column": 10
+                                    "column": 9
                                 },
                                 "end": {
                                     "line": 58,
-                                    "column": 15
+                                    "column": 14
                                 }
                             },
                             "range": [
-                                1099,
-                                1104
+                                1098,
+                                1103
                             ],
-                            "raw": " nei|"
+                            "raw": "| nei"
                         },
                         {
                             "type": "TableCell",
@@ -1793,7 +1793,7 @@
                             "loc": {
                                 "start": {
                                     "line": 58,
-                                    "column": 15
+                                    "column": 14
                                 },
                                 "end": {
                                     "line": 58,
@@ -1801,10 +1801,10 @@
                                 }
                             },
                             "range": [
-                                1104,
+                                1103,
                                 1110
                             ],
-                            "raw": "ther |"
+                            "raw": "|ther |"
                         }
                     ],
                     "loc": {
@@ -1919,14 +1919,14 @@
                                 },
                                 "end": {
                                     "line": 62,
-                                    "column": 10
+                                    "column": 9
                                 }
                             },
                             "range": [
                                 1123,
-                                1133
+                                1132
                             ],
-                            "raw": "| here   |"
+                            "raw": "| here   "
                         },
                         {
                             "type": "TableCell",
@@ -1954,7 +1954,7 @@
                             "loc": {
                                 "start": {
                                     "line": 62,
-                                    "column": 10
+                                    "column": 9
                                 },
                                 "end": {
                                     "line": 62,
@@ -1962,10 +1962,10 @@
                                 }
                             },
                             "range": [
-                                1133,
+                                1132,
                                 1142
                             ],
-                            "raw": " they   |"
+                            "raw": "| they   |"
                         }
                     ],
                     "loc": {
@@ -2017,14 +2017,14 @@
                                 },
                                 "end": {
                                     "line": 64,
-                                    "column": 10
+                                    "column": 9
                                 }
                             },
                             "range": [
                                 1163,
-                                1173
+                                1172
                             ],
-                            "raw": "| should |"
+                            "raw": "| should "
                         },
                         {
                             "type": "TableCell",
@@ -2052,7 +2052,7 @@
                             "loc": {
                                 "start": {
                                     "line": 64,
-                                    "column": 10
+                                    "column": 9
                                 },
                                 "end": {
                                     "line": 64,
@@ -2060,10 +2060,10 @@
                                 }
                             },
                             "range": [
-                                1173,
+                                1172,
                                 1182
                             ],
-                            "raw": " though |"
+                            "raw": "| though |"
                         }
                     ],
                     "loc": {

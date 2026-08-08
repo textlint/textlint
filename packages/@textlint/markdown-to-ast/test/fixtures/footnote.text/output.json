@@ -185,8 +185,8 @@
                             "raw": "paragraph"
                         }
                     ],
-                    "identifier": "paragraph",
                     "label": "paragraph",
+                    "identifier": "paragraph",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -426,8 +426,8 @@
                                     "raw": "paragraph"
                                 }
                             ],
-                            "identifier": "paragraph",
                             "label": "paragraph",
+                            "identifier": "paragraph",
                             "referenceType": "shortcut",
                             "loc": {
                                 "start": {

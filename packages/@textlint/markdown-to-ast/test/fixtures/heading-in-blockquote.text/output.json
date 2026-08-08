@@ -9,22 +9,22 @@
                     "children": [
                         {
                             "type": "Str",
-                            "value": "A blockquote",
+                            "value": "A blockquote\nwith some more text.",
                             "loc": {
                                 "start": {
                                     "line": 1,
                                     "column": 2
                                 },
                                 "end": {
-                                    "line": 1,
-                                    "column": 14
+                                    "line": 2,
+                                    "column": 20
                                 }
                             },
                             "range": [
                                 2,
-                                14
+                                35
                             ],
-                            "raw": "A blockquote"
+                            "raw": "A blockquote\nwith some more text."
                         }
                     ],
                     "loc": {
@@ -33,59 +33,20 @@
                             "column": 2
                         },
                         "end": {
-                            "line": 1,
-                            "column": 14
-                        }
-                    },
-                    "range": [
-                        2,
-                        14
-                    ],
-                    "raw": "A blockquote"
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 1,
-                    "column": 0
-                },
-                "end": {
-                    "line": 1,
-                    "column": 14
-                }
-            },
-            "range": [
-                0,
-                14
-            ],
-            "raw": "> A blockquote"
-        },
-        {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "with some more text.",
-                    "loc": {
-                        "start": {
-                            "line": 2,
-                            "column": 0
-                        },
-                        "end": {
                             "line": 2,
                             "column": 20
                         }
                     },
                     "range": [
-                        15,
+                        2,
                         35
                     ],
-                    "raw": "with some more text."
+                    "raw": "A blockquote\nwith some more text."
                 }
             ],
             "loc": {
                 "start": {
-                    "line": 2,
+                    "line": 1,
                     "column": 0
                 },
                 "end": {
@@ -94,10 +55,10 @@
                 }
             },
             "range": [
-                15,
+                0,
                 35
             ],
-            "raw": "with some more text."
+            "raw": "> A blockquote\nwith some more text."
         },
         {
             "type": "Paragraph",

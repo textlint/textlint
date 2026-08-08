@@ -42,14 +42,14 @@
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 9
+                                    "column": 8
                                 }
                             },
                             "range": [
                                 0,
-                                9
+                                8
                             ],
-                            "raw": "| First |"
+                            "raw": "| First "
                         },
                         {
                             "type": "TableCell",
@@ -77,18 +77,18 @@
                             "loc": {
                                 "start": {
                                     "line": 1,
-                                    "column": 9
+                                    "column": 8
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 18
+                                    "column": 17
                                 }
                             },
                             "range": [
-                                9,
-                                18
+                                8,
+                                17
                             ],
-                            "raw": " Second |"
+                            "raw": "| Second "
                         },
                         {
                             "type": "TableCell",
@@ -116,7 +116,7 @@
                             "loc": {
                                 "start": {
                                     "line": 1,
-                                    "column": 18
+                                    "column": 17
                                 },
                                 "end": {
                                     "line": 1,
@@ -124,10 +124,10 @@
                                 }
                             },
                             "range": [
-                                18,
+                                17,
                                 26
                             ],
-                            "raw": " third |"
+                            "raw": "| third |"
                         }
                     ],
                     "loc": {
@@ -179,14 +179,14 @@
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 9
+                                    "column": 8
                                 }
                             },
                             "range": [
                                 54,
-                                63
+                                62
                             ],
-                            "raw": "| first |"
+                            "raw": "| first "
                         },
                         {
                             "type": "TableCell",
@@ -214,18 +214,18 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 9
+                                    "column": 8
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 18
+                                    "column": 17
                                 }
                             },
                             "range": [
-                                63,
-                                72
+                                62,
+                                71
                             ],
-                            "raw": " second |"
+                            "raw": "| second "
                         },
                         {
                             "type": "TableCell",
@@ -253,7 +253,7 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 18
+                                    "column": 17
                                 },
                                 "end": {
                                     "line": 3,
@@ -261,10 +261,10 @@
                                 }
                             },
                             "range": [
-                                72,
+                                71,
                                 80
                             ],
-                            "raw": " third |"
+                            "raw": "| third |"
                         }
                     ],
                     "loc": {
@@ -316,14 +316,14 @@
                                 },
                                 "end": {
                                     "line": 4,
-                                    "column": 9
+                                    "column": 8
                                 }
                             },
                             "range": [
                                 81,
-                                90
+                                89
                             ],
-                            "raw": "| first |"
+                            "raw": "| first "
                         },
                         {
                             "type": "TableCell",
@@ -351,18 +351,18 @@
                             "loc": {
                                 "start": {
                                     "line": 4,
-                                    "column": 9
+                                    "column": 8
                                 },
                                 "end": {
                                     "line": 4,
-                                    "column": 28
+                                    "column": 27
                                 }
                             },
                             "range": [
-                                90,
-                                109
+                                89,
+                                108
                             ],
-                            "raw": " second \\| second |"
+                            "raw": "| second \\| second "
                         },
                         {
                             "type": "TableCell",
@@ -390,7 +390,7 @@
                             "loc": {
                                 "start": {
                                     "line": 4,
-                                    "column": 28
+                                    "column": 27
                                 },
                                 "end": {
                                     "line": 4,
@@ -398,10 +398,10 @@
                                 }
                             },
                             "range": [
-                                109,
+                                108,
                                 118
                             ],
-                            "raw": " third \\|"
+                            "raw": "| third \\|"
                         }
                     ],
                     "loc": {
@@ -453,14 +453,14 @@
                                 },
                                 "end": {
                                     "line": 5,
-                                    "column": 9
+                                    "column": 8
                                 }
                             },
                             "range": [
                                 119,
-                                128
+                                127
                             ],
-                            "raw": "| first |"
+                            "raw": "| first "
                         },
                         {
                             "type": "TableCell",
@@ -488,18 +488,18 @@
                             "loc": {
                                 "start": {
                                     "line": 5,
-                                    "column": 9
+                                    "column": 8
                                 },
                                 "end": {
                                     "line": 5,
-                                    "column": 20
+                                    "column": 19
                                 }
                             },
                             "range": [
-                                128,
-                                139
+                                127,
+                                138
                             ],
-                            "raw": " second \\\\|"
+                            "raw": "| second \\\\"
                         },
                         {
                             "type": "TableCell",
@@ -527,7 +527,7 @@
                             "loc": {
                                 "start": {
                                     "line": 5,
-                                    "column": 20
+                                    "column": 19
                                 },
                                 "end": {
                                     "line": 5,
@@ -535,10 +535,10 @@
                                 }
                             },
                             "range": [
-                                139,
+                                138,
                                 149
                             ],
-                            "raw": " third \\\\|"
+                            "raw": "| third \\\\|"
                         }
                     ],
                     "loc": {
@@ -590,14 +590,14 @@
                                 },
                                 "end": {
                                     "line": 6,
-                                    "column": 9
+                                    "column": 8
                                 }
                             },
                             "range": [
                                 150,
-                                159
+                                158
                             ],
-                            "raw": "| first |"
+                            "raw": "| first "
                         },
                         {
                             "type": "TableCell",
@@ -625,18 +625,18 @@
                             "loc": {
                                 "start": {
                                     "line": 6,
-                                    "column": 9
+                                    "column": 8
                                 },
                                 "end": {
                                     "line": 6,
-                                    "column": 30
+                                    "column": 29
                                 }
                             },
                             "range": [
-                                159,
-                                180
+                                158,
+                                179
                             ],
-                            "raw": " second \\\\\\| second |"
+                            "raw": "| second \\\\\\| second "
                         },
                         {
                             "type": "TableCell",
@@ -664,7 +664,7 @@
                             "loc": {
                                 "start": {
                                     "line": 6,
-                                    "column": 30
+                                    "column": 29
                                 },
                                 "end": {
                                     "line": 6,
@@ -672,10 +672,10 @@
                                 }
                             },
                             "range": [
-                                180,
+                                179,
                                 191
                             ],
-                            "raw": " third \\\\\\|"
+                            "raw": "| third \\\\\\|"
                         }
                     ],
                     "loc": {
