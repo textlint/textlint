@@ -20,7 +20,7 @@ export interface TextlintKernelPlugin {
     // this key should be normalized
     pluginId: string;
     // plugin module
-    // For example, `plugin: require("@textlint/textlint-plugin-markdown")`
+    // For example, `plugin: markdownPlugin`
     plugin: TextlintPluginCreator;
     // plugin options
     options?: TextlintPluginOptions | boolean;

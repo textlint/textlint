@@ -381,7 +381,12 @@ For more details, please read the following documents:
 It is useful for the browser or non-Node.js environments.
 
 ```js
+import assert from "node:assert";
+import { createRequire } from "node:module";
 import { TextlintKernel } from "@textlint/kernel";
+import markdownPlugin from "@textlint/textlint-plugin-markdown";
+
+const require = createRequire(import.meta.url);
 const kernel = new TextlintKernel();
 const options = {
     filePath: "/path/to/file.md",
@@ -389,7 +394,7 @@ const options = {
     plugins: [
         {
             pluginId: "markdown",
-            plugin: require("@textlint/textlint-plugin-markdown")
+            plugin: markdownPlugin
         }
     ],
     rules: [
@@ -399,10 +404,9 @@ const options = {
         }
     ]
 };
-kernel.lintText("TODO: text", options).then(result => {
-    assert.ok(typeof result.filePath === "string");
-    assert.ok(result.messages.length === 1);
-});
+const result = await kernel.lintText("TODO: text", options);
+assert.ok(typeof result.filePath === "string");
+assert.ok(result.messages.length === 1);
 ```
 
 
