@@ -2,7 +2,6 @@
 "use strict";
 import fileEntryCache, { FileEntryCache } from "file-entry-cache";
 import debug0 from "debug";
-import path from "node:path";
 import fs from "node:fs";
 import { AbstractBacker } from "./abstruct-backer.js";
 import { TextlintResult } from "@textlint/kernel";
@@ -22,28 +21,38 @@ export type CacheBackerOptions = {
      * Config hash value
      */
     hash: string;
+    /**
+     * Cache strategy for detecting changed files.
+     * - "metadata": use file mtime and size (fast, not CI-safe)
+     * - "content": use file content hash (accurate, CI-safe)
+     */
+    cacheStrategy: "metadata" | "content";
 };
 type FileEntryCacheCustomData = {
     hashOfConfig: string;
 };
 
-const createFileEntryCache = (cacheLocation: string): FileEntryCache => {
-    const filename = path.basename(cacheLocation);
-    const cacheDir = path.dirname(cacheLocation);
+const createFileEntryCache = (cacheLocation: string, strategy: "metadata" | "content"): FileEntryCache => {
+    const useCheckSum = strategy === "content";
+    const createCache = (): FileEntryCache => {
+        const fileCache = fileEntryCache.createFromFile(cacheLocation, useCheckSum);
+        // file-entry-cache defaults `useModifiedTime` to true, but the "content" strategy must
+        // detect changes by content hash only. Comparing mtime would invalidate the whole cache
+        // in CI because checkout changes mtime while the content stays the same.
+        fileCache.useModifiedTime = !useCheckSum;
+        return fileCache;
+    };
     try {
-        // use the metadata for cache instead of the file content
-        // TODO: if we want to reuse the cache in CI, we should use the file content cache and save relative path into the cache
-
-        return fileEntryCache.create(filename, cacheDir, false);
+        return createCache();
     } catch (error) {
-        debug(`Failed to create fileEntryCache, filename: ${filename}, cacheDir: ${cacheDir}`, error);
+        debug(`Failed to create fileEntryCache, cacheLocation: ${cacheLocation}`, error);
         // remove old cache file and retry
         try {
-            fs.unlinkSync(path.join(cacheDir, filename));
+            fs.unlinkSync(cacheLocation);
         } catch (error) {
-            debug(`Failed to remove cache file, filename: ${filename}, cacheDir: ${cacheDir}`, error);
+            debug(`Failed to remove cache file, cacheLocation: ${cacheLocation}`, error);
         }
-        return fileEntryCache.create(filename, cacheDir, false);
+        return createCache();
     }
 };
 
@@ -53,7 +62,7 @@ export class CacheBacker implements AbstractBacker {
 
     constructor(private config: CacheBackerOptions) {
         this.isEnabled = config.cache;
-        this.fileCache = createFileEntryCache(config.cacheLocation);
+        this.fileCache = createFileEntryCache(config.cacheLocation, config.cacheStrategy);
     }
 
     /**
