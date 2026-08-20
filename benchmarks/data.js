@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1787251833641,
+  "lastUpdate": 1787261309729,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -118103,6 +118103,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.65733305042,
             "range": "± 0.0022160840000000626",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "52315048+3w36zj6@users.noreply.github.com",
+            "name": "3w36zj6",
+            "username": "3w36zj6"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e5d5a7143b5ac4500928f8dd68072f3794eb0c95",
+          "message": "feat: migrate built-in plugins to ESM and upgrade remark dependencies (#2109)\n\nRelated to #1307.\n\n## Changes\n\nThe remark dependencies used internally by the Markdown plugin have\nbecome outdated, preventing the parser from keeping pace with modern\nMarkdown specifications. This would also make it difficult to support\nwell-known extensions such as CJK-friendly syntax, because many modern\nremark plugins are ESM-only.\n\nTo address these limitations, this PR migrates textlint's built-in\nMarkdown and plain-text plugins to ESM and upgrades the remark\ndependencies used by `@textlint/markdown-to-ast`.\n\n### textlint-plugin-markdown and markdown-to-ast\n\nThis change upgrades `unified`, `remark-parse`, `remark-gfm`, and\n`remark-frontmatter` to their ESM-only major versions. To preserve the\nexisting AST location behavior, it disables the GFM autolink literal\ntransforms after the GFM extension is registered. The previous\nimplementation disabled these transforms by overriding\n`mdast-util-gfm-autolink-literal/from-markdown` before loading\n`remark-gfm`, but that subpath is no longer exported by the upgraded ESM\npackage.\n\nThe parser upgrade changes some AST output to follow the newer\nCommonMark and GFM implementations.\n\n### textlint-plugin-text and text-to-ast\n\nAlthough this migration is otherwise unrelated to the remark upgrade,\n`@textlint/textlint-plugin-text` is also migrated to ESM so that\nconsumers can handle both built-in plugins consistently, as described\nbelow.\n\n### textlint core\n\nThe `textlint` and `@textlint/legacy-textlint-core` packages remain\nCommonJS. They now load the ESM built-in plugins with dynamic `import()`\nbefore constructing the kernel options. The legacy core captures the\ncurrent descriptor before loading the plugins so that later\nconfiguration changes do not affect an in-progress lint or fix\noperation.\n\n### textlint-tester\n\n`textlint-tester` also remains CommonJS and keeps its test registration\nAPI synchronous. It loads the built-in plugins dynamically and waits for\nthe completed descriptor when each lint or fix operation runs. The\nbuilt-in descriptor is prepended to the test descriptor to preserve the\nexisting plugin order.\n\n## Notes\n\nThe built-in plugin packages are now ESM-only. The CommonJS `textlint`,\n`textlint-tester`, and `@textlint/legacy-textlint-core` packages remain\ncompatible by loading these plugins with dynamic `import()`. CommonJS\ncode that loads either built-in plugin package directly must use dynamic\n`import()` instead of `require()`.",
+          "timestamp": "2026-08-21T06:26:46+09:00",
+          "tree_id": "5b5cf4036972380ce445e49bb73ee133a78dbea2",
+          "url": "https://github.com/textlint/textlint/commit/e5d5a7143b5ac4500928f8dd68072f3794eb0c95"
+        },
+        "date": 1787261299303,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21937148820000002,
+            "range": "± 0.04126511099999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.9472210872000002,
+            "range": "± 0.06083613100000029",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7413385116000001,
+            "range": "± 0.029058242999999928",
             "unit": "seconds"
           }
         ]
