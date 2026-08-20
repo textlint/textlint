@@ -46,8 +46,8 @@
                             "raw": "simple case"
                         }
                     ],
-                    "identifier": "simple case",
                     "label": "simple case",
+                    "identifier": "simple case",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -168,8 +168,8 @@
                             "raw": "line\nbreak"
                         }
                     ],
-                    "identifier": "line break",
                     "label": "line\nbreak",
+                    "identifier": "line break",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -268,8 +268,8 @@
                             "raw": "line \nbreak"
                         }
                     ],
+                    "label": "line \nbreak",
                     "identifier": "line break",
-                    "label": "line\nbreak",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -371,8 +371,8 @@
                             "raw": "this"
                         }
                     ],
-                    "identifier": "this",
                     "label": "this",
+                    "identifier": "this",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -432,8 +432,8 @@
                             "raw": "that"
                         }
                     ],
-                    "identifier": "that",
                     "label": "that",
+                    "identifier": "that",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -493,8 +493,8 @@
                             "raw": "other"
                         }
                     ],
-                    "identifier": "other",
                     "label": "other",
+                    "identifier": "other",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {

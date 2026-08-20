@@ -11,22 +11,27 @@ import type {
 import { TextlintKernel, TextlintKernelDescriptor } from "@textlint/kernel";
 import fs from "node:fs/promises";
 import path from "node:path";
-import textPlugin from "@textlint/textlint-plugin-text";
-import markdownPlugin from "@textlint/textlint-plugin-markdown";
 
 // text and markdown are built-in plugins
-const builtInPlugins = [
-    {
-        pluginId: "@textlint/textlint-plugin-text",
-        plugin: textPlugin,
-        options: true,
-    },
-    {
-        pluginId: "@textlint/textlint-plugin-markdown",
-        plugin: markdownPlugin,
-        options: true,
-    },
-];
+const loadBuiltInPlugins = async (): Promise<TextlintKernelPlugin[]> => {
+    const [{ default: textPlugin }, { default: markdownPlugin }] = await Promise.all([
+        import("@textlint/textlint-plugin-text"),
+        import("@textlint/textlint-plugin-markdown"),
+    ]);
+    return [
+        {
+            pluginId: "@textlint/textlint-plugin-text",
+            plugin: textPlugin,
+            options: true,
+        },
+        {
+            pluginId: "@textlint/textlint-plugin-markdown",
+            plugin: markdownPlugin,
+            options: true,
+        },
+    ];
+};
+
 /**
  * Convert rulesObject to TextlintKernelRule
  * {
@@ -95,12 +100,23 @@ export const pluginsObjectToKernelRule = (
 export class TextLintCore {
     private kernelDescriptor = new TextlintKernelDescriptor({
         rules: [],
-        plugins: builtInPlugins,
+        plugins: [],
         filterRules: [],
     });
 
     constructor(_THIS_ARG_IS_JUST_IGNORED: unknown[] = []) {
         // noop
+    }
+
+    private async createKernelOptions() {
+        const kernelDescriptor = this.kernelDescriptor;
+        const builtInPlugins = await loadBuiltInPlugins();
+        const builtInPluginDescriptor = new TextlintKernelDescriptor({
+            rules: [],
+            filterRules: [],
+            plugins: builtInPlugins,
+        });
+        return builtInPluginDescriptor.concat(kernelDescriptor).toKernelOptions();
     }
 
     /**
@@ -141,7 +157,7 @@ export class TextLintCore {
         this.kernelDescriptor = new TextlintKernelDescriptor({
             rules: [],
             filterRules: [],
-            plugins: builtInPlugins,
+            plugins: [],
         });
     }
 
@@ -170,7 +186,7 @@ export class TextLintCore {
         const kernel = new TextlintKernel();
         return kernel.lintText(text, {
             ext,
-            ...this.kernelDescriptor.toKernelOptions(),
+            ...(await this.createKernelOptions()),
         });
     }
 
@@ -182,7 +198,7 @@ export class TextLintCore {
         const kernel = new TextlintKernel();
         return kernel.lintText(text, {
             ext: ".md",
-            ...this.kernelDescriptor.toKernelOptions(),
+            ...(await this.createKernelOptions()),
         });
     }
 
@@ -196,7 +212,7 @@ export class TextLintCore {
         return kernel.lintText(content, {
             ext: path.extname(filePath),
             filePath,
-            ...this.kernelDescriptor.toKernelOptions(),
+            ...(await this.createKernelOptions()),
         });
     }
 
@@ -210,7 +226,7 @@ export class TextLintCore {
         const kernel = new TextlintKernel();
         return kernel.fixText(text, {
             ext,
-            ...this.kernelDescriptor.toKernelOptions(),
+            ...(await this.createKernelOptions()),
         });
     }
 
@@ -223,7 +239,7 @@ export class TextLintCore {
         return kernel.fixText(content, {
             ext: path.extname(filePath),
             filePath,
-            ...this.kernelDescriptor.toKernelOptions(),
+            ...(await this.createKernelOptions()),
         });
     }
 }

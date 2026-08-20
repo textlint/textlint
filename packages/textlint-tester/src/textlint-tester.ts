@@ -11,8 +11,6 @@ import {
     TextlintRuleModule
 } from "@textlint/kernel";
 import { coreFlags } from "@textlint/feature-flag";
-import textPlugin from "@textlint/textlint-plugin-text";
-import markdownPlugin from "@textlint/textlint-plugin-markdown";
 import fs from "fs/promises";
 import path from "path";
 import { TextlintPluginOptions, TextlintRuleOptions } from "@textlint/types";
@@ -182,18 +180,24 @@ function createTestPluginSet(testConfigPlugins: TestConfigPlugin[]): TestPluginS
     return testPluginSet;
 }
 
-const builtInPlugins: TextlintKernelPlugin[] = [
-    {
-        pluginId: "@textlint/textlint-plugin-text",
-        plugin: textPlugin,
-        options: true
-    },
-    {
-        pluginId: "@textlint/textlint-plugin-markdown",
-        plugin: markdownPlugin,
-        options: true
-    }
-];
+const loadBuiltInPlugins = async (): Promise<TextlintKernelPlugin[]> => {
+    const [{ default: textPlugin }, { default: markdownPlugin }] = await Promise.all([
+        import("@textlint/textlint-plugin-text"),
+        import("@textlint/textlint-plugin-markdown")
+    ]);
+    return [
+        {
+            pluginId: "@textlint/textlint-plugin-text",
+            plugin: textPlugin,
+            options: true
+        },
+        {
+            pluginId: "@textlint/textlint-plugin-markdown",
+            plugin: markdownPlugin,
+            options: true
+        }
+    ];
+};
 
 interface CreateTextlintKernelDescriptorArgs {
     testName: string;
@@ -207,7 +211,8 @@ export const createTextlintKernelDescriptor = ({
     testName,
     testRuleDefinition,
     testCaseOptions
-}: CreateTextlintKernelDescriptorArgs): TextlintKernelDescriptor => {
+}: CreateTextlintKernelDescriptorArgs): Promise<TextlintKernelDescriptor> => {
+    let testDescriptor: TextlintKernelDescriptor;
     if (isTestConfig(testRuleDefinition)) {
         const testConfig = testRuleDefinition;
         assertTestConfig(testConfig);
@@ -215,23 +220,20 @@ export const createTextlintKernelDescriptor = ({
         // Assertion check it
         // > Could not specify options property in valid object when TestConfig was passed. Use TestConfig.rules.options.
         const testPluginSet = createTestPluginSet(testConfig.plugins || []);
-        const plugins = [
-            ...builtInPlugins,
-            ...Object.keys(testPluginSet.plugins).map((pluginId) => {
-                return {
-                    pluginId,
-                    plugin: testPluginSet.plugins[pluginId],
-                    options: testPluginSet.pluginOptions[pluginId]
-                };
-            })
-        ];
-        return new TextlintKernelDescriptor({
+        const plugins = Object.keys(testPluginSet.plugins).map((pluginId) => {
+            return {
+                pluginId,
+                plugin: testPluginSet.plugins[pluginId],
+                options: testPluginSet.pluginOptions[pluginId]
+            };
+        });
+        testDescriptor = new TextlintKernelDescriptor({
             rules: testConfig.rules,
             filterRules: [],
             plugins
         });
     } else {
-        return new TextlintKernelDescriptor({
+        testDescriptor = new TextlintKernelDescriptor({
             rules: [
                 {
                     ruleId: testName,
@@ -240,18 +242,29 @@ export const createTextlintKernelDescriptor = ({
                 }
             ],
             filterRules: [],
-            plugins: builtInPlugins
+            plugins: []
         });
     }
+    return loadBuiltInPlugins().then((builtInPlugins) => {
+        const builtInPluginDescriptor = new TextlintKernelDescriptor({
+            rules: [],
+            filterRules: [],
+            plugins: builtInPlugins
+        });
+        return builtInPluginDescriptor.concat(testDescriptor);
+    });
 };
 
-export const createTestLinter = (textlintKernelDescriptor: TextlintKernelDescriptor) => {
+export const createTestLinter = (textlintKernelDescriptor: Promise<TextlintKernelDescriptor>) => {
     const kernel = new TextlintKernel();
+    const createKernelOptions = async () => {
+        return (await textlintKernelDescriptor).toKernelOptions();
+    };
     return {
         async lintText(text: string, ext: string) {
             return kernel.lintText(text, {
                 ext,
-                ...textlintKernelDescriptor.toKernelOptions()
+                ...(await createKernelOptions())
             });
         },
         async lintFile(filePath: string) {
@@ -260,13 +273,13 @@ export const createTestLinter = (textlintKernelDescriptor: TextlintKernelDescrip
             return kernel.lintText(text, {
                 ext,
                 filePath,
-                ...textlintKernelDescriptor.toKernelOptions()
+                ...(await createKernelOptions())
             });
         },
         async fixText(text: string, ext: string) {
             return kernel.fixText(text, {
                 ext,
-                ...textlintKernelDescriptor.toKernelOptions()
+                ...(await createKernelOptions())
             });
         },
         async fixFile(filePath: string) {
@@ -275,7 +288,7 @@ export const createTestLinter = (textlintKernelDescriptor: TextlintKernelDescrip
             return kernel.fixText(text, {
                 ext,
                 filePath,
-                ...textlintKernelDescriptor.toKernelOptions()
+                ...(await createKernelOptions())
             });
         }
     };

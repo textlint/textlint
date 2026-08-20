@@ -46,8 +46,8 @@
                             "raw": "primary"
                         }
                     ],
-                    "identifier": "tostring",
                     "label": "toString",
+                    "identifier": "tostring",
                     "referenceType": "full",
                     "loc": {
                         "start": {
@@ -107,8 +107,8 @@
                             "raw": "secondary"
                         }
                     ],
-                    "identifier": "constructor",
                     "label": "constructor",
+                    "identifier": "constructor",
                     "referenceType": "full",
                     "loc": {
                         "start": {
@@ -168,8 +168,8 @@
                             "raw": "tertiary"
                         }
                     ],
-                    "identifier": "__proto__",
                     "label": "__proto__",
+                    "identifier": "__proto__",
                     "referenceType": "full",
                     "loc": {
                         "start": {

@@ -5,10 +5,11 @@
 
     markdown_fixtures/some.md -> move to fixtures/{input.md, output.json}
  */
-const fs = require("node:fs");
-const path = require("node:path");
-const parse = require("../lib/src/index").parse;
-const testDir = path.join(__dirname, "..", "test");
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { parse } from "../lib/src/index.js";
+const testDir = fileURLToPath(new URL("../test", import.meta.url));
 // remark_fixtures to fixtures
 const remarkFixtures = path.join(testDir, "markdown_fixtures");
 const fixtureDir = path.join(testDir, "fixtures");

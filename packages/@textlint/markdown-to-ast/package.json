@@ -12,7 +12,7 @@
   },
   "license": "MIT",
   "author": "azu",
-  "type": "commonjs",
+  "type": "module",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
   "directories": {
@@ -36,7 +36,6 @@
   "dependencies": {
     "@textlint/ast-node-types": "workspace:*",
     "debug": "catalog:",
-    "mdast-util-gfm-autolink-literal": "catalog:",
     "neotraverse": "catalog:",
     "remark-footnotes": "catalog:",
     "remark-frontmatter": "catalog:",

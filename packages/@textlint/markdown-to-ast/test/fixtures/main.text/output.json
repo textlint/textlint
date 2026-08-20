@@ -108,8 +108,8 @@
                             "raw": "inconsistent"
                         }
                     ],
-                    "identifier": "test",
                     "label": "test",
+                    "identifier": "test",
                     "referenceType": "full",
                     "loc": {
                         "start": {
@@ -565,22 +565,22 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "List Item 3",
+                                    "value": "List Item 3\nThe final item.",
                                     "loc": {
                                         "start": {
                                             "line": 26,
                                             "column": 2
                                         },
                                         "end": {
-                                            "line": 26,
-                                            "column": 13
+                                            "line": 27,
+                                            "column": 15
                                         }
                                     },
                                     "range": [
                                         617,
-                                        628
+                                        644
                                     ],
-                                    "raw": "List Item 3"
+                                    "raw": "List Item 3\nThe final item."
                                 }
                             ],
                             "loc": {
@@ -589,59 +589,20 @@
                                     "column": 2
                                 },
                                 "end": {
-                                    "line": 26,
-                                    "column": 13
+                                    "line": 27,
+                                    "column": 15
                                 }
                             },
                             "range": [
                                 617,
-                                628
+                                644
                             ],
-                            "raw": "List Item 3"
+                            "raw": "List Item 3\nThe final item."
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 26,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 26,
-                            "column": 13
-                        }
-                    },
-                    "range": [
-                        615,
-                        628
-                    ],
-                    "raw": "* List Item 3"
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 14,
-                    "column": 0
-                },
-                "end": {
-                    "line": 26,
-                    "column": 13
-                }
-            },
-            "range": [
-                415,
-                628
-            ],
-            "raw": "* List Item 1\n\n* List Item 2\n  * New List Item 1\n    Hi, this is a list item.\n  * New List Item 2\n    Another item\n        Code goes here.\n        Lots of it...\n  * New List Item 3\n    The last item\n\n* List Item 3"
-        },
-        {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "The final item.",
-                    "loc": {
-                        "start": {
-                            "line": 27,
                             "column": 0
                         },
                         "end": {
@@ -650,34 +611,11 @@
                         }
                     },
                     "range": [
-                        629,
+                        615,
                         644
                     ],
-                    "raw": "The final item."
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 27,
-                    "column": 0
+                    "raw": "* List Item 3\nThe final item."
                 },
-                "end": {
-                    "line": 27,
-                    "column": 15
-                }
-            },
-            "range": [
-                629,
-                644
-            ],
-            "raw": "The final item."
-        },
-        {
-            "type": "List",
-            "ordered": false,
-            "start": null,
-            "spread": false,
-            "children": [
                 {
                     "type": "ListItem",
                     "spread": false,
@@ -688,22 +626,22 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "List Item 4",
+                                    "value": "List Item 4\nThe real final item.",
                                     "loc": {
                                         "start": {
                                             "line": 29,
                                             "column": 2
                                         },
                                         "end": {
-                                            "line": 29,
-                                            "column": 13
+                                            "line": 30,
+                                            "column": 20
                                         }
                                     },
                                     "range": [
                                         648,
-                                        659
+                                        680
                                     ],
-                                    "raw": "List Item 4"
+                                    "raw": "List Item 4\nThe real final item."
                                 }
                             ],
                             "loc": {
@@ -712,59 +650,20 @@
                                     "column": 2
                                 },
                                 "end": {
-                                    "line": 29,
-                                    "column": 13
+                                    "line": 30,
+                                    "column": 20
                                 }
                             },
                             "range": [
                                 648,
-                                659
+                                680
                             ],
-                            "raw": "List Item 4"
+                            "raw": "List Item 4\nThe real final item."
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 29,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 29,
-                            "column": 13
-                        }
-                    },
-                    "range": [
-                        646,
-                        659
-                    ],
-                    "raw": "* List Item 4"
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 29,
-                    "column": 0
-                },
-                "end": {
-                    "line": 29,
-                    "column": 13
-                }
-            },
-            "range": [
-                646,
-                659
-            ],
-            "raw": "* List Item 4"
-        },
-        {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "The real final item.",
-                    "loc": {
-                        "start": {
-                            "line": 30,
                             "column": 0
                         },
                         "end": {
@@ -773,15 +672,15 @@
                         }
                     },
                     "range": [
-                        660,
+                        646,
                         680
                     ],
-                    "raw": "The real final item."
+                    "raw": "* List Item 4\nThe real final item."
                 }
             ],
             "loc": {
                 "start": {
-                    "line": 30,
+                    "line": 14,
                     "column": 0
                 },
                 "end": {
@@ -790,10 +689,10 @@
                 }
             },
             "range": [
-                660,
+                415,
                 680
             ],
-            "raw": "The real final item."
+            "raw": "* List Item 1\n\n* List Item 2\n  * New List Item 1\n    Hi, this is a list item.\n  * New List Item 2\n    Another item\n        Code goes here.\n        Lots of it...\n  * New List Item 3\n    The last item\n\n* List Item 3\nThe final item.\n\n* List Item 4\nThe real final item."
         },
         {
             "type": "Paragraph",
@@ -1025,22 +924,22 @@
                                                     "children": [
                                                         {
                                                             "type": "Str",
-                                                            "value": "New bq Item 2",
+                                                            "value": "New bq Item 2\nText here",
                                                             "loc": {
                                                                 "start": {
                                                                     "line": 37,
                                                                     "column": 6
                                                                 },
                                                                 "end": {
-                                                                    "line": 37,
-                                                                    "column": 19
+                                                                    "line": 38,
+                                                                    "column": 13
                                                                 }
                                                             },
                                                             "range": [
                                                                 748,
-                                                                761
+                                                                775
                                                             ],
-                                                            "raw": "New bq Item 2"
+                                                            "raw": "New bq Item 2\n>   Text here"
                                                         }
                                                     ],
                                                     "loc": {
@@ -1049,59 +948,20 @@
                                                             "column": 6
                                                         },
                                                         "end": {
-                                                            "line": 37,
-                                                            "column": 19
+                                                            "line": 38,
+                                                            "column": 13
                                                         }
                                                     },
                                                     "range": [
                                                         748,
-                                                        761
+                                                        775
                                                     ],
-                                                    "raw": "New bq Item 2"
+                                                    "raw": "New bq Item 2\n>   Text here"
                                                 }
                                             ],
                                             "loc": {
                                                 "start": {
                                                     "line": 37,
-                                                    "column": 4
-                                                },
-                                                "end": {
-                                                    "line": 37,
-                                                    "column": 19
-                                                }
-                                            },
-                                            "range": [
-                                                746,
-                                                761
-                                            ],
-                                            "raw": "* New bq Item 2"
-                                        }
-                                    ],
-                                    "loc": {
-                                        "start": {
-                                            "line": 36,
-                                            "column": 4
-                                        },
-                                        "end": {
-                                            "line": 37,
-                                            "column": 19
-                                        }
-                                    },
-                                    "range": [
-                                        726,
-                                        761
-                                    ],
-                                    "raw": "* New bq Item 1\n>   * New bq Item 2"
-                                },
-                                {
-                                    "type": "Paragraph",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "Text here",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 38,
                                                     "column": 4
                                                 },
                                                 "end": {
@@ -1110,15 +970,15 @@
                                                 }
                                             },
                                             "range": [
-                                                766,
+                                                746,
                                                 775
                                             ],
-                                            "raw": "Text here"
+                                            "raw": "* New bq Item 2\n>   Text here"
                                         }
                                     ],
                                     "loc": {
                                         "start": {
-                                            "line": 38,
+                                            "line": 36,
                                             "column": 4
                                         },
                                         "end": {
@@ -1127,10 +987,10 @@
                                         }
                                     },
                                     "range": [
-                                        766,
+                                        726,
                                         775
                                     ],
-                                    "raw": "Text here"
+                                    "raw": "* New bq Item 1\n>   * New bq Item 2\n>   Text here"
                                 }
                             ],
                             "loc": {

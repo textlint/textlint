@@ -110,22 +110,22 @@
                                                     "children": [
                                                         {
                                                             "type": "Str",
-                                                            "value": "one",
+                                                            "value": "one\n- two\n- three\n- four\n- five",
                                                             "loc": {
                                                                 "start": {
                                                                     "line": 5,
                                                                     "column": 8
                                                                 },
                                                                 "end": {
-                                                                    "line": 5,
-                                                                    "column": 11
+                                                                    "line": 9,
+                                                                    "column": 18
                                                                 }
                                                             },
                                                             "range": [
                                                                 25,
-                                                                28
+                                                                100
                                                             ],
-                                                            "raw": "one"
+                                                            "raw": "one\n        - two\n            - three\n            - four\n            - five"
                                                         }
                                                     ],
                                                     "loc": {
@@ -134,15 +134,15 @@
                                                             "column": 8
                                                         },
                                                         "end": {
-                                                            "line": 5,
-                                                            "column": 11
+                                                            "line": 9,
+                                                            "column": 18
                                                         }
                                                     },
                                                     "range": [
                                                         25,
-                                                        28
+                                                        100
                                                     ],
-                                                    "raw": "one"
+                                                    "raw": "one\n        - two\n            - three\n            - four\n            - five"
                                                 }
                                             ],
                                             "loc": {
@@ -151,15 +151,15 @@
                                                     "column": 6
                                                 },
                                                 "end": {
-                                                    "line": 5,
-                                                    "column": 11
+                                                    "line": 9,
+                                                    "column": 18
                                                 }
                                             },
                                             "range": [
                                                 23,
-                                                28
+                                                100
                                             ],
-                                            "raw": "- one"
+                                            "raw": "- one\n        - two\n            - three\n            - four\n            - five"
                                         }
                                     ],
                                     "loc": {
@@ -168,15 +168,15 @@
                                             "column": 6
                                         },
                                         "end": {
-                                            "line": 5,
-                                            "column": 11
+                                            "line": 9,
+                                            "column": 18
                                         }
                                     },
                                     "range": [
                                         23,
-                                        28
+                                        100
                                     ],
-                                    "raw": "- one"
+                                    "raw": "- one\n        - two\n            - three\n            - four\n            - five"
                                 }
                             ],
                             "loc": {
@@ -185,36 +185,15 @@
                                     "column": 4
                                 },
                                 "end": {
-                                    "line": 5,
-                                    "column": 11
-                                }
-                            },
-                            "range": [
-                                21,
-                                28
-                            ],
-                            "raw": "> - one"
-                        },
-                        {
-                            "type": "CodeBlock",
-                            "lang": null,
-                            "meta": null,
-                            "value": " - two\n     - three\n     - four\n     - five",
-                            "loc": {
-                                "start": {
-                                    "line": 6,
-                                    "column": 3
-                                },
-                                "end": {
                                     "line": 9,
                                     "column": 18
                                 }
                             },
                             "range": [
-                                32,
+                                21,
                                 100
                             ],
-                            "raw": "     - two\n            - three\n            - four\n            - five"
+                            "raw": "> - one\n        - two\n            - three\n            - four\n            - five"
                         }
                     ],
                     "loc": {

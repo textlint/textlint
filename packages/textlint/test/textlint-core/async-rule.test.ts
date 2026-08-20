@@ -58,4 +58,16 @@ describe("Async Rule", function () {
             assert.ok(result.messages.length === 2);
         });
     });
+    it("should use the rules configured when linting starts", async function () {
+        const textlint = new TextLintCore();
+        textlint.setupRules({
+            "example-rule": fixtureRule
+        });
+
+        const linting = textlint.lintMarkdown("string");
+        textlint.resetRules();
+
+        const result = await linting;
+        assert.ok(result.messages.length === 1);
+    });
 });

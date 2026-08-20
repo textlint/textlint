@@ -161,32 +161,33 @@
                     "raw": "<a href=\"http://example.com/\">"
                 },
                 {
-                    "type": "Str",
-                    "value": "**",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 46
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 48
-                        }
-                    },
-                    "range": [
-                        186,
-                        188
-                    ],
-                    "raw": "**"
-                },
-                {
-                    "type": "Link",
-                    "title": null,
-                    "url": "http://example.com/**",
+                    "type": "Strong",
                     "children": [
                         {
-                            "type": "Str",
-                            "value": "http://example.com/**",
+                            "type": "Link",
+                            "title": null,
+                            "url": "http://example.com/",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "http://example.com/",
+                                    "loc": {
+                                        "start": {
+                                            "line": 5,
+                                            "column": 48
+                                        },
+                                        "end": {
+                                            "line": 5,
+                                            "column": 67
+                                        }
+                                    },
+                                    "range": [
+                                        188,
+                                        207
+                                    ],
+                                    "raw": "http://example.com/"
+                                }
+                            ],
                             "loc": {
                                 "start": {
                                     "line": 5,
@@ -194,20 +195,20 @@
                                 },
                                 "end": {
                                     "line": 5,
-                                    "column": 69
+                                    "column": 67
                                 }
                             },
                             "range": [
                                 188,
-                                209
+                                207
                             ],
-                            "raw": "http://example.com/**"
+                            "raw": "http://example.com/"
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 5,
-                            "column": 48
+                            "column": 46
                         },
                         "end": {
                             "line": 5,
@@ -215,10 +216,10 @@
                         }
                     },
                     "range": [
-                        188,
+                        186,
                         209
                     ],
-                    "raw": "http://example.com/**"
+                    "raw": "**http://example.com/**"
                 },
                 {
                     "type": "Html",

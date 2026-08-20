@@ -27,8 +27,8 @@
                             "raw": "foo"
                         }
                     ],
-                    "identifier": "foo",
                     "label": "foo",
+                    "identifier": "foo",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {

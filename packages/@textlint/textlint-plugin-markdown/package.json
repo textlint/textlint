@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "author": "azu",
-  "type": "commonjs",
+  "type": "module",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
   "directories": {

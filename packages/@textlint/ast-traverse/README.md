@@ -15,11 +15,10 @@ npm install @textlint/ast-traverse
 ## Usage
 
 ```js
-var parse = require("@textlint/markdown-to-ast").parse,
-    Syntax = require("@textlint/markdown-to-ast").Syntax;
-var traverse = require("@textlint/ast-traverse").traverse,
-    VisitorOption = require("@textlint/ast-traverse").VisitorOption;
-var AST = parse("# Header\nHello*world*");
+import { parse, Syntax } from "@textlint/markdown-to-ast";
+import { traverse, VisitorOption } from "@textlint/ast-traverse";
+
+const AST = parse("# Header\nHello*world*");
 traverse(AST, {
     enter(node) {
         console.log("enter", node.type);

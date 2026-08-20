@@ -4,7 +4,8 @@ import assert from "node:assert";
 import { describe, it } from "vitest";
 import { TextlintKernel, TextlintPluginOptions } from "@textlint/kernel";
 import fs from "node:fs";
-import path from "node:path";
+import { fileURLToPath } from "node:url";
+import noTodo from "textlint-rule-no-todo";
 import MarkdownPlugin from "../src/index.js";
 
 const lintFile = (filePath: string, options: TextlintPluginOptions | boolean | undefined = true) => {
@@ -20,8 +21,7 @@ const lintFile = (filePath: string, options: TextlintPluginOptions | boolean | u
                 options
             }
         ],
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
-        rules: [{ ruleId: "no-todo", rule: require("textlint-rule-no-todo").default }]
+        rules: [{ ruleId: "no-todo", rule: noTodo }]
     });
 };
 const lintText = (text: string, options = true) => {
@@ -35,14 +35,13 @@ const lintText = (text: string, options = true) => {
                 options
             }
         ],
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
-        rules: [{ ruleId: "no-todo", rule: require("textlint-rule-no-todo").default }]
+        rules: [{ ruleId: "no-todo", rule: noTodo }]
     });
 };
 describe("MarkdownPlugin", function () {
     describe("when target file is a HTML", function () {
         it("should report error", function () {
-            const fixturePath = path.join(__dirname, "/error.md");
+            const fixturePath = fileURLToPath(new URL("error.md", import.meta.url));
             return lintFile(fixturePath).then((results) => {
                 assert(results.messages.length > 0);
                 assert(results.filePath === fixturePath);
@@ -51,7 +50,7 @@ describe("MarkdownPlugin", function () {
     });
     describe("extensions", function () {
         it("should report error if extensions define .custom extension", function () {
-            const fixturePath = path.join(__dirname, "/error.custom");
+            const fixturePath = fileURLToPath(new URL("error.custom", import.meta.url));
             return lintFile(fixturePath, {
                 extensions: [".custom"]
             }).then((results) => {

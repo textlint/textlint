@@ -1836,8 +1836,8 @@
                             "raw": "see the source for it by adding '.text' to the URL"
                         }
                     ],
-                    "identifier": "src",
                     "label": "src",
+                    "identifier": "src",
                     "referenceType": "full",
                     "loc": {
                         "start": {
@@ -2053,8 +2053,8 @@
                             "raw": "1"
                         }
                     ],
-                    "identifier": "1",
                     "label": "1",
+                    "identifier": "1",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -2114,8 +2114,8 @@
                             "raw": "2"
                         }
                     ],
-                    "identifier": "2",
                     "label": "2",
+                    "identifier": "2",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -2175,8 +2175,8 @@
                             "raw": "3"
                         }
                     ],
-                    "identifier": "3",
                     "label": "3",
+                    "identifier": "3",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -2236,8 +2236,8 @@
                             "raw": "4"
                         }
                     ],
-                    "identifier": "4",
                     "label": "4",
+                    "identifier": "4",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -2297,8 +2297,8 @@
                             "raw": "5"
                         }
                     ],
-                    "identifier": "5",
                     "label": "5",
+                    "identifier": "5",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -2358,8 +2358,8 @@
                             "raw": "6"
                         }
                     ],
-                    "identifier": "6",
                     "label": "6",
+                    "identifier": "6",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -5127,8 +5127,8 @@
                             "raw": "blockquoting"
                         }
                     ],
-                    "identifier": "bq",
                     "label": "bq",
+                    "identifier": "bq",
                     "referenceType": "full",
                     "loc": {
                         "start": {
@@ -5188,8 +5188,8 @@
                             "raw": "list items"
                         }
                     ],
-                    "identifier": "l",
                     "label": "l",
+                    "identifier": "l",
                     "referenceType": "full",
                     "loc": {
                         "start": {
@@ -5351,8 +5351,8 @@
                             "raw": "1"
                         }
                     ],
-                    "identifier": "1",
                     "label": "1",
+                    "identifier": "1",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -5412,8 +5412,8 @@
                             "raw": "2"
                         }
                     ],
-                    "identifier": "2",
                     "label": "2",
+                    "identifier": "2",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -12837,15 +12837,15 @@
                     "column": 0
                 },
                 "end": {
-                    "line": 834,
-                    "column": 25
+                    "line": 835,
+                    "column": 4
                 }
             },
             "range": [
                 25744,
-                25769
+                25774
             ],
-            "raw": "    <http://example.com/>"
+            "raw": "    <http://example.com/>\n    "
         },
         {
             "type": "Paragraph",

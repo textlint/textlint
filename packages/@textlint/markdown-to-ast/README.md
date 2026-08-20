@@ -32,10 +32,11 @@ npm install @textlint/markdown-to-ast
 
 ## Usage
 
-```sh
-var parse = require("@textlint/markdown-to-ast").parse;
-var markdown = "It's a *text*";
-var AST = parse(markdown);
+```js
+import { parse } from "@textlint/markdown-to-ast";
+
+const markdown = "It's a *text*";
+const AST = parse(markdown);
 /*
 {
     "type": "Document",

@@ -145,8 +145,8 @@
                             "raw": "s"
                         }
                     ],
-                    "identifier": "s",
                     "label": "s",
+                    "identifier": "s",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -245,8 +245,8 @@
                             "raw": "d"
                         }
                     ],
-                    "identifier": "d",
                     "label": "d",
+                    "identifier": "d",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -384,8 +384,8 @@
                             "raw": "src"
                         }
                     ],
-                    "identifier": "src",
                     "label": "src",
+                    "identifier": "src",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -1987,15 +1987,15 @@
                     "column": 0
                 },
                 "end": {
-                    "line": 183,
-                    "column": 9
+                    "line": 184,
+                    "column": 4
                 }
             },
             "range": [
                 4612,
-                4746
+                4751
             ],
-            "raw": "    <ul>\n    <li><p>A list item.</p>\n    <p>With multiple paragraphs.</p></li>\n    <li><p>Another item in the list.</p></li>\n    </ul>"
+            "raw": "    <ul>\n    <li><p>A list item.</p>\n    <p>With multiple paragraphs.</p></li>\n    <li><p>Another item in the list.</p></li>\n    </ul>\n    "
         },
         {
             "type": "Header",

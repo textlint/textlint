@@ -1727,8 +1727,8 @@
                 {
                     "type": "ImageReference",
                     "alt": "AT&T with entity",
-                    "identifier": "favicon",
                     "label": "favicon",
+                    "identifier": "favicon",
                     "referenceType": "full",
                     "loc": {
                         "start": {
@@ -1768,8 +1768,8 @@
                 {
                     "type": "ImageReference",
                     "alt": "AT&T with numeric entity",
-                    "identifier": "favicon",
                     "label": "favicon",
+                    "identifier": "favicon",
                     "referenceType": "full",
                     "loc": {
                         "start": {
@@ -1809,8 +1809,8 @@
                 {
                     "type": "ImageReference",
                     "alt": "AT&T without entity",
-                    "identifier": "favicon",
                     "label": "favicon",
+                    "identifier": "favicon",
                     "referenceType": "full",
                     "loc": {
                         "start": {
@@ -1951,8 +1951,8 @@
                             "raw": "foo&bar"
                         }
                     ],
-                    "identifier": "foo&bar",
                     "label": "foo&bar",
+                    "identifier": "foo&bar",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -2012,8 +2012,8 @@
                             "raw": "foo&bar"
                         }
                     ],
-                    "identifier": "foo&bar",
                     "label": "foo&bar",
+                    "identifier": "foo&bar",
                     "referenceType": "collapsed",
                     "loc": {
                         "start": {
@@ -2073,8 +2073,8 @@
                             "raw": "foo&amp;bar"
                         }
                     ],
-                    "identifier": "foo&amp;bar",
                     "label": "foo&bar",
+                    "identifier": "foo&amp;bar",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -2134,8 +2134,8 @@
                             "raw": "foo&amp;bar"
                         }
                     ],
-                    "identifier": "foo&amp;bar",
                     "label": "foo&bar",
+                    "identifier": "foo&amp;bar",
                     "referenceType": "collapsed",
                     "loc": {
                         "start": {

@@ -46,8 +46,8 @@
                             "raw": "1"
                         }
                     ],
-                    "identifier": "1",
                     "label": "1",
+                    "identifier": "1",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -146,8 +146,8 @@
                             "raw": "bar"
                         }
                     ],
-                    "identifier": "1",
                     "label": "1",
+                    "identifier": "1",
                     "referenceType": "full",
                     "loc": {
                         "start": {
@@ -246,8 +246,8 @@
                             "raw": "1"
                         }
                     ],
-                    "identifier": "1",
                     "label": "1",
+                    "identifier": "1",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -368,8 +368,8 @@
                             "raw": "b"
                         }
                     ],
-                    "identifier": "b",
                     "label": "b",
+                    "identifier": "b",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -468,8 +468,8 @@
                             "raw": "once"
                         }
                     ],
-                    "identifier": "once",
                     "label": "once",
+                    "identifier": "once",
                     "referenceType": "collapsed",
                     "loc": {
                         "start": {
@@ -568,8 +568,8 @@
                             "raw": "twice"
                         }
                     ],
-                    "identifier": "twice",
                     "label": "twice",
+                    "identifier": "twice",
                     "referenceType": "collapsed",
                     "loc": {
                         "start": {
@@ -668,8 +668,8 @@
                             "raw": "thrice"
                         }
                     ],
-                    "identifier": "thrice",
                     "label": "thrice",
+                    "identifier": "thrice",
                     "referenceType": "collapsed",
                     "loc": {
                         "start": {
@@ -915,8 +915,8 @@
                             "raw": "this"
                         }
                     ],
-                    "identifier": "this",
                     "label": "this",
+                    "identifier": "this",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -976,8 +976,8 @@
                             "raw": "this"
                         }
                     ],
-                    "identifier": "this",
                     "label": "this",
+                    "identifier": "this",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -1076,8 +1076,8 @@
                             "raw": "this"
                         }
                     ],
-                    "identifier": "this",
                     "label": "this",
+                    "identifier": "this",
                     "referenceType": "full",
                     "loc": {
                         "start": {
@@ -1176,8 +1176,8 @@
                             "raw": "this"
                         }
                     ],
-                    "identifier": "this",
                     "label": "this",
+                    "identifier": "this",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -1276,8 +1276,8 @@
                             "raw": "this"
                         }
                     ],
-                    "identifier": "this",
                     "label": "this",
+                    "identifier": "this",
                     "referenceType": "collapsed",
                     "loc": {
                         "start": {
@@ -1376,8 +1376,8 @@
                             "raw": "this"
                         }
                     ],
-                    "identifier": "this",
                     "label": "this",
+                    "identifier": "this",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -1593,8 +1593,8 @@
                             "raw": "this"
                         }
                     ],
-                    "identifier": "this",
                     "label": "this",
+                    "identifier": "this",
                     "referenceType": "collapsed",
                     "loc": {
                         "start": {
@@ -1693,8 +1693,8 @@
                             "raw": "this"
                         }
                     ],
-                    "identifier": "this",
                     "label": "this",
+                    "identifier": "this",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -1971,8 +1971,8 @@
                             "raw": "link\nbreaks"
                         }
                     ],
-                    "identifier": "link breaks",
                     "label": "link\nbreaks",
+                    "identifier": "link breaks",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {
@@ -2071,8 +2071,8 @@
                             "raw": "link \nbreaks"
                         }
                     ],
+                    "label": "link \nbreaks",
                     "identifier": "link breaks",
-                    "label": "link\nbreaks",
                     "referenceType": "shortcut",
                     "loc": {
                         "start": {

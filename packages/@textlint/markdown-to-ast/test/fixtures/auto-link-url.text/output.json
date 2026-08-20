@@ -125,11 +125,11 @@
                 {
                     "type": "Link",
                     "title": null,
-                    "url": "http://foo.example.com/(hello[world])",
+                    "url": "http://foo.example.com/(hello[world",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "http://foo.example.com/(hello[world])",
+                            "value": "http://foo.example.com/(hello[world",
                             "loc": {
                                 "start": {
                                     "line": 3,
@@ -137,14 +137,14 @@
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 83
+                                    "column": 81
                                 }
                             },
                             "range": [
                                 102,
-                                139
+                                137
                             ],
-                            "raw": "http://foo.example.com/(hello[world])"
+                            "raw": "http://foo.example.com/(hello[world"
                         }
                     ],
                     "loc": {
@@ -154,22 +154,22 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 83
+                            "column": 81
                         }
                     },
                     "range": [
                         102,
-                        139
+                        137
                     ],
-                    "raw": "http://foo.example.com/(hello[world])"
+                    "raw": "http://foo.example.com/(hello[world"
                 },
                 {
                     "type": "Str",
-                    "value": ").",
+                    "value": "])).",
                     "loc": {
                         "start": {
                             "line": 3,
-                            "column": 83
+                            "column": 81
                         },
                         "end": {
                             "line": 3,
@@ -177,10 +177,10 @@
                         }
                     },
                     "range": [
-                        139,
+                        137,
                         141
                     ],
-                    "raw": ")."
+                    "raw": "]))."
                 }
             ],
             "loc": {

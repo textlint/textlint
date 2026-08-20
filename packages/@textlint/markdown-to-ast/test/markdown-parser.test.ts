@@ -2,7 +2,7 @@
 "use strict";
 import { TxtNode } from "@textlint/ast-node-types";
 import { beforeEach, describe, it } from "vitest";
-import { parse, Syntax } from "../src/index";
+import { parse, Syntax } from "../src/index.js";
 import assert from "node:assert";
 import traverse from "neotraverse/legacy";
 

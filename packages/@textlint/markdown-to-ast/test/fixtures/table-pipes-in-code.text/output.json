@@ -41,14 +41,14 @@
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 7
+                                    "column": 6
                                 }
                             },
                             "range": [
                                 0,
-                                7
+                                6
                             ],
-                            "raw": "| abc |"
+                            "raw": "| abc "
                         },
                         {
                             "type": "TableCell",
@@ -76,7 +76,7 @@
                             "loc": {
                                 "start": {
                                     "line": 1,
-                                    "column": 7
+                                    "column": 6
                                 },
                                 "end": {
                                     "line": 1,
@@ -84,10 +84,10 @@
                                 }
                             },
                             "range": [
-                                7,
+                                6,
                                 17
                             ],
-                            "raw": "   head2 |"
+                            "raw": "|   head2 |"
                         }
                     ],
                     "loc": {
@@ -139,14 +139,14 @@
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 7
+                                    "column": 6
                                 }
                             },
                             "range": [
                                 36,
-                                43
+                                42
                             ],
-                            "raw": "| x   |"
+                            "raw": "| x   "
                         },
                         {
                             "type": "TableCell",
@@ -174,7 +174,26 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 7
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 11
+                                }
+                            },
+                            "range": [
+                                42,
+                                47
+                            ],
+                            "raw": "|   `"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 11
                                 },
                                 "end": {
                                     "line": 3,
@@ -182,10 +201,10 @@
                                 }
                             },
                             "range": [
-                                43,
+                                47,
                                 48
                             ],
-                            "raw": "   `|"
+                            "raw": "|"
                         },
                         {
                             "type": "TableCell",
@@ -197,14 +216,14 @@
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 14
+                                    "column": 13
                                 }
                             },
                             "range": [
                                 48,
-                                50
+                                49
                             ],
-                            "raw": "||"
+                            "raw": "|"
                         },
                         {
                             "type": "TableCell",
@@ -232,7 +251,7 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 14
+                                    "column": 13
                                 },
                                 "end": {
                                     "line": 3,
@@ -240,10 +259,10 @@
                                 }
                             },
                             "range": [
-                                50,
+                                49,
                                 53
                             ],
-                            "raw": "` |"
+                            "raw": "|` |"
                         }
                     ],
                     "loc": {
@@ -295,14 +314,14 @@
                                 },
                                 "end": {
                                     "line": 4,
-                                    "column": 7
+                                    "column": 6
                                 }
                             },
                             "range": [
                                 54,
-                                61
+                                60
                             ],
-                            "raw": "| x   |"
+                            "raw": "| x   "
                         },
                         {
                             "type": "TableCell",
@@ -330,7 +349,7 @@
                             "loc": {
                                 "start": {
                                     "line": 4,
-                                    "column": 7
+                                    "column": 6
                                 },
                                 "end": {
                                     "line": 4,
@@ -338,10 +357,10 @@
                                 }
                             },
                             "range": [
-                                61,
+                                60,
                                 71
                             ],
-                            "raw": "       ` |"
+                            "raw": "|       ` |"
                         }
                     ],
                     "loc": {
@@ -393,14 +412,14 @@
                                 },
                                 "end": {
                                     "line": 5,
-                                    "column": 7
+                                    "column": 6
                                 }
                             },
                             "range": [
                                 72,
-                                79
+                                78
                             ],
-                            "raw": "| x   |"
+                            "raw": "| x   "
                         },
                         {
                             "type": "TableCell",
@@ -428,18 +447,18 @@
                             "loc": {
                                 "start": {
                                     "line": 5,
-                                    "column": 7
+                                    "column": 6
                                 },
                                 "end": {
                                     "line": 5,
-                                    "column": 14
+                                    "column": 13
                                 }
                             },
                             "range": [
-                                79,
-                                86
+                                78,
+                                85
                             ],
-                            "raw": "     `|"
+                            "raw": "|     `"
                         },
                         {
                             "type": "TableCell",
@@ -467,7 +486,7 @@
                             "loc": {
                                 "start": {
                                     "line": 5,
-                                    "column": 14
+                                    "column": 13
                                 },
                                 "end": {
                                     "line": 5,
@@ -475,10 +494,10 @@
                                 }
                             },
                             "range": [
-                                86,
+                                85,
                                 89
                             ],
-                            "raw": "` |"
+                            "raw": "|` |"
                         }
                     ],
                     "loc": {
@@ -530,14 +549,14 @@
                                 },
                                 "end": {
                                     "line": 6,
-                                    "column": 7
+                                    "column": 6
                                 }
                             },
                             "range": [
                                 90,
-                                97
+                                96
                             ],
-                            "raw": "| x   |"
+                            "raw": "| x   "
                         },
                         {
                             "type": "TableCell",
@@ -565,7 +584,7 @@
                             "loc": {
                                 "start": {
                                     "line": 6,
-                                    "column": 7
+                                    "column": 6
                                 },
                                 "end": {
                                     "line": 6,
@@ -573,10 +592,10 @@
                                 }
                             },
                             "range": [
-                                97,
+                                96,
                                 107
                             ],
-                            "raw": " `` f `` |"
+                            "raw": "| `` f `` |"
                         }
                     ],
                     "loc": {
@@ -628,14 +647,14 @@
                                 },
                                 "end": {
                                     "line": 7,
-                                    "column": 7
+                                    "column": 6
                                 }
                             },
                             "range": [
                                 108,
-                                115
+                                114
                             ],
-                            "raw": "| x   |"
+                            "raw": "| x   "
                         },
                         {
                             "type": "TableCell",
@@ -663,7 +682,7 @@
                             "loc": {
                                 "start": {
                                     "line": 7,
-                                    "column": 7
+                                    "column": 6
                                 },
                                 "end": {
                                     "line": 7,
@@ -671,10 +690,10 @@
                                 }
                             },
                             "range": [
-                                115,
+                                114,
                                 125
                             ],
-                            "raw": "    ```` |"
+                            "raw": "|    ```` |"
                         }
                     ],
                     "loc": {
@@ -726,14 +745,14 @@
                                 },
                                 "end": {
                                     "line": 8,
-                                    "column": 7
+                                    "column": 6
                                 }
                             },
                             "range": [
                                 126,
-                                133
+                                132
                             ],
-                            "raw": "| x   |"
+                            "raw": "| x   "
                         },
                         {
                             "type": "TableCell",
@@ -761,7 +780,7 @@
                             "loc": {
                                 "start": {
                                     "line": 8,
-                                    "column": 7
+                                    "column": 6
                                 },
                                 "end": {
                                     "line": 8,
@@ -769,10 +788,10 @@
                                 }
                             },
                             "range": [
-                                133,
+                                132,
                                 143
                             ],
-                            "raw": "    ``f` |"
+                            "raw": "|    ``f` |"
                         }
                     ],
                     "loc": {
@@ -848,14 +867,14 @@
                                 },
                                 "end": {
                                     "line": 10,
-                                    "column": 7
+                                    "column": 6
                                 }
                             },
                             "range": [
                                 145,
-                                152
+                                151
                             ],
-                            "raw": "| abc |"
+                            "raw": "| abc "
                         },
                         {
                             "type": "TableCell",
@@ -883,7 +902,7 @@
                             "loc": {
                                 "start": {
                                     "line": 10,
-                                    "column": 7
+                                    "column": 6
                                 },
                                 "end": {
                                     "line": 10,
@@ -891,10 +910,10 @@
                                 }
                             },
                             "range": [
-                                152,
+                                151,
                                 160
                             ],
-                            "raw": "   head2"
+                            "raw": "|   head2"
                         }
                     ],
                     "loc": {
@@ -946,14 +965,14 @@
                                 },
                                 "end": {
                                     "line": 12,
-                                    "column": 7
+                                    "column": 6
                                 }
                             },
                             "range": [
                                 177,
-                                184
+                                183
                             ],
-                            "raw": "| x   |"
+                            "raw": "| x   "
                         },
                         {
                             "type": "TableCell",
@@ -981,7 +1000,7 @@
                             "loc": {
                                 "start": {
                                     "line": 12,
-                                    "column": 7
+                                    "column": 6
                                 },
                                 "end": {
                                     "line": 12,
@@ -989,10 +1008,10 @@
                                 }
                             },
                             "range": [
-                                184,
+                                183,
                                 192
                             ],
-                            "raw": "       `"
+                            "raw": "|       `"
                         }
                     ],
                     "loc": {
@@ -1044,14 +1063,14 @@
                                 },
                                 "end": {
                                     "line": 13,
-                                    "column": 7
+                                    "column": 6
                                 }
                             },
                             "range": [
                                 193,
-                                200
+                                199
                             ],
-                            "raw": "| x   |"
+                            "raw": "| x   "
                         },
                         {
                             "type": "TableCell",
@@ -1079,18 +1098,18 @@
                             "loc": {
                                 "start": {
                                     "line": 13,
-                                    "column": 7
+                                    "column": 6
                                 },
                                 "end": {
                                     "line": 13,
-                                    "column": 14
+                                    "column": 13
                                 }
                             },
                             "range": [
-                                200,
-                                207
+                                199,
+                                206
                             ],
-                            "raw": "     `|"
+                            "raw": "|     `"
                         },
                         {
                             "type": "TableCell",
@@ -1118,7 +1137,7 @@
                             "loc": {
                                 "start": {
                                     "line": 13,
-                                    "column": 14
+                                    "column": 13
                                 },
                                 "end": {
                                     "line": 13,
@@ -1126,10 +1145,10 @@
                                 }
                             },
                             "range": [
-                                207,
+                                206,
                                 208
                             ],
-                            "raw": "`"
+                            "raw": "|`"
                         }
                     ],
                     "loc": {
@@ -1181,14 +1200,14 @@
                                 },
                                 "end": {
                                     "line": 14,
-                                    "column": 7
+                                    "column": 6
                                 }
                             },
                             "range": [
                                 209,
-                                216
+                                215
                             ],
-                            "raw": "| x   |"
+                            "raw": "| x   "
                         },
                         {
                             "type": "TableCell",
@@ -1216,7 +1235,7 @@
                             "loc": {
                                 "start": {
                                     "line": 14,
-                                    "column": 7
+                                    "column": 6
                                 },
                                 "end": {
                                     "line": 14,
@@ -1224,10 +1243,10 @@
                                 }
                             },
                             "range": [
-                                216,
+                                215,
                                 224
                             ],
-                            "raw": " `` f ``"
+                            "raw": "| `` f ``"
                         }
                     ],
                     "loc": {
@@ -1279,14 +1298,14 @@
                                 },
                                 "end": {
                                     "line": 15,
-                                    "column": 7
+                                    "column": 6
                                 }
                             },
                             "range": [
                                 225,
-                                232
+                                231
                             ],
-                            "raw": "| x   |"
+                            "raw": "| x   "
                         },
                         {
                             "type": "TableCell",
@@ -1314,7 +1333,7 @@
                             "loc": {
                                 "start": {
                                     "line": 15,
-                                    "column": 7
+                                    "column": 6
                                 },
                                 "end": {
                                     "line": 15,
@@ -1322,10 +1341,10 @@
                                 }
                             },
                             "range": [
-                                232,
+                                231,
                                 240
                             ],
-                            "raw": "    ````"
+                            "raw": "|    ````"
                         }
                     ],
                     "loc": {
@@ -1377,14 +1396,14 @@
                                 },
                                 "end": {
                                     "line": 16,
-                                    "column": 7
+                                    "column": 6
                                 }
                             },
                             "range": [
                                 241,
-                                248
+                                247
                             ],
-                            "raw": "| x   |"
+                            "raw": "| x   "
                         },
                         {
                             "type": "TableCell",
@@ -1412,7 +1431,7 @@
                             "loc": {
                                 "start": {
                                     "line": 16,
-                                    "column": 7
+                                    "column": 6
                                 },
                                 "end": {
                                     "line": 16,
@@ -1420,10 +1439,10 @@
                                 }
                             },
                             "range": [
-                                248,
+                                247,
                                 255
                             ],
-                            "raw": "   ``f`"
+                            "raw": "|   ``f`"
                         }
                     ],
                     "loc": {

@@ -3127,90 +3127,51 @@
                 {
                     "type": "ListItem",
                     "spread": false,
-                    "checked": null,
+                    "checked": false,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "[",
+                                    "value": "Hello;",
                                     "loc": {
                                         "start": {
-                                            "line": 88,
+                                            "line": 89,
                                             "column": 2
                                         },
                                         "end": {
-                                            "line": 88,
-                                            "column": 3
+                                            "line": 89,
+                                            "column": 8
                                         }
                                     },
                                     "range": [
-                                        866,
-                                        867
+                                        870,
+                                        876
                                     ],
-                                    "raw": "["
+                                    "raw": "Hello;"
                                 }
                             ],
                             "loc": {
                                 "start": {
-                                    "line": 88,
+                                    "line": 89,
                                     "column": 2
                                 },
                                 "end": {
-                                    "line": 88,
-                                    "column": 3
+                                    "line": 89,
+                                    "column": 8
                                 }
                             },
                             "range": [
-                                866,
-                                867
+                                870,
+                                876
                             ],
-                            "raw": "["
+                            "raw": "Hello;"
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 88,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 88,
-                            "column": 3
-                        }
-                    },
-                    "range": [
-                        864,
-                        867
-                    ],
-                    "raw": "* ["
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 88,
-                    "column": 0
-                },
-                "end": {
-                    "line": 88,
-                    "column": 3
-                }
-            },
-            "range": [
-                864,
-                867
-            ],
-            "raw": "* ["
-        },
-        {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "] Hello;",
-                    "loc": {
-                        "start": {
-                            "line": 89,
                             "column": 0
                         },
                         "end": {
@@ -3219,15 +3180,15 @@
                         }
                     },
                     "range": [
-                        868,
+                        864,
                         876
                     ],
-                    "raw": "] Hello;"
+                    "raw": "* [\n] Hello;"
                 }
             ],
             "loc": {
                 "start": {
-                    "line": 89,
+                    "line": 88,
                     "column": 0
                 },
                 "end": {
@@ -3236,10 +3197,10 @@
                 }
             },
             "range": [
-                868,
+                864,
                 876
             ],
-            "raw": "] Hello;"
+            "raw": "* [\n] Hello;"
         },
         {
             "type": "List",
@@ -3250,90 +3211,51 @@
                 {
                     "type": "ListItem",
                     "spread": false,
-                    "checked": null,
+                    "checked": false,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "[",
+                                    "value": "Hello;",
                                     "loc": {
                                         "start": {
-                                            "line": 91,
-                                            "column": 3
+                                            "line": 92,
+                                            "column": 2
                                         },
                                         "end": {
-                                            "line": 91,
-                                            "column": 4
+                                            "line": 92,
+                                            "column": 8
                                         }
                                     },
                                     "range": [
-                                        881,
-                                        882
+                                        885,
+                                        891
                                     ],
-                                    "raw": "["
+                                    "raw": "Hello;"
                                 }
                             ],
                             "loc": {
                                 "start": {
-                                    "line": 91,
-                                    "column": 3
+                                    "line": 92,
+                                    "column": 2
                                 },
                                 "end": {
-                                    "line": 91,
-                                    "column": 4
+                                    "line": 92,
+                                    "column": 8
                                 }
                             },
                             "range": [
-                                881,
-                                882
+                                885,
+                                891
                             ],
-                            "raw": "["
+                            "raw": "Hello;"
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 91,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 91,
-                            "column": 4
-                        }
-                    },
-                    "range": [
-                        878,
-                        882
-                    ],
-                    "raw": "1. ["
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 91,
-                    "column": 0
-                },
-                "end": {
-                    "line": 91,
-                    "column": 4
-                }
-            },
-            "range": [
-                878,
-                882
-            ],
-            "raw": "1. ["
-        },
-        {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "] Hello;",
-                    "loc": {
-                        "start": {
-                            "line": 92,
                             "column": 0
                         },
                         "end": {
@@ -3342,15 +3264,15 @@
                         }
                     },
                     "range": [
-                        883,
+                        878,
                         891
                     ],
-                    "raw": "] Hello;"
+                    "raw": "1. [\n] Hello;"
                 }
             ],
             "loc": {
                 "start": {
-                    "line": 92,
+                    "line": 91,
                     "column": 0
                 },
                 "end": {
@@ -3359,10 +3281,10 @@
                 }
             },
             "range": [
-                883,
+                878,
                 891
             ],
-            "raw": "] Hello;"
+            "raw": "1. [\n] Hello;"
         },
         {
             "type": "Header",
@@ -3504,22 +3426,22 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "[",
+                                    "value": "[\n] World;",
                                     "loc": {
                                         "start": {
                                             "line": 99,
                                             "column": 3
                                         },
                                         "end": {
-                                            "line": 99,
-                                            "column": 4
+                                            "line": 100,
+                                            "column": 9
                                         }
                                     },
                                     "range": [
                                         974,
-                                        975
+                                        986
                                     ],
-                                    "raw": "["
+                                    "raw": "[ \n ] World;"
                                 }
                             ],
                             "loc": {
@@ -3528,15 +3450,15 @@
                                     "column": 3
                                 },
                                 "end": {
-                                    "line": 99,
-                                    "column": 5
+                                    "line": 100,
+                                    "column": 9
                                 }
                             },
                             "range": [
                                 974,
-                                976
+                                986
                             ],
-                            "raw": "[ "
+                            "raw": "[ \n ] World;"
                         }
                     ],
                     "loc": {
@@ -3545,15 +3467,137 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 99,
-                            "column": 5
+                            "line": 100,
+                            "column": 9
                         }
                     },
                     "range": [
                         971,
-                        976
+                        986
                     ],
-                    "raw": "1. [ "
+                    "raw": "1. [ \n ] World;"
+                },
+                {
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "[\t\t] Hello;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 101,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 101,
+                                            "column": 14
+                                        }
+                                    },
+                                    "range": [
+                                        990,
+                                        1001
+                                    ],
+                                    "raw": "[\t\t] Hello;"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 101,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 101,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                990,
+                                1001
+                            ],
+                            "raw": "[\t\t] Hello;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 101,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 101,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        987,
+                        1001
+                    ],
+                    "raw": "2. [\t\t] Hello;"
+                },
+                {
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "[ \t ] World.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 102,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 102,
+                                            "column": 15
+                                        }
+                                    },
+                                    "range": [
+                                        1005,
+                                        1017
+                                    ],
+                                    "raw": "[ \t ] World."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 102,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 102,
+                                    "column": 15
+                                }
+                            },
+                            "range": [
+                                1005,
+                                1017
+                            ],
+                            "raw": "[ \t ] World."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 102,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 102,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        1002,
+                        1017
+                    ],
+                    "raw": "3. [ \t ] World."
                 }
             ],
             "loc": {
@@ -3562,54 +3606,15 @@
                     "column": 0
                 },
                 "end": {
-                    "line": 99,
-                    "column": 5
-                }
-            },
-            "range": [
-                971,
-                976
-            ],
-            "raw": "1. [ "
-        },
-        {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "] World;\n2. [\t\t] Hello;\n3. [ \t ] World.",
-                    "loc": {
-                        "start": {
-                            "line": 100,
-                            "column": 1
-                        },
-                        "end": {
-                            "line": 102,
-                            "column": 15
-                        }
-                    },
-                    "range": [
-                        978,
-                        1017
-                    ],
-                    "raw": "] World;\n2. [\t\t] Hello;\n3. [ \t ] World."
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 100,
-                    "column": 1
-                },
-                "end": {
                     "line": 102,
                     "column": 15
                 }
             },
             "range": [
-                978,
+                971,
                 1017
             ],
-            "raw": "] World;\n2. [\t\t] Hello;\n3. [ \t ] World."
+            "raw": "1. [ \n ] World;\n2. [\t\t] Hello;\n3. [ \t ] World."
         }
     ],
     "loc": {
