@@ -26,13 +26,13 @@ This library is a part of [textlint/textlint](https://github.com/textlint/textli
 
 ## Installation
 
-```
+```sh
 npm install @textlint/markdown-to-ast
 ```
 
 ## Usage
 
-```js
+```ts
 import { parse } from "@textlint/markdown-to-ast";
 
 const markdown = "It's a *text*";
@@ -139,11 +139,19 @@ const AST = parse(markdown);
 */
 ```
 
+To enable CJK-friendly emphasis and GFM strikethrough parsing, set `cjkFriendly` to `true`. This option is disabled by default.
+
+```ts
+const AST = parse("**このアスタリスクは強調記号として認識されず、そのまま表示されます。**この文のせいで。", {
+    cjkFriendly: true
+});
+```
+
 If you want to know real use-case, please see [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
 
 ## Tests
 
-```
+```sh
 npm test
 ```
 
