@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1787953815181,
+  "lastUpdate": 1788038129490,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -118481,6 +118481,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.7233087639600001,
             "range": "± 0.01909988500000004",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "eab88e91d347eab418e6aff2bc7a77e4c8f5cdc9",
+          "message": "chore(deps): update dependency js-yaml to ^4.3.2",
+          "timestamp": "2026-08-29T21:13:43Z",
+          "tree_id": "b3c7f92527211b0ab802e3501e992cfe4c106ab8",
+          "url": "https://github.com/textlint/textlint/commit/eab88e91d347eab418e6aff2bc7a77e4c8f5cdc9"
+        },
+        "date": 1788038118300,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22412351908,
+            "range": "± 0.049023170999999977",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.9146312482799999,
+            "range": "± 0.043321688000000025",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7377286112800001,
+            "range": "± 0.0172969300000001",
             "unit": "seconds"
           }
         ]
