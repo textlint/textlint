@@ -121,8 +121,8 @@ catalogs:
       specifier: ^13.0.6
       version: 13.0.6
     js-yaml:
-      specifier: ^4.3.1
-      version: 4.3.1
+      specifier: ^4.3.2
+      version: 4.3.2
     json5:
       specifier: ^2.2.3
       version: 2.2.3
@@ -749,7 +749,7 @@ importers:
         version: 4.4.3(supports-color@8.1.1)
       js-yaml:
         specifier: 'catalog:'
-        version: 4.3.1
+        version: 4.3.2
       lodash:
         specifier: 'catalog:'
         version: 4.18.1
@@ -5233,6 +5233,7 @@ packages:
   eslint@9.39.4:
     resolution: {integrity: sha512-XoMjdBOwe/esVgEvLmNsD3IRHkm7fbKIUGvrleloJXUZgDHig2IPWNniv+GwjyJXzuNqVjlr5+4yVUZjycJwfQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -6375,6 +6376,10 @@ packages:
 
   js-yaml@4.3.1:
     resolution: {integrity: sha512-CY6crGq313MX8GkwvB7tzgp99vjQxY1++5y10/BKN/GUfHqWaOGQMNZkBvqSzsZKWk/ijwHlWzzkLulsGHhjWQ==}
+    hasBin: true
+
+  js-yaml@4.3.2:
+    resolution: {integrity: sha512-SFNOvSJ+Dgf/9An904Yx+CgSlIPCkIpao4qo51lpee25TIRejdH3rhR4EZMGoNx3/TP3O+wzWuiTFl4sqbltzA==}
     hasBin: true
 
   jsesc@3.1.0:
@@ -16079,6 +16084,10 @@ snapshots:
       argparse: 2.0.1
 
   js-yaml@4.3.1:
+    dependencies:
+      argparse: 2.0.1
+
+  js-yaml@4.3.2:
     dependencies:
       argparse: 2.0.1
 
