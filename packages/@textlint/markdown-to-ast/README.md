@@ -139,12 +139,21 @@ const AST = parse(markdown);
 */
 ```
 
-To enable CJK-friendly emphasis and GFM strikethrough parsing, set `cjkFriendly` to `true`. This option is disabled by default.
+Enable `cjkFriendly` when parsing Markdown that uses CJK-friendly rules for emphasis and GFM strikethrough. Otherwise, keep the default `false` to use CommonMark and GFM parsing.
+
+When `cjkFriendly` is enabled, `parse()` returns AST nodes for emphasis and GFM strikethrough next to CJK text without spaces:
 
 ```ts
-const AST = parse("**このアスタリスクは強調記号として認識されず、そのまま表示されます。**この文のせいで。", {
-    cjkFriendly: true
-});
+const markdown = `**重要です。**次の文です。
+~~削除します。~~次の文です。
+
+**很重要。**下一句。
+~~删除。~~下一句。
+
+**중요합니다.**다음 문장입니다.
+~~삭제합니다.~~다음 문장입니다.`;
+
+const AST = parse(markdown, { cjkFriendly: true });
 ```
 
 If you want to know real use-case, please see [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").

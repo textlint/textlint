@@ -44,14 +44,19 @@ For example, if you want to treat [MDX](https://github.com/mdx-js/mdx) as markdo
 }
 ```
 
-For example, the following Markdown is parsed as emphasis and strikethrough when `cjkFriendly` is enabled:
+Enable `cjkFriendly` when the target Markdown renderer supports CJK-friendly parsing rules for emphasis and GFM strikethrough, such as GitLab Flavored Markdown, Rspress, or VitePress. Otherwise, keep the default `false` to match CommonMark and GFM parsing.
+
+When `cjkFriendly` is enabled, textlint recognizes emphasis and GFM strikethrough next to CJK text without spaces:
 
 ```md
-**このアスタリスクは強調記号として認識されず、そのまま表示されます。**この文のせいで。
+**重要です。**次の文です。
+~~削除します。~~次の文です。
 
-**该星号不会被识别，而是直接显示。**这是因为它没有被识别为强调符号。
+**很重要。**下一句。
+~~删除。~~下一句。
 
-**이 별표는 강조 표시로 인식되지 않고 그대로 표시됩니다(이 괄호 때문에)**이 문장 때문에.
+**중요합니다.**다음 문장입니다.
+~~삭제합니다.~~다음 문장입니다.
 ```
 
 ```json
