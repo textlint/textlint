@@ -148,4 +148,20 @@ describe("@textlint/config-loader", () => {
             });
         });
     });
+    describe("when a sharable config module is specified", () => {
+        it("loads a scoped package subpath", async () => {
+            const result = await loadRawConfig({
+                configFilePath: "@acme/textlint/default",
+                node_modulesDir: modulesDir
+            });
+
+            assert.ok(result.ok);
+            assert.deepStrictEqual(result.rawConfig, {
+                rules: {
+                    "shared-rule": true
+                }
+            });
+            assert.strictEqual(result.configFilePath, path.join(modulesDir, "@acme", "textlint", "default.js"));
+        });
+    });
 });
