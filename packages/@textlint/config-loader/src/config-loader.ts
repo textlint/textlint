@@ -210,7 +210,10 @@ export const loadRawConfig = async (options: TextlintConfigLoaderOptions): Promi
             });
             try {
                 configFileName = moduleResolver.resolveConfigPackageName(configFileName);
-            } catch {
+            } catch (error) {
+                if (!(error instanceof ReferenceError)) {
+                    throw error;
+                }
                 // Fall back to loading configFileName as a file path.
             }
         }
