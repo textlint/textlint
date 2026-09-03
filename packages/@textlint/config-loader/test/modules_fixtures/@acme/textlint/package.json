@@ -1,0 +1,5 @@
+{
+    "name": "@acme/textlint",
+    "private": true,
+    "type": "commonjs"
+}
