@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1788543634835,
+  "lastUpdate": 1788914883987,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -119069,6 +119069,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.70490407788,
             "range": "± 0.011973911000000004",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "f1998e68d26eb3bfd467cdbdd47a01f008648708",
+          "message": "docs: fix broken links and images in README and docs\n\n- README.md: point `gulp-textlint` to its own repository, since the\n  package was moved out of this monorepo in textlint v14\n- packages/textlint-tester/README.md: the test file was renamed to\n  `textlint-tester.test.ts`\n- docs/rule-advanced.md: the Markdown-to-AST demo page is gone (404),\n  so link the AST explorer for textlint instead\n- docs/rule.md: drop the gyazo GIF that returns 404 (the link to\n  visualize-txt-traverse above it stays), and replace the monosnap\n  screenshot with the equivalent image already stored in docs/assets\n\nFixes https://github.com/textlint/textlint/issues/2123\n\nCo-Authored-By: Claude Opus 5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01GPEdZYCSU9mhtccZ7ex9Bm",
+          "timestamp": "2026-09-09T00:46:19Z",
+          "tree_id": "b1cb40b10f624ce7f21eaeb973ca00245de7e6d7",
+          "url": "https://github.com/textlint/textlint/commit/f1998e68d26eb3bfd467cdbdd47a01f008648708"
+        },
+        "date": 1788914873509,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21544984659999997,
+            "range": "± 0.047736941000000005",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8621045540000005,
+            "range": "± 0.028203555999999796",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7245931504,
+            "range": "± 0.009642009999999979",
             "unit": "seconds"
           }
         ]
