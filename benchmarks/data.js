@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1788915048829,
+  "lastUpdate": 1788915430525,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -119153,6 +119153,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.73950448494,
             "range": "± 0.02325758099999997",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "324be3df8626fea75390da5cbba6c9bdff8b4265",
+          "message": "docs: fix broken links and images in README and docs (#2125)\n\nFixes https://github.com/textlint/textlint/issues/2123\n\nFixes the four broken links / images reported in the issue. All four\nwere reproduced before changing anything (`curl` returned 404 for the\nthree external URLs, and the two local paths do not exist on disk).\n\n## Changes\n\n| File | Problem | Fix |\n| --- | --- | --- |\n| `README.md` L557 | `./packages/gulp-textlint` does not exist — the\npackage was moved out of the monorepo in textlint v14 (see\n`website/blog/2024-02-03-textlint-14.md`) | Link to\nhttps://github.com/textlint/gulp-textlint. Same style as the\n`create-textlint-rule` row just above, which already links out, and the\nsame URL README.md:476 already uses. |\n| `packages/textlint-tester/README.md` L326 |\n`./test/textlint-tester-test.ts` does not exist — the file was renamed |\nPoint to `./test/textlint-tester.test.ts` (the neighbouring\n`textlint-tester-plugin.ts` link is still valid, left as is) |\n| `docs/rule-advanced.md` L84 |\n`http://azu.github.io/markdown-to-ast/example/` returns 404 | Link [AST\nexplorer for textlint](https://textlint.org/astexplorer/) (returns 200),\nwhich `docs/rule.md` already recommends for the same purpose |\n| `docs/rule.md` L85 | The gyazo GIF returns 404 and no local copy\nexists | Remove the image. The text link to `azu/visualize-txt-traverse`\non the line above it is kept, so no information is lost. |\n| `docs/rule.md` L493 | The monosnap screenshot returns 404 and no\nequivalent image exists | Remove the image. The only similar asset in\nthe repo (`assets/screenshot-lint-pretty-error.png`) shows a different\ncommand, file and error count than this `no-todo` tutorial, so it would\nnot match what a reader actually sees. The `sh` block above already\ndescribes the step. |\n\n## Notes\n\n- Docs only, no code changes. `prettier` in this repo only formats\n`js/jsx/ts/tsx/css`, so no formatting step applies to these files.\n- No references to `markdown-to-ast/example`, gyazo, monosnap, or\n`packages/gulp-textlint` remain in the repo outside of the historical\nblog posts under `website/blog/`, which are left untouched on purpose.\n- This overlaps with the WIP\nhttps://github.com/textlint/textlint/pull/2124; feel free to close\nwhichever is less useful.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01GPEdZYCSU9mhtccZ7ex9Bm\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-09-09T09:55:25+09:00",
+          "tree_id": "d3a8fb277530498128c7218812cdc3149206089c",
+          "url": "https://github.com/textlint/textlint/commit/324be3df8626fea75390da5cbba6c9bdff8b4265"
+        },
+        "date": 1788915419288,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23381845728,
+            "range": "± 0.13259068999999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.89326404428,
+            "range": "± 0.04254174799999988",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7288330308800001,
+            "range": "± 0.023208768000000046",
             "unit": "seconds"
           }
         ]
