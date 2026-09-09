@@ -323,7 +323,7 @@ tester.run("no-todo", rule, {
 });
 ```
 
-See [`textlint-tester-test.ts`](./test/textlint-tester-test.ts)
+See [`textlint-tester.test.ts`](./test/textlint-tester.test.ts)
 or [`textlint-tester-plugin.ts`](./test/textlint-tester-plugin.ts) for concrete examples.
 
 ## Contributing
