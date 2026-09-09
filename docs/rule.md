@@ -488,8 +488,6 @@ $ npm run build
 $ textlint --rulesdir lib/ README.md -f pretty-error
 ```
 
-![result error](assets/screenshot-lint-pretty-error.png)
-
 ### Advanced rules
 
 When linting following text with above `no-todo` rule, a result was error.
