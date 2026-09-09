@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1788914883987,
+  "lastUpdate": 1788915048829,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -119111,6 +119111,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.7245931504,
             "range": "± 0.009642009999999979",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "46373b7d0feedc496a3e42ea9ddc66060d55befc",
+          "message": "docs: remove mismatched pretty-error screenshot from rule.md\n\nThe reused screenshot shows a different command, file and error count\nthan the tutorial it sits under, so a reader cannot match their own\noutput to the picture. The command block above already describes the\nstep, so drop the image instead of showing a misleading one.\n\nCo-Authored-By: Claude Opus 5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01GPEdZYCSU9mhtccZ7ex9Bm",
+          "timestamp": "2026-09-09T00:48:56Z",
+          "tree_id": "d3a8fb277530498128c7218812cdc3149206089c",
+          "url": "https://github.com/textlint/textlint/commit/46373b7d0feedc496a3e42ea9ddc66060d55befc"
+        },
+        "date": 1788915037573,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.27345809574,
+            "range": "± 0.28238835800000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.88791622414,
+            "range": "± 0.058198462000000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.73950448494,
+            "range": "± 0.02325758099999997",
             "unit": "seconds"
           }
         ]
