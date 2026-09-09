@@ -81,7 +81,7 @@ is described as `Paragraph.children = ["Str"]`
 :information_source: Info:
 
 - Please see [txtnode.md](./txtnode.md) for Abstract Syntax Tree details.
-- Use [Markdown-to-AST demo](http://azu.github.io/markdown-to-ast/example/)
+- Use [AST explorer for textlint](https://textlint.org/astexplorer/ "AST explorer for textlint")
 
 But, Following `Paragraph` node contain `Code` node. 
 

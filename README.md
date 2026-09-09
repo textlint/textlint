@@ -554,7 +554,7 @@ These modules are useful integration with textlint.
 
 | Package                                  | Version                                  | Description              |
 | :--------------------------------------- | :--------------------------------------- | :----------------------- |
-| [`gulp-textlint`](./packages/gulp-textlint) | [![npm](https://img.shields.io/npm/v/gulp-textlint.svg?style=flat-square)](https://www.npmjs.com/package/gulp-textlint) | gulp plugin for textlint |
+| [`gulp-textlint`](https://github.com/textlint/gulp-textlint) | [![npm](https://img.shields.io/npm/v/gulp-textlint.svg?style=flat-square)](https://www.npmjs.com/package/gulp-textlint) | gulp plugin for textlint |
 
 
 ### Internal

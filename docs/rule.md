@@ -82,8 +82,6 @@ In textlint@11.1.0<=, you had to write `[Syntax.Document + ":exit"]`.
 
 [visualize-txt-traverse](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse") help you better understand this traversing.
 
-[![gif visualize-txt-traverse](https://gyazo.com/155c68f0f9ff35e0a549d655a787c01e.gif)](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse")
-
 [AST explorer for textlint](https://textlint.org/astexplorer/ "AST explorer for textlint") help you better understand [TxtAST](./txtnode.md).
 
 [![ast-explorer fork](assets/ast-explorer.png)](https://textlint.org/astexplorer/)
@@ -490,7 +488,7 @@ $ npm run build
 $ textlint --rulesdir lib/ README.md -f pretty-error
 ```
 
-![result error](https://monosnap.com/image/9FeIQr95kXjGPWFjZFRq6ZFG16YscF.png)
+![result error](assets/screenshot-lint-pretty-error.png)
 
 ### Advanced rules
 
