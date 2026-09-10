@@ -3,7 +3,7 @@ import type { TxtDocumentNode } from "@textlint/ast-node-types";
 import { ASTNodeTypes } from "@textlint/ast-node-types";
 import traverse from "neotraverse/legacy";
 import debug0 from "debug";
-import { parseMarkdown } from "./parse-markdown.js";
+import { parseMarkdown, type ParseMarkdownOptions } from "./parse-markdown.js";
 import { StructuredSource } from "structured-source";
 
 const debug = debug0("@textlint/markdown-to-ast");
@@ -167,8 +167,9 @@ function calculatePositionFromSiblings(
 /**
  * parse Markdown text and return ast mapped location info.
  * @param {string} text
+ * @param {ParseMarkdownOptions} options
  */
-export function parse(text: string): TxtDocumentNode {
+export function parse(text: string, options: ParseMarkdownOptions = {}): TxtDocumentNode {
     // remark-parse's AST does not consider BOM
     // AST's position does not +1 by BOM
     // So, just trim BOM and parse it for `raw` property
@@ -177,7 +178,7 @@ export function parse(text: string): TxtDocumentNode {
     // https://github.com/micromark/micromark/blob/0f19c1ac25964872a160d8b536878b125ddfe393/lib/preprocess.mjs#L29-L31
     const hasBOM = text.charCodeAt(0) === 0xfeff;
     const textWithoutBOM = hasBOM ? text.slice(1) : text;
-    const ast = parseMarkdown(textWithoutBOM);
+    const ast = parseMarkdown(textWithoutBOM, options);
     const source = new StructuredSource(textWithoutBOM);
 
     // Collect all nodes without position for advanced processing
