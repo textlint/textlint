@@ -24,9 +24,10 @@ export class MarkdownProcessor {
         preProcess: (text: string, _filePath?: string) => TextlintPluginPreProcessResult;
         postProcess: (messages: TextlintMessage[], filePath?: string) => TextlintPluginPostProcessResult;
     } {
+        const cjkFriendly = this.config.cjkFriendly === true;
         return {
             preProcess(text: string, _filePath?: string) {
-                return parse(text);
+                return parse(text, { cjkFriendly });
             },
             postProcess(messages: TextlintMessage[], filePath?: string) {
                 return {
