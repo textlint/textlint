@@ -141,18 +141,18 @@ We are migrating entire codes to TypeScript.
 
 ##### Linting and Style
 
-This repository uses [ESLint](https://eslint.org/) for JavaScript linter and [Prettier](https://prettier.io/) for code formatter. We use [`lint-staged`](https://www.npmjs.com/package/lint-staged) and [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) to make coding style consistent before commit, but if you have your own Git hooks locally, these setup doesn't work. In such case, please run ESLint and Prettier manually as below after making changes.
+This repository uses [oxlint](https://oxc.rs/docs/guide/usage/linter) for JavaScript and TypeScript linter and [Prettier](https://prettier.io/) for code formatter. We use [`lint-staged`](https://www.npmjs.com/package/lint-staged) and [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) to make coding style consistent before commit, but if you have your own Git hooks locally, these setup doesn't work. In such case, please run oxlint and Prettier manually as below after making changes.
 
-- Run ESLint:
+- Run oxlint:
 
     ```sh
-    $ pnpm run eslint
+    $ pnpm run lint
     ```
 
-- Run ESLint with [`--fix`](https://eslint.org/docs/user-guide/command-line-interface#--fix) feature to fix some wrong style automatically:
+- Run oxlint with [`--fix`](https://oxc.rs/docs/guide/usage/linter/automatic-fixes.html) feature to fix some wrong style automatically:
 
     ```sh
-    $ pnpm run eslint:fix
+    $ pnpm run lint:fix
     ```
 
 - Run Prettier to reformat code:
@@ -235,7 +235,7 @@ We care version number while releasing packages to npm registry so you should no
         - It might break type interface(`.d.ts`)
     - A new formatter is created
 - Major release (break your lint build)
-    - A new option to an existing rule that results in ESLint reporting more errors by default
+    - A new option to an existing rule that results in textlint reporting more errors by default
     - An existing formatter is removed
     - Part of the public API is removed or changed in an incompatible way
 
