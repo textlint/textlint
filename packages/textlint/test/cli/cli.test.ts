@@ -17,15 +17,20 @@ type RunContext = {
 };
 const originLog = Logger.log;
 const originWrite = Logger.write;
+const originError = Logger.error;
 const runWithMockLog = async (cb: (context: RunContext) => unknown): Promise<unknown> => {
     const originLog = Logger.log;
     const originWrite = Logger.write;
+    const originError = Logger.error;
     const messages: string[] = [];
     Logger.log = function mockLog(...message: unknown[]) {
         messages.push(message.join(" "));
     };
     Logger.write = function mockWrite(message: string) {
         messages.push(message);
+    };
+    Logger.error = function mockError(...message: unknown[]) {
+        messages.push(message.join(" "));
     };
     const context = {
         getLogs() {
@@ -49,6 +54,7 @@ const runWithMockLog = async (cb: (context: RunContext) => unknown): Promise<unk
     }
     Logger.log = originLog;
     Logger.write = originWrite;
+    Logger.error = originError;
     return;
 };
 describe("cli-test", function () {
@@ -63,6 +69,7 @@ describe("cli-test", function () {
     afterEach(function () {
         Logger.log = originLog;
         Logger.write = originWrite;
+        Logger.error = originError;
     });
     describe("when pass linting", function () {
         it("should output checkstyle xml if the results length is 0", function () {
@@ -75,6 +82,19 @@ describe("cli-test", function () {
                         "should output unless empty results because checkstyle is always xml"
                     );
                 });
+            });
+        });
+        it("should return a clear error for fixer formatter that is unavailable in lint mode", function () {
+            return runWithMockLog(async ({ getLogs }) => {
+                const targetFile = path.join(__dirname, "fixtures/test.md");
+                const ruleModuleName = "textlint-rule-no-todo";
+                const result = await cli.execute(`${targetFile} --rule ${ruleModuleName} -f fixed-result`);
+                assert.strictEqual(result, 1);
+                assert.match(getLogs()[0], /Formatter "fixed-result" is not available for lint mode/);
+                assert.match(
+                    getLogs()[0],
+                    /Available formatter: checkstyle, compact, github, jslint-xml, json, junit, pretty-error, stylish, table, tap, unix/
+                );
             });
         });
     });
@@ -288,6 +308,19 @@ describe("cli-test", function () {
                     const result = await cli.execute(`--rulesdir ${ruleDir} --fix ${targetFile}`);
                     assert.strictEqual(result, 0);
                     assertNotHasLog();
+                });
+            });
+            it("should return a clear error for formatter that is unavailable in --fix mode", function () {
+                return runWithMockLog(async ({ getLogs }) => {
+                    const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
+                    const targetFile = path.join(__dirname, "fixtures/test.md");
+                    const result = await cli.execute(`--rulesdir ${ruleDir} --fix -f pretty-error ${targetFile}`);
+                    assert.strictEqual(result, 1);
+                    assert.match(getLogs()[0], /Formatter "pretty-error" is not available for --fix mode/);
+                    assert.match(
+                        getLogs()[0],
+                        /Available formatter for --fix: compats, diff, fixed-result, json, stylish/
+                    );
                 });
             });
         });
