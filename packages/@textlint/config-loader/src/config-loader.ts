@@ -203,9 +203,23 @@ export const loadConfig = async (options: TextlintConfigLoaderOptions): Promise<
  */
 export const loadRawConfig = async (options: TextlintConfigLoaderOptions): Promise<TextlintConfigLoaderRawResult> => {
     try {
+        let configFileName = options.configFilePath;
+        if (configFileName) {
+            const moduleResolver = new TextLintModuleResolver({
+                rulesBaseDirectory: options.node_modulesDir
+            });
+            try {
+                configFileName = moduleResolver.resolveConfigPackageName(configFileName);
+            } catch (error) {
+                if (!(error instanceof ReferenceError)) {
+                    throw error;
+                }
+                // Fall back to loading configFileName as a file path.
+            }
+        }
         const results = rcFile<TextlintRcConfig>("textlint", {
             cwd: options.cwd,
-            configFileName: options.configFilePath,
+            configFileName,
             packageJSON: {
                 fieldName: "textlint"
             }

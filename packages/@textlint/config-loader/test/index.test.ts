@@ -1,8 +1,9 @@
 import * as fs from "node:fs";
-import { describe, it } from "vitest";
+import { describe, it, vi } from "vitest";
 import * as path from "node:path";
 import * as assert from "node:assert";
 import { loadRawConfig, loadPackagesFromRawConfig } from "../src/index.js";
+import { TextLintModuleResolver } from "../src/textlint-module-resolver.js";
 
 const currentDir = __dirname;
 const fixturesDir = path.join(currentDir, "snapshots");
@@ -146,6 +147,45 @@ describe("@textlint/config-loader", () => {
                     // Original expectation was: "textlint configuration file must be encoded in UTF-8"
                 }
             });
+        });
+    });
+    describe("when a sharable config module is specified", () => {
+        it("loads a scoped package subpath", async () => {
+            const result = await loadRawConfig({
+                configFilePath: "@acme/textlint/default",
+                node_modulesDir: modulesDir
+            });
+
+            assert.ok(result.ok);
+            assert.deepStrictEqual(result.rawConfig, {
+                rules: {
+                    "shared-rule": true
+                }
+            });
+            assert.strictEqual(result.configFilePath, path.join(modulesDir, "@acme", "textlint", "default.js"));
+        });
+
+        it("reports unexpected module resolution errors", async () => {
+            const resolutionError = new TypeError("unexpected resolver failure");
+            const resolveSpy = vi
+                .spyOn(TextLintModuleResolver.prototype, "resolveConfigPackageName")
+                .mockImplementationOnce(() => {
+                    throw resolutionError;
+                });
+
+            try {
+                const result = await loadRawConfig({
+                    configFilePath: "example-config",
+                    node_modulesDir: modulesDir
+                });
+
+                assert.strictEqual(result.ok, false);
+                if (!result.ok) {
+                    assert.strictEqual(result.error.errors[0], resolutionError);
+                }
+            } finally {
+                resolveSpy.mockRestore();
+            }
         });
     });
 });
