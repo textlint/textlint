@@ -52,11 +52,11 @@ catalogs:
       specifier: ^3.1.1
       version: 3.1.1
     '@modelcontextprotocol/client':
-      specifier: ^2.1.0
-      version: 2.1.0
+      specifier: ^2.2.0
+      version: 2.2.0
     '@modelcontextprotocol/server':
-      specifier: ^2.1.0
-      version: 2.1.0
+      specifier: ^2.2.0
+      version: 2.2.0
     '@monorepo-utils/workspaces-to-typescript-project-references':
       specifier: ^2.11.0
       version: 2.11.0
@@ -1047,7 +1047,7 @@ importers:
     dependencies:
       '@modelcontextprotocol/server':
         specifier: 'catalog:'
-        version: 2.1.0
+        version: 2.2.0
       '@textlint/ast-node-types':
         specifier: workspace:*
         version: link:../@textlint/ast-node-types
@@ -1120,7 +1120,7 @@ importers:
     devDependencies:
       '@modelcontextprotocol/client':
         specifier: 'catalog:'
-        version: 2.1.0
+        version: 2.2.0
       '@textlint/legacy-textlint-core':
         specifier: workspace:*
         version: link:../@textlint/legacy-textlint-core
@@ -2983,16 +2983,16 @@ packages:
       '@types/react': '>=16'
       react: '>=16'
 
-  '@modelcontextprotocol/client@2.1.0':
-    resolution: {integrity: sha512-mDVhoy5WjDb0U+4dQPzLcciC2erSex/GRVQqnoZdiuMoE3YiTZdiS7ezNcFwX4XEOWOaj7jZr0kLYnILnL8orA==}
+  '@modelcontextprotocol/client@2.2.0':
+    resolution: {integrity: sha512-LxCou/CSYQ6dwEnjhLZY0KnEuc8V4UJ3IEQCl/uR2yHobSQIEdJKUlKLRYRF5i5FqRGHy1eK7une3aAWDHLtig==}
     engines: {node: '>=20'}
 
-  '@modelcontextprotocol/core@2.1.0':
-    resolution: {integrity: sha512-YdFj5gMRHr0gYNAhTbQDgjLHiEJdIAUYxomhKseUNye7ZGlISQmUoLh2sveFFCiQ7j2YMffT1kgSND0FSfIFjQ==}
+  '@modelcontextprotocol/core@2.2.0':
+    resolution: {integrity: sha512-iLhmprRmWI8EcosOA3wVvww22z02NkgqhV4fBH6f/odQBsi7xnJc0HGmi21yWO+/iKw2yzqVE127Zhna5/+JXw==}
     engines: {node: '>=20'}
 
-  '@modelcontextprotocol/server@2.1.0':
-    resolution: {integrity: sha512-FdvwZU5N03O77Suh35JqjAqq5R1ZTEPFtwu6N4BgBq28qrQtrCnpbLL5U2pwYCuE194jAw0xnlOVmIqhfoYuUQ==}
+  '@modelcontextprotocol/server@2.2.0':
+    resolution: {integrity: sha512-qFnltjus6Gk8Lx6J1w2RXmr3YPN22MNT6qD6zjAkaiWIlFIFxWClz0rXHNuJF/KSUyn5YGhkSvXkWDbQHVLFEQ==}
     engines: {node: '>=20'}
 
   '@monorepo-utils/package-utils@2.11.0':
@@ -12382,9 +12382,9 @@ snapshots:
       '@types/react': 19.1.8
       react: 19.3.0
 
-  '@modelcontextprotocol/client@2.1.0':
+  '@modelcontextprotocol/client@2.2.0':
     dependencies:
-      '@modelcontextprotocol/core': 2.1.0
+      '@modelcontextprotocol/core': 2.2.0
       cross-spawn: 7.0.6
       eventsource: 3.0.7
       eventsource-parser: 3.0.6
@@ -12392,13 +12392,13 @@ snapshots:
       pkce-challenge: 5.0.0
       zod: 4.6.5
 
-  '@modelcontextprotocol/core@2.1.0':
+  '@modelcontextprotocol/core@2.2.0':
     dependencies:
       zod: 4.6.5
 
-  '@modelcontextprotocol/server@2.1.0':
+  '@modelcontextprotocol/server@2.2.0':
     dependencies:
-      '@modelcontextprotocol/core': 2.1.0
+      '@modelcontextprotocol/core': 2.2.0
       zod: 4.6.5
 
   '@monorepo-utils/package-utils@2.11.0':
