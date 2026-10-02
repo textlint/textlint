@@ -46,6 +46,19 @@ describe("MCP Server", () => {
 
     // MCP specification improvements tests
     describe("MCP Specification Improvements", () => {
+        describe("Tool Annotations", () => {
+            it.each(["lintFile", "lintText", "getLintFixedFileContent", "getLintFixedTextContent"])(
+                "should advertise %s as read-only",
+                async (toolName) => {
+                    const { tools } = await client.listTools();
+                    const tool = tools.find((tool) => tool.name === toolName);
+
+                    assert.ok(tool, `${toolName} tool should exist`);
+                    assert.strictEqual(tool.annotations?.readOnlyHint, true);
+                }
+            );
+        });
+
         describe("Structured Tool Output", () => {
             it("should return structured content and regular content", async () => {
                 const result = (await client.callTool({
