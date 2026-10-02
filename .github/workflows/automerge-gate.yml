@@ -19,6 +19,6 @@ jobs:
       pull-requests: read
       actions: read
     steps:
-      - uses: pkgdeps/automerge-gate@935fd39d46855c00b7b3972eace56f7058b25fad # v5.0.3
+      - uses: pkgdeps/automerge-gate@d5d2a5000890aa841cfcc9458e8df7c623b58a36 # v5.0.4
         with:
           gate-mode: 'public'
