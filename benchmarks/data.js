@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1790910649661,
+  "lastUpdate": 1790910739597,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -121799,6 +121799,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.4237224988,
             "range": "± 0.009123022000000036",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "217bad205ed3f6ba9986a818b6c3110ed6a9dc47",
+          "message": "chore(deps): update minor updates to ^2.2.0 (#2144)\n\nThis PR contains the following updates:\n\n| Package | Change |\n[Age](https://docs.renovatebot.com/merge-confidence/) |\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n| [@modelcontextprotocol/client](https://modelcontextprotocol.io)\n([source](https://redirect.github.com/modelcontextprotocol/typescript-sdk))\n| [`^2.1.0` →\n`^2.2.0`](https://renovatebot.com/diffs/npm/@modelcontextprotocol%2fclient/2.1.0/2.2.0)\n|\n![age](https://developer.mend.io/api/mc/badges/age/npm/@modelcontextprotocol%2fclient/2.2.0?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@modelcontextprotocol%2fclient/2.1.0/2.2.0?slim=true)\n|\n| [@modelcontextprotocol/server](https://modelcontextprotocol.io)\n([source](https://redirect.github.com/modelcontextprotocol/typescript-sdk))\n| [`^2.1.0` →\n`^2.2.0`](https://renovatebot.com/diffs/npm/@modelcontextprotocol%2fserver/2.1.0/2.2.0)\n|\n![age](https://developer.mend.io/api/mc/badges/age/npm/@modelcontextprotocol%2fserver/2.2.0?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@modelcontextprotocol%2fserver/2.1.0/2.2.0?slim=true)\n|\n\n⚠️ Renovate does not enforce Minimum Release Age for `bump`,\n`lockfileUpdate`, or `rollback` updates, so these are raised without a\nMinimum Release Age check. You will need to manually validate the\nMinimum Release Age for these package(s).\n\n---\n\n### Release Notes\n\n<details>\n<summary>modelcontextprotocol/typescript-sdk\n(@&#8203;modelcontextprotocol/client)</summary>\n\n###\n[`v2.2.0`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/releases/tag/%40modelcontextprotocol/server%402.2.0)\n\n[Compare\nSource](https://redirect.github.com/modelcontextprotocol/typescript-sdk/compare/@modelcontextprotocol/client@2.1.0...@modelcontextprotocol/client@2.2.0)\n\n##### Patch Changes\n\n-\n[#&#8203;2885](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/2885)\n[`9dd722f`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/commit/9dd722fd0b533b3cb44cd2834409f7ea4dd32b00)\nThanks [@&#8203;claude](https://redirect.github.com/apps/claude)! -\nSending a notification on a closed connection no longer produces a\nbriefly unhandled promise rejection (seen as `unhandledrejection` on\nCloudflare Workers) in addition to the returned rejection.\n\n-\n[#&#8203;2778](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/2778)\n[`e3fb9ed`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/commit/e3fb9edcdec70ed7c8463548ea9b90bbcb74c4ab)\nThanks [@&#8203;vjymisal0](https://redirect.github.com/vjymisal0)! - Fix\na stack overflow in `createMcpHandler` when the factory returns the same\nserver instance for more than one request. Returning a fresh instance\nper request is still required.\n\n-\n[#&#8203;2651](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/2651)\n[`c55efa6`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/commit/c55efa62fc4218592418ffbd313d1a906286f1d3)\nThanks\n[@&#8203;sushantkumar23](https://redirect.github.com/sushantkumar23)! -\n`createMcpHandler` now ends a `subscriptions/listen` stream right after\nthe acknowledgement when it honored none of the requested notification\ntypes, instead of holding the stream open with nothing to deliver. The\nclient receives the acknowledgement and then the `resultType:\n\"complete\"` result. Streams that honor at least one type are unchanged.\n\n- Updated dependencies\n\\[[`edd12e2`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/commit/edd12e282620ebf770d67316f19cf91d4112a1bd)]:\n-\n[@&#8203;modelcontextprotocol/core](https://redirect.github.com/modelcontextprotocol/core)@2.2.0\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: (in timezone Asia/Tokyo)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about these\nupdates again.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0NC4xMjUuMSIsInVwZGF0ZWRJblZlciI6IjQ0LjEyNS4xIiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-02T03:10:39Z",
+          "tree_id": "4e3099b498f1a4415d6f9c1796c898d01eb0dd35",
+          "url": "https://github.com/textlint/textlint/commit/217bad205ed3f6ba9986a818b6c3110ed6a9dc47"
+        },
+        "date": 1790910728620,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21536174489999999,
+            "range": "± 0.03445764200000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8941603211,
+            "range": "± 0.04881796799999982",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7241691799000001,
+            "range": "± 0.013104252999999955",
             "unit": "seconds"
           }
         ]
