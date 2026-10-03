@@ -398,4 +398,65 @@ describe("markdown-parser", function () {
             shouldHaveImplementTxtNode(node, rawValue);
         });
     });
+    /*
+        Issue #2008: Inconsistent node detection
+        https://github.com/textlint/textlint/issues/2008
+
+        CommonMark Type 6 HTML block rule causes consecutive self-closed
+        block-level tags on separate lines (without blank lines between them)
+        to be swallowed into a single Html node. This test verifies that the
+        post-processing workaround splits them into individual nodes.
+    */
+    describe("Issue #2008: splitting consecutive block-level HTML tags", function () {
+        it("should split <h2>head</h2>\\ntext\\n<h2>head</h2> into 3 nodes", function () {
+            const rawValue = "<h2>head</h2>\ntext\n<h2>head</h2>";
+            const AST = parse(rawValue);
+            // Should produce: Html, Paragraph, Html (3 top-level children)
+            const document = AST as unknown as { children: TxtNode[] };
+            assert.strictEqual(document.children.length, 3);
+            // First child: Html node for <h2>head</h2>
+            assert.strictEqual(document.children[0].type, Syntax.Html);
+            assert.strictEqual(document.children[0].raw, "<h2>head</h2>");
+            assert.deepStrictEqual(document.children[0].range, [0, 13]);
+            assert.deepStrictEqual(document.children[0].loc, {
+                start: { line: 1, column: 0 },
+                end: { line: 1, column: 13 }
+            });
+            // Second child: Paragraph node for "text"
+            assert.strictEqual(document.children[1].type, Syntax.Paragraph);
+            assert.strictEqual(document.children[1].raw, "text");
+            assert.deepStrictEqual(document.children[1].range, [14, 18]);
+            assert.deepStrictEqual(document.children[1].loc, {
+                start: { line: 2, column: 0 },
+                end: { line: 2, column: 4 }
+            });
+            // Third child: Html node for <h2>head</h2>
+            assert.strictEqual(document.children[2].type, Syntax.Html);
+            assert.strictEqual(document.children[2].raw, "<h2>head</h2>");
+            assert.deepStrictEqual(document.children[2].range, [19, 32]);
+            assert.deepStrictEqual(document.children[2].loc, {
+                start: { line: 3, column: 0 },
+                end: { line: 3, column: 13 }
+            });
+        });
+        it("should split consecutive <h2>head</h2> tags into individual Html nodes", function () {
+            const rawValue = "<h2>head</h2>\n<h2>head</h2>\n<h2>head</h2>";
+            const AST = parse(rawValue);
+            const document = AST as unknown as { children: TxtNode[] };
+            assert.strictEqual(document.children.length, 3);
+            for (const child of document.children) {
+                assert.strictEqual(child.type, Syntax.Html);
+                assert.strictEqual(child.raw, "<h2>head</h2>");
+            }
+        });
+        it("should NOT split genuine multi-line HTML blocks like <div>\\nfoo\\n</div>", function () {
+            const rawValue = "<div>\nfoo\n</div>";
+            const AST = parse(rawValue);
+            const document = AST as unknown as { children: TxtNode[] };
+            // Should remain as a single Html node
+            assert.strictEqual(document.children.length, 1);
+            assert.strictEqual(document.children[0].type, Syntax.Html);
+            assert.strictEqual(document.children[0].raw, rawValue);
+        });
+    });
 });
