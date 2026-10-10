@@ -65,6 +65,7 @@ export const cli = {
             return Promise.resolve(1);
         }
         const files = currentOptions._;
+        const hasStdinText = text !== undefined;
         debug("cliOptions: %j", currentOptions);
         if (currentOptions.version) {
             Logger.log(`v${version}`);
@@ -97,14 +98,14 @@ export const cli = {
             process.once("SIGINT", closeMcpServer);
             process.once("SIGTERM", closeMcpServer);
             return 0;
-        } else if (currentOptions.help || (!files.length && !text)) {
+        } else if (currentOptions.help || (!files.length && !hasStdinText)) {
             Logger.log(options.generateHelp());
         } else {
             // specify file name of stdin content
             const stdinFilename = currentOptions.stdinFilename;
             debug(`textlint --version: ${version}`);
-            debug(`Running on ${text ? "text" : "files"}, stdin-filename: ${stdinFilename}`);
-            if (text) {
+            debug(`Running on ${hasStdinText ? "text" : "files"}, stdin-filename: ${stdinFilename}`);
+            if (hasStdinText) {
                 if (!stdinFilename) {
                     throw new Error("Please specify --stdin-filename option");
                 }
@@ -189,7 +190,10 @@ export const cli = {
                 debug("lint results: %j", results);
                 const formatter = await loadLinterFormatter({
                     formatterName: cliOptions.format,
-                    color: cliOptions.color
+                    color: cliOptions.color,
+                    ...(isStdinExecution(executeOptions) && cliOptions.format === "pretty-error"
+                        ? { sourceCode: executeOptions.text }
+                        : {})
                 });
                 const output = formatter.format(results);
                 if (printResults(output, cliOptions)) {

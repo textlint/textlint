@@ -64,6 +64,63 @@ describe("cli-test", function () {
         Logger.log = originLog;
         Logger.write = originWrite;
     });
+    describe("stdin pretty-error", function () {
+        it("shows piped text diagnostics when the virtual filename does not exist", function () {
+            return runWithMockLog(async ({ getLogs }) => {
+                const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-cli-stdin-"));
+                try {
+                    const filename = path.join(directory, "missing.md");
+                    const status = await cli.execute(
+                        `--rule no-todo --stdin-filename "${filename}" -f pretty-error --no-color`,
+                        "- [ ] TODO"
+                    );
+                    assert.strictEqual(status, 1);
+                    assert.match(getLogs().join("\n"), /- \[ \] TODO/);
+                    assert.match(getLogs().join("\n"), /1 problem \(1 error\)/);
+                    assert.strictEqual(fs.existsSync(filename), false);
+                } finally {
+                    fs.rmSync(directory, { recursive: true, force: true });
+                }
+            });
+        });
+
+        it("accepts clean and empty stdin without reading a virtual file or printing help", function () {
+            return runWithMockLog(async ({ getLogs }) => {
+                const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-cli-clean-"));
+                try {
+                    const filename = path.join(directory, "missing.md");
+                    const args = `--rule no-todo --stdin-filename "${filename}" -f pretty-error --no-color`;
+                    assert.strictEqual(await cli.execute(args, "clean text"), 0);
+                    assert.strictEqual(await cli.execute(args, ""), 0);
+                    assert.deepStrictEqual(getLogs(), []);
+                    assert.strictEqual(fs.existsSync(filename), false);
+                } finally {
+                    fs.rmSync(directory, { recursive: true, force: true });
+                }
+            });
+        });
+
+        it("uses piped content when a virtual stdin filename points at other disk text", function () {
+            return runWithMockLog(async ({ getLogs }) => {
+                const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-cli-collision-"));
+                try {
+                    const filename = path.join(directory, "document.md");
+                    fs.writeFileSync(filename, "This is disk content");
+                    const status = await cli.execute(
+                        `--rule no-todo --stdin-filename "${filename}" -f pretty-error --no-color`,
+                        "- [ ] TODO"
+                    );
+                    assert.strictEqual(status, 1);
+                    const output = getLogs().join("\n");
+                    assert.match(output, /- \[ \] TODO/);
+                    assert.doesNotMatch(output, /This is disk content/);
+                    assert.strictEqual(fs.readFileSync(filename, "utf8"), "This is disk content");
+                } finally {
+                    fs.rmSync(directory, { recursive: true, force: true });
+                }
+            });
+        });
+    });
     describe("when pass linting", function () {
         it("should output checkstyle xml if the results length is 0", function () {
             return runWithMockLog(({ getLogs }) => {

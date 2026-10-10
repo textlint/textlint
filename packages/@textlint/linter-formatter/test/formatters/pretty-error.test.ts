@@ -7,6 +7,8 @@ import { describe, it } from "vitest";
 import * as assert from "node:assert";
 import type { TextlintMessage } from "@textlint/types";
 import * as path from "node:path";
+import * as fs from "node:fs";
+import * as os from "node:os";
 
 // Helper to create test message with minimal required properties
 function createTestMessage(
@@ -29,6 +31,74 @@ function createTestMessage(
     };
 }
 describe("pretty-error", function () {
+    describe("stdin source text", function () {
+        it("formats diagnostics without reading a nonexistent filename", function () {
+            const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-missing-stdin-"));
+            try {
+                const filename = path.join(directory, "missing.md");
+                const output = prettyError(
+                    [
+                        {
+                            filePath: filename,
+                            messages: [createTestMessage({ ruleId: "example", message: "Problem", severity: 2 })]
+                        }
+                    ],
+                    { color: false, sourceCode: "piped source" }
+                );
+                assert.match(output, /1\. piped source/);
+                assert.match(output, /1 problem \(1 error\)/);
+            } finally {
+                fs.rmSync(directory, { recursive: true, force: true });
+            }
+        });
+
+        it("does not read a nonexistent filename when there are no diagnostics", function () {
+            const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-clean-stdin-"));
+            try {
+                const filename = path.join(directory, "missing.md");
+                const output = prettyError([{ filePath: filename, messages: [] }], { color: false });
+                assert.strictEqual(output, "");
+            } finally {
+                fs.rmSync(directory, { recursive: true, force: true });
+            }
+        });
+
+        it("uses supplied stdin text instead of different on-disk content", function () {
+            const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-pretty-stdin-"));
+            try {
+                const filename = path.join(directory, "document.md");
+                fs.writeFileSync(filename, "disk content");
+                const messages = [createTestMessage({ ruleId: "example", message: "Problem", severity: 2 })];
+                const output = prettyError([{ filePath: filename, messages }], {
+                    color: false,
+                    sourceCode: "piped content"
+                });
+                assert.match(output, /1\. piped content/);
+                assert.doesNotMatch(output, /disk content/);
+                const fileOutput = prettyError([{ filePath: filename, messages }], { color: false });
+                assert.match(fileOutput, /1\. disk content/);
+            } finally {
+                fs.rmSync(directory, { recursive: true, force: true });
+            }
+        });
+
+        it("treats an explicitly empty source as present rather than reading disk", function () {
+            const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-empty-stdin-"));
+            try {
+                const filename = path.join(directory, "document.md");
+                fs.writeFileSync(filename, "disk content");
+                const output = prettyError(
+                    [{ filePath: filename, messages: [createTestMessage({ ruleId: "example", severity: 2 })] }],
+                    { color: false, sourceCode: "" }
+                );
+                assert.doesNotMatch(output, /disk content/);
+                assert.doesNotMatch(output, /undefined/);
+                assert.match(output, /1 problem \(1 error\)/);
+            } finally {
+                fs.rmSync(directory, { recursive: true, force: true });
+            }
+        });
+    });
     describe("when first line", function () {
         it("should start 0 line", function () {
             const fooFile = path.join(__dirname, "../fixtures", "foo.md");
