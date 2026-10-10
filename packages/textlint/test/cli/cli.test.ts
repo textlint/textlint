@@ -121,6 +121,159 @@ describe("cli-test", function () {
             });
         });
     });
+    describe("stdin fixes with virtual filenames", function () {
+        const fixerRules = path.relative(process.cwd(), path.join(__dirname, "fixtures/fixer-rules"));
+        const formatArgs = (args: string[]): string =>
+            args.map((arg) => (/\s/.test(arg) ? JSON.stringify(arg) : arg)).join(" ");
+        const stdinFixArgs = (filename: string): string[] => [
+            "--rulesdir",
+            fixerRules,
+            "--fix",
+            "--stdin",
+            "--stdin-filename",
+            filename,
+            "--format",
+            "fixed-result",
+            "--no-color"
+        ];
+        const executeAndCapture = async (args: string[], input: string) => {
+            const chunks: string[] = [];
+            const previousWrite = Logger.write;
+            Logger.write = (chunk: string) => {
+                chunks.push(chunk);
+            };
+            try {
+                return { status: await cli.execute(formatArgs(args), input), output: chunks.join("") };
+            } finally {
+                Logger.write = previousWrite;
+            }
+        };
+
+        it.each([
+            ["empty", "", ""],
+            ["unchanged nonempty", "Clean piped content.", "Clean piped content."],
+            ["fixable nonempty", "This is fix<REMOVE_MARK>", "This is fixed."]
+        ])("preserves an existing virtual filename with %s stdin", async (_name, input, expectedOutput) => {
+            const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-stdin-existing-"));
+            try {
+                const filename = path.join(directory, "document.md");
+                fs.writeFileSync(filename, "ORIGINAL DATA");
+                const result = await executeAndCapture(stdinFixArgs(filename), input);
+                assert.strictEqual(result.status, 0);
+                assert.strictEqual(result.output, expectedOutput);
+                assert.strictEqual(fs.readFileSync(filename, "utf8"), "ORIGINAL DATA");
+            } finally {
+                fs.rmSync(directory, { recursive: true, force: true });
+            }
+        });
+
+        it.each([
+            ["empty", "", ""],
+            ["unchanged nonempty", "Clean piped content.", "Clean piped content."],
+            ["fixable nonempty", "This is fix<REMOVE_MARK>", "This is fixed."]
+        ])("does not create a virtual filename with %s stdin", async (_name, input, expectedOutput) => {
+            const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-stdin-virtual-"));
+            try {
+                const filename = path.join(directory, "virtual.md");
+                const result = await executeAndCapture(stdinFixArgs(filename), input);
+                assert.strictEqual(result.status, 0);
+                assert.strictEqual(result.output, expectedOutput);
+                assert.strictEqual(fs.existsSync(filename), false);
+            } finally {
+                fs.rmSync(directory, { recursive: true, force: true });
+            }
+        });
+
+        it("writes fixed stdin only to an explicitly requested output file", async () => {
+            const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-stdin-output-"));
+            try {
+                const filename = path.join(directory, "virtual.md");
+                const outputFile = path.join(directory, "new.md");
+                fs.writeFileSync(filename, "ORIGINAL DATA");
+                const result = await executeAndCapture(
+                    [...stdinFixArgs(filename), "--output-file", outputFile],
+                    "This is fix<REMOVE_MARK>"
+                );
+                assert.strictEqual(result.status, 0);
+                assert.strictEqual(result.output, "");
+                assert.strictEqual(fs.readFileSync(filename, "utf8"), "ORIGINAL DATA");
+                assert.strictEqual(fs.readFileSync(outputFile, "utf8"), "This is fixed.");
+            } finally {
+                fs.rmSync(directory, { recursive: true, force: true });
+            }
+        });
+
+        it("does not overwrite a virtual filename for empty stdin with an explicit output file", async () => {
+            const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-stdin-empty-output-"));
+            try {
+                const filename = path.join(directory, "virtual.md");
+                const outputFile = path.join(directory, "new.md");
+                fs.writeFileSync(filename, "ORIGINAL DATA");
+                const result = await executeAndCapture([...stdinFixArgs(filename), "--output-file", outputFile], "");
+                assert.strictEqual(result.status, 0);
+                assert.strictEqual(result.output, "");
+                assert.strictEqual(fs.readFileSync(filename, "utf8"), "ORIGINAL DATA");
+            } finally {
+                fs.rmSync(directory, { recursive: true, force: true });
+            }
+        });
+
+        it("keeps the virtual filename untouched in stdin dry-run mode", async () => {
+            const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-stdin-dry-run-"));
+            try {
+                const filename = path.join(directory, "virtual.md");
+                fs.writeFileSync(filename, "ORIGINAL DATA");
+                const result = await executeAndCapture(
+                    [...stdinFixArgs(filename), "--dry-run"],
+                    "This is fix<REMOVE_MARK>"
+                );
+                assert.strictEqual(result.status, 0);
+                assert.strictEqual(result.output, "This is fixed.");
+                assert.strictEqual(fs.readFileSync(filename, "utf8"), "ORIGINAL DATA");
+            } finally {
+                fs.rmSync(directory, { recursive: true, force: true });
+            }
+        });
+
+        it("preserves virtual filenames containing spaces", async () => {
+            const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-stdin-spaces-"));
+            try {
+                const existingFilename = path.join(directory, "existing virtual file.md");
+                const missingFilename = path.join(directory, "missing virtual file.md");
+                fs.writeFileSync(existingFilename, "ORIGINAL DATA");
+
+                const existingResult = await executeAndCapture(
+                    stdinFixArgs(existingFilename),
+                    "This is fix<REMOVE_MARK>"
+                );
+                assert.strictEqual(existingResult.status, 0);
+                assert.strictEqual(existingResult.output, "This is fixed.");
+                assert.strictEqual(fs.readFileSync(existingFilename, "utf8"), "ORIGINAL DATA");
+
+                const missingResult = await executeAndCapture(stdinFixArgs(missingFilename), "");
+                assert.strictEqual(missingResult.status, 0);
+                assert.strictEqual(missingResult.output, "");
+                assert.strictEqual(fs.existsSync(missingFilename), false);
+            } finally {
+                fs.rmSync(directory, { recursive: true, force: true });
+            }
+        });
+
+        it("still writes fixes to actual files", async () => {
+            const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-file-fix-"));
+            try {
+                const filename = path.join(directory, "document.md");
+                fs.writeFileSync(filename, "This is fix<REMOVE_MARK>");
+                const status = await cli.execute(
+                    formatArgs(["--rulesdir", fixerRules, "--fix", filename, "--no-color"])
+                );
+                assert.strictEqual(status, 0);
+                assert.strictEqual(fs.readFileSync(filename, "utf8"), "This is fixed.");
+            } finally {
+                fs.rmSync(directory, { recursive: true, force: true });
+            }
+        });
+    });
     describe("when pass linting", function () {
         it("should output checkstyle xml if the results length is 0", function () {
             return runWithMockLog(({ getLogs }) => {

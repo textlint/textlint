@@ -157,7 +157,6 @@ export const cli = {
                     ? [await linter.fixText(executeOptions.text, executeOptions.stdinFilename)]
                     : await linter.fixFiles(executeOptions.files);
                 debug("fix results: %j", results);
-                const fixer = new TextLintFixer();
                 const formatter = await loadFixerFormatter({
                     formatterName: cliOptions.format,
                     color: cliOptions.color
@@ -168,8 +167,10 @@ export const cli = {
                     debug("Enable dry-run mode");
                     return printResults(output, cliOptions) ? Promise.resolve(0) : Promise.resolve(2);
                 }
-                // modify file and return exit status
-                await fixer.write(results);
+                // --stdin-filename is virtual; only file inputs may be modified in place.
+                if (!isStdinExecution(executeOptions)) {
+                    await new TextLintFixer().write(results);
+                }
                 if (printResults(output, cliOptions)) {
                     if (cliOptions.outputFile) {
                         return 0; // if --output-file option is specified, exit status is always 0
