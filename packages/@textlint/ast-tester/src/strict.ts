@@ -17,7 +17,7 @@ const parentTypes = new Set([
     "Link",
     "LinkReference"
 ]);
-const textTypes = new Set(["Html", "Comment", "CodeBlock", "Str", "Code"]);
+const textTypes = new Set(["Html", "HtmlBlock", "Comment", "CodeBlock", "Str", "Code"]);
 const resourceTypes = new Set(["Link", "Image", "Definition"]);
 const referenceTypes = new Set(["LinkReference", "ImageReference", "Definition"]);
 const typedReferences = new Set(["LinkReference", "ImageReference"]);

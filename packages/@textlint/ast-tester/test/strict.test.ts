@@ -82,7 +82,7 @@ describe("opt-in built-in TxtNode validation", () => {
     });
 
     it("requires value for each concrete built-in text node", () => {
-        for (const type of ["Html", "Comment", "CodeBlock", "Str", "Code"]) {
+        for (const type of ["Html", "HtmlBlock", "Comment", "CodeBlock", "Str", "Code"]) {
             invalidStrict(node(type), "value");
             invalidStrict(node(type, { value: null }), "value");
             assert.doesNotThrow(() => test(node(type)));
