@@ -457,7 +457,8 @@ test(AST); // if the AST is invalid, then throw Error
 isTxtAST(AST); // true or false
 ```
 
-:warning: Current `test` function does not check node specific properties.
-For example, `TxtHeaderNode` has `level` property, but `test` function does not check it.
+By default, `test(AST)` and `isTxtAST(AST)` validate generic AST structure without checking node-specific properties. This remains compatible with plugin-defined node types.
+
+Use `test(AST, { strict: true })` or `isTxtAST(AST, { strict: true })` to additionally validate declared properties of built-in node types (including the `TxtHeaderNode.depth` value from 1 to 6). Unknown plugin types remain structurally valid, and recognized descendants are validated recursively. Strict mode checks a maintained set of built-in fields, not a generated TypeScript schema or child-placement grammar.
 
 - Issue: [ast-tester should validate individual Node type · Issue #1009 · textlint/textlint](https://github.com/textlint/textlint/issues/1009)

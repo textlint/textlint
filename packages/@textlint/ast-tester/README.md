@@ -14,11 +14,11 @@ If you have created [Processor](https://github.com/textlint/textlint/blob/master
 
 ## Usage
 
-### `test(textlintAST): void`
+### `test(textlintAST, options?): void`
 
 if the AST is invalid, then throw Error
 
-### `isTxtAST(textlintAST): boolean`
+### `isTxtAST(textlintAST, options?): boolean`
 
 if the AST is valid, then return `true`.
 
@@ -31,6 +31,17 @@ test(AST);// if the AST is invalid, then throw Error
 
 isTxtAST(AST);// true or false
 ```
+### Opt-in built-in node validation
+
+The default behavior validates generic AST structure and remains permissive for plugin-defined node types. Both functions also accept an optional `{ strict: true }` argument to validate the declared fields of built-in node types, including required parent `children`, text `value`, `Header.depth` (1–6), resource/reference fields and applicable optional fields:
+
+```js
+test(AST, { strict: true }); // throws an error identifying the invalid node field
+isTxtAST(AST, { strict: true }); // false if strict validation fails
+```
+
+Strict checking is recursive even under unknown plugin nodes. Unknown/custom node types, extra fields and synthetic visitor type names remain allowed; this is a manually maintained built-in field check, not a complete schema or child-placement validator. Omitting options or setting `strict: false` preserves the original generic behavior.
+
 ## Tests
 
     npm test
