@@ -200,6 +200,10 @@ Put the config of `foo` rule in `text-rule-preset-example` rule-preset.
 }
 ```
 
+The child rule names must match the keys exported by the preset's `rules` object.
+The config loader reports an error for an unknown child rule name, even when its value is `false`.
+Options inside a known child rule, including `severity`, are passed to that rule as usual.
+
 ## Filter rule
 
 Filter rule provide filtering error by linting rule.
