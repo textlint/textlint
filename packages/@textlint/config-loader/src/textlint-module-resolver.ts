@@ -3,6 +3,11 @@ import { PackageNamePrefix } from "./package-prefix.js";
 import { createFullPackageName } from "./textlint-package-name-util.js";
 import { tryResolve } from "@textlint/resolver";
 
+// Package specifiers must keep forward slashes, including on Windows.
+const withBaseDirectory = (baseDirectory: string, packageName: string): string => {
+    return baseDirectory ? path.join(baseDirectory, packageName) : packageName;
+};
+
 export interface ConfigModulePrefix {
     CONFIG_PACKAGE_PREFIX: string;
     FILTER_RULE_NAME_PREFIX: string;
@@ -67,9 +72,7 @@ export class TextLintModuleResolver {
         const baseDir = this.baseDirectory;
         const fullPackageName = createFullPackageName(PackageNamePrefix.rule, packageName);
         // <rule-name> or textlint-rule-<rule-name>
-        const resultFullPackagePath = this.tryResolvePackagePath(
-            baseDir ? path.join(baseDir, fullPackageName) : fullPackageName
-        );
+        const resultFullPackagePath = this.tryResolvePackagePath(withBaseDirectory(baseDir, fullPackageName));
         if (resultFullPackagePath) {
             return {
                 inputModuleName: packageName,
@@ -77,7 +80,7 @@ export class TextLintModuleResolver {
                 filePath: resultFullPackagePath
             };
         }
-        const resultPackagePath = this.tryResolvePackagePath(baseDir ? path.join(baseDir, packageName) : packageName);
+        const resultPackagePath = this.tryResolvePackagePath(withBaseDirectory(baseDir, packageName));
         if (resultPackagePath) {
             return {
                 inputModuleName: packageName,
@@ -99,9 +102,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         const baseDir = this.baseDirectory;
         const fullPackageName = createFullPackageName(PackageNamePrefix.filterRule, packageName);
         // <rule-name> or textlint-filter-rule-<rule-name> or @scope/<rule-name>
-        const resultFullPackagePath = this.tryResolvePackagePath(
-            baseDir ? path.join(baseDir, fullPackageName) : fullPackageName
-        );
+        const resultFullPackagePath = this.tryResolvePackagePath(withBaseDirectory(baseDir, fullPackageName));
         if (resultFullPackagePath) {
             return {
                 inputModuleName: packageName,
@@ -109,7 +110,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
                 filePath: resultFullPackagePath
             };
         }
-        const resultPackagePath = this.tryResolvePackagePath(baseDir ? path.join(baseDir, packageName) : packageName);
+        const resultPackagePath = this.tryResolvePackagePath(withBaseDirectory(baseDir, packageName));
         if (resultPackagePath) {
             return {
                 inputModuleName: packageName,
@@ -131,9 +132,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         const baseDir = this.baseDirectory;
         const fullPackageName = createFullPackageName(PackageNamePrefix.plugin, packageName);
         // <plugin-name> or textlint-plugin-<rule-name>
-        const resultFullPackagePath = this.tryResolvePackagePath(
-            baseDir ? path.join(baseDir, fullPackageName) : fullPackageName
-        );
+        const resultFullPackagePath = this.tryResolvePackagePath(withBaseDirectory(baseDir, fullPackageName));
         if (resultFullPackagePath) {
             return {
                 inputModuleName: packageName,
@@ -141,7 +140,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
                 filePath: resultFullPackagePath
             };
         }
-        const resultPackagePath = this.tryResolvePackagePath(baseDir ? path.join(baseDir, packageName) : packageName);
+        const resultPackagePath = this.tryResolvePackagePath(withBaseDirectory(baseDir, packageName));
         if (resultPackagePath) {
             return {
                 inputModuleName: packageName,
@@ -183,9 +182,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         const fullPackageName = createFullPackageName(PREFIX, packageNameWithoutPreset);
         const fullFullPackageName = `${PREFIX}${packageNameWithoutPreset}`;
         // textlint-rule-preset-<preset-name> or @scope/textlint-rule-preset-<preset-name>
-        const resultFullPresetPackagePath = this.tryResolvePackagePath(
-            baseDir ? path.join(baseDir, fullFullPackageName) : fullFullPackageName
-        );
+        const resultFullPresetPackagePath = this.tryResolvePackagePath(withBaseDirectory(baseDir, fullFullPackageName));
         if (resultFullPresetPackagePath) {
             return {
                 inputModuleName: packageName,
@@ -195,7 +192,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         }
         // <preset-name>
         const resultPresetPackagePath = this.tryResolvePackagePath(
-            baseDir ? path.join(baseDir, packageNameWithoutPreset) : packageNameWithoutPreset
+            withBaseDirectory(baseDir, packageNameWithoutPreset)
         );
         if (resultPresetPackagePath) {
             return {
@@ -205,9 +202,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
             };
         }
         // <rule-name>
-        const resultFullPackagePath = this.tryResolvePackagePath(
-            baseDir ? path.join(baseDir, fullPackageName) : fullPackageName
-        );
+        const resultFullPackagePath = this.tryResolvePackagePath(withBaseDirectory(baseDir, fullPackageName));
         if (resultFullPackagePath) {
             return {
                 inputModuleName: packageName,
@@ -216,7 +211,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
             };
         }
         // <package-name>
-        const resultPackagePath = this.tryResolvePackagePath(baseDir ? path.join(baseDir, packageName) : packageName);
+        const resultPackagePath = this.tryResolvePackagePath(withBaseDirectory(baseDir, packageName));
         if (resultPackagePath) {
             return {
                 inputModuleName: packageName,
@@ -239,10 +234,10 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         const fullPackageName = createFullPackageName(PackageNamePrefix.config, packageName);
         // <plugin-name> or textlint-config-<rule-name>
         const pkgPath =
-            tryResolve(baseDir ? path.join(baseDir, fullPackageName) : fullPackageName, {
+            tryResolve(withBaseDirectory(baseDir, fullPackageName), {
                 parentModule: "config-loader"
             }) ||
-            tryResolve(baseDir ? path.join(baseDir, packageName) : packageName, {
+            tryResolve(withBaseDirectory(baseDir, packageName), {
                 parentModule: "config-loader"
             });
         if (!pkgPath) {
