@@ -398,4 +398,53 @@ describe("markdown-parser", function () {
             shouldHaveImplementTxtNode(node, rawValue);
         });
     });
+
+    describe("Parser extensions", function () {
+        describe("cjkFriendly", function () {
+            describe("emphasis", function () {
+                const markedText = "**このアスタリスクは強調記号として認識されず、そのまま表示されます。**";
+                const trailingText = "この文のせいで。";
+                const input = `${markedText}${trailingText}`;
+
+                it("should be disabled by default", function () {
+                    const node = findFirstTypedNode(parse(input), Syntax.Str, input);
+                    shouldHaveImplementTxtNode(node, input);
+                });
+
+                it("should be disabled when cjkFriendly is false", function () {
+                    assert.deepStrictEqual(parse(input, { cjkFriendly: false }), parse(input));
+                });
+
+                it("should parse CJK-adjacent emphasis when enabled", function () {
+                    const ast = parse(input, { cjkFriendly: true });
+                    const strongNode = findFirstTypedNode(ast, Syntax.Strong, markedText);
+                    const trailingNode = findFirstTypedNode(ast, Syntax.Str, trailingText);
+                    shouldHaveImplementInlineTxtNode(strongNode, markedText, input);
+                    shouldHaveImplementInlineTxtNode(trailingNode, trailingText, input);
+                });
+            });
+
+            describe("GFM strikethrough", function () {
+                const leadingText = "a";
+                const markedText = "~~a()~~";
+                const trailingText = "あ";
+                const input = `${leadingText}${markedText}${trailingText}`;
+
+                it("should be disabled by default", function () {
+                    const node = findFirstTypedNode(parse(input), Syntax.Str, input);
+                    shouldHaveImplementTxtNode(node, input);
+                });
+
+                it("should parse CJK-adjacent strikethrough when enabled", function () {
+                    const ast = parse(input, { cjkFriendly: true });
+                    const leadingNode = findFirstTypedNode(ast, Syntax.Str, leadingText);
+                    const deleteNode = findFirstTypedNode(ast, Syntax.Delete, markedText);
+                    const trailingNode = findFirstTypedNode(ast, Syntax.Str, trailingText);
+                    shouldHaveImplementInlineTxtNode(leadingNode, leadingText, input);
+                    shouldHaveImplementInlineTxtNode(deleteNode, markedText, input);
+                    shouldHaveImplementInlineTxtNode(trailingNode, trailingText, input);
+                });
+            });
+        });
+    });
 });
