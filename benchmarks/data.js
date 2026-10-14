@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792003944373,
+  "lastUpdate": 1792012239884,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -122765,6 +122765,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.7538822431000002,
             "range": "± 0.02175698199999998",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "78153c3d2c6a6442c249b6bf3646c0ee7d73396e",
+          "message": "chore(deps): update dependency zod to ^4.6.6 (#2155)\n\nThis PR contains the following updates:\n\n| Package | Change |\n[Age](https://docs.renovatebot.com/merge-confidence/) |\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n| [zod](https://zod.dev)\n([source](https://redirect.github.com/colinhacks/zod)) | [`^4.6.5` →\n`^4.6.6`](https://renovatebot.com/diffs/npm/zod/4.6.5/4.6.6) |\n![age](https://developer.mend.io/api/mc/badges/age/npm/zod/4.6.6?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/zod/4.6.5/4.6.6?slim=true)\n|\n\n⚠️ Renovate does not enforce Minimum Release Age for `bump`,\n`lockfileUpdate`, or `rollback` updates, so these are raised without a\nMinimum Release Age check. You will need to manually validate the\nMinimum Release Age for these package(s).\n\n---\n\n### Release Notes\n\n<details>\n<summary>colinhacks/zod (zod)</summary>\n\n###\n[`v4.6.6`](https://redirect.github.com/colinhacks/zod/releases/tag/v4.6.6)\n\n[Compare\nSource](https://redirect.github.com/colinhacks/zod/compare/v4.6.5...v4.6.6)\n\n> Six malicious commits pushed to `main` on September 21 with a\ncompromised git credential were reverted the same day in\n[#&#8203;6620](https://redirect.github.com/colinhacks/zod/issues/6620)\nand have since been removed from the history of `main`. None were ever\npublished to npm. The npm provenance for 4.6.6 names\n[`284243f`](https://redirect.github.com/colinhacks/zod/commit/284243fb),\nthe pre-rewrite copy of\n[`9c21983`](https://redirect.github.com/colinhacks/zod/commit/9c219833)\nwith identical contents.\n\n#### Commits:\n\n-\n[`0cd3af5`](https://redirect.github.com/colinhacks/zod/commit/0cd3af5e9f50ad11bbcd4407a46a21b8848ba574)\ndocs: load the en locale directly in Zod Mini\n-\n[`9d5e60f`](https://redirect.github.com/colinhacks/zod/commit/9d5e60f162997b764b40d45aa02481888db50dea)\ndocs: import locales from zod/locales, not z.locales\n-\n[`34a626f`](https://redirect.github.com/colinhacks/zod/commit/34a626f307871ecbb0123947559328dc52ed5e3e)\ndocs: tighten the z.locales tree-shaking note\n-\n[`74304ce`](https://redirect.github.com/colinhacks/zod/commit/74304ce5b5796b5edb9a88ceb8e170b6ea3e82df)\nrelease: stage npm versions instead of publishing them\n([#&#8203;6622](https://redirect.github.com/colinhacks/zod/issues/6622))\n-\n[`b2ef983`](https://redirect.github.com/colinhacks/zod/commit/b2ef983e0711ff6517d6020b021071e2e5653efa)\ndocs: add Code for Japan to bronze sponsors\n-\n[`8fb2faf`](https://redirect.github.com/colinhacks/zod/commit/8fb2faf0584828a6a027d8279db36f6f52784462)\ndocs: crop the Code for Japan logo and list it first in bronze\n-\n[`bacad51`](https://redirect.github.com/colinhacks/zod/commit/bacad518c41610d654658172d325874bf0ee6290)\ndocs: square the Code for Japan logo to match the other bronze tiles\n-\n[`c42596b`](https://redirect.github.com/colinhacks/zod/commit/c42596bd1c87e941d7241d10e012c5c196adcc10)\nrelease: hold the run on the release-approval environment until the\nstaged versions are approved\n([#&#8203;6638](https://redirect.github.com/colinhacks/zod/issues/6638))\n-\n[`a2ba4a6`](https://redirect.github.com/colinhacks/zod/commit/a2ba4a67986a3e6b2b131be30084a2f460d9ea67)\nfix(types): declare record output and input as members, not base type\narguments\n([#&#8203;6645](https://redirect.github.com/colinhacks/zod/issues/6645))\n-\n[`a0ebf97`](https://redirect.github.com/colinhacks/zod/commit/a0ebf970f2d752e5f58527cd2942ff48be4f46bd)\nfix(v4): check array, set and map size bounds before parsing elements\n([#&#8203;6652](https://redirect.github.com/colinhacks/zod/issues/6652))\n-\n[`529f78d`](https://redirect.github.com/colinhacks/zod/commit/529f78dd9431b07f49647fee3aa0819b3f8b66b7)\n4.6.6\n-\n[`9c21983`](https://redirect.github.com/colinhacks/zod/commit/9c219833c3a3764fa1f1ea9c5ecec8254a63c0b1)\nci: stage at verbose so a failed OIDC token exchange says why\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: (in timezone Asia/Tokyo)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about this update\nagain.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0NC4xNTYuMyIsInVwZGF0ZWRJblZlciI6IjQ0LjE1Ni4zIiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-14T21:08:49Z",
+          "tree_id": "6f13899d18ccfece01e2b0abc27406aaf6b1fe41",
+          "url": "https://github.com/textlint/textlint/commit/78153c3d2c6a6442c249b6bf3646c0ee7d73396e"
+        },
+        "date": 1792012227240,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24018469877999998,
+            "range": "± 0.055516150999999986",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 2.09369213698,
+            "range": "± 0.10830141100000024",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7876012573800001,
+            "range": "± 0.03514853600000001",
             "unit": "seconds"
           }
         ]
