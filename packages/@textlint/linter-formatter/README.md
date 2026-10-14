@@ -53,6 +53,7 @@ export interface FormatterDetail {
     name: string;
 }
 export declare function getFormatterList(): FormatterDetail[];
+export declare function resolveFormatter(formatterName: string): string | null;
 ```
 
 ## CLI

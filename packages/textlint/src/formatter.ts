@@ -1,4 +1,10 @@
-import { loadFormatter as loadFixerFormatter } from "@textlint/fixer-formatter";
-import { loadFormatter as loadLinterFormatter } from "@textlint/linter-formatter";
+import {
+    loadFormatter as loadFixerFormatter,
+    resolveFormatter as resolveFixerFormatter
+} from "@textlint/fixer-formatter";
+import {
+    loadFormatter as loadLinterFormatter,
+    resolveFormatter as resolveLinterFormatter
+} from "@textlint/linter-formatter";
 
-export { loadLinterFormatter, loadFixerFormatter };
+export { loadLinterFormatter, loadFixerFormatter, resolveLinterFormatter, resolveFixerFormatter };
