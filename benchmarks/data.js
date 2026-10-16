@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792120510939,
+  "lastUpdate": 1792154681477,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -123227,6 +123227,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.76461884562,
             "range": "± 0.026123544000000054",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "2658ed213cbfb4dbc4d004e6b1667a6c31e4700d",
+          "message": "fix(linter-formatter): escape workflow command values in github formatter\n\nThe github formatter wrote file paths, rule ids and messages into GitHub\nActions workflow commands without escaping. A newline in any of them\ncould start a new line that GitHub reads as another workflow command\n(for example a forged `::error`).\n\nEscape them the same way as @actions/core: `%`, `\\r`, `\\n` in data, and\nadditionally `:` and `,` in the `file` and `title` properties.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_0152Ew7cgerHTM9nUwdvcnDk",
+          "timestamp": "2026-10-16T12:42:53Z",
+          "tree_id": "18b596969a0611063a6d3f503eda9e887f93a7bb",
+          "url": "https://github.com/textlint/textlint/commit/2658ed213cbfb4dbc4d004e6b1667a6c31e4700d"
+        },
+        "date": 1792154669945,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21736295030000002,
+            "range": "± 0.034453342",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.9238763157,
+            "range": "± 0.048949833",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7425034851,
+            "range": "± 0.011322722000000063",
             "unit": "seconds"
           }
         ]
