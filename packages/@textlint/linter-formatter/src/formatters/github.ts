@@ -29,20 +29,29 @@ function getMessageType(message: { fatal?: boolean; severity: number }): string 
 }
 
 /**
+ * Percent-encode a character, e.g. "\n" -> "%0A".
+ */
+function percentEncode(char: string): string {
+    return `%${char.charCodeAt(0).toString(16).toUpperCase().padStart(2, "0")}`;
+}
+
+/**
  * Escape a value used as the data part of a GitHub Actions workflow command.
  * Without this, a newline in the value could start a new (forged) workflow command.
+ * Escapes `%`, `\r`, `\n`.
  * @see https://github.com/actions/toolkit/blob/main/packages/core/src/command.ts
  */
 function escapeData(value: string): string {
-    return value.replace(/%/g, "%25").replace(/\r/g, "%0D").replace(/\n/g, "%0A");
+    return value.replace(/[%\r\n]/g, percentEncode);
 }
 
 /**
  * Escape a value used as a property (e.g. `file=`, `title=`) of a GitHub Actions workflow command.
+ * Escapes `%`, `\r`, `\n`, `:`, `,`.
  * @see https://github.com/actions/toolkit/blob/main/packages/core/src/command.ts
  */
 function escapeProperty(value: string): string {
-    return escapeData(value).replace(/:/g, "%3A").replace(/,/g, "%2C");
+    return value.replace(/[%\r\n:,]/g, percentEncode);
 }
 
 //------------------------------------------------------------------------------
