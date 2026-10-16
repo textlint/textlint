@@ -28,6 +28,32 @@ function getMessageType(message: { fatal?: boolean; severity: number }): string 
     }
 }
 
+/**
+ * Percent-encode a character, e.g. "\n" -> "%0A".
+ */
+function percentEncode(char: string): string {
+    return `%${char.charCodeAt(0).toString(16).toUpperCase().padStart(2, "0")}`;
+}
+
+/**
+ * Escape a value used as the data part of a GitHub Actions workflow command.
+ * Without this, a newline in the value could start a new (forged) workflow command.
+ * Escapes `%`, `\r`, `\n`.
+ * @see https://github.com/actions/toolkit/blob/main/packages/core/src/command.ts
+ */
+function escapeData(value: string): string {
+    return value.replace(/[%\r\n]/g, percentEncode);
+}
+
+/**
+ * Escape a value used as a property (e.g. `file=`, `title=`) of a GitHub Actions workflow command.
+ * Escapes `%`, `\r`, `\n`, `:`, `,`.
+ * @see https://github.com/actions/toolkit/blob/main/packages/core/src/command.ts
+ */
+function escapeProperty(value: string): string {
+    return value.replace(/[%\r\n:,]/g, percentEncode);
+}
+
 //------------------------------------------------------------------------------
 // Public Interface
 //------------------------------------------------------------------------------
@@ -42,23 +68,23 @@ function formatter(results: TextlintResult[]) {
             return;
         }
 
-        output += `::group::${result.filePath}\n`;
+        output += `::group::${escapeData(result.filePath)}\n`;
 
         // ::warning file={name},line={line},endLine={endLine},title={title}::{message} is the format used by github to generate annotations
         messages.forEach(function (message) {
             output += `::${getMessageType(message)} `;
-            output += `file=${result.filePath},`;
+            output += `file=${escapeProperty(result.filePath)},`;
             output += `line=${message.loc.start.line || 1},`;
             output += `endLine=${message.loc.end.line || message.loc.start.line || 1},`;
             output += `col=${message.loc.start.column || 1},`;
             output += `endColumn=${message.loc.end.column || message.loc.start.column || 1},`;
-            output += `title=TextLint${message.ruleId ? ` [${message.ruleId}]` : ""}::`;
-            output += `${message.message.trim()}`;
+            output += `title=${escapeProperty(`TextLint${message.ruleId ? ` [${message.ruleId}]` : ""}`)}::`;
+            output += `${escapeData(message.message.trim())}`;
             output += ` | ${message.loc.start.line || 1}:`;
             output += `${message.loc.start.column || 1}`;
             output += "\n";
         });
-        output += "::endgroup::\n"
+        output += "::endgroup::\n";
     });
 
     return output;
