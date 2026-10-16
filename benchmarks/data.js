@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792154681477,
+  "lastUpdate": 1792154966600,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -123269,6 +123269,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.7425034851,
             "range": "± 0.011322722000000063",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "ecd8fa32521604510a1e3c025736c48661865e15",
+          "message": "refactor(linter-formatter): escape workflow command values in a single replace\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_0152Ew7cgerHTM9nUwdvcnDk",
+          "timestamp": "2026-10-16T12:47:36Z",
+          "tree_id": "cadd977d8278f9dc1bf2fb11393f2aa5b7d175d2",
+          "url": "https://github.com/textlint/textlint/commit/ecd8fa32521604510a1e3c025736c48661865e15"
+        },
+        "date": 1792154954540,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21725979412000002,
+            "range": "± 0.046192837000000014",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.92262202952,
+            "range": "± 0.06029677300000014",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7360354233199999,
+            "range": "± 0.02032883299999999",
             "unit": "seconds"
           }
         ]
