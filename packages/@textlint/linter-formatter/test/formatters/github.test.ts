@@ -53,8 +53,8 @@ describe("formatter:github", function () {
             assert.equal(
                 result,
                 "::group::foo.js\n" +
-                "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint [foo]::Unexpected foo. | 5:10\n" +
-                "::endgroup::\n"
+                    "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint [foo]::Unexpected foo. | 5:10\n" +
+                    "::endgroup::\n"
             );
         });
 
@@ -64,8 +64,8 @@ describe("formatter:github", function () {
             assert.equal(
                 result,
                 "::group::foo.js\n" +
-                "::warning file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint [foo]::Unexpected foo. | 5:10\n" +
-                "::endgroup::\n"
+                    "::warning file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint [foo]::Unexpected foo. | 5:10\n" +
+                    "::endgroup::\n"
             );
         });
 
@@ -75,8 +75,8 @@ describe("formatter:github", function () {
             assert.equal(
                 result,
                 "::group::foo.js\n" +
-                "::notice file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint [foo]::Unexpected foo. | 5:10\n" +
-                "::endgroup::\n"
+                    "::notice file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint [foo]::Unexpected foo. | 5:10\n" +
+                    "::endgroup::\n"
             );
         });
     });
@@ -110,8 +110,8 @@ describe("formatter:github", function () {
             assert.equal(
                 result,
                 "::group::foo.js\n" +
-                "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint [foo]::Unexpected foo. | 5:10\n" +
-                "::endgroup::\n"
+                    "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint [foo]::Unexpected foo. | 5:10\n" +
+                    "::endgroup::\n"
             );
         });
     });
@@ -160,9 +160,9 @@ describe("formatter:github", function () {
             assert.equal(
                 result,
                 "::group::foo.js\n" +
-                "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint [foo]::Unexpected foo. | 5:10\n" +
-                "::warning file=foo.js,line=6,endLine=6,col=14,endColumn=16,title=TextLint [bar]::Unexpected bar. | 6:14\n" +
-                "::endgroup::\n"
+                    "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint [foo]::Unexpected foo. | 5:10\n" +
+                    "::warning file=foo.js,line=6,endLine=6,col=14,endColumn=16,title=TextLint [bar]::Unexpected bar. | 6:14\n" +
+                    "::endgroup::\n"
             );
         });
     });
@@ -216,11 +216,11 @@ describe("formatter:github", function () {
             assert.equal(
                 result,
                 "::group::foo.js\n" +
-                "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint [foo]::Unexpected foo. | 5:10\n" +
-                "::endgroup::\n" +
-                "::group::bar.js\n" +
-                "::warning file=bar.js,line=6,endLine=6,col=14,endColumn=16,title=TextLint [bar]::Unexpected bar. | 6:14\n" +
-                "::endgroup::\n"
+                    "::error file=foo.js,line=5,endLine=5,col=10,endColumn=12,title=TextLint [foo]::Unexpected foo. | 5:10\n" +
+                    "::endgroup::\n" +
+                    "::group::bar.js\n" +
+                    "::warning file=bar.js,line=6,endLine=6,col=14,endColumn=16,title=TextLint [bar]::Unexpected bar. | 6:14\n" +
+                    "::endgroup::\n"
             );
         });
     });
@@ -243,9 +243,41 @@ describe("formatter:github", function () {
             assert.equal(
                 result,
                 "::group::foo.js\n" +
-                "::error file=foo.js,line=1,endLine=1,col=1,endColumn=1,title=TextLint::Couldn't find foo.js. | 1:1\n" +
-                "::endgroup::\n"
+                    "::error file=foo.js,line=1,endLine=1,col=1,endColumn=1,title=TextLint::Couldn't find foo.js. | 1:1\n" +
+                    "::endgroup::\n"
             );
+        });
+    });
+    describe("when passed values that contain workflow command characters", function () {
+        const forged = "a.txt\n::error file=forged.txt::forged";
+        const code: TextlintResult[] = [
+            createTestResult({
+                filePath: forged,
+                messages: [
+                    createTestMessage({
+                        message: `100% ${forged}\r\nnext`,
+                        severity: 2,
+                        loc: {
+                            start: { line: 1, column: 1 },
+                            end: { line: 1, column: 2 }
+                        },
+                        ruleId: "rule:a,b"
+                    })
+                ]
+            })
+        ];
+
+        it("should escape file path, title, and message so that no extra workflow command is emitted", function () {
+            const result = formatter(code);
+            assert.equal(
+                result,
+                "::group::a.txt%0A::error file=forged.txt::forged\n" +
+                    "::error file=a.txt%0A%3A%3Aerror file=forged.txt%3A%3Aforged,line=1,endLine=1,col=1,endColumn=2," +
+                    "title=TextLint [rule%3Aa%2Cb]::100%25 a.txt%0A::error file=forged.txt::forged%0D%0Anext | 1:1\n" +
+                    "::endgroup::\n"
+            );
+            const lines = result.split("\n").filter((line) => line !== "");
+            assert.equal(lines.length, 3);
         });
     });
 });
