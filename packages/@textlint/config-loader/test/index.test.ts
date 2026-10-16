@@ -1,4 +1,5 @@
 import * as fs from "node:fs";
+import * as os from "node:os";
 import { describe, it, vi } from "vitest";
 import * as path from "node:path";
 import * as assert from "node:assert";
@@ -163,6 +164,28 @@ describe("@textlint/config-loader", () => {
                 }
             });
             assert.strictEqual(result.configFilePath, path.join(modulesDir, "@acme", "textlint", "default.js"));
+        });
+
+        it("falls back to a local config file whose name starts with @", async () => {
+            const cwd = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), "textlint-config-loader-")));
+            try {
+                fs.writeFileSync(path.join(cwd, "@config.json"), JSON.stringify({ rules: { "local-rule": true } }));
+                const result = await loadRawConfig({
+                    cwd,
+                    configFilePath: "@config.json",
+                    node_modulesDir: modulesDir
+                });
+
+                assert.ok(result.ok);
+                assert.deepStrictEqual(result.rawConfig, {
+                    rules: {
+                        "local-rule": true
+                    }
+                });
+                assert.strictEqual(result.configFilePath, path.join(cwd, "@config.json"));
+            } finally {
+                fs.rmSync(cwd, { recursive: true, force: true });
+            }
         });
 
         it("reports unexpected module resolution errors", async () => {
