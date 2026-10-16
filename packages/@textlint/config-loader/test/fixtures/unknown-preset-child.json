@@ -1,0 +1,12 @@
+{
+    "rules": {
+        "preset-abc": {
+            "a": true,
+            "invalid-rule": true
+        },
+        "@scope/preset-abc": {
+            "a": true,
+            "invalid-rule": false
+        }
+    }
+}
