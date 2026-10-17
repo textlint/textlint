@@ -135,11 +135,11 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     let infos = 0;
     let totalFixable = 0;
     results.forEach(function (result) {
-        const code = readFileSync(result.filePath, "utf-8");
         const messages = result.messages;
         if (messages.length === 0) {
             return;
         }
+        const code = options.sourceCode ?? readFileSync(result.filePath, "utf-8");
         total += messages.length;
         messages.forEach(function (message) {
             // fixable
@@ -157,9 +157,9 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
             } else {
                 warnings++;
             }
-            const r = fixableIcon + prettyError(code, result.filePath, message);
-            if (r) {
-                output += `${r}\n`;
+            const snippet = prettyError(code, result.filePath, message);
+            if (snippet) {
+                output += `${fixableIcon}${snippet}\n`;
             }
         });
     });
