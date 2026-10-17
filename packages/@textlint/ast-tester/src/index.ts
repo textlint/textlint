@@ -4,6 +4,7 @@ import * as assert from "node:assert";
 import { TxtNode } from "@textlint/ast-node-types";
 import { test as UnistTest } from "./unist-test.js";
 import debug0 from "debug";
+import { assertStrictNode } from "./strict.js";
 
 const debug = debug0("textlint/ast-tester");
 
@@ -11,9 +12,11 @@ const createMessage = ({ node, message }: { node: unknown; message: string }) =>
     return `${message}\n${JSON.stringify(node, null, 4)}`;
 };
 
-export function isTxtAST(node: unknown): node is TxtNode {
+export type ASTTestOptions = { strict?: boolean };
+
+export function isTxtAST(node: unknown, options?: ASTTestOptions): node is TxtNode {
     try {
-        test(node as Record<string, unknown>);
+        test(node as Record<string, unknown>, options);
     } catch (error) {
         debug("This is not TxtAST", error);
         return false;
@@ -21,7 +24,7 @@ export function isTxtAST(node: unknown): node is TxtNode {
     return true;
 }
 
-export function test(node: Record<string, unknown>) {
+export function test(node: Record<string, unknown>, options?: ASTTestOptions) {
     // test unist that is weak.
     UnistTest(node);
     assert.strictEqual(
@@ -66,7 +69,7 @@ export function test(node: Record<string, unknown>) {
                 node
             })
         );
-        node.children.forEach(test);
+        node.children.forEach((child: Record<string, unknown>) => test(child, options));
     }
 
     // value
@@ -192,4 +195,7 @@ export function test(node: Record<string, unknown>) {
             node
         })
     );
+    if (options?.strict === true) {
+        assertStrictNode(node);
+    }
 }
