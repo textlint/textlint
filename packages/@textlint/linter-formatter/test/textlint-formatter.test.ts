@@ -5,9 +5,32 @@ import { getFormatterList, loadFormatter } from "../src/index.js";
 import { describe, it } from "vitest";
 
 import * as assert from "node:assert";
+import * as fs from "node:fs";
+import * as os from "node:os";
+import * as path from "node:path";
 
 describe("@textlint/linter-formatter-test", function () {
     describe("loadFormatter", function () {
+        it("does not pass optional stdin source to third-party formatters", async function () {
+            const directory = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-formatter-config-"));
+            try {
+                const filename = path.join(directory, "custom.cjs");
+                fs.writeFileSync(
+                    filename,
+                    "module.exports = (_results, options) => JSON.stringify({ keys: Object.keys(options).sort(), color: options.color });"
+                );
+                const formatter = await loadFormatter({
+                    formatterName: filename,
+                    color: false,
+                    sourceCode: "private stdin"
+                });
+                const actual = JSON.parse(formatter.format([]));
+                assert.deepStrictEqual(actual, { keys: ["color", "formatterName"], color: false });
+            } finally {
+                fs.rmSync(directory, { recursive: true, force: true });
+            }
+        });
+
         it("should load stylish formatter", async function () {
             const formatterResult = await loadFormatter({
                 formatterName: "stylish",
