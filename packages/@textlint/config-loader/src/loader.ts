@@ -331,6 +331,11 @@ export async function loadPreset({
     if (!isTextlintRulePresetCreator(preset)) {
         throw new Error(`preset should have rules and rulesConfig: ${presetName}`);
     }
+    for (const ruleKey of Object.keys(presetRulesOptions)) {
+        if (!Object.prototype.hasOwnProperty.call(preset.rules, ruleKey)) {
+            throw new Error(`Unknown rule "${ruleKey}" in preset "${presetName}".`);
+        }
+    }
     // we should use preset.rules → some preset use different name actual rule
     /*
       // "textlint-rule-preset-example/index.js"
