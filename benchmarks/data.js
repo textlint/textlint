@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792694644309,
+  "lastUpdate": 1792712614532,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -123647,6 +123647,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5008076129,
             "range": "± 0.08357120599999995",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8bdef738973789b5a1b3a97dddea06d3ce71a5e5",
+          "message": "chore(deps): update dependency oxlint to ^1.89.0",
+          "timestamp": "2026-10-22T23:41:51Z",
+          "tree_id": "d02e1718aa63230cb81e5a7b190092d9d48040be",
+          "url": "https://github.com/textlint/textlint/commit/8bdef738973789b5a1b3a97dddea06d3ce71a5e5"
+        },
+        "date": 1792712603137,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22031799855999998,
+            "range": "± 0.03966098600000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.92532889256,
+            "range": "± 0.043540204999999776",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.74391931116,
+            "range": "± 0.023027558999999975",
             "unit": "seconds"
           }
         ]
