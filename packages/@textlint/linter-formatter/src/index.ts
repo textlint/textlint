@@ -24,7 +24,7 @@ import unixFormatter from "./formatters/unix.js";
 const builtinFormatterList = {
     checkstyle: checkstyleFormatter,
     compact: compactFormatter,
-    "github": githubFormatter,
+    github: githubFormatter,
     "jslint-xml": jslintXMLFormatter,
     json: jsonFormatter,
     junit: junitFormatter,
@@ -45,15 +45,26 @@ const isFormatterFunction = (formatter: unknown): formatter is FormatterFunction
 export interface FormatterConfig {
     formatterName: string;
     color?: boolean;
+    sourceCode?: string;
 }
 
 export async function loadFormatter(formatterConfig: FormatterConfig) {
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);
+    if (formatterName === "pretty-error") {
+        return {
+            format(results: TextlintResult[]) {
+                return prettyErrorFormatter(results, formatterConfig);
+            }
+        };
+    }
+    // Source text is only for the built-in pretty-error formatter.
+    const configWithoutSource = { ...formatterConfig };
+    delete configWithoutSource.sourceCode;
     if (builtinFormatterNames.includes(formatterName)) {
         return {
             format(results: TextlintResult[]) {
-                return builtinFormatterList[formatterName as BuiltInFormatterName](results, formatterConfig);
+                return builtinFormatterList[formatterName as BuiltInFormatterName](results, configWithoutSource);
             }
         };
     }
@@ -97,7 +108,7 @@ ${ex}`);
     }
     return {
         format(results: TextlintResult[]) {
-            return formatter(results, formatterConfig);
+            return formatter(results, configWithoutSource);
         }
     };
 }
