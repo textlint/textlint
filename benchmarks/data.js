@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1793074870327,
+  "lastUpdate": 1793074991800,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -124025,6 +124025,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.46137735928,
             "range": "± 0.016413968999999973",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "35a6a4436bda58f0afd39846541224bede8c3641",
+          "message": "chore(deps): update minor updates to ^2.4.0 (#2166)\n\nThis PR contains the following updates:\n\n| Package | Change |\n[Age](https://docs.renovatebot.com/merge-confidence/) |\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n| [@modelcontextprotocol/client](https://modelcontextprotocol.io)\n([source](https://redirect.github.com/modelcontextprotocol/typescript-sdk))\n| [`^2.3.1` →\n`^2.4.0`](https://renovatebot.com/diffs/npm/@modelcontextprotocol%2fclient/2.3.1/2.4.0)\n|\n![age](https://developer.mend.io/api/mc/badges/age/npm/@modelcontextprotocol%2fclient/2.4.0?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@modelcontextprotocol%2fclient/2.3.1/2.4.0?slim=true)\n|\n| [@modelcontextprotocol/server](https://modelcontextprotocol.io)\n([source](https://redirect.github.com/modelcontextprotocol/typescript-sdk))\n| [`^2.3.1` →\n`^2.4.0`](https://renovatebot.com/diffs/npm/@modelcontextprotocol%2fserver/2.3.1/2.4.0)\n|\n![age](https://developer.mend.io/api/mc/badges/age/npm/@modelcontextprotocol%2fserver/2.4.0?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@modelcontextprotocol%2fserver/2.3.1/2.4.0?slim=true)\n|\n\n⚠️ Renovate does not enforce Minimum Release Age for `bump`,\n`lockfileUpdate`, or `rollback` updates, so these are raised without a\nMinimum Release Age check. You will need to manually validate the\nMinimum Release Age for these package(s).\n\n---\n\n### Release Notes\n\n<details>\n<summary>modelcontextprotocol/typescript-sdk\n(@&#8203;modelcontextprotocol/client)</summary>\n\n###\n[`v2.4.0`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/releases/tag/%40modelcontextprotocol/client%402.4.0)\n\n[Compare\nSource](https://redirect.github.com/modelcontextprotocol/typescript-sdk/compare/@modelcontextprotocol/client@2.3.1...@modelcontextprotocol/client@2.4.0)\n\n##### Minor Changes\n\n-\n[#&#8203;3085](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/3085)\n[`a633756`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/commit/a63375661399956a744ff8b34d03d36e3d09e98a)\nThanks [@&#8203;claude](https://redirect.github.com/apps/claude)! - Add\nan opt-in for sending `scope` on refresh-token requests, for\nauthorization servers that reject a refresh without it (Microsoft Entra\nID answers `AADSTS90009` when the client and the resource are the same\napp registration,\n[#&#8203;2718](https://redirect.github.com/modelcontextprotocol/typescript-sdk/issues/2718)).\n`OAuthClientProvider` gains an optional `scopeForRefresh(tokens)`:\n`auth()`, and so the transports and `withOAuth`, sends the string it\nreturns. `refreshAuthorization()` gains an optional `scope`. When a\nscope is sent and the response has none, the sent scope is kept on the\nreturned tokens. Without either option the refresh request and the saved\ntokens are unchanged.\n\n-\n[#&#8203;3047](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/3047)\n[`46d9c99`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/commit/46d9c9921b6542e813c1ecc5f9fc964085e8e3bb)\nThanks\n[@&#8203;KKonstantinov](https://redirect.github.com/KKonstantinov),\n[@&#8203;tobi-oye](https://redirect.github.com/tobi-oye),\n[@&#8203;mattzcarey](https://redirect.github.com/mattzcarey)! - Add the\nSkills extension (SEP-2640), reachable through new `ext/skills`\nsubpaths; package root exports are unchanged.\n\n- `@modelcontextprotocol/server/ext/skills`: `SkillsExtension`\n(`attach(server)` serves `skills/list`, `skills/get`,\n`resources/directory/read` and a `skill://{+path}` resource template),\n`SkillsExtension.load(files)` returning a `SkillCatalog` with `entries`\nand `reload()`, the `SkillFiles` storage adapter with\n`memorySkillFiles`, `SkillSource` for generated catalogs, `skillEntry`,\nand `SkillCatalogError`. Invalid skills are skipped with a warning\n(`onWarning`), or fail under `strict`. A file whose bytes are valid\nUTF-8 is served as `text`, whatever its MIME type; any other file as a\nbase64 `blob`.\n- `@modelcontextprotocol/server/ext/skills/node`: `loadSkills(folder)`\nand `nodeSkillFiles(folder)`.\n- `@modelcontextprotocol/client/ext/skills`: `SkillsClient` with\n`list()` (throws on an invalid entry; `skipInvalid: true` keeps the\nvalid ones and returns the rest in `invalid`), `get()`, `read(skill,\npath?)` (size, digest and `SKILL.md` frontmatter verified,\n`SkillVerificationError` on a mismatch; a copy from the response cache\nthat fails a check is fetched once more with `cacheMode: 'refresh'`\nfirst) and `readDirectory()`.\n- `@modelcontextprotocol/core/ext/skills`: schemas, types and constants,\nincluding `SKILL_LIMITS`. The result schemas follow the stable spec, so\n`ttlMs` and `cacheScope` are required.\n\n`SkillsExtension.attach` is `@experimental`: how an extension is wired\nto a server may change in a minor release. The rest of the Skills API is\nstable.\n\nWorks on 2025-11-25 and 2026-07-28. On 2026-07-28 only, the server sends\nthe caching fields (`ttlMs`, `cacheScope`), and `SkillsClient` requires\nthem and returns them from `list()`, `get()` and `readDirectory()`.\n\n##### Patch Changes\n\n-\n[#&#8203;3083](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/3083)\n[`ef38c67`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/commit/ef38c6765a15ee29030340dfea28b013893fa0a2)\nThanks [@&#8203;claude](https://redirect.github.com/apps/claude)! - The\nbundled Ajv validator is now built with fast-uri 3.1.8 (was 3.1.0).\nfast-uri 3.1.6 and later reject a `$id` or `$ref` whose text before the\nfirst colon is not a valid URI scheme (`my_tool:output`), or whose URN\nnamespace is not valid (`urn:my_tool:output`): a schema that uses one no\nlonger compiles, and a tool that carries it fails with an invalid-schema\nerror. An underscore without a colon (`my_tool_output`) and a `$ref`\ninto `#/$defs/...` or `#/definitions/...` are not affected.\n\n-\n[#&#8203;2762](https://redirect.github.com/modelcontextprotocol/typescript-sdk/pull/2762)\n[`b022522`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/commit/b022522089a0c8b632595c6e7b536453945ed5a9)\nThanks [@&#8203;pcarleton](https://redirect.github.com/pcarleton)! -\n`x-mcp-header` on a `number`-typed tool parameter is now rejected,\nmatching the 2026-07-28 spec (\"Parameters with type `number` are not\npermitted\"; clients MUST exclude such tools from `tools/list`).\nPreviously `number` was accepted only to satisfy an older conformance\nfixture that has since been corrected. `integer`, `string` and `boolean`\nare unaffected.\n\n- Updated dependencies\n\\[[`46d9c99`](https://redirect.github.com/modelcontextprotocol/typescript-sdk/commit/46d9c9921b6542e813c1ecc5f9fc964085e8e3bb)]:\n-\n[@&#8203;modelcontextprotocol/core](https://redirect.github.com/modelcontextprotocol/core)@2.4.0\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: (in timezone Asia/Tokyo)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about these\nupdates again.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0NC4xODQuMSIsInVwZGF0ZWRJblZlciI6IjQ0LjE4NC4xIiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-27T04:20:06Z",
+          "tree_id": "a6cf1b34dddc0276104ef4efbfe539aee42daf11",
+          "url": "https://github.com/textlint/textlint/commit/35a6a4436bda58f0afd39846541224bede8c3641"
+        },
+        "date": 1793074979936,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22134416165999998,
+            "range": "± 0.05337083399999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.9112931376600002,
+            "range": "± 0.09228994099999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.73804171246,
+            "range": "± 0.014635948999999981",
             "unit": "seconds"
           }
         ]
