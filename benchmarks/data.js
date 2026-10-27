@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1793074786809,
+  "lastUpdate": 1793074870327,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -123983,6 +123983,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5752357945800001,
             "range": "± 0.007011113000000013",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2c3047cfcaf30e24d417ffe4f63058a6afd1b750",
+          "message": "chore(deps): update pnpm to v10.34.8 (#2165)\n\nThis PR contains the following updates:\n\n| Package | Change |\n[Age](https://docs.renovatebot.com/merge-confidence/) |\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n| [pnpm](https://pnpm.io)\n([source](https://redirect.github.com/pnpm/pnpm/tree/HEAD/pnpm/npm/pnpm))\n|\n[`10.34.7+sha512.ba98abc585539933375b5971f4bc6d6c73a1b4b7edc4a879e7d102fe5423d1e02309d67c60a11f04955093a96e521ad9c3b138cdd654ca5be563f378b3ae48bd`\n→ `10.34.8`](https://renovatebot.com/diffs/npm/pnpm/10.34.7/10.34.8) |\n![age](https://developer.mend.io/api/mc/badges/age/npm/pnpm/10.34.8?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/pnpm/10.34.7/10.34.8?slim=true)\n|\n\n---\n\n### Release Notes\n\n<details>\n<summary>pnpm/pnpm (pnpm)</summary>\n\n###\n[`v10.34.8`](https://redirect.github.com/pnpm/pnpm/releases/tag/v10.34.8):\npnpm 10.34.8\n\n[Compare\nSource](https://redirect.github.com/pnpm/pnpm/compare/v10.34.7...v10.34.8)\n\n##### Patch Changes\n\n- [`7ced81e`](https://redirect.github.com/pnpm/pnpm/commit/7ced81e):\nRecompute hoisted dependencies when a frozen install removes packages,\nso public hoist links are handed over to retained versions\n[#&#8203;16861](https://redirect.github.com/pnpm/pnpm/issues/16861).\n- [`debbb4c`](https://redirect.github.com/pnpm/pnpm/commit/debbb4c):\nWhen pnpm removes or replaces a direct dependency, it now finishes\nremoving the dependency's bins before it deletes the dependency's\ndirectory. Packages that declare bins through `directories.bin` no\nlonger leave broken shims in `node_modules/.bin`\n[#&#8203;16876](https://redirect.github.com/pnpm/pnpm/issues/16876).\n- [`07becba`](https://redirect.github.com/pnpm/pnpm/commit/07becba): The\nstandalone pnpm executables now embed Node.js 24.22.1. They embedded\nNode.js 20, which has reached end of life and still trusts the\ncertificate authority intermediates that Node.js distrusted in October\n2026.\n\n<!-- sponsors -->\n\n#### Platinum Sponsors\n\n<table>\n  <tbody>\n    <tr>\n      <td align=\"center\" valign=\"middle\">\n<a href=\"https://bit.cloud/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\"><img src=\"https://pnpm.io/img/users/bit.svg\" width=\"80\"\nalt=\"Bit\"></a>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n#### Gold Sponsors\n\n<table>\n  <tbody>\n    <tr>\n      <td align=\"center\" valign=\"middle\">\n<a href=\"https://sanity.io/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\">\n          <picture>\n<source media=\"(prefers-color-scheme: light)\"\nsrcset=\"https://pnpm.io/img/users/sanity.svg\" />\n<source media=\"(prefers-color-scheme: dark)\"\nsrcset=\"https://pnpm.io/img/users/sanity_light.svg\" />\n<img src=\"https://pnpm.io/img/users/sanity.svg\" width=\"120\" alt=\"Sanity\"\n/>\n          </picture>\n        </a>\n      </td>\n      <td align=\"center\" valign=\"middle\">\n<a href=\"https://discord.com/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\">\n          <picture>\n<source media=\"(prefers-color-scheme: light)\"\nsrcset=\"https://pnpm.io/img/users/discord.svg\" />\n<source media=\"(prefers-color-scheme: dark)\"\nsrcset=\"https://pnpm.io/img/users/discord_light.svg\" />\n<img src=\"https://pnpm.io/img/users/discord.svg\" width=\"220\"\nalt=\"Discord\" />\n          </picture>\n        </a>\n      </td>\n      <td align=\"center\" valign=\"middle\">\n<a href=\"https://vite.dev/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\"><img src=\"https://pnpm.io/img/users/vitejs.svg\"\nwidth=\"42\" alt=\"Vite\"></a>\n      </td>\n    </tr>\n    <tr>\n      <td align=\"center\" valign=\"middle\">\n<a href=\"https://serpapi.com/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\">\n          <picture>\n<source media=\"(prefers-color-scheme: light)\"\nsrcset=\"https://pnpm.io/img/users/serpapi_dark.svg\" />\n<source media=\"(prefers-color-scheme: dark)\"\nsrcset=\"https://pnpm.io/img/users/serpapi_light.svg\" />\n<img src=\"https://pnpm.io/img/users/serpapi_dark.svg\" width=\"160\"\nalt=\"SerpApi\" />\n          </picture>\n        </a>\n      </td>\n      <td align=\"center\" valign=\"middle\">\n<a\nhref=\"https://coderabbit.ai/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\">\n          <picture>\n<source media=\"(prefers-color-scheme: light)\"\nsrcset=\"https://pnpm.io/img/users/coderabbit.svg\" />\n<source media=\"(prefers-color-scheme: dark)\"\nsrcset=\"https://pnpm.io/img/users/coderabbit_light.svg\" />\n<img src=\"https://pnpm.io/img/users/coderabbit.svg\" width=\"220\"\nalt=\"CodeRabbit\" />\n          </picture>\n        </a>\n      </td>\n      <td align=\"center\" valign=\"middle\">\n<a\nhref=\"https://stackblitz.com/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\">\n          <picture>\n<source media=\"(prefers-color-scheme: light)\"\nsrcset=\"https://pnpm.io/img/users/stackblitz.svg\" />\n<source media=\"(prefers-color-scheme: dark)\"\nsrcset=\"https://pnpm.io/img/users/stackblitz_light.svg\" />\n<img src=\"https://pnpm.io/img/users/stackblitz.svg\" width=\"190\"\nalt=\"Stackblitz\" />\n          </picture>\n        </a>\n      </td>\n    </tr>\n    <tr>\n      <td align=\"center\" valign=\"middle\">\n<a href=\"https://workleap.com/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\">\n          <picture>\n<source media=\"(prefers-color-scheme: light)\"\nsrcset=\"https://pnpm.io/img/users/workleap.svg\" />\n<source media=\"(prefers-color-scheme: dark)\"\nsrcset=\"https://pnpm.io/img/users/workleap_light.svg\" />\n<img src=\"https://pnpm.io/img/users/workleap.svg\" width=\"190\"\nalt=\"Workleap\" />\n          </picture>\n        </a>\n      </td>\n      <td align=\"center\" valign=\"middle\">\n<a href=\"https://nx.dev/?utm_source=pnpm&utm_medium=release_notes\"\ntarget=\"_blank\">\n          <picture>\n<source media=\"(prefers-color-scheme: light)\"\nsrcset=\"https://pnpm.io/img/users/nx.svg\" />\n<source media=\"(prefers-color-scheme: dark)\"\nsrcset=\"https://pnpm.io/img/users/nx_light.svg\" />\n<img src=\"https://pnpm.io/img/users/nx.svg\" width=\"50\" alt=\"Nx\" />\n          </picture>\n        </a>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<!-- sponsors end -->\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: (in timezone Asia/Tokyo)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about this update\nagain.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0NC4xODQuMSIsInVwZGF0ZWRJblZlciI6IjQ0LjE4NC4xIiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-27T04:19:56Z",
+          "tree_id": "1e63734c0c9b8efe5fb03c4e9d11590a2d1dfc21",
+          "url": "https://github.com/textlint/textlint/commit/2c3047cfcaf30e24d417ffe4f63058a6afd1b750"
+        },
+        "date": 1793074862079,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.15190503768000002,
+            "range": "± 0.034553060999999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.2580138880800003,
+            "range": "± 0.054214586999999925",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.46137735928,
+            "range": "± 0.016413968999999973",
             "unit": "seconds"
           }
         ]
