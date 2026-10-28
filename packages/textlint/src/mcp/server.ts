@@ -115,6 +115,7 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
         "lintFile",
         {
             description: "Lint files using textlint",
+            annotations: { readOnlyHint: true },
             inputSchema: z.object({
                 filePaths: z
                     .array(z.string().min(1).describe("File path to lint"))
@@ -168,6 +169,7 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
         "lintText",
         {
             description: "Lint text using textlint",
+            annotations: { readOnlyHint: true },
             inputSchema: z.object({
                 text: z.string().nonempty().describe("Text content to lint"),
                 stdinFilename: z.string().nonempty().describe("Filename for context (e.g., 'stdin.md')")
@@ -211,6 +213,7 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
         "getLintFixedFileContent",
         {
             description: "Get lint-fixed content of files using textlint",
+            annotations: { readOnlyHint: true },
             inputSchema: z.object({
                 filePaths: z
                     .array(z.string().min(1).describe("File path to fix"))
@@ -264,6 +267,7 @@ export const setupServer = async (options: McpServerOptions = {}): Promise<McpSe
         "getLintFixedTextContent",
         {
             description: "Get lint-fixed content of text using textlint",
+            annotations: { readOnlyHint: true },
             inputSchema: z.object({
                 text: z.string().nonempty().describe("Text content to fix"),
                 stdinFilename: z.string().nonempty().describe("Filename for context (e.g., 'stdin.md')")
