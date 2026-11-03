@@ -3,6 +3,7 @@
 import assert from "node:assert";
 import { describe, it } from "vitest";
 import { TextlintKernel, TextlintPluginOptions } from "@textlint/kernel";
+import { parse } from "@textlint/markdown-to-ast";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import noTodo from "textlint-rule-no-todo";
@@ -57,6 +58,19 @@ describe("MarkdownPlugin", function () {
                 assert(results.messages.length > 0);
                 assert(results.filePath === fixturePath);
             });
+        });
+    });
+    describe("cjkFriendly", function () {
+        const input = "**このアスタリスクは強調記号として認識されず、そのまま表示されます。**この文のせいで。";
+
+        it("should be disabled by default", function () {
+            const processor = new MarkdownPlugin.Processor().processor(".md");
+            assert.deepStrictEqual(processor.preProcess(input), parse(input));
+        });
+
+        it("should pass the option to the Markdown parser", function () {
+            const processor = new MarkdownPlugin.Processor({ cjkFriendly: true }).processor(".md");
+            assert.deepStrictEqual(processor.preProcess(input), parse(input, { cjkFriendly: true }));
         });
     });
     describe("When no file path", function () {
