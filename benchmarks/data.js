@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1793748883869,
+  "lastUpdate": 1793913255011,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -124487,6 +124487,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.43925004238000004,
             "range": "± 0.022369063999999994",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "939c99909c4c3fba5f2e985239daf4f16f95328b",
+          "message": "chore(deps): update dependency semver to ^5.7.3",
+          "timestamp": "2026-11-05T21:12:32Z",
+          "tree_id": "3a215b56a9e1b8babd8de12548af1588fda76a03",
+          "url": "https://github.com/textlint/textlint/commit/939c99909c4c3fba5f2e985239daf4f16f95328b"
+        },
+        "date": 1793913241587,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20200875225999998,
+            "range": "± 0.05725174699999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7721903168600002,
+            "range": "± 0.05567506999999994",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6237794492600001,
+            "range": "± 0.015964039999999957",
             "unit": "seconds"
           }
         ]
