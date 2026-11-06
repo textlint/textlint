@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1793938024431,
+  "lastUpdate": 1793938214964,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -124571,6 +124571,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.44920484929999993,
             "range": "± 0.014259788999999967",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0bcbef8dc2662f42956a50ee04b4159ecd44dcdb",
+          "message": "chore(deps): update dependency semver to ^5.7.3 (#2170)\n\nThis PR contains the following updates:\n\n| Package | Change |\n[Age](https://docs.renovatebot.com/merge-confidence/) |\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n| [semver](https://redirect.github.com/npm/node-semver) | [`^5.7.2` →\n`^5.7.3`](https://renovatebot.com/diffs/npm/semver/5.7.2/5.7.3) |\n![age](https://developer.mend.io/api/mc/badges/age/npm/semver/5.7.3?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/semver/5.7.2/5.7.3?slim=true)\n|\n\n⚠️ Renovate does not enforce Minimum Release Age for `bump`,\n`lockfileUpdate`, or `rollback` updates, so these are raised without a\nMinimum Release Age check. You will need to manually validate the\nMinimum Release Age for these package(s).\n\n---\n\n### Release Notes\n\n<details>\n<summary>npm/node-semver (semver)</summary>\n\n###\n[`v5.7.3`](https://redirect.github.com/npm/node-semver/releases/tag/v5.7.3)\n\n[Compare\nSource](https://redirect.github.com/npm/node-semver/compare/v5.7.2...v5.7.3)\n\n##### Bug Fixes\n\n-\n[`7227001`](https://redirect.github.com/npm/node-semver/commit/722700169ff904de775fb1b2b09dce700ff050b8)\n[#&#8203;927](https://redirect.github.com/npm/node-semver/pull/927)\nbackport v7 range parsing performance improvement to v5\n([#&#8203;927](https://redirect.github.com/npm/node-semver/issues/927))\n([@&#8203;reggi](https://redirect.github.com/reggi),\n[@&#8203;Copilot](https://redirect.github.com/Copilot))\n\n##### Chores\n\n-\n[`566e22f`](https://redirect.github.com/npm/node-semver/commit/566e22f0742d96c40425072518bd9b5c94590193)\n[#&#8203;942](https://redirect.github.com/npm/node-semver/pull/942)\npublish v5 releases to the legacy dist-tag\n([#&#8203;942](https://redirect.github.com/npm/node-semver/issues/942))\n([@&#8203;reggi](https://redirect.github.com/reggi),\n[@&#8203;Copilot](https://redirect.github.com/Copilot))\n-\n[`b827b90`](https://redirect.github.com/npm/node-semver/commit/b827b902f3e4ae87b11db35ed69209a3951c7dbc)\n[#&#8203;926](https://redirect.github.com/npm/node-semver/pull/926)\nbackport v7 range parsing coverage to v5\n([#&#8203;926](https://redirect.github.com/npm/node-semver/issues/926))\n([@&#8203;reggi](https://redirect.github.com/reggi),\n[@&#8203;Copilot](https://redirect.github.com/Copilot))\n-\n[`9246ad5`](https://redirect.github.com/npm/node-semver/commit/9246ad5233c3eeb2c17fe22a36614464bb4fc31a)\n[#&#8203;708](https://redirect.github.com/npm/node-semver/pull/708)\ndeps: `@npmcli/template-oss@4.22.0`\n([#&#8203;708](https://redirect.github.com/npm/node-semver/issues/708))\n([@&#8203;lukekarrys](https://redirect.github.com/lukekarrys))\n-\n[`d7654e3`](https://redirect.github.com/npm/node-semver/commit/d7654e384c6ce8dda37a988613415383a3503e6a)\n[#&#8203;623](https://redirect.github.com/npm/node-semver/pull/623) auto\npublish ([@&#8203;lukekarrys](https://redirect.github.com/lukekarrys))\n-\n[`2783af2`](https://redirect.github.com/npm/node-semver/commit/2783af203701690e6cd2144323d664d563590210)\n[#&#8203;851](https://redirect.github.com/npm/node-semver/pull/851) bump\n[@&#8203;npmcli/template-oss](https://redirect.github.com/npmcli/template-oss)\nfrom 4.29.0 to 4.30.0\n([#&#8203;851](https://redirect.github.com/npm/node-semver/issues/851))\n([@&#8203;dependabot](https://redirect.github.com/dependabot)\\[bot],\nMichael Smith)\n-\n[`1ed65a5`](https://redirect.github.com/npm/node-semver/commit/1ed65a5d397a335a731721a5d74fa0e8936ee038)\n[#&#8203;734](https://redirect.github.com/npm/node-semver/pull/734)\npostinstall for dependabot template-oss PR\n([@&#8203;hashtagchris](https://redirect.github.com/hashtagchris))\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: (in timezone Asia/Tokyo)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about this update\nagain.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0NC4yMjAuMCIsInVwZGF0ZWRJblZlciI6IjQ0LjIyMC4wIiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2026-11-06T04:08:25Z",
+          "tree_id": "3a215b56a9e1b8babd8de12548af1588fda76a03",
+          "url": "https://github.com/textlint/textlint/commit/0bcbef8dc2662f42956a50ee04b4159ecd44dcdb"
+        },
+        "date": 1793938202557,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23798798414000003,
+            "range": "± 0.05009324499999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.9451665935400002,
+            "range": "± 0.07784920499999992",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7556132953400001,
+            "range": "± 0.013580640000000033",
             "unit": "seconds"
           }
         ]
