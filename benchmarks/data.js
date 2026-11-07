@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794054683535,
+  "lastUpdate": 1794054893911,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -124949,6 +124949,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6379043604200001,
             "range": "± 0.027594455000000018",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6182275f42ca60d57fad19b120857b583c44ed3f",
+          "message": "chore(deps): update dependency table to ^6.9.6 (#2173)\n\nThis PR contains the following updates:\n\n| Package | Change |\n[Age](https://docs.renovatebot.com/merge-confidence/) |\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n| [table](https://redirect.github.com/gajus/table) | [`^6.9.0` →\n`^6.9.6`](https://renovatebot.com/diffs/npm/table/6.9.0/6.9.6) |\n![age](https://developer.mend.io/api/mc/badges/age/npm/table/6.9.6?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/table/6.9.0/6.9.6?slim=true)\n|\n\n⚠️ Renovate does not enforce Minimum Release Age for `bump`,\n`lockfileUpdate`, or `rollback` updates, so these are raised without a\nMinimum Release Age check. You will need to manually validate the\nMinimum Release Age for these package(s).\n\n---\n\n### Release Notes\n\n<details>\n<summary>gajus/table (table)</summary>\n\n###\n[`v6.9.6`](https://redirect.github.com/gajus/table/releases/tag/v6.9.6)\n\n[Compare\nSource](https://redirect.github.com/gajus/table/compare/v6.9.5...v6.9.6)\n\n##### Bug Fixes\n\n- preserve terminal hyperlinks when measuring, wrapping and truncating\ncells (fixes\n[#&#8203;113](https://redirect.github.com/gajus/table/issues/113), fixes\n[#&#8203;82](https://redirect.github.com/gajus/table/issues/82))\n([0259054](https://redirect.github.com/gajus/table/commit/0259054fd61f0e10351048aaa6797729c6f5a2f2))\n\n###\n[`v6.9.5`](https://redirect.github.com/gajus/table/releases/tag/v6.9.5)\n\n[Compare\nSource](https://redirect.github.com/gajus/table/compare/v6.9.4...v6.9.5)\n\n##### Bug Fixes\n\n- keep ANSI escape codes intact when truncating cell content (fixes\n[#&#8203;220](https://redirect.github.com/gajus/table/issues/220))\n([67809de](https://redirect.github.com/gajus/table/commit/67809de302827b60cf2ce92b872a0f94d7984db8))\n\n###\n[`v6.9.4`](https://redirect.github.com/gajus/table/releases/tag/v6.9.4)\n\n[Compare\nSource](https://redirect.github.com/gajus/table/compare/v6.9.3...v6.9.4)\n\n##### Bug Fixes\n\n- account for hidden horizontal lines when drawing borders through\nspanning cells (fixes\n[#&#8203;232](https://redirect.github.com/gajus/table/issues/232))\n([3e496f7](https://redirect.github.com/gajus/table/commit/3e496f7dddc4e4d66c2ee4577a50f7c543b796a4))\n\n###\n[`v6.9.3`](https://redirect.github.com/gajus/table/releases/tag/v6.9.3)\n\n[Compare\nSource](https://redirect.github.com/gajus/table/compare/v6.9.2...v6.9.3)\n\n##### Bug Fixes\n\n- measure emoji by display width when wrapping text (fixes\n[#&#8203;210](https://redirect.github.com/gajus/table/issues/210))\n([05e5c6b](https://redirect.github.com/gajus/table/commit/05e5c6b9fe87d05392928377be58a6634d51e95f))\n\n###\n[`v6.9.2`](https://redirect.github.com/gajus/table/releases/tag/v6.9.2)\n\n[Compare\nSource](https://redirect.github.com/gajus/table/compare/v6.9.1...v6.9.2)\n\n##### Bug Fixes\n\n- wrap words by display width so emoji and wide characters are not\ndropped (fixes\n[#&#8203;180](https://redirect.github.com/gajus/table/issues/180))\n([dd71b17](https://redirect.github.com/gajus/table/commit/dd71b17f4b57455ac4c5cad5515e78ed00ef0cad))\n\n###\n[`v6.9.1`](https://redirect.github.com/gajus/table/releases/tag/v6.9.1)\n\n[Compare\nSource](https://redirect.github.com/gajus/table/compare/v6.9.0...v6.9.1)\n\n##### Bug Fixes\n\n- include single-column spans in automatic column widths\n([#&#8203;239](https://redirect.github.com/gajus/table/issues/239))\n([429feb0](https://redirect.github.com/gajus/table/commit/429feb0ea345e3fb21679fff92c9cb1b65d94ec0))\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: (in timezone Asia/Tokyo)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about this update\nagain.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0NC4yMjAuMCIsInVwZGF0ZWRJblZlciI6IjQ0LjIyMC4wIiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2026-11-07T12:33:10Z",
+          "tree_id": "57647f5bca52a5c44ada5ec09b2a73161b1a0dad",
+          "url": "https://github.com/textlint/textlint/commit/6182275f42ca60d57fad19b120857b583c44ed3f"
+        },
+        "date": 1794054881921,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21937362434000005,
+            "range": "± 0.051861567000000025",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.92281713214,
+            "range": "± 0.04475565100000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7294237607399999,
+            "range": "± 0.013518678000000062",
             "unit": "seconds"
           }
         ]
