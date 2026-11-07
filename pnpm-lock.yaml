@@ -214,8 +214,8 @@ catalogs:
       specifier: ^4.0.0
       version: 4.0.0
     table:
-      specifier: ^6.9.0
-      version: 6.9.0
+      specifier: ^6.9.6
+      version: 6.10.1
     text-table:
       specifier: ^0.2.0
       version: 0.2.0
@@ -764,7 +764,7 @@ importers:
         version: 6.0.1
       table:
         specifier: 'catalog:'
-        version: 6.9.0
+        version: 6.10.1
       text-table:
         specifier: 'catalog:'
         version: 0.2.0
@@ -6572,9 +6572,6 @@ packages:
   lodash.sortby@4.7.0:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
 
-  lodash.truncate@4.4.2:
-    resolution: {integrity: sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==}
-
   lodash.uniq@4.5.0:
     resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
 
@@ -8880,8 +8877,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  table@6.9.0:
-    resolution: {integrity: sha512-9kY+CygyYM6j02t5YFHbNz2FN5QmYGv9zAjVp4lCDjlCw7amdckXlEt/bjMhUIfj4ThGRE4gCUH5+yGnNuPo5A==}
+  table@6.10.1:
+    resolution: {integrity: sha512-f05boz6UD5S70AJiUxqKOnDuE45mBIVagX490oQmcW38+Lq/H1s7CjIpFgJjR/kpV87L4lw/AN+14D2PktQJsQ==}
     engines: {node: '>=10.0.0'}
 
   tapable@2.2.2:
@@ -16320,8 +16317,6 @@ snapshots:
 
   lodash.sortby@4.7.0: {}
 
-  lodash.truncate@4.4.2: {}
-
   lodash.uniq@4.5.0: {}
 
   lodash.uniqwith@4.5.0: {}
@@ -19235,10 +19230,9 @@ snapshots:
       csso: 5.0.5
       picocolors: 1.1.1
 
-  table@6.9.0:
+  table@6.10.1:
     dependencies:
       ajv: 8.20.0
-      lodash.truncate: 4.4.2
       slice-ansi: 4.0.0
       string-width: 4.2.3
       strip-ansi: 6.0.1
