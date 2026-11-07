@@ -58,6 +58,12 @@ export default {
                 image: "https://kohsei-san.hata6502.com/favicon.png",
                 infoLink: "https://kohsei-san.hata6502.com/lp/",
                 pinned: true
+            },
+            {
+                caption: "FrontendAtlas",
+                image: "/img/frontendatlas.png",
+                infoLink: "https://frontendatlas.com",
+                pinned: true
             }
         ],
         repoUrl: "https://github.com/textlint/textlint"
