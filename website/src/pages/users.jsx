@@ -30,7 +30,7 @@ const Users = () => {
                     <div className={styles.logos}>{showcase}</div>
                     <p>Are you using this project?</p>
                     <a
-                        href="https://github.com/textlint/textlint/edit/master/website-v2/docusaurus.config.js"
+                        href="https://github.com/textlint/textlint/edit/master/website/docusaurus.config.js"
                         className={styles.button}
                     >
                         Add your company or project
