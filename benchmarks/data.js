@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794395739146,
+  "lastUpdate": 1794407777422,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -125621,6 +125621,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.7419133994000002,
             "range": "± 0.020416651000000008",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "46666748+MuslumYilmaz@users.noreply.github.com",
+            "name": "Müslim Yılmaz",
+            "username": "MuslumYilmaz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "71b59a6747c5776cfb8ef03497ffac604b4bc4cf",
+          "message": "docs(website): add FrontendAtlas to the users list and fix the add-your-project link (#2171)\n\nAdds FrontendAtlas to the \"Who's Using This?\" list and fixes the \"Add\nyour company or project\" button.\n\n- [FrontendAtlas](https://frontendatlas.com) is a frontend interview\nprep site. Its question content and guides go through textlint (with\n`textlint-rule-terminology` and a custom house-style rule) in CI and in\na pre-push hook. The setup is in `frontend/package.json` and\n`frontend/.textlintrc.json` in the public repo:\nhttps://github.com/MuslumYilmaz/uberfrontend\n- The logo is added as `website/static/img/frontendatlas.png` (256×256,\n22 KB, white background), like the SORACOM entry, so the list does not\ndepend on an external image.\n- The button on /users pointed to `website-v2/docusaurus.config.js`,\nwhich no longer exists (404). It now points to\n`website/docusaurus.config.js`.\n\nDisclosure: I build FrontendAtlas.",
+          "timestamp": "2026-11-11T23:34:34+09:00",
+          "tree_id": "c8fe373bb8b3141a7275eb50050296b1c7c3ff59",
+          "url": "https://github.com/textlint/textlint/commit/71b59a6747c5776cfb8ef03497ffac604b4bc4cf"
+        },
+        "date": 1794407765467,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21756949102000003,
+            "range": "± 0.04196440700000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.90585281002,
+            "range": "± 0.041773320000000114",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.74370334082,
+            "range": "± 0.019454093000000006",
             "unit": "seconds"
           }
         ]
