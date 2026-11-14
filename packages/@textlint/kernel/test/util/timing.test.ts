@@ -63,4 +63,22 @@ describe("timing", () => {
         assert.ok(data["error"] >= 0);
         assert.ok(data["ok"] >= 0);
     });
+    it("should not deadlock when a listener waits for nested listeners", async () => {
+        const { time, data } = createTiming();
+        const inner = time("inner", async () => {
+            await Promise.resolve();
+            busyWait(10);
+        });
+        const outer = time("outer", async () => {
+            // e.g. lint a code block by another kernel in the listener
+            await Promise.all([inner(), inner()]);
+        });
+        const other = time("other", () => {
+            // do nothing
+        });
+        await Promise.all([outer(), other()]);
+        assert.ok(data["inner"] >= 15, `inner: ${data["inner"]}`);
+        assert.ok(data["outer"] >= 15, `outer: ${data["outer"]}`);
+        assert.ok(data["other"] < 10, `other: ${data["other"]}`);
+    });
 });

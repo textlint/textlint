@@ -113,6 +113,25 @@ const now = (): number => {
     return seconds * 1e3 + nanoseconds / 1e6;
 };
 
+type AsyncLocalStorageLike<S> = {
+    getStore(): S | undefined;
+    run<R>(store: S, callback: () => R): R;
+};
+
+/**
+ * Create AsyncLocalStorage if it is available.
+ * Use process.getBuiltinModule instead of importing "node:async_hooks", because this module is also bundled for browsers.
+ */
+const createAsyncLocalStorage = <S>(): AsyncLocalStorageLike<S> | undefined => {
+    const getBuiltinModule = (
+        process as unknown as {
+            getBuiltinModule?: (id: string) => { AsyncLocalStorage?: new () => AsyncLocalStorageLike<S> } | undefined;
+        }
+    ).getBuiltinModule;
+    const AsyncLocalStorage = getBuiltinModule?.("node:async_hooks")?.AsyncLocalStorage;
+    return AsyncLocalStorage ? new AsyncLocalStorage() : undefined;
+};
+
 /**
  * Create a timer that measures the running time of rule listeners.
  *
@@ -122,12 +141,20 @@ const now = (): number => {
  * To attribute the time to each rule correctly, the wrapped listeners are executed one by one:
  * a wrapped listener starts after the previous wrapped listener has settled.
  * This changes the concurrency of rule listeners, so it should be used only for profiling.
+ *
+ * A listener may lint another text in it (nested lint) and wait for the result.
+ * The listeners of the nested lint are called in the async context of the outer listener,
+ * so they run immediately instead of waiting for the queue. Otherwise, they would wait for the outer listener forever.
+ * The time of the nested lint is also included in the time of the outer listener.
  * @private
  */
 export function createTiming() {
     const data: Record<string, number> = Object.create(null);
     // The queue of wrapped listeners. Each listener waits for the previous one.
     let queue: Promise<void> = Promise.resolve();
+    // It has a value while a wrapped listener is running
+    // If AsyncLocalStorage is not available, the listeners are not serialized.
+    const runningListener = createAsyncLocalStorage<string>();
 
     /**
      * Time the run
@@ -152,7 +179,11 @@ export function createTiming() {
             }
         };
         return function (...args: T) {
-            const result = queue.then(() => run(args));
+            if (!runningListener || runningListener.getStore() !== undefined) {
+                // nested lint or AsyncLocalStorage is not available
+                return run(args);
+            }
+            const result = queue.then(() => runningListener.run(key, () => run(args)));
             // Continue the queue even if the listener throws an error
             queue = result.catch(() => undefined);
             return result;
