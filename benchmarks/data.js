@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794652514331,
+  "lastUpdate": 1794652569152,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126125,6 +126125,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.56028488982,
             "range": "± 0.03476410400000007",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "0090940048fecda439c68cf41d65edbe0bba2eea",
+          "message": "feat!: require Node.js 22 or later\n\nNode.js 20 reached end-of-life on 2026-04-30.\nBump engines.node to >=22.0.0 and drop Node.js 20 from the CI matrix.\nAlso quote $GITHUB_STEP_SUMMARY in ci.yml to satisfy shellcheck.\n\nBREAKING CHANGE: textlint now requires Node.js 22 or later.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFyXkaUKRbQJ6VV7vn\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T10:34:21Z",
+          "tree_id": "1401430a54fb33b6051fb4dd53d200d802d89d90",
+          "url": "https://github.com/textlint/textlint/commit/0090940048fecda439c68cf41d65edbe0bba2eea"
+        },
+        "date": 1794652557351,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25304141886000003,
+            "range": "± 0.19377388500000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.96378254266,
+            "range": "± 0.14331466899999978",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7419018882599999,
+            "range": "± 0.012079720999999988",
             "unit": "seconds"
           }
         ]
