@@ -122,7 +122,7 @@ RuleContext object has following property:
 - `locator`
     - New in [12.2.0](https://github.com/textlint/textlint/releases/tag/v12.2.0)
     - This utility provide range methods for `padding` property to `RuleError`
-    - See [RuleError](#RuleError) for more details
+    - See [RuleError](#ruleerror) for more details
 
 ## RuleError
 

@@ -69,7 +69,7 @@ textlint therefore provides the common machinery, and the checks themselves are 
 - **Filter rule:** A rule that decides which reported errors to ignore, for example inside `<!-- textlint-disable -->` comments.
 - **Preset:** A package that bundles rules for a purpose, such as technical writing.
 - **Plugin:** A package that converts a document format into TxtAST. Markdown and plain text plugins are built in.
-- **TxtAST:** The tree of `TxtNode`s that textlint passes to rules. Every node has `type`, `raw`, `range`, and `loc`. It describes the structure of the markup, and the prose stays in text nodes (`Str`). It is defined loosely in [TxtAST interface](../../../docs/txtnode.md) and `@textlint/ast-node-types`.
+- **TxtAST:** The tree of `TxtNode`s that textlint passes to rules. Every node has `type`, `raw`, `range`, and `loc`. It describes the structure of the markup, and the prose stays in text nodes (`Str`). It is defined loosely in [TxtAST interface](../../txtnode.md) and `@textlint/ast-node-types`.
 - **Message:** An error reported by a rule, with its location as a range in the source.
 - **Formatter:** A package that prints messages, such as `stylish` or `json`.
 

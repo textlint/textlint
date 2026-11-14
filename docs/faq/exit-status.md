@@ -162,7 +162,7 @@ The implementation of this feature involves:
 
 - **CLI layer** ([`cli.ts`](../../packages/textlint/src/cli.ts)): Catches `TextlintFileSearchError` and returns exit status 2
 - **Linter layer** ([`createLinter.ts`](../../packages/textlint/src/createLinter.ts)): Throws `TextlintFileSearchError` when file search fails
-- **Error class** ([`FileSearchError.ts`](../../packages/textlint/src/error/FileSearchError.ts)): Custom error class for file search failures
+- **Error class** (`TextlintFileSearchError` in [`createLinter.ts`](../../packages/textlint/src/createLinter.ts)): Custom error class for file search failures
 
 ## Best Practices
 

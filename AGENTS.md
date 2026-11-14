@@ -13,7 +13,9 @@ Read [CONTRIBUTING.md](docs/CONTRIBUTING.md) for setup, commit message format, a
 ## Specification placement
 
 `docs/` is the source of the published website (textlint.org).
-Put specifications under `specs/products/` instead of `docs/products/`, using sdev's default layout below it.
+Specifications live under `docs/products/`, using sdev's default layout.
+`website/docusaurus.config.js` excludes `products/**` from the docs plugin, so specifications are not published on the website.
+CI runs `./bin/sdev lint` on every push and pull request.
 
 <!-- sdev:begin -->
 ## Specifications-first development
