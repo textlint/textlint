@@ -8,7 +8,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { dynamicImport, tryResolve } from "@textlint/resolver";
 import debug0 from "debug";
-import type { FormatterOptions } from "./FormatterOptions.js";
+import type { FormatterGetSource, FormatterOptions } from "./FormatterOptions.js";
+export type { FormatterGetSource, FormatterOptions } from "./FormatterOptions.js";
 
 type BuiltinFormatter = (results: TextlintResult[], options: FormatterOptions) => string;
 /**
@@ -48,6 +49,12 @@ const isFormatterFunction = (formatter: unknown): formatter is FormatterFunction
 export interface FormatterConfig {
     formatterName: string;
     color?: boolean;
+    /**
+     * Get the content of the linted source by `filePath` of the result.
+     * The results do not have the content, so a formatter that needs the content gets it from this function.
+     * For example, "pretty-error" formatter uses it, and reads the file if it returns `undefined`.
+     */
+    getSource?: FormatterGetSource;
 }
 
 export async function loadFormatter(formatterConfig: FormatterConfig) {

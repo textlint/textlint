@@ -123,11 +123,13 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     let infos = 0;
     let totalFixable = 0;
     results.forEach(function (result) {
-        const code = readFileSync(result.filePath, "utf-8");
         const messages = result.messages;
         if (messages.length === 0) {
             return;
         }
+        // The result does not have the content of the source
+        // If the caller does not provide the content, read the file
+        const code = options.getSource?.(result.filePath) ?? readFileSync(result.filePath, "utf-8");
         total += messages.length;
         messages.forEach(function (message) {
             // fixable

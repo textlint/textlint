@@ -189,7 +189,11 @@ export const cli = {
                 debug("lint results: %j", results);
                 const formatter = await loadLinterFormatter({
                     formatterName: cliOptions.format,
-                    color: cliOptions.color
+                    color: cliOptions.color,
+                    // The text of stdin is not in a file, so pass it to the formatter
+                    getSource: isStdinExecution(executeOptions)
+                        ? (filePath) => (filePath === executeOptions.stdinFilename ? executeOptions.text : undefined)
+                        : undefined
                 });
                 const output = formatter.format(results);
                 if (printResults(output, cliOptions)) {

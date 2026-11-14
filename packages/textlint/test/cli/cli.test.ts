@@ -86,6 +86,20 @@ describe("cli-test", function () {
                 assert.strictEqual(result, 1);
             });
         });
+        it("should show the text of stdin with pretty-error formatter", function () {
+            return runWithMockLog(async ({ getLogs }) => {
+                const ruleDir = path.join(__dirname, "fixtures/rules");
+                // the file of --stdin-filename does not exist
+                const result = await cli.execute(
+                    `--rulesdir ${ruleDir} --format pretty-error --no-color --stdin-filename=not-found.md`,
+                    "stdin text"
+                );
+                assert.strictEqual(result, 1);
+                const output = getLogs().join("\n");
+                assert.match(output, /not-found\.md:1:1/);
+                assert.match(output, /1\. stdin text/);
+            });
+        });
         it("should return 1 which is lint error code", function () {
             return runWithMockLog(async () => {
                 const ruleDir = path.join(__dirname, "fixtures/rules");

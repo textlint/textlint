@@ -63,6 +63,27 @@ const output = formatter.format(results);
 console.log(output);
 ```
 
+### Lint text and output with `pretty-error` formatter
+
+`pretty-error` formatter shows the source code around each error.
+`lintText()` lints the text that is not in a file, so pass the text to the formatter with `getSource`.
+
+```ts
+import { createLinter, loadTextlintrc, loadLinterFormatter } from "textlint";
+const descriptor = await loadTextlintrc();
+const linter = createLinter({
+    descriptor
+});
+const text = "TODO: fix me";
+const result = await linter.lintText(text, "README.md");
+const formatter = await loadLinterFormatter({
+    formatterName: "pretty-error",
+    // Return the text for the result, or undefined to read the file
+    getSource: (filePath) => (filePath === "README.md" ? text : undefined)
+});
+console.log(formatter.format([result]));
+```
+
 ### Fix text and get the fixed text
 
 ```ts

@@ -281,4 +281,62 @@ ${fooFile}:5:10
             );
         });
     });
+    describe("getSource", function () {
+        it("should show the content from getSource for a file that does not exist", function () {
+            const filePath = "virtual.md";
+            const results = [
+                {
+                    filePath,
+                    messages: [createTestMessage({ message: "Found bar.", line: 2, column: 1, ruleId: "bar" })]
+                }
+            ];
+            const output = prettyError(results, {
+                color: false,
+                getSource: (sourceFilePath: string) => (sourceFilePath === filePath ? "foo\nbar\nbaz" : undefined)
+            });
+            assert.ok(output.includes("bar: Found bar.\nvirtual.md:2:1\n"), output);
+            assert.ok(output.includes("    1. foo\n    2. bar\n    3. baz\n"), output);
+        });
+        it("should prefer the content from getSource over the file", function () {
+            const fooFile = path.join(__dirname, "../fixtures", "foo.md");
+            const results = [
+                {
+                    filePath: fooFile,
+                    messages: [createTestMessage({ message: "Found text.", line: 1, column: 1, ruleId: "rule" })]
+                }
+            ];
+            const output = prettyError(results, {
+                color: false,
+                getSource: () => "in-memory text"
+            });
+            assert.ok(output.includes("1. in-memory text"), output);
+            assert.ok(!output.includes("1st line"), output);
+        });
+        it("should read the file when getSource returns undefined", function () {
+            const fooFile = path.join(__dirname, "../fixtures", "foo.md");
+            const results = [
+                {
+                    filePath: fooFile,
+                    messages: [createTestMessage({ message: "Found text.", line: 1, column: 1, ruleId: "rule" })]
+                }
+            ];
+            const output = prettyError(results, {
+                color: false,
+                getSource: () => undefined
+            });
+            assert.ok(output.includes("1. 1st line"), output);
+        });
+        it("should not call getSource or read the file for a result without messages", function () {
+            const calledFilePaths: string[] = [];
+            const output = prettyError([{ filePath: "not-found.md", messages: [] }], {
+                color: false,
+                getSource: (filePath: string) => {
+                    calledFilePaths.push(filePath);
+                    return undefined;
+                }
+            });
+            assert.equal(output, "");
+            assert.deepEqual(calledFilePaths, []);
+        });
+    });
 });

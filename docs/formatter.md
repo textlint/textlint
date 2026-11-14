@@ -188,7 +188,27 @@ $ textlint --fix --format json <file>
 
 ## How to get source code from result?
 
-You can read the source code from `filePath` property.
+The result does not have the source code.
+A formatter gets the source code from the `getSource` option, and reads the file of `filePath` if `getSource` is not given or returns `undefined`.
+
+```ts
+import fs from "node:fs";
+import type { TextlintResult } from "@textlint/types";
+
+export default function formatter(
+    results: TextlintResult[],
+    options: { getSource?: (filePath: string) => string | undefined }
+) {
+    return results
+        .map((result) => {
+            const source = options.getSource?.(result.filePath) ?? fs.readFileSync(result.filePath, "utf-8");
+            return `${result.filePath}: ${source.length} characters`;
+        })
+        .join("\n");
+}
+```
+
+`textlint --stdin` passes `getSource`, because the text of stdin is not in the file of `--stdin-filename`.
 
 ## Built-in formatter
 
