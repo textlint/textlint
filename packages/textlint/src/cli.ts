@@ -27,6 +27,16 @@ type ExecuteOptions =
 const isStdinExecution = (executeOptions: ExecuteOptions): executeOptions is StdinExecuteOption => {
     return "text" in executeOptions;
 };
+/**
+ * The text of stdin is not in a file, so pass it to the formatter.
+ * `loadFormatter()` reads the other files.
+ */
+const getStdinSource = (executeOptions: ExecuteOptions) => {
+    if (!isStdinExecution(executeOptions)) {
+        return undefined;
+    }
+    return (filePath: string) => (filePath === executeOptions.stdinFilename ? executeOptions.text : undefined);
+};
 
 const loadDescriptor = async (cliOptions: CliOptions) => {
     const cliDescriptor = await loadCliDescriptor(cliOptions);
@@ -159,7 +169,8 @@ export const cli = {
                 const fixer = new TextLintFixer();
                 const formatter = await loadFixerFormatter({
                     formatterName: cliOptions.format,
-                    color: cliOptions.color
+                    color: cliOptions.color,
+                    getSource: getStdinSource(executeOptions)
                 });
                 const output = formatter.format(results);
                 // --dry-run
@@ -189,7 +200,8 @@ export const cli = {
                 debug("lint results: %j", results);
                 const formatter = await loadLinterFormatter({
                     formatterName: cliOptions.format,
-                    color: cliOptions.color
+                    color: cliOptions.color,
+                    getSource: getStdinSource(executeOptions)
                 });
                 const output = formatter.format(results);
                 if (printResults(output, cliOptions)) {

@@ -7,6 +7,9 @@ import { describe, it } from "vitest";
 import * as assert from "node:assert";
 import type { TextlintMessage } from "@textlint/types";
 import * as path from "node:path";
+import * as fs from "node:fs";
+
+const readSource = (filePath: string) => fs.readFileSync(filePath, "utf-8");
 
 // Helper to create test message with minimal required properties
 function createTestMessage(
@@ -48,7 +51,8 @@ describe("pretty-error", function () {
                 }
             ];
             const output = prettyError(code, {
-                color: false
+                color: false,
+                getSource: readSource
             });
             assert.equal(
                 output,
@@ -105,7 +109,8 @@ ${fooFile}:1:1
                 }
             ];
             const output = prettyError(code, {
-                color: false
+                color: false,
+                getSource: readSource
             });
             assert.equal(
                 output,
@@ -151,7 +156,8 @@ Try to run: $ textlint --fix [file]
                 }
             ];
             const output = prettyError(code, {
-                color: false
+                color: false,
+                getSource: readSource
             });
             assert.equal(
                 output,
@@ -187,7 +193,8 @@ ${fooFile}:6:1
                 }
             ];
             const output = prettyError(code, {
-                color: false
+                color: false,
+                getSource: readSource
             });
             assert.equal(
                 output,
@@ -226,7 +233,8 @@ ${fooFile}:6:1
                 }
             ];
             const output = prettyError(code, {
-                color: false
+                color: false,
+                getSource: readSource
             });
             assert.equal(
                 output,
@@ -264,7 +272,8 @@ Try to run: $ textlint --fix [file]
                 }
             ];
             const output = prettyError(code, {
-                color: false
+                color: false,
+                getSource: readSource
             });
             assert.equal(
                 output,
@@ -279,6 +288,55 @@ ${fooFile}:5:10
 \u2716 1 problem (1 info)
 `
             );
+        });
+    });
+    describe("getSource", function () {
+        it("should show the content from getSource for a file that does not exist", function () {
+            const filePath = "virtual.md";
+            const results = [
+                {
+                    filePath,
+                    messages: [createTestMessage({ message: "Found bar.", line: 2, column: 1, ruleId: "bar" })]
+                }
+            ];
+            const output = prettyError(results, {
+                color: false,
+                getSource: (sourceFilePath: string) => (sourceFilePath === filePath ? "foo\nbar\nbaz" : undefined)
+            });
+            assert.ok(output.includes("bar: Found bar.\nvirtual.md:2:1\n"), output);
+            assert.ok(output.includes("    1. foo\n    2. bar\n    3. baz\n"), output);
+        });
+        it("should show the message without the code when getSource returns undefined", function () {
+            const results = [
+                {
+                    filePath: "not-found.md",
+                    messages: [createTestMessage({ message: "Found text.", line: 1, column: 1, ruleId: "rule" })]
+                }
+            ];
+            const output = prettyError(results, {
+                color: false,
+                getSource: () => undefined
+            });
+            assert.equal(
+                output,
+                `rule: Found text.
+not-found.md:1:1
+
+\u2716 1 problem (1 warning)
+`
+            );
+        });
+        it("should not call getSource for a result without messages", function () {
+            const calledFilePaths: string[] = [];
+            const output = prettyError([{ filePath: "not-found.md", messages: [] }], {
+                color: false,
+                getSource: (filePath: string) => {
+                    calledFilePaths.push(filePath);
+                    return undefined;
+                }
+            });
+            assert.equal(output, "");
+            assert.deepEqual(calledFilePaths, []);
         });
     });
 });

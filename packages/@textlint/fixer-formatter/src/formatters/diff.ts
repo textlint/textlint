@@ -1,6 +1,5 @@
 "use strict";
 import type { TextlintFixResult } from "@textlint/types";
-import * as fs from "node:fs";
 import { diffLines } from "diff";
 import { styleText } from "node:util";
 import { stripVTControlCharacters as stripAnsi } from "node:util";
@@ -10,14 +9,6 @@ type DiffPart = {
     count?: number;
     added?: boolean;
     removed?: boolean;
-};
-const isFile = (filePath: string) => {
-    try {
-        const stats = fs.statSync(filePath);
-        return stats.isFile();
-    } catch (error) {
-        return false;
-    }
 };
 /**
  * Given a word and a count, append an s if count is not one.
@@ -49,7 +40,10 @@ function addMarkEachLine(mark: string, text: string) {
     return `${markedLines.join("\n")}\n`;
 }
 
-export default function (results: TextlintFixResult[], options: { color?: boolean } = {}) {
+export default function (
+    results: TextlintFixResult[],
+    options: { color?: boolean; getSource: (filePath: string) => string | undefined }
+) {
     // default: true
     const useColor = options.color !== undefined ? options.color : true;
     let output = "\n";
@@ -68,12 +62,13 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
         if (messages.length === 0) {
             return;
         }
-        if (!isFile(filePath)) {
+        // The result does not have the content before fixing
+        const originalContent = options.getSource(filePath);
+        if (originalContent === undefined) {
             return;
         }
         output += `${styleText("underline", result.filePath)}\n`;
 
-        const originalContent = fs.readFileSync(filePath, "utf-8");
         const diff = diffLines(originalContent, result.output);
 
         diff.forEach(function (part: DiffPart, index: number) {

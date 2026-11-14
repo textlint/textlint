@@ -8,7 +8,6 @@ import { FormatterOptions } from "../FormatterOptions.js";
 
 import { styleText, stripVTControlCharacters as stripAnsi } from "node:util";
 import { stringWidth } from "../helper/string-width.js";
-import { readFileSync } from "node:fs";
 
 /**
  * Given a word and a count, append an s if count is not one.
@@ -107,6 +106,13 @@ function prettyError(code: string, filePath: string, message: TextlintMessage): 
     );
 }
 
+function prettyErrorWithoutCode(filePath: string, message: TextlintMessage): string {
+    return (
+        `${GREY}${message.ruleId}: ${RED}${message.message}${RESET}\n` +
+        `${GREY}${filePath}:${message.line}:${message.column}${RESET}\n`
+    );
+}
+
 /**
  *
  * @param {TextLintResult[]} results
@@ -123,11 +129,12 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     let infos = 0;
     let totalFixable = 0;
     results.forEach(function (result) {
-        const code = readFileSync(result.filePath, "utf-8");
         const messages = result.messages;
         if (messages.length === 0) {
             return;
         }
+        // The result does not have the content of the source
+        const code = options.getSource(result.filePath);
         total += messages.length;
         messages.forEach(function (message) {
             // fixable
@@ -145,7 +152,11 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
             } else {
                 warnings++;
             }
-            const r = prettyError(code, result.filePath, message);
+            // Show the message without the code if the content is not available
+            const r =
+                code === undefined
+                    ? prettyErrorWithoutCode(result.filePath, message)
+                    : prettyError(code, result.filePath, message);
             if (r) {
                 output += `${fixableIcon}${r}\n`;
             }

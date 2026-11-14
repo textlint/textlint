@@ -8,7 +8,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { dynamicImport, tryResolve } from "@textlint/resolver";
 import debug0 from "debug";
-import type { FormatterOptions } from "./FormatterOptions.js";
+import type { FormatterGetSource, FormatterOptions } from "./FormatterOptions.js";
+export type { FormatterGetSource, FormatterOptions } from "./FormatterOptions.js";
 
 type BuiltinFormatter = (results: TextlintResult[], options: FormatterOptions) => string;
 /**
@@ -40,7 +41,7 @@ const loadBuiltinFormatter = async (name: BuiltInFormatterName): Promise<Builtin
 type BuiltInFormatterName = keyof typeof builtinFormatterList;
 const builtinFormatterNames = Object.keys(builtinFormatterList);
 const debug = debug0("textlint:@textlint/linter-formatter");
-type FormatterFunction = (results: TextlintResult[], formatterConfig: FormatterConfig) => string;
+type FormatterFunction = (results: TextlintResult[], formatterConfig: FormatterConfig & FormatterOptions) => string;
 const isFormatterFunction = (formatter: unknown): formatter is FormatterFunction => {
     return typeof formatter === "function";
 };
@@ -48,9 +49,40 @@ const isFormatterFunction = (formatter: unknown): formatter is FormatterFunction
 export interface FormatterConfig {
     formatterName: string;
     color?: boolean;
+    /**
+     * Get the content of the linted source by `filePath` of the result.
+     * The results do not have the content, so a formatter that needs the content gets it from this function.
+     * For example, "pretty-error" formatter uses it.
+     * If it is not given or returns `undefined`, the formatter gets the content of the file of `filePath`.
+     */
+    getSource?: FormatterGetSource;
 }
 
-export async function loadFormatter(formatterConfig: FormatterConfig) {
+/**
+ * Create `getSource` for the formatter.
+ * It returns the content from `getSource` of the caller, and reads the file of `filePath` if the caller does not have the content.
+ * It returns `undefined` if the file can not be read.
+ * A formatter gets the content only from this function, and does not read the file by itself.
+ */
+const createGetSource = (getSource?: FormatterGetSource): FormatterGetSource => {
+    return (filePath) => {
+        const source = getSource?.(filePath);
+        if (source !== undefined) {
+            return source;
+        }
+        try {
+            return fs.readFileSync(filePath, "utf-8");
+        } catch {
+            return undefined;
+        }
+    };
+};
+
+export async function loadFormatter(config: FormatterConfig) {
+    const formatterConfig: FormatterConfig & FormatterOptions = {
+        ...config,
+        getSource: createGetSource(config.getSource)
+    };
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);
     if (builtinFormatterNames.includes(formatterName)) {
