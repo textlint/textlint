@@ -50,6 +50,10 @@ It was replaced for these reasons.
 - Position workarounds were needed for nodes without positions, and two position defects came from the micromark/mdast layer.
 - CommonMark is a stable written specification with an official example suite, so following it is maintainable without a third-party parser.
 
+This also returns to where textlint started.
+The first version of textlint (December 2014) was built on the AST of the `commonmark` package, because CommonMark was the only parser that kept node positions at that time; remark did not have positions yet.
+textlint later moved to remark. There is no record of the reason for that move.
+
 ### Compatibility with the previous implementation
 
 The output AST is the same as the previous implementation's for every input in these corpora, compared as whole ASTs including `range`, `loc`, and `raw`.
@@ -95,6 +99,7 @@ Rules use `range` and `loc`; no use of `position` was found in the `textlint`, `
 ## External service integration
 
 None. The package has no third-party runtime dependencies.
+The parser uses only ECMAScript built-ins (typed arrays, strings, and regular expressions with Unicode property escapes) and no Node.js modules, so it runs in browsers as it is, as the [Requirements](requirements.md#parse-without-a-server) ask.
 The named character reference table is generated from the [WHATWG entities.json](https://html.spec.whatwg.org/entities.json) by `tools/generate-entities.mjs` and committed as source.
 
 ## Data handling
@@ -131,6 +136,7 @@ Release notes list the removal of the hidden `position` property and the [compat
 ### Keep remark
 
 This keeps following the remark ecosystem and allows remark plugins such as `remark-cjk-friendly`.
+remark is a general-purpose Markdown processor that also covers transformation and serialization, while textlint only uses its parser and converts the result into its own AST.
 It was not chosen because it keeps the dependencies, the position workarounds, and the slow cases described above.
 
 ### Use micromark and mdast-util-from-markdown directly

@@ -3,6 +3,7 @@
 ## About this document
 
 Markdown parsing converts Markdown text into TxtAST so that rules can check the prose and report accurate positions.
+Markdown has a specification, so its syntax is parsed into nodes; the natural language inside stays as text for rules to handle.
 It is provided by `@textlint/markdown-to-ast` and used by the built-in `@textlint/textlint-plugin-markdown`.
 The parent Product is [textlint](../../product.md).
 
@@ -16,6 +17,7 @@ The parent Product is [textlint](../../product.md).
 ### Out of scope
 
 - Plain text parsing and other formats provided by plugins
+- Splitting prose into sentences or words. Rules do this, for example with a sentence splitter or a morphological analyzer
 - Rendering Markdown to HTML, or writing Markdown back from an AST
 - How rules use the AST, and the formal TxtAST specification (see the open questions of the [Product](../../product.md))
 
@@ -23,7 +25,8 @@ The parent Product is [textlint](../../product.md).
 
 ### Check only the prose
 
-As a writer, I want Markdown syntax to be recognized as syntax so that rules check my sentences and do not report errors on markup.
+As a writer, I want Markdown syntax to be recognized as syntax so that rules check my sentences and do not report false positives on markup.
+Syntax that has a meaning, such as links, code, and front matter, becomes a node instead of staying in a string.
 
 **Acceptance criteria:**
 
@@ -87,13 +90,25 @@ Scenario: When the parser implementation changes, the existing fixtures produce 
 - When: They are parsed by the new implementation
 - Then: The output equals the committed `output.json`, unless the change is listed as a breaking change in the release notes
 
+### Parse without a server
+
+As an integrator, I want the parser to run in browsers so that a writer's text does not have to be sent to a server to be checked.
+
+**Acceptance criteria:**
+
+Scenario: When the parser is bundled for a browser, it needs no Node.js polyfills
+
+- Given: `@textlint/markdown-to-ast` and its runtime dependencies, resolved with the `browser` conditions of their packages
+- When: They are bundled for a browser
+- Then: The bundle does not need a Node.js built-in module such as `node:fs` or `node:util`, and `parse` returns the same AST as in Node.js
+
 ## KPIs
 
 ### Parsing speed
 
 - **Current value:** About 0.8 MB/s on 3,189 real-world `.md` files (15.3 MB, 18,506 ms, median). About 657–686 ms for 330 KB of this repository's Markdown.
 - **Target value:** No slower than the current value on the same corpus. Faster is preferred.
-- **Measurement method:** Parse the same corpus in a loop with Node.js 22 and compare medians between the current and the new implementation.
+- **Measurement method:** Parse the same corpus of real-world documents in a loop with Node.js 22 and compare medians between the current and the new implementation.
 - **Measurement period:** When the parser implementation changes.
 
 ### Dependencies
