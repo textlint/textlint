@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794669406095,
+  "lastUpdate": 1794670102270,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -127637,6 +127637,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5703800785600001,
             "range": "± 0.01661516899999993",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "25f12a83a678bbddbcdf388608adb3ebe0816994",
+          "message": "docs(specs): reflect textlint's design principles in the specification\n\nAdd the reasons behind textlint's architecture to the Product: parse the\nmarkup but not the natural language, everything is pluggable, no\nbuilt-in rules, run in browsers, and check with real documents.\nAdd the browser requirement to Markdown parsing, and the history of the\nparser choice (commonmark first, then remark) to its Design.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T15:27:10Z",
+          "tree_id": "985f13d65b074b636e9ab82d06a8be17299a4e95",
+          "url": "https://github.com/textlint/textlint/commit/25f12a83a678bbddbcdf388608adb3ebe0816994"
+        },
+        "date": 1794670094078,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.16588501218,
+            "range": "± 0.038158459000000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.2660678229799998,
+            "range": "± 0.043592712000000144",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.46841776718000006,
+            "range": "± 0.024358311999999993",
             "unit": "seconds"
           }
         ]
