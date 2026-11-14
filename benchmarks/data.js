@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794665034559,
+  "lastUpdate": 1794669406095,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -127595,6 +127595,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.74632731484,
             "range": "± 0.023774842000000018",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "774701228107843ebb715e27b91f3339bbec9213",
+          "message": "docs(specs): design Markdown parsing with an in-house CommonMark + GFM parser\n\nUpdate the Markdown parsing Design for the in-house parser proposed in\n#2188, with its compatibility, the differences found by differential\nfuzzing against cmark-gfm, pathological input timings, and the\nalternatives (keep remark, or use micromark directly as in #2187).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T15:15:16Z",
+          "tree_id": "7f5da72bf72b36320851028bb06ff62b46200252",
+          "url": "https://github.com/textlint/textlint/commit/774701228107843ebb715e27b91f3339bbec9213"
+        },
+        "date": 1794669395012,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17937339756,
+            "range": "± 0.04530092300000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.51255574176,
+            "range": "± 0.030394881000000096",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5703800785600001,
+            "range": "± 0.01661516899999993",
             "unit": "seconds"
           }
         ]
