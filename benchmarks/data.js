@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794664207850,
+  "lastUpdate": 1794664395564,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -127259,6 +127259,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.46916460086,
             "range": "± 0.022998766000000004",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "5598b919e4fa5b2c5e32021841c9e27479200d02",
+          "message": "fix(kernel): avoid deadlock of nested lint with TIMING=1\n\nA rule listener can lint another text and wait for the result. The\nlisteners of the nested lint were queued behind the outer listener, so\nneither could finish. Run listeners that are called in the async\ncontext of a running listener immediately, using AsyncLocalStorage.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGVQbWP8D47SMeXdCB\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T13:50:36Z",
+          "tree_id": "31a91677688ba3c7f42aaf665a9f30762bfaf689",
+          "url": "https://github.com/textlint/textlint/commit/5598b919e4fa5b2c5e32021841c9e27479200d02"
+        },
+        "date": 1794664382964,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.19998826384000004,
+            "range": "± 0.03722007300000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.73798162904,
+            "range": "± 0.059605978000000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.61621652604,
+            "range": "± 0.01229960699999999",
             "unit": "seconds"
           }
         ]
