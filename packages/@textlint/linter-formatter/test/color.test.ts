@@ -62,7 +62,7 @@ describe("formatters with color", () => {
     for (const formatterName of ["stylish", "pretty-error", "table"]) {
         it(`${formatterName} outputs colors`, async () => {
             const formatter = await loadFormatter({ formatterName, color: true });
-            const output = formatter.format(results).replaceAll(fixturesDir, "<fixtures>");
+            const output = formatter.format(results).replaceAll(`${fixturesDir}${path.sep}`, "<fixtures>/");
             await expect(showControlCharacters(output)).toMatchFileSnapshot(`./snapshots/color.${formatterName}.txt`);
         });
         it(`${formatterName} does not output colors with color: false`, async () => {
