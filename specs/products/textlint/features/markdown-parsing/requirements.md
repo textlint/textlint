@@ -1,5 +1,7 @@
 # Markdown parsing
 
+[日本語](requirements.ja.md)
+
 ## About this document
 
 Markdown parsing converts Markdown text into TxtAST so that rules can check the prose and report accurate positions.

@@ -1,5 +1,7 @@
 # textlint
 
+[日本語](product.ja.md)
+
 ## Overview
 
 textlint is a pluggable linting tool for natural language.

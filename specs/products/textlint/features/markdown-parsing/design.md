@@ -1,5 +1,7 @@
 # Markdown parsing design
 
+[日本語](design.ja.md)
+
 ## About this document
 
 This design explains how `@textlint/markdown-to-ast` meets the [Markdown parsing Requirements](requirements.md) of the [textlint Product](../../product.md).
@@ -51,8 +53,11 @@ It was replaced for these reasons.
 - CommonMark is a stable written specification with an official example suite, so following it is maintainable without a third-party parser.
 
 This also returns to where textlint started.
-The first version of textlint (December 2014) was built on the AST of the `commonmark` package, because CommonMark was the only parser that kept node positions at that time; remark did not have positions yet.
-textlint later moved to remark. There is no record of the reason for that move.
+The first version of textlint (December 2014) was built on the AST of the `commonmark` package, because it was the only parser that kept any node positions at that time; remark did not have positions yet.
+The positions were incomplete, though: `commonmark` 0.15 gave only the start line and column of blocks, and nothing for inline nodes.
+`markdown-to-ast` rendered the AST back to Markdown to rebuild `raw` and the end positions, with workarounds such as a column offset for the children of headings, and it could not tell `*` from `__` in emphasis.
+In February 2015, `mdast` (the predecessor of remark) 0.3 gave every node a start and end position, so `markdown-to-ast` 3.0.0 switched to it and removed the CommonMark code.
+The in-house parser keeps what made that switch necessary: every node has an exact range.
 
 ### Compatibility with the previous implementation
 
