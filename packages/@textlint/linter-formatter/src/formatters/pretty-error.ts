@@ -7,7 +7,7 @@ import type { TextlintMessage, TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
 
 import { styleText, stripVTControlCharacters as stripAnsi } from "node:util";
-import { stringWidth } from "@textlint/utils";
+import { stringWidth } from "../helper/string-width.js";
 import { readFileSync } from "node:fs";
 
 /**

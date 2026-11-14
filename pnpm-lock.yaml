@@ -582,9 +582,6 @@ importers:
       '@textlint/types':
         specifier: workspace:*
         version: link:../types
-      '@textlint/utils':
-        specifier: workspace:*
-        version: link:../utils
       debug:
         specifier: 'catalog:'
         version: 4.4.3(supports-color@8.1.1)
@@ -702,9 +699,6 @@ importers:
       '@textlint/types':
         specifier: workspace:*
         version: link:../types
-      '@textlint/utils':
-        specifier: workspace:*
-        version: link:../utils
       debug:
         specifier: 'catalog:'
         version: 4.4.3(supports-color@8.1.1)

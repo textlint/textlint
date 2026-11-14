@@ -1,13 +1,13 @@
 import assert from "node:assert";
 import { describe, it } from "vitest";
-import { alignColumns } from "../../src/terminal/align-columns.js";
+import { alignColumns } from "../../src/helper/align-columns.js";
 
 describe("alignColumns", () => {
     it("aligns the columns to the left by default", () => {
         assert.strictEqual(
             alignColumns([
                 ["a", "bb", "c"],
-                ["aaa", "b", "cc"],
+                ["aaa", "b", "cc"]
             ]),
             ["a    bb  c", "aaa  b   cc"].join("\n")
         );
@@ -17,7 +17,7 @@ describe("alignColumns", () => {
             alignColumns(
                 [
                     ["", 1, 2],
-                    ["", 10, 20],
+                    ["", 10, 20]
                 ],
                 ["", "r", "l"]
             ),
@@ -28,7 +28,7 @@ describe("alignColumns", () => {
         assert.strictEqual(
             alignColumns([
                 ["a", ""],
-                ["bbb", "c"],
+                ["bbb", "c"]
             ]),
             ["a", "bbb  c"].join("\n")
         );
@@ -38,7 +38,7 @@ describe("alignColumns", () => {
             alignColumns([
                 ["日本", "x"],
                 ["\u001B[31mab\u001B[39m", "y"],
-                ["abcde", "z"],
+                ["abcde", "z"]
             ]),
             ["日本   x", "\u001B[31mab\u001B[39m     y", "abcde  z"].join("\n")
         );
@@ -47,7 +47,7 @@ describe("alignColumns", () => {
         assert.strictEqual(
             alignColumns([
                 ["a\nbbb", "x"],
-                ["cc", "y"],
+                ["cc", "y"]
             ]),
             ["a\nbbb  x", "cc   y"].join("\n")
         );

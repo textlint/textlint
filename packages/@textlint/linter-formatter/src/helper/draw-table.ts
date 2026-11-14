@@ -1,4 +1,4 @@
-import { stringWidth } from "@textlint/utils";
+import { stringWidth } from "./string-width.js";
 
 /**
  * Draw a table with borders.

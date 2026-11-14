@@ -1,6 +1,6 @@
 import { describe, it } from "vitest";
 import assert from "node:assert";
-import { MAY_HAVE_EMOJI_PATTERN, stringWidth } from "../../src/terminal/string-width.js";
+import { MAY_HAVE_EMOJI_PATTERN, stringWidth } from "../../src/helper/string-width.js";
 
 describe("stringWidth", () => {
     it("returns the number of the characters for ASCII", () => {

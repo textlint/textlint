@@ -8,7 +8,7 @@ import type { TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
 
 import { styleText, stripVTControlCharacters as stripAnsi } from "node:util";
-import { alignColumns } from "@textlint/utils";
+import { alignColumns } from "../helper/align-columns.js";
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------

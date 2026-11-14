@@ -2,7 +2,7 @@
 import type { TextlintFixResult } from "@textlint/types";
 
 import { styleText, stripVTControlCharacters as stripAnsi } from "node:util";
-import { alignColumns } from "@textlint/utils";
+import { alignColumns } from "../helper/align-columns.js";
 
 /**
  * Given a word and a count, append an s if count is not one.

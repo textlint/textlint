@@ -42,7 +42,6 @@
     "@textlint/module-interop": "workspace:*",
     "@textlint/resolver": "workspace:*",
     "@textlint/types": "workspace:*",
-    "@textlint/utils": "workspace:*",
     "debug": "catalog:",
     "diff": "catalog:"
   },
