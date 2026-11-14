@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794657518400,
+  "lastUpdate": 1794657851278,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126881,6 +126881,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.71345030424,
             "range": "± 0.011229399999999945",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "7cb22b6bfdbf82cb0fa1b8a3a23a58b70d24dc90",
+          "message": "refactor(formatter): make getSource required in the formatter options\n\n`loadFormatter()` always passes `getSource` to the formatter, so the\nformatter does not need to check whether it exists.\n`getSource` given to `loadFormatter()` is still optional.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_012K4Ji4KxgCNAWgG9eFiFAP",
+          "timestamp": "2026-11-14T12:02:25Z",
+          "tree_id": "1ad76ed82b74b8306e5faeab7f36dbbc8d21606a",
+          "url": "https://github.com/textlint/textlint/commit/7cb22b6bfdbf82cb0fa1b8a3a23a58b70d24dc90"
+        },
+        "date": 1794657838468,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22298600646,
+            "range": "± 0.04445100199999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.89485301266,
+            "range": "± 0.03680387499999993",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.73270063206,
+            "range": "± 0.010530345000000052",
             "unit": "seconds"
           }
         ]
