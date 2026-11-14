@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794656724750,
+  "lastUpdate": 1794656734725,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126713,6 +126713,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.45308478626,
             "range": "± 0.009197750999999976",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "4c5d07439c248cb86b3728cf0a4ac3925e3d9577",
+          "message": "feat(markdown-to-ast)!: remove remark-footnotes\n\nremark-footnotes is deprecated (\"use remark-gfm\") and depends on\nmicromark@2, while remark-parse@11 uses micromark@4. remark-gfm already\nparses `[^id]` footnote references and definitions.\n\nBREAKING CHANGE: Pandoc-style inline notes (`^[note]`) are no longer\nparsed as `footnote` nodes. The text stays in the surrounding `Str`\nnode, so rules still check it.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAHFLYY4ngx2tXHCiB3\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T11:43:57Z",
+          "tree_id": "dfe119487b4296f57cf1b89cda9ad2e590d64e38",
+          "url": "https://github.com/textlint/textlint/commit/4c5d07439c248cb86b3728cf0a4ac3925e3d9577"
+        },
+        "date": 1794656724248,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22185908134000001,
+            "range": "± 0.27339935000000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.4646870145400002,
+            "range": "± 0.04083891099999981",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5513348953400001,
+            "range": "± 0.021189252999999963",
             "unit": "seconds"
           }
         ]
