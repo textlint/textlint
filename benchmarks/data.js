@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794511978989,
+  "lastUpdate": 1794649886440,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -125873,6 +125873,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.43557126824000003,
             "range": "± 0.007368642000000036",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "b9059bcb9d1b1a9c5684c0d651815e34e19a93fd",
+          "message": "fix(formatter): update js-yaml to v5 and drop pluralize/strip-ansi\n\n- Update js-yaml from ^4.3.2 to ^5.5.0 (ships its own types, so @types/js-yaml is removed)\n- Replace strip-ansi with node:util stripVTControlCharacters\n- Replace pluralize with a local helper, same as stylish formatter\n- Keep string-width ^4 because v5+ is ESM-only and v9 requires Node.js 22\n\nrefs #2179\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAHQ1C76KSkFEypYvWu\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T09:49:41Z",
+          "tree_id": "0bf8efeb4070be4c6fa78b3a3c4a883ab4721dfd",
+          "url": "https://github.com/textlint/textlint/commit/b9059bcb9d1b1a9c5684c0d651815e34e19a93fd"
+        },
+        "date": 1794649871676,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20208710246000003,
+            "range": "± 0.03330834699999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8188458404599999,
+            "range": "± 0.10253329499999997",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.65294002366,
+            "range": "± 0.030583040999999977",
             "unit": "seconds"
           }
         ]
