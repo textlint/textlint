@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794653740495,
+  "lastUpdate": 1794653903973,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126377,6 +126377,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.74738448778,
             "range": "± 0.005395810000000001",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "7735ca6e30c352fef5bf69b72b6c7a80515b0ebd",
+          "message": "refactor(formatter): keep the terminal helpers out of @textlint/utils\n\n@textlint/kernel loads @textlint/utils in browsers, and the helpers use node:util.\nMove stringWidth and alignColumns into @textlint/linter-formatter, and copy them to\n@textlint/fixer-formatter with a test that checks the copies are the same.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGjSCmYtoKj9LXPJrP\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T10:56:31Z",
+          "tree_id": "668f6a55e839881bdc33a2651e07b8840919cb61",
+          "url": "https://github.com/textlint/textlint/commit/7735ca6e30c352fef5bf69b72b6c7a80515b0ebd"
+        },
+        "date": 1794653891928,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.27266607453999997,
+            "range": "± 0.279010957",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.9355079027400002,
+            "range": "± 0.06165243599999992",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.73252117794,
+            "range": "± 0.029327604000000007",
             "unit": "seconds"
           }
         ]
