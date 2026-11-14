@@ -218,6 +218,8 @@ For custom configuration with CLI flags:
 
 The textlint MCP server provides four main tools:
 
+All four tools advertise `readOnlyHint: true` in their MCP annotations. They return lint results or corrected content without writing changes to your files.
+
 ### `lintFile`
 Lint one or more files using textlint configuration.
 
