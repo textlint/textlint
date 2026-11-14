@@ -108,11 +108,6 @@ const isPromiseLike = (value: unknown): value is PromiseLike<unknown> => {
     return typeof value === "object" && value !== null && typeof (value as PromiseLike<unknown>).then === "function";
 };
 
-const now = (): number => {
-    const [seconds, nanoseconds] = process.hrtime();
-    return seconds * 1e3 + nanoseconds / 1e6;
-};
-
 type AsyncLocalStorageLike<S> = {
     getStore(): S | undefined;
     run<R>(store: S, callback: () => R): R;
@@ -168,14 +163,14 @@ export function createTiming() {
             data[key] = 0;
         }
         const run = async (args: T): Promise<void> => {
-            const start = now();
+            const start = performance.now();
             try {
                 const result = fn(...args);
                 if (isPromiseLike(result)) {
                     await result;
                 }
             } finally {
-                data[key] += now() - start;
+                data[key] += performance.now() - start;
             }
         };
         return function (...args: T) {
