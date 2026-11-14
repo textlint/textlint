@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794664204502,
+  "lastUpdate": 1794664207850,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -127217,6 +127217,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.47248831473999997,
             "range": "± 0.012031585999999983",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "675cc93afe293ad37018be2ed8c00dd19d93c49c",
+          "message": "fix(config-loader): resolve relative --rules-base-directory from cwd\n\nTextLintModuleResolver joined the base directory and a package name with\npath.join. When the base directory was relative such as `node_modules`,\nthe result `node_modules/textlint-rule-x` was resolved as a bare package\nspecifier and every rule failed to load.\n\nResolve the base directory to an absolute path from the current working\ndirectory.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGVQbWP8D47SMeXdCB\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T13:48:34Z",
+          "tree_id": "31fccbaff654fb1ac64fb6032cd6fac8a19d145d",
+          "url": "https://github.com/textlint/textlint/commit/675cc93afe293ad37018be2ed8c00dd19d93c49c"
+        },
+        "date": 1794664196636,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.19943069966000002,
+            "range": "± 0.241317437",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.3055680174600002,
+            "range": "± 0.017924509999999838",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.46916460086,
+            "range": "± 0.022998766000000004",
             "unit": "seconds"
           }
         ]
