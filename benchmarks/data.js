@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794652569152,
+  "lastUpdate": 1794652691159,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126167,6 +126167,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.7419018882599999,
             "range": "± 0.012079720999999988",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "b3c81ab006746404df71865636c894f6b003de69",
+          "message": "feat(kernel)!: remove deprecated type re-exports from @textlint/kernel\n\nRemove the rule/filter/plugin interface types that @textlint/kernel\nre-exported from @textlint/types for compatibility (deprecated since #562).\nImport them from @textlint/types instead.\n\nBREAKING CHANGE: @textlint/kernel no longer exports TextlintRuleReporter,\nTextlintRuleModule, TextlintRuleOptions, TextlintRuleSeverityLevel,\nTextlintFilterRuleReporter, TextlintFilterRuleOptions, TextlintPluginCreator,\nTextlintPluginOptions, TextlintPluginProcessor, and\nTextlintPluginProcessorConstructor. Use @textlint/types instead.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFyXkaUKRbQJ6VV7vn\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T10:36:41Z",
+          "tree_id": "be667c14fb847e18b358dbd21c34e3a5ce74a4df",
+          "url": "https://github.com/textlint/textlint/commit/b3c81ab006746404df71865636c894f6b003de69"
+        },
+        "date": 1794652681416,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2109082271,
+            "range": "± 0.20316118600000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.5188850665,
+            "range": "± 0.040373890000000134",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5714980193,
+            "range": "± 0.03449451199999998",
             "unit": "seconds"
           }
         ]
