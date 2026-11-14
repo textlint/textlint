@@ -34,21 +34,12 @@
     "watch": "tsc -b --watch"
   },
   "dependencies": {
-    "@textlint/ast-node-types": "workspace:*",
-    "debug": "catalog:",
-    "neotraverse": "catalog:",
-    "remark-footnotes": "catalog:",
-    "remark-frontmatter": "catalog:",
-    "remark-gfm": "catalog:",
-    "remark-parse": "catalog:",
-    "structured-source": "catalog:",
-    "unified": "catalog:"
+    "@textlint/ast-node-types": "workspace:*"
   },
   "devDependencies": {
     "@textlint/ast-tester": "workspace:*",
-    "@types/debug": "catalog:",
     "@types/node": "catalog:",
-    "@types/unist": "catalog:",
+    "neotraverse": "catalog:",
     "rimraf": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
