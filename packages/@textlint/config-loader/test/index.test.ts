@@ -125,6 +125,24 @@ describe("@textlint/config-loader", () => {
             assert.deepStrictEqual(actualForComparison, expectedForComparison);
         });
     });
+    describe("when node_moduleDir is a relative path", () => {
+        it("should resolve modules from the path relative to the current working directory", async () => {
+            const relativeModulesDir = path.relative(process.cwd(), modulesDir);
+            assert.ok(!path.isAbsolute(relativeModulesDir));
+            const result = await loadPackagesFromRawConfig({
+                rawConfig: {
+                    rules: {
+                        a: true
+                    }
+                },
+                node_moduleDir: relativeModulesDir
+            });
+            assert.ok(result.ok, JSON.stringify(result));
+            assert.strictEqual(result.config.rules.length, 1);
+            assert.strictEqual(result.config.rules[0].ruleId, "a");
+            assert.strictEqual(result.config.rules[0].filePath, path.join(modulesDir, "textlint-rule-a", "index.js"));
+        });
+    });
     describe("when config file is not encoded in UTF-8", () => {
         it("should validate UTF-8 encoding and reject non-UTF-8 files", () => {
             const notUTF8Files = ["shift-jis.json", "euc-jp.json"];

@@ -40,7 +40,9 @@ export class TextLintModuleResolver {
         /**
          * @type {string} baseDirectory for resolving
          */
-        this.baseDirectory = config && config.rulesBaseDirectory ? config.rulesBaseDirectory : "";
+        // A relative path is resolved from the current working directory.
+        // If the relative path is joined with a package name as is, it is treated as a package name like "node_modules/textlint-rule-x".
+        this.baseDirectory = config && config.rulesBaseDirectory ? path.resolve(config.rulesBaseDirectory) : "";
     }
 
     tryResolvePackagePath = (modulePath: string): string | null => {
