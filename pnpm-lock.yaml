@@ -165,15 +165,6 @@ catalogs:
     read-package-up:
       specifier: ^11.0.0
       version: 11.0.0
-    remark-frontmatter:
-      specifier: ^5.0.0
-      version: 5.0.0
-    remark-gfm:
-      specifier: ^4.0.1
-      version: 4.0.1
-    remark-parse:
-      specifier: ^11.0.0
-      version: 11.0.0
     rimraf:
       specifier: ^6.1.4
       version: 6.1.4
@@ -243,9 +234,6 @@ catalogs:
     typescript:
       specifier: ~5.8.3
       version: 5.8.3
-    unified:
-      specifier: ^11.0.5
-      version: 11.0.5
     unist-util-select:
       specifier: ^3.0.4
       version: 3.0.4
@@ -724,24 +712,24 @@ importers:
       debug:
         specifier: 'catalog:'
         version: 4.4.3(supports-color@8.1.1)
-      neotraverse:
-        specifier: 'catalog:'
-        version: 0.6.18
-      remark-frontmatter:
-        specifier: 'catalog:'
-        version: 5.0.0
-      remark-gfm:
-        specifier: 'catalog:'
-        version: 4.0.1
-      remark-parse:
-        specifier: 'catalog:'
-        version: 11.0.0
+      mdast-util-from-markdown:
+        specifier: ^2.0.2
+        version: 2.0.2
+      mdast-util-frontmatter:
+        specifier: ^2.0.1
+        version: 2.0.1
+      mdast-util-gfm:
+        specifier: ^3.1.0
+        version: 3.1.0
+      micromark-extension-frontmatter:
+        specifier: ^2.0.0
+        version: 2.0.0
+      micromark-extension-gfm:
+        specifier: ^3.0.0
+        version: 3.0.0
       structured-source:
         specifier: 'catalog:'
         version: 4.0.0
-      unified:
-        specifier: 'catalog:'
-        version: 11.0.5
     devDependencies:
       '@textlint/ast-tester':
         specifier: workspace:*
@@ -755,6 +743,9 @@ importers:
       '@types/unist':
         specifier: 'catalog:'
         version: 3.0.3
+      neotraverse:
+        specifier: 'catalog:'
+        version: 0.6.18
       rimraf:
         specifier: 'catalog:'
         version: 6.1.4

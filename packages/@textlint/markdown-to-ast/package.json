@@ -36,18 +36,19 @@
   "dependencies": {
     "@textlint/ast-node-types": "workspace:*",
     "debug": "catalog:",
-    "neotraverse": "catalog:",
-    "remark-frontmatter": "catalog:",
-    "remark-gfm": "catalog:",
-    "remark-parse": "catalog:",
-    "structured-source": "catalog:",
-    "unified": "catalog:"
+    "mdast-util-from-markdown": "^2.0.2",
+    "mdast-util-frontmatter": "^2.0.1",
+    "mdast-util-gfm": "^3.1.0",
+    "micromark-extension-frontmatter": "^2.0.0",
+    "micromark-extension-gfm": "^3.0.0",
+    "structured-source": "catalog:"
   },
   "devDependencies": {
     "@textlint/ast-tester": "workspace:*",
     "@types/debug": "catalog:",
     "@types/node": "catalog:",
     "@types/unist": "catalog:",
+    "neotraverse": "catalog:",
     "rimraf": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"

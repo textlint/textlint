@@ -1,7 +1,6 @@
 import { SyntaxMap } from "./mapping/markdown-syntax-map.js";
 import type { TxtDocumentNode } from "@textlint/ast-node-types";
 import { ASTNodeTypes } from "@textlint/ast-node-types";
-import traverse from "neotraverse/legacy";
 import debug0 from "debug";
 import { parseMarkdown } from "./parse-markdown.js";
 import { StructuredSource } from "structured-source";
@@ -178,65 +177,65 @@ export function parse(text: string): TxtDocumentNode {
     const hasBOM = text.charCodeAt(0) === 0xfeff;
     const textWithoutBOM = hasBOM ? text.slice(1) : text;
     const ast = parseMarkdown(textWithoutBOM);
-    const source = new StructuredSource(textWithoutBOM);
 
     // Collect all nodes without position for advanced processing
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const nodesWithoutPosition: Array<{ node: any; parent: any }> = [];
 
-    traverse(ast).forEach(function (node) {
-        if (this.notLeaf) {
-            if (node.type) {
-                const replacedType = SyntaxMap[node.type as keyof typeof SyntaxMap];
-                if (!replacedType) {
-                    debug(`replacedType : ${replacedType} , node.type: ${node.type}`);
-                } else {
-                    node.type = replacedType;
-                }
-            }
-
-            // map `range`, `loc` and `raw` to node
-            if (node.position) {
-                const position = node.position;
-                // line start with 1
-                // column start with 0
-                const positionCompensated = {
-                    start: { line: position.start.line, column: Math.max(position.start.column - 1, 0) },
-                    end: { line: position.end.line, column: Math.max(position.end.column - 1, 0) }
-                };
-                const range = [position.start.offset, position.end.offset] as const;
-                node.loc = positionCompensated;
-                node.range = range;
-                node.raw = textWithoutBOM.slice(range[0], range[1]);
-                // Compatible for https://github.com/syntax-tree/unist, but it is hidden
-                Object.defineProperty(node, "position", {
-                    enumerable: false,
-                    configurable: false,
-                    writable: false,
-                    value: position
-                });
-            } else if (node.type === "Str" || node.type === "Link") {
-                // WORKAROUND: Handle nodes missing position information
-                //
-                // Due to remark-gfm issue (https://github.com/remarkjs/remark-gfm/issues/16),
-                // some AST nodes (particularly Str and Link nodes within table cells)
-                // are generated without proper position information. This is problematic
-                // because textlint requires accurate position data for:
-                // - Precise error reporting with line/column numbers
-                // - Source code range highlighting in editors
-                // - Rule application to specific text locations
-                //
-                // We collect these nodes for post-processing where we'll attempt to
-                // reconstruct their position information using sibling nodes and parent context.
-
-                // Get parent using this.parent
-
-                const parent = this.parent;
-
-                nodesWithoutPosition.push({ node, parent });
+    // Walk only the node tree (`children`), not every object in the AST.
+    // mdast nodes keep their child nodes only in `children`.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const visit = (node: any, parent: any): void => {
+        if (node.type) {
+            const replacedType = SyntaxMap[node.type as keyof typeof SyntaxMap];
+            if (!replacedType) {
+                debug(`replacedType : ${replacedType} , node.type: ${node.type}`);
+            } else {
+                node.type = replacedType;
             }
         }
-    });
+
+        // map `range`, `loc` and `raw` to node
+        const position = node.position;
+        if (position) {
+            // line start with 1
+            // column start with 0
+            node.loc = {
+                start: { line: position.start.line, column: Math.max(position.start.column - 1, 0) },
+                end: { line: position.end.line, column: Math.max(position.end.column - 1, 0) }
+            };
+            const range = [position.start.offset, position.end.offset] as const;
+            node.range = range;
+            node.raw = textWithoutBOM.slice(range[0], range[1]);
+            // Compatible for https://github.com/syntax-tree/unist, but it is hidden
+            Object.defineProperty(node, "position", {
+                enumerable: false,
+                configurable: false,
+                writable: false,
+                value: position
+            });
+        } else if (node.type === "Str" || node.type === "Link") {
+            // WORKAROUND: Handle nodes missing position information
+            //
+            // Due to remark-gfm issue (https://github.com/remarkjs/remark-gfm/issues/16),
+            // some AST nodes (particularly Str and Link nodes within table cells)
+            // are generated without proper position information.
+            // We collect these nodes for post-processing where we'll attempt to
+            // reconstruct their position information using sibling nodes and parent context.
+            nodesWithoutPosition.push({ node, parent });
+        }
+
+        const children = node.children;
+        if (Array.isArray(children)) {
+            for (let i = 0; i < children.length; i++) {
+                const child = children[i];
+                if (child !== null && typeof child === "object") {
+                    visit(child, node);
+                }
+            }
+        }
+    };
+    visit(ast, null);
 
     // WORKAROUND: Reconstruct position information for nodes missing it
     //
@@ -244,9 +243,10 @@ export function parse(text: string): TxtDocumentNode {
     // This is necessary due to remark-gfm's incomplete position generation for certain nodes.
     // We attempt to calculate accurate position data using the advanced position calculation
     // that leverages sibling nodes and parent context.
+    const source = nodesWithoutPosition.length > 0 ? new StructuredSource(textWithoutBOM) : undefined;
     for (const { node, parent } of nodesWithoutPosition) {
         // Try to calculate position from siblings
-        const calculatedPosition = calculatePositionFromSiblings(node, parent, source, textWithoutBOM);
+        const calculatedPosition = calculatePositionFromSiblings(node, parent, source!, textWithoutBOM);
 
         if (calculatedPosition) {
             // Successfully calculated position - use the computed values
