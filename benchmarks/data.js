@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794664511764,
+  "lastUpdate": 1794664568693,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -127385,6 +127385,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.73750182494,
             "range": "± 0.008254403999999993",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "87fcc543508118aa1e1196e9f835a021854c7746",
+          "message": "refactor(kernel): use performance.now() for TIMING\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGVQbWP8D47SMeXdCB\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T13:53:25Z",
+          "tree_id": "d65f1d783bb544eabf98c60dc048661de0f5e006",
+          "url": "https://github.com/textlint/textlint/commit/87fcc543508118aa1e1196e9f835a021854c7746"
+        },
+        "date": 1794664558312,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.18122381980000002,
+            "range": "± 0.02243088899999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.572482457,
+            "range": "± 0.05165683100000007",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.587685973,
+            "range": "± 0.012847567999999976",
             "unit": "seconds"
           }
         ]
