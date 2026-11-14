@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794652777557,
+  "lastUpdate": 1794653504537,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126251,6 +126251,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.47998091208,
             "range": "± 0.00839734200000003",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "17007dfa4535287453905f6dfcef519f22804dba",
+          "message": "refactor(formatter): replace table, text-table, string-width and lodash with internal helpers\n\nPort the dependency-free helpers of secretlint's formatter into textlint.\n\n- `@textlint/utils`: add `stringWidth` (replaces `string-width`) and `alignColumns` (replaces `text-table`)\n- `@textlint/linter-formatter`: add `drawTable` (replaces `table`) and `escapeHtml` (replaces `lodash.escape`),\n  and write the template of `pretty-error` directly (replaces `@azu/format-text` and `@azu/style-format`)\n- `@textlint/fixer-formatter`: use `alignColumns` and `stringWidth` of `@textlint/utils`\n- Load each built-in formatter when it is used\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGjSCmYtoKj9LXPJrP\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T10:50:22Z",
+          "tree_id": "86aaab9816b02f58ab17cacce58265704fd6347d",
+          "url": "https://github.com/textlint/textlint/commit/17007dfa4535287453905f6dfcef519f22804dba"
+        },
+        "date": 1794653496415,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.16864603362000002,
+            "range": "± 0.17644748899999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.13403378722,
+            "range": "± 0.03057260999999989",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.42125333862000003,
+            "range": "± 0.015374819999999956",
             "unit": "seconds"
           }
         ]
