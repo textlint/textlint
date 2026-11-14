@@ -8,7 +8,7 @@ import debug0 from "debug";
 import { tryResolve, dynamicImport } from "@textlint/resolver";
 // formatters
 
-type BuiltinFormatter = (results: TextlintFixResult[], options: { color?: boolean }) => string;
+type BuiltinFormatter = (results: TextlintFixResult[], options: FormatterConfig) => string;
 /**
  * Each formatter is loaded when it is used.
  * For example, `diff` formatter loads `diff`, but `stylish` formatter does not.
@@ -37,9 +37,43 @@ type BuiltInFormatterName = keyof typeof builtinFormatterList;
 const builtinFormatterNames = Object.keys(builtinFormatterList);
 const debug = debug0("textlint:textfix-formatter");
 
-export type FormatterConfig = { color?: boolean; formatterName: string };
+/**
+ * Get the content of the source before fixing by `filePath` of the result.
+ * It returns `undefined` if the caller does not have the content.
+ */
+export type FormatterGetSource = (filePath: string) => string | undefined;
+export type FormatterConfig = {
+    color?: boolean;
+    formatterName: string;
+    /**
+     * Get the content of the source before fixing by `filePath` of the result.
+     * For example, "diff" formatter uses it.
+     * If it is not given or returns `undefined`, the formatter gets the content of the file of `filePath`.
+     */
+    getSource?: FormatterGetSource;
+};
+/**
+ * Create `getSource` for the formatter.
+ * It returns the content from `getSource` of the caller, and reads the file of `filePath` if the caller does not have the content.
+ * It returns `undefined` if the file can not be read.
+ * A formatter gets the content only from this function, and does not read the file by itself.
+ */
+const createGetSource = (getSource?: FormatterGetSource): FormatterGetSource => {
+    return (filePath) => {
+        const source = getSource?.(filePath);
+        if (source !== undefined) {
+            return source;
+        }
+        try {
+            return fs.readFileSync(filePath, "utf-8");
+        } catch {
+            return undefined;
+        }
+    };
+};
 
-export async function loadFormatter(formatterConfig: FormatterConfig) {
+export async function loadFormatter(config: FormatterConfig) {
+    const formatterConfig: FormatterConfig = { ...config, getSource: createGetSource(config.getSource) };
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);
     if (builtinFormatterNames.includes(formatterName as BuiltInFormatterName)) {

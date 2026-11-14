@@ -189,26 +189,30 @@ $ textlint --fix --format json <file>
 ## How to get source code from result?
 
 The result does not have the source code.
-A formatter gets the source code from the `getSource` option, and reads the file of `filePath` if `getSource` is not given or returns `undefined`.
+A formatter gets the source code from `options.getSource(filePath)`, and does not read the file by itself.
+
+`loadFormatter()` always passes `getSource` to the formatter.
+It returns the source code from `getSource` given to `loadFormatter()`, and reads the file of `filePath` if that `getSource` is not given or returns `undefined`.
+It returns `undefined` if the file can not be read.
+For the fixer formatter, it returns the source code before fixing.
 
 ```ts
-import fs from "node:fs";
 import type { TextlintResult } from "@textlint/types";
 
 export default function formatter(
     results: TextlintResult[],
-    options: { getSource?: (filePath: string) => string | undefined }
+    options: { getSource: (filePath: string) => string | undefined }
 ) {
     return results
         .map((result) => {
-            const source = options.getSource?.(result.filePath) ?? fs.readFileSync(result.filePath, "utf-8");
-            return `${result.filePath}: ${source.length} characters`;
+            const source = options.getSource(result.filePath);
+            return `${result.filePath}: ${source === undefined ? "no source" : `${source.length} characters`}`;
         })
         .join("\n");
 }
 ```
 
-`textlint --stdin` passes `getSource`, because the text of stdin is not in the file of `--stdin-filename`.
+`textlint --stdin` passes the text of stdin as the source code of `--stdin-filename`, because the text is not in the file.
 
 ## Built-in formatter
 

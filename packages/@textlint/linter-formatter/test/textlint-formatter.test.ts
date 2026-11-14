@@ -99,6 +99,52 @@ describe("@textlint/linter-formatter-test", function () {
         });
     });
 
+    describe("getSource", function () {
+        const fooFile = path.join(__dirname, "fixtures/foo.md");
+        const createResults = (filePath: string) => [
+            {
+                filePath,
+                messages: [createTestMessage({ ruleId: "rule", message: "Message", severity: 2 })]
+            }
+        ];
+        it("should read the file when getSource is not given", async function () {
+            const formatter = await loadFormatter({ formatterName: "pretty-error", color: false });
+            const output = formatter.format(createResults(fooFile));
+            assert.ok(output.includes("1. 1st line"), output);
+        });
+        it("should prefer the content from getSource over the file", async function () {
+            const formatter = await loadFormatter({
+                formatterName: "pretty-error",
+                color: false,
+                getSource: () => "in-memory text"
+            });
+            const output = formatter.format(createResults(fooFile));
+            assert.ok(output.includes("1. in-memory text"), output);
+            assert.ok(!output.includes("1st line"), output);
+        });
+        it("should read the file when getSource returns undefined", async function () {
+            const formatter = await loadFormatter({
+                formatterName: "pretty-error",
+                color: false,
+                getSource: () => undefined
+            });
+            const output = formatter.format(createResults(fooFile));
+            assert.ok(output.includes("1. 1st line"), output);
+        });
+        it("should show the message when the file does not exist", async function () {
+            const formatter = await loadFormatter({ formatterName: "pretty-error", color: false });
+            const output = formatter.format(createResults(path.join(__dirname, "fixtures/not-found.md")));
+            assert.ok(output.includes("rule: Message"), output);
+        });
+        it("should pass getSource to a custom formatter", async function () {
+            const formatter = await loadFormatter({
+                formatterName: path.join(__dirname, "fixtures/get-source-formatter.js"),
+                getSource: () => "in-memory text"
+            });
+            assert.strictEqual(formatter.format(createResults(fooFile)), "in-memory text");
+        });
+    });
+
     describe("getFormatterList", function () {
         it("should return list of formatter(s)", function () {
             assert.deepEqual(getFormatterList(), [

@@ -78,7 +78,7 @@ const text = "TODO: fix me";
 const result = await linter.lintText(text, "README.md");
 const formatter = await loadLinterFormatter({
     formatterName: "pretty-error",
-    // Return the text for the result, or undefined to read the file
+    // Return the text for the file path, or undefined to read the file
     getSource: (filePath) => (filePath === "README.md" ? text : undefined)
 });
 console.log(formatter.format([result]));

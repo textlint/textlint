@@ -346,6 +346,20 @@ describe("cli-test", function () {
                     assert.strictEqual(result, 0);
                 });
             });
+            it("should show the diff of the text of stdin with diff formatter", async () => {
+                return runWithMockLog(async ({ getLogs }) => {
+                    const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
+                    // the file of --stdin-filename does not exist
+                    const result = await cli.execute(
+                        `--rulesdir ${ruleDir} --fix --dry-run --stdin --stdin-filename not-found.md --format diff --no-color`,
+                        "This is fix<REMOVE_MARK>"
+                    );
+                    assert.strictEqual(result, 0);
+                    const output = getLogs().join("\n");
+                    assert.match(output, /- This is fix<REMOVE_MARK>/);
+                    assert.match(output, /\+ This is fixed\./);
+                });
+            });
             // Regression test for #2043
             it("should output fixed-result to stdout without appending an extra newline", async () => {
                 const originWrite = Logger.write;
