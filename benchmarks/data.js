@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794657509023,
+  "lastUpdate": 1794657518400,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126839,6 +126839,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.55138761548,
             "range": "± 0.010537495000000008",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "251578ad9376e03ff66cc2100ddefee8d76641a3",
+          "message": "refactor(formatter): get the source only through getSource in formatters\n\nFormatters do not read files by themselves, the same as secretlint.\n`loadFormatter()` passes `getSource` to the formatter, which returns the\ncontent from the given `getSource` and reads the file only if it returns\n`undefined`.\n\n- pretty-error shows the message without the code if the source is not available\n- diff formatter of @textlint/fixer-formatter gets the source before fixing from `getSource`\n- `textlint --fix --stdin` passes the text of stdin to the fixer formatter\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_012K4Ji4KxgCNAWgG9eFiFAP",
+          "timestamp": "2026-11-14T11:56:51Z",
+          "tree_id": "9789fec66431b40daee67069b0864b258a139131",
+          "url": "https://github.com/textlint/textlint/commit/251578ad9376e03ff66cc2100ddefee8d76641a3"
+        },
+        "date": 1794657505030,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21700590003999998,
+            "range": "± 0.04911878799999994",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.9040054324400004,
+            "range": "± 0.04484843999999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.71345030424,
+            "range": "± 0.011229399999999945",
             "unit": "seconds"
           }
         ]
