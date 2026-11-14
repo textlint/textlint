@@ -1,11 +1,5 @@
-import {
-    TextlintFilterRuleReporter,
-    TextlintKernelFilterRule,
-    TextlintKernelPlugin,
-    TextlintKernelRule,
-    TextlintPluginCreator,
-    TextlintRuleModule
-} from "@textlint/kernel";
+import { TextlintKernelFilterRule, TextlintKernelPlugin, TextlintKernelRule } from "@textlint/kernel";
+import { TextlintFilterRuleReporter, TextlintPluginCreator, TextlintRuleModule } from "@textlint/types";
 
 /**
  * Convert rulesObject to TextlintKernelRule

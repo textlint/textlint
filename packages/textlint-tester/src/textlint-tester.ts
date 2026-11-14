@@ -2,18 +2,11 @@
 "use strict";
 import * as assert from "assert";
 import { testInvalid, testValid } from "./test-util";
-import {
-    TextlintFixResult,
-    TextlintKernel,
-    TextlintKernelDescriptor,
-    TextlintKernelPlugin,
-    TextlintPluginCreator,
-    TextlintRuleModule
-} from "@textlint/kernel";
+import { TextlintFixResult, TextlintKernel, TextlintKernelDescriptor, TextlintKernelPlugin } from "@textlint/kernel";
 import { coreFlags } from "@textlint/feature-flag";
 import fs from "fs/promises";
 import path from "path";
-import { TextlintPluginOptions, TextlintRuleOptions } from "@textlint/types";
+import { TextlintPluginCreator, TextlintPluginOptions, TextlintRuleModule, TextlintRuleOptions } from "@textlint/types";
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 const globalObject = globalThis;

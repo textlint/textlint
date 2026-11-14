@@ -47,7 +47,8 @@
   "dependencies": {
     "@textlint/kernel": "workspace:*",
     "@textlint/textlint-plugin-markdown": "workspace:*",
-    "@textlint/textlint-plugin-text": "workspace:*"
+    "@textlint/textlint-plugin-text": "workspace:*",
+    "@textlint/types": "workspace:*"
   },
   "devDependencies": {
     "@types/debug": "catalog:",
