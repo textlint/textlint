@@ -5,7 +5,7 @@
 "use strict";
 import type { TextlintResult } from "@textlint/types";
 
-import lodash from "lodash";
+import { escapeHtml } from "../helper/escape-html.js";
 
 //------------------------------------------------------------------------------
 // Public Interface
@@ -29,7 +29,7 @@ function formatter(results: TextlintResult[]) {
                 // TODO: evidence is always empty string
                 // See: https://github.com/textlint/textlint/issues/400
                 `evidence="" ` +
-                `reason="${lodash.escape(message.message || "")}${message.ruleId ? ` (${message.ruleId})` : ""}" />`;
+                `reason="${escapeHtml(message.message || "")}${message.ruleId ? ` (${message.ruleId})` : ""}" />`;
         });
 
         output += "</file>";

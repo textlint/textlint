@@ -43,9 +43,7 @@
     "@textlint/resolver": "workspace:*",
     "@textlint/types": "workspace:*",
     "debug": "catalog:",
-    "diff": "catalog:",
-    "string-width": "catalog:",
-    "text-table": "catalog:"
+    "diff": "catalog:"
   },
   "devDependencies": {
     "@types/debug": "catalog:",

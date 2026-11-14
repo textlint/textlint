@@ -1,0 +1,27 @@
+<ESC>[32m<ESC>[1m✓ <ESC>[22m<ESC>[39m<ESC>[90mno-todo: <ESC>[31m日本語のメッセージ<ESC>[0m
+<ESC>[90m<fixtures>/ckj.md:2:5<ESC>[0m
+    <ESC>[31m           v<ESC>[0m
+    <ESC>[90m1. 1st line<ESC>[0m
+    <ESC>[0m2. 日本語 中国語 English！<ESC>[0m
+    <ESC>[90m3. 3rd line<ESC>[0m
+    <ESC>[31m           ^<ESC>[0m
+
+<ESC>[90mmax-ten: <ESC>[31mA long message that is wrapped in the table formatter, because it is longer than the column.<ESC>[0m
+<ESC>[90m<fixtures>/ckj.md:3:1<ESC>[0m
+    <ESC>[31m   v<ESC>[0m
+    <ESC>[90m2. 日本語 中国語 English！<ESC>[0m
+    <ESC>[0m3. 3rd line<ESC>[0m
+    <ESC>[90m4. <ESC>[0m
+    <ESC>[31m   ^<ESC>[0m
+
+<ESC>[90minfo-rule: <ESC>[31mInfo message.<ESC>[0m
+<ESC>[90m<fixtures>/ckj.md:1:10<ESC>[0m
+    <ESC>[31m          v<ESC>[0m
+    <ESC>[90m0. <ESC>[0m
+    <ESC>[0m1. 1st line<ESC>[0m
+    <ESC>[90m2. 日本語 中国語 English！<ESC>[0m
+    <ESC>[31m          ^<ESC>[0m
+
+<ESC>[33m<ESC>[1m✖ 3 problems (1 error, 1 warning, 1 info)
+<ESC>[22m<ESC>[39m<ESC>[32m<ESC>[1m✓ 1 fixable problem.
+<ESC>[22m<ESC>[39mTry to run: $ <ESC>[4mtextlint --fix [file]<ESC>[24m

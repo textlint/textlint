@@ -5,7 +5,7 @@
 "use strict";
 import type { TextlintResult } from "@textlint/types";
 
-import lodash from "lodash";
+import { escapeHtml } from "../helper/escape-html.js";
 
 //------------------------------------------------------------------------------
 // Helper Functions
@@ -44,11 +44,11 @@ function formatter(results: TextlintResult[]) {
             const fatal = (message as { fatal?: boolean }).fatal;
             const type = fatal ? "error" : "failure";
             output += `<testcase time="0" name="org.eslint.${message.ruleId || "unknown"}">`;
-            output += `<${type} message="${lodash.escape(message.message || "")}">`;
+            output += `<${type} message="${escapeHtml(message.message || "")}">`;
             output += "<![CDATA[";
             output += `line ${message.line || 0}, col `;
             output += `${message.column || 0}, ${getMessageType(message)}`;
-            output += ` - ${lodash.escape(message.message || "")}`;
+            output += ` - ${escapeHtml(message.message || "")}`;
             output += message.ruleId ? ` (${message.ruleId})` : "";
             output += "]]>";
             output += `</${type}>`;

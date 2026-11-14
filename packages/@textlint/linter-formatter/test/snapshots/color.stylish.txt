@@ -1,0 +1,9 @@
+
+<ESC>[4m<fixtures>/ckj.md<ESC>[24m
+  <ESC>[90m2:5<ESC>[39m   <ESC>[32m<ESC>[1m✓ <ESC>[22m<ESC>[39m<ESC>[31merror<ESC>[39m  日本語のメッセージ                                                                           <ESC>[90mno-todo<ESC>[39m
+  <ESC>[90m3:1<ESC>[39m   <ESC>[33mwarning<ESC>[39m  A long message that is wrapped in the table formatter, because it is longer than the column  <ESC>[90mmax-ten<ESC>[39m
+  <ESC>[90m1:10<ESC>[39m  <ESC>[32minfo<ESC>[39m     Info message                                                                                 <ESC>[90minfo-rule<ESC>[39m
+
+<ESC>[31m<ESC>[1m✖ 3 problems (1 error, 1 warning, 1 info)
+<ESC>[22m<ESC>[39m<ESC>[32m<ESC>[1m✓ 1 fixable problem.
+<ESC>[22m<ESC>[39mTry to run: $ <ESC>[4mtextlint --fix [file]<ESC>[24m

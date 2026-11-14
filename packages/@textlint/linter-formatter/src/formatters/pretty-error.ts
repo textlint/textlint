@@ -7,15 +7,7 @@ import type { TextlintMessage, TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
 
 import { styleText, stripVTControlCharacters as stripAnsi } from "node:util";
-// @ts-expect-error no types
-import format from "@azu/format-text";
-// @ts-expect-error no types
-import style from "@azu/style-format";
-
-// width is 2
-import widthOfString from "string-width";
-
-// color set
+import { stringWidth } from "../helper/string-width.js";
 import { readFileSync } from "node:fs";
 
 /**
@@ -30,16 +22,10 @@ function pluralize(word: string, count: number): string {
 
 const summaryColor = "yellow";
 const greenColor = "green";
-const template = style(
-    "{grey}{ruleId}: {red}{title}{reset}\n" +
-        "{grey}{filename}{reset}\n" +
-        "    {red}{paddingForLineNo}  {v}{reset}\n" +
-        "    {grey}{previousLineNo}. {previousLine}{reset}\n" +
-        "    {reset}{failingLineNo}. {failingLine}{reset}\n" +
-        "    {grey}{nextLineNo}. {nextLine}{reset}\n" +
-        "    {red}{paddingForLineNo}  {^}{reset}\n" +
-        ""
-);
+// escape sequences of the colors
+const GREY = "\u001B[90m";
+const RED = "\u001B[31m";
+const RESET = "\u001B[0m";
 
 /**
  *
@@ -78,7 +64,7 @@ function showColumn(codes: Array<{ line: number; code?: string; col?: number; fa
     let result = "";
     const codeObject = codes[1] as { code: string; col: number };
     const sliced = codeObject.code.slice(0, codeObject.col);
-    const width = widthOfString(sliced);
+    const width = stringWidth(sliced);
     if (width <= 0) {
         return "";
     }
@@ -107,23 +93,18 @@ function prettyError(code: string, filePath: string, message: TextlintMessage): 
     const failingLineNo = String(parsed[1].line);
     const nextLineNo = String(parsed[2].line);
     const linumlen = Math.max(previousLineNo.length, failingLineNo.length, nextLineNo.length);
-    return format(template, {
-        ruleId: message.ruleId,
-        title: message.message,
-        filename: `${filePath}:${message.line}:${message.column}`,
-        previousLine: parsed[0].code ? parsed[0].code : "",
-        previousLineNo: previousLineNo.padStart(linumlen),
-        previousColNo: parsed[0].col,
-        failingLine: parsed[1].code,
-        failingLineNo: failingLineNo.padStart(linumlen),
-        failingColNo: parsed[1].col,
-        nextLine: parsed[2].code ? parsed[2].code : "",
-        nextLineNo: nextLineNo.padStart(linumlen),
-        nextColNo: parsed[2].col,
-        paddingForLineNo: "".padStart(linumlen),
-        "^": showColumn(parsed, "^"),
-        v: showColumn(parsed, "v")
-    });
+    const paddingForLineNo = "".padStart(linumlen);
+    const previousLine = parsed[0].code ? parsed[0].code : "";
+    const nextLine = parsed[2].code ? parsed[2].code : "";
+    return (
+        `${GREY}${message.ruleId}: ${RED}${message.message}${RESET}\n` +
+        `${GREY}${filePath}:${message.line}:${message.column}${RESET}\n` +
+        `    ${RED}${paddingForLineNo}  ${showColumn(parsed, "v")}${RESET}\n` +
+        `    ${GREY}${previousLineNo.padStart(linumlen)}. ${previousLine}${RESET}\n` +
+        `    ${RESET}${failingLineNo.padStart(linumlen)}. ${parsed[1].code}${RESET}\n` +
+        `    ${GREY}${nextLineNo.padStart(linumlen)}. ${nextLine}${RESET}\n` +
+        `    ${RED}${paddingForLineNo}  ${showColumn(parsed, "^")}${RESET}\n`
+    );
 }
 
 /**
@@ -164,9 +145,9 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
             } else {
                 warnings++;
             }
-            const r = fixableIcon + prettyError(code, result.filePath, message);
+            const r = prettyError(code, result.filePath, message);
             if (r) {
-                output += `${r}\n`;
+                output += `${fixableIcon}${r}\n`;
             }
         });
     });

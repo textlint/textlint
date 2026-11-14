@@ -7,11 +7,8 @@
 import type { TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
 
-import { styleText } from "node:util";
-// @ts-expect-error no types
-import table from "text-table";
-import widthOfString from "string-width";
-import { stripVTControlCharacters as stripAnsi } from "node:util";
+import { styleText, stripVTControlCharacters as stripAnsi } from "node:util";
+import { alignColumns } from "../helper/align-columns.js";
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
@@ -53,7 +50,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
         total += messages.length;
         output += `${styleText("underline", result.filePath)}\n`;
 
-        output += `${table(
+        output += `${alignColumns(
             messages.map(function (message) {
                 let messageType;
                 // fixable
@@ -87,18 +84,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
                     styleText("gray", message.ruleId || "")
                 ];
             }),
-            {
-                align: ["", "r", "l"],
-                stringLength(str: string) {
-                    const lines = stripAnsi(str).split("\n");
-                    return Math.max.apply(
-                        null,
-                        lines.map(function (line: string) {
-                            return widthOfString(line);
-                        })
-                    );
-                }
-            }
+            ["", "r", "l"]
         )
             .split("\n")
             .map(function (el: string) {
