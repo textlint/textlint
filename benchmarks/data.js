@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794661102647,
+  "lastUpdate": 1794664033540,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -127133,6 +127133,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.58622331416,
             "range": "± 0.009565179999999951",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "d70bc2274b6dea629ddabc47401d6ccc74219eeb",
+          "message": "fix(kernel): measure TIMING=1 rule time without other rules' time\n\nTIMING=1 wrapped each rule listener in an async function and measured\nthe time until `await fn()` resumed. Because textlint traverses the AST\nsynchronously and calls all listeners before any of them resumes, each\nlistener's time included the time of every other listener. The report\nshowed values much larger than the actual running time.\n\nRun the wrapped listeners one by one while TIMING=1 is set, so each\nrule's time (including async work) is attributed only to that rule.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGVQbWP8D47SMeXdCB\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T13:45:40Z",
+          "tree_id": "908d89ae94d89dbb6799efb8f6a3f5046d8131c1",
+          "url": "https://github.com/textlint/textlint/commit/d70bc2274b6dea629ddabc47401d6ccc74219eeb"
+        },
+        "date": 1794664022676,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20318700499999998,
+            "range": "± 0.184425962",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.4697949486000002,
+            "range": "± 0.04905604600000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5475233438,
+            "range": "± 0.010081271000000003",
             "unit": "seconds"
           }
         ]
