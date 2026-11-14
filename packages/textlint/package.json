@@ -49,8 +49,6 @@
   },
   "dependencies": {
     "@modelcontextprotocol/server": "catalog:",
-    "@textlint/ast-node-types": "workspace:*",
-    "@textlint/ast-traverse": "workspace:*",
     "@textlint/config-loader": "workspace:*",
     "@textlint/feature-flag": "workspace:*",
     "@textlint/fixer-formatter": "workspace:*",
@@ -65,16 +63,14 @@
     "debug": "catalog:",
     "file-entry-cache": "catalog:",
     "glob": "catalog:",
-    "md5": "catalog:",
     "optionator": "catalog:",
     "path-to-glob-pattern": "catalog:",
-    "rc-config-loader": "catalog:",
     "read-package-up": "catalog:",
-    "structured-source": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@modelcontextprotocol/client": "catalog:",
+    "@textlint/ast-node-types": "workspace:*",
     "@textlint/legacy-textlint-core": "workspace:*",
     "@types/debug": "catalog:",
     "@types/node": "catalog:",

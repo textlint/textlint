@@ -120,9 +120,6 @@ catalogs:
     match-index:
       specifier: ^1.0.3
       version: 1.0.3
-    md5:
-      specifier: ^2.3.0
-      version: 2.3.0
     mocha:
       specifier: ^11.8.0
       version: 11.8.0
@@ -530,16 +527,10 @@ importers:
       '@textlint/utils':
         specifier: workspace:*
         version: link:../utils
-      debug:
-        specifier: 'catalog:'
-        version: 4.4.3(supports-color@8.1.1)
       rc-config-loader:
         specifier: 'catalog:'
         version: 4.1.4
     devDependencies:
-      '@types/debug':
-        specifier: 'catalog:'
-        version: 4.1.13
       '@types/node':
         specifier: 'catalog:'
         version: 24.19.2
@@ -982,12 +973,6 @@ importers:
       '@modelcontextprotocol/server':
         specifier: 'catalog:'
         version: 2.4.0
-      '@textlint/ast-node-types':
-        specifier: workspace:*
-        version: link:../@textlint/ast-node-types
-      '@textlint/ast-traverse':
-        specifier: workspace:*
-        version: link:../@textlint/ast-traverse
       '@textlint/config-loader':
         specifier: workspace:*
         version: link:../@textlint/config-loader
@@ -1030,24 +1015,15 @@ importers:
       glob:
         specifier: 'catalog:'
         version: 13.0.7
-      md5:
-        specifier: 'catalog:'
-        version: 2.3.0
       optionator:
         specifier: 'catalog:'
         version: 0.9.4
       path-to-glob-pattern:
         specifier: 'catalog:'
         version: 2.0.1
-      rc-config-loader:
-        specifier: 'catalog:'
-        version: 4.1.4
       read-package-up:
         specifier: 'catalog:'
         version: 11.0.0
-      structured-source:
-        specifier: 'catalog:'
-        version: 4.0.0
       zod:
         specifier: 'catalog:'
         version: 4.6.7
@@ -1055,6 +1031,9 @@ importers:
       '@modelcontextprotocol/client':
         specifier: 'catalog:'
         version: 2.4.0
+      '@textlint/ast-node-types':
+        specifier: workspace:*
+        version: link:../@textlint/ast-node-types
       '@textlint/legacy-textlint-core':
         specifier: workspace:*
         version: link:../@textlint/legacy-textlint-core
@@ -1178,9 +1157,6 @@ importers:
 
   packages/textlint-tester:
     dependencies:
-      '@textlint/ast-node-types':
-        specifier: workspace:*
-        version: link:../@textlint/ast-node-types
       '@textlint/feature-flag':
         specifier: workspace:*
         version: link:../@textlint/feature-flag
@@ -4328,9 +4304,6 @@ packages:
   character-reference-invalid@2.0.1:
     resolution: {integrity: sha512-iBZ4F4wRbyORVsu0jPV7gXkOsGYjGHPmAyv+HiHG8gi5PtC9KI2j1+v8/tlibRvjoWX027ypmG/n0HtO5t7unw==}
 
-  charenc@0.0.2:
-    resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
-
   check-ends-with-period@1.0.1:
     resolution: {integrity: sha512-vhGWpphk52Q1CiU2YHpWhOOKyI1FMCVPfPO7X6M6fN60JbnzZCwnf9cgR+T4LDSZGCDd1mqzgCdIcffEFBrUFQ==}
 
@@ -4658,9 +4631,6 @@ packages:
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
-
-  crypt@0.0.2:
-    resolution: {integrity: sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==}
 
   crypto-random-string@4.0.0:
     resolution: {integrity: sha512-x8dy3RnvYdlUcPOjkEHqozhiwzKNSq7GcPuXFbnyMOCHxX8V3OgIg/pYuabl2sbUPfIJaeAQB7PMOK8DFIdoRA==}
@@ -6035,9 +6005,6 @@ packages:
     resolution: {integrity: sha512-wa56o2/ElJMYqjCjGkXri7it5FbebW5usLw/nPmCMs5DeZ7eziSYZhSmPRn0txqeW4LnAmQQU7FgqLpsEFKM4A==}
     engines: {node: '>= 0.4'}
 
-  is-buffer@1.1.6:
-    resolution: {integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==}
-
   is-buffer@2.0.5:
     resolution: {integrity: sha512-i2R6zNFDwgEHJyQUtJEk0XFi1i0dPFn/oqjK3/vPCcDeJvW5NQ83V8QbicfF1SupOaB0h8ntgBC2YiE7dfyctQ==}
     engines: {node: '>=4'}
@@ -6627,9 +6594,6 @@ packages:
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
-
-  md5@2.3.0:
-    resolution: {integrity: sha512-T1GITYmFaKuO91vxyoQMFETst+O71VUPEU3ze5GNzDm0OWdP8v1ziTaAEPUr/3kLsY3Sftgz242A1SetQiDL7g==}
 
   mdast-util-directive@3.1.0:
     resolution: {integrity: sha512-I3fNFt+DHmpWCYAT7quoM6lHf9wuqtI+oCOfvILnoicNIqjh5E3dEJWiXuYME2gNe8vl1iMQwyUHa7bgFmak6Q==}
@@ -14491,8 +14455,6 @@ snapshots:
 
   character-reference-invalid@2.0.1: {}
 
-  charenc@0.0.2: {}
-
   check-ends-with-period@1.0.1:
     dependencies:
       array.prototype.find: 2.2.3
@@ -14827,8 +14789,6 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
-
-  crypt@0.0.2: {}
 
   crypto-random-string@4.0.0:
     dependencies:
@@ -16455,8 +16415,6 @@ snapshots:
       call-bound: 1.0.4
       has-tostringtag: 1.0.2
 
-  is-buffer@1.1.6: {}
-
   is-buffer@2.0.5: {}
 
   is-callable@1.2.7: {}
@@ -17013,12 +16971,6 @@ snapshots:
       regexp.prototype.flags: 1.5.4
 
   math-intrinsics@1.1.0: {}
-
-  md5@2.3.0:
-    dependencies:
-      charenc: 0.0.2
-      crypt: 0.0.2
-      is-buffer: 1.1.6
 
   mdast-util-directive@3.1.0:
     dependencies:

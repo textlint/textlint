@@ -50,11 +50,9 @@
     "@textlint/resolver": "workspace:*",
     "@textlint/types": "workspace:*",
     "@textlint/utils": "workspace:*",
-    "debug": "catalog:",
     "rc-config-loader": "catalog:"
   },
   "devDependencies": {
-    "@types/debug": "catalog:",
     "@types/node": "catalog:",
     "prettier": "catalog:",
     "rimraf": "catalog:",

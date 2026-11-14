@@ -21,12 +21,6 @@
   },
   "references": [
     {
-      "path": "../@textlint/ast-node-types"
-    },
-    {
-      "path": "../@textlint/ast-traverse"
-    },
-    {
       "path": "../@textlint/config-loader"
     },
     {
@@ -58,6 +52,9 @@
     },
     {
       "path": "../@textlint/utils"
+    },
+    {
+      "path": "../@textlint/ast-node-types"
     },
     {
       "path": "../@textlint/legacy-textlint-core"
