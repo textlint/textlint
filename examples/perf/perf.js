@@ -25,7 +25,13 @@ function time(file, args, runs, runNumber, results, cb) {
     const start = process.hrtime();
     // textlint exits with a non-zero code when lint errors are found; this perf
     // test only measures execution time, so the exit code is intentionally ignored.
-    execFile(file, args, function () {
+    execFile(file, args, function (error, _stdout, stderr) {
+        // exit code 1 means lint errors are found. Other errors mean that textlint is crashed.
+        if (error && error.code !== 1) {
+            console.error(stderr || error);
+            process.exitCode = 2;
+            return;
+        }
         const diff = process.hrtime(start),
             actual = diff[0] * 1e3 + diff[1] / 1e6; // ms
 
@@ -42,9 +48,12 @@ function time(file, args, runs, runNumber, results, cb) {
 function run() {
     const cpuSpeed = os.cpus()[0].speed;
     const max = PERF_MULTIPLIER / cpuSpeed;
-    const textlintBin = path.join(__dirname, "node_modules", ".bin", "textlint");
+    // node_modules/.bin/textlint can be a shell script (e.g. pnpm), so run the JavaScript file directly
+    const textlintBin = require.resolve("textlint/bin/textlint.js");
+    // textlint resolves rules from its own location by default, so load rules from this example's node_modules
+    const rulesBaseDirectory = path.join(__dirname, "node_modules");
     const target = path.join(__dirname, "md");
-    time("node", [textlintBin, target], 5, 1, [], function (results) {
+    time("node", [textlintBin, "--rules-base-directory", rulesBaseDirectory, target], 5, 1, [], function (results) {
         results.sort(function (a, b) {
             return a - b;
         });
