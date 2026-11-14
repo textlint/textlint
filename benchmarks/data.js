@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794660095372,
+  "lastUpdate": 1794661102647,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -127091,6 +127091,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.45699324654000006,
             "range": "± 0.013551758000000025",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "c7ff9efd60140bf97e6dc4dad21366f61ca20620",
+          "message": "feat(markdown-to-ast)!: rewrite as a self-contained CommonMark + GFM parser\n\nReplace unified/remark-parse/remark-gfm/remark-frontmatter/remark-footnotes\nwith a parser that produces TxtAST directly without an intermediate mdast.\n\n- data-oriented design: nodes are stored in flat typed arrays and\n  TxtNode objects are created once at the end\n- no third-party dependencies\n- existing fixtures are unchanged, including inline notes (^[note])\n- add invariants test for range/loc/raw\n\nBREAKING CHANGE: the hidden unist-compatible `position` property is removed.\nUse `range` and `loc` instead. Some positions in edge cases differ from the\nremark-based parser, where micromark/mdast reported inconsistent positions.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T12:56:29Z",
+          "tree_id": "8c2bfb692a4c383505879bcf6f4fbadeb81a4c27",
+          "url": "https://github.com/textlint/textlint/commit/c7ff9efd60140bf97e6dc4dad21366f61ca20620"
+        },
+        "date": 1794661089351,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.26933673636,
+            "range": "± 0.23111183000000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.80817702716,
+            "range": "± 0.05956095399999972",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.58622331416,
+            "range": "± 0.009565179999999951",
             "unit": "seconds"
           }
         ]
