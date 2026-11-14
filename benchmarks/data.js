@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794653641741,
+  "lastUpdate": 1794653740495,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126335,6 +126335,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.47487371494,
             "range": "± 0.0028932750000000285",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "624935babcd211d28c41765ea39d7863b42e7838",
+          "message": "test(linter-formatter): replace the fixture directory with the path separator of the platform\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGjSCmYtoKj9LXPJrP\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T10:53:04Z",
+          "tree_id": "d811a6ba58640b29ac3a10a24c0fd7fa98871bb4",
+          "url": "https://github.com/textlint/textlint/commit/624935babcd211d28c41765ea39d7863b42e7838"
+        },
+        "date": 1794653727857,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.26990857478,
+            "range": "± 0.247597468",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.99042459018,
+            "range": "± 0.08962785599999967",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.74738448778,
+            "range": "± 0.005395810000000001",
             "unit": "seconds"
           }
         ]
