@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794653504537,
+  "lastUpdate": 1794653641741,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126293,6 +126293,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.42125333862000003,
             "range": "± 0.015374819999999956",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "7d99dda3b80c76976632ace2e8e9c2256912f99e",
+          "message": "fix(utils): use trimEnd instead of a regular expression in alignColumns\n\nThe regular expression /\\s+$/ can take polynomial time for a row that has many spaces in the middle (CodeQL).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGjSCmYtoKj9LXPJrP\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T10:52:33Z",
+          "tree_id": "c85430f3ac7c91b09c4bad311a4180f3ef0d3d0a",
+          "url": "https://github.com/textlint/textlint/commit/7d99dda3b80c76976632ace2e8e9c2256912f99e"
+        },
+        "date": 1794653632668,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.15930725274,
+            "range": "± 0.035794712000000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.36042938354,
+            "range": "± 0.06282513400000012",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.47487371494,
+            "range": "± 0.0028932750000000285",
             "unit": "seconds"
           }
         ]
