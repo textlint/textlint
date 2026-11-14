@@ -102,9 +102,32 @@ function display(data: Record<string, number>) {
     Logger.log(table.join("\n"));
 }
 
-/* istanbul ignore next */
-export default (function () {
-    const data = Object.create(null);
+type TimingListener<T extends unknown[]> = (...args: T) => void | Promise<void>;
+
+const isPromiseLike = (value: unknown): value is PromiseLike<unknown> => {
+    return typeof value === "object" && value !== null && typeof (value as PromiseLike<unknown>).then === "function";
+};
+
+const now = (): number => {
+    const [seconds, nanoseconds] = process.hrtime();
+    return seconds * 1e3 + nanoseconds / 1e6;
+};
+
+/**
+ * Create a timer that measures the running time of rule listeners.
+ *
+ * Rule listeners are called concurrently and may return a Promise.
+ * If the timer measured the wall-clock time of each listener independently,
+ * the time of a listener would include the time of other listeners that run while it is waiting.
+ * To attribute the time to each rule correctly, the wrapped listeners are executed one by one:
+ * a wrapped listener starts after the previous wrapped listener has settled.
+ * This changes the concurrency of rule listeners, so it should be used only for profiling.
+ * @private
+ */
+export function createTiming() {
+    const data: Record<string, number> = Object.create(null);
+    // The queue of wrapped listeners. Each listener waits for the previous one.
+    let queue: Promise<void> = Promise.resolve();
 
     /**
      * Time the run
@@ -113,28 +136,48 @@ export default (function () {
      * @returns {(...args: any[]) => any} function to be executed
      * @private
      */
-    function time<T extends unknown[]>(
-        key: string,
-        fn: (...args: T) => void | Promise<void>
-    ): (...args: T) => void | Promise<void> {
-        if (isBrowser) {
-            // In browser environment, return function as-is without timing measurement
-            return fn;
-        }
-
+    function time<T extends unknown[]>(key: string, fn: TimingListener<T>): (...args: T) => Promise<void> {
         if (typeof data[key] === "undefined") {
             data[key] = 0;
         }
-
-        return async function (...args: T) {
-            let t = process.hrtime();
-            await fn(...args);
-            t = process.hrtime(t);
-            data[key] += t[0] * 1e3 + t[1] / 1e6;
+        const run = async (args: T): Promise<void> => {
+            const start = now();
+            try {
+                const result = fn(...args);
+                if (isPromiseLike(result)) {
+                    await result;
+                }
+            } finally {
+                data[key] += now() - start;
+            }
+        };
+        return function (...args: T) {
+            const result = queue.then(() => run(args));
+            // Continue the queue even if the listener throws an error
+            queue = result.catch(() => undefined);
+            return result;
         };
     }
 
-    if (enabled && !isBrowser) {
+    return {
+        time,
+        data
+    };
+}
+
+/* istanbul ignore next */
+export default (function () {
+    if (isBrowser) {
+        return {
+            // In browser environment, return function as-is without timing measurement
+            time<T extends unknown[]>(_key: string, fn: TimingListener<T>): TimingListener<T> {
+                return fn;
+            },
+            enabled
+        };
+    }
+    const { time, data } = createTiming();
+    if (enabled) {
         process.on("exit", function () {
             display(data);
         });

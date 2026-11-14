@@ -834,6 +834,9 @@ textlint has a built-in method to track performance of individual rules.
 Setting the `TIMING=1` environment variable will trigger the display.
 It show their individual running time and relative performance impact as a percentage of total rule processing time.
 
+When `TIMING=1` is set, textlint runs rule handlers one by one so that the time of each rule does not include the time of other rules.
+Therefore, the total running time may be longer than usual. Use it only for profiling.
+
 ```
 $ TIMING=1 textlint README.md
 Rule                            | Time (ms) | Relative
