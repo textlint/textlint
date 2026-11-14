@@ -54,7 +54,6 @@ catalog:
   json5: "^2.2.3"
   lint-staged: "^16.4.0"
   match-index: "^1.0.3"
-  md5: "^2.3.0"
   mocha: "^11.8.0"
   neotraverse: "^0.6.18"
   npm-run-all2: "^8.0.4"
