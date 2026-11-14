@@ -1,0 +1,217 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Inline note^[This is an ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        0,
+                        24
+                    ],
+                    "raw": "Inline note^[This is an "
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "inline",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 25
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 31
+                                }
+                            },
+                            "range": [
+                                25,
+                                31
+                            ],
+                            "raw": "inline"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 24
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 32
+                        }
+                    },
+                    "range": [
+                        24,
+                        32
+                    ],
+                    "raw": "*inline*"
+                },
+                {
+                    "type": "Str",
+                    "value": " note.] and a reference",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 32
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 55
+                        }
+                    },
+                    "range": [
+                        32,
+                        55
+                    ],
+                    "raw": " note.] and a reference"
+                },
+                {
+                    "type": "FootnoteReference",
+                    "identifier": "1",
+                    "label": "1",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 55
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 59
+                        }
+                    },
+                    "range": [
+                        55,
+                        59
+                    ],
+                    "raw": "[^1]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 59
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 60
+                        }
+                    },
+                    "range": [
+                        59,
+                        60
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 60
+                }
+            },
+            "range": [
+                0,
+                60
+            ],
+            "raw": "Inline note^[This is an *inline* note.] and a reference[^1]."
+        },
+        {
+            "type": "footnoteDefinition",
+            "identifier": "1",
+            "label": "1",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Definition.",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                68,
+                                79
+                            ],
+                            "raw": "Definition."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        68,
+                        79
+                    ],
+                    "raw": "Definition."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 17
+                }
+            },
+            "range": [
+                62,
+                79
+            ],
+            "raw": "[^1]: Definition."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        80
+    ],
+    "raw": "Inline note^[This is an *inline* note.] and a reference[^1].\n\n[^1]: Definition.\n"
+}

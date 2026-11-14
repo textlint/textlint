@@ -37,7 +37,6 @@
     "@textlint/ast-node-types": "workspace:*",
     "debug": "catalog:",
     "neotraverse": "catalog:",
-    "remark-footnotes": "catalog:",
     "remark-frontmatter": "catalog:",
     "remark-gfm": "catalog:",
     "remark-parse": "catalog:",
