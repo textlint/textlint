@@ -42,7 +42,7 @@ function addMarkEachLine(mark: string, text: string) {
 
 export default function (
     results: TextlintFixResult[],
-    options: { color?: boolean; getSource?: (filePath: string) => string | undefined } = {}
+    options: { color?: boolean; getSource: (filePath: string) => string | undefined }
 ) {
     // default: true
     const useColor = options.color !== undefined ? options.color : true;
@@ -63,7 +63,7 @@ export default function (
             return;
         }
         // The result does not have the content before fixing
-        const originalContent = options.getSource?.(filePath);
+        const originalContent = options.getSource(filePath);
         if (originalContent === undefined) {
             return;
         }

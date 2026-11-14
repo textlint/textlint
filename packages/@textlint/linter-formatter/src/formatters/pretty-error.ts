@@ -134,7 +134,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
             return;
         }
         // The result does not have the content of the source
-        const code = options.getSource?.(result.filePath);
+        const code = options.getSource(result.filePath);
         total += messages.length;
         messages.forEach(function (message) {
             // fixable

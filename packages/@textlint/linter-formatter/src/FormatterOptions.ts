@@ -11,7 +11,7 @@ export interface FormatterOptions {
     color?: boolean;
     /**
      * Get the content of the linted source.
-     * It is `undefined` if the caller does not provide the content.
+     * `loadFormatter()` always passes it.
      */
-    getSource?: FormatterGetSource;
+    getSource: FormatterGetSource;
 }

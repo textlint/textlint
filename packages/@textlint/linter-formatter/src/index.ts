@@ -41,7 +41,7 @@ const loadBuiltinFormatter = async (name: BuiltInFormatterName): Promise<Builtin
 type BuiltInFormatterName = keyof typeof builtinFormatterList;
 const builtinFormatterNames = Object.keys(builtinFormatterList);
 const debug = debug0("textlint:@textlint/linter-formatter");
-type FormatterFunction = (results: TextlintResult[], formatterConfig: FormatterConfig) => string;
+type FormatterFunction = (results: TextlintResult[], formatterConfig: FormatterConfig & FormatterOptions) => string;
 const isFormatterFunction = (formatter: unknown): formatter is FormatterFunction => {
     return typeof formatter === "function";
 };
@@ -79,7 +79,10 @@ const createGetSource = (getSource?: FormatterGetSource): FormatterGetSource => 
 };
 
 export async function loadFormatter(config: FormatterConfig) {
-    const formatterConfig: FormatterConfig = { ...config, getSource: createGetSource(config.getSource) };
+    const formatterConfig: FormatterConfig & FormatterOptions = {
+        ...config,
+        getSource: createGetSource(config.getSource)
+    };
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);
     if (builtinFormatterNames.includes(formatterName)) {

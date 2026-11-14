@@ -8,7 +8,7 @@ import debug0 from "debug";
 import { tryResolve, dynamicImport } from "@textlint/resolver";
 // formatters
 
-type BuiltinFormatter = (results: TextlintFixResult[], options: FormatterConfig) => string;
+type BuiltinFormatter = (results: TextlintFixResult[], options: FormatterOptions) => string;
 /**
  * Each formatter is loaded when it is used.
  * For example, `diff` formatter loads `diff`, but `stylish` formatter does not.
@@ -29,7 +29,7 @@ const loadBuiltinFormatter = async (name: BuiltInFormatterName): Promise<Builtin
     const mod: { default: unknown } = await builtinFormatterList[name]();
     return moduleInterop(mod.default) as BuiltinFormatter;
 };
-type FormatterFunction = (results: TextlintFixResult[], formatterConfig: FormatterConfig) => string;
+type FormatterFunction = (results: TextlintFixResult[], formatterConfig: FormatterOptions) => string;
 const isFormatterFunction = (formatter: unknown): formatter is FormatterFunction => {
     return typeof formatter === "function";
 };
@@ -53,6 +53,13 @@ export type FormatterConfig = {
     getSource?: FormatterGetSource;
 };
 /**
+ * The options that the formatter receives.
+ * `loadFormatter()` always passes `getSource`.
+ */
+export type FormatterOptions = FormatterConfig & {
+    getSource: FormatterGetSource;
+};
+/**
  * Create `getSource` for the formatter.
  * It returns the content from `getSource` of the caller, and reads the file of `filePath` if the caller does not have the content.
  * It returns `undefined` if the file can not be read.
@@ -73,7 +80,7 @@ const createGetSource = (getSource?: FormatterGetSource): FormatterGetSource => 
 };
 
 export async function loadFormatter(config: FormatterConfig) {
-    const formatterConfig: FormatterConfig = { ...config, getSource: createGetSource(config.getSource) };
+    const formatterConfig: FormatterOptions = { ...config, getSource: createGetSource(config.getSource) };
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);
     if (builtinFormatterNames.includes(formatterName as BuiltInFormatterName)) {
