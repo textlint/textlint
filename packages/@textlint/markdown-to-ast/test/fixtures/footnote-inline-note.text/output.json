@@ -1,0 +1,960 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Inline note",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        0,
+                        11
+                    ],
+                    "raw": "Inline note"
+                },
+                {
+                    "type": "footnote",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "This is an ",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 13
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 24
+                                }
+                            },
+                            "range": [
+                                13,
+                                24
+                            ],
+                            "raw": "This is an "
+                        },
+                        {
+                            "type": "Emphasis",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "inline",
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 25
+                                        },
+                                        "end": {
+                                            "line": 1,
+                                            "column": 31
+                                        }
+                                    },
+                                    "range": [
+                                        25,
+                                        31
+                                    ],
+                                    "raw": "inline"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 24
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 32
+                                }
+                            },
+                            "range": [
+                                24,
+                                32
+                            ],
+                            "raw": "*inline*"
+                        },
+                        {
+                            "type": "Str",
+                            "value": " note.",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 32
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 38
+                                }
+                            },
+                            "range": [
+                                32,
+                                38
+                            ],
+                            "raw": " note."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 39
+                        }
+                    },
+                    "range": [
+                        11,
+                        39
+                    ],
+                    "raw": "^[This is an *inline* note.]"
+                },
+                {
+                    "type": "Str",
+                    "value": " and a reference",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 39
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 55
+                        }
+                    },
+                    "range": [
+                        39,
+                        55
+                    ],
+                    "raw": " and a reference"
+                },
+                {
+                    "type": "FootnoteReference",
+                    "identifier": "1",
+                    "label": "1",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 55
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 59
+                        }
+                    },
+                    "range": [
+                        55,
+                        59
+                    ],
+                    "raw": "[^1]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 59
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 60
+                        }
+                    },
+                    "range": [
+                        59,
+                        60
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 60
+                }
+            },
+            "range": [
+                0,
+                60
+            ],
+            "raw": "Inline note^[This is an *inline* note.] and a reference[^1]."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Nested",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        62,
+                        68
+                    ],
+                    "raw": "Nested"
+                },
+                {
+                    "type": "footnote",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "outer ",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 8
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                70,
+                                76
+                            ],
+                            "raw": "outer "
+                        },
+                        {
+                            "type": "footnote",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "inner",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 16
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 21
+                                        }
+                                    },
+                                    "range": [
+                                        78,
+                                        83
+                                    ],
+                                    "raw": "inner"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 14
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 22
+                                }
+                            },
+                            "range": [
+                                76,
+                                84
+                            ],
+                            "raw": "^[inner]"
+                        },
+                        {
+                            "type": "Str",
+                            "value": " note",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 22
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 27
+                                }
+                            },
+                            "range": [
+                                84,
+                                89
+                            ],
+                            "raw": " note"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 28
+                        }
+                    },
+                    "range": [
+                        68,
+                        90
+                    ],
+                    "raw": "^[outer ^[inner] note]"
+                },
+                {
+                    "type": "Str",
+                    "value": " and a ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 28
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        90,
+                        97
+                    ],
+                    "raw": " and a "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "/url",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "link",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 36
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 40
+                                }
+                            },
+                            "range": [
+                                98,
+                                102
+                            ],
+                            "raw": "link"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 35
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 47
+                        }
+                    },
+                    "range": [
+                        97,
+                        109
+                    ],
+                    "raw": "[link](/url)"
+                },
+                {
+                    "type": "Str",
+                    "value": " in a note",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 47
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 57
+                        }
+                    },
+                    "range": [
+                        109,
+                        119
+                    ],
+                    "raw": " in a note"
+                },
+                {
+                    "type": "footnote",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "see ",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 59
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 63
+                                }
+                            },
+                            "range": [
+                                121,
+                                125
+                            ],
+                            "raw": "see "
+                        },
+                        {
+                            "type": "Link",
+                            "title": null,
+                            "url": "/url",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "link",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 64
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 68
+                                        }
+                                    },
+                                    "range": [
+                                        126,
+                                        130
+                                    ],
+                                    "raw": "link"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 63
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 75
+                                }
+                            },
+                            "range": [
+                                125,
+                                137
+                            ],
+                            "raw": "[link](/url)"
+                        },
+                        {
+                            "type": "Str",
+                            "value": " here",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 75
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 80
+                                }
+                            },
+                            "range": [
+                                137,
+                                142
+                            ],
+                            "raw": " here"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 57
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 81
+                        }
+                    },
+                    "range": [
+                        119,
+                        143
+                    ],
+                    "raw": "^[see [link](/url) here]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 81
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 82
+                        }
+                    },
+                    "range": [
+                        143,
+                        144
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 82
+                }
+            },
+            "range": [
+                62,
+                144
+            ],
+            "raw": "Nested^[outer ^[inner] note] and a [link](/url) in a note^[see [link](/url) here]."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Empty",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        146,
+                        151
+                    ],
+                    "raw": "Empty"
+                },
+                {
+                    "type": "footnote",
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        151,
+                        154
+                    ],
+                    "raw": "^[]"
+                },
+                {
+                    "type": "Str",
+                    "value": " and brackets",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 21
+                        }
+                    },
+                    "range": [
+                        154,
+                        167
+                    ],
+                    "raw": " and brackets"
+                },
+                {
+                    "type": "footnote",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "a [b",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 23
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 27
+                                }
+                            },
+                            "range": [
+                                169,
+                                173
+                            ],
+                            "raw": "a [b"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 21
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 28
+                        }
+                    },
+                    "range": [
+                        167,
+                        174
+                    ],
+                    "raw": "^[a [b]"
+                },
+                {
+                    "type": "Str",
+                    "value": " c] d].",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 28
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        174,
+                        181
+                    ],
+                    "raw": " c] d]."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 35
+                }
+            },
+            "range": [
+                146,
+                181
+            ],
+            "raw": "Empty^[] and brackets^[a [b] c] d]."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Not a note: ^[escaped], ",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        183,
+                        208
+                    ],
+                    "raw": "Not a note: \\^[escaped], "
+                },
+                {
+                    "type": "Code",
+                    "value": "^[code]",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 25
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        208,
+                        217
+                    ],
+                    "raw": "`^[code]`"
+                },
+                {
+                    "type": "Str",
+                    "value": ", unclosed ^[note",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 34
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 51
+                        }
+                    },
+                    "range": [
+                        217,
+                        234
+                    ],
+                    "raw": ", unclosed ^[note"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 51
+                }
+            },
+            "range": [
+                183,
+                234
+            ],
+            "raw": "Not a note: \\^[escaped], `^[code]`, unclosed ^[note"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Multiple lines",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        236,
+                        250
+                    ],
+                    "raw": "Multiple lines"
+                },
+                {
+                    "type": "footnote",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "first\nsecond",
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 16
+                                },
+                                "end": {
+                                    "line": 10,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                252,
+                                264
+                            ],
+                            "raw": "first\nsecond"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 14
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        250,
+                        265
+                    ],
+                    "raw": "^[first\nsecond]"
+                },
+                {
+                    "type": "Str",
+                    "value": " end.",
+                    "loc": {
+                        "start": {
+                            "line": 10,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        265,
+                        270
+                    ],
+                    "raw": " end."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 10,
+                    "column": 12
+                }
+            },
+            "range": [
+                236,
+                270
+            ],
+            "raw": "Multiple lines^[first\nsecond] end."
+        },
+        {
+            "type": "footnoteDefinition",
+            "identifier": "1",
+            "label": "1",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Definition.",
+                            "loc": {
+                                "start": {
+                                    "line": 12,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 12,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                278,
+                                289
+                            ],
+                            "raw": "Definition."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 12,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 12,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        278,
+                        289
+                    ],
+                    "raw": "Definition."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 12,
+                    "column": 0
+                },
+                "end": {
+                    "line": 12,
+                    "column": 17
+                }
+            },
+            "range": [
+                272,
+                289
+            ],
+            "raw": "[^1]: Definition."
+        },
+        {
+            "type": "footnoteDefinition",
+            "identifier": "aligned",
+            "label": "aligned",
+            "children": [
+                {
+                    "type": "CodeBlock",
+                    "lang": null,
+                    "meta": null,
+                    "value": "indented code",
+                    "loc": {
+                        "start": {
+                            "line": 14,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 14,
+                            "column": 29
+                        }
+                    },
+                    "range": [
+                        303,
+                        320
+                    ],
+                    "raw": "    indented code"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 14,
+                    "column": 0
+                },
+                "end": {
+                    "line": 14,
+                    "column": 29
+                }
+            },
+            "range": [
+                291,
+                320
+            ],
+            "raw": "[^aligned]:     indented code"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 15,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        321
+    ],
+    "raw": "Inline note^[This is an *inline* note.] and a reference[^1].\n\nNested^[outer ^[inner] note] and a [link](/url) in a note^[see [link](/url) here].\n\nEmpty^[] and brackets^[a [b] c] d].\n\nNot a note: \\^[escaped], `^[code]`, unclosed ^[note\n\nMultiple lines^[first\nsecond] end.\n\n[^1]: Definition.\n\n[^aligned]:     indented code\n"
+}

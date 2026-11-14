@@ -2,9 +2,19 @@
 
 Parse Markdown to AST with location info.
 
-This library is not parser itself, it dependent on [wooorm/remark](https://github.com/wooorm/remark).
+This library is a [CommonMark](https://spec.commonmark.org/) + [GFM](https://github.github.com/gfm/) parser that produces `TxtNode`s directly.
+It has no third-party dependencies.
 
-> Markdown -> remark -> markdown-to-ast -> `TxtNode`s
+> Markdown -> markdown-to-ast -> `TxtNode`s
+
+Supported syntax:
+
+- CommonMark
+- GFM: tables, strikethrough, task list items, autolink literals, footnotes(`[^1]`)
+- Inline notes(`^[note]`, Pandoc style). The node type is `footnote`
+- Front matter: YAML(`---`), TOML(`+++`), JSON(`;;;` or `{`)
+
+The output AST is compatible with the one of the previous remark-based implementation(`remark-parse` + `remark-gfm` + `remark-frontmatter`).
 
 The AST consists of `TxtNode`s.
 A `TxtNode` of the AST has following properties:
@@ -18,7 +28,16 @@ The interface are defined in [textlint/txtnode.md](https://github.com/textlint/t
 
 This library is a part of [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
 
-**If you need to markdown parser, please use [wooorm/remark](https://github.com/wooorm/remark) directly.**
+**If you need a general-purpose Markdown parser (mdast, HTML output, plugins), please use [remark](https://github.com/remarkjs/remark) directly.**
+
+## Design
+
+The parser is written with data-oriented design for performance.
+
+- Nodes are stored in flat typed arrays (struct of arrays) and refer to each other by index while parsing
+- Strings are not copied while parsing. `raw` and `value` are sliced from the source text when the AST is emitted
+- `TxtNode` objects are created only once at the end. There is no intermediate AST such as mdast
+- Working buffers are reused between `parse()` calls
 
 ## DEMO
 
