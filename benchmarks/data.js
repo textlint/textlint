@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794653903973,
+  "lastUpdate": 1794655343559,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126419,6 +126419,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.73252117794,
             "range": "± 0.029327604000000007",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8521389535bb7b55f3306addcfb72ff58caa6e74",
+          "message": "feat!: require Node.js 22+ and remove deprecated type re-exports from @textlint/kernel (#2182)\n\n<!-- claude-projects-attribution: {\"github_login\":\"azu\"} -->\n_Requested by **azu** · [project\nthread](https://claude.ai/code/project/chan_01WwDWq4F69cv9Kmg6AeSy8j?thread=cmsg_01WwDWq4F69cv9Kmg6AeSy8jXNrzSHLCjeorvek2uT9qqX)_\n\n## Summary\n\nThe next release is already a major because of #2109. This PR bundles\ntwo small breaking changes into the same release.\n\n## Changes\n\n### Require Node.js 22 or later\n\nNode.js 20 reached end-of-life on 2026-04-30\n([nodejs/Release](https://github.com/nodejs/Release)).\n\n- Bump `engines.node` from `>=20.18.0` to `>=22.0.0` in `textlint`,\n`@textlint/linter-formatter`, `@textlint/fixer-formatter`, and\n`textlint-scripts`\n- Remove Node.js 20 from the CI test matrix (`[20, 22, 24]` → `[22,\n24]`)\n- Update the requirements in README.md to \"Node.js 22+\"\n- Quote `$GITHUB_STEP_SUMMARY` in `ci.yml` (shellcheck SC2086)\n\n### Remove deprecated type re-exports from `@textlint/kernel`\n\n`@textlint/kernel` re-exported rule/filter/plugin interface types from\n`@textlint/types` for compatibility, marked `@deprecated` since #562.\nThis PR removes them and updates internal imports to use\n`@textlint/types`. `@textlint/legacy-textlint-core` now depends on\n`@textlint/types`.\n\nRemoved exports: `TextlintRuleReporter`, `TextlintRuleModule`,\n`TextlintRuleOptions`, `TextlintRuleSeverityLevel`,\n`TextlintFilterRuleReporter`, `TextlintFilterRuleOptions`,\n`TextlintPluginCreator`, `TextlintPluginOptions`,\n`TextlintPluginProcessor`, `TextlintPluginProcessorConstructor`.\n\nThese are type-only exports, so runtime behavior does not change.\n\n## Breaking Changes\n\n- textlint now requires Node.js 22 or later.\n- Import the types listed above from `@textlint/types` instead of\n`@textlint/kernel`.\n\n## Test\n\n- `pnpm run build` passes\n- Tests pass in `@textlint/kernel`, `@textlint/legacy-textlint-core`,\n`textlint-tester`, `@textlint/textlint-plugin-markdown`,\n`@textlint/textlint-plugin-text`, and `textlint`\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01TSdrAFyXkaUKRbQJ6VV7vn\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-11-14T20:21:10+09:00",
+          "tree_id": "6c3ed692ff410cc6ac6c44832b93b70d0d149795",
+          "url": "https://github.com/textlint/textlint/commit/8521389535bb7b55f3306addcfb72ff58caa6e74"
+        },
+        "date": 1794655335853,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17480557874000005,
+            "range": "± 0.182416719",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.2132504221400002,
+            "range": "± 0.07144841200000007",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.4422624407400001,
+            "range": "± 0.05920156900000001",
             "unit": "seconds"
           }
         ]
