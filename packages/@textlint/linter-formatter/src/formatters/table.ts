@@ -12,15 +12,23 @@ import { FormatterOptions } from "../FormatterOptions.js";
 // Requirements
 //------------------------------------------------------------------------------
 
-import { styleText } from "node:util";
+import { styleText, stripVTControlCharacters as stripAnsi } from "node:util";
 
 import { table } from "table";
-// @ts-expect-error no types
-import pluralize from "pluralize";
-import stripAnsi from "strip-ansi";
+
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
+
+/**
+ * Given a word and a count, append an s if count is not one.
+ * @param {string} word A word in its singular form.
+ * @param {number} count A number controlling whether word should be pluralized.
+ * @returns {string} The original word with an s on the end if count is not one.
+ */
+function pluralize(word: string, count: number): string {
+    return count === 1 ? word : `${word}s`;
+}
 
 /**
  * Draws text table.
@@ -144,13 +152,13 @@ function formatter(report: TextlintResult[], options: FormatterOptions) {
 
     const tableData = [];
     if (errorCount > 0) {
-        tableData.push([styleText("red", pluralize("Error", errorCount, true))]);
+        tableData.push([styleText("red", `${errorCount} ${pluralize("Error", errorCount)}`)]);
     }
     if (warningCount > 0) {
-        tableData.push([styleText("yellow", pluralize("Warning", warningCount, true))]);
+        tableData.push([styleText("yellow", `${warningCount} ${pluralize("Warning", warningCount)}`)]);
     }
     if (infoCount > 0) {
-        tableData.push([styleText("green", pluralize("Info", infoCount, true))]);
+        tableData.push([styleText("green", `${infoCount} ${pluralize("Info", infoCount)}`)]);
     }
 
     if (tableData.length > 0) {

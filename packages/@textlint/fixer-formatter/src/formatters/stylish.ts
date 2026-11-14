@@ -5,7 +5,7 @@ import { styleText } from "node:util";
 // @ts-expect-error no types
 import table from "text-table";
 import widthOfString from "string-width";
-import stripAnsi from "strip-ansi";
+import { stripVTControlCharacters as stripAnsi } from "node:util";
 
 /**
  * Given a word and a count, append an s if count is not one.

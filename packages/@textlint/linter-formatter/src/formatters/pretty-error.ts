@@ -6,20 +6,27 @@
 import type { TextlintMessage, TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions.js";
 
-import { styleText } from "node:util";
+import { styleText, stripVTControlCharacters as stripAnsi } from "node:util";
 // @ts-expect-error no types
 import format from "@azu/format-text";
 // @ts-expect-error no types
 import style from "@azu/style-format";
-import stripAnsi from "strip-ansi";
-// @ts-expect-error no types
-import pluralize from "pluralize";
 
 // width is 2
 import widthOfString from "string-width";
 
 // color set
 import { readFileSync } from "node:fs";
+
+/**
+ * Given a word and a count, append an s if count is not one.
+ * @param {string} word A word in its singular form.
+ * @param {number} count A number controlling whether word should be pluralized.
+ * @returns {string} The original word with an s on the end if count is not one.
+ */
+function pluralize(word: string, count: number): string {
+    return count === 1 ? word : `${word}s`;
+}
 
 const summaryColor = "yellow";
 const greenColor = "green";

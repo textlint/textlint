@@ -6,7 +6,7 @@
 "use strict";
 import type { TextlintResult } from "@textlint/types";
 
-import yaml from "js-yaml";
+import { dump } from "js-yaml";
 
 //------------------------------------------------------------------------------
 // Helper Functions
@@ -37,7 +37,7 @@ function getMessageType(message: { fatal?: boolean; severity: number }): string 
 function outputDiagnostics(diagnostic: unknown): string {
     const prefix = "  ";
     let output = `${prefix}---\n`;
-    output += prefix + yaml.dump(diagnostic).split("\n").join(`\n${prefix}`);
+    output += prefix + dump(diagnostic).split("\n").join(`\n${prefix}`);
     output += "...\n";
     return output;
 }
