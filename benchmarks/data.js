@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794650436677,
+  "lastUpdate": 1794652514331,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126083,6 +126083,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5099925199400002,
             "range": "± 0.013685785999999922",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "63842058+chky1386@users.noreply.github.com",
+            "name": "Roy Chen",
+            "username": "chky1386"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4bd7cc9885d52070c28f37e6a3fd68725b02629e",
+          "message": "feat(mcp): annotate tools as read-only (#2136)\n\nFixes #1794.\n\nMCP clients currently receive no read-only annotation for textlint's\ntools. Add `annotations: { readOnlyHint: true }` to all four tools,\nincluding the fix-content tools, which return corrected content without\nwriting changes to files.\n\nAdd four regression cases that check the metadata received by\n`client.listTools()` through the existing client/server transport, and\nexplain the annotation in the MCP guide.\n\nValidation with Node 24.19.0 and pnpm 10.34.5 on macOS arm64:\n\n- All four new cases fail before the change (`undefined` instead of\n`true`) and pass afterward.\n- MCP server and stdio tests: 27 passed.\n- `pnpm test`: passed, including lint, project-reference checks, and\npackage tests (182 in the textlint package).\n- `pnpm run build` (including the documentation site), `pnpm run\ntest:examples`, and Prettier checks for the changed TypeScript files:\npassed.\n\nAdditional checks found existing issues: `pnpm run type-check` reports\nthe same 29 diagnostics on unchanged `master`; explicit linting of\n`docs/mcp.md` fails on both versions because the existing ESLint rule\npasses the unsupported `useEslintrc` option. The documentation build\nsucceeds with an unrelated broken-anchor warning. No tooling or\ndependency changes are included.",
+          "timestamp": "2026-11-14T09:57:21Z",
+          "tree_id": "3df48daaf4235719e7f534bd7223a7203360d66b",
+          "url": "https://github.com/textlint/textlint/commit/4bd7cc9885d52070c28f37e6a3fd68725b02629e"
+        },
+        "date": 1794652504062,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23938185602000006,
+            "range": "± 0.36067121700000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.48478733982,
+            "range": "± 0.06876128700000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.56028488982,
+            "range": "± 0.03476410400000007",
             "unit": "seconds"
           }
         ]
