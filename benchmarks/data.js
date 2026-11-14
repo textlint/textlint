@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794657201516,
+  "lastUpdate": 1794657509023,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126797,6 +126797,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.56040715898,
             "range": "± 0.008158641000000078",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "af359e4df1fa569b5b18630c96c876590d6f6417",
+          "message": "chore: remove test artifacts committed by mistake\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_012K4Ji4KxgCNAWgG9eFiFAP",
+          "timestamp": "2026-11-14T11:57:04Z",
+          "tree_id": "8919310e5d187cebd5becb9589dc3a14e1c36728",
+          "url": "https://github.com/textlint/textlint/commit/af359e4df1fa569b5b18630c96c876590d6f6417"
+        },
+        "date": 1794657498332,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17339505187999998,
+            "range": "± 0.03558196600000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.4735129018800002,
+            "range": "± 0.044688411999999955",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.55138761548,
+            "range": "± 0.010537495000000008",
             "unit": "seconds"
           }
         ]
