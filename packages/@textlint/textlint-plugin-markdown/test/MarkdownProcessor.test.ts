@@ -2,7 +2,8 @@
 "use strict";
 import assert from "node:assert";
 import { describe, it } from "vitest";
-import { TextlintKernel, TextlintPluginOptions } from "@textlint/kernel";
+import { TextlintKernel } from "@textlint/kernel";
+import { TextlintPluginOptions } from "@textlint/types";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import noTodo from "textlint-rule-no-todo";

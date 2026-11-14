@@ -2,7 +2,7 @@
 "use strict";
 import assert from "node:assert";
 import { afterEach, beforeEach, describe, it } from "vitest";
-import { TextlintRuleModule } from "@textlint/kernel";
+import { TextlintRuleModule } from "@textlint/types";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 // fixture
 import fixtureRule from "./fixtures/rules/example-rule.js";

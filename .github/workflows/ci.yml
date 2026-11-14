@@ -8,7 +8,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest, windows-latest]
-                node: [ 20, 22, 24 ]
+                node: [ 22, 24 ]
 
         name: Test(Node ${{ matrix.node }} on ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
@@ -77,8 +77,8 @@ jobs:
                   auto-push: true
             - name: Output Step Summary
               run: |
-                  cat ./test/benchmark/result.md > $GITHUB_STEP_SUMMARY
-                  echo "- <https://textlint.org/textlint/benchmarks/>" >> $GITHUB_STEP_SUMMARY
+                  cat ./test/benchmark/result.md > "$GITHUB_STEP_SUMMARY"
+                  echo "- <https://textlint.org/textlint/benchmarks/>" >> "$GITHUB_STEP_SUMMARY"
     e2e:
         name: E2E
         runs-on: ubuntu-latest

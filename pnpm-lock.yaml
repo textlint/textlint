@@ -701,6 +701,9 @@ importers:
       '@textlint/textlint-plugin-text':
         specifier: workspace:*
         version: link:../textlint-plugin-text
+      '@textlint/types':
+        specifier: workspace:*
+        version: link:../types
     devDependencies:
       '@types/debug':
         specifier: 'catalog:'

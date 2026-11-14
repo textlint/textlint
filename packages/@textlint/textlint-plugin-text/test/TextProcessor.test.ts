@@ -7,7 +7,8 @@ import { fileURLToPath } from "node:url";
 // @ts-expect-error - Package lacks TypeScript definitions
 import noTodo from "textlint-rule-no-todo";
 import TextPlugin from "../src/index.js";
-import { TextlintKernel, TextlintPluginOptions } from "@textlint/kernel";
+import { TextlintKernel } from "@textlint/kernel";
+import { TextlintPluginOptions } from "@textlint/types";
 
 const lintFile = (filePath: string, options: boolean | TextlintPluginOptions | undefined = true) => {
     const kernel = new TextlintKernel();
