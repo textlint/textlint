@@ -1,33 +1,34 @@
-import { unified, type Processor } from "unified";
-import remarkGfm from "remark-gfm";
-import remarkParse from "remark-parse";
-import frontmatter from "remark-frontmatter";
+import { fromMarkdown } from "mdast-util-from-markdown";
+import { gfmFromMarkdown } from "mdast-util-gfm";
+import { frontmatterFromMarkdown } from "mdast-util-frontmatter";
+import { gfm } from "micromark-extension-gfm";
+import { frontmatter } from "micromark-extension-frontmatter";
 import type { Node } from "unist";
 
+const frontmatterOptions = [
+    "yaml",
+    "toml",
+    // Hexo style
+    { type: "json", fence: { open: ";;;", close: ";;;" } },
+    // 11ty style
+    { type: "json", fence: { open: "---json", close: "---" } },
+    // Hugo style
+    { type: "json", fence: { open: "{", close: "}" } }
+] as const;
+
+const gfmMdastExtensions = gfmFromMarkdown();
 // FIXME: Disable auto link literal transforms that break AST node
 // https://github.com/remarkjs/remark-gfm/issues/16
-const disableGfmAutolinkLiteralTransforms = function (this: Processor): void {
-    const gfmExtensions = this.data().fromMarkdownExtensions?.at(-1);
-    if (Array.isArray(gfmExtensions) && gfmExtensions[0]) {
-        gfmExtensions[0].transforms = [];
-    }
-};
+if (gfmMdastExtensions[0]) {
+    gfmMdastExtensions[0].transforms = [];
+}
 
-const remark = unified()
-    .use(remarkParse)
-    .use(frontmatter, [
-        "yaml",
-        "toml",
-        // Hexo style
-        { type: "json", fence: { open: ";;;", close: ";;;" } },
-        // 11ty style
-        { type: "json", fence: { open: "---json", close: "---" } },
-        // Hugo style
-        { type: "json", fence: { open: "{", close: "}" } }
-    ])
-    .use(remarkGfm)
-    .use(disableGfmAutolinkLiteralTransforms);
+const micromarkExtensions = [frontmatter([...frontmatterOptions]), gfm()];
+const mdastExtensions = [frontmatterFromMarkdown([...frontmatterOptions]), gfmMdastExtensions];
 
 export const parseMarkdown = (text: string): Node => {
-    return remark.parse(text);
+    return fromMarkdown(text, {
+        extensions: micromarkExtensions,
+        mdastExtensions
+    });
 };
