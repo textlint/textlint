@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794657851278,
+  "lastUpdate": 1794657880946,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126923,6 +126923,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.73270063206,
             "range": "± 0.010530345000000052",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "06a2bc2ae84455a3fbb482aa53ad6dbb6f4d89ed",
+          "message": "perf(markdown-to-ast): use micromark and mdast-util-from-markdown directly\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAHFLYY4ngx2tXHCiB3\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T11:59:25Z",
+          "tree_id": "0463818b5eb9fc196586561fb6d682f9426ee8a3",
+          "url": "https://github.com/textlint/textlint/commit/06a2bc2ae84455a3fbb482aa53ad6dbb6f4d89ed"
+        },
+        "date": 1794657873135,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.13668683807999998,
+            "range": "± 0.02985394999999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.0675477808799998,
+            "range": "± 0.035226710000000105",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.38265191628000006,
+            "range": "± 0.0051441230000000004",
             "unit": "seconds"
           }
         ]
