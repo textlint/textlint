@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794657880946,
+  "lastUpdate": 1794658130326,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126965,6 +126965,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.38265191628000006,
             "range": "± 0.0051441230000000004",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "439010e7b2de754621dcfd03dc9a49cf6e1c7ab6",
+          "message": "feat(linter-formatter): add getSource option to pass source content to formatters (#2186)\n\nBefore: formatters read the file at `result.filePath` themselves.\n`textlint --stdin --stdin-filename=not-found.md --format pretty-error`\nfailed with `ENOENT`. If that file existed, the output showed the file\non disk instead of the stdin text. Formatting `lintText()` results with\n`pretty-error` had the same problem. `--fix --stdin --format diff`\nprinted no diff, or compared against the file on disk.\n\nAfter: formatters accept a `getSource(filePath) => string | undefined`\noption and never read files themselves. `textlint --stdin` passes the\nstdin text through it. API users can pass the in-memory text to\n`loadFormatter({ getSource })`.\n\nThis follows secretlint, where results do not hold the content and\nformatters get it through `getSource` (secretlint/secretlint#1797).\n\nHow:\n\n- `loadFormatter()` in `@textlint/linter-formatter` and\n`@textlint/fixer-formatter` always passes a `getSource` to the\nformatter, built-in or custom. It returns the content from the caller's\n`getSource`. If that is missing or returns `undefined`, it reads the\nfile, and it returns `undefined` when the file cannot be read.\n- `pretty-error` uses `getSource` only for results that have messages.\nWhen the source is unavailable, it prints the message and location\nwithout the code frame instead of throwing.\n- The `diff` fixer formatter gets the source before fixing from\n`getSource`, and skips results with no source, as it already did for\nmissing files.\n- `cli.ts` passes a `getSource` for `--stdin` that returns the stdin\ntext for `--stdin-filename`, for both lint and fix. It does not check\nthe formatter name.\n- `docs/formatter.md` and `docs/use-as-modules.md` describe the option.\n\nNotes:\n\n- Source is looked up by `filePath`, the same as secretlint. Two results\nwith the same virtual `filePath` but different text cannot be told\napart.\n- Calling a built-in formatter module directly without `getSource` no\nlonger reads files. `loadFormatter()` is the public entry point and\nkeeps reading files as before.\n- The existing behavior for an empty file with messages (`pretty-error`\nprints only the summary) is unchanged.\n\nTests: `pnpm run test:packages` passes, including\n`@textlint/linter-formatter` (139), `@textlint/fixer-formatter` (32) and\n`textlint` (184). Lint has 0 errors, and `test:projectReferences`\npasses. With the `cli.ts` change reverted, the new stdin tests for\n`pretty-error` and `diff` fail.\n\nFixes #739\nFixes #550\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_012K4Ji4KxgCNAWgG9eFiFAP\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-11-14T12:07:04Z",
+          "tree_id": "eb8dfeff3da72cd7b24925d2d1e472cdc15fbce9",
+          "url": "https://github.com/textlint/textlint/commit/439010e7b2de754621dcfd03dc9a49cf6e1c7ab6"
+        },
+        "date": 1794658117295,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21827932649999998,
+            "range": "± 0.032679296999999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8572241432999999,
+            "range": "± 0.06702091200000027",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7018930639000001,
+            "range": "± 0.01302218300000002",
             "unit": "seconds"
           }
         ]
