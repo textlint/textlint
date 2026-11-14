@@ -45,7 +45,6 @@
     "debug": "catalog:",
     "diff": "catalog:",
     "string-width": "catalog:",
-    "strip-ansi": "catalog:",
     "text-table": "catalog:"
   },
   "devDependencies": {

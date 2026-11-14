@@ -41,15 +41,12 @@
     "debug": "catalog:",
     "js-yaml": "catalog:",
     "lodash": "catalog:",
-    "pluralize": "catalog:",
     "string-width": "catalog:",
-    "strip-ansi": "catalog:",
     "table": "catalog:",
     "text-table": "catalog:"
   },
   "devDependencies": {
     "@types/debug": "catalog:",
-    "@types/js-yaml": "catalog:",
     "@types/lodash": "catalog:",
     "@types/node": "catalog:",
     "chai": "catalog:",

@@ -3,7 +3,7 @@ import type { TextlintFixResult } from "@textlint/types";
 import * as fs from "node:fs";
 import { diffLines } from "diff";
 import { styleText } from "node:util";
-import stripAnsi from "strip-ansi";
+import { stripVTControlCharacters as stripAnsi } from "node:util";
 
 type DiffPart = {
     value: string;

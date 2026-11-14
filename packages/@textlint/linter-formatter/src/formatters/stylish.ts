@@ -11,7 +11,7 @@ import { styleText } from "node:util";
 // @ts-expect-error no types
 import table from "text-table";
 import widthOfString from "string-width";
-import stripAnsi from "strip-ansi";
+import { stripVTControlCharacters as stripAnsi } from "node:util";
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
