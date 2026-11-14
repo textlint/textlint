@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794655855503,
+  "lastUpdate": 1794656387406,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126587,6 +126587,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.7218077009600001,
             "range": "± 0.01604786299999994",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "4dfb3d0389096b6a49f4f78adb286f91e4c0870a",
+          "message": "chore(deps): remove unused dependencies\n\n- textlint: remove md5, rc-config-loader, structured-source and\n  @textlint/ast-traverse; move @textlint/ast-node-types to\n  devDependencies (only test fixtures import it)\n- @textlint/config-loader: remove debug and @types/debug\n- textlint-tester: remove @textlint/ast-node-types\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAHFLYY4ngx2tXHCiB3\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T11:38:21Z",
+          "tree_id": "95026eea577b155505fa445d45fb87579ce17f46",
+          "url": "https://github.com/textlint/textlint/commit/4dfb3d0389096b6a49f4f78adb286f91e4c0870a"
+        },
+        "date": 1794656377124,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21319882010000005,
+            "range": "± 0.23891567700000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.4718040716999998,
+            "range": "± 0.07418360199999974",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5495481723,
+            "range": "± 0.013215811000000022",
             "unit": "seconds"
           }
         ]
