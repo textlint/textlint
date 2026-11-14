@@ -103,3 +103,6 @@ website/i18n/*
 tsconfig.tsbuildinfo
 tsconfig.*.tsbuildinfo
 .nx
+
+# sdev downloads its binary here (see bin/sdev)
+/.sdev/
