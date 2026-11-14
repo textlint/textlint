@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794699588782,
+  "lastUpdate": 1794700418693,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -127721,6 +127721,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.47280889116,
             "range": "± 0.005024858999999993",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "724c637d71ec9f41fdf7172d2988befc596ee386",
+          "message": "docs(specs): add Japanese translations and record why textlint moved to mdast\n\nEnable Japanese translations in sdev.toml and add product.ja.md,\nrequirements.ja.md, and design.ja.md with links between the language\nversions.\n\nRecord in the Design why markdown-to-ast moved from commonmark to mdast\nin February 2015: commonmark 0.15 had only the start positions of\nblocks, while mdast 0.3 had start and end positions for every node.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T23:52:06Z",
+          "tree_id": "b9da208272080a6c18481dca4c941768b0ab86a5",
+          "url": "https://github.com/textlint/textlint/commit/724c637d71ec9f41fdf7172d2988befc596ee386"
+        },
+        "date": 1794700405981,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.19421163964000002,
+            "range": "± 0.036404032",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.67829493664,
+            "range": "± 0.08952357700000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6009552932400001,
+            "range": "± 0.007370799000000039",
             "unit": "seconds"
           }
         ]
