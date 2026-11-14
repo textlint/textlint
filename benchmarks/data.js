@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794655475963,
+  "lastUpdate": 1794655717320,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -126503,6 +126503,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.71696493044,
             "range": "± 0.014834774999999967",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d49609bbcae525e04005e46f428bdf839c9ed02a",
+          "message": "refactor(formatter): replace table, text-table, string-width and lodash with internal helpers (#2183)\n\n<!-- claude-projects-attribution: {\"github_login\":\"azu\"} -->\n_Requested by **azu** · [project\nthread](https://claude.ai/code/project/chan_01WwDWq4F69cv9Kmg6AeSy8j?thread=cmsg_01WwDWq4F69cv9Kmg6AeSy8jFwZTfgNG3ZXob3YtYLmqpp)_\n\n## Summary\n\nThis PR ports the dependency-free helpers that secretlint wrote when it\nported the textlint formatters (secretlint/secretlint#1813, #1816) back\ninto textlint, and removes the external dependencies that only the\nformatters used.\n\n| Removed | Replacement |\n| --- | --- |\n| `table` | `@textlint/linter-formatter`: `src/helper/draw-table.ts` |\n| `text-table` | `src/helper/align-columns.ts` |\n| `string-width` | `src/helper/string-width.ts` (the emoji pattern is\ncreated lazily) |\n| `lodash` (`escape` only) | `@textlint/linter-formatter`:\n`src/helper/escape-html.ts` |\n| `@azu/format-text`, `@azu/style-format` | `pretty-error` writes its\ntemplate with a template literal |\n\n`string-width.ts` and `align-columns.ts` are in\n`@textlint/linter-formatter`, and `@textlint/fixer-formatter` has a copy\nof them. They are not in `@textlint/utils`, because `@textlint/kernel`\nloads `@textlint/utils` in browsers and the helpers use `node:util`.\n`fixer-formatter/test/helper/sync.test.ts` fails if the copies differ.\n`js-yaml` (tap), `diff` (fixer diff) and `debug` are kept.\n\nEach built-in formatter is now loaded when it is used (`loadFormatter`\nwas already async). For example, `stylish` no longer loads `js-yaml` or\n`diff`.\n\nThe production dependencies of `textlint` (`pnpm ls --prod --depth\nInfinity`, external packages) go from 183 to 165: `@azu/format-text`,\n`@azu/style-format`, `ansi-regex`, `ansi-styles`, `astral-regex`,\n`color-convert`, `color-name`, `emoji-regex`, `fast-deep-equal`,\n`fast-uri`, `is-fullwidth-code-point`, `json-schema-traverse`, `lodash`,\n`slice-ansi`, `string-width`, `strip-ansi`, `table`, `text-table` are\nremoved.\n\n## Breaking changes\n\nNo public API is changed or removed. The exports of\n`@textlint/linter-formatter`, `@textlint/fixer-formatter` and\n`@textlint/utils`, the formatter names, and loading\n`textlint-formatter-<name>` packages or files are the same.\n\nOutput changes that may be worth a line in the v16 migration notes:\n\n- `table` formatter: a message that has a control character such as a\ntab no longer throws `Table data must not contain control characters.`\n- `table` formatter: escape sequences in a message or a rule id are\nremoved in the table cells, so that wrapping a line never splits an\nescape sequence. Without color, the output is the same as before.\n- `pretty-error` formatter: a message in an empty file no longer outputs\n`undefined` (or `✓ undefined`).\n- Width of a few characters in `stylish` / `table` / `pretty-error`\nalignment: emoji added after `string-width@4`'s data (for example\nU+1FA84 🪄) are now two columns. A lone regional indicator (half of a\nflag) and nine emoji that are text by default without U+FE0F (for\nexample U+261D ☝) are now one column.\n\n## Test\n\n- Compared the output of this branch with master for all 11 linter\nformatters and 5 fixer formatters: 300 random result sets (fullwidth\ncharacters, emoji, flags, long words, line breaks, characters to escape,\nescape sequences, each severity, fixable and fatal messages, empty file)\n× color on/off, with and without `FORCE_COLOR=1`. Every difference falls\ninto one of the items in \"Breaking changes\" above. Without flags in the\ninputs, the only remaining differences are the `table` cases with\ncontrol characters / escape sequences and the `pretty-error` empty file\ncase.\n- New tests: `stringWidth`, `alignColumns`, `drawTable`, `escapeHtml`,\ncolor snapshots of `stylish` / `pretty-error` / `table` (checked to be\nidentical to master's output), loading every built-in formatter, the\ncopies of the helpers, and the edge cases above.\n- `pnpm run lint`, `pnpm run test:projectReferences` and `pnpm run\ntest:packages` pass locally (Node.js 22). Integration tests and examples\nwere not run.\n\n## Performance\n\nMedian of 21 runs of the CLI on one file with one rule, 4 vCPU Linux,\nNode.js 22 (noisy, roughly):\n\n| Formatter | master | this PR |\n| --- | --- | --- |\n| stylish | 413ms | 356ms |\n| table | 420ms | 355ms |\n| pretty-error | 446ms | 363ms |\n| `--version` | 305ms | 273ms |\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01TSdrAGjSCmYtoKj9LXPJrP\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-11-14T20:27:14+09:00",
+          "tree_id": "e96670a2cb5401a53be5ecb4504ae6d673b258d9",
+          "url": "https://github.com/textlint/textlint/commit/d49609bbcae525e04005e46f428bdf839c9ed02a"
+        },
+        "date": 1794655707286,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.16909385008000002,
+            "range": "± 0.027201686000000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.46829048908,
+            "range": "± 0.06743930900000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.54909940148,
+            "range": "± 0.006109779999999954",
             "unit": "seconds"
           }
         ]
