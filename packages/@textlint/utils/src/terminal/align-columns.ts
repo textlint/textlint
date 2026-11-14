@@ -10,7 +10,7 @@ const maxLineWidth = (text: string): number => {
 
 /**
  * Align the columns of the rows with spaces, and join the columns with two spaces.
- * The trailing whitespaces of each row are removed.
+ * The trailing whitespaces of each row are removed with `trimEnd`.
  * A cell can have escape sequences and fullwidth characters.
  *
  * It is compatible with `text-table` package with the `stringLength` option that uses `stringWidth`.
@@ -35,7 +35,7 @@ export const alignColumns = (rows: (string | number)[][], align: string[] = []):
                     return align[index] === "r" ? space + cell : cell + space;
                 })
                 .join("  ")
-                .replace(/\s+$/, "");
+                .trimEnd();
         })
         .join("\n");
 };
