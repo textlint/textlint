@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794664033540,
+  "lastUpdate": 1794664204502,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -127175,6 +127175,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5475233438,
             "range": "± 0.010081271000000003",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "2832169f3e0c7e88be1d437587223866fbaef8c5",
+          "message": "fix(examples): make perf example run textlint correctly\n\n- Run textlint/bin/textlint.js directly. With pnpm,\n  node_modules/.bin/textlint is a shell script and `node` failed to\n  run it with SyntaxError.\n- Pass --rules-base-directory so the example's rules are loaded instead\n  of linting with no rules.\n- Report a crash instead of silently ignoring it (exit code 1 for lint\n  errors is still ignored).\n- Fix the root `perf` script that called a missing `test:ci` script.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGVQbWP8D47SMeXdCB\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T13:48:41Z",
+          "tree_id": "e00b637e216d4ed2f687146437bd2f07be6b3009",
+          "url": "https://github.com/textlint/textlint/commit/2832169f3e0c7e88be1d437587223866fbaef8c5"
+        },
+        "date": 1794664195642,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.16357010974000002,
+            "range": "± 0.06235078500000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.3492183313400001,
+            "range": "± 0.025130000999999957",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.47248831473999997,
+            "range": "± 0.012031585999999983",
             "unit": "seconds"
           }
         ]
