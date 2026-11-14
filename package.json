@@ -12,7 +12,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "lint": "oxlint --type-aware",
     "lint:fix": "oxlint --type-aware --fix",
-    "perf": "cd ./examples/perf && pnpm run test:ci",
+    "perf": "cd ./examples/perf && pnpm run perf",
     "prepare": "git config --local core.hooksPath .githooks",
     "release": "lerna publish from-package",
     "test": "npm-run-all --parallel lint test:projectReferences test:packages",
