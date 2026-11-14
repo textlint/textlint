@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794700418693,
+  "lastUpdate": 1794700618109,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -127763,6 +127763,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6009552932400001,
             "range": "± 0.007370799000000039",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "279a866dcab81399f22fb6a701052baa49028347",
+          "message": "docs: move specifications to docs/products and lint them in CI\n\nSpecifications now live under docs/products/, where sdev lint finds\nthem by its standard placement. The Docusaurus docs plugin excludes\nproducts/** so they are not published on the website. A new CI job\nruns ./bin/sdev lint. Fix two broken links in existing docs that the\nlink check found (docs/rule.md anchor, docs/faq/exit-status.md path).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-14T23:55:33Z",
+          "tree_id": "ef7144c7cb814014fca210cda3170ac8cafaa6e5",
+          "url": "https://github.com/textlint/textlint/commit/279a866dcab81399f22fb6a701052baa49028347"
+        },
+        "date": 1794700608887,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.19781093178000003,
+            "range": "± 0.21893040500000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.37051276798,
+            "range": "± 0.03877278400000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.48777656038000006,
+            "range": "± 0.01453266999999997",
             "unit": "seconds"
           }
         ]
