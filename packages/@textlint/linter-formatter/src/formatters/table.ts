@@ -14,7 +14,7 @@ import { FormatterOptions } from "../FormatterOptions.js";
 
 import { styleText, stripVTControlCharacters as stripAnsi } from "node:util";
 
-import { table } from "table";
+import { drawTable as drawBorderedTable, type TableCell } from "../helper/draw-table.js";
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -36,66 +36,47 @@ function pluralize(word: string, count: number): string {
  * @returns {string} A text table.
  */
 function drawTable(messages: TextlintMessage[]): string {
-    const rows: (string | number)[][] = [];
+    const rows: TableCell[][] = [];
 
     if (messages.length === 0) {
         return "";
     }
 
-    rows.push([
-        styleText("bold", "Line"),
-        styleText("bold", "Column"),
-        styleText("bold", "Type"),
-        styleText("bold", "Message"),
-        styleText("bold", "Rule ID")
-    ]);
+    const bold = (text: string) => styleText("bold", text);
+    rows.push(
+        ["Line", "Column", "Type", "Message", "Rule ID"].map((text) => {
+            return { text, style: bold };
+        })
+    );
 
     messages.forEach(function (message: TextlintMessage) {
-        let messageType;
+        let messageType: TableCell;
         const fatal = (message as { fatal?: boolean }).fatal;
 
         if (fatal || message.severity === 2) {
-            messageType = styleText("red", "error");
-        } else if (message.severity === 1) {
-            messageType = styleText("yellow", "warning");
+            messageType = { text: "error", style: (text) => styleText("red", text) };
         } else if (message.severity === 3) {
-            messageType = styleText("green", "info");
+            messageType = { text: "info", style: (text) => styleText("green", text) };
         } else {
-            messageType = styleText("yellow", "warning");
+            messageType = { text: "warning", style: (text) => styleText("yellow", text) };
         }
 
-        rows.push([message.line || 0, message.column || 0, messageType, message.message, message.ruleId || ""]);
+        rows.push([
+            { text: String(message.line || 0) },
+            { text: String(message.column || 0) },
+            messageType,
+            // A cell should not include escape sequences. The table can not wrap the text in an escape sequence
+            { text: stripAnsi(message.message) },
+            { text: stripAnsi(message.ruleId || "") }
+        ]);
     });
 
-    const output = table(rows, {
-        columns: {
-            0: {
-                width: 8,
-                wrapWord: true
-            },
-            1: {
-                width: 8,
-                wrapWord: true
-            },
-            2: {
-                width: 8,
-                wrapWord: true
-            },
-            3: {
-                paddingRight: 5,
-                width: 50,
-                wrapWord: true
-            },
-            4: {
-                width: 20,
-                wrapWord: true
-            }
-        },
+    return drawBorderedTable(rows, {
+        columns: [{ width: 8 }, { width: 8 }, { width: 8 }, { width: 50, paddingRight: 5 }, { width: 20 }],
         drawHorizontalLine(index: number) {
             return index === 1;
         }
     });
-    return output;
 }
 
 /**
@@ -150,25 +131,29 @@ function formatter(report: TextlintResult[], options: FormatterOptions) {
         output = drawReport(report);
     }
 
-    const tableData = [];
+    const summaryRows: TableCell[][] = [];
     if (errorCount > 0) {
-        tableData.push([styleText("red", `${errorCount} ${pluralize("Error", errorCount)}`)]);
+        summaryRows.push([
+            { text: `${errorCount} ${pluralize("Error", errorCount)}`, style: (text) => styleText("red", text) }
+        ]);
     }
     if (warningCount > 0) {
-        tableData.push([styleText("yellow", `${warningCount} ${pluralize("Warning", warningCount)}`)]);
+        summaryRows.push([
+            {
+                text: `${warningCount} ${pluralize("Warning", warningCount)}`,
+                style: (text) => styleText("yellow", text)
+            }
+        ]);
     }
     if (infoCount > 0) {
-        tableData.push([styleText("green", `${infoCount} ${pluralize("Info", infoCount)}`)]);
+        summaryRows.push([
+            { text: `${infoCount} ${pluralize("Info", infoCount)}`, style: (text) => styleText("green", text) }
+        ]);
     }
 
-    if (tableData.length > 0) {
-        output += `\n${table(tableData, {
-            columns: {
-                0: {
-                    width: 110,
-                    wrapWord: true
-                }
-            },
+    if (summaryRows.length > 0) {
+        output += `\n${drawBorderedTable(summaryRows, {
+            columns: [{ width: 110 }],
             drawHorizontalLine() {
                 return true;
             }

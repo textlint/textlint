@@ -42,10 +42,9 @@
     "@textlint/module-interop": "workspace:*",
     "@textlint/resolver": "workspace:*",
     "@textlint/types": "workspace:*",
+    "@textlint/utils": "workspace:*",
     "debug": "catalog:",
-    "diff": "catalog:",
-    "string-width": "catalog:",
-    "text-table": "catalog:"
+    "diff": "catalog:"
   },
   "devDependencies": {
     "@types/debug": "catalog:",

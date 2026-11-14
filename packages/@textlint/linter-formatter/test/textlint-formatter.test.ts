@@ -1,6 +1,8 @@
 // LICENSE : MIT
 "use strict";
+import path from "node:path";
 import { getFormatterList, loadFormatter } from "../src/index.js";
+import { createTestMessage } from "./test-helper.js";
 
 import { describe, it } from "vitest";
 
@@ -49,6 +51,51 @@ describe("@textlint/linter-formatter-test", function () {
                 }
             ]);
             assert.ok(output.length > 0);
+        });
+    });
+
+    describe("built-in formatters", function () {
+        for (const { name } of getFormatterList()) {
+            it(`should load ${name} formatter`, async function () {
+                const formatter = await loadFormatter({ formatterName: name, color: false });
+                const output = formatter.format([
+                    {
+                        filePath: path.join(__dirname, "fixtures/foo.md"),
+                        messages: [createTestMessage({ ruleId: "rule", message: "Message", severity: 2 })]
+                    }
+                ]);
+                assert.ok(output.includes("Message"), output);
+            });
+        }
+
+        it("should not treat a property of Object as a formatter", async function () {
+            await assert.rejects(
+                loadFormatter({ formatterName: "constructor" }),
+                /Could not find formatter constructor/
+            );
+            await assert.rejects(loadFormatter({ formatterName: "toString" }), /Could not find formatter toString/);
+        });
+
+        it("table formatter should not throw for a message that has a tab character", async function () {
+            const formatter = await loadFormatter({ formatterName: "table", color: false });
+            const output = formatter.format([
+                {
+                    filePath: "foo.md",
+                    messages: [createTestMessage({ ruleId: "rule", message: "a\tb", severity: 2 })]
+                }
+            ]);
+            assert.ok(output.includes("1 Error"), output);
+        });
+
+        it("pretty-error formatter should not output undefined for an empty file", async function () {
+            const formatter = await loadFormatter({ formatterName: "pretty-error", color: false });
+            const output = formatter.format([
+                {
+                    filePath: path.join(__dirname, "fixtures/empty.md"),
+                    messages: [createTestMessage({ ruleId: "rule", message: "Message", severity: 2 })]
+                }
+            ]);
+            assert.strictEqual(output, "\u2716 1 problem (1 error)\n");
         });
     });
 

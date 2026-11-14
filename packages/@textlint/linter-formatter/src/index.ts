@@ -8,32 +8,35 @@ import fs from "node:fs";
 import path from "node:path";
 import { dynamicImport, tryResolve } from "@textlint/resolver";
 import debug0 from "debug";
-// formatter
-import checkstyleFormatter from "./formatters/checkstyle.js";
-import compactFormatter from "./formatters/compact.js";
-import githubFormatter from "./formatters/github.js";
-import jslintXMLFormatter from "./formatters/jslint-xml.js";
-import jsonFormatter from "./formatters/json.js";
-import junitFormatter from "./formatters/junit.js";
-import prettyErrorFormatter from "./formatters/pretty-error.js";
-import stylishFormatter from "./formatters/stylish.js";
-import tableFormatter from "./formatters/table.js";
-import tapFormatter from "./formatters/tap.js";
-import unixFormatter from "./formatters/unix.js";
+import type { FormatterOptions } from "./FormatterOptions.js";
 
+type BuiltinFormatter = (results: TextlintResult[], options: FormatterOptions) => string;
+/**
+ * Each formatter is loaded when it is used.
+ * For example, `tap` formatter loads `js-yaml`, but `stylish` formatter does not.
+ */
 const builtinFormatterList = {
-    checkstyle: checkstyleFormatter,
-    compact: compactFormatter,
-    "github": githubFormatter,
-    "jslint-xml": jslintXMLFormatter,
-    json: jsonFormatter,
-    junit: junitFormatter,
-    "pretty-error": prettyErrorFormatter,
-    stylish: stylishFormatter,
-    table: tableFormatter,
-    tap: tapFormatter,
-    unix: unixFormatter
+    checkstyle: () => import("./formatters/checkstyle.js"),
+    compact: () => import("./formatters/compact.js"),
+    github: () => import("./formatters/github.js"),
+    "jslint-xml": () => import("./formatters/jslint-xml.js"),
+    json: () => import("./formatters/json.js"),
+    junit: () => import("./formatters/junit.js"),
+    "pretty-error": () => import("./formatters/pretty-error.js"),
+    stylish: () => import("./formatters/stylish.js"),
+    table: () => import("./formatters/table.js"),
+    tap: () => import("./formatters/tap.js"),
+    unix: () => import("./formatters/unix.js")
 } as const;
+/**
+ * Load the formatter function of a built-in formatter.
+ * A formatter file is a CommonJS module, so `import()` returns `{ default: module.exports }` in Node.js.
+ * `moduleInterop` gets the default export from `module.exports`.
+ */
+const loadBuiltinFormatter = async (name: BuiltInFormatterName): Promise<BuiltinFormatter> => {
+    const mod: { default: unknown } = await builtinFormatterList[name]();
+    return moduleInterop(mod.default) as BuiltinFormatter;
+};
 type BuiltInFormatterName = keyof typeof builtinFormatterList;
 const builtinFormatterNames = Object.keys(builtinFormatterList);
 const debug = debug0("textlint:@textlint/linter-formatter");
@@ -51,9 +54,10 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);
     if (builtinFormatterNames.includes(formatterName)) {
+        const builtinFormatter = await loadBuiltinFormatter(formatterName as BuiltInFormatterName);
         return {
             format(results: TextlintResult[]) {
-                return builtinFormatterList[formatterName as BuiltInFormatterName](results, formatterConfig);
+                return builtinFormatter(results, formatterConfig);
             }
         };
     }

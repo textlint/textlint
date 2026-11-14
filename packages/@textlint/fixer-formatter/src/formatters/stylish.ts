@@ -1,11 +1,8 @@
 "use strict";
 import type { TextlintFixResult } from "@textlint/types";
 
-import { styleText } from "node:util";
-// @ts-expect-error no types
-import table from "text-table";
-import widthOfString from "string-width";
-import { stripVTControlCharacters as stripAnsi } from "node:util";
+import { styleText, stripVTControlCharacters as stripAnsi } from "node:util";
+import { alignColumns } from "@textlint/utils";
 
 /**
  * Given a word and a count, append an s if count is not one.
@@ -53,7 +50,7 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
         }
         output += `${styleText("underline", result.filePath)}\n`;
 
-        output += `${table(
+        output += `${alignColumns(
             messages.map(function (message) {
                 // fixable
                 totalFixed++;
@@ -68,18 +65,7 @@ export default function (results: TextlintFixResult[], options: { color?: boolea
                     styleText("gray", message.ruleId || "")
                 ];
             }),
-            {
-                align: ["", "r", "l"],
-                stringLength: (str: string) => {
-                    const lines = stripAnsi(str).split("\n");
-                    return Math.max.apply(
-                        null,
-                        lines.map(function (line: string) {
-                            return widthOfString(line);
-                        })
-                    );
-                }
-            }
+            ["", "r", "l"]
         )
             .split("\n")
             .map(function (el: string) {

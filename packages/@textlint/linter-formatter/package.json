@@ -33,21 +33,15 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@azu/format-text": "catalog:",
-    "@azu/style-format": "catalog:",
     "@textlint/module-interop": "workspace:*",
     "@textlint/resolver": "workspace:*",
     "@textlint/types": "workspace:*",
+    "@textlint/utils": "workspace:*",
     "debug": "catalog:",
-    "js-yaml": "catalog:",
-    "lodash": "catalog:",
-    "string-width": "catalog:",
-    "table": "catalog:",
-    "text-table": "catalog:"
+    "js-yaml": "catalog:"
   },
   "devDependencies": {
     "@types/debug": "catalog:",
-    "@types/lodash": "catalog:",
     "@types/node": "catalog:",
     "chai": "catalog:",
     "rimraf": "catalog:",
