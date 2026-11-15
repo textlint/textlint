@@ -23,6 +23,7 @@ const MAX_ROWS = 50;
 const TOP_ROWS = 15;
 const CLI_MARK = { slower: 1.3, faster: 0.77 };
 const MICRO_MARK = { slower: 1.1, faster: 0.91 };
+const MIN_MARKED_MS = 1;
 
 class CompareError extends Error {}
 
@@ -291,7 +292,9 @@ const measureCliTime = (roots, set, tmpDir, runs) => {
  */
 const withRatio = (base, head, marks, key = "median") => {
     const ratio = base[key] > 0 ? head[key] / base[key] : 1;
-    const mark = ratio >= marks.slower ? "slower" : ratio <= marks.faster ? "faster" : null;
+    // a time below 1 ms is too short to tell a change from noise
+    const measurable = Math.max(base[key], head[key]) >= MIN_MARKED_MS;
+    const mark = !measurable ? null : ratio >= marks.slower ? "slower" : ratio <= marks.faster ? "faster" : null;
     return { base, head, ratio, mark };
 };
 
@@ -780,7 +783,7 @@ try {
     main();
 } catch (error) {
     if (error instanceof CompareError) {
-        console.error(`[compare] ${error.message}`);
+        process.stderr.write(`[compare] ${error.message}\n`);
         process.exit(2);
     }
     throw error;

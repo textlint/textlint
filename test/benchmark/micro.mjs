@@ -18,7 +18,7 @@ const { values } = parseArgs({
     }
 });
 if (!values.build || !values.dir || !values.mode) {
-    console.error("Usage: node micro.mjs --build <dir> --dir <documents> --mode parse|traverse [--runs <n>]");
+    process.stderr.write("Usage: node micro.mjs --build <dir> --dir <documents> --mode parse|traverse [--runs <n>]\n");
     process.exit(2);
 }
 const runs = Number(values.runs);
@@ -44,7 +44,7 @@ const listMarkdownFiles = (dir) => {
         }
     };
     walk(dir);
-    return files.sort();
+    return files.sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
 };
 
 const files = listMarkdownFiles(path.resolve(values.dir)).map((filePath) => ({
@@ -62,20 +62,27 @@ const stats = (times) => {
     };
 };
 
+// A run repeats the work until it takes at least this long, so a small set is not measured by a few milliseconds
+const MIN_RUN_MS = 200;
 /**
- * Run `fn` once to warm up, then `runs` times, and return the stats of the runs
+ * Run `fn` once to warm up, then `runs` times, and return the stats of the runs.
+ * Each run calls `fn` as many times as it takes to reach MIN_RUN_MS, and the time of a run is divided by that number.
  */
 const bench = async (fn) => {
+    const warmupStart = performance.now();
     await fn();
+    const repeat = Math.max(1, Math.ceil(MIN_RUN_MS / Math.max(performance.now() - warmupStart, 0.001)));
     const times = [];
     for (let i = 0; i < runs; i++) {
         // start each run with a clean heap, when node runs with --expose-gc
         globalThis.gc?.();
         const start = performance.now();
-        await fn();
-        times.push(performance.now() - start);
+        for (let j = 0; j < repeat; j++) {
+            await fn();
+        }
+        times.push((performance.now() - start) / repeat);
     }
-    return stats(times);
+    return { ...stats(times), repeat };
 };
 
 const result = { files: files.length, mode: values.mode };
@@ -135,7 +142,7 @@ if (values.mode === "parse") {
         })
     };
 } else {
-    console.error(`Unknown mode: ${values.mode}`);
+    process.stderr.write(`Unknown mode: ${values.mode}\n`);
     process.exit(2);
 }
 process.stdout.write(`${JSON.stringify(result)}\n`);

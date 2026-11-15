@@ -46,7 +46,7 @@ The main flow of `compare.mjs` is:
 6. **Run time of the CLI.** When `hyperfine` is on `PATH`, the script runs `hyperfine --ignore-failure --warmup 1 --runs <n> --export-json <tmp>/time.json` with the two commands of step 3 without `--profile` and with `--output-file /dev/null`: first all runs of the base, then all runs of the head. `--ignore-failure` is needed because the exit status is 1 when a rule reports an error. Each argument is quoted for the shell. The JSON of hyperfine 1.x and 2.x is read.
 7. **Differences.** The script compares the results (see Data model), and writes Markdown to the standard output and `compare.md`, `compare.json`, and `cpuprofiles/` to the output directory.
 
-`micro.mjs` reads the Markdown files of the set in a fixed order. In `parse` mode, it parses all of them with `@textlint/markdown-to-ast` and then with `@textlint/text-to-ast` of the build. In `traverse` mode, it parses all of them once, and lints each with the kernel of the build, a plugin whose `preProcess` returns the parsed tree, and a rule that listens to every node type of `ASTNodeTypes` (including the exit types) with an empty function; so the time is the traversal, the dispatch, and the work of the kernel for a file, without parsing. Each measurement runs once to warm up and then `runs × 2` times, calling `gc()` before each run. The script compares the fastest run, because the noise of a machine only makes a run slower.
+`micro.mjs` reads the Markdown files of the set in a fixed order. In `parse` mode, it parses all of them with `@textlint/markdown-to-ast` and then with `@textlint/text-to-ast` of the build. In `traverse` mode, it parses all of them once, and lints each with the kernel of the build, a plugin whose `preProcess` returns the parsed tree, and a rule that listens to every node type of `ASTNodeTypes` (including the exit types) with an empty function; so the time is the traversal, the dispatch, and the work of the kernel for a file, without parsing. Each measurement runs once to warm up and then `runs × 2` times, calling `gc()` before each run. A run repeats the work until it takes at least 200 ms, as many times as the warm-up says, and its time is divided by that number, so a small set is not measured by a few milliseconds. The script compares the fastest run, because the noise of a machine only makes a run slower.
 
 A build failure, a failure to download a set, or a lint run that ends with an exit status other than 0 and 1 stops the script with the exit status 2 and a message that names the build or the set. The script writes no output then.
 
@@ -105,7 +105,7 @@ type SetResult = {
 type Message = { file: string; line: number; column: number; ruleId: string; message: string }; // file is relative to the set
 type Compared<S> = { base: S; head: S; ratio: number; mark: "slower" | "faster" | null };
 type CliStats = { median: number; mean: number; stddev: number; runs: number }; // milliseconds
-type MicroStats = { median: number; min: number; max: number; runs: number }; // milliseconds
+type MicroStats = { median: number; min: number; max: number; runs: number; repeat: number }; // milliseconds of one repetition
 type CpuSummary = {
     total: number; // milliseconds of samples
     packages: { name: string; workspace: boolean; time: number }[];
@@ -115,7 +115,7 @@ type CpuSummary = {
 
 Messages are compared as multisets of the file, the line, the column, the rule id, and the message.
 
-`ratio` is the head divided by the base: the median for the CLI, and the minimum for the parsers and the traversal. `mark` is `slower` when `ratio >= 1.3` and `faster` when `ratio <= 0.77` for the CLI, and `1.1` and `0.91` for the parsers and the traversal; otherwise `null`.
+`ratio` is the head divided by the base: the median for the CLI, and the minimum for the parsers and the traversal. `mark` is `slower` when `ratio >= 1.3` and `faster` when `ratio <= 0.77` for the CLI, and `1.1` and `0.91` for the parsers and the traversal; otherwise `null`. A comparison where both times are below 1 ms is not marked.
 
 A CPU profile is summarized by self time. A sample belongs to a package of this repository when its file is under `<build>/packages/` (`workspace: true`), to a dependency by the path after the last `node_modules/`, to `(node)` for `node:` modules, and to `(garbage collector)`, `(program)`, `(idle)`, or `(native)` when it has no URL.
 

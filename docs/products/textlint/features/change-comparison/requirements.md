@@ -162,6 +162,7 @@ The configuration of the lint is the rules of `preset-jtf-style`: they check eve
 The script shows the time of each build and the ratio of the head to the base: the median of the runs for the CLI, and the fastest run for the parsers and the traversal, because the noise of a machine only makes a run slower.
 For the CLI, a ratio of 1.3 or more, or 0.77 or less, is marked as a large change, because the run time of a process on a shared machine changes by more than 10% between runs.
 For the parsers and the traversal, which run in one process after warm-up, a ratio of 1.1 or more, or 0.91 or less, is marked.
+A time below 1 ms is not marked, because it is too short to tell a change from noise.
 
 #### Exceptional behavior
 
