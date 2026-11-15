@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794718239335,
+  "lastUpdate": 1794718426322,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128477,6 +128477,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5490401489400001,
             "range": "± 0.01010844200000005",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "3250b9e9ba0686312b1c9eb761066f27db3afc90",
+          "message": "docs(markdown-parsing): describe parser state, kept remark behavior, and loops\n\n- No phase recurses on the nesting depth\n- List the behavior kept from the remark-based parser and the intentional differences\n- Describe the working state of each phase\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T04:52:27Z",
+          "tree_id": "8794a481295b99ce07f77b8d0936cebb2c272321",
+          "url": "https://github.com/textlint/textlint/commit/3250b9e9ba0686312b1c9eb761066f27db3afc90"
+        },
+        "date": 1794718416968,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17650257282000004,
+            "range": "± 0.12731977399999997",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.2396499086200001,
+            "range": "± 0.029492528000000018",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.38397324562,
+            "range": "± 0.00786595200000001",
             "unit": "seconds"
           }
         ]
