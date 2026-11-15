@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794742155273,
+  "lastUpdate": 1794742191493,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129317,6 +129317,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.38211568813999996,
             "range": "± 0.009445139999999963",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "cee7f7f24a1d3267a254c6c6523f0b1bf5f5ddf8",
+          "message": "feat(ast)!: count the lines of loc by the ECMAScript line terminators\n\nloc counts a line by LF, CR, CRLF, U+2028, and U+2029 in every format.\ntextlint counts lines for messages in the same way, so loc of a node and\nthe line of a message agree.\n\n- @textlint/markdown-to-ast: U+2028 and U+2029 end a line for loc. The\n  block structure follows CommonMark as before\n- @textlint/text-to-ast: CR, U+2028, and U+2029 end a line and become Break\n- @textlint/ast-tester: uses this definition. A lone CR is always a line\n  ending\n- TxtAST requirements: the definition replaces the open question\n\nBREAKING CHANGE: loc changes for documents that have U+2028 or U+2029\n(Markdown and plain text) or a lone CR (plain text). @textlint/ast-tester\nrejects an AST that counts these characters differently.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T11:28:44Z",
+          "tree_id": "bd3d6df805a19faa29157916dc751e0b122d4594",
+          "url": "https://github.com/textlint/textlint/commit/cee7f7f24a1d3267a254c6c6523f0b1bf5f5ddf8"
+        },
+        "date": 1794742183453,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.13053815224000004,
+            "range": "± 0.03463838799999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.00133128444,
+            "range": "± 0.042152448999999925",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.31153077724000006,
+            "range": "± 0.005719749000000052",
             "unit": "seconds"
           }
         ]
