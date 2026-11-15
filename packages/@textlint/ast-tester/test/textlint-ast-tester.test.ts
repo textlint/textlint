@@ -61,7 +61,7 @@ describe("@textlint/ast-tester", function () {
             test(createAST());
             assert.ok(isTxtAST(createAST()));
         });
-        it("should count a line by LF, CR, CRLF, U+2028, and U+2029", function () {
+        it("should count a line by LF, CR, and CRLF", function () {
             const createLineAST = (lineEnding: string) => ({
                 type: "Document",
                 raw: `a${lineEnding}b`,
@@ -69,8 +69,15 @@ describe("@textlint/ast-tester", function () {
                 loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 1 } },
                 children: []
             });
-            for (const lineEnding of ["\n", "\r", "\r\n", "\u2028", "\u2029"]) {
+            for (const lineEnding of ["\n", "\r", "\r\n"]) {
                 test(createLineAST(lineEnding));
+            }
+            // U+2028 and U+2029 are characters of a line
+            for (const character of ["\u2028", "\u2029"]) {
+                test({
+                    ...createLineAST(character),
+                    loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } }
+                });
             }
         });
         it("should test a deep AST", function () {
@@ -125,7 +132,7 @@ describe("@textlint/ast-tester", function () {
             assert.throws(() => test(AST), /invalid range: range should not overlap with the previous sibling/);
         });
         it("should throw when a line ending is counted as a character", () => {
-            for (const lineEnding of ["\r", "\u2028", "\u2029"]) {
+            for (const lineEnding of ["\r"]) {
                 const AST = {
                     type: "Document",
                     raw: `a${lineEnding}b`,

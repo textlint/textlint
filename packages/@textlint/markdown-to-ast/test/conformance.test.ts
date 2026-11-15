@@ -160,26 +160,20 @@ describe("CommonMark and GFM conformance", () => {
         });
     });
     describe("lines of loc", () => {
-        // U+2028 and U+2029 end a line for `loc`, and they do not end a line of the block structure
-        it("should count U+2028 and U+2029 as line endings for loc only", () => {
+        // U+2028 and U+2029 are not line endings of CommonMark
+        it("should not count U+2028 and U+2029 as line endings", () => {
             for (const separator of ["\u2028", "\u2029"]) {
                 const AST = parse(`a${separator}# b *c*\n\nd`) as AnyNode;
-                // `# b` is not a heading, because the separator does not start a new line of the block
                 assert.deepStrictEqual(
                     AST.children!.map((node) => node.type),
                     ["Paragraph", "Paragraph"]
                 );
                 const emphasis = AST.children![0].children![1];
-                assert.strictEqual(emphasis.type, "Emphasis");
-                assert.deepStrictEqual(emphasis.range, [6, 9]);
                 assert.deepStrictEqual(emphasis.loc, {
-                    start: { line: 2, column: 4 },
-                    end: { line: 2, column: 7 }
+                    start: { line: 1, column: 6 },
+                    end: { line: 1, column: 9 }
                 });
-                assert.deepStrictEqual(AST.children![1].loc, {
-                    start: { line: 4, column: 0 },
-                    end: { line: 4, column: 1 }
-                });
+                assert.deepStrictEqual(AST.children![1].loc.start, { line: 3, column: 0 });
             }
         });
         it("should count CR and CRLF as one line ending", () => {

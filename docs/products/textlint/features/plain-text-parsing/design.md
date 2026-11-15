@@ -36,7 +36,7 @@ From then on, every offset refers to the text without the BOM, and `raw` of `Doc
 The loop keeps two values: the offset where the current line starts and the current line number, which starts at 1.
 In each step, it does the following.
 
-1. **Find the line ending.** The parser searches for the next line ending with one regular expression, `/\r\n|[\n\r\u2028\u2029]/g`, which lists the line endings of the Requirements. `\r\n` is the first alternative, so it is found as one line ending and not as `\r` followed by `\n`. The line ends where the line ending starts.
+1. **Find the line ending.** The parser searches for the next line ending with one regular expression, `/\r\n|[\n\r]/g`, which lists the line endings of the Requirements. `\r\n` is the first alternative, so it is found as one line ending and not as `\r` followed by `\n`. The line ends where the line ending starts.
 2. **Add a paragraph.** When the line is not empty, the parser adds a `Paragraph` with one `Str` for it.
 3. **Add a break.** The parser adds a `Break` for the line ending, and the next line starts after it.
 
@@ -120,7 +120,7 @@ It was not chosen because the plain text parser would then depend on the Markdow
 
 ### Check each character for a line ending
 
-A loop that reads each character code and checks it against the five line endings avoids the regular expression.
+A loop that reads each character code and checks it against the line endings avoids the regular expression.
 It was not chosen because it needs a function that returns the length of the line ending at a position and a second index to move, while the regular expression states the definition of line endings in one line and lets the engine scan the text.
 
 ## Open questions

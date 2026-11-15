@@ -197,8 +197,8 @@ describe("plaintext-parser-test", function () {
         });
     });
     describe("line endings", function () {
-        it("should end a line with LF, CR, CRLF, U+2028, and U+2029", function () {
-            for (const lineEnding of ["\n", "\r", "\r\n", "\u2028", "\u2029"]) {
+        it("should end a line with LF, CR, and CRLF", function () {
+            for (const lineEnding of ["\n", "\r", "\r\n"]) {
                 const text = `a${lineEnding}b`;
                 const ast = parse(text);
                 assert.deepStrictEqual(

@@ -69,11 +69,17 @@ Scenario: When any text is parsed, the AST follows the position conventions of T
 - When: The text is parsed
 - Then: `@textlint/ast-tester` accepts the AST
 
-Scenario: When the text uses a lone `\r`, U+2028, or U+2029, the character ends a line
+Scenario: When the text uses a lone `\r`, the character ends a line
 
 - Given: A text `a`, a lone `\r`, and `b`
 - When: The text is parsed
-- Then: The children of `Document` are `Paragraph`, `Break`, and `Paragraph`, and the second `Paragraph` starts at line 2, column 0, which is the line that textlint shows in a message for it
+- Then: The children of `Document` are `Paragraph`, `Break`, and `Paragraph`, and the second `Paragraph` starts at line 2, column 0
+
+Scenario: When a line has U+2028 or U+2029, the character stays in the line
+
+- Given: A text `a`, U+2028, and `b`
+- When: The text is parsed
+- Then: The text is one `Paragraph` whose `Str` contains U+2028, as editors show it on one line
 
 Scenario: When the text uses `\r\n`, the line ending is one `Break`
 
@@ -169,7 +175,8 @@ Scenario: When a text is made longer, parsing time grows in proportion to the si
 
 ##### Lines
 
-A line ends with a line ending that the [TxtAST](../txtast/requirements.md) position conventions define: LF (`\n`), CR (`\r`), CRLF (`\r\n`), U+2028, or U+2029. CRLF is one line ending.
+A line ends with a line ending that the [TxtAST](../txtast/requirements.md) position conventions define: LF (`\n`), CR (`\r`), or CRLF (`\r\n`). CRLF is one line ending.
+Other characters, such as U+2028 and U+2029, are characters of the line.
 Plain text has no syntax of its own, so the lines of the text are the lines of `loc`.
 
 A paragraph is one line.

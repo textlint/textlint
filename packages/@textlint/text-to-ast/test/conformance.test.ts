@@ -46,14 +46,15 @@ describe("Conformance to the Plain text parsing Requirements", function () {
             ["Paragraph", "b"]
         ]);
     });
-    it("ends a line with a lone \\r, U+2028, and U+2029", function () {
-        for (const lineEnding of ["\r", "\u2028", "\u2029"]) {
-            assert.deepStrictEqual(summarize(`a${lineEnding}b`), [
-                ["Paragraph", "a"],
-                ["Break", lineEnding],
-                ["Paragraph", "b"]
-            ]);
-        }
+    it("ends a line with a lone \\r", function () {
+        assert.deepStrictEqual(summarize("a\rb"), [
+            ["Paragraph", "a"],
+            ["Break", "\r"],
+            ["Paragraph", "b"]
+        ]);
+    });
+    it("keeps U+2028 and U+2029 as characters of the line", function () {
+        assert.deepStrictEqual(summarize("a\u2028b\u2029c"), [["Paragraph", "a\u2028b\u2029c"]]);
     });
     it("treats \\r\\r as two line endings and \\n\\r as two line endings", function () {
         assert.deepStrictEqual(summarize("a\r\rb"), [

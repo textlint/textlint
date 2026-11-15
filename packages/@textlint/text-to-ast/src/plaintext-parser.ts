@@ -60,7 +60,7 @@ function createBreak(text: string, start: number, end: number, line: number, col
 /**
  * Parse plain text into TxtAST.
  *
- * - A line ends with LF, CR, CRLF, U+2028, or U+2029. CRLF is one line ending.
+ * - A line ends with LF, CR, or CRLF. CRLF is one line ending.
  * - Each line that is not empty becomes a `Paragraph` with one `Str`.
  * - Each line ending becomes a `Break`.
  * - An empty line has no `Paragraph`, so only its line ending becomes a `Break`.
@@ -68,8 +68,8 @@ function createBreak(text: string, start: number, end: number, line: number, col
  */
 export function parse(input: string): TxtDocumentNode {
     const text = input.charCodeAt(0) === BOM ? input.slice(1) : input;
-    // The line terminators of ECMAScript. `\r\n` comes first, so that it is one line ending
-    const lineEnding = /\r\n|[\n\r\u2028\u2029]/g;
+    // LF, CR, and CRLF. `\r\n` comes first, so that it is one line ending
+    const lineEnding = /\r\n|[\n\r]/g;
     const children: (TxtParagraphNode | TxtBreakNode)[] = [];
     let lineStart = 0;
     let line = 1;

@@ -11,7 +11,7 @@ The AST uses four node types of [TxtAST](https://github.com/textlint/textlint/bl
 - `Document` - The whole text
 - `Paragraph` - A line that is not empty. It has one `Str`
 - `Str` - The text of the line, without the line ending
-- `Break` - A line ending (LF, CR, CRLF, U+2028, or U+2029). It is a child of `Document`
+- `Break` - A line ending (LF, CR, or CRLF). It is a child of `Document`
 
 Every node has `type`, `raw`, `range`, and `loc`, and `Str` has `value`.
 A BOM at the start of the text is not part of the AST.

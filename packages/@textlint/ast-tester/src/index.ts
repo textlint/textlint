@@ -142,14 +142,14 @@ type PositionedNode = {
 
 /**
  * Start offsets of lines in the text.
- * A line ends with LF, CR, CRLF, U+2028, or U+2029 in every format. CRLF is one line ending.
- * It is the same as the line terminators of ECMAScript, and as textlint counts lines for messages.
+ * A line ends with LF, CR, or CRLF in every format. CRLF is one line ending.
+ * It is the same as the line endings of CommonMark and of the Language Server Protocol.
  */
 const lineStartsOf = (text: string): number[] => {
     const starts = [0];
     for (let i = 0; i < text.length; i++) {
         const c = text.charCodeAt(i);
-        if (c === 10 || c === 13 || c === 0x2028 || c === 0x2029) {
+        if (c === 10 || c === 13) {
             if (c === 13 && text.charCodeAt(i + 1) === 10) {
                 i++;
             }
