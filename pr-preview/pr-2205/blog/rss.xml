@@ -28,6 +28,7 @@ This post first describes the changes for users who run textlint, and then the c
 <li class=""><strong>New options.</strong> <code>--cache-strategy content</code> detects changed files by content, <code>--stdin</code> works with the <code>pretty-error</code> and <code>diff</code> formatters, and the Markdown plugin's <code>cjkFriendlyEmphasis</code> recognizes emphasis in CJK text such as <code>**強調。**この文</code>.</li>
 </ul>
 <p><strong>For rule and plugin developers:</strong></p>
+<p>textlint started writing down its specifications, which were ambiguous, as <a href="https://github.com/textlint/textlint/blob/master/docs/products/textlint/product.md" target="_blank" rel="noopener noreferrer" class="">Requirements and Design documents</a>. While writing them, we made the ambiguous parts of TxtAST stricter. Most of the changes below come from this work.</p>
 <ul>
 <li class=""><strong><code>@textlint/textlint-plugin-markdown</code> and <code>@textlint/textlint-plugin-text</code> are ESM-only.</strong> Code that loads them directly with <code>require()</code> gets the module namespace, so use <code>require(...).default</code> or <code>import</code>.</li>
 <li class=""><strong><code>@textlint/markdown-to-ast</code> is a new CommonMark 0.31.2 + GFM parser.</strong> The AST is compatible. It differs only in edge cases where the new parser follows CommonMark and GitHub, and the hidden <code>position</code> property is removed.</li>
@@ -50,13 +51,81 @@ This post first describes the changes for users who run textlint, and then the c
 <h3 class="anchor anchorTargetStickyNavbar_h6cq" id="faster-markdown-parsing">Faster Markdown parsing<a href="https://textlint.org/textlint/pr-preview/pr-2205/blog/2026/11/15/textlint-16#faster-markdown-parsing" class="hash-link" aria-label="Direct link to Faster Markdown parsing" title="Direct link to Faster Markdown parsing" translate="no">​</a></h3>
 <p>textlint v16 parses Markdown with a new in-house parser instead of remark.
 It supports the same syntax as before: CommonMark, GFM (tables, strikethrough, task list items, autolink literals, footnotes), Pandoc-style inline notes (<code>^[note]</code>), and YAML/TOML/JSON front matter.</p>
-<p>Compared with v15:</p>
-<ul>
-<li class="">Parsing 15.3 MB of real-world Markdown takes 395 ms instead of 18.5 s</li>
-<li class="">Inputs that took tens of seconds, such as a table with 20,000 rows, are parsed in milliseconds</li>
-<li class=""><code>textlint</code> installs 61 third-party packages instead of 151</li>
-<li class="">Documents nested deeper than 100 levels are linted instead of crashing with <code>RangeError</code></li>
-</ul>
+<p>Compared with the remark-based parser (Node.js 22):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th>remark-based parser</th><th>v16 parser</th></tr></thead><tbody><tr><td>Parse 3,189 real-world <code>.md</code> files (15.3 MB)</td><td>18,506 ms</td><td>about 400 ms (about 45x faster)</td></tr><tr><td>A table with 20,000 rows</td><td>about 25 s</td><td>about 40 ms</td></tr><tr><td>20,000 <code>[</code> followed by 20,000 <code>]</code></td><td>about 24 s</td><td>about 12 ms</td></tr><tr><td>20,000 <code>[a](</code></td><td>about 11 s</td><td>about 33 ms</td></tr><tr><td>1,000 nested lists</td><td>about 24 s</td><td>about 0.9 s</td></tr><tr><td>Nesting deeper than 100 levels</td><td>can throw <code>RangeError</code></td><td>lints the document</td></tr><tr><td>Third-party packages installed by <code>textlint</code></td><td>151 (34.8 MB)</td><td>61 (27.5 MB)</td></tr><tr><td>Third-party packages installed by <code>@textlint/markdown-to-ast</code></td><td>96 (7.5 MB)</td><td>0</td></tr></tbody></table>
+<p>The textlint CLI also finishes faster. The time is the median of 5 runs on projects of the integration tests:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Project</th><th>remark-based parser</th><th>v16 parser</th></tr></thead><tbody><tr><td>webpack-book (62 files, 489 KB)</td><td>1,448 ms</td><td>949 ms (-34%)</td></tr><tr><td>magi-hacker (5 files, 5.5 KB)</td><td>632 ms</td><td>505 ms (-20%)</td></tr></tbody></table>
+<p>The improvement depends on how much of the time rules take. For projects whose rules load a large dictionary, such as kuromoji, the CLI is about 5% faster.</p>
 <p>Rules report the same errors for most documents.
 A few edge cases follow CommonMark and GitHub more closely. For example, when a document starts with <code>---</code> that is not a front matter fence, the lists in the document are now recognized.
 See <a href="https://textlint.org/textlint/pr-preview/pr-2205/blog/2026/11/15/textlint-16#new-markdown-parser" class="">New Markdown parser</a> for the details.</p>
@@ -104,6 +173,17 @@ It is disabled by default. Enable it when your documents are rendered with these
 <li class="">The MCP server marks its tools as read-only <a href="https://github.com/textlint/textlint/pull/2136" target="_blank" rel="noopener noreferrer" class="">#2136</a></li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_h6cq" id="for-rule-and-plugin-developers">For Rule and Plugin Developers<a href="https://textlint.org/textlint/pr-preview/pr-2205/blog/2026/11/15/textlint-16#for-rule-and-plugin-developers" class="hash-link" aria-label="Direct link to For Rule and Plugin Developers" title="Direct link to For Rule and Plugin Developers" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_h6cq" id="specifications-of-txtast-and-the-parsers">Specifications of TxtAST and the parsers<a href="https://textlint.org/textlint/pr-preview/pr-2205/blog/2026/11/15/textlint-16#specifications-of-txtast-and-the-parsers" class="hash-link" aria-label="Direct link to Specifications of TxtAST and the parsers" title="Direct link to Specifications of TxtAST and the parsers" translate="no">​</a></h3>
+<p>textlint started writing down its specifications, which were ambiguous, as Requirements and Design documents under <a href="https://github.com/textlint/textlint/blob/master/docs/products/textlint/product.md" target="_blank" rel="noopener noreferrer" class=""><code>docs/products/</code></a>.
+The <a href="https://github.com/textlint/textlint/blob/master/docs/products/textlint/features/txtast/requirements.md" target="_blank" rel="noopener noreferrer" class="">TxtAST Requirements</a> define what rules can rely on in every format, and the <a href="https://github.com/textlint/textlint/blob/master/docs/products/textlint/features/markdown-parsing/requirements.md" target="_blank" rel="noopener noreferrer" class="">Markdown parsing</a> and <a href="https://github.com/textlint/textlint/blob/master/docs/products/textlint/features/plain-text-parsing/requirements.md" target="_blank" rel="noopener noreferrer" class="">plain text parsing</a> Requirements define the AST of each format.</p>
+<p>While writing them, we made the ambiguous parts of TxtAST stricter:</p>
+<ul>
+<li class="">Node types that are not in <code>@textlint/ast-node-types</code> are lowercase</li>
+<li class="">Lines end with LF, CR, or CRLF in every format</li>
+<li class=""><code>raw</code>, <code>range</code>, and <code>loc</code> of a node agree with each other, and <code>@textlint/ast-tester</code> checks it</li>
+</ul>
+<p>The breaking changes in this section come from these rules.</p>
+<p><a href="https://github.com/textlint/textlint/pull/2192" target="_blank" rel="noopener noreferrer" class="">#2192</a></p>
 <h3 class="anchor anchorTargetStickyNavbar_h6cq" id="built-in-plugins-are-esm-only">Built-in plugins are ESM-only<a href="https://textlint.org/textlint/pr-preview/pr-2205/blog/2026/11/15/textlint-16#built-in-plugins-are-esm-only" class="hash-link" aria-label="Direct link to Built-in plugins are ESM-only" title="Direct link to Built-in plugins are ESM-only" translate="no">​</a></h3>
 <p><code>@textlint/textlint-plugin-markdown</code> and <code>@textlint/textlint-plugin-text</code> are now ESM-only packages.
 <code>textlint</code>, <code>textlint-tester</code>, and <code>@textlint/legacy-textlint-core</code> stay CommonJS and load them with dynamic <code>import()</code>, so you do not need to change anything if you use textlint through them.
@@ -192,7 +272,6 @@ API users can pass in-memory text with <code>loadFormatter({ formatterName, getS
 <ul>
 <li class="">The kernel calls rule handlers with less work per node: event emission, <code>parent</code> definition, and traversal of <code>@textlint/ast-traverse</code> avoid extra allocations. The order of visited nodes and the arguments of handlers do not change <a href="https://github.com/textlint/textlint/pull/2202" target="_blank" rel="noopener noreferrer" class="">#2202</a></li>
 <li class=""><code>@textlint/ast-node-types</code>: the children types include <code>Definition</code>, <code>LinkReference</code>, and <code>ImageReference</code> <a href="https://github.com/textlint/textlint/pull/2196" target="_blank" rel="noopener noreferrer" class="">#2196</a></li>
-<li class="">Specifications of TxtAST, Markdown parsing, and plain text parsing are written under <code>docs/products/</code> <a href="https://github.com/textlint/textlint/pull/2192" target="_blank" rel="noopener noreferrer" class="">#2192</a></li>
 <li class="">Removed unused dependencies <a href="https://github.com/textlint/textlint/pull/2184" target="_blank" rel="noopener noreferrer" class="">#2184</a></li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_h6cq" id="thanks">Thanks<a href="https://textlint.org/textlint/pr-preview/pr-2205/blog/2026/11/15/textlint-16#thanks" class="hash-link" aria-label="Direct link to Thanks" title="Direct link to Thanks" translate="no">​</a></h2>
