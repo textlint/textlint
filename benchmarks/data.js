@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794724578650,
+  "lastUpdate": 1794724823163,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128981,6 +128981,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.48603477122000005,
             "range": "± 0.0054481679999999755",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "97391ebb3a9a32a483cd8fa8fafb256de3e769d3",
+          "message": "docs(txtnode): bring the TxtAST document in line with the requirements\n\n- Split the node type table into block and inline nodes, and move the\n  deprecated names (HtmlBlock, ReferenceDef) to their own table\n- Describe node types of a format, which start with a lowercase letter\n- Describe the conventions between raw, range, and loc\n- List the required properties of Definition and references\n- Fix statements that did not match the type definitions: Emphasis is a\n  parent node, Header has depth, TxtNodeLocation, and the TypeofTxtNode example\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T06:36:00Z",
+          "tree_id": "6ed19dc972444d09f4107cc3c7042beae8838670",
+          "url": "https://github.com/textlint/textlint/commit/97391ebb3a9a32a483cd8fa8fafb256de3e769d3"
+        },
+        "date": 1794724807410,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24018239548000003,
+            "range": "± 0.22192726699999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6746657066800001,
+            "range": "± 0.053395952999999885",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5048773984799999,
+            "range": "± 0.009014463000000084",
             "unit": "seconds"
           }
         ]
