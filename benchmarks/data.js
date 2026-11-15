@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794751631732,
+  "lastUpdate": 1794751731235,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -130955,6 +130955,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.43649050334000006,
             "range": "± 0.006584428000000031",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "57d67a627bc23dba5bc6f9004b12fb7ad0007b57",
+          "message": "fix(profile): keep JSON on stdout without rules, count only processed files\n\n- Print the no-rules warning to stderr while profiling, so `--profile --format json` stays parseable\n- Count the files the kernel processed, so files skipped by `--cache` are not counted\n- Listen to every node type in the parsed trees in the traverse micro benchmark\n- Run the Profile and benchmark workflow on changes to the small set\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFhDjQv5inahhbbFMD\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T14:06:49Z",
+          "tree_id": "fe9a3c6d0d7a5ef766ba490fda92312c51601cf3",
+          "url": "https://github.com/textlint/textlint/commit/57d67a627bc23dba5bc6f9004b12fb7ad0007b57"
+        },
+        "date": 1794751715056,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23213826924000003,
+            "range": "± 0.190057711",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.65227632024,
+            "range": "± 0.06824790299999983",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.50188778624,
+            "range": "± 0.011789842999999967",
             "unit": "seconds"
           }
         ]
