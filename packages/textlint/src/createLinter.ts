@@ -53,7 +53,9 @@ const createHashForDescriptor = async (descriptor: TextlintKernelDescriptor): Pr
     try {
         const { readPackageUpSync } = await import("read-package-up");
         const version = readPackageUpSync({ cwd: __dirname })?.packageJson.version ?? "unknown";
-        const toString = JSON.stringify(descriptor.toJSON());
+        // Rule options are normalized, so toJSON() alone cannot distinguish false from true or {}.
+        const enabledRules = (descriptor.toKernelOptions().rules ?? []).map((rule) => rule.ruleId);
+        const toString = JSON.stringify({ descriptor: descriptor.toJSON(), enabledRules });
         const md5 = crypto.createHash("md5");
         return md5.update(`${version}-${toString}`, "utf8").digest("hex");
     } catch (error) {
