@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794700923947,
+  "lastUpdate": 1794701421651,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -127847,6 +127847,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.62736836622,
             "range": "± 0.033759388",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "9ae236ce16a409b4600474b0eae1f72df1802f0e",
+          "message": "docs: clarify the purpose and the node type naming rule in the Product\n\nAddress review: textlint checks the structure of writing (paragraphs,\nheadings, sentences) on the AST, and terminology or spacing checks are\nsecondary. Node types that are formally part of TxtAST use PascalCase\nand other node types use lowercase. Record Yaml, Toml, Json, and\nFootnoteReference as open exceptions to that rule.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T00:08:30Z",
+          "tree_id": "7fd8636e8e9259539ec5acfb291b029f26841647",
+          "url": "https://github.com/textlint/textlint/commit/9ae236ce16a409b4600474b0eae1f72df1802f0e"
+        },
+        "date": 1794701406111,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23332299923999997,
+            "range": "± 0.20305905400000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8116218704399998,
+            "range": "± 0.08722211200000007",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.64383510164,
+            "range": "± 0.007883892000000059",
             "unit": "seconds"
           }
         ]
