@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794741617699,
+  "lastUpdate": 1794741930837,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129233,6 +129233,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.33644928939999996,
             "range": "± 0.020183589000000002",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "d9766d88df1e2fb4331360fb3cb85e9745ce98c1",
+          "message": "fix(ast-node-types): add Definition and reference nodes to the children types\n\nBlockContent did not include Definition, and PhrasingContent did not\ninclude LinkReference and ImageReference, although parsers produce them as\nchildren. Comparing child.type with these types was a type error.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T11:23:48Z",
+          "tree_id": "bce4f57c867c3858fd6b8fd0de79463769f55777",
+          "url": "https://github.com/textlint/textlint/commit/d9766d88df1e2fb4331360fb3cb85e9745ce98c1"
+        },
+        "date": 1794741918791,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.18743636596000002,
+            "range": "± 0.065588584",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.40392828676,
+            "range": "± 0.10033578799999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.43040629916000006,
+            "range": "± 0.0041583839999999594",
             "unit": "seconds"
           }
         ]
