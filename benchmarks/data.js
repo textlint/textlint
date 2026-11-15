@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794745529269,
+  "lastUpdate": 1794745607130,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129905,6 +129905,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.56016844724,
             "range": "± 0.022276982000000056",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "ad3c3aac23bbd7ddcaabc349767e97f6907a8bcd",
+          "message": "perf(kernel): reduce the work per node when calling rules\n\n- Call the listeners of a node type without creating promises when no listener returns one\n- Cache the `:exit` type names and reuse the descriptor of `parent`\n- Use a TypeScript private field instead of `#listeners`, which compiles to WeakMap helpers for ES2018\n- ast-traverse: push nodes to the work list directly instead of wrapping them in `TxtElement`, and skip non-object properties early\n\nThe traversal order, `parent`, the public methods of `Controller`, and the propagation of errors from rules do not change.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGR3BDvRtSTfYjuR1i\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T12:25:08Z",
+          "tree_id": "0e40a9afa747a32cb64786591c9f738c6fc1b53a",
+          "url": "https://github.com/textlint/textlint/commit/ad3c3aac23bbd7ddcaabc349767e97f6907a8bcd"
+        },
+        "date": 1794745593731,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.19496070125999998,
+            "range": "± 0.039066287000000005",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.59251345766,
+            "range": "± 0.11002153600000009",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.48010163005999995,
+            "range": "± 0.014987870000000014",
             "unit": "seconds"
           }
         ]
