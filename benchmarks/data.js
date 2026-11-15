@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794741534956,
+  "lastUpdate": 1794741617699,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129191,6 +129191,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.36037745974,
             "range": "± 0.015980454000000033",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bc11a9ff6accbd7203ebea79af4aab12a50f65aa",
+          "message": "feat(ast-tester)!: check the conventions between raw, range, and loc (#2194)\n\n<!-- claude-projects-attribution: {\"github_login\":\"azu\"} -->\n_Requested by **azu** · [project\nthread](https://claude.ai/code/project/chan_01WwDWq4F69cv9Kmg6AeSy8j?thread=cmsg_01WwDWq4F69cv9Kmg6AeSy8j5An4KhjkcRnaciZV2m2M4k)_\n\nFollow-up of #2188, which is merged. The base is `master`, and master is\nmerged into this branch, so the diff shows only the tester change.\n\n## Summary\n\n`@textlint/ast-tester` now checks the position conventions that the\nTxtAST requirements define, in addition to the common properties.\nIt is a breaking change, so it is intended for the v16 major.\n\n## What the tester checks now\n\nFor every node of the tree:\n\n- `raw` is the text of `range`. The document text is `raw` of the root.\n- `loc.start` and `loc.end` are the line and column of `range[0]` and\n`range[1]`.\n- The `range` of a child is inside the `range` of its parent.\n- Siblings are in source order and do not overlap.\n\n`\\n` and `\\r\\n` are line endings. A lone `\\r` is accepted as a line\nending or as a character, because Markdown counts it as a line ending\nand plain text does not. One tree has to use one of the two for all of\nits positions.\n\nThe tester walks the tree with a stack instead of recursion, and creates\nthe error message only when a check fails. Before, the message\nserialized the node for every assertion.\n\n## Other changes\n\n- `@textlint/text-to-ast`: `loc.end` of `Break` is column 0 of the next\nline. It was a column past the end of the line, which the new check\nrejects.\n- TxtAST requirements (`docs/products/textlint/features/txtast/`,\nEnglish and Japanese): added \"Checking an AST\", and removed the open\nquestion about enforcing the conventions in the tester.\n- `docs/txtnode.md`: describes what `test` checks.\n\n## Breaking changes\n\n- `test()` throws and `isTxtAST()` returns `false` for an AST that\nviolates the position conventions. textlint runs the tester on the AST\nof a plugin only while testing a rule or plugin, so linting documents is\nnot affected. The tests of a rule can start failing when its plugin\nproduces such an AST.\n- `loc.end` of `Break` from `@textlint/text-to-ast` changed.\n\n## Verification\n\n- `pnpm run test` for the whole repository passes with the new checks.\nThe ASTs of the built-in Markdown and plain text parsers in the kernel,\nplugin, and textlint tests pass the tester.\n- Third-party plugins were not measured. A plugin whose AST violates the\nconventions will fail in the tests of rules that use it.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-11-15T11:19:07Z",
+          "tree_id": "42cfff7ee7ab499c24332aa68fa91d74dbea093e",
+          "url": "https://github.com/textlint/textlint/commit/bc11a9ff6accbd7203ebea79af4aab12a50f65aa"
+        },
+        "date": 1794741609232,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.1413795254,
+            "range": "± 0.02562387000000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.0827004118,
+            "range": "± 0.04590078699999989",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.33644928939999996,
+            "range": "± 0.020183589000000002",
             "unit": "seconds"
           }
         ]
