@@ -24,7 +24,7 @@
                     "raw": "A footnote"
                 },
                 {
-                    "type": "FootnoteReference",
+                    "type": "footnoteReference",
                     "identifier": "tostring",
                     "label": "toString",
                     "loc": {
@@ -63,7 +63,7 @@
                     "raw": " and "
                 },
                 {
-                    "type": "FootnoteReference",
+                    "type": "footnoteReference",
                     "identifier": "__proto__",
                     "label": "__proto__",
                     "loc": {
@@ -102,7 +102,7 @@
                     "raw": " and "
                 },
                 {
-                    "type": "FootnoteReference",
+                    "type": "footnoteReference",
                     "identifier": "constructor",
                     "label": "constructor",
                     "loc": {

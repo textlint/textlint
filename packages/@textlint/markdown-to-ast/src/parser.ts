@@ -71,9 +71,11 @@ const TYPE_NAMES = [
     "Table",
     "TableRow",
     "TableCell",
-    "Yaml",
-    "Toml",
-    "Json",
+    // Front matter is not part of CommonMark/GFM spec and not defined in @textlint/ast-node-types.
+    // These types are lowercase: yaml, toml, json
+    "yaml",
+    "toml",
+    "json",
     "Str",
     "Break",
     "Emphasis",
@@ -85,8 +87,10 @@ const TYPE_NAMES = [
     "Image",
     "LinkReference",
     "ImageReference",
-    "FootnoteReference",
-    // It is not defined in TxtAST, but the previous parser(remark-footnotes) outputs this type
+    // Footnotes are not part of CommonMark/GFM spec and not defined in @textlint/ast-node-types.
+    // These types are lowercase: footnoteReference, footnoteDefinition, footnote
+    "footnoteReference",
+    // Pandoc-style inline note. The previous parser(remark-footnotes) outputs this type
     "footnote"
 ];
 const REFERENCE_TYPES = ["shortcut", "collapsed", "full"];

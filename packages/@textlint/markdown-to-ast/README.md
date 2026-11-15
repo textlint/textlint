@@ -16,6 +16,8 @@ Supported syntax:
 
 The output AST is compatible with the one of the previous remark-based implementation(`remark-parse` + `remark-gfm` + `remark-frontmatter`).
 
+Front matter and footnotes are not part of CommonMark/GFM, and their node types are not defined in `@textlint/ast-node-types`. These types are lowercase: `yaml`, `toml`, `json`, `footnoteReference`, `footnoteDefinition`, and `footnote`.
+
 The AST consists of `TxtNode`s.
 A `TxtNode` of the AST has following properties:
 
