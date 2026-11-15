@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794701574932,
+  "lastUpdate": 1794702371902,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -127931,6 +127931,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.7250818007000002,
             "range": "± 0.023980496000000073",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "dd2970f86de1e4719ba4553f1648412ff41d03bf",
+          "message": "docs: describe spacing and markup style checks as a separate concern\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T00:25:05Z",
+          "tree_id": "16258e41d1dbfe64c242f8d7980ff4dc4abeac5c",
+          "url": "https://github.com/textlint/textlint/commit/dd2970f86de1e4719ba4553f1648412ff41d03bf"
+        },
+        "date": 1794702364367,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.13137261690000002,
+            "range": "± 0.024086022999999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.1021515721,
+            "range": "± 0.09458539100000007",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.3992067057,
+            "range": "± 0.011025039999999986",
             "unit": "seconds"
           }
         ]
