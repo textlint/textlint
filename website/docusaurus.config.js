@@ -78,6 +78,8 @@ export default {
                     showLastUpdateTime: true,
                     editUrl: "https://github.com/textlint/textlint/edit/master/docs/",
                     path: "../docs",
+                    // sdev specifications under docs/products/ are not part of the website
+                    exclude: ["products/**"],
                     sidebarPath: "../website/sidebars.json"
                 },
                 blog: {

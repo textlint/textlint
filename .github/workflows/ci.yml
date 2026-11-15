@@ -32,6 +32,16 @@ jobs:
             - name: Test Examples
               run: pnpm run test:examples
 
+    sdev-lint:
+        name: sdev lint
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+              with:
+                persist-credentials: false
+            - name: Lint specifications
+              run: ./bin/sdev lint
+
     benchmark:
         name: Benchmark
         runs-on: ubuntu-latest
