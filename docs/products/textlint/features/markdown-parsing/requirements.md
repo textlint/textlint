@@ -108,15 +108,13 @@ Scenario: When the parser is bundled for a browser, it needs no Node.js polyfill
 
 ### Parsing speed
 
-- **Current value:** About 0.8 MB/s on 3,189 real-world `.md` files (15.3 MB, 18,506 ms, median). About 657–686 ms for 330 KB of this repository's Markdown.
-- **Target value:** No slower than the current value on the same corpus. Faster is preferred.
-- **Measurement method:** Parse the same corpus of real-world documents in a loop with Node.js 22 and compare medians between the current and the new implementation.
+- **Target value:** No slower than the previous release on the same corpus. Faster is preferred.
+- **Measurement method:** Parse a corpus of real-world documents in a loop and compare medians between the previous release and the change.
 - **Measurement period:** When the parser implementation changes.
 
 ### Dependencies
 
-- **Current value:** 96 third-party packages (7.5 MB) in the production dependency closure of `@textlint/markdown-to-ast`, computed from `pnpm-lock.yaml`.
-- **Target value:** Fewer than the current value. Packages that are only needed for processing other than parsing, such as Markdown serialization, are not needed.
+- **Target value:** Only packages needed for parsing are in the production dependency closure. Packages for other processing, such as Markdown serialization, are not needed.
 - **Measurement method:** Count the production dependency closure from `pnpm-lock.yaml`.
 - **Measurement period:** When dependencies of the package change.
 
@@ -182,9 +180,9 @@ None. Parsing runs locally and does not use any network service.
 
 textlint runs on documents from untrusted contributors in CI, so a crafted or unusual document must not stall parsing.
 Parsing time must stay close to proportional to the input size, including for long tables, many unclosed brackets, and deeply nested lists.
+Parsing must not overflow the call stack, however deeply blocks or inline delimiters are nested. An unusual document may give an unusual AST, but `parse` returns one instead of throwing `RangeError: Maximum call stack size exceeded`.
 
 ## Open questions
 
-- **Numeric target for parsing speed:** The target is "no slower than the current value" for now. A numeric target can be set after the parser implementation is decided. azu decides.
-- **Extremely deep nesting:** Thousands of nested block quotes or emphasis delimiters make `parse` throw `RangeError: Maximum call stack size exceeded`. Whether to return an AST for such input is not decided. Until then, the error reaches the caller. azu decides.
+- **Numeric target for parsing speed:** There is no numeric target. azu decides.
 - **CJK-friendly emphasis:** An opt-in option to recognize emphasis and strikethrough next to CJK punctuation is proposed in textlint/textlint#2113. Whether it becomes part of this feature is not decided. Until then, emphasis follows CommonMark. azu decides with the PR author.

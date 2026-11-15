@@ -129,7 +129,7 @@ Measured with Node.js 22 against the previous implementation:
 | 1,000 nested lists | about 24 s | about 0.9 s |
 
 Nested lists still grow faster than linear with the nesting depth.
-Thousands of nested block quotes or emphasis delimiters overflow the call stack in both implementations (see the open questions of the [Requirements](requirements.md#open-questions)).
+Thousands of nested block quotes or emphasis delimiters still overflow the call stack, as they did in the previous implementation, because parts of the parser recurse on the nesting depth. This does not meet the [security considerations](requirements.md#security-considerations) yet (see the open questions).
 A parse that throws leaves the pool in a state that the next `parse()` call resets.
 
 ## Deployment notes
@@ -158,5 +158,6 @@ This is accepted because the specifications and their example suites make the be
 
 ## Open questions
 
+- **Removing recursion for deep nesting:** The parts of the parser that recurse on the nesting depth need an explicit stack, or a nesting limit after which the rest is kept as text, so that deep nesting does not overflow the call stack. Which approach to take, and whether it is part of the first release, is not decided. azu decides.
 - **CJK-friendly emphasis:** textlint/textlint#2113 proposes an opt-in option that uses `remark-cjk-friendly`. With this design it needs to be implemented in the inline phase following the [markdown-cjk-friendly specification](https://github.com/tats-u/markdown-cjk-friendly), and `parse` needs an options argument. The Requirements decision comes first. azu decides with the PR author.
 - **Tab-related range differences:** The cause of the few `range` differences with trailing whitespace in nested containers with tabs is not understood. Until it is, they are treated as known differences. Investigate when a user reports a wrong position in such a document.

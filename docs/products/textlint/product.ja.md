@@ -120,4 +120,4 @@ textlint でも動かせますが、そのために作られてはいません�
 
 ## 未解決事項
 
-- **TxtAST の正式な仕様：** TxtAST は現在、緩やかにしか定義されていない。どのノードの種類が TxtAST に属し、どれが形式固有かを含めて仕様化することは目標だが、範囲と文書は決まっていない。それまでは `docs/txtnode.md` と `@textlint/ast-node-types` を参照する。azu が決める。
+- **TxtAST の正式な仕様：** TxtAST は緩やかにしか定義されていない。どのノードの種類が TxtAST に属し、どれが形式固有かを含めて仕様化することは目標だが、範囲と文書は決まっていない。それまでは `docs/txtnode.md` と `@textlint/ast-node-types` を参照する。azu が決める。

@@ -120,4 +120,4 @@ None, for the same reason.
 
 ## Open questions
 
-- **Formal TxtAST specification:** TxtAST is defined loosely today. Formalizing it, including which node types belong to TxtAST and which are format-specific, is a goal, but the scope and document are not decided. Until then, `docs/txtnode.md` and `@textlint/ast-node-types` are the reference. azu decides.
+- **Formal TxtAST specification:** TxtAST is defined loosely. Formalizing it, including which node types belong to TxtAST and which are format-specific, is a goal, but the scope and document are not decided. Until then, `docs/txtnode.md` and `@textlint/ast-node-types` are the reference. azu decides.
