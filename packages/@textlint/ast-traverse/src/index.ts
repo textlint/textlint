@@ -27,10 +27,12 @@ const VisitorOption = {
     Skip: SKIP
 };
 
+const SENTINEL = {} as AnyTxtNode;
+
 class Controller {
-    private __worklist!: TxtElement[];
-    private __leavelist!: TxtElement[];
-    private __current!: null | TxtElement;
+    private __worklist!: AnyTxtNode[];
+    private __leavelist!: (AnyTxtNode | null)[];
+    private __current!: null | AnyTxtNode;
 
     private __willStartTraverse() {
         this.__current = null;
@@ -40,19 +42,15 @@ class Controller {
 
     private __execute(
         callback: ((this: Controller, current: AnyTxtNode, parent: TxtParentNode) => unknown) | undefined,
-        element: TxtElement
+        node: AnyTxtNode
     ) {
         let result = undefined;
 
         const previous = this.__current;
-        this.__current = element;
+        this.__current = node;
         if (callback) {
-            const parentNode = this.__leavelist[this.__leavelist.length - 1].node as TxtParentNode;
-            // ignore null element
-            if (!element.node) {
-                return;
-            }
-            result = callback.call(this, element.node, parentNode);
+            const parentNode = this.__leavelist[this.__leavelist.length - 1] as TxtParentNode;
+            result = callback.call(this, node, parentNode);
         }
         this.__current = previous;
 
@@ -67,12 +65,9 @@ class Controller {
      * @public
      */
     parents(): TxtNode[] {
-        let i, iz;
-        // first node is sentinel
         const result: TxtNode[] = [];
-        for (i = 1, iz = this.__leavelist.length; i < iz; ++i) {
-            const txtElement = this.__leavelist[i];
-            const node = txtElement.node;
+        for (let i = 1, iz = this.__leavelist.length; i < iz; ++i) {
+            const node = this.__leavelist[i];
             if (node) {
                 result.push(node);
             }
@@ -86,10 +81,7 @@ class Controller {
      * @public
      */
     current(): TxtNode | null {
-        if (!this.__current) {
-            return null;
-        }
-        return this.__current.node;
+        return this.__current;
     }
 
     /**
@@ -98,87 +90,61 @@ class Controller {
      * @param {Visitor} visitor
      */
     traverse(root: TxtParentNode, visitor: Visitor) {
-        // Note: This is based https://github.com/estools/estraverse
-        // Avoid recursive call by design
         let ret;
         this.__willStartTraverse();
 
-        // Stop object
-        const sentinel = new TxtElement(null);
-
-        // reference
         const worklist = this.__worklist;
         const leavelist = this.__leavelist;
+        const enter = visitor.enter;
+        const leave = visitor.leave;
 
-        // initialize
-        worklist.push(new TxtElement(root));
-        leavelist.push(new TxtElement(null));
+        worklist.push(root);
+        leavelist.push(null);
 
         while (worklist.length) {
-            let element = worklist.pop();
-            if (element === undefined) {
-                continue;
-            }
-            if (element === sentinel) {
-                element = leavelist.pop();
-                if (element === undefined) {
+            const node = worklist.pop() as AnyTxtNode;
+            if (node === SENTINEL) {
+                const element = leavelist.pop();
+                if (!element) {
                     continue;
                 }
-                ret = this.__execute(visitor.leave, element);
-
+                ret = this.__execute(leave, element);
                 if (ret === BREAK) {
                     return;
                 }
                 continue;
             }
 
-            if (element.node) {
-                ret = this.__execute(visitor.enter, element);
+            ret = this.__execute(enter, node);
+            if (ret === BREAK) {
+                return;
+            }
 
-                if (ret === BREAK) {
-                    return;
-                }
+            worklist.push(SENTINEL);
+            leavelist.push(node);
 
-                worklist.push(sentinel);
-                leavelist.push(element);
+            if (ret === SKIP) {
+                continue;
+            }
 
-                if (ret === SKIP) {
+            const nodeRecord = node as unknown as Record<string, unknown>;
+            const candidates = Object.keys(node);
+            let current = candidates.length;
+            while ((current -= 1) >= 0) {
+                const candidate = nodeRecord[candidates[current]];
+                if (!candidate || typeof candidate !== "object") {
                     continue;
                 }
-
-                const node = element.node;
-                if (typeof node !== "object" || node === null) {
-                    continue;
-                }
-                const nodeRecord = node as unknown as Record<string, unknown>;
-                const candidates = Object.keys(node);
-
-                let current = candidates.length;
-                while ((current -= 1) >= 0) {
-                    const key = candidates[current];
-                    const candidate = nodeRecord[key];
-                    if (!candidate) {
-                        continue;
-                    }
-
-                    if (Array.isArray(candidate)) {
-                        let current2 = candidate.length;
-                        while ((current2 -= 1) >= 0) {
-                            if (!candidate[current2]) {
-                                continue;
-                            }
-                            if (isNode(candidate[current2])) {
-                                element = new TxtElement(candidate[current2]);
-                            } else {
-                                continue;
-                            }
-                            if (element) {
-                                worklist.push(element);
-                            }
+                if (Array.isArray(candidate)) {
+                    let current2 = candidate.length;
+                    while ((current2 -= 1) >= 0) {
+                        const child = candidate[current2];
+                        if (child && isNode(child)) {
+                            worklist.push(child);
                         }
-                    } else if (isNode(candidate)) {
-                        worklist.push(new TxtElement(candidate));
                     }
+                } else if (isNode(candidate)) {
+                    worklist.push(candidate);
                 }
             }
         }
