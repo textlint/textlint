@@ -18,6 +18,7 @@ A format may add node types and properties, and this document fixes only the par
 - The conventions between `raw`, `range`, and `loc`
 - What defines the generic node types and their properties
 - Extension nodes that a format adds, and how their names differ from generic nodes
+- What the tester checks
 - The relation to the public document for rule and plugin authors
 
 ### Out of scope
@@ -112,7 +113,7 @@ Scenario: When a plugin has a structure that no generic node covers, it adds an 
 ### Conformance of the built-in parsers
 
 - **Target value:** Every node that the built-in parsers produce satisfies the common properties and the position conventions.
-- **Measurement method:** Check every node of the ASTs for the parser test fixtures and for a corpus of real-world documents.
+- **Measurement method:** Run the tester on the ASTs for the parser test fixtures and for a corpus of real-world documents.
 - **Measurement period:** When a built-in parser changes.
 
 ## Functional requirements
@@ -262,6 +263,43 @@ The generic node gets a PascalCase name in the type definitions, and the change 
 textlint calls a rule only for the node types that the rule handles.
 A rule that does not handle an extension node is not called for it, and neither textlint nor the rule fails.
 
+### Checking an AST
+
+**Overview:** The tester tells a plugin author whether an AST is a TxtAST, so that a violation is found in the tests of the plugin instead of in a rule.
+
+**Input:** An AST.
+
+**Output:** Nothing when the AST is a TxtAST, or an error that names the violated condition and shows the node.
+
+#### Applicable conditions
+
+##### What the tester checks
+
+The tester is `@textlint/ast-tester`.
+It checks the common properties and the position conventions of every node of the tree.
+It reads the document text from `raw` of the root.
+
+##### What the tester does not check
+
+The tester does not check the properties of each generic node type. The type definitions define them.
+It does not check which syntax becomes which node.
+
+##### Line endings
+
+`\n` and `\r\n` are line endings for the tester.
+The tester accepts a lone `\r` both as a line ending and as a character, because formats differ.
+
+##### textlint checks while testing
+
+textlint runs the tester on the AST of a plugin when a rule or plugin is tested with its testing tools.
+textlint does not run the tester when it lints documents.
+
+#### Exceptional behavior
+
+##### A deep AST
+
+The tester checks an AST of any depth without overflowing the call stack, as long as the AST can be written as JSON.
+
 ### Public document
 
 **Overview:** The public document tells rule and plugin authors how to use TxtAST, and this document is the definition that the public document follows.
@@ -305,6 +343,5 @@ A parser limits the nesting depth of the AST that it produces, and states the li
 
 ## Open questions
 
-- **Checking the position conventions in the tester:** `@textlint/ast-tester` checks the common properties, and it is open whether it also rejects an AST that violates the position conventions. Published plugins may violate them, and a check would fail the tests of rules that use such a plugin. Until this is decided, the conventions are requirements for parsers, and each built-in parser checks them in its own tests. Revisit after measuring the ASTs of the widely used plugins. azu decides.
 - **Line endings that differ between parsers:** Formats count different characters as line endings, and textlint converts offsets to lines for messages with its own definition. It is open whether TxtAST fixes one definition for all formats. Until this is decided, each parser states its line endings, and messages use `range`. Revisit when a report shows a wrong line or column in a message. azu decides.
 - **Statements of the public document that differ from this document:** The public document lists `HtmlBlock` as a parent node and does not describe extension nodes or the position conventions. It is open whether the public document is rewritten in one change or section by section. Until then, this document is the definition. Revisit when this document is merged. azu decides.
