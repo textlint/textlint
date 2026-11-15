@@ -2,7 +2,7 @@
     "type": "Document",
     "children": [
         {
-            "type": "Yaml",
+            "type": "yaml",
             "value": "title: post\nobject:\n  key: value ---",
             "loc": {
                 "start": {

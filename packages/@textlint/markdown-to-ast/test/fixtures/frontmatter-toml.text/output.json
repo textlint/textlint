@@ -2,7 +2,7 @@
     "type": "Document",
     "children": [
         {
-            "type": "Toml",
+            "type": "toml",
             "value": "title = \"My Article Title\"\ndate = 2024-01-15\nauthor = \"John Doe\"\ntags = [\"markdown\", \"tutorial\", \"web\"]",
             "loc": {
                 "start": {

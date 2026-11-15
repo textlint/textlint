@@ -24,7 +24,7 @@
                     "raw": "foo"
                 },
                 {
-                    "type": "FootnoteReference",
+                    "type": "footnoteReference",
                     "identifier": "abc",
                     "label": "abc",
                     "loc": {
@@ -63,7 +63,7 @@
                     "raw": " bar. foo"
                 },
                 {
-                    "type": "FootnoteReference",
+                    "type": "footnoteReference",
                     "identifier": "xyz",
                     "label": "xyz",
                     "loc": {

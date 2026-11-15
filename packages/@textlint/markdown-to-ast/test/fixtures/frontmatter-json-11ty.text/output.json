@@ -2,7 +2,7 @@
     "type": "Document",
     "children": [
         {
-            "type": "Json",
+            "type": "json",
             "value": "{\n    \"title\": \"My Article Title\",\n    \"date\": \"2024-01-15\",\n    \"author\": \"John Doe\",\n    \"tags\": [\"markdown\", \"tutorial\", \"web\"]\n}",
             "loc": {
                 "start": {

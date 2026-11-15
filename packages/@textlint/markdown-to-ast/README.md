@@ -2,9 +2,22 @@
 
 Parse Markdown to AST with location info.
 
-This library is not parser itself, it dependent on [wooorm/remark](https://github.com/wooorm/remark).
+This library is a [CommonMark](https://spec.commonmark.org/) + [GFM](https://github.github.com/gfm/) parser that produces `TxtNode`s directly.
+It has no third-party dependencies.
 
-> Markdown -> remark -> markdown-to-ast -> `TxtNode`s
+> Markdown -> markdown-to-ast -> `TxtNode`s
+
+Supported syntax:
+
+- [CommonMark 0.31.2](https://spec.commonmark.org/0.31.2/)
+- [GFM](https://github.github.com/gfm/): tables, strikethrough, task list items, and autolink literals
+- Footnotes(`[^1]` and `[^1]: note`) and inline notes(`^[note]`)
+- Front matter: YAML(`---`), TOML(`+++`), JSON(`;;;` or `{`)
+
+The parser follows CommonMark for everything CommonMark defines, and GFM for the extensions GFM defines.
+The node of each syntax, its properties, and its range are defined in the [Markdown parsing requirements](https://github.com/textlint/textlint/blob/master/docs/products/textlint/features/markdown-parsing/requirements.md).
+
+Front matter and footnotes are not part of CommonMark/GFM, so their nodes are extension nodes with lowercase type names: `yaml`, `toml`, `json`, `footnoteReference`, `footnoteDefinition`, and `footnote`.
 
 The AST consists of `TxtNode`s.
 A `TxtNode` of the AST has following properties:
@@ -14,11 +27,32 @@ A `TxtNode` of the AST has following properties:
 - `raw` - Node have a `raw` text.
 - `value` - Node have a `value` of text.
 
+`raw`, `range`, and `loc` of a node always describe the same span of the text.
+
 The interface are defined in [textlint/txtnode.md](https://github.com/textlint/textlint/blob/master/docs/txtnode.md "textlint/txtnode.md at master · textlint/textlint")
 
 This library is a part of [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
 
-**If you need to markdown parser, please use [wooorm/remark](https://github.com/wooorm/remark) directly.**
+**If you need a general-purpose Markdown parser (mdast, HTML output, plugins), please use [remark](https://github.com/remarkjs/remark) directly.**
+
+## Design
+
+The parser is written with data-oriented design for performance.
+See the [Markdown parsing design](https://github.com/textlint/textlint/blob/master/docs/products/textlint/features/markdown-parsing/design.md) for details.
+
+- Nodes are stored in flat typed arrays (struct of arrays) and refer to each other by index while parsing
+- Strings are not copied while parsing. `raw` and `value` are sliced from the source text when the AST is emitted
+- `TxtNode` objects are created only once at the end. There is no intermediate AST such as mdast
+- Working buffers are reused between `parse()` calls
+- Parsing time is proportional to the size of the text, including for inputs that repeat unclosed syntax
+
+### Nesting limit
+
+The parser does not overflow the call stack for deeply nested inputs.
+
+- The nesting depth is limited to 100 for block containers (`BlockQuote`, `List`, `ListItem`, `footnoteDefinition`) and 100 for inline nodes (`Emphasis`, `Strong`, `Delete`, `Link`, `LinkReference`, `footnote`)
+- The markers beyond the limit are not parsed as syntax. They are kept as text
+- The tree is built and emitted with loops and explicit stacks instead of recursion
 
 ## DEMO
 

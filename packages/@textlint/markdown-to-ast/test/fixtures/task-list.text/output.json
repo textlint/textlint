@@ -2037,11 +2037,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "    Hello;",
+                                    "value": "Hello;",
                                     "loc": {
                                         "start": {
                                             "line": 58,
-                                            "column": 6
+                                            "column": 10
                                         },
                                         "end": {
                                             "line": 58,
@@ -2049,16 +2049,16 @@
                                         }
                                     },
                                     "range": [
-                                        534,
+                                        538,
                                         544
                                     ],
-                                    "raw": "    Hello;"
+                                    "raw": "Hello;"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 58,
-                                    "column": 6
+                                    "column": 10
                                 },
                                 "end": {
                                     "line": 58,
@@ -2066,10 +2066,10 @@
                                 }
                             },
                             "range": [
-                                534,
+                                538,
                                 544
                             ],
-                            "raw": "    Hello;"
+                            "raw": "Hello;"
                         }
                     ],
                     "loc": {
@@ -2098,11 +2098,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "    World;",
+                                    "value": "World;",
                                     "loc": {
                                         "start": {
                                             "line": 59,
-                                            "column": 6
+                                            "column": 10
                                         },
                                         "end": {
                                             "line": 59,
@@ -2110,16 +2110,16 @@
                                         }
                                     },
                                     "range": [
-                                        551,
+                                        555,
                                         561
                                     ],
-                                    "raw": "    World;"
+                                    "raw": "World;"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 59,
-                                    "column": 6
+                                    "column": 10
                                 },
                                 "end": {
                                     "line": 59,
@@ -2127,10 +2127,10 @@
                                 }
                             },
                             "range": [
-                                551,
+                                555,
                                 561
                             ],
-                            "raw": "    World;"
+                            "raw": "World;"
                         }
                     ],
                     "loc": {
@@ -2182,11 +2182,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "   Foo.",
+                                    "value": "Foo.",
                                     "loc": {
                                         "start": {
                                             "line": 61,
-                                            "column": 7
+                                            "column": 10
                                         },
                                         "end": {
                                             "line": 61,
@@ -2194,16 +2194,16 @@
                                         }
                                     },
                                     "range": [
-                                        570,
+                                        573,
                                         577
                                     ],
-                                    "raw": "   Foo."
+                                    "raw": "Foo."
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 61,
-                                    "column": 7
+                                    "column": 10
                                 },
                                 "end": {
                                     "line": 61,
@@ -2211,10 +2211,10 @@
                                 }
                             },
                             "range": [
-                                570,
+                                573,
                                 577
                             ],
-                            "raw": "   Foo."
+                            "raw": "Foo."
                         }
                     ],
                     "loc": {
@@ -2243,11 +2243,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "   Bar.",
+                                    "value": "Bar.",
                                     "loc": {
                                         "start": {
                                             "line": 62,
-                                            "column": 7
+                                            "column": 10
                                         },
                                         "end": {
                                             "line": 62,
@@ -2255,16 +2255,16 @@
                                         }
                                     },
                                     "range": [
-                                        585,
+                                        588,
                                         592
                                     ],
-                                    "raw": "   Bar."
+                                    "raw": "Bar."
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 62,
-                                    "column": 7
+                                    "column": 10
                                 },
                                 "end": {
                                     "line": 62,
@@ -2272,10 +2272,10 @@
                                 }
                             },
                             "range": [
-                                585,
+                                588,
                                 592
                             ],
-                            "raw": "   Bar."
+                            "raw": "Bar."
                         }
                     ],
                     "loc": {
@@ -2367,11 +2367,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "\tHello;",
+                                    "value": "Hello;",
                                     "loc": {
                                         "start": {
                                             "line": 67,
-                                            "column": 6
+                                            "column": 7
                                         },
                                         "end": {
                                             "line": 67,
@@ -2379,16 +2379,16 @@
                                         }
                                     },
                                     "range": [
-                                        655,
+                                        656,
                                         662
                                     ],
-                                    "raw": "\tHello;"
+                                    "raw": "Hello;"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 67,
-                                    "column": 6
+                                    "column": 7
                                 },
                                 "end": {
                                     "line": 67,
@@ -2396,10 +2396,10 @@
                                 }
                             },
                             "range": [
-                                655,
+                                656,
                                 662
                             ],
-                            "raw": "\tHello;"
+                            "raw": "Hello;"
                         }
                     ],
                     "loc": {
@@ -2428,11 +2428,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "\tWorld;",
+                                    "value": "World;",
                                     "loc": {
                                         "start": {
                                             "line": 68,
-                                            "column": 6
+                                            "column": 7
                                         },
                                         "end": {
                                             "line": 68,
@@ -2440,16 +2440,16 @@
                                         }
                                     },
                                     "range": [
-                                        669,
+                                        670,
                                         676
                                     ],
-                                    "raw": "\tWorld;"
+                                    "raw": "World;"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 68,
-                                    "column": 6
+                                    "column": 7
                                 },
                                 "end": {
                                     "line": 68,
@@ -2457,10 +2457,10 @@
                                 }
                             },
                             "range": [
-                                669,
+                                670,
                                 676
                             ],
-                            "raw": "\tWorld;"
+                            "raw": "World;"
                         }
                     ],
                     "loc": {
@@ -2512,11 +2512,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "\tFoo.",
+                                    "value": "Foo.",
                                     "loc": {
                                         "start": {
                                             "line": 70,
-                                            "column": 7
+                                            "column": 8
                                         },
                                         "end": {
                                             "line": 70,
@@ -2524,16 +2524,16 @@
                                         }
                                     },
                                     "range": [
-                                        685,
+                                        686,
                                         690
                                     ],
-                                    "raw": "\tFoo."
+                                    "raw": "Foo."
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 70,
-                                    "column": 7
+                                    "column": 8
                                 },
                                 "end": {
                                     "line": 70,
@@ -2541,10 +2541,10 @@
                                 }
                             },
                             "range": [
-                                685,
+                                686,
                                 690
                             ],
-                            "raw": "\tFoo."
+                            "raw": "Foo."
                         }
                     ],
                     "loc": {
@@ -2573,11 +2573,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "\tBar.",
+                                    "value": "Bar.",
                                     "loc": {
                                         "start": {
                                             "line": 71,
-                                            "column": 7
+                                            "column": 8
                                         },
                                         "end": {
                                             "line": 71,
@@ -2585,16 +2585,16 @@
                                         }
                                     },
                                     "range": [
-                                        698,
+                                        699,
                                         703
                                     ],
-                                    "raw": "\tBar."
+                                    "raw": "Bar."
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 71,
-                                    "column": 7
+                                    "column": 8
                                 },
                                 "end": {
                                     "line": 71,
@@ -2602,10 +2602,10 @@
                                 }
                             },
                             "range": [
-                                698,
+                                699,
                                 703
                             ],
-                            "raw": "\tBar."
+                            "raw": "Bar."
                         }
                     ],
                     "loc": {
@@ -2697,11 +2697,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "\t    Hello;",
+                                    "value": "Hello;",
                                     "loc": {
                                         "start": {
                                             "line": 76,
-                                            "column": 6
+                                            "column": 11
                                         },
                                         "end": {
                                             "line": 76,
@@ -2709,16 +2709,16 @@
                                         }
                                     },
                                     "range": [
-                                        756,
+                                        761,
                                         767
                                     ],
-                                    "raw": "\t    Hello;"
+                                    "raw": "Hello;"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 76,
-                                    "column": 6
+                                    "column": 11
                                 },
                                 "end": {
                                     "line": 76,
@@ -2726,10 +2726,10 @@
                                 }
                             },
                             "range": [
-                                756,
+                                761,
                                 767
                             ],
-                            "raw": "\t    Hello;"
+                            "raw": "Hello;"
                         }
                     ],
                     "loc": {
@@ -2781,11 +2781,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "    World;",
+                                    "value": "World;",
                                     "loc": {
                                         "start": {
                                             "line": 78,
-                                            "column": 7
+                                            "column": 11
                                         },
                                         "end": {
                                             "line": 78,
@@ -2793,16 +2793,16 @@
                                         }
                                     },
                                     "range": [
-                                        776,
+                                        780,
                                         786
                                     ],
-                                    "raw": "    World;"
+                                    "raw": "World;"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 78,
-                                    "column": 7
+                                    "column": 11
                                 },
                                 "end": {
                                     "line": 78,
@@ -2810,10 +2810,10 @@
                                 }
                             },
                             "range": [
-                                776,
+                                780,
                                 786
                             ],
-                            "raw": "    World;"
+                            "raw": "World;"
                         }
                     ],
                     "loc": {
@@ -2865,11 +2865,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "    \tHello;",
+                                    "value": "Hello;",
                                     "loc": {
                                         "start": {
                                             "line": 80,
-                                            "column": 6
+                                            "column": 11
                                         },
                                         "end": {
                                             "line": 80,
@@ -2877,16 +2877,16 @@
                                         }
                                     },
                                     "range": [
-                                        794,
+                                        799,
                                         805
                                     ],
-                                    "raw": "    \tHello;"
+                                    "raw": "Hello;"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 80,
-                                    "column": 6
+                                    "column": 11
                                 },
                                 "end": {
                                     "line": 80,
@@ -2894,10 +2894,10 @@
                                 }
                             },
                             "range": [
-                                794,
+                                799,
                                 805
                             ],
-                            "raw": "    \tHello;"
+                            "raw": "Hello;"
                         }
                     ],
                     "loc": {
@@ -2926,11 +2926,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "   \tWorld.",
+                                    "value": "World.",
                                     "loc": {
                                         "start": {
                                             "line": 81,
-                                            "column": 6
+                                            "column": 10
                                         },
                                         "end": {
                                             "line": 81,
@@ -2938,16 +2938,16 @@
                                         }
                                     },
                                     "range": [
-                                        812,
+                                        816,
                                         822
                                     ],
-                                    "raw": "   \tWorld."
+                                    "raw": "World."
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 81,
-                                    "column": 6
+                                    "column": 10
                                 },
                                 "end": {
                                     "line": 81,
@@ -2955,10 +2955,10 @@
                                 }
                             },
                             "range": [
-                                812,
+                                816,
                                 822
                             ],
-                            "raw": "   \tWorld."
+                            "raw": "World."
                         }
                     ],
                     "loc": {
@@ -3010,11 +3010,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": " \tBar.",
+                                    "value": "Bar.",
                                     "loc": {
                                         "start": {
                                             "line": 83,
-                                            "column": 7
+                                            "column": 9
                                         },
                                         "end": {
                                             "line": 83,
@@ -3022,16 +3022,16 @@
                                         }
                                     },
                                     "range": [
-                                        831,
+                                        833,
                                         837
                                     ],
-                                    "raw": " \tBar."
+                                    "raw": "Bar."
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 83,
-                                    "column": 7
+                                    "column": 9
                                 },
                                 "end": {
                                     "line": 83,
@@ -3039,10 +3039,10 @@
                                 }
                             },
                             "range": [
-                                831,
+                                833,
                                 837
                             ],
-                            "raw": " \tBar."
+                            "raw": "Bar."
                         }
                     ],
                     "loc": {
