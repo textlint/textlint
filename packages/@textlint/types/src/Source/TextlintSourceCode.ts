@@ -47,7 +47,8 @@ export interface TextlintSourceCode {
      */
     getSource(node?: AnyTxtNode, beforeCount?: number, afterCount?: number): string;
 
-    // StructuredSource wrapper
+    // Conversion between an index and a position.
+    // A line ends with LF, CR, or CRLF. A line starts with 1, and a column starts with 0.
     /**
      * @param {TextlintSourceCodeLocation} loc - location indicator.
      * @return {[ number, number ]} range.

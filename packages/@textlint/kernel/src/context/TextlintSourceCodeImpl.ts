@@ -6,7 +6,7 @@ import type {
     TextlintSourceCodeRange
 } from "@textlint/types";
 import { AnyTxtNode, ASTNodeTypes } from "@textlint/ast-node-types";
-import { StructuredSource } from "structured-source";
+import { SourceLineTable } from "./source-line-table.js";
 import { invariant } from "../util/invariant.js";
 
 /**
@@ -36,7 +36,7 @@ export class TextlintSourceCodeImpl implements TextlintSourceCode {
     filePath: string | undefined;
     ext: string;
 
-    private _structuredSource: StructuredSource;
+    private _lineTable: SourceLineTable;
 
     /**
      * @param {string} text
@@ -49,10 +49,7 @@ export class TextlintSourceCodeImpl implements TextlintSourceCode {
         invariant(ext || filePath, "should be set either of fileExt or filePath.");
         this.hasBOM = text.charCodeAt(0) === 0xfeff;
         this.text = this.hasBOM ? text.slice(1) : text;
-        /**
-         * @type StructuredSource
-         */
-        this._structuredSource = new StructuredSource(this.text);
+        this._lineTable = new SourceLineTable(this.text);
         this.ast = ast;
         this.filePath = filePath;
         /**
@@ -95,7 +92,7 @@ export class TextlintSourceCodeImpl implements TextlintSourceCode {
         }
     }
 
-    // StructuredSource wrapper
+    // Conversion between an index and a position
     // line is 1-based
     // column is 1-based
     /**
@@ -103,7 +100,7 @@ export class TextlintSourceCodeImpl implements TextlintSourceCode {
      * @return {[ number, number ]} range.
      */
     locationToRange(loc: TextlintSourceCodeLocation): TextlintSourceCodeRange {
-        return this._structuredSource.locationToRange(loc);
+        return this._lineTable.locationToRange(loc);
     }
 
     /**
@@ -111,17 +108,7 @@ export class TextlintSourceCodeImpl implements TextlintSourceCode {
      * @return {TextlintSourceCodeLocation} location.
      */
     rangeToLocation(range: TextlintSourceCodeRange): TextlintSourceCodeLocation {
-        const rangeToLocation = this._structuredSource.rangeToLocation([range[0], range[1]]);
-        return {
-            start: {
-                line: rangeToLocation.start.line,
-                column: rangeToLocation.start.column
-            },
-            end: {
-                line: rangeToLocation.end.line,
-                column: rangeToLocation.end.column
-            }
-        };
+        return this._lineTable.rangeToLocation(range);
     }
 
     /**
@@ -129,17 +116,13 @@ export class TextlintSourceCodeImpl implements TextlintSourceCode {
      * @return {number} index.
      */
     positionToIndex(pos: TextlintSourceCodePosition): number {
-        return this._structuredSource.positionToIndex(pos);
+        return this._lineTable.positionToIndex(pos);
     }
 
     /**
      * @param index - index to the source code.
      */
     indexToPosition(index: number): TextlintSourceCodePosition {
-        const indexToPosition = this._structuredSource.indexToPosition(index);
-        return {
-            line: indexToPosition.line,
-            column: indexToPosition.column
-        };
+        return this._lineTable.indexToPosition(index);
     }
 }
