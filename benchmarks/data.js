@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794747905292,
+  "lastUpdate": 1794748060688,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -130241,6 +130241,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.34024705136,
             "range": "± 0.06663923500000002",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "e99e3f89f844b991583077ab6f3a3777477a6225",
+          "message": "docs(products): name the Document property syntaxExtensions\n\n`extensions` is already the plugin option for file extensions, and\nTxtAST has extension nodes, so the property is named syntaxExtensions.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJbGt3YiCnRnMuQDFr\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T13:06:10Z",
+          "tree_id": "9750299c5ac6652d9711fab55dc7099692e0f3a9",
+          "url": "https://github.com/textlint/textlint/commit/e99e3f89f844b991583077ab6f3a3777477a6225"
+        },
+        "date": 1794748047570,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17921728332000003,
+            "range": "± 0.050337999999999994",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.3688688453200002,
+            "range": "± 0.0419649660000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.43480698691999997,
+            "range": "± 0.017044049000000006",
             "unit": "seconds"
           }
         ]
