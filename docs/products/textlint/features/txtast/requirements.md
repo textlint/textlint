@@ -6,7 +6,7 @@
 
 TxtAST is the tree of nodes that a plugin produces from a document and that textlint passes to rules.
 It describes the structure of the markup, and the prose stays in text nodes, so one rule works on every document format.
-This document defines what every TxtAST must satisfy: the common properties, the position conventions, the generic node types, and how a format adds its own nodes.
+This document defines what every TxtAST must satisfy: the common properties, the position conventions, and how a format adds its own nodes. The generic node types and their properties are defined by the type definitions of `@textlint/ast-node-types`.
 The parent Product is [textlint](../../product.md).
 
 TxtAST is defined loosely on purpose.
@@ -16,7 +16,7 @@ A format may add node types and properties, and this document fixes only the par
 
 - The properties that every node has
 - The conventions between `raw`, `range`, and `loc`
-- The generic node types and their required properties
+- What defines the generic node types and their properties
 - Extension nodes that a format adds, and how their names differ from generic nodes
 - The relation to the public document for rule and plugin authors
 
@@ -25,7 +25,7 @@ A format may add node types and properties, and this document fixes only the par
 - Which syntax of a format becomes which node. Each parser defines it, for example [Markdown parsing](../markdown-parsing/requirements.md)
 - The grammar of natural language. Sentences and words are not nodes, and rules split the prose
 - How textlint traverses the tree and calls rules
-- TypeScript type names and package layout
+- The list of generic nodes and their properties. The type definitions of `@textlint/ast-node-types` define it
 
 ## User stories
 
@@ -79,7 +79,7 @@ As a rule author, I want to tell from the name whether a node type is shared by 
 
 Scenario: When a node type is generic, its name is PascalCase
 
-- Given: A node type that this document lists as a generic node
+- Given: A node type that the type definitions list as a generic node
 - When: A rule author reads the type name
 - Then: The name starts with an uppercase letter, such as `Paragraph`
 
@@ -150,7 +150,7 @@ textlint adds `parent` to every node except the root before it calls rules.
 ##### Additional properties
 
 A node may have properties that this document does not list.
-A rule can rely across formats only on the properties that this document lists as required.
+A rule can rely across formats only on the properties that the type definitions mark as required.
 
 ##### Serializable
 
@@ -195,63 +195,36 @@ A parser states in its Requirements whether offsets count a byte order mark at t
 
 **Input:** A structure of a document that a generic node covers.
 
-**Output:** A node of the type below with its required properties.
+**Output:** A node of a generic type with its required properties.
 
 #### Applicable conditions
 
-##### Block nodes
+##### Defined by the type definitions
 
-| Type | Kind | Meaning | Required properties | Optional properties |
-| --- | --- | --- | --- | --- |
-| `Document` | Parent | The whole document | | |
-| `Paragraph` | Parent | A paragraph | | |
-| `Header` | Parent | A heading | `depth`: 1 to 6 | |
-| `BlockQuote` | Parent | A quotation of blocks | | |
-| `List` | Parent | A list. Its children are `ListItem` | | `ordered`, `start`, `spread` |
-| `ListItem` | Parent | An item of a list | | `checked`, `spread` |
-| `CodeBlock` | Text | A block of code. `value` is the code | | `lang`, `meta` |
-| `HorizontalRule` | | A thematic break | | |
-| `Html` | Text | Raw HTML, as a block or inline. `value` is the HTML | | |
-| `Comment` | Text | A comment of the format. `value` is the content of the comment | | |
-| `Table` | Parent | A table. Its children are `TableRow` | | `align` |
-| `TableRow` | Parent | A row of a table. Its children are `TableCell` | | |
-| `TableCell` | Parent | A cell of a table | | |
-| `Definition` | | A definition that a reference points to | `identifier`, `label`, `url` | `title` |
+The type definitions of `@textlint/ast-node-types` are the definition of the generic nodes.
+They define which node types exist, which properties each node type has, and which values a property takes.
+A property that the type definitions mark as optional may be absent, `undefined`, or `null`. Every other property is required.
+The comments of the type definitions state the meaning of each node type and property, such as what `value` holds.
+This document does not repeat the list, so that there is one definition.
 
-##### Inline nodes
+The generic nodes are of these kinds.
 
-| Type | Kind | Meaning | Required properties | Optional properties |
-| --- | --- | --- | --- | --- |
-| `Str` | Text | Prose. `value` is the text that rules check | | |
-| `Break` | | A hard line break | | |
-| `Emphasis` | Parent | Emphasis | | |
-| `Strong` | Parent | Strong emphasis | | |
-| `Delete` | Parent | Deleted text | | |
-| `Code` | Text | Inline code. `value` is the code | | |
-| `Link` | Parent | A link | `url` | `title` |
-| `Image` | | An image | `url` | `title`, `alt` |
-| `LinkReference` | Parent | A link that points to a `Definition` | `identifier`, `label`, `referenceType` | |
-| `ImageReference` | | An image that points to a `Definition` | `identifier`, `label`, `referenceType` | `alt` |
-
-##### Values of properties
-
-- `identifier` is the normalized form of `label`, used to match a reference with its `Definition`.
-- `referenceType` is `"full"`, `"collapsed"`, or `"shortcut"`.
-- `ordered` is a boolean, and `start` is the number of the first item of an ordered list.
-- `spread` tells whether the items are separated by blank lines.
-- `checked` is `true` or `false` for a task list item, and `null` or absent for other items.
-- `align` is an array with `"left"`, `"right"`, `"center"`, or `null` for each column.
-- An optional property is absent, `undefined`, or `null` when the document has no value for it.
+- Blocks: `Document`, `Paragraph`, `Header`, `BlockQuote`, `List`, `ListItem`, `CodeBlock`, `HorizontalRule`, `Html`, `Comment`, `Table`, `TableRow`, `TableCell`, and `Definition`
+- Inlines: `Str`, `Break`, `Emphasis`, `Strong`, `Delete`, `Code`, `Link`, `Image`, `LinkReference`, and `ImageReference`
 
 ##### Prose stays in `Str`
 
 Markup becomes nodes, and the natural language text stays in `Str`.
 A parser does not split `Str` into sentences or words.
 
-##### Names that are not generic nodes
+##### Deprecated names
 
-`HtmlBlock` and `ReferenceDef` are deprecated names.
+Names that the type definitions mark as deprecated, such as `HtmlBlock` and `ReferenceDef`, are not generic nodes.
 A parser produces `Html` and `Definition` instead.
+
+##### What the type definitions cannot express
+
+The position conventions, the rule that prose stays in `Str`, and the naming of extension nodes are defined only in this document.
 
 ### Extension nodes
 
@@ -280,7 +253,7 @@ The Requirements of the parser that produces an extension node list its type nam
 ##### Becoming a generic node
 
 An extension node becomes a generic node when several formats share the structure and rules need it across formats.
-The generic node gets a PascalCase name in this document, and the change of the type name is released in a major version.
+The generic node gets a PascalCase name in the type definitions, and the change of the type name is released in a major version.
 
 #### Exceptional behavior
 
