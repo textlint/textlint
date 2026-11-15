@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794724331841,
+  "lastUpdate": 1794724566513,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128897,6 +128897,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.4950085485200001,
             "range": "± 0.02198506999999994",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "b96b40eae99d4a14a76e062129cb958e5f444a87",
+          "message": "docs(txtnode): mark HtmlBlock as deprecated in the node type table\n\nThe table listed HtmlBlock as a parent node. The type definitions mark it\nas deprecated, and parsers produce Html for both HTML blocks and inline\nHTML.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T06:34:42Z",
+          "tree_id": "d9d49216355207b3c1bc5ca50895611413890248",
+          "url": "https://github.com/textlint/textlint/commit/b96b40eae99d4a14a76e062129cb958e5f444a87"
+        },
+        "date": 1794724557015,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.18508551460000003,
+            "range": "± 0.16130847499999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.2521075018,
+            "range": "± 0.06839131899999984",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.3803144492,
+            "range": "± 0.008777501999999993",
             "unit": "seconds"
           }
         ]
