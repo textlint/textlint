@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794700618109,
+  "lastUpdate": 1794700923947,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -127805,6 +127805,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.48777656038000006,
             "range": "± 0.01453266999999997",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9237d0311e0849b33597e8fd9848dd78d1f86551",
+          "message": "chore(deps): update dependency @babel/preset-env to ^7.29.14 (#2193)\n\nThis PR contains the following updates:\n\n| Package | Change |\n[Age](https://docs.renovatebot.com/merge-confidence/) |\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n| [@babel/preset-env](https://babel.dev/docs/en/next/babel-preset-env)\n([source](https://redirect.github.com/babel/babel/tree/HEAD/packages/babel-preset-env))\n| [`^7.29.7` →\n`^7.29.14`](https://renovatebot.com/diffs/npm/@babel%2fpreset-env/7.29.7/7.29.14)\n|\n![age](https://developer.mend.io/api/mc/badges/age/npm/@babel%2fpreset-env/7.29.14?slim=true)\n|\n![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@babel%2fpreset-env/7.29.7/7.29.14?slim=true)\n|\n\n⚠️ Renovate does not enforce Minimum Release Age for `bump`,\n`lockfileUpdate`, or `rollback` updates, so these are raised without a\nMinimum Release Age check. You will need to manually validate the\nMinimum Release Age for these package(s).\n\n---\n\n### Release Notes\n\n<details>\n<summary>babel/babel (@&#8203;babel/preset-env)</summary>\n\n###\n[`v7.29.14`](https://redirect.github.com/babel/babel/releases/tag/v7.29.14)\n\n[Compare\nSource](https://redirect.github.com/babel/babel/compare/v7.29.7...v7.29.14)\n\n#### v7.29.14 (2026-11-11)\n\n##### :eyeglasses: Spec Compliance\n\n- `babel-parser`\n- [#&#8203;18543](https://redirect.github.com/babel/babel/pull/18543)\nfix(parser): require `(` after `import.{source,defer,sync}`\n([@&#8203;babel-bot](https://redirect.github.com/babel-bot))\n\n##### :bug: Bug Fix\n\n- `babel-helper-module-transforms`,\n`babel-plugin-transform-dynamic-import`,\n`babel-plugin-transform-modules-amd`,\n`babel-plugin-transform-modules-commonjs`,\n`babel-plugin-transform-modules-umd`\n- [#&#8203;18597](https://redirect.github.com/babel/babel/pull/18597)\nRespect `importInterop: none` for dynamic import\n([@&#8203;babel-bot](https://redirect.github.com/babel-bot))\n- `babel-helper-member-expression-to-functions`,\n`babel-plugin-transform-classes`, `babel-plugin-transform-object-super`,\n`babel-plugin-transform-private-methods`\n- [#&#8203;18595](https://redirect.github.com/babel/babel/pull/18595)\nKeep the receiver of TS-wrapped `super` and private member calls\n([@&#8203;babel-bot](https://redirect.github.com/babel-bot))\n- `babel-parser`\n- [#&#8203;18596](https://redirect.github.com/babel/babel/pull/18596)\nfix(parser): allow ASI between modifier-like field and\n[@&#8203;dec](https://redirect.github.com/dec)\n([@&#8203;babel-bot](https://redirect.github.com/babel-bot))\n- [#&#8203;18588](https://redirect.github.com/babel/babel/pull/18588)\nfix(parser): rework ts arrow param tracking\n([@&#8203;babel-bot](https://redirect.github.com/babel-bot))\n- [#&#8203;18542](https://redirect.github.com/babel/babel/pull/18542)\nfix(parser): handle async do await in parameters\n([@&#8203;babel-bot](https://redirect.github.com/babel-bot))\n- `babel-helper-string-parser`, `babel-parser`\n- [#&#8203;18591](https://redirect.github.com/babel/babel/pull/18591)\nfix(parser): recover from out-of-range `\\u{...}` code points\n([@&#8203;babel-bot](https://redirect.github.com/babel-bot))\n- `babel-generator`\n- [#&#8203;18585](https://redirect.github.com/babel/babel/pull/18585)\nfix(generator): keep parens that end an optional chain before\n([@&#8203;babel-bot](https://redirect.github.com/babel-bot))\n- `babel-plugin-transform-class-static-block`\n- [#&#8203;18579](https://redirect.github.com/babel/babel/pull/18579)\nfix(class-static-block): skip class body path with stale ancestry\n([@&#8203;babel-bot](https://redirect.github.com/babel-bot))\n- `babel-helper-module-transforms`, `babel-parser`,\n`babel-plugin-transform-modules-commonjs`,\n`babel-plugin-transform-react-pure-annotations`,\n`babel-plugin-transform-typescript`, `babel-traverse`, `babel-types`\n- [#&#8203;18574](https://redirect.github.com/babel/babel/pull/18574)\nfix: improve string module specifiers support\n([@&#8203;babel-bot](https://redirect.github.com/babel-bot))\n- `babel-plugin-transform-flow-comments`\n- [#&#8203;18573](https://redirect.github.com/babel/babel/pull/18573)\nfix(flow-comments): support anonymous classes\n([@&#8203;babel-bot](https://redirect.github.com/babel-bot))\n- `babel-plugin-transform-block-scoping`, `babel-traverse`\n- [#&#8203;18571](https://redirect.github.com/babel/babel/pull/18571)\nfix: rename assignment targets in forXStatement\n([@&#8203;babel-bot](https://redirect.github.com/babel-bot))\n- `babel-helpers`, `babel-plugin-transform-async-generator-functions`,\n`babel-plugin-transform-regenerator`, `babel-preset-env`,\n`babel-runtime-corejs3`\n- [#&#8203;18569](https://redirect.github.com/babel/babel/pull/18569)\nfix(regenerator): dispatch pending jump after finally to outer finally\nblocks ([@&#8203;babel-bot](https://redirect.github.com/babel-bot))\n\n##### :house: Internal\n\n- [#&#8203;18575](https://redirect.github.com/babel/babel/pull/18575)\nci: do not run hooks of skipped describe blocks on Jest 24\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n\n##### Committers: 2\n\n- Babel Bot ([@&#8203;babel-bot](https://redirect.github.com/babel-bot))\n- Huáng Jùnliàng\n([@&#8203;JLHwung](https://redirect.github.com/JLHwung))\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: (in timezone Asia/Tokyo)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about this update\nagain.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0NC4yMjguMCIsInVwZGF0ZWRJblZlciI6IjQ0LjIyOC4wIiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbImRlcGVuZGVuY2llcyJdfQ==-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2026-11-15T00:00:26Z",
+          "tree_id": "69a5dd1c67f36e66279b219c1fcee956dbcfa6f4",
+          "url": "https://github.com/textlint/textlint/commit/9237d0311e0849b33597e8fd9848dd78d1f86551"
+        },
+        "date": 1794700911029,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20207701062,
+            "range": "± 0.04759621200000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.75879234002,
+            "range": "± 0.04430439399999986",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.62736836622,
+            "range": "± 0.033759388",
             "unit": "seconds"
           }
         ]
