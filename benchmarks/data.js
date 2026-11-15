@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794717126514,
+  "lastUpdate": 1794717251176,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128267,6 +128267,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.55652177508,
             "range": "± 0.015825599000000024",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "32d96f285e5a0cd46ed7a62e24e49df4d6dfec11",
+          "message": "docs: bound nesting depth with a fixed limit\n\nazu chose a nesting limit over unbounded explicit stacks: nesting\nbeyond the limit stays as text, which bounds both the call stack and\nthe time deeply nested lists take.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T04:32:23Z",
+          "tree_id": "fe8f9b667f1c23e967af3d22bb56d61668874e6d",
+          "url": "https://github.com/textlint/textlint/commit/32d96f285e5a0cd46ed7a62e24e49df4d6dfec11"
+        },
+        "date": 1794717238227,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21902198454000002,
+            "range": "± 0.03529428800000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.93863089774,
+            "range": "± 0.07877887699999997",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.72808987694,
+            "range": "± 0.007599401999999977",
             "unit": "seconds"
           }
         ]
