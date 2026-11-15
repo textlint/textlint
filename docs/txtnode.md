@@ -337,6 +337,7 @@ This is for compatibility with JavaScript AST.
 
 - `raw` is the text from `range[0]` to `range[1]`.
 - `loc.start` is the line and column of `range[0]`, and `loc.end` is the line and column of `range[1]`.
+- A line ends with LF, CR, or CRLF in every format. CRLF is one line ending.
 - The character after a line ending is at column 0 of the next line. If a node ends right after a line ending, `loc.end` is on the next line.
 - The `range` of a child is inside the `range` of its parent, and siblings do not overlap.
 

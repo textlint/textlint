@@ -204,7 +204,7 @@ The [disallowed raw HTML extension](https://github.github.com/gfm/#disallowed-ra
 
 ##### Line endings and characters
 
-- A line ends with `\n`, `\r\n`, or `\r` ([line ending](https://spec.commonmark.org/0.31.2/#line-ending)). `loc` counts lines by these line endings.
+- A line ends with `\n`, `\r\n`, or `\r` ([line ending](https://spec.commonmark.org/0.31.2/#line-ending)). `loc` counts lines by these line endings, as the [TxtAST](../txtast/requirements.md) Requirements define.
 - A BOM at the start of the text is removed before parsing. Offsets do not count it, and `raw` of `Document` does not include it.
 - U+0000 is replaced with U+FFFD in `value` and other properties ([insecure characters](https://spec.commonmark.org/0.31.2/#insecure-characters)). `raw` keeps the original character.
 - A tab is not replaced. It stays in `raw` and `value` as a tab ([tabs](https://spec.commonmark.org/0.31.2/#tabs)).

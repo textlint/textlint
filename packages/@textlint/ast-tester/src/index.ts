@@ -142,15 +142,17 @@ type PositionedNode = {
 
 /**
  * Start offsets of lines in the text.
- * `\n` and `\r\n` are line endings in every format. A lone `\r` is a line ending in some formats, such as Markdown.
+ * A line ends with LF, CR, or CRLF in every format. CRLF is one line ending.
+ * It is the same as the line endings of CommonMark and of the Language Server Protocol.
  */
-const lineStartsOf = (text: string, loneCR: boolean): number[] => {
+const lineStartsOf = (text: string): number[] => {
     const starts = [0];
     for (let i = 0; i < text.length; i++) {
         const c = text.charCodeAt(i);
-        if (c === 10) {
-            starts.push(i + 1);
-        } else if (c === 13 && loneCR && text.charCodeAt(i + 1) !== 10) {
+        if (c === 10 || c === 13) {
+            if (c === 13 && text.charCodeAt(i + 1) === 10) {
+                i++;
+            }
             starts.push(i + 1);
         }
     }
@@ -197,12 +199,7 @@ function testPositions(root: PositionedNode) {
         `invalid raw: the length of raw should be the length of range`
     );
     const origin = root.loc.start;
-    const starts = lineStartsOf(text, false);
-    // If the text has a lone `\r`, the format decides whether it is a line ending
-    const startsWithCR = /\r(?!\n)/.test(text) ? lineStartsOf(text, true) : starts;
-    // One definition of line endings has to match every position of the tree
-    let matchesWithoutCR = true;
-    let matchesWithCR = true;
+    const starts = lineStartsOf(text);
     const testLocOf = (node: PositionedNode, name: "start" | "end") => {
         const actual = node.loc[name];
         if (!isPosition(origin) || !isPosition(actual)) {
@@ -210,11 +207,8 @@ function testPositions(root: PositionedNode) {
         }
         const offset = node.range[name === "start" ? 0 : 1] - base;
         const expected = positionOf(starts, offset, origin);
-        const expectedWithCR = starts === startsWithCR ? expected : positionOf(startsWithCR, offset, origin);
-        matchesWithoutCR = matchesWithoutCR && actual.line === expected.line && actual.column === expected.column;
-        matchesWithCR = matchesWithCR && actual.line === expectedWithCR.line && actual.column === expectedWithCR.column;
         check(
-            matchesWithoutCR || matchesWithCR,
+            actual.line === expected.line && actual.column === expected.column,
             node,
             `invalid loc: loc.${name} should be the position of range[${
                 name === "start" ? 0 : 1

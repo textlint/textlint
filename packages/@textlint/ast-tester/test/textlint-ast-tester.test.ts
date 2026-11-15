@@ -61,20 +61,24 @@ describe("@textlint/ast-tester", function () {
             test(createAST());
             assert.ok(isTxtAST(createAST()));
         });
-        it("should accept a lone CR as a line ending or as a character", function () {
-            const asLineEnding = {
+        it("should count a line by LF, CR, and CRLF", function () {
+            const createLineAST = (lineEnding: string) => ({
                 type: "Document",
-                raw: "a\rb",
-                range: [0, 3],
+                raw: `a${lineEnding}b`,
+                range: [0, lineEnding.length + 2],
                 loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 1 } },
                 children: []
-            };
-            const asCharacter = {
-                ...asLineEnding,
-                loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } }
-            };
-            test(asLineEnding);
-            test(asCharacter);
+            });
+            for (const lineEnding of ["\n", "\r", "\r\n"]) {
+                test(createLineAST(lineEnding));
+            }
+            // U+2028 and U+2029 are characters of a line
+            for (const character of ["\u2028", "\u2029"]) {
+                test({
+                    ...createLineAST(character),
+                    loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } }
+                });
+            }
         });
         it("should test a deep AST", function () {
             let node: Record<string, unknown> = {
@@ -127,22 +131,17 @@ describe("@textlint/ast-tester", function () {
             AST.children[1].loc.start = { line: 1, column: 3 };
             assert.throws(() => test(AST), /invalid range: range should not overlap with the previous sibling/);
         });
-        it("should accept a lone CR as a line ending or as a character, but not both in one tree", () => {
-            const createCRAST = (rootEnd: object, child: { start: object; end: object }) => ({
-                type: "Document",
-                raw: "a\rb",
-                range: [0, 3],
-                loc: { start: { line: 1, column: 0 }, end: rootEnd },
-                children: [{ type: "Str", raw: "b", value: "b", range: [2, 3], loc: child }]
-            });
-            const asLineEnding = { start: { line: 2, column: 0 }, end: { line: 2, column: 1 } };
-            const asCharacter = { start: { line: 1, column: 2 }, end: { line: 1, column: 3 } };
-            test(createCRAST({ line: 2, column: 1 }, asLineEnding));
-            test(createCRAST({ line: 1, column: 3 }, asCharacter));
-            assert.throws(
-                () => test(createCRAST({ line: 2, column: 1 }, asCharacter)),
-                /invalid loc: loc.start should be the position of range\[0\]/
-            );
+        it("should throw when a line ending is counted as a character", () => {
+            for (const lineEnding of ["\r"]) {
+                const AST = {
+                    type: "Document",
+                    raw: `a${lineEnding}b`,
+                    range: [0, 3],
+                    loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } },
+                    children: []
+                };
+                assert.throws(() => test(AST), /invalid loc: loc.end should be the position of range\[1\]/);
+            }
         });
         it("should  throw", function () {
             assert.throws(function () {

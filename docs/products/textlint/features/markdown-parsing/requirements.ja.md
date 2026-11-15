@@ -204,7 +204,7 @@ GFM の [許可されない生の HTML の拡張](https://github.github.com/gfm/
 
 ##### 改行と文字
 
-- 行は `\n`、`\r\n`、`\r` で終わる（[line ending](https://spec.commonmark.org/0.31.2/#line-ending)）。`loc` はこれらの改行で行を数える。
+- 行は `\n`、`\r\n`、`\r` で終わる（[line ending](https://spec.commonmark.org/0.31.2/#line-ending)）。`loc` は、[TxtAST](../txtast/requirements.md) の Requirements が定めるとおり、これらの改行で行を数える。
 - テキストの先頭の BOM は、パースの前に取り除く。オフセットは BOM を数えず、`Document` の `raw` は BOM を含まない。
 - U+0000 は、`value` とほかのプロパティでは U+FFFD に置き換える（[insecure characters](https://spec.commonmark.org/0.31.2/#insecure-characters)）。`raw` は元の文字を保つ。
 - タブは置き換えない。`raw` と `value` にタブのまま残る（[tabs](https://spec.commonmark.org/0.31.2/#tabs)）。

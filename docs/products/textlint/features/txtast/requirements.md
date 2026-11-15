@@ -175,10 +175,10 @@ An AST consists of plain data that can be written as JSON and read back without 
 
 ##### Lines
 
-A line ends at a line ending of the format.
+A line of `loc` ends with LF (`\n`), CR (`\r`), or CRLF (`\r\n`) in every format. CRLF is one line ending.
 The character after a line ending is at column 0 of the next line.
-`\n` and `\r\n` are line endings in every format, and `\r\n` is one line ending.
-A format states any other line ending in the Requirements of its parser.
+These are the line endings of [CommonMark](https://spec.commonmark.org/0.31.2/#line-ending) and of the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocuments), so a line of `loc` is the line that editors show.
+Other characters do not end a line. U+2028 and U+2029 are characters of a line.
 
 A node may contain line endings in `raw` and `value`. For example, a paragraph of several lines is one `Paragraph`.
 A line ending is not always a node. The Requirements of each parser state which line endings become `Break`.
@@ -289,8 +289,7 @@ It does not check which syntax becomes which node.
 
 ##### Line endings
 
-`\n` and `\r\n` are line endings for the tester.
-The tester accepts a lone `\r` both as a line ending and as a character, because formats differ.
+The tester counts lines as the position conventions define, in every format.
 
 ##### textlint checks while testing
 
@@ -346,4 +345,4 @@ A parser limits the nesting depth of the AST that it produces, and states the li
 
 ## Open questions
 
-- **Characters that count as line endings differ between parsers:** This is about which characters end a line when `loc` is calculated, not about whether a node may contain line endings. Formats count different characters as line endings, for example a lone `\r` in Markdown, and textlint converts offsets to lines for messages with its own definition. It is open whether TxtAST fixes one definition for all formats. Until this is decided, each parser states its line endings, and messages use `range`. Revisit when a report shows a wrong line or column in a message. azu decides.
+- **Lines of messages for U+2028 and U+2029:** textlint converts `range` to the line and column of a message, and this conversion counts U+2028 and U+2029 as line endings. For a document with these characters, the line of a message differs from `loc` and from the line that editors show. It is open whether the conversion changes to the definition of this document. Until this is decided, `loc` follows this document and messages keep their conversion. Revisit when a report shows a wrong line in a message. azu decides.

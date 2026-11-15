@@ -159,4 +159,29 @@ describe("CommonMark and GFM conformance", () => {
             assert.deepStrictEqual(inlines("[x](u\u0000rl)"), ['Link[0,9]<u\uFFFDrl>(Str[1,2]="x")']);
         });
     });
+    describe("lines of loc", () => {
+        // U+2028 and U+2029 are not line endings of CommonMark
+        it("should not count U+2028 and U+2029 as line endings", () => {
+            for (const separator of ["\u2028", "\u2029"]) {
+                const AST = parse(`a${separator}# b *c*\n\nd`) as AnyNode;
+                assert.deepStrictEqual(
+                    AST.children!.map((node) => node.type),
+                    ["Paragraph", "Paragraph"]
+                );
+                const emphasis = AST.children![0].children![1];
+                assert.deepStrictEqual(emphasis.loc, {
+                    start: { line: 1, column: 6 },
+                    end: { line: 1, column: 9 }
+                });
+                assert.deepStrictEqual(AST.children![1].loc.start, { line: 3, column: 0 });
+            }
+        });
+        it("should count CR and CRLF as one line ending", () => {
+            const AST = parse("a\r\rb\r\n\r\nc") as AnyNode;
+            assert.deepStrictEqual(
+                AST.children!.map((node) => node.loc.start.line),
+                [1, 3, 5]
+            );
+        });
+    });
 });

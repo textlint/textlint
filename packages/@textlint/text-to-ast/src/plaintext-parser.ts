@@ -110,7 +110,8 @@ function createParagraph(nodes: TxtStrNode[]): TxtParagraphNode {
 }
 
 function splitTextByLine(text: string) {
-    const LINEBREAK_MARK_PATTERN = /\r?\n/g;
+    // A line ends with LF, CR, or CRLF. CRLF is one line ending
+    const LINEBREAK_MARK_PATTERN = /\r\n|[\n\r]/g;
     const results = [];
     let match = null;
     let prevMatchIndex = 0;

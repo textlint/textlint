@@ -196,4 +196,21 @@ describe("plaintext-parser-test", function () {
             assert.deepStrictEqual(ast, expected);
         });
     });
+    describe("line endings", function () {
+        it("should end a line with LF, CR, and CRLF", function () {
+            for (const lineEnding of ["\n", "\r", "\r\n"]) {
+                const text = `a${lineEnding}b`;
+                const ast = parse(text);
+                assert.deepStrictEqual(
+                    ast.children.map((node) => [node.type, node.raw, node.loc.start.line]),
+                    [
+                        [Syntax.Paragraph, "a", 1],
+                        [Syntax.Break, lineEnding, 1],
+                        [Syntax.Paragraph, "b", 2]
+                    ]
+                );
+                assert.deepStrictEqual(ast.loc.end, { line: 2, column: 1 });
+            }
+        });
+    });
 });
