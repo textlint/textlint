@@ -126,7 +126,8 @@ export type BlockContent =
     | TxtListNode
     | TxtTableNode
     | TxtHtmlNode
-    | TxtCodeBlockNode;
+    | TxtCodeBlockNode
+    | TxtDefinitionNode;
 /**
  * All node types that are acceptable inside lists.
  */
@@ -142,7 +143,7 @@ export type RowContent = TxtTableCellNode;
 /**
  * All node types that are acceptable in a (interactive) phrasing context (so not in links).
  */
-export type PhrasingContent = TxtLinkNode | StaticPhrasingContent;
+export type PhrasingContent = TxtLinkNode | TxtLinkReferenceNode | StaticPhrasingContent;
 /**
  * All node types that are acceptable in a static phrasing context.
  */
@@ -155,6 +156,7 @@ export type StaticPhrasingContent =
     | TxtCodeNode
     | TxtBreakNode
     | TxtImageNode
+    | TxtImageReferenceNode
     | TxtCommentNode;
 
 /**
