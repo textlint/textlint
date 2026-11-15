@@ -3,7 +3,7 @@
 import assert from "node:assert";
 import { describe, it } from "vitest";
 import { TextlintKernel } from "@textlint/kernel";
-import { TextlintPluginOptions } from "@textlint/types";
+import type { TextlintPluginOptions, TextlintRuleModule } from "@textlint/types";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import noTodo from "textlint-rule-no-todo";
@@ -58,6 +58,32 @@ describe("MarkdownPlugin", function () {
                 assert(results.messages.length > 0);
                 assert(results.filePath === fixturePath);
             });
+        });
+    });
+    describe("cjkFriendlyEmphasis", function () {
+        const reportStrong: TextlintRuleModule = (context) => ({
+            [context.Syntax.Strong](node) {
+                context.report(node, new context.RuleError(context.getSource(node)));
+            }
+        });
+        const lintStrong = (text: string, options: TextlintPluginOptions | boolean) => {
+            const kernel = new TextlintKernel();
+            return kernel.lintText(text, {
+                ext: ".md",
+                plugins: [{ pluginId: "markdown", plugin: MarkdownPlugin, options }],
+                rules: [{ ruleId: "report-strong", rule: reportStrong }]
+            });
+        };
+        it("should recognize strong emphasis after CJK punctuation when the option is true", async function () {
+            const results = await lintStrong("**強調。**この文", { cjkFriendlyEmphasis: true });
+            assert.deepStrictEqual(
+                results.messages.map((message) => message.message),
+                ["**強調。**"]
+            );
+        });
+        it("should follow CommonMark by default", async function () {
+            const results = await lintStrong("**強調。**この文", true);
+            assert.strictEqual(results.messages.length, 0);
         });
     });
     describe("When no file path", function () {
