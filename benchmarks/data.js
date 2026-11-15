@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794751524871,
+  "lastUpdate": 1794751596357,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -130871,6 +130871,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5501430471400001,
             "range": "± 0.005826063999999964",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "fc6c83a4bc6bf1280dc96e71fbb6fe8c458adfdd",
+          "message": "docs(blog): compare the number of dependencies with v15.8.0\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T14:00:50Z",
+          "tree_id": "1b703f6b18ad65d85cc55def6380d45f296648ea",
+          "url": "https://github.com/textlint/textlint/commit/fc6c83a4bc6bf1280dc96e71fbb6fe8c458adfdd"
+        },
+        "date": 1794751587563,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.13662972086000003,
+            "range": "± 0.026943219000000018",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.0686775712599998,
+            "range": "± 0.08429053500000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.3328177600600001,
+            "range": "± 0.033196334999999966",
             "unit": "seconds"
           }
         ]
