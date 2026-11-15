@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794724259042,
+  "lastUpdate": 1794724331841,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128855,6 +128855,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.43986433056,
             "range": "± 0.008585563000000018",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "cf59f367e264f1401905b1db6f3ffe254e187ab2",
+          "message": "test(ast-tester): lower the depth of the deep AST test\n\nJSON.stringify overflowed the call stack at 1000 levels on Windows.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T06:29:56Z",
+          "tree_id": "73439c6576ce989f6af3ca81cd368d070abae872",
+          "url": "https://github.com/textlint/textlint/commit/cf59f367e264f1401905b1db6f3ffe254e187ab2"
+        },
+        "date": 1794724318815,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22633545032,
+            "range": "± 0.18269391299999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6331037373200001,
+            "range": "± 0.08421944900000011",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.4950085485200001,
+            "range": "± 0.02198506999999994",
             "unit": "seconds"
           }
         ]
