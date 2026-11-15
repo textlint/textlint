@@ -151,7 +151,7 @@ A node is a plain object with its properties in a fixed order per kind.
 `raw` is sliced from the original text, and `loc` comes from the line table.
 Nodes are visited in source order, so the line lookup for a start offset continues from the line of the previous node instead of searching the table.
 
-When an extension is on, `Document` gets `extensions` as its last property, with a key for each extension that is on.
+When an extension is on, `Document` gets `syntaxExtensions` as its last property, with a key for each extension that is on.
 When none is on, the parser does not add the property, so the object is the same as without options.
 
 Nodes are created eagerly and completely.
@@ -185,8 +185,8 @@ None of them is exposed.
 `@textlint/textlint-plugin-markdown` reads `cjkFriendlyEmphasis` from its plugin options and passes it to `parse`, and passes no other plugin option.
 The processor keeps the options, so the parse after a fix uses the same options as the first parse.
 
-`TxtDocumentNode` in `@textlint/ast-node-types` has `extensions?: { readonly [name: string]: unknown }`, as the [TxtAST Requirements](../txtast/requirements.md#document-extensions) define.
-A rule reads it as `node.extensions?.cjkFriendlyEmphasis === true` in its `Document` handler, or from the root through `parent`.
+`TxtDocumentNode` in `@textlint/ast-node-types` has `syntaxExtensions?: { readonly [name: string]: unknown }`, as the [TxtAST Requirements](../txtast/requirements.md#document-extensions) define.
+A rule reads it as `node.syntaxExtensions?.cjkFriendlyEmphasis === true` in its `Document` handler, or from the root through `parent`.
 
 Nodes have only the common properties of TxtAST and the properties of their node type.
 
@@ -316,6 +316,11 @@ It was not chosen because each extension would add a property to the root, and a
 
 Writing `{ "cjkFriendlyEmphasis": false }` for every document states the default.
 It was not chosen because it changes the AST of every document, while a rule checks `=== true` either way.
+
+### Name the property `extensions`
+
+`extensions` is shorter.
+It was not chosen because the plugin already has an `extensions` option for file extensions, and TxtAST has extension nodes, so the same word would mean three things.
 
 ### Record extensions as an array of names
 

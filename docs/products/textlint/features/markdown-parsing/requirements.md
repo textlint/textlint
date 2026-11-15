@@ -19,7 +19,7 @@ A flavor is the whole set of rules that a tool follows, such as GFM. The parser 
 
 - The `parse(text, options)` function, and the options of `@textlint/textlint-plugin-markdown` that it passes to `parse`
 - Extensions that a writer turns on: CJK-friendly emphasis
-- The `extensions` property of `Document` that records which extensions were on
+- The `syntaxExtensions` property of `Document` that records which extensions were on
 - The specifications that decide how Markdown is recognized
 - The node that each syntax becomes, with its properties and its range
 - Syntax that textlint defines because no specification covers it: front matter, footnotes, and inline notes
@@ -119,7 +119,7 @@ Scenario: When `cjkFriendlyEmphasis` is on and the text has no CJK characters, t
 
 - Given: A document without CJK characters and variation selectors
 - When: The document is parsed with and without `cjkFriendlyEmphasis: true`
-- Then: The two ASTs are the same, except for `extensions` of `Document`
+- Then: The two ASTs are the same, except for `syntaxExtensions` of `Document`
 
 ### Know how the document was parsed
 
@@ -133,19 +133,19 @@ Scenario: When `cjkFriendlyEmphasis` is on, `Document` records it
 
 - Given: Any Markdown text and the option `cjkFriendlyEmphasis: true`
 - When: The text is parsed
-- Then: `Document` has `extensions`, and `extensions.cjkFriendlyEmphasis` is `true`
+- Then: `Document` has `syntaxExtensions`, and `syntaxExtensions.cjkFriendlyEmphasis` is `true`
 
-Scenario: When no extension is on, `Document` has no `extensions`
+Scenario: When no extension is on, `Document` has no `syntaxExtensions`
 
 - Given: Any Markdown text without options, or with `cjkFriendlyEmphasis: false`
 - When: The text is parsed
-- Then: `Document` has no `extensions` property
+- Then: `Document` has no `syntaxExtensions` property
 
 Scenario: When textlint lints with the plugin option, a rule reads the extension from `Document`
 
 - Given: A configuration `"plugins": { "@textlint/markdown": { "cjkFriendlyEmphasis": true } }` and a rule that handles `Document` and `Strong`
 - When: textlint lints a Markdown file
-- Then: The rule receives `Document` with `extensions.cjkFriendlyEmphasis` equal to `true` before it receives any `Strong` node
+- Then: The rule receives `Document` with `syntaxExtensions.cjkFriendlyEmphasis` equal to `true` before it receives any `Strong` node
 
 ### Report the right position
 
@@ -397,7 +397,7 @@ A [task list item](https://github.github.com/gfm/#task-list-items-extension-) is
 
 **Input:** The options of `parse`. `@textlint/textlint-plugin-markdown` takes the same options and passes them to `parse`.
 
-**Output:** The AST that the extension gives, and the `extensions` property of `Document`.
+**Output:** The AST that the extension gives, and the `syntaxExtensions` property of `Document`.
 
 #### Applicable conditions
 
@@ -420,19 +420,19 @@ A [task list item](https://github.github.com/gfm/#task-list-items-extension-) is
 - Only whether a delimiter run can open or close changes. Matching in source order, the rule of three, the nesting limit, and the node types, properties, and ranges of `Emphasis`, `Strong`, and `Delete` are those of [Inlines](#inlines).
 - No other syntax changes.
 
-##### `extensions` of `Document`
+##### `syntaxExtensions` of `Document`
 
-The meaning of `extensions` across formats is defined in [TxtAST](../txtast/requirements.md#document-extensions). This parser sets it as follows.
+The meaning of `syntaxExtensions` across formats is defined in [TxtAST](../txtast/requirements.md#document-extensions). This parser sets it as follows.
 
-- When at least one extension is on, `Document` has `extensions`, an object whose keys are the names of the options that are on, each with the value `true`. With `cjkFriendlyEmphasis`, it is `{ "cjkFriendlyEmphasis": true }`.
+- When at least one extension is on, `Document` has `syntaxExtensions`, an object whose keys are the names of the options that are on, each with the value `true`. With `cjkFriendlyEmphasis`, it is `{ "cjkFriendlyEmphasis": true }`.
 - An extension that is off is not a key.
-- When no extension is on, `Document` has no `extensions`, so the AST without options is the one that the rest of this document defines.
+- When no extension is on, `Document` has no `syntaxExtensions`, so the AST without options is the one that the rest of this document defines.
 
 #### Exceptional behavior
 
 ##### Unknown options
 
-An option that this document does not list is ignored. It is not a key of `extensions`, and `parse` does not throw.
+An option that this document does not list is ignored. It is not a key of `syntaxExtensions`, and `parse` does not throw.
 
 ##### Characters that the specification leaves open
 
@@ -518,7 +518,7 @@ A delimiter or bracket pair that would make an inline node deeper than the limit
 ### Required data
 
 - **Source text:** The Markdown string given to `parse`. It is not stored after `parse` returns.
-- **Options:** The options given to `parse`. `extensions` of `Document` records the extensions that were on.
+- **Options:** The options given to `parse`. `syntaxExtensions` of `Document` records the extensions that were on.
 
 ### Relationships
 

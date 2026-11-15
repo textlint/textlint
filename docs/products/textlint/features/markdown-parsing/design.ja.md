@@ -151,7 +151,7 @@ textlint が必要とするのは Markdown の処理系のうちパースの部�
 `raw` は元のテキストから切り出し、`loc` は行の表から求めます。
 ノードは元のテキストの順に訪れるので、開始オフセットの行は、表を探索せずに、前のノードの行から続けて求めます。
 
-拡張が有効なとき、`Document` は最後のプロパティとして `extensions` を持ち、そこには有効な拡張ごとにキーがあります。
+拡張が有効なとき、`Document` は最後のプロパティとして `syntaxExtensions` を持ち、そこには有効な拡張ごとにキーがあります。
 どれも有効でないとき、パーサーはこのプロパティを加えないので、オブジェクトはオプションなしのときと同じです。
 
 ノードは、最初からすべてのプロパティを持つ形で作ります。
@@ -185,8 +185,8 @@ textlint が必要とするのは Markdown の処理系のうちパースの部�
 `@textlint/textlint-plugin-markdown` は、プラグインのオプションから `cjkFriendlyEmphasis` を読んで `parse` に渡し、ほかのプラグインのオプションは渡しません。
 プロセッサーがオプションを保持するので、修正の後のパースは最初のパースと同じオプションを使います。
 
-`@textlint/ast-node-types` の `TxtDocumentNode` は、[TxtAST の Requirements](../txtast/requirements.ja.md#文書の拡張) が定義するとおり、`extensions?: { readonly [name: string]: unknown }` を持ちます。
-ルールは、`Document` のハンドラーで、または `parent` をたどったルートから、`node.extensions?.cjkFriendlyEmphasis === true` として読みます。
+`@textlint/ast-node-types` の `TxtDocumentNode` は、[TxtAST の Requirements](../txtast/requirements.ja.md#文書の拡張) が定義するとおり、`syntaxExtensions?: { readonly [name: string]: unknown }` を持ちます。
+ルールは、`Document` のハンドラーで、または `parent` をたどったルートから、`node.syntaxExtensions?.cjkFriendlyEmphasis === true` として読みます。
 
 ノードは、TxtAST の共通のプロパティと、そのノードの種類のプロパティだけを持ちます。
 
@@ -316,6 +316,11 @@ textlint には、すべてのルールで共有する設定がなく、ルー�
 
 すべての文書に `{ "cjkFriendlyEmphasis": false }` を書くと、既定値が明示されます。
 採用しなかったのは、すべての文書の AST が変わる一方で、ルールはどちらでも `=== true` で調べるからです。
+
+### プロパティの名前を `extensions` にする
+
+`extensions` のほうが短い名前です。
+採用しなかったのは、プラグインにはファイルの拡張子を表す `extensions` オプションがすでにあり、TxtAST には拡張ノードもあるので、同じ言葉が 3 つの意味を持つことになるからです。
 
 ### 拡張を名前の配列として記録する
 

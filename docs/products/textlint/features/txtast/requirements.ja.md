@@ -18,7 +18,7 @@ TxtAST は意図して緩く定義します。
 - `raw`、`range`、`loc` の間の規約
 - 汎用ノードの種類とプロパティを何が定義するか
 - 形式が追加する拡張ノードと、汎用ノードとの名前の違い
-- パースで有効にした拡張を記録する `Document` の `extensions` プロパティ
+- パースで有効にした拡張を記録する `Document` の `syntaxExtensions` プロパティ
 - テスターがチェックすること
 - ルール作者とプラグイン作者に向けた公開文書との関係
 
@@ -102,13 +102,13 @@ TxtAST は意図して緩く定義します。
 
 - Given: オプション `cjkFriendlyEmphasis: true` でパースした Markdown の文書
 - When: ルールが `Document` を受け取る
-- Then: `Document` の `extensions` は `{ "cjkFriendlyEmphasis": true }` である
+- Then: `Document` の `syntaxExtensions` は `{ "cjkFriendlyEmphasis": true }` である
 
-シナリオ：どの拡張も有効にしなかったとき、`Document` は `extensions` を持たない
+シナリオ：どの拡張も有効にしなかったとき、`Document` は `syntaxExtensions` を持たない
 
 - Given: オプションなしでパースした文書
 - When: ルールが `Document` を受け取る
-- Then: `Document` は `extensions` プロパティを持たず、ルールはすべての拡張を無効として扱う
+- Then: `Document` は `syntaxExtensions` プロパティを持たず、ルールはすべての拡張を無効として扱う
 
 ### 新しい形式の AST を作る
 
@@ -289,25 +289,25 @@ textlint は、ルールが扱うノードの種類についてだけルール�
 
 ### 文書の拡張
 
-**概要：** `Document` の `extensions` は、パースで有効にした拡張を記録する。ルールが、構文がどう認識されたかを知るためである。
+**概要：** `Document` の `syntaxExtensions` は、パースで有効にした拡張を記録する。ルールが、構文がどう認識されたかを知るためである。
 
 **入力：** パーサーが受け取ったオプション。
 
-**出力：** ルートの `Document` の `extensions` プロパティ。
+**出力：** ルートの `Document` の `syntaxExtensions` プロパティ。
 
 #### 適用条件
 
 ##### 形
 
-- `extensions` を持つのは `Document` だけである。これは、有効にした拡張の名前をキーとし、JSON の値を値とするオブジェクトである。
-- キーがないことは、その拡張を有効にしなかったことを表す。どの拡張も有効にしなかったとき、`Document` は `extensions` を持たない。
-- 型定義は `extensions` を省略可能とする。
+- `syntaxExtensions` を持つのは `Document` だけである。これは、有効にした拡張の名前をキーとし、JSON の値を値とするオブジェクトである。
+- キーがないことは、その拡張を有効にしなかったことを表す。どの拡張も有効にしなかったとき、`Document` は `syntaxExtensions` を持たない。
+- 型定義は `syntaxExtensions` を省略可能とする。
 
 ##### パーサーが定義する
 
-各パーサーの Requirements が、拡張ノードを載せるのと同じように、`extensions` のキーとその値を載せる。
+各パーサーの Requirements が、拡張ノードを載せるのと同じように、`syntaxExtensions` のキーとその値を載せる。
 拡張とは、Markdown の [CJK に配慮した強調](../markdown-parsing/requirements.ja.md#拡張) のように、形式の認識のしかたを 1 か所変えるもので、利用者がオプションで有効にする。
-拡張は拡張ノードではない。拡張ノードはノードの種類であり、`extensions` のキーはオプションの名前である。
+拡張は拡張ノードではない。拡張ノードはノードの種類であり、`syntaxExtensions` のキーはオプションの名前である。
 
 ##### AST が記録する理由
 
@@ -317,7 +317,7 @@ AST はすべてのルールが受け取るものなので、[ESTree](https://gi
 ##### ルールの読み方
 
 textlint はルールに、ほかのどのノードよりも先に `Document` を渡し、ほかのノードは `parent` をたどって `Document` に届く。
-ルールは `Document` から `extensions` を読み、`extensions` やキーがないときは無効として扱う。
+ルールは `Document` から `syntaxExtensions` を読み、`syntaxExtensions` やキーがないときは無効として扱う。
 
 #### 例外的な挙動
 

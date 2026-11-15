@@ -18,7 +18,7 @@ A format may add node types and properties, and this document fixes only the par
 - The conventions between `raw`, `range`, and `loc`
 - What defines the generic node types and their properties
 - Extension nodes that a format adds, and how their names differ from generic nodes
-- The `extensions` property of `Document`, which records the parser extensions that were on
+- The `syntaxExtensions` property of `Document`, which records the parser extensions that were on
 - What the tester checks
 - The relation to the public document for rule and plugin authors
 
@@ -102,13 +102,13 @@ Scenario: When a parser ran with an extension on, `Document` records it
 
 - Given: A Markdown document parsed with the option `cjkFriendlyEmphasis: true`
 - When: A rule receives `Document`
-- Then: `extensions` of `Document` is `{ "cjkFriendlyEmphasis": true }`
+- Then: `syntaxExtensions` of `Document` is `{ "cjkFriendlyEmphasis": true }`
 
-Scenario: When no extension was on, `Document` has no `extensions`
+Scenario: When no extension was on, `Document` has no `syntaxExtensions`
 
 - Given: A document parsed without options
 - When: A rule receives `Document`
-- Then: `Document` has no `extensions` property, and the rule treats every extension as off
+- Then: `Document` has no `syntaxExtensions` property, and the rule treats every extension as off
 
 ### Produce an AST for a new format
 
@@ -289,25 +289,25 @@ A rule that does not handle an extension node is not called for it, and neither 
 
 ### Document extensions
 
-**Overview:** `extensions` of `Document` records the parser extensions that were on, so that a rule knows how the syntax was recognized.
+**Overview:** `syntaxExtensions` of `Document` records the parser extensions that were on, so that a rule knows how the syntax was recognized.
 
 **Input:** The options that a parser received.
 
-**Output:** The `extensions` property of the root `Document`.
+**Output:** The `syntaxExtensions` property of the root `Document`.
 
 #### Applicable conditions
 
 ##### Shape
 
-- Only `Document` has `extensions`. It is an object whose keys name the extensions that were on, and whose values are JSON values.
-- A key that is absent means that the extension was off. When no extension was on, `Document` has no `extensions`.
-- The type definitions mark `extensions` as optional.
+- Only `Document` has `syntaxExtensions`. It is an object whose keys name the extensions that were on, and whose values are JSON values.
+- A key that is absent means that the extension was off. When no extension was on, `Document` has no `syntaxExtensions`.
+- The type definitions mark `syntaxExtensions` as optional.
 
 ##### Defined by the parser
 
-The Requirements of each parser list the keys of `extensions` and their values, as they list extension nodes.
+The Requirements of each parser list the keys of `syntaxExtensions` and their values, as they list extension nodes.
 An extension is one change to how a format is recognized that a user turns on with an option, such as [CJK-friendly emphasis](../markdown-parsing/requirements.md#extensions) in Markdown.
-It is not an extension node: an extension node is a node type, and a key of `extensions` names an option.
+It is not an extension node: an extension node is a node type, and a key of `syntaxExtensions` names an option.
 
 ##### Why the AST records it
 
@@ -317,7 +317,7 @@ The AST is what every rule receives, so the root records how it was parsed, as [
 ##### How a rule reads it
 
 textlint passes `Document` to a rule before any other node, and every other node reaches it through `parent`.
-A rule reads `extensions` from `Document`, and treats an absent `extensions` or an absent key as off.
+A rule reads `syntaxExtensions` from `Document`, and treats an absent `syntaxExtensions` or an absent key as off.
 
 #### Exceptional behavior
 

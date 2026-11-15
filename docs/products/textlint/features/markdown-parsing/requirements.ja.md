@@ -19,7 +19,7 @@ Markdown には仕様があるので、構文はノードにパースします�
 
 - `parse(text, options)` 関数と、`@textlint/textlint-plugin-markdown` が `parse` に渡すオプション
 - 書き手が有効にする拡張: CJK に配慮した強調
-- どの拡張を有効にしたかを記録する `Document` の `extensions` プロパティ
+- どの拡張を有効にしたかを記録する `Document` の `syntaxExtensions` プロパティ
 - Markdown の認識のしかたを決める仕様
 - 各構文がなるノードと、そのプロパティと範囲
 - どの仕様にもないために textlint が定義する構文: フロントマター、脚注、インラインの注
@@ -119,7 +119,7 @@ GFM はこのテキストのアスタリスクをそのまま表示し、これ�
 
 - Given: CJK の文字と異体字セレクターを含まない文書
 - When: `cjkFriendlyEmphasis: true` ありとなしで文書をパースする
-- Then: 2 つの AST は、`Document` の `extensions` を除いて同じである
+- Then: 2 つの AST は、`Document` の `syntaxExtensions` を除いて同じである
 
 ### 文書がどうパースされたかを知る
 
@@ -133,19 +133,19 @@ GFM はこのテキストのアスタリスクをそのまま表示し、これ�
 
 - Given: 任意の Markdown のテキストとオプション `cjkFriendlyEmphasis: true`
 - When: テキストをパースする
-- Then: `Document` は `extensions` を持ち、`extensions.cjkFriendlyEmphasis` は `true` である
+- Then: `Document` は `syntaxExtensions` を持ち、`syntaxExtensions.cjkFriendlyEmphasis` は `true` である
 
-シナリオ：どの拡張も有効でないとき、`Document` は `extensions` を持たない
+シナリオ：どの拡張も有効でないとき、`Document` は `syntaxExtensions` を持たない
 
 - Given: オプションなし、または `cjkFriendlyEmphasis: false` の任意の Markdown のテキスト
 - When: テキストをパースする
-- Then: `Document` は `extensions` プロパティを持たない
+- Then: `Document` は `syntaxExtensions` プロパティを持たない
 
 シナリオ：textlint がプラグインのオプション付きで検査するとき、ルールは `Document` から拡張を読む
 
 - Given: 設定 `"plugins": { "@textlint/markdown": { "cjkFriendlyEmphasis": true } }` と、`Document` と `Strong` を扱うルール
 - When: textlint が Markdown のファイルを検査する
-- Then: ルールは、どの `Strong` ノードよりも先に、`extensions.cjkFriendlyEmphasis` が `true` である `Document` を受け取る
+- Then: ルールは、どの `Strong` ノードよりも先に、`syntaxExtensions.cjkFriendlyEmphasis` が `true` である `Document` を受け取る
 
 ### 正しい位置を報告する
 
@@ -397,7 +397,7 @@ GFM の [許可されない生の HTML の拡張](https://github.github.com/gfm/
 
 **入力：** `parse` のオプション。`@textlint/textlint-plugin-markdown` は同じオプションを受け取り、`parse` に渡す。
 
-**出力：** 拡張による AST と、`Document` の `extensions` プロパティ。
+**出力：** 拡張による AST と、`Document` の `syntaxExtensions` プロパティ。
 
 #### 適用条件
 
@@ -420,19 +420,19 @@ GFM の [許可されない生の HTML の拡張](https://github.github.com/gfm/
 - 変わるのは、区切り文字の並びが開けるか閉じられるかだけである。元のテキストの順での対応、3 の倍数の規則、入れ子の上限、`Emphasis`、`Strong`、`Delete` のノードの種類、プロパティ、範囲は [インライン](#インライン) のとおりである。
 - ほかの構文は変わらない。
 
-##### `Document` の `extensions`
+##### `Document` の `syntaxExtensions`
 
-形式をまたいだ `extensions` の意味は [TxtAST](../txtast/requirements.ja.md#文書の拡張) が定義する。このパーサーは次のように設定する。
+形式をまたいだ `syntaxExtensions` の意味は [TxtAST](../txtast/requirements.ja.md#文書の拡張) が定義する。このパーサーは次のように設定する。
 
-- 少なくとも 1 つの拡張が有効なとき、`Document` は `extensions` を持つ。これは有効なオプションの名前をキーとし、それぞれの値を `true` とするオブジェクトである。`cjkFriendlyEmphasis` では `{ "cjkFriendlyEmphasis": true }` になる。
+- 少なくとも 1 つの拡張が有効なとき、`Document` は `syntaxExtensions` を持つ。これは有効なオプションの名前をキーとし、それぞれの値を `true` とするオブジェクトである。`cjkFriendlyEmphasis` では `{ "cjkFriendlyEmphasis": true }` になる。
 - 無効な拡張はキーにならない。
-- どの拡張も有効でないとき、`Document` は `extensions` を持たない。そのため、オプションなしの AST は、この文書のほかの部分が定義するものである。
+- どの拡張も有効でないとき、`Document` は `syntaxExtensions` を持たない。そのため、オプションなしの AST は、この文書のほかの部分が定義するものである。
 
 #### 例外的な挙動
 
 ##### 知らないオプション
 
-この文書が載せていないオプションは無視する。それは `extensions` のキーにならず、`parse` は例外を投げない。
+この文書が載せていないオプションは無視する。それは `syntaxExtensions` のキーにならず、`parse` は例外を投げない。
 
 ##### 仕様が決めていない文字
 
@@ -518,7 +518,7 @@ Markdown に構文エラーはない。閉じていない構文や無効な構�
 ### 必要なデータ
 
 - **ソーステキスト：** `parse` に渡された Markdown の文字列。`parse` が返った後は保持しない。
-- **オプション：** `parse` に渡されたオプション。`Document` の `extensions` が、有効にした拡張を記録する。
+- **オプション：** `parse` に渡されたオプション。`Document` の `syntaxExtensions` が、有効にした拡張を記録する。
 
 ### 関係
 
