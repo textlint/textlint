@@ -151,8 +151,7 @@ textlint が必要とするのは Markdown の処理系のうちパースの部�
 `raw` は元のテキストから切り出し、`loc` は行の表から求めます。
 ノードは元のテキストの順に訪れるので、開始オフセットの行は、表を探索せずに、前のノードの行から続けて求めます。
 
-拡張が有効なとき、`Document` は最後のプロパティとして `syntaxExtensions` を持ち、そこには有効な拡張ごとにキーがあります。
-どれも有効でないとき、パーサーはこのプロパティを加えないので、オブジェクトはオプションなしのときと同じです。
+オプションは出力フェーズを変えず、AST はオプションを記録しません。
 
 ノードは、最初からすべてのプロパティを持つ形で作ります。
 ルールはどのノードのどのプロパティも読むことがあり、プレーンなオブジェクトは、TxtAST が求めるとおり AST をシリアライズできる状態に保ちます。
@@ -185,8 +184,8 @@ textlint が必要とするのは Markdown の処理系のうちパースの部�
 `@textlint/textlint-plugin-markdown` は、プラグインのオプションから `cjkFriendlyEmphasis` を読んで `parse` に渡し、ほかのプラグインのオプションは渡しません。
 プロセッサーがオプションを保持するので、修正の後のパースは最初のパースと同じオプションを使います。
 
-`@textlint/ast-node-types` の `TxtDocumentNode` は、[TxtAST の Requirements](../txtast/requirements.ja.md#文書の拡張) が定義するとおり、`syntaxExtensions?: { readonly [name: string]: unknown }` を持ちます。
-ルールは、`Document` のハンドラーで、または `parent` をたどったルートから、`node.syntaxExtensions?.cjkFriendlyEmphasis === true` として読みます。
+AST はオプションを記録せず、`@textlint/ast-node-types` は変わりません。
+拡張に依存するルールは、[Requirements](requirements.ja.md#拡張に依存するルール) に書いたとおり、自分のオプションを持ちます。
 
 ノードは、TxtAST の共通のプロパティと、そのノードの種類のプロパティだけを持ちます。
 
@@ -296,36 +295,25 @@ textlint が使わないパッケージを持ち込みます。
 [#2113](https://github.com/textlint/textlint/pull/2113) は、remark のプラグインで CJK に配慮した強調を加えます。
 採用しなかったのは、[remark を使う](#remark-を使う) に書いた理由で、パーサーがもう remark を使わないからです。
 
-### ルールごとにオプションを持たせる
+### ルールごとにオプションを持たせる（採用）
 
-ja-space-around-strong のようなルールは、[textlint-rule-preset-ja-spacing#144](https://github.com/textlint-ja/textlint-rule-preset-ja-spacing/pull/144) の `cjkFriendly` のように、自分のオプションを持てます。
-採用しなかったのは、書き手が同じ選択をプラグインとすべてのルールに設定することになり、オプションがパーサーと食い違ったルールは、AST にない認識に基づいてテキストを修正するからです。
+ja-space-around-strong のように、強調の認識のしかたで挙動が変わるルールは、[textlint-rule-preset-ja-spacing#144](https://github.com/textlint-ja/textlint-rule-preset-ja-spacing/pull/144) のように自分のオプションを持ちます。
+代わりに、書き手はプラグインとそのようなルールのそれぞれで拡張を有効にする必要があります。また、オプションがプラグインと食い違ったルールは、AST にない認識に基づいてテキストを扱います。
+これを受け入れるのは、この拡張に依存するルールが少なく、AST と TxtAST の規約を変えずに済むからです。
 
 ### すべてのルールが読める設定を加える
 
 textlint には、すべてのルールで共有する設定がなく、ルールはプラグインのオプションを読めません。
-共有の設定を加えると、1 つのフラグのために設定とカーネルが変わり、その設定もパーサーと一致させる必要が残ります。
-拡張を AST に記録すれば、情報源は AST を作ったパーサーの 1 つになります。
+採用しなかったのは、共有の設定を加えると 1 つのフラグのために設定とカーネルが変わり、その設定もパーサーと一致させる必要が残るからです。
 
-### 拡張ごとに `Document` のプロパティを持たせる
+### 拡張を `Document` に記録する
 
-`Document.cjkFriendlyEmphasis` のほうが短く読めます。
-採用しなかったのは、拡張ごとにルートのプロパティが増え、ルールが文書のパースのされ方を 1 か所から知ることができないからです。
-
-### 無効な拡張を `false` として記録する
-
-すべての文書に `{ "cjkFriendlyEmphasis": false }` を書くと、既定値が明示されます。
-採用しなかったのは、すべての文書の AST が変わる一方で、ルールはどちらでも `=== true` で調べるからです。
-
-### プロパティの名前を `extensions` にする
-
-`extensions` のほうが短い名前です。
-採用しなかったのは、プラグインにはファイルの拡張子を表す `extensions` オプションがすでにあり、TxtAST には拡張ノードもあるので、同じ言葉が 3 つの意味を持つことになるからです。
-
-### 拡張を名前の配列として記録する
-
-`["cjkFriendlyEmphasis"]` もシリアライズできます。
-オブジェクトを選んだのは、ルールが探索せずに 1 つのキーを読め、将来の拡張が `true` 以外の値を持てるからです。
+パーサーが、有効にした拡張を `Document.syntaxExtensions = { cjkFriendlyEmphasis: true }` のようにルートに記録する方法もあります。[ESTree](https://github.com/estree/estree/blob/master/es2015.md#programs) が `Program` に `sourceType` を記録するのと同じ考え方です。
+そうすれば、ルールはパーサー自身の選択を読め、書き手の設定も 1 回で済みます。
+採用しなかったのは、AST のプロパティはすべてのルールとすべての形式に対する約束になり、あとで外すと破壊的変更になるからです。
+また、AST に置いたデータは、文書のレンダラーを推測するなど、意図しない目的にも使われます。そのような使い方が増えるほど、プロパティは変えにくくなります。
+CJK に配慮した仕様にはバージョンがなく、CommonMark に取り込まれる可能性もあります。そのため、少数のルールしか使わないうちに、プロパティの意味が変わるおそれがあります。
+この拡張に対応するルールが多くなれば、共通の知り方にはその負担に見合う価値が出ます。いつ見直すかは [Requirements](requirements.ja.md#未解決事項) に書きます。
 
 ### East Asian Width のデータで CJK の文字を決める
 

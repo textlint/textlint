@@ -151,8 +151,7 @@ A node is a plain object with its properties in a fixed order per kind.
 `raw` is sliced from the original text, and `loc` comes from the line table.
 Nodes are visited in source order, so the line lookup for a start offset continues from the line of the previous node instead of searching the table.
 
-When an extension is on, `Document` gets `syntaxExtensions` as its last property, with a key for each extension that is on.
-When none is on, the parser does not add the property, so the object is the same as without options.
+The options do not change the emit phase, and the AST does not record them.
 
 Nodes are created eagerly and completely.
 A rule may read any property of any node, and a plain object keeps the AST serializable, as TxtAST requires.
@@ -185,8 +184,8 @@ None of them is exposed.
 `@textlint/textlint-plugin-markdown` reads `cjkFriendlyEmphasis` from its plugin options and passes it to `parse`, and passes no other plugin option.
 The processor keeps the options, so the parse after a fix uses the same options as the first parse.
 
-`TxtDocumentNode` in `@textlint/ast-node-types` has `syntaxExtensions?: { readonly [name: string]: unknown }`, as the [TxtAST Requirements](../txtast/requirements.md#document-extensions) define.
-A rule reads it as `node.syntaxExtensions?.cjkFriendlyEmphasis === true` in its `Document` handler, or from the root through `parent`.
+The AST does not record the options, and `@textlint/ast-node-types` does not change.
+A rule that depends on an extension takes its own option, as the [Requirements](requirements.md#rules-that-depend-on-an-extension) state.
 
 Nodes have only the common properties of TxtAST and the properties of their node type.
 
@@ -296,36 +295,25 @@ It was not chosen because two passes let pairs cross, and the result then depend
 [#2113](https://github.com/textlint/textlint/pull/2113) adds CJK-friendly emphasis through remark plugins.
 It was not chosen because the parser no longer uses remark, for the reasons under [Use remark](#use-remark).
 
-### Give the option to each rule
+### Give the option to each rule (chosen)
 
-A rule such as ja-space-around-strong could take its own option, as [textlint-rule-preset-ja-spacing#144](https://github.com/textlint-ja/textlint-rule-preset-ja-spacing/pull/144) does with `cjkFriendly`.
-It was not chosen because the writer then sets the same choice in the plugin and in every rule, and a rule whose option disagrees with the parser fixes text against a recognition that the AST does not have.
+A rule whose behavior depends on how emphasis is recognized, such as ja-space-around-strong, takes its own option, as [textlint-rule-preset-ja-spacing#144](https://github.com/textlint-ja/textlint-rule-preset-ja-spacing/pull/144) does.
+The cost is that the writer enables the extension in the plugin and in each such rule, and a rule whose option disagrees with the plugin handles text against a recognition that the AST does not have.
+This is accepted because few rules depend on the extension, and the AST and the TxtAST conventions stay as they are.
 
 ### Add settings that every rule can read
 
 textlint has no settings that are shared by all rules, and rules cannot read plugin options.
-Adding shared settings changes the configuration and the kernel for one flag, and the setting would still have to agree with the parser.
-Recording the extension on the AST keeps one source: the parser that produced the AST.
+It was not chosen because shared settings change the configuration and the kernel for one flag, and the setting would still have to agree with the parser.
 
-### Record each extension as its own property of `Document`
+### Record the extensions on `Document`
 
-`Document.cjkFriendlyEmphasis` is shorter to read.
-It was not chosen because each extension would add a property to the root, and a rule could not tell how the document was parsed from one place.
-
-### Record extensions that are off as `false`
-
-Writing `{ "cjkFriendlyEmphasis": false }` for every document states the default.
-It was not chosen because it changes the AST of every document, while a rule checks `=== true` either way.
-
-### Name the property `extensions`
-
-`extensions` is shorter.
-It was not chosen because the plugin already has an `extensions` option for file extensions, and TxtAST has extension nodes, so the same word would mean three things.
-
-### Record extensions as an array of names
-
-`["cjkFriendlyEmphasis"]` is also serializable.
-An object was chosen because a rule reads one key without searching, and a future extension can have a value other than `true`.
+The parser could record the extensions that were enabled on the root, such as `Document.syntaxExtensions = { cjkFriendlyEmphasis: true }`, as [ESTree](https://github.com/estree/estree/blob/master/es2015.md#programs) records `sourceType` on `Program`.
+Rules would then read the parser's own choice, and the writer would set it once.
+It was not chosen because a property of the AST is a promise to every rule and every format, and removing it later is a breaking change.
+Data on the AST is also used for purposes that it was not meant for, such as guessing the renderer of a document, and each such use makes the property harder to change.
+The CJK-friendly specification has no version, and it may become part of CommonMark, so the meaning of the property could change while only a few rules use it.
+When many rules come to support the extension, a shared way to know it becomes worth its cost, and the [Requirements](requirements.md#open-questions) state when to revisit this.
 
 ### Decide CJK characters with East Asian Width data
 

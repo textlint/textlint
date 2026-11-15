@@ -18,7 +18,6 @@ TxtAST は意図して緩く定義します。
 - `raw`、`range`、`loc` の間の規約
 - 汎用ノードの種類とプロパティを何が定義するか
 - 形式が追加する拡張ノードと、汎用ノードとの名前の違い
-- パースで有効にした拡張を記録する `Document` の `syntaxExtensions` プロパティ
 - テスターがチェックすること
 - ルール作者とプラグイン作者に向けた公開文書との関係
 
@@ -90,25 +89,6 @@ TxtAST は意図して緩く定義します。
 - Given: Markdown のフロントマターのように、1 つの形式だけが持つノード
 - When: その形式のパーサーがノードを作る
 - Then: 種類の名前は `yaml` のように小文字で始まり、そのパーサーの Requirements に載っている
-
-### 文書がどうパースされたかを知る
-
-ルール作者として、パースでどの拡張を有効にしたかを AST から知りたい。ルールが、文書が認識されたとおりに構文を扱えるようにするためです。
-ルールはプラグインのオプションを読めないので、ルールがそれを見つけられる場所は AST だけです。
-
-**受け入れ条件：**
-
-シナリオ：拡張を有効にしてパースしたとき、`Document` がそれを記録する
-
-- Given: オプション `cjkFriendlyEmphasis: true` でパースした Markdown の文書
-- When: ルールが `Document` を受け取る
-- Then: `Document` の `syntaxExtensions` は `{ "cjkFriendlyEmphasis": true }` である
-
-シナリオ：どの拡張も有効にしなかったとき、`Document` は `syntaxExtensions` を持たない
-
-- Given: オプションなしでパースした文書
-- When: ルールが `Document` を受け取る
-- Then: `Document` は `syntaxExtensions` プロパティを持たず、ルールはすべての拡張を無効として扱う
 
 ### 新しい形式の AST を作る
 
@@ -286,45 +266,6 @@ textlint は、`range` をメッセージの行と列に変換するときも同
 
 textlint は、ルールが扱うノードの種類についてだけルールを呼ぶ。
 拡張ノードを扱わないルールはそのノードでは呼ばれず、textlint もルールも失敗しない。
-
-### 文書の拡張
-
-**概要：** `Document` の `syntaxExtensions` は、パースで有効にした拡張を記録する。ルールが、構文がどう認識されたかを知るためである。
-
-**入力：** パーサーが受け取ったオプション。
-
-**出力：** ルートの `Document` の `syntaxExtensions` プロパティ。
-
-#### 適用条件
-
-##### 形
-
-- `syntaxExtensions` を持つのは `Document` だけである。これは、有効にした拡張の名前をキーとし、JSON の値を値とするオブジェクトである。
-- キーがないことは、その拡張を有効にしなかったことを表す。どの拡張も有効にしなかったとき、`Document` は `syntaxExtensions` を持たない。
-- 型定義は `syntaxExtensions` を省略可能とする。
-
-##### パーサーが定義する
-
-各パーサーの Requirements が、拡張ノードを載せるのと同じように、`syntaxExtensions` のキーとその値を載せる。
-拡張とは、Markdown の [CJK に配慮した強調](../markdown-parsing/requirements.ja.md#拡張) のように、形式の認識のしかたを 1 か所変えるもので、利用者がオプションで有効にする。
-拡張は拡張ノードではない。拡張ノードはノードの種類であり、`syntaxExtensions` のキーはオプションの名前である。
-キーになるのは、構文の認識のしかたを変えるオプションだけである。AST を変えないオプションや、フロントマターのように常に認識する構文はキーにならない。構文の認識は変えずに AST の形を変えるオプションもキーにならず、どこに記録するかはそのパーサーの Requirements が決める。
-
-##### AST が記録する理由
-
-拡張を有効にすると、同じテキストから違う AST ができる。そして、ルールはプラグインのオプションを読めない。
-AST はすべてのルールが受け取るものなので、[ESTree](https://github.com/estree/estree/blob/master/es2015.md#programs) が `Program` に `sourceType` を記録するのと同じように、ルートがどうパースされたかを記録する。
-
-##### ルールの読み方
-
-textlint はルールに、ほかのどのノードよりも先に `Document` を渡し、ほかのノードは `parent` をたどって `Document` に届く。
-ルールは `Document` から `syntaxExtensions` を読み、`syntaxExtensions` やキーがないときは無効として扱う。
-
-#### 例外的な挙動
-
-##### ルールがキーを知らない
-
-ルールは扱わないキーを無視し、textlint もルールも失敗しない。
 
 ### AST のチェック
 

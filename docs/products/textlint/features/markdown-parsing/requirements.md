@@ -19,7 +19,7 @@ A flavor is the whole set of rules that a tool follows, such as GFM. The parser 
 
 - The `parse(text, options)` function, and the options of `@textlint/textlint-plugin-markdown` that it passes to `parse`
 - Extensions that a writer turns on: CJK-friendly emphasis
-- The `syntaxExtensions` property of `Document` that records which extensions were on
+- How a rule that depends on an extension stays consistent with the parser
 - The specifications that decide how Markdown is recognized
 - The node that each syntax becomes, with its properties and its range
 - Syntax that textlint defines because no specification covers it: front matter, footnotes, and inline notes
@@ -119,33 +119,27 @@ Scenario: When `cjkFriendlyEmphasis` is on and the text has no CJK characters, t
 
 - Given: A document without CJK characters and variation selectors
 - When: The document is parsed with and without `cjkFriendlyEmphasis: true`
-- Then: The two ASTs are the same, except for `syntaxExtensions` of `Document`
+- Then: The two ASTs are the same
 
-### Know how the document was parsed
+### Keep a rule consistent with the parser
 
-As a rule author who fixes spaces around emphasis, I want to know whether the document was parsed with CJK-friendly emphasis so that my fix does not change which text is emphasized.
-A rule cannot read the options of a plugin. Yet the same `**強調。**この文` is `Strong` with the extension and stays `Str` without it.
-So `Document`, the root of the AST that a rule receives, records the extensions that were enabled for parsing.
+As a rule author who fixes spaces around emphasis, I want my rule to handle emphasis as the parser recognized it so that my fix does not change which text is emphasized.
+A rule cannot read the options of a plugin, and the AST does not record them.
+The same `**強調。**この文` is `Strong` with the extension and stays `Str` without it, so a rule whose behavior depends on the extension takes its own option, and the writer enables it with the plugin option.
 
 **Acceptance criteria:**
 
-Scenario: When `cjkFriendlyEmphasis` is on, `Document` records it
+Scenario: When `cjkFriendlyEmphasis` is `true`, the AST does not record the option
 
 - Given: Any Markdown text and the option `cjkFriendlyEmphasis: true`
 - When: The text is parsed
-- Then: `Document` has `syntaxExtensions`, and `syntaxExtensions.cjkFriendlyEmphasis` is `true`
+- Then: `Document` has no property that records the options
 
-Scenario: When no extension is on, `Document` has no `syntaxExtensions`
+Scenario: When the writer enables the extension in the plugin and in a rule, both handle the same emphasis
 
-- Given: Any Markdown text without options, or with `cjkFriendlyEmphasis: false`
-- When: The text is parsed
-- Then: `Document` has no `syntaxExtensions` property
-
-Scenario: When textlint lints with the plugin option, a rule reads the extension from `Document`
-
-- Given: A configuration `"plugins": { "@textlint/markdown": { "cjkFriendlyEmphasis": true } }` and a rule that handles `Document` and `Strong`
-- When: textlint lints a Markdown file
-- Then: The rule receives `Document` with `syntaxExtensions.cjkFriendlyEmphasis` equal to `true` before it receives any `Strong` node
+- Given: A configuration `"plugins": { "@textlint/markdown": { "cjkFriendlyEmphasis": true } }` and a rule that depends on the extension, with its own option for it enabled
+- When: textlint lints a paragraph `**強調。**この文`
+- Then: The rule receives a `Strong` for `**強調。**`, and handles it as strong emphasis
 
 ### Report the right position
 
@@ -397,7 +391,7 @@ A [task list item](https://github.github.com/gfm/#task-list-items-extension-) is
 
 **Input:** The options of `parse`. `@textlint/textlint-plugin-markdown` takes the same options and passes them to `parse`.
 
-**Output:** The AST that the extension gives, and the `syntaxExtensions` property of `Document`.
+**Output:** The AST that the extension gives.
 
 #### Applicable conditions
 
@@ -420,19 +414,17 @@ A [task list item](https://github.github.com/gfm/#task-list-items-extension-) is
 - Only whether a delimiter run can open or close changes. Matching in source order, the rule of three, the nesting limit, and the node types, properties, and ranges of `Emphasis`, `Strong`, and `Delete` are those of [Inlines](#inlines).
 - No other syntax changes.
 
-##### `syntaxExtensions` of `Document`
+##### Rules that depend on an extension
 
-The meaning of `syntaxExtensions` across formats is defined in [TxtAST](../txtast/requirements.md#document-extensions). This parser sets it as follows.
-
-- When at least one extension is on, `Document` has `syntaxExtensions`, an object whose keys are the names of the options that are on, each with the value `true`. With `cjkFriendlyEmphasis`, it is `{ "cjkFriendlyEmphasis": true }`.
-- An extension that is off is not a key.
-- When no extension is on, `Document` has no `syntaxExtensions`, so the AST without options is the one that the rest of this document defines.
+- The AST does not record the options. `Document` has the same properties with and without them.
+- A rule whose behavior depends on an extension takes its own option, and the writer enables it with the plugin option.
+- Such a rule names its option after the plugin option, such as `cjkFriendlyEmphasis`, so that the writer sets the same name in both places.
 
 #### Exceptional behavior
 
 ##### Unknown options
 
-An option that this document does not list is ignored. It is not a key of `syntaxExtensions`, and `parse` does not throw.
+An option that this document does not list is ignored. It does not change the AST, and `parse` does not throw.
 
 ##### Characters that the specification leaves open
 
@@ -518,7 +510,7 @@ A delimiter or bracket pair that would make an inline node deeper than the limit
 ### Required data
 
 - **Source text:** The Markdown string given to `parse`. It is not stored after `parse` returns.
-- **Options:** The options given to `parse`. `syntaxExtensions` of `Document` records the extensions that were on.
+- **Options:** The options given to `parse`. The AST does not record them.
 
 ### Relationships
 
@@ -543,6 +535,7 @@ Each `parse` call is independent: the result does not depend on the documents pa
 ## Open questions
 
 - **Numeric target for parsing speed:** The target is relative to the previous release, and there is no absolute value such as MB/s. Until there is one, a change is accepted when it is not slower on the corpus. Revisit when users report that parsing is too slow for their documents. azu decides.
+- **Recording extensions in the AST:** The AST does not record which extensions were enabled, and a rule that depends on one takes its own option. Until more rules depend on an extension, the writer enables it in the plugin and in each such rule. Revisit when several rules need to know an extension, or when writers report that the plugin option and a rule option disagree. azu decides.
 - **Revision of the CJK-friendly specification:** The CommonMark CJK-friendly Amendments have no version number. Until they have one, the parser follows the revision whose character ranges are for Unicode 18. Revisit when the specification changes its definitions or its Unicode version. azu decides.
 - **Table header taken from a paragraph of several lines:** The GFM specification does not state whether the last line of a paragraph can become a header row when that line would start another block by itself, such as a line with only `<a>`. Until this is confirmed against GitHub's implementation, the last line is the header row, as stated under Tables. Revisit when the result of cmark-gfm for this input is known. azu decides.
 - **End of a block at the end of its container:** For an unclosed fenced code block, and for trailing lines that have only container markers or spaces, neither specification defines where the node ends. Until a rule is decided, the end positions fixed by the test fixtures apply. Revisit when a rule author reports a position that is wrong for a fix. azu decides.

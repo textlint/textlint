@@ -18,7 +18,6 @@ A format may add node types and properties, and this document fixes only the par
 - The conventions between `raw`, `range`, and `loc`
 - What defines the generic node types and their properties
 - Extension nodes that a format adds, and how their names differ from generic nodes
-- The `syntaxExtensions` property of `Document`, which records the parser extensions that were on
 - What the tester checks
 - The relation to the public document for rule and plugin authors
 
@@ -90,25 +89,6 @@ Scenario: When a node type belongs to one format, its name is lowercase
 - Given: A node that only one format has, such as front matter in Markdown
 - When: The parser of the format produces the node
 - Then: The type name starts with a lowercase letter, such as `yaml`, and the Requirements of that parser list it
-
-### Know how a document was parsed
-
-As a rule author, I want to know from the AST which parser extensions were on so that my rule handles the syntax as the document was recognized.
-A rule cannot read the options of a plugin, so the AST is the only place where the rule can find them.
-
-**Acceptance criteria:**
-
-Scenario: When a parser ran with an extension on, `Document` records it
-
-- Given: A Markdown document parsed with the option `cjkFriendlyEmphasis: true`
-- When: A rule receives `Document`
-- Then: `syntaxExtensions` of `Document` is `{ "cjkFriendlyEmphasis": true }`
-
-Scenario: When no extension was on, `Document` has no `syntaxExtensions`
-
-- Given: A document parsed without options
-- When: A rule receives `Document`
-- Then: `Document` has no `syntaxExtensions` property, and the rule treats every extension as off
 
 ### Produce an AST for a new format
 
@@ -286,45 +266,6 @@ The generic node gets a PascalCase name in the type definitions, and the change 
 
 textlint calls a rule only for the node types that the rule handles.
 A rule that does not handle an extension node is not called for it, and neither textlint nor the rule fails.
-
-### Document extensions
-
-**Overview:** `syntaxExtensions` of `Document` records the parser extensions that were on, so that a rule knows how the syntax was recognized.
-
-**Input:** The options that a parser received.
-
-**Output:** The `syntaxExtensions` property of the root `Document`.
-
-#### Applicable conditions
-
-##### Shape
-
-- Only `Document` has `syntaxExtensions`. It is an object whose keys name the extensions that were on, and whose values are JSON values.
-- A key that is absent means that the extension was off. When no extension was on, `Document` has no `syntaxExtensions`.
-- The type definitions mark `syntaxExtensions` as optional.
-
-##### Defined by the parser
-
-The Requirements of each parser list the keys of `syntaxExtensions` and their values, as they list extension nodes.
-An extension is one change to how a format is recognized that a user turns on with an option, such as [CJK-friendly emphasis](../markdown-parsing/requirements.md#extensions) in Markdown.
-It is not an extension node: an extension node is a node type, and a key of `syntaxExtensions` names an option.
-Only an option that changes how the syntax is recognized is a key. An option that does not change the AST, and syntax that is always recognized, such as front matter, are not keys. An option that changes the shape of the AST without changing how the syntax is recognized is not a key either, and the Requirements of its parser decide where it is recorded.
-
-##### Why the AST records it
-
-The same text gives a different AST when an extension is on, and a rule cannot read the options of a plugin.
-The AST is what every rule receives, so the root records how it was parsed, as [ESTree](https://github.com/estree/estree/blob/master/es2015.md#programs) records `sourceType` on `Program`.
-
-##### How a rule reads it
-
-textlint passes `Document` to a rule before any other node, and every other node reaches it through `parent`.
-A rule reads `syntaxExtensions` from `Document`, and treats an absent `syntaxExtensions` or an absent key as off.
-
-#### Exceptional behavior
-
-##### A rule does not know a key
-
-A rule ignores the keys that it does not handle, and neither textlint nor the rule fails.
 
 ### Checking an AST
 
