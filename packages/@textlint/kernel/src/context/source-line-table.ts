@@ -31,16 +31,22 @@ const createLineStarts = (text: string): number[] => {
 /**
  * Convert between an index of the text and a position that has a line and a column.
  * A line starts with 1, and a column starts with 0.
- * The table of lines is created when a conversion is requested for the first time.
+ * The table of lines is created when a conversion is requested for the first time,
+ * and it is cached for the following conversions. The text does not change, so the cache is never invalidated.
+ * The result of each conversion is not cached, because a conversion is one binary search.
  */
 export class SourceLineTable {
     private readonly text: string;
+    /** Cache of the table of lines. `undefined` until the first conversion */
     private lineStarts: number[] | undefined;
 
     constructor(text: string) {
         this.text = text;
     }
 
+    /**
+     * Return the table of lines. It is created at the first call and reused after that.
+     */
     private getLineStarts(): number[] {
         if (this.lineStarts === undefined) {
             this.lineStarts = createLineStarts(this.text);
