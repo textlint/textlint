@@ -21,22 +21,22 @@ This post first describes the changes for users who run textlint, and then the c
 <h2 class="anchor anchorTargetStickyNavbar_h6cq" id="summary">Summary<a href="https://textlint.org/textlint/pr-preview/pr-2205/blog/2026/11/15/textlint-16#summary" class="hash-link" aria-label="Direct link to Summary" title="Direct link to Summary" translate="no">​</a></h2>
 <p><strong>For users:</strong></p>
 <ul>
-<li class="">Requires Node.js 22.12.0 or later</li>
-<li class="">Markdown parsing is much faster, and <code>textlint</code> installs about 90 fewer packages</li>
-<li class="">The node type <code>Yaml</code> of front matter is renamed to <code>yaml</code>. Update it if your configuration lists it</li>
-<li class="">Small output changes in the <code>table</code>, <code>stylish</code>, and <code>pretty-error</code> formatters</li>
-<li class="">New <code>--cache-strategy</code> option, <code>--stdin</code> support of the <code>pretty-error</code> and <code>diff</code> formatters, and the <code>cjkFriendlyEmphasis</code> option of the Markdown plugin</li>
+<li class=""><strong>Node.js 22.12.0 or later is required.</strong> Node.js 20 reached end-of-life. Update Node.js in your environment and CI.</li>
+<li class=""><strong>Markdown parsing is much faster.</strong> textlint parses Markdown with a new in-house parser, and installs 61 third-party packages instead of 151. Rules report the same errors for most documents.</li>
+<li class=""><strong>The node type of YAML front matter is renamed from <code>Yaml</code> to <code>yaml</code>.</strong> If your configuration lists <code>"Yaml"</code>, such as in <code>textlint-filter-rule-node-types</code>, change it to <code>"yaml"</code>. Otherwise front matter is checked as prose.</li>
+<li class=""><strong>The output of some formatters changes slightly.</strong> <code>table</code> no longer throws on a tab in a message, and <code>pretty-error</code> no longer prints <code>undefined</code> for an empty file.</li>
+<li class=""><strong>New options.</strong> <code>--cache-strategy content</code> detects changed files by content, <code>--stdin</code> works with the <code>pretty-error</code> and <code>diff</code> formatters, and the Markdown plugin's <code>cjkFriendlyEmphasis</code> recognizes emphasis in CJK text such as <code>**強調。**この文</code>.</li>
 </ul>
 <p><strong>For rule and plugin developers:</strong></p>
 <ul>
-<li class=""><code>@textlint/textlint-plugin-markdown</code> and <code>@textlint/textlint-plugin-text</code> are ESM-only</li>
-<li class=""><code>@textlint/markdown-to-ast</code> is a new in-house CommonMark + GFM parser. The AST is compatible, with a few edge-case differences</li>
-<li class="">Front matter and footnote reference node types are renamed to lowercase: <code>Yaml</code>, <code>Toml</code>, <code>Json</code>, <code>FootnoteReference</code> → <code>yaml</code>, <code>toml</code>, <code>json</code>, <code>footnoteReference</code></li>
-<li class="">Lines are counted by LF, CR, and CRLF everywhere</li>
-<li class=""><code>@textlint/text-to-ast</code> (plain text) keeps one paragraph per line, and every line ending at the end of the text becomes a <code>Break</code></li>
-<li class=""><code>@textlint/ast-tester</code> checks the <code>raw</code>, <code>range</code>, and <code>loc</code> conventions</li>
-<li class="">Removed deprecated type re-exports from <code>@textlint/kernel</code></li>
-<li class="">Formatters receive the source text through a <code>getSource</code> option</li>
+<li class=""><strong><code>@textlint/textlint-plugin-markdown</code> and <code>@textlint/textlint-plugin-text</code> are ESM-only.</strong> Code that loads them directly with <code>require()</code> gets the module namespace, so use <code>require(...).default</code> or <code>import</code>.</li>
+<li class=""><strong><code>@textlint/markdown-to-ast</code> is a new CommonMark 0.31.2 + GFM parser.</strong> The AST is compatible. It differs only in edge cases where the new parser follows CommonMark and GitHub, and the hidden <code>position</code> property is removed.</li>
+<li class=""><strong>Node types that are not in <code>@textlint/ast-node-types</code> are lowercase.</strong> Front matter and footnote references are not part of CommonMark or GFM, so <code>Yaml</code>, <code>Toml</code>, <code>Json</code>, and <code>FootnoteReference</code> become <code>yaml</code>, <code>toml</code>, <code>json</code>, and <code>footnoteReference</code>. The casing tells whether a node type is shared by all formats (<a href="https://github.com/textlint/textlint/blob/master/docs/products/textlint/features/txtast/requirements.md#extension-nodes" target="_blank" rel="noopener noreferrer" class="">TxtAST Requirements: Extension nodes</a>).</li>
+<li class=""><strong>Lines end with LF, CR, or CRLF in every format.</strong> U+2028 and U+2029 are no longer line endings in messages, and a lone CR is a line ending in plain text (<a href="https://github.com/textlint/textlint/blob/master/docs/products/textlint/features/txtast/requirements.md#lines" target="_blank" rel="noopener noreferrer" class="">TxtAST Requirements: Lines</a>).</li>
+<li class=""><strong>The plain text parser keeps one <code>Paragraph</code> per line.</strong> Every line ending at the end of the text becomes a <code>Break</code>, and a BOM is no longer included in the first <code>Str</code> (<a href="https://github.com/textlint/textlint/blob/master/docs/products/textlint/features/plain-text-parsing/requirements.md" target="_blank" rel="noopener noreferrer" class="">Plain text parsing Requirements</a>).</li>
+<li class=""><strong><code>@textlint/ast-tester</code> checks that <code>raw</code>, <code>range</code>, and <code>loc</code> agree.</strong> Tests of a rule can fail if your plugin produces an AST that breaks the conventions (<a href="https://github.com/textlint/textlint/blob/master/docs/products/textlint/features/txtast/requirements.md#checking-an-ast" target="_blank" rel="noopener noreferrer" class="">TxtAST Requirements: Checking an AST</a>).</li>
+<li class=""><strong>Deprecated type re-exports are removed from <code>@textlint/kernel</code>.</strong> Import the types from <code>@textlint/types</code>.</li>
+<li class=""><strong>Formatters receive the source text through a <code>getSource</code> option.</strong> API users can pass in-memory text to <code>loadFormatter()</code>.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_h6cq" id="for-users">For Users<a href="https://textlint.org/textlint/pr-preview/pr-2205/blog/2026/11/15/textlint-16#for-users" class="hash-link" aria-label="Direct link to For Users" title="Direct link to For Users" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_h6cq" id="nodejs-2212-required">Node.js 22.12+ Required<a href="https://textlint.org/textlint/pr-preview/pr-2205/blog/2026/11/15/textlint-16#nodejs-2212-required" class="hash-link" aria-label="Direct link to Node.js 22.12+ Required" title="Direct link to Node.js 22.12+ Required" translate="no">​</a></h3>
@@ -128,7 +128,8 @@ The differences are in edge cases, where the new parser follows CommonMark and G
 <p><a href="https://github.com/textlint/textlint/pull/2188" target="_blank" rel="noopener noreferrer" class="">#2188</a></p>
 <h4 class="anchor anchorTargetStickyNavbar_h6cq" id="renamed-node-types">Renamed node types<a href="https://textlint.org/textlint/pr-preview/pr-2205/blog/2026/11/15/textlint-16#renamed-node-types" class="hash-link" aria-label="Direct link to Renamed node types" title="Direct link to Renamed node types" translate="no">​</a></h4>
 <p>Node types that are defined in <code>@textlint/ast-node-types</code> use PascalCase, and other node types use lowercase.
-Front matter and footnotes are not part of CommonMark or the GFM specification and are not in <code>@textlint/ast-node-types</code>, so their node types are now lowercase, like <code>footnoteDefinition</code> already was.</p>
+Front matter and footnotes are not part of CommonMark or the GFM specification and are not in <code>@textlint/ast-node-types</code>, so their node types are now lowercase, like <code>footnoteDefinition</code> already was.
+The rule is defined in <a href="https://github.com/textlint/textlint/blob/master/docs/products/textlint/features/txtast/requirements.md#extension-nodes" target="_blank" rel="noopener noreferrer" class="">TxtAST Requirements: Extension nodes</a>.</p>
 
 
 
