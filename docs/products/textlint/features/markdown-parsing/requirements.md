@@ -12,9 +12,14 @@ The parent Product is [textlint](../../product.md).
 This document defines which Markdown syntax becomes which node, and the properties and positions of each node.
 What every TxtAST satisfies, such as the common properties and the position conventions, is defined in [TxtAST](../txtast/requirements.md).
 
+In this document, an extension is one change on top of CommonMark and GFM that a writer turns on with an option, such as CJK-friendly emphasis.
+A flavor is the whole set of rules that a tool follows, such as GFM. The parser reads one flavor, CommonMark with the GFM extensions, and an extension changes one part of it.
+
 ### Scope
 
-- The `parse(text)` function
+- The `parse(text, options)` function, and the options of `@textlint/textlint-plugin-markdown` that it passes to `parse`
+- Extensions that a writer turns on: CJK-friendly emphasis
+- How a rule that depends on an extension stays consistent with the parser
 - The specifications that decide how Markdown is recognized
 - The node that each syntax becomes, with its properties and its range
 - Syntax that textlint defines because no specification covers it: front matter, footnotes, and inline notes
@@ -83,6 +88,58 @@ Scenario: When emphasis and strikethrough cross, the pair that closes first is r
 - Given: A paragraph `*a ~~b* c~~`
 - When: The text is parsed
 - Then: The paragraph has `Emphasis` for `*a ~~b*` and a `Str` for ` c~~`, and has no `Delete`
+
+### Recognize emphasis in CJK text as the renderer does
+
+As a writer who renders Markdown with a CJK-friendly tool, such as VitePress or Rspress, I want textlint to recognize emphasis next to CJK punctuation as that tool does so that rules check the emphasis that readers see.
+CommonMark does not close the second `**` of `**強調。**この文`, because the `。` inside the delimiter is punctuation and the `こ` outside it is neither punctuation nor whitespace.
+GFM renders the asterisks of that text, and these tools render bold text.
+
+**Acceptance criteria:**
+
+Scenario: When `cjkFriendlyEmphasis` is on, `**` after CJK punctuation closes strong emphasis
+
+- Given: A paragraph `**強調。**この文` and the option `cjkFriendlyEmphasis: true`
+- When: The text is parsed
+- Then: The paragraph has a `Strong` for `**強調。**` followed by a `Str` for `この文`
+
+Scenario: When `cjkFriendlyEmphasis` is off, the same text follows CommonMark
+
+- Given: The paragraph `**強調。**この文` without options
+- When: The text is parsed
+- Then: The paragraph contains only `Str`
+
+Scenario: When `cjkFriendlyEmphasis` is on, strikethrough after CJK punctuation is recognized
+
+- Given: A paragraph `~~削除。~~この文` and the option `cjkFriendlyEmphasis: true`
+- When: The text is parsed
+- Then: The paragraph has a `Delete` for `~~削除。~~` followed by a `Str` for `この文`
+
+Scenario: When `cjkFriendlyEmphasis` is on and the text has no CJK characters, the nodes are the same as without it
+
+- Given: A document without CJK characters and variation selectors
+- When: The document is parsed with and without `cjkFriendlyEmphasis: true`
+- Then: The two ASTs are the same
+
+### Keep a rule consistent with the parser
+
+As a rule author who fixes spaces around emphasis, I want my rule to handle emphasis as the parser recognized it so that my fix does not change which text is emphasized.
+A rule cannot read the options of a plugin, and the AST does not record them.
+The same `**強調。**この文` is `Strong` with the extension and stays `Str` without it, so a rule whose behavior depends on the extension takes its own option, and the writer enables it with the plugin option.
+
+**Acceptance criteria:**
+
+Scenario: When `cjkFriendlyEmphasis` is `true`, the AST does not record the option
+
+- Given: Any Markdown text and the option `cjkFriendlyEmphasis: true`
+- When: The text is parsed
+- Then: `Document` has no property that records the options
+
+Scenario: When the writer enables the extension in the plugin and in a rule, both handle the same emphasis
+
+- Given: A configuration `"plugins": { "@textlint/markdown": { "cjkFriendlyEmphasis": true } }` and a rule that depends on the extension, with its own option for it enabled
+- When: textlint lints a paragraph `**強調。**この文`
+- Then: The rule receives a `Strong` for `**強調。**`, and handles it as strong emphasis
 
 ### Report the right position
 
@@ -164,6 +221,12 @@ Scenario: When a document nests deeper than the limit, the markers beyond the li
 - **Measurement method:** Parse the examples of both specifications and compare the structure of the AST with the expected output.
 - **Measurement period:** When the parser changes, and when a new version of a specification is adopted.
 
+### Conformance to CJK-friendly emphasis
+
+- **Target value:** With `cjkFriendlyEmphasis`, every row of the start and end conditions table in the [tips for implementers](https://github.com/tats-u/markdown-cjk-friendly/blob/main/implementers-tips.md) and every example of the specification give the same emphasis, strong emphasis, and strikethrough as the reference implementation of the specification.
+- **Measurement method:** Parse each input with the option, and compare `Emphasis`, `Strong`, and `Delete` with the HTML that the reference implementation gives for the same input.
+- **Measurement period:** When the inline phase changes, and when a new revision of the specification is adopted.
+
 ### Parsing speed
 
 - **Target value:** No slower than the previous release on the same corpus. Faster is preferred.
@@ -180,9 +243,9 @@ Scenario: When a document nests deeper than the limit, the markers beyond the li
 
 ### Parse Markdown into TxtAST
 
-**Overview:** `parse(text)` returns a `Document` node that contains the whole text.
+**Overview:** `parse(text, options)` returns a `Document` node that contains the whole text.
 
-**Input:** A Markdown string. It may start with a BOM.
+**Input:** A Markdown string, which may start with a BOM, and options, which may be omitted. The options are listed under [Extensions](#extensions).
 
 **Output:** A `Document` node that follows [TxtAST](../txtast/requirements.md).
 
@@ -194,7 +257,8 @@ The parser follows these specifications, in this order.
 
 1. [CommonMark 0.31.2](https://spec.commonmark.org/0.31.2/) decides everything that it defines.
 2. [GitHub Flavored Markdown 0.29-gfm](https://github.github.com/gfm/) decides the extensions that it defines: [tables](https://github.github.com/gfm/#tables-extension-), [task list items](https://github.github.com/gfm/#task-list-items-extension-), [strikethrough](https://github.github.com/gfm/#strikethrough-extension-), and [autolinks](https://github.github.com/gfm/#autolinks-extension-).
-3. This document decides what neither specification defines: the AST itself, the positions of nodes, front matter, footnotes, and inline notes.
+3. When `cjkFriendlyEmphasis` is on, the [CommonMark CJK-friendly Amendments](https://github.com/tats-u/markdown-cjk-friendly/blob/main/specification.md) decide whether a delimiter run can open or close, as stated under [Extensions](#extensions).
+4. This document decides what none of these specifications define: the AST itself, the positions of nodes, front matter, footnotes, and inline notes.
 
 The specifications define how text is recognized and rendered to HTML, not an AST.
 The AST therefore has the same structure as the HTML of the specification, and this document decides only the node types, properties, and ranges.
@@ -314,11 +378,58 @@ A [task list item](https://github.github.com/gfm/#task-list-items-extension-) is
 - `*`, `_`, and `~` delimiters are matched together in source order: each closing delimiter takes the nearest opening delimiter that it can match.
 - A matched pair makes the delimiters between them plain text, so pairs never cross. `*a ~~b* c~~` is `Emphasis` followed by text.
 - `~` matches only `~`, and `~~` matches only `~~`. A run of three or more `~` is text.
+- Whether a run of `*` or `_` can open or close follows CommonMark. A run of `~` can open when it is left-flanking and can close when it is right-flanking, as a run of `*` does. CJK-friendly emphasis changes these decisions.
 
 ##### Raw HTML and autolinks
 
 - Whitespace inside a tag is spaces, tabs, and line endings. Other Unicode spaces do not separate attributes, so such text stays `Str`.
 - An autolink between `<` and `>` ends only at a space, `<`, `>`, or an ASCII control character.
+
+### Extensions
+
+**Overview:** An extension changes how a syntax is recognized, and it is on only when its option is `true`. The parser has one extension, CJK-friendly emphasis.
+
+**Input:** The options of `parse`. `@textlint/textlint-plugin-markdown` takes the same options and passes them to `parse`.
+
+**Output:** The AST that the extension gives.
+
+#### Applicable conditions
+
+##### Options
+
+| Option | Value | Default | Extension |
+| --- | --- | --- | --- |
+| `cjkFriendlyEmphasis` | `boolean` | `false` | CJK-friendly emphasis |
+
+- An extension is on only when its option is `true`. Any other value, or no value, means off.
+- The plugin takes the options in the plugin options of the configuration, such as `"plugins": { "@textlint/markdown": { "cjkFriendlyEmphasis": true } }`.
+- VitePress and Rspress use the name `cjkFriendlyEmphasis` for the same extension, so a writer sets the same name in textlint and in the renderer.
+
+##### CJK-friendly emphasis
+
+- The [CommonMark CJK-friendly Amendments](https://github.com/tats-u/markdown-cjk-friendly/blob/main/specification.md) replace the CommonMark definitions of a left-flanking and a right-flanking delimiter run, and the rules on when `_` and `__` can open emphasis.
+- `~` and `~~` use the amended definitions of left-flanking and right-flanking, as `*` does. The specification is written for CommonMark, and its implementations for strikethrough make the same change.
+- CJK characters, CJK punctuation characters, and variation selectors are those that the specification defines, for the Unicode version that it states.
+- A character next to a delimiter run is a code point, so a surrogate pair is one character.
+- Only whether a delimiter run can open or close changes. Matching in source order, the rule of three, the nesting limit, and the node types, properties, and ranges of `Emphasis`, `Strong`, and `Delete` are those of [Inlines](#inlines).
+- No other syntax changes.
+
+##### Rules that depend on an extension
+
+- The AST does not record the options. `Document` has the same properties with and without them.
+- A rule whose behavior depends on an extension takes its own option, and the writer enables it with the plugin option.
+- Such a rule names its option after the plugin option, such as `cjkFriendlyEmphasis`, so that the writer sets the same name in both places.
+
+#### Exceptional behavior
+
+##### Unknown options
+
+An option that this document does not list is ignored. It does not change the AST, and `parse` does not throw.
+
+##### Characters that the specification leaves open
+
+The specification leaves the result open when a delimiter run is next to a lone surrogate, or after a variation selector that follows whitespace or an ideographic variation selector.
+In these cases the character next to the run is neither whitespace, punctuation, nor a CJK character.
 
 ### Syntax that textlint defines
 
@@ -399,6 +510,7 @@ A delimiter or bracket pair that would make an inline node deeper than the limit
 ### Required data
 
 - **Source text:** The Markdown string given to `parse`. It is not stored after `parse` returns.
+- **Options:** The options given to `parse`. The AST does not record them.
 
 ### Relationships
 
@@ -423,6 +535,7 @@ Each `parse` call is independent: the result does not depend on the documents pa
 ## Open questions
 
 - **Numeric target for parsing speed:** The target is relative to the previous release, and there is no absolute value such as MB/s. Until there is one, a change is accepted when it is not slower on the corpus. Revisit when users report that parsing is too slow for their documents. azu decides.
-- **CJK-friendly emphasis:** An opt-in option to recognize emphasis and strikethrough next to CJK punctuation is proposed in textlint/textlint#2113. Whether it becomes part of this feature is not decided. Until it is, emphasis follows CommonMark. Revisit when #2113 is ready for review. azu decides with the PR author.
+- **Recording extensions in the AST:** The AST does not record which extensions were enabled, and a rule that depends on one takes its own option. Until more rules depend on an extension, the writer enables it in the plugin and in each such rule. Revisit when several rules need to know an extension, or when writers report that the plugin option and a rule option disagree. azu decides.
+- **Revision of the CJK-friendly specification:** The CommonMark CJK-friendly Amendments have no version number. Until they have one, the parser follows the revision whose character ranges are for Unicode 18. Revisit when the specification changes its definitions or its Unicode version. azu decides.
 - **Table header taken from a paragraph of several lines:** The GFM specification does not state whether the last line of a paragraph can become a header row when that line would start another block by itself, such as a line with only `<a>`. Until this is confirmed against GitHub's implementation, the last line is the header row, as stated under Tables. Revisit when the result of cmark-gfm for this input is known. azu decides.
 - **End of a block at the end of its container:** For an unclosed fenced code block, and for trailing lines that have only container markers or spaces, neither specification defines where the node ends. Until a rule is decided, the end positions fixed by the test fixtures apply. Revisit when a rule author reports a position that is wrong for a fix. azu decides.

@@ -234,5 +234,33 @@ describe("txt-traverse", () => {
                 }
             });
         });
+        it("should return null before and after traverse", () => {
+            const controller = new Controller();
+            assert.strictEqual(controller.current(), null);
+            controller.traverse(parse("Hello"), {});
+            assert.strictEqual(controller.current(), null);
+        });
+    });
+    describe("visitor", () => {
+        it("should use the enter and leave that the visitor has at each call", () => {
+            const AST = parse("Hello*world*");
+            const entered: string[] = [];
+            const left: string[] = [];
+            const visitor: { enter?(node: TxtNode): void; leave?(node: TxtNode): void } = {
+                enter(node) {
+                    if (node.type === Syntax.Document) {
+                        visitor.enter = (child) => {
+                            entered.push(child.type);
+                        };
+                        visitor.leave = (child) => {
+                            left.push(child.type);
+                        };
+                    }
+                }
+            };
+            traverse(AST as TxtParentNode, visitor);
+            assert.deepStrictEqual(entered, [Syntax.Paragraph, Syntax.Str, Syntax.Emphasis, Syntax.Str]);
+            assert.deepStrictEqual(left, [Syntax.Str, Syntax.Str, Syntax.Emphasis, Syntax.Paragraph, Syntax.Document]);
+        });
     });
 });

@@ -18,6 +18,7 @@
  * 3. emit phase: walk the pool once and create TxtAST nodes directly.
  */
 import type { TxtDocumentNode } from "@textlint/ast-node-types";
+import { isCjkCodePoint } from "./cjk.js";
 import { decodeNamedEntity } from "./entities.js";
 
 // ---------------------------------------------------------------------------------------------------------
@@ -448,6 +449,87 @@ function classify(c: number): number {
         NON_ASCII_CLASS[c] = k;
     }
     return k - 1;
+}
+
+/**
+ * `classify` for a code point. Code points outside the BMP are never whitespace.
+ */
+function classifyCodePoint(cp: number): number {
+    if (cp <= 0xffff) {
+        return classify(cp);
+    }
+    return UNICODE_PUNCTUATION.test(String.fromCodePoint(cp)) ? 2 : 0;
+}
+
+/**
+ * CJK-friendly emphasis is enabled for the current `parse` call.
+ * https://github.com/tats-u/markdown-cjk-friendly/blob/main/specification.md
+ */
+let cjkFriendly = false;
+// results of scanCjkFlank
+let cjkBefore = 0;
+let cjkAfter = 0;
+let cjkEither = false;
+
+/**
+ * Classify the characters around the delimiter run `buf[p, q)` for CJK-friendly emphasis.
+ * Set `cjkBefore` and `cjkAfter` to the class of `classify`, and `cjkEither` to whether either side is CJK.
+ * The character before the run is the base character when it is followed by a variation selector.
+ * `checkCjk` is false for `_`, whose result does not depend on CJK characters.
+ */
+function scanCjkFlank(p: number, q: number, s0: number, e: number, checkCjk: boolean): void {
+    let prev = -1;
+    let i = p;
+    if (i > s0) {
+        prev = buf.charCodeAt(i - 1);
+        i--;
+        if (prev >= 0xdc00 && prev <= 0xdfff && i > s0) {
+            const hi = buf.charCodeAt(i - 1);
+            if (hi >= 0xd800 && hi <= 0xdbff) {
+                prev = (hi - 0xd800) * 0x400 + (prev - 0xdc00) + 0x10000;
+                i--;
+            }
+        }
+    }
+    let prevSequenceIsCjk = false;
+    if (prev >= 0xfe00 && prev <= 0xfe0e) {
+        // Non-emoji general-use variation selector: use the base character before it
+        let base = -1;
+        if (i > s0) {
+            base = buf.charCodeAt(i - 1);
+            if (base >= 0xdc00 && base <= 0xdfff && i - 1 > s0) {
+                const hi = buf.charCodeAt(i - 2);
+                if (hi >= 0xd800 && hi <= 0xdbff) {
+                    base = (hi - 0xd800) * 0x400 + (base - 0xdc00) + 0x10000;
+                }
+            }
+        }
+        // After whitespace or an ideographic variation selector, the result is unspecified:
+        // keep the variation selector, which is neither whitespace, punctuation, nor CJK.
+        if (classifyCodePoint(base) !== 1 && !(base >= 0xe0100 && base <= 0xe01ef)) {
+            // CJK ambiguous punctuation sequence: a quotation mark + U+FE01
+            prevSequenceIsCjk =
+                prev === 0xfe01 && (base === 0x2018 || base === 0x2019 || base === 0x201c || base === 0x201d);
+            prev = base;
+        }
+    }
+    let next = -1;
+    if (q < e) {
+        next = buf.charCodeAt(q);
+        if (next >= 0xd800 && next <= 0xdbff && q + 1 < e) {
+            const lo = buf.charCodeAt(q + 1);
+            if (lo >= 0xdc00 && lo <= 0xdfff) {
+                next = (next - 0xd800) * 0x400 + (lo - 0xdc00) + 0x10000;
+            }
+        }
+    }
+    cjkBefore = classifyCodePoint(prev);
+    cjkAfter = classifyCodePoint(next);
+    cjkEither =
+        checkCjk &&
+        cjkBefore !== 1 &&
+        cjkAfter !== 1 &&
+        (prevSequenceIsCjk || isCjkCodePoint(prev) || (prev >= 0xe0100 && prev <= 0xe01ef) || isCjkCodePoint(next));
 }
 
 function isAlnum(c: number): boolean {
@@ -3135,11 +3217,26 @@ function parseInline(block: number, kind: number): void {
                 }
                 const prev = p > s0 ? buf.charCodeAt(p - 1) : -1;
                 const next = q < e ? buf.charCodeAt(q) : -1;
-                const before = classify(prev);
-                const after = classify(next);
-                const open = after === 0 || (after === 2 && before !== 0) || next === 126 || next === 42 || next === 95;
+                let before: number;
+                let after: number;
+                let cjk = false;
+                if (cjkFriendly) {
+                    scanCjkFlank(p, q, s0, e, c === 42);
+                    before = cjkBefore;
+                    after = cjkAfter;
+                    cjk = cjkEither;
+                } else {
+                    before = classify(prev);
+                    after = classify(next);
+                }
+                const open =
+                    after === 0 || (after === 2 && (before !== 0 || cjk)) || next === 126 || next === 42 || next === 95;
                 const close =
-                    before === 0 || (before === 2 && after !== 0) || prev === 126 || prev === 42 || prev === 95;
+                    before === 0 ||
+                    (before === 2 && (after !== 0 || cjk)) ||
+                    prev === 126 ||
+                    prev === 42 ||
+                    prev === 95;
                 const canOpen = c === 42 ? open : open && (before !== 0 || !close);
                 const canClose = c === 42 ? close : close && (after !== 0 || !open);
                 if (canOpen || canClose) {
@@ -3160,12 +3257,20 @@ function parseInline(block: number, kind: number): void {
                     q++;
                 }
                 if (q - p <= 2) {
-                    const prev = p > s0 ? buf.charCodeAt(p - 1) : -1;
-                    const next = q < e ? buf.charCodeAt(q) : -1;
-                    const before = classify(prev);
-                    const after = classify(next);
-                    const canOpen = after === 0 || (after === 2 && before !== 0);
-                    const canClose = before === 0 || (before === 2 && after !== 0);
+                    let before: number;
+                    let after: number;
+                    let cjk = false;
+                    if (cjkFriendly) {
+                        scanCjkFlank(p, q, s0, e, true);
+                        before = cjkBefore;
+                        after = cjkAfter;
+                        cjk = cjkEither;
+                    } else {
+                        before = classify(p > s0 ? buf.charCodeAt(p - 1) : -1);
+                        after = classify(q < e ? buf.charCodeAt(q) : -1);
+                    }
+                    const canOpen = after === 0 || (after === 2 && (before !== 0 || cjk));
+                    const canClose = before === 0 || (before === 2 && (after !== 0 || cjk));
                     if (canOpen || canClose) {
                         if (p > textStart) {
                             addText(block, textStart, p, complex);
@@ -3759,10 +3864,25 @@ function createTxtNode(i: number, startLine: number, children: AnyNode[] | undef
 }
 
 /**
+ * Options of `parse`.
+ * Each option enables an extension that changes how a syntax is recognized.
+ */
+export type ParseOptions = {
+    /**
+     * Recognize emphasis, strong emphasis, and strikethrough next to CJK punctuation,
+     * as the CommonMark CJK-friendly Amendments define.
+     * https://github.com/tats-u/markdown-cjk-friendly/blob/main/specification.md
+     * @default false
+     */
+    cjkFriendlyEmphasis?: boolean;
+};
+
+/**
  * Parse Markdown text to TxtAST.
  * `text` should not include BOM.
  */
-export function parseMarkdown(text: string): TxtDocumentNode {
+export function parseMarkdown(text: string, options: ParseOptions = {}): TxtDocumentNode {
+    cjkFriendly = options.cjkFriendlyEmphasis === true;
     rawSrc = text;
     // https://spec.commonmark.org/0.31.2/#insecure-characters
     srcReplaced = text.indexOf("\0") !== -1;
