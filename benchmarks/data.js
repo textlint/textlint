@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794747660793,
+  "lastUpdate": 1794747905292,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -130199,6 +130199,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.3658303706,
             "range": "± 0.007025015000000023",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "36d8eb8b92f63e6a4c5d6f018d25f5bf8bf3893d",
+          "message": "docs(products): rewrite the Japanese text on extensions in plain wording\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJbGt3YiCnRnMuQDFr\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T13:03:47Z",
+          "tree_id": "ba5a58592715dc43a9fbdaa8d40865287365921e",
+          "url": "https://github.com/textlint/textlint/commit/36d8eb8b92f63e6a4c5d6f018d25f5bf8bf3893d"
+        },
+        "date": 1794747896913,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.18401015735999998,
+            "range": "± 0.264672306",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.0224260277600001,
+            "range": "± 0.08587689300000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.34024705136,
+            "range": "± 0.06663923500000002",
             "unit": "seconds"
           }
         ]
