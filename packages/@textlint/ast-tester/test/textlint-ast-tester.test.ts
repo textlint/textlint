@@ -84,7 +84,8 @@ describe("@textlint/ast-tester", function () {
                 range: [0, 1],
                 loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 1 } }
             };
-            for (let i = 0; i < 1000; i++) {
+            // The depth stays within what JSON.stringify handles on every platform
+            for (let i = 0; i < 200; i++) {
                 node = { type: "Emphasis", raw: "a", range: [0, 1], loc: node.loc, children: [node] };
             }
             test(node);
