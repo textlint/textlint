@@ -78,7 +78,7 @@ textlint でも動かせますが、そのために作られてはいません�
 - **フィルタールール：** 報告されたエラーのうち無視するものを決めるルール。たとえば `<!-- textlint-disable -->` コメントの中のエラーを無視する。
 - **プリセット：** 技術文書向けなど、目的ごとにルールをまとめたパッケージ。
 - **プラグイン：** 文書形式を TxtAST に変換するパッケージ。Markdown とプレーンテキストのプラグインは組み込まれている。
-- **TxtAST：** textlint がルールに渡す `TxtNode` の木。すべてのノードは `type`、`raw`、`range`、`loc` を持つ。マークアップの構造を表し、文章はテキストノード（`Str`）に残る。正式に TxtAST に属するノードの種類、つまりすべての形式で共通の汎用的なノードは PascalCase（`Str`、`Paragraph`）にする。パーサーから渡される Markdown 固有のノードなど、それ以外のノードの種類は小文字（`footnote`、`footnoteDefinition`）にする。そのため、ルールが形式をまたいでそのノードの種類に頼れるかどうかは、大文字・小文字でわかる。ただし、この決まりより前からある Markdown 固有のノードの種類のいくつかは、TxtAST に属さないのに PascalCase になっている（`Yaml`、`Toml`、`Json`、`FootnoteReference`）。TxtAST は [TxtAST のインターフェース](../../txtnode.md)と `@textlint/ast-node-types` で緩やかに定義されている。
+- **TxtAST：** textlint がルールに渡す `TxtNode` の木。すべてのノードは `type`、`raw`、`range`、`loc` を持つ。マークアップの構造を表し、文章はテキストノード（`Str`）に残る。正式に TxtAST に属するノードの種類、つまりすべての形式で共通の汎用的なノードは PascalCase（`Str`、`Paragraph`）にする。パーサーから渡される Markdown 固有のノードなど、それ以外のノードの種類は小文字（`footnoteReference`、`yaml`）にする。そのため、ルールが形式をまたいでそのノードの種類に頼れるかどうかは、大文字・小文字でわかる。フロントマター（`yaml`、`toml`、`json`）と脚注（`footnoteReference`、`footnoteDefinition`、`footnote`）は CommonMark にも GFM の仕様にも含まれないので、小文字にする。TxtAST は [TxtAST のインターフェース](../../txtnode.md)と `@textlint/ast-node-types` で緩やかに定義されている。
 - **メッセージ：** ルールが報告するエラー。位置をソース中の範囲として持つ。
 - **フォーマッター：** `stylish` や `json` のように、メッセージを出力するパッケージ。
 
@@ -121,4 +121,3 @@ textlint でも動かせますが、そのために作られてはいません�
 ## 未解決事項
 
 - **TxtAST の正式な仕様：** TxtAST は現在、緩やかにしか定義されていない。どのノードの種類が TxtAST に属し、どれが形式固有かを含めて仕様化することは目標だが、範囲と文書は決まっていない。それまでは `docs/txtnode.md` と `@textlint/ast-node-types` を参照する。azu が決める。
-- **命名の決まりに合わないノードの種類：** `Yaml`、`Toml`、`Json`、`FootnoteReference` は PascalCase だが TxtAST に属さない。メジャーバージョンで小文字に変えるか、TxtAST に加えるか、例外として残すかは決まっていない。それまでは現在の名前を維持する。azu が決める。

@@ -42,7 +42,7 @@ Markdown には仕様があるので、その構文はノードとしてパー�
 
 - Given：`---` で囲まれた YAML のブロックで始まる文書
 - When：テキストをパースする
-- Then：`Document` の最初の子は `Yaml` ノードで、その `raw` は囲まれたブロック全体であり、YAML を含む `Str` はない
+- Then：`Document` の最初の子は `yaml` ノードで、その `raw` は囲まれたブロック全体であり、YAML を含む `Str` はない
 
 シナリオ：テキストが有効な Markdown の構文でないとき、テキストのまま残る
 
@@ -142,8 +142,7 @@ Markdown には仕様があるので、その構文はノードとしてパー�
 ##### ノードの種類
 
 - `ASTNodeTypes` に対応があるノードは、その PascalCase の名前を使う。`Table`、`TableRow`、`TableCell`、`LinkReference`、`ImageReference`、`Definition` もこれに含まれる。
-- `ASTNodeTypes` にない Markdown 固有のノードは小文字の名前を使う：`footnoteDefinition`、`footnote`（インライン注）。
-- `Yaml`、`Toml`、`Json`、`FootnoteReference` は `ASTNodeTypes` にないが、互換性のため PascalCase の名前を維持する（Product の未解決事項を参照）。
+- `ASTNodeTypes` にない Markdown 固有のノードは小文字の名前を使う：`yaml`、`toml`、`json`（フロントマター）、`footnoteReference`、`footnoteDefinition`、`footnote`（インライン注）。フロントマターも脚注も、CommonMark と GFM の仕様には含まれない。
 - 生の HTML は、ブロックでもインラインでも `Html` になる。
 
 ##### 位置

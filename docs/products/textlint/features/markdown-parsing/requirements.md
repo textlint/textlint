@@ -42,7 +42,7 @@ Scenario: When a document starts with front matter, the front matter is one node
 
 - Given: A document that starts with a YAML block fenced by `---`
 - When: The text is parsed
-- Then: The first child of `Document` is a `Yaml` node whose `raw` is the whole fenced block, and no `Str` contains the YAML
+- Then: The first child of `Document` is a `yaml` node whose `raw` is the whole fenced block, and no `Str` contains the YAML
 
 Scenario: When the text is not valid Markdown syntax, it stays as text
 
@@ -142,8 +142,7 @@ Scenario: When the parser is bundled for a browser, it needs no Node.js polyfill
 ##### Node types
 
 - Nodes that have a counterpart in `ASTNodeTypes` use that PascalCase name, including `Table`, `TableRow`, `TableCell`, `LinkReference`, `ImageReference`, and `Definition`.
-- Markdown-only nodes that are not in `ASTNodeTypes` use lowercase names: `footnoteDefinition` and `footnote` (inline notes).
-- `Yaml`, `Toml`, `Json`, and `FootnoteReference` are not in `ASTNodeTypes` but keep their PascalCase names for compatibility (see the Product's open questions).
+- Markdown-only nodes that are not in `ASTNodeTypes` use lowercase names: `yaml`, `toml`, `json` (front matter), `footnoteReference`, `footnoteDefinition`, and `footnote` (inline notes). Neither front matter nor footnotes are part of CommonMark or the GFM specification.
 - Raw HTML, both block and inline, is `Html`.
 
 ##### Positions

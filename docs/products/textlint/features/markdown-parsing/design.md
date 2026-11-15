@@ -99,6 +99,7 @@ The internal node pool is not exposed. It holds, per node, the kind, the start a
 These are the same as in the previous implementation.
 
 Nodes no longer have the hidden, non-enumerable `position` property that the previous implementation kept for unist compatibility.
+Node types that are not in `ASTNodeTypes` are renamed to lowercase, following the Product's naming rule: `Yaml`, `Toml`, `Json`, and `FootnoteReference` become `yaml`, `toml`, `json`, and `footnoteReference`. Some rules list `Yaml` among node types to skip, and they would check front matter as prose without an error, so the release notes call this out.
 Rules use `range` and `loc`; no use of `position` was found in the `textlint`, `textlint-ja`, and `textlint-rule` organizations.
 
 ## External service integration
@@ -134,7 +135,7 @@ A parse that throws leaves the pool in a state that the next `parse()` call rese
 ## Deployment notes
 
 The change is released in a major version, together with the other Markdown AST changes of that version.
-Release notes list the removal of the hidden `position` property and the [compatibility differences](#compatibility-with-the-previous-implementation).
+Release notes list the removal of the hidden `position` property, the renamed node types, and the [compatibility differences](#compatibility-with-the-previous-implementation).
 
 ## Alternatives considered
 
