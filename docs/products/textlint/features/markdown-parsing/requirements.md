@@ -86,11 +86,11 @@ Scenario: When a document uses common Markdown, the node types follow `@textlint
 - When: The text is parsed
 - Then: The node types are the `ASTNodeTypes` names (`Header`, `List`, `ListItem`, `BlockQuote`, `CodeBlock`, `Emphasis`, `Strong`, `Link`, `Image`, and so on)
 
-Scenario: When the parser implementation changes, the existing fixtures produce the same AST
+Scenario: When textlint is updated in a minor or patch version, the AST of a document does not change
 
-- Given: The fixtures under `packages/@textlint/markdown-to-ast/test/fixtures`
-- When: They are parsed by the new implementation
-- Then: The output equals the committed `output.json`, unless the change is listed as a breaking change in the release notes
+- Given: A Markdown document and the AST that one textlint version produces for it
+- When: The document is parsed by a later minor or patch version
+- Then: The AST has the same node types, properties, and positions. A change to them appears only in a major version and is listed in its release notes
 
 ### Parse without a server
 
@@ -184,5 +184,5 @@ Parsing must not overflow the call stack, however deeply blocks or inline delimi
 
 ## Open questions
 
-- **Numeric target for parsing speed:** There is no numeric target. azu decides.
-- **CJK-friendly emphasis:** An opt-in option to recognize emphasis and strikethrough next to CJK punctuation is proposed in textlint/textlint#2113. Whether it becomes part of this feature is not decided. Until then, emphasis follows CommonMark. azu decides with the PR author.
+- **Numeric target for parsing speed:** The target is relative to the previous release, and there is no absolute value such as MB/s. Revisit when users report that parsing is too slow for their documents. azu decides.
+- **CJK-friendly emphasis:** An opt-in option to recognize emphasis and strikethrough next to CJK punctuation is proposed in textlint/textlint#2113. Whether it becomes part of this feature is not decided. Until it is, emphasis follows CommonMark. Revisit when #2113 is ready for review. azu decides with the PR author.

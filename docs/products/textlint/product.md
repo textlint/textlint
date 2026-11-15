@@ -95,7 +95,7 @@ If each rule had to parse each format by itself, the same rule would be written 
 
 ## Definition of success
 
-Not written yet. It will be defined when the first product-wide decision needs it.
+Not defined. See the open questions.
 
 ## Development principles
 
@@ -120,4 +120,5 @@ None, for the same reason.
 
 ## Open questions
 
-- **Formal TxtAST specification:** TxtAST is defined loosely. Formalizing it, including which node types belong to TxtAST and which are format-specific, is a goal, but the scope and document are not decided. Until then, `docs/txtnode.md` and `@textlint/ast-node-types` are the reference. azu decides.
+- **Definition of success:** No product-wide outcome is defined, and decisions are made from the development principles instead. Revisit when a product-wide decision cannot be made from the principles. azu decides.
+- **Formal TxtAST specification:** TxtAST is defined loosely. Formalizing it, including which node types belong to TxtAST and which are format-specific, is a goal, but the scope and document are not decided. Until they are, `docs/txtnode.md` and `@textlint/ast-node-types` are the reference. Revisit when the TxtAST specification is started with sdev. azu decides.
