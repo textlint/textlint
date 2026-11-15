@@ -93,6 +93,14 @@ const TYPE_NAMES = [
     // Pandoc-style inline note. The previous parser(remark-footnotes) outputs this type
     "footnote"
 ];
+/**
+ * Limit of nesting depth.
+ * Block containers(BlockQuote, List, ListItem, footnoteDefinition) are not opened beyond this depth,
+ * and inline nodes(Emphasis, Strong, Delete, Link, LinkReference, footnote) are not nested beyond this depth.
+ * The markers beyond the limit are just text.
+ * It bounds the time and memory for pathological inputs. Real documents do not reach it.
+ */
+const MAX_NESTING = 100;
 const REFERENCE_TYPES = ["shortcut", "collapsed", "full"];
 
 // ---------------------------------------------------------------------------------------------------------
@@ -341,6 +349,24 @@ function moveBetween(from: number, to: number, target: number): void {
     for (let c = first; c !== -1; c = nNext[c]) {
         nParent[c] = target;
     }
+}
+
+/**
+ * Nesting height of inline nodes in (from, to) (exclusive both). 0 if all of them are leaves.
+ * Inline parent nodes keep their height in `nD`.
+ */
+function heightBetween(from: number, to: number): number {
+    let height = 0;
+    for (let c = nNext[from]; c !== to && c !== -1; c = nNext[c]) {
+        const kind = nKind[c];
+        if (
+            ((kind >= Emphasis && kind <= Delete) || kind === Link || kind === LinkReference || kind === Footnote) &&
+            nD[c] > height
+        ) {
+            height = nD[c];
+        }
+    }
+    return height;
 }
 
 function addSide(value: unknown): number {
@@ -1188,7 +1214,7 @@ function processLine(li: number): void {
             break;
         }
         const c = src.charCodeAt(nns);
-        if (c === 62) {
+        if (c === 62 && matched < MAX_NESTING) {
             // >
             startBlock(matched, false, true);
             advanceNns();
@@ -1380,7 +1406,7 @@ function processLine(li: number): void {
                 }
             }
         }
-        if (markerEnd !== -1) {
+        if (markerEnd !== -1 && matched + 2 <= MAX_NESTING) {
             const next = markerEnd < lineEnd ? src.charCodeAt(markerEnd) : -1;
             if (next === -1 || next === 32 || next === 9) {
                 if (
@@ -1471,7 +1497,7 @@ function processLine(li: number): void {
                 }
             }
         }
-        if (c === 91 && src.charCodeAt(nns + 1) === 94) {
+        if (c === 91 && src.charCodeAt(nns + 1) === 94 && matched < MAX_NESTING) {
             // [^label]:
             let j = nns + 2;
             let hasData = false;
@@ -2147,17 +2173,27 @@ let ntN = 0;
 /**
  * Close the last inline note(^[) at `]` of `p`
  */
-function closeNote(p: number): void {
+function closeNote(p: number): boolean {
     const i = --ntN;
     const opener = ntNode[i];
+    // emphasis in the note is resolved before the note itself
+    resolveDelimiters(ntDelim[i]);
+    const height = heightBetween(opener, -1) + 1;
+    if (height > MAX_NESTING) {
+        // too deep: `^[` and `]` are just text.
+        // The outer notes would wrap the same deep content, so they are just text too
+        ntN = 0;
+        return false;
+    }
     const node = newNode(Footnote, nStart[opener], p + 1);
+    nD[node] = height;
     moveBetween(opener, -1, node);
     insertAfter(opener, node);
     unlink(opener);
-    resolveDelimiters(ntDelim[i]);
     if (brN > ntBr[i]) {
         brN = ntBr[i];
     }
+    return true;
 }
 
 function pushDelimiter(node: number, ch: number, num: number, canOpen: boolean, canClose: boolean): void {
@@ -2251,6 +2287,17 @@ function resolveEmphasis(lo: number, hi: number): void {
             }
             opener = dPrev[opener];
         }
+        let height = 0;
+        if (found) {
+            height = heightBetween(dNode[opener], dNode[closer]) + 1;
+            if (height > MAX_NESTING) {
+                // too deep: this closer is just text.
+                // Any opener before this closer would wrap the same deep content, so they are not searched anymore
+                found = false;
+                bottomAsterisk = dPrev[closer];
+                bottomUnderscore = dPrev[closer];
+            }
+        }
         if (found) {
             const use = dNum[closer] >= 2 && dNum[opener] >= 2 ? 2 : 1;
             const on = dNode[opener];
@@ -2260,6 +2307,7 @@ function resolveEmphasis(lo: number, hi: number): void {
             nEnd[on] -= use;
             nStart[cn] += use;
             const emphasis = newNode(use === 1 ? Emphasis : Strong, nEnd[on], nStart[cn]);
+            nD[emphasis] = height;
             moveBetween(on, cn, emphasis);
             insertAfter(on, emphasis);
             removeDelimitersBetween(opener, closer);
@@ -2309,26 +2357,47 @@ function resolveEmphasis(lo: number, hi: number): void {
  */
 function resolveDelimiters(bottom: number): void {
     let closer = firstDelimiterAfter(bottom);
+    // openers at or before the floor are not searched. `~` and `~~` have each floor
+    let floor1 = bottom;
+    let floor2 = bottom;
     while (closer !== -1) {
         if (dCh[closer] === 126 && dClose[closer]) {
+            const floor = dNum[closer] === 1 ? floor1 : floor2;
             let opener = dPrev[closer];
-            while (opener !== -1 && opener !== bottom) {
+            while (opener !== -1 && opener !== floor) {
                 if (dCh[opener] === 126 && dOpen[opener] && dNum[opener] === dNum[closer]) {
                     break;
                 }
                 opener = dPrev[opener];
             }
-            if (opener !== -1 && opener !== bottom) {
+            if (opener === -1 || opener === floor) {
+                // no opener for this closer: the later closers do not need to search before this closer
+                if (dNum[closer] === 1) {
+                    floor1 = dPrev[closer];
+                } else {
+                    floor2 = dPrev[closer];
+                }
+            } else {
                 resolveEmphasis(opener, closer);
                 const on = dNode[opener];
                 const cn = dNode[closer];
-                const node = newNode(Delete, nStart[on], nEnd[cn]);
-                moveBetween(on, cn, node);
-                insertAfter(on, node);
-                unlink(on);
-                unlink(cn);
                 const next = dNext[closer];
-                removeDelimiter(opener);
+                const height = heightBetween(on, cn) + 1;
+                if (height <= MAX_NESTING) {
+                    const node = newNode(Delete, nStart[on], nEnd[cn]);
+                    nD[node] = height;
+                    moveBetween(on, cn, node);
+                    insertAfter(on, node);
+                    unlink(on);
+                    unlink(cn);
+                    removeDelimiter(opener);
+                } else {
+                    // too deep: `~~` are just text.
+                    // Any opener before this closer would wrap the same deep content, so they are not searched anymore
+                    removeDelimiter(opener);
+                    floor1 = dPrev[closer];
+                    floor2 = dPrev[closer];
+                }
                 removeDelimiter(closer);
                 closer = next;
                 continue;
@@ -2339,10 +2408,15 @@ function resolveDelimiters(bottom: number): void {
     resolveEmphasis(bottom, -1);
 }
 
-/** text content of children for `alt` */
+/**
+ * Plain text of the descendants. It is used for `alt` of images.
+ * It walks the tree with parent links instead of recursion, because the nesting depth depends on the input.
+ */
 function textOfChildren(node: number): string {
     let out = "";
-    for (let c = nFirst[node]; c !== -1; c = nNext[c]) {
+    let c = nFirst[node];
+    while (c !== -1) {
+        let descend = false;
         switch (nKind[c]) {
             case Str:
                 out += decodeText(nStart[c], nEnd[c]);
@@ -2361,8 +2435,20 @@ function textOfChildren(node: number): string {
             case FootnoteReference:
                 break;
             default:
-                out += textOfChildren(c);
+                descend = nFirst[c] !== -1;
         }
+        if (descend) {
+            c = nFirst[c];
+            continue;
+        }
+        // next sibling, or the next sibling of the nearest ancestor
+        while (nNext[c] === -1) {
+            c = nParent[c];
+            if (c === node) {
+                return out;
+            }
+        }
+        c = nNext[c];
     }
     return out;
 }
@@ -3102,9 +3188,13 @@ function parseInline(block: number, kind: number): void {
                             addText(block, textStart, p, complex);
                             complex = false;
                         }
-                        closeNote(p);
-                        p++;
-                        textStart = p;
+                        if (closeNote(p)) {
+                            p++;
+                            textStart = p;
+                        } else {
+                            textStart = p;
+                            p++;
+                        }
                     } else {
                         p++;
                     }
@@ -3118,9 +3208,13 @@ function parseInline(block: number, kind: number): void {
                             addText(block, textStart, p, complex);
                             complex = false;
                         }
-                        closeNote(p);
-                        p++;
-                        textStart = p;
+                        if (closeNote(p)) {
+                            p++;
+                            textStart = p;
+                        } else {
+                            textStart = p;
+                            p++;
+                        }
                     } else {
                         p++;
                     }
@@ -3190,9 +3284,13 @@ function parseInline(block: number, kind: number): void {
                             addText(block, textStart, p, complex);
                             complex = false;
                         }
-                        closeNote(p);
-                        p++;
-                        textStart = p;
+                        if (closeNote(p)) {
+                            p++;
+                            textStart = p;
+                        } else {
+                            textStart = p;
+                            p++;
+                        }
                     } else {
                         p++;
                     }
@@ -3203,6 +3301,16 @@ function parseInline(block: number, kind: number): void {
                     complex = false;
                 }
                 const bracket = brNode[opener];
+                // emphasis in the link text is resolved before the link itself
+                resolveDelimiters(brDelim[opener]);
+                const linkHeight = isImage ? 0 : heightBetween(bracket, -1) + 1;
+                if (linkHeight > MAX_NESTING) {
+                    // too deep: brackets are just text
+                    brN--;
+                    textStart = p;
+                    p++;
+                    break;
+                }
                 const node = newNode(
                     referenceType === -1 ? (isImage ? Image : Link) : isImage ? ImageReference : LinkReference,
                     nStart[bracket],
@@ -3211,7 +3319,6 @@ function parseInline(block: number, kind: number): void {
                 moveBetween(bracket, -1, node);
                 insertAfter(bracket, node);
                 unlink(bracket);
-                resolveDelimiters(brDelim[opener]);
                 if (referenceType === -1) {
                     nA[node] = addSide(url);
                     nB[node] = title === null ? -1 : addSide(title);
@@ -3225,6 +3332,9 @@ function parseInline(block: number, kind: number): void {
                     if (isImage) {
                         nD[node] = addSide(textOfChildren(node));
                     }
+                }
+                if (!isImage) {
+                    nD[node] = linkHeight;
                 }
                 if (isImage) {
                     nFirst[node] = -1;
@@ -3313,12 +3423,17 @@ function parseInline(block: number, kind: number): void {
 /**
  * merge adjacent Str, compute value of Str, and convert positions to offsets of `src`
  */
-function finishInline(parent: number): void {
-    let c = nFirst[parent];
+/**
+ * Merge adjacent Str nodes and map positions in `buf` to positions in the source.
+ * It walks the tree with parent links instead of recursion, because the nesting depth depends on the input.
+ */
+function finishInline(root: number): void {
+    let c = nFirst[root];
     while (c !== -1) {
         const kind = nKind[c];
+        let next: number;
         if (kind === Str) {
-            let next = nNext[c];
+            next = nNext[c];
             let complex = nA[c] === 1;
             while (next !== -1 && nKind[next] === Str) {
                 nEnd[c] = nEnd[next];
@@ -3340,20 +3455,28 @@ function finishInline(parent: number): void {
             }
             nStart[c] = mapPos(s);
             nEnd[c] = mapEnd(e);
-            c = next;
-            continue;
-        }
-        if (kind === Break) {
+        } else if (kind === Break) {
             nStart[c] = mapPos(nStart[c]);
             nEnd[c] = mapEnd(nEnd[c]);
+            next = nNext[c];
         } else {
             nStart[c] = mapPos(nStart[c]);
             nEnd[c] = mapPos(nEnd[c]);
             if (nFirst[c] !== -1) {
-                finishInline(c);
+                c = nFirst[c];
+                continue;
             }
+            next = nNext[c];
         }
-        c = nNext[c];
+        // next sibling, or the next sibling of the nearest ancestor
+        while (next === -1) {
+            c = nParent[c];
+            if (c === root) {
+                return;
+            }
+            next = nNext[c];
+        }
+        c = next;
     }
 }
 
@@ -3373,35 +3496,77 @@ function parseInlines(): void {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyNode = any;
 
-function emitChildren(node: number): AnyNode[] {
-    const children: AnyNode[] = [];
-    for (let c = nFirst[node]; c !== -1; c = nNext[c]) {
-        children.push(emit(c));
-    }
-    return children;
+/** Does the kind of node have `children`? */
+function hasChildren(kind: number): boolean {
+    return (
+        (kind <= TableCell &&
+            kind !== CodeBlock &&
+            kind !== HtmlBlock &&
+            kind !== HorizontalRule &&
+            kind !== Definition) ||
+        (kind >= Emphasis && kind <= Delete) ||
+        kind === Link ||
+        kind === LinkReference ||
+        kind === Footnote
+    );
 }
 
-function emit(i: number): AnyNode {
+// explicit stack for emit phase
+let emNode = new Int32Array(64);
+let emLine = new Int32Array(64);
+const emChildren: AnyNode[][] = [];
+
+/**
+ * Create TxtAST from the node pool.
+ * It is post-order traversal with an explicit stack instead of recursion, because the nesting depth depends on the input.
+ */
+function emit(root: number): AnyNode {
+    let sp = 0;
+    let i = root;
+    for (;;) {
+        // start position is resolved before children to keep `lineOf` cache effective
+        let startLine = lineOf(nStart[i]);
+        let children: AnyNode[] | undefined;
+        if (hasChildren(nKind[i])) {
+            children = [];
+            if (nFirst[i] !== -1) {
+                if (sp === emNode.length) {
+                    emNode = growInt32(emNode);
+                    emLine = growInt32(emLine);
+                }
+                emNode[sp] = i;
+                emLine[sp] = startLine;
+                emChildren[sp] = children;
+                sp++;
+                i = nFirst[i];
+                continue;
+            }
+        }
+        for (;;) {
+            const node = createTxtNode(i, startLine, children);
+            if (sp === 0) {
+                emChildren.length = 0;
+                return node;
+            }
+            emChildren[sp - 1].push(node);
+            if (nNext[i] !== -1) {
+                i = nNext[i];
+                break;
+            }
+            // all children are emitted: emit the parent
+            sp--;
+            i = emNode[sp];
+            startLine = emLine[sp];
+            children = emChildren[sp];
+        }
+    }
+}
+
+function createTxtNode(i: number, startLine: number, children: AnyNode[] | undefined): AnyNode {
     const kind = nKind[i];
     const s = nStart[i];
     const e = nEnd[i];
-    const startLine = lineOf(s);
     const startColumn = s - LS[startLine];
-    // children are emitted before end position to keep `lineOf` cache effective
-    let children: AnyNode[] | undefined;
-    if (
-        kind <= TableCell &&
-        kind !== CodeBlock &&
-        kind !== HtmlBlock &&
-        kind !== HorizontalRule &&
-        kind !== Definition
-    ) {
-        children = emitChildren(i);
-    } else if (kind >= Emphasis && kind <= Delete) {
-        children = emitChildren(i);
-    } else if (kind === Link || kind === LinkReference || kind === Footnote) {
-        children = emitChildren(i);
-    }
     const endLine = lineOf(e);
     const loc = {
         start: { line: startLine + 1, column: startColumn },

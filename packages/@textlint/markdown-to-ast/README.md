@@ -41,6 +41,14 @@ The parser is written with data-oriented design for performance.
 - `TxtNode` objects are created only once at the end. There is no intermediate AST such as mdast
 - Working buffers are reused between `parse()` calls
 
+### Nesting limit
+
+The parser does not overflow the call stack for deeply nested inputs.
+
+- The nesting depth is limited to 100 for block containers (`BlockQuote`, `List`, `ListItem`, `footnoteDefinition`) and 100 for inline nodes (`Emphasis`, `Strong`, `Delete`, `Link`, `LinkReference`, `footnote`)
+- The markers beyond the limit are not parsed as syntax. They are kept as text
+- The tree is built and emitted with loops and explicit stacks instead of recursion
+
 ## DEMO
 
 - [textlint AST explorer](https://textlint.org/astexplorer/ "textlint AST explorer")
