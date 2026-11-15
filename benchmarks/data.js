@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794716498391,
+  "lastUpdate": 1794716579359,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128141,6 +128141,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.75132673912,
             "range": "± 0.010899604999999979",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "36e3063798555af3f25d6128250395eb60361f8c",
+          "message": "feat(markdown-to-ast)!: use lowercase type for non-standard nodes\n\nNode types that are not defined in @textlint/ast-node-types are lowercase.\n\nBREAKING CHANGE: `Yaml`, `Toml`, `Json`, and `FootnoteReference` are renamed\nto `yaml`, `toml`, `json`, and `footnoteReference`.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T04:21:28Z",
+          "tree_id": "89ef198b3260bc6b4513aeaa99d5aeae94ac2608",
+          "url": "https://github.com/textlint/textlint/commit/36e3063798555af3f25d6128250395eb60361f8c"
+        },
+        "date": 1794716568767,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2194722369,
+            "range": "± 0.22043615800000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.4023081815,
+            "range": "± 0.06556137700000009",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.44744198630000004,
+            "range": "± 0.014597283000000016",
             "unit": "seconds"
           }
         ]
