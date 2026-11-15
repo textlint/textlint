@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794722733750,
+  "lastUpdate": 1794723994039,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128645,6 +128645,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.54436126744,
             "range": "± 0.005220354999999954",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "ca21b86a999d29122a108e18c0dcac0438036609",
+          "message": "docs(ast-node-types): make the type definitions the definition of generic nodes\n\nThe TxtAST requirements no longer repeat the list of generic nodes and\ntheir properties. The type definitions of @textlint/ast-node-types define\nthem, and their comments state the meaning of each node type and property.\nThe requirements keep what the types cannot express: the position\nconventions, prose in Str, and the naming of extension nodes.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T06:24:46Z",
+          "tree_id": "38bfc415ae1b3f9e64a1becc6157c421d21f7640",
+          "url": "https://github.com/textlint/textlint/commit/ca21b86a999d29122a108e18c0dcac0438036609"
+        },
+        "date": 1794723980769,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.24290226671999998,
+            "range": "± 0.08803240400000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7681680117200003,
+            "range": "± 0.0966805340000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.56894727052,
+            "range": "± 0.008963152999999946",
             "unit": "seconds"
           }
         ]
