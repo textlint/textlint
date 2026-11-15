@@ -81,7 +81,7 @@ describe("Conformance to the Plain text parsing Requirements", function () {
         assert.deepStrictEqual(parse("a\n\n").loc.end, { line: 3, column: 0 });
     });
     it("does not count a BOM in positions", function () {
-        const withBOM = parse("﻿a\nb");
+        const withBOM = parse("\uFEFFa\nb");
         const withoutBOM = parse("a\nb");
         assert.deepStrictEqual(withBOM, withoutBOM);
         assert.strictEqual(withBOM.raw, "a\nb");
