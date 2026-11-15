@@ -141,8 +141,9 @@ Markdown には仕様があるので、その構文はノードとしてパー�
 
 ##### ノードの種類
 
-- `ASTNodeTypes` に対応があるノードは、その名前を使う。
-- Markdown 固有のノードは独自の名前を使う：`Table`、`TableRow`、`TableCell`、`Yaml`、`Toml`、`Json`、`LinkReference`、`ImageReference`、`Definition`、`FootnoteReference`、`footnoteDefinition`、`footnote`（インライン注）。
+- `ASTNodeTypes` に対応があるノードは、その PascalCase の名前を使う。`Table`、`TableRow`、`TableCell`、`LinkReference`、`ImageReference`、`Definition` もこれに含まれる。
+- `ASTNodeTypes` にない Markdown 固有のノードは小文字の名前を使う：`footnoteDefinition`、`footnote`（インライン注）。
+- `Yaml`、`Toml`、`Json`、`FootnoteReference` は `ASTNodeTypes` にないが、互換性のため PascalCase の名前を維持する（Product の未解決事項を参照）。
 - 生の HTML は、ブロックでもインラインでも `Html` になる。
 
 ##### 位置

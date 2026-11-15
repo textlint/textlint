@@ -25,7 +25,7 @@ textlint therefore provides the common machinery, and the checks themselves are 
 
 ### Problems to solve
 
-- Writers want mechanical checks for their writing guidelines, such as terminology, sentence length, and spacing, without reviewing every line by hand, and they want to run the checks in CI.
+- Writers want mechanical checks on the structure of their writing, such as whether each paragraph has one topic sentence, how headings and lists are organized, and how long each sentence is, without reviewing every line by hand, and they want to run the checks in CI. Surface checks such as terminology and spacing are possible too, but the AST exists for the structural checks.
 - Checking documents as plain strings produces false positives on markup: a code span, a URL, or a quotation should not be checked like a sentence, and even "the number of characters" differs between Markdown and plain text.
 - Rule authors want to write a check once and run it on any document format, without parsing each format by themselves.
 
@@ -69,7 +69,7 @@ textlint therefore provides the common machinery, and the checks themselves are 
 - **Filter rule:** A rule that decides which reported errors to ignore, for example inside `<!-- textlint-disable -->` comments.
 - **Preset:** A package that bundles rules for a purpose, such as technical writing.
 - **Plugin:** A package that converts a document format into TxtAST. Markdown and plain text plugins are built in.
-- **TxtAST:** The tree of `TxtNode`s that textlint passes to rules. Every node has `type`, `raw`, `range`, and `loc`. It describes the structure of the markup, and the prose stays in text nodes (`Str`). It is defined loosely in [TxtAST interface](../../txtnode.md) and `@textlint/ast-node-types`.
+- **TxtAST:** The tree of `TxtNode`s that textlint passes to rules. Every node has `type`, `raw`, `range`, and `loc`. It describes the structure of the markup, and the prose stays in text nodes (`Str`). Node types that are formally part of TxtAST, the generic nodes shared by all formats, use PascalCase (`Str`, `Paragraph`). Other node types, such as Markdown-only nodes passed through from a parser, use lowercase names (`footnote`, `footnoteDefinition`), so the casing shows whether a rule can rely on a node type across formats. A few Markdown-only node types predate this rule and are PascalCase although they are not in TxtAST (`Yaml`, `Toml`, `Json`, `FootnoteReference`). TxtAST is defined loosely in [TxtAST interface](../../txtnode.md) and `@textlint/ast-node-types`.
 - **Message:** An error reported by a rule, with its location as a range in the source.
 - **Formatter:** A package that prints messages, such as `stylish` or `json`.
 
@@ -112,4 +112,4 @@ None, for the same reason.
 ## Open questions
 
 - **Formal TxtAST specification:** TxtAST is defined loosely today. Formalizing it, including which node types belong to TxtAST and which are format-specific, is a goal, but the scope and document are not decided. Until then, `docs/txtnode.md` and `@textlint/ast-node-types` are the reference. azu decides.
-- **Node type naming:** TxtAST node types use PascalCase (`Str`, `Paragraph`), while some Markdown-only nodes pass through with lowercase names (`footnote`, `footnoteDefinition`). Whether to unify the casing, and how, is not decided. Until then, the current names are kept. azu decides when the TxtAST specification is written.
+- **Node types that break the naming rule:** `Yaml`, `Toml`, `Json`, and `FootnoteReference` are PascalCase but not in TxtAST. Whether to rename them to lowercase in a major version, add them to TxtAST, or keep them as exceptions is not decided. Until then, the current names are kept. azu decides.
