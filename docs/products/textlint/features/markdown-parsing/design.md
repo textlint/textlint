@@ -42,6 +42,30 @@ Strings that need decoding, such as those with backslash escapes or character re
 
 A BOM is removed before parsing, and positions are counted without it.
 
+Each phase keeps its working state in flat arrays instead of on the call stack.
+The block phase has a stack of open containers.
+The inline phase has a delimiter stack, a bracket stack, and a stack of open inline notes.
+A block that spans several lines is parsed through a joined buffer of its segments, and positions in the buffer are mapped back to source offsets when the inline nodes are finished.
+Within the delimiter stack, strikethrough is resolved before emphasis.
+
+### Behavior kept from the remark-based parser
+
+The previous implementation used remark with `remark-gfm`, `remark-frontmatter`, and `remark-footnotes`.
+Published rules depend on its output, so the parser reproduces the following behavior even where it differs from the CommonMark or GFM specification.
+
+- Pandoc-style inline notes (`^[note]`) become `footnote`. A `]` closes the nearest open note when it does not close a link.
+- A footnote label may contain whitespace.
+- After `[^label]:`, only one whitespace character is skipped, so `[^1]:     text` is an indented code block inside the footnote definition.
+- `[^` never starts a link or a link reference definition.
+
+### Behavior that intentionally differs
+
+The parser does not reproduce positions that were inconsistent in the remark-based parser.
+
+- A `ListItem` that ends with an unclosed fenced code block or HTML block ends before the next item instead of overlapping it.
+- `loc` of the text after a task list checkbox always describes the same span as `range`.
+- A front matter fence that fails to open at the start of the document does not change how list items are recognized in the rest of the document.
+
 ## Architecture and sequence diagrams
 
 No diagram is needed. `parse()` calls the three phases in order, and none of them calls out to other modules except the entity table.
@@ -90,11 +114,13 @@ For inlines, the limit applies to the height of the inline subtree, not to the n
 `Emphasis`, `Strong`, `Delete`, `Link`, `LinkReference`, and `footnote` each add one level.
 A delimiter or bracket pair that would make a node higher than the limit is not matched, and its markers stay text, so the inner 100 levels are kept and the outer markers become text.
 `Image` does not count, because its children are not kept.
-Once the limit is reached, the delimiter search does not rescan the remaining delimiters, so deep inputs stay linear.
+Once the limit is reached, the delimiter search does not rescan the delimiters before that point, so deep inputs stay linear.
+A closing delimiter without an opener also records how far back the search went, so later closers do not search the same range again.
 
 Because blocks and inlines are limited separately, the deepest AST is about `Document`, 100 container levels, a `Paragraph` or `TableCell`, 100 inline levels, and `Str`.
-The tree walks whose depth follows the AST, such as finishing inlines, collecting image alt text, and the emit phase, use parent links or an explicit stack instead of recursion.
-Recursion remains only where its depth is bounded.
+No phase recurses on the nesting depth.
+The tree walks whose depth follows the AST, which are finishing inlines, collecting image alt text, and the emit phase, use parent links or an explicit stack instead of recursion.
+The limit alone would keep recursion safe, but loops keep the parser safe even if the limit is raised later.
 
 If `parse` throws for any other reason, the next `parse()` call resets the pool, so a failure does not affect later documents.
 
