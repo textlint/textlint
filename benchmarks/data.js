@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794748060688,
+  "lastUpdate": 1794748068000,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -130283,6 +130283,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.43480698691999997,
             "range": "± 0.017044049000000006",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "7e9e5dd55528efc03bf89d3b90f176455f2686cd",
+          "message": "docs(products): state which options become keys of syntaxExtensions\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJbGt3YiCnRnMuQDFr\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T13:06:40Z",
+          "tree_id": "d2a89e4133879a6af7f11385abbb5027ed21fc4d",
+          "url": "https://github.com/textlint/textlint/commit/7e9e5dd55528efc03bf89d3b90f176455f2686cd"
+        },
+        "date": 1794748059376,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.14070570858,
+            "range": "± 0.021957140999999986",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.06947055658,
+            "range": "± 0.06827221100000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.33851283418,
+            "range": "± 0.016079834999999987",
             "unit": "seconds"
           }
         ]
