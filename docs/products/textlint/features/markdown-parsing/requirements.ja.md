@@ -12,14 +12,14 @@ Markdown には仕様があるので、構文はノードにパースします�
 この文書は、Markdown のどの構文がどのノードになるか、そして各ノードのプロパティと位置を定義します。
 共通のプロパティや位置の規約のように、すべての TxtAST が満たすことは [TxtAST](../txtast/requirements.ja.md) が定義します。
 
-この文書では、拡張とは、CJK に配慮した強調のように、書き手がオプションでオンにする CommonMark と GFM の上の 1 つの変更を指します。
+この文書では、拡張とは、CJK に配慮した強調のように、CommonMark と GFM の認識のしかたを 1 か所変えるもので、書き手がオプションで有効にするものを指します。
 フレーバーとは、GFM のように、ツールが従う規則の全体を指します。パーサーは CommonMark と GFM の拡張という 1 つのフレーバーを読み、拡張はその一部を変えます。
 
 ### 範囲
 
 - `parse(text, options)` 関数と、`@textlint/textlint-plugin-markdown` が `parse` に渡すオプション
-- 書き手がオンにする拡張: CJK に配慮した強調
-- どの拡張がオンだったかを記録する `Document` の `extensions` プロパティ
+- 書き手が有効にする拡張: CJK に配慮した強調
+- どの拡張を有効にしたかを記録する `Document` の `extensions` プロパティ
 - Markdown の認識のしかたを決める仕様
 - 各構文がなるノードと、そのプロパティと範囲
 - どの仕様にもないために textlint が定義する構文: フロントマター、脚注、インラインの注
@@ -97,25 +97,25 @@ GFM はこのテキストのアスタリスクをそのまま表示し、これ�
 
 **受け入れ条件：**
 
-シナリオ：`cjkFriendlyEmphasis` がオンのとき、CJK の句読点の後の `**` は強い強調を閉じる
+シナリオ：`cjkFriendlyEmphasis` が `true` のとき、CJK の句読点の後の `**` は強い強調を閉じる
 
 - Given: 段落 `**強調。**この文` とオプション `cjkFriendlyEmphasis: true`
 - When: テキストをパースする
 - Then: 段落は `**強調。**` の `Strong` と、それに続く `この文` の `Str` を持つ
 
-シナリオ：`cjkFriendlyEmphasis` がオフのとき、同じテキストは CommonMark に従う
+シナリオ：`cjkFriendlyEmphasis` を指定しないとき、同じテキストは CommonMark に従う
 
 - Given: オプションなしの段落 `**強調。**この文`
 - When: テキストをパースする
 - Then: 段落は `Str` だけを含む
 
-シナリオ：`cjkFriendlyEmphasis` がオンのとき、CJK の句読点の後の打ち消し線は認識される
+シナリオ：`cjkFriendlyEmphasis` が `true` のとき、CJK の句読点の後の打ち消し線は認識される
 
 - Given: 段落 `~~削除。~~この文` とオプション `cjkFriendlyEmphasis: true`
 - When: テキストをパースする
 - Then: 段落は `~~削除。~~` の `Delete` と、それに続く `この文` の `Str` を持つ
 
-シナリオ：`cjkFriendlyEmphasis` がオンでテキストに CJK の文字がないとき、ノードはオフのときと同じになる
+シナリオ：`cjkFriendlyEmphasis` が `true` でもテキストに CJK の文字がないとき、ノードは指定しないときと同じになる
 
 - Given: CJK の文字と異体字セレクターを含まない文書
 - When: `cjkFriendlyEmphasis: true` ありとなしで文書をパースする
@@ -124,18 +124,18 @@ GFM はこのテキストのアスタリスクをそのまま表示し、これ�
 ### 文書がどうパースされたかを知る
 
 強調のまわりの空白を修正するルールの作者として、文書が CJK に配慮した強調でパースされたかどうかを知りたい。修正によって、どのテキストが強調されるかが変わらないようにするためです。
-ルールはプラグインのオプションを読めません。そして同じテキストが、拡張があれば強調になり、なければただのテキストになります。
-ルールが受け取るのは AST なので、`Document` がオンだった拡張を記録します。
+ルールはプラグインのオプションを読めません。一方で、同じ `**強調。**この文` でも、この拡張を有効にすると `Strong` になり、有効にしないと `Str` のままです。
+そこで、ルールが受け取る AST のルートである `Document` に、パースで有効にした拡張を記録します。
 
 **受け入れ条件：**
 
-シナリオ：`cjkFriendlyEmphasis` がオンのとき、`Document` がそれを記録する
+シナリオ：`cjkFriendlyEmphasis` が `true` のとき、`Document` がそれを記録する
 
 - Given: 任意の Markdown のテキストとオプション `cjkFriendlyEmphasis: true`
 - When: テキストをパースする
 - Then: `Document` は `extensions` を持ち、`extensions.cjkFriendlyEmphasis` は `true` である
 
-シナリオ：どの拡張もオンでないとき、`Document` は `extensions` を持たない
+シナリオ：どの拡張も有効でないとき、`Document` は `extensions` を持たない
 
 - Given: オプションなし、または `cjkFriendlyEmphasis: false` の任意の Markdown のテキスト
 - When: テキストをパースする
@@ -263,7 +263,7 @@ CI で textlint を実行する書き手として、細工された文書も大�
 
 1. [CommonMark 0.31.2](https://spec.commonmark.org/0.31.2/) が、それが定義するすべてを決める。
 2. [GitHub Flavored Markdown 0.29-gfm](https://github.github.com/gfm/) が、それが定義する拡張を決める。[表](https://github.github.com/gfm/#tables-extension-)、[タスクリストの項目](https://github.github.com/gfm/#task-list-items-extension-)、[打ち消し線](https://github.github.com/gfm/#strikethrough-extension-)、[自動リンク](https://github.github.com/gfm/#autolinks-extension-) である。
-3. `cjkFriendlyEmphasis` がオンのとき、[CommonMark CJK-friendly Amendments](https://github.com/tats-u/markdown-cjk-friendly/blob/main/specification.md) が、区切り文字の並びが開けるか閉じられるかを決める。[拡張](#拡張) に書いたとおりである。
+3. `cjkFriendlyEmphasis` が `true` のとき、[CommonMark CJK-friendly Amendments](https://github.com/tats-u/markdown-cjk-friendly/blob/main/specification.md) が、区切り文字の並びが開けるか閉じられるかを決める。[拡張](#拡張) に書いたとおりである。
 4. この文書が、これらの仕様のどれも定義しないものを決める。AST 自体、ノードの位置、フロントマター、脚注、インラインの注である。
 
 仕様が定義するのは、テキストの認識のしかたと HTML へのレンダリングであり、AST ではない。
@@ -384,7 +384,7 @@ GFM の [許可されない生の HTML の拡張](https://github.github.com/gfm/
 - `*`、`_`、`~` の区切り文字は、元のテキストの順にまとめて対応させる。閉じる区切り文字はそれぞれ、対応できるいちばん近い開く区切り文字を取る。
 - 対応した組は、その間にある区切り文字をただのテキストにするので、組は交差しない。`*a ~~b* c~~` は、`Emphasis` とそれに続くテキストである。
 - `~` は `~` とだけ、`~~` は `~~` とだけ対応する。3 つ以上の `~` の並びはテキストである。
-- `*` や `_` の並びが開けるか閉じられるかは CommonMark に従う。`~` の並びは、`*` の並びと同じように、左側に接する（left-flanking）ときに開けて、右側に接する（right-flanking）ときに閉じられる。CJK に配慮した強調は、これらの判断を変える。
+- `*` や `_` の並びが開けるか閉じられるかは CommonMark に従う。`~` の並びは、`*` の並びと同じく、left-flanking のときに開けて、right-flanking のときに閉じられる。CJK に配慮した強調を有効にすると、この判断が変わる。
 
 ##### 生の HTML と自動リンク
 
@@ -393,7 +393,7 @@ GFM の [許可されない生の HTML の拡張](https://github.github.com/gfm/
 
 ### 拡張
 
-**概要：** 拡張は構文の認識のしかたを変え、そのオプションが `true` のときだけオンになる。パーサーの拡張は、CJK に配慮した強調の 1 つである。
+**概要：** 拡張は構文の認識のしかたを変え、そのオプションが `true` のときだけ有効になる。このパーサーが持つ拡張は、CJK に配慮した強調だけである。
 
 **入力：** `parse` のオプション。`@textlint/textlint-plugin-markdown` は同じオプションを受け取り、`parse` に渡す。
 
@@ -407,15 +407,15 @@ GFM の [許可されない生の HTML の拡張](https://github.github.com/gfm/
 | --- | --- | --- | --- |
 | `cjkFriendlyEmphasis` | `boolean` | `false` | CJK に配慮した強調 |
 
-- 拡張は、そのオプションが `true` のときだけオンになる。ほかの値や、値がないときはオフである。
+- 拡張は、そのオプションが `true` のときだけ有効になる。ほかの値のときや、値がないときは無効である。
 - プラグインは、`"plugins": { "@textlint/markdown": { "cjkFriendlyEmphasis": true } }` のように、設定のプラグインのオプションでオプションを受け取る。
-- VitePress と Rspress は同じ拡張に `cjkFriendlyEmphasis` という名前を使うので、書き手は textlint とレンダラーに同じ名前を設定する。
+- VitePress と Rspress は同じ拡張に `cjkFriendlyEmphasis` という名前を使うので、書き手は textlint とレンダラーで同じ名前を設定できる。
 
 ##### CJK に配慮した強調
 
-- [CommonMark CJK-friendly Amendments](https://github.com/tats-u/markdown-cjk-friendly/blob/main/specification.md) が、CommonMark の左側に接する区切り文字の並びと右側に接する区切り文字の並びの定義、および `_` と `__` が強調を開ける条件を置き換える。
-- `~` と `~~` は、`*` と同じように、置き換えた左側と右側に接する定義を使う。仕様は CommonMark に対して書かれており、その打ち消し線の実装も同じ変更をする。
-- CJK の文字、CJK の句読点、異体字セレクターは、仕様が書く Unicode のバージョンで、仕様が定義するものである。
+- [CommonMark CJK-friendly Amendments](https://github.com/tats-u/markdown-cjk-friendly/blob/main/specification.md) が、CommonMark の left-flanking と right-flanking の区切り文字の並びの定義と、`_` と `__` が強調を開ける条件を置き換える。
+- `~` と `~~` にも、`*` と同じく、置き換えた left-flanking と right-flanking の定義を使う。仕様は CommonMark に対して書かれているが、仕様の作者による打ち消し線の実装も同じように変えている。
+- CJK の文字、CJK の句読点、異体字セレクターの範囲は、仕様が対象とする Unicode のバージョンで仕様が定義するとおりである。
 - 区切り文字の並びの隣の文字はコードポイントであり、サロゲートペアは 1 文字である。
 - 変わるのは、区切り文字の並びが開けるか閉じられるかだけである。元のテキストの順での対応、3 の倍数の規則、入れ子の上限、`Emphasis`、`Strong`、`Delete` のノードの種類、プロパティ、範囲は [インライン](#インライン) のとおりである。
 - ほかの構文は変わらない。
@@ -424,9 +424,9 @@ GFM の [許可されない生の HTML の拡張](https://github.github.com/gfm/
 
 形式をまたいだ `extensions` の意味は [TxtAST](../txtast/requirements.ja.md#文書の拡張) が定義する。このパーサーは次のように設定する。
 
-- 少なくとも 1 つの拡張がオンのとき、`Document` は `extensions` を持つ。これはオンのオプションの名前をキーとし、それぞれの値を `true` とするオブジェクトである。`cjkFriendlyEmphasis` では `{ "cjkFriendlyEmphasis": true }` になる。
-- オフの拡張はキーにならない。
-- どの拡張もオンでないとき、`Document` は `extensions` を持たない。そのため、オプションなしの AST は、この文書のほかの部分が定義するものである。
+- 少なくとも 1 つの拡張が有効なとき、`Document` は `extensions` を持つ。これは有効なオプションの名前をキーとし、それぞれの値を `true` とするオブジェクトである。`cjkFriendlyEmphasis` では `{ "cjkFriendlyEmphasis": true }` になる。
+- 無効な拡張はキーにならない。
+- どの拡張も有効でないとき、`Document` は `extensions` を持たない。そのため、オプションなしの AST は、この文書のほかの部分が定義するものである。
 
 #### 例外的な挙動
 
@@ -518,7 +518,7 @@ Markdown に構文エラーはない。閉じていない構文や無効な構�
 ### 必要なデータ
 
 - **ソーステキスト：** `parse` に渡された Markdown の文字列。`parse` が返った後は保持しない。
-- **オプション：** `parse` に渡されたオプション。`Document` の `extensions` が、オンだった拡張を記録する。
+- **オプション：** `parse` に渡されたオプション。`Document` の `extensions` が、有効にした拡張を記録する。
 
 ### 関係
 

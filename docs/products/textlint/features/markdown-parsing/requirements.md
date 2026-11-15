@@ -124,8 +124,8 @@ Scenario: When `cjkFriendlyEmphasis` is on and the text has no CJK characters, t
 ### Know how the document was parsed
 
 As a rule author who fixes spaces around emphasis, I want to know whether the document was parsed with CJK-friendly emphasis so that my fix does not change which text is emphasized.
-A rule cannot read the options of a plugin, and the same text is emphasis with the extension and plain text without it.
-The AST is what a rule receives, so `Document` records the extensions that were on.
+A rule cannot read the options of a plugin. Yet the same `**強調。**この文` is `Strong` with the extension and stays `Str` without it.
+So `Document`, the root of the AST that a rule receives, records the extensions that were enabled for parsing.
 
 **Acceptance criteria:**
 
