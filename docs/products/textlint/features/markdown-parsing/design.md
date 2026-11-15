@@ -80,10 +80,11 @@ The [security considerations of the Requirements](requirements.md#security-consi
 Parsing time stays close to proportional to the input size because no phase backtracks over the input.
 Inline parsing uses the CommonMark delimiter and bracket stack algorithms, which handle unclosed brackets and delimiters without rescanning them, and the block phase visits each line once per open container.
 
-Nesting depth is decided by the document, so it is not bounded.
-Processing whose depth follows the nesting of the document, such as walking containers, delimiter runs, and the node pool, keeps its state in explicit stacks instead of the JavaScript call stack.
-Recursion is fine where its depth does not grow with the input.
-No depth limit is applied, so a deeply nested document still gets its real structure.
+Nesting depth is decided by the document, so the parser bounds it with one fixed limit for containers and inline nesting.
+When a block quote, list item, or inline delimiter would open beyond the limit, the parser does not open it and keeps the rest of that line as text in the current node.
+This bounds both the call stack and the time that deeply nested lists take, which otherwise grows faster than linear with the depth.
+With the depth bounded, recursion is fine, and processing does not need explicit stacks to avoid overflowing the call stack.
+The limit is a constant in the parser, chosen far above the nesting of real-world documents, and the parser has a test at the limit.
 
 If `parse` throws for any other reason, the next `parse()` call resets the pool, so a failure does not affect later documents.
 
