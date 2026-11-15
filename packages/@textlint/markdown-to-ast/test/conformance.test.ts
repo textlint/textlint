@@ -159,4 +159,35 @@ describe("CommonMark and GFM conformance", () => {
             assert.deepStrictEqual(inlines("[x](u\u0000rl)"), ['Link[0,9]<u\uFFFDrl>(Str[1,2]="x")']);
         });
     });
+    describe("lines of loc", () => {
+        // U+2028 and U+2029 end a line for `loc`, and they do not end a line of the block structure
+        it("should count U+2028 and U+2029 as line endings for loc only", () => {
+            for (const separator of ["\u2028", "\u2029"]) {
+                const AST = parse(`a${separator}# b *c*\n\nd`) as AnyNode;
+                // `# b` is not a heading, because the separator does not start a new line of the block
+                assert.deepStrictEqual(
+                    AST.children!.map((node) => node.type),
+                    ["Paragraph", "Paragraph"]
+                );
+                const emphasis = AST.children![0].children![1];
+                assert.strictEqual(emphasis.type, "Emphasis");
+                assert.deepStrictEqual(emphasis.range, [6, 9]);
+                assert.deepStrictEqual(emphasis.loc, {
+                    start: { line: 2, column: 4 },
+                    end: { line: 2, column: 7 }
+                });
+                assert.deepStrictEqual(AST.children![1].loc, {
+                    start: { line: 4, column: 0 },
+                    end: { line: 4, column: 1 }
+                });
+            }
+        });
+        it("should count CR and CRLF as one line ending", () => {
+            const AST = parse("a\r\rb\r\n\r\nc") as AnyNode;
+            assert.deepStrictEqual(
+                AST.children!.map((node) => node.loc.start.line),
+                [1, 3, 5]
+            );
+        });
+    });
 });
