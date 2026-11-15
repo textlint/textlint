@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794742996590,
+  "lastUpdate": 1794743276015,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129527,6 +129527,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.55157727994,
             "range": "± 0.004587187000000048",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "3955e1c360908641982ef1491699d786361b088a",
+          "message": "test(text-to-ast): write the BOM in the test as an escape\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAHvNYdBUfWCSPWZdBP\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T11:46:47Z",
+          "tree_id": "92c5960df2ed0aafeb73a056d65ed2aad78e40f4",
+          "url": "https://github.com/textlint/textlint/commit/3955e1c360908641982ef1491699d786361b088a"
+        },
+        "date": 1794743267721,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.13932317570000002,
+            "range": "± 0.027305315000000024",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.0617731245,
+            "range": "± 0.08219083699999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.3372097891,
+            "range": "± 0.02357588500000002",
             "unit": "seconds"
           }
         ]
