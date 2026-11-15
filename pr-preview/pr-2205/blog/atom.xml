@@ -21,7 +21,7 @@ This post first describes the changes for users who run textlint, and then the c
 <p><strong>For users:</strong></p>
 <ul>
 <li class=""><strong>Node.js 22.12.0 or later is required.</strong> Node.js 20 reached end-of-life. Update Node.js in your environment and CI.</li>
-<li class=""><strong>Markdown parsing is much faster.</strong> textlint parses Markdown with a new in-house parser, and installs 61 third-party packages instead of 151. Rules report the same errors for most documents.</li>
+<li class=""><strong>Markdown parsing is much faster.</strong> textlint parses Markdown with a new in-house parser, and installs 59 third-party packages instead of 139 in v15.8.0. Rules report the same errors for most documents.</li>
 <li class=""><strong>The node type of YAML front matter is renamed from <code>Yaml</code> to <code>yaml</code>.</strong> If your configuration lists <code>"Yaml"</code>, such as in <code>textlint-filter-rule-node-types</code>, change it to <code>"yaml"</code>. Otherwise front matter is checked as prose.</li>
 <li class=""><strong>The output of some formatters changes slightly.</strong> <code>table</code> no longer throws on a tab in a message, and <code>pretty-error</code> no longer prints <code>undefined</code> for an empty file.</li>
 <li class=""><strong>New options.</strong> <code>--cache-strategy content</code> detects changed files by content, <code>--stdin</code> works with the <code>pretty-error</code> and <code>diff</code> formatters, and the Markdown plugin's <code>cjkFriendlyEmphasis</code> recognizes emphasis in CJK text such as <code>**強調。**この文</code>.</li>
@@ -96,12 +96,9 @@ It supports the same syntax as before: CommonMark, GFM (tables, strikethrough, t
 
 
 
-
-
-
-
-
-<table><thead><tr><th></th><th>remark-based parser</th><th>v16 parser</th></tr></thead><tbody><tr><td>Parse 3,189 real-world <code>.md</code> files (15.3 MB)</td><td>18,506 ms</td><td>about 400 ms (about 45x faster)</td></tr><tr><td>A table with 20,000 rows</td><td>about 25 s</td><td>about 40 ms</td></tr><tr><td>20,000 <code>[</code> followed by 20,000 <code>]</code></td><td>about 24 s</td><td>about 12 ms</td></tr><tr><td>20,000 <code>[a](</code></td><td>about 11 s</td><td>about 33 ms</td></tr><tr><td>1,000 nested lists</td><td>about 24 s</td><td>about 0.9 s</td></tr><tr><td>Nesting deeper than 100 levels</td><td>can throw <code>RangeError</code></td><td>lints the document</td></tr><tr><td>Third-party packages installed by <code>textlint</code></td><td>151 (34.8 MB)</td><td>61 (27.5 MB)</td></tr><tr><td>Third-party packages installed by <code>@textlint/markdown-to-ast</code></td><td>96 (7.5 MB)</td><td>0</td></tr></tbody></table>
+<table><thead><tr><th></th><th>remark-based parser</th><th>v16 parser</th></tr></thead><tbody><tr><td>Parse 3,189 real-world <code>.md</code> files (15.3 MB)</td><td>18,506 ms</td><td>about 400 ms (about 45x faster)</td></tr><tr><td>A table with 20,000 rows</td><td>about 25 s</td><td>about 40 ms</td></tr><tr><td>20,000 <code>[</code> followed by 20,000 <code>]</code></td><td>about 24 s</td><td>about 12 ms</td></tr><tr><td>20,000 <code>[a](</code></td><td>about 11 s</td><td>about 33 ms</td></tr><tr><td>1,000 nested lists</td><td>about 24 s</td><td>about 0.9 s</td></tr><tr><td>Nesting deeper than 100 levels</td><td>can throw <code>RangeError</code></td><td>lints the document</td></tr><tr><td>Third-party packages installed by <code>@textlint/markdown-to-ast</code></td><td>96 (7.5 MB)</td><td>0</td></tr></tbody></table>
+<p><code>textlint</code> installs 59 third-party packages in production, instead of 139 in v15.8.0 (-80).
+The new parser, the in-house formatter helpers (<a href="https://github.com/textlint/textlint/pull/2183" target="_blank" rel="noopener noreferrer" class="">#2183</a>), the removal of unused dependencies (<a href="https://github.com/textlint/textlint/pull/2184" target="_blank" rel="noopener noreferrer" class="">#2184</a>), and the in-house line table of the kernel (<a href="https://github.com/textlint/textlint/pull/2199" target="_blank" rel="noopener noreferrer" class="">#2199</a>) removed them.</p>
 <p>The textlint CLI also finishes faster. The time is the median of 5 runs on projects of the integration tests:</p>
 
 
