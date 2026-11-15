@@ -81,7 +81,7 @@ class Controller {
      * @public
      */
     current(): TxtNode | null {
-        return this.__current;
+        return this.__current ?? null;
     }
 
     /**
@@ -95,8 +95,6 @@ class Controller {
 
         const worklist = this.__worklist;
         const leavelist = this.__leavelist;
-        const enter = visitor.enter;
-        const leave = visitor.leave;
 
         worklist.push(root);
         leavelist.push(null);
@@ -108,14 +106,14 @@ class Controller {
                 if (!element) {
                     continue;
                 }
-                ret = this.__execute(leave, element);
+                ret = this.__execute(visitor.leave, element);
                 if (ret === BREAK) {
                     return;
                 }
                 continue;
             }
 
-            ret = this.__execute(enter, node);
+            ret = this.__execute(visitor.enter, node);
             if (ret === BREAK) {
                 return;
             }
