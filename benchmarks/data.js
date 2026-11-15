@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794742651629,
+  "lastUpdate": 1794742806650,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129443,6 +129443,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.43585366434000006,
             "range": "± 0.023931066",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "f07ea7c0dc7f3146eca98f245bed5ebada072d06",
+          "message": "feat(ast)!: count the lines of loc by LF, CR, and CRLF only\n\nU+2028 and U+2029 are not line endings of CommonMark or of the Language\nServer Protocol, and editors do not show them as lines. loc counts a line\nby LF, CR, and CRLF in every format.\n\n- @textlint/markdown-to-ast: no change from master\n- @textlint/text-to-ast: a lone CR ends a line and becomes Break\n- @textlint/ast-tester: a lone CR is always a line ending\n- TxtAST requirements: the lines of messages for U+2028 and U+2029 are an\n  open question\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T11:38:22Z",
+          "tree_id": "3f2be09428ab0f54561b09ac3dd21c1725d69e2b",
+          "url": "https://github.com/textlint/textlint/commit/f07ea7c0dc7f3146eca98f245bed5ebada072d06"
+        },
+        "date": 1794742793226,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2194190683,
+            "range": "± 0.038332536",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7569145541000002,
+            "range": "± 0.057205598999999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5553207631,
+            "range": "± 0.014486145000000006",
             "unit": "seconds"
           }
         ]
