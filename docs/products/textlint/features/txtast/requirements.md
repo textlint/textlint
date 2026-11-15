@@ -179,6 +179,7 @@ A line of `loc` ends with LF (`\n`), CR (`\r`), or CRLF (`\r\n`) in every format
 The character after a line ending is at column 0 of the next line.
 These are the line endings of [CommonMark](https://spec.commonmark.org/0.31.2/#line-ending) and of the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocuments), so a line of `loc` is the line that editors show.
 Other characters do not end a line. U+2028 and U+2029 are characters of a line.
+textlint counts the lines of a message in the same way when it converts `range` to a line and a column, so the line of a message agrees with `loc`.
 
 A node may contain line endings in `raw` and `value`. For example, a paragraph of several lines is one `Paragraph`.
 A line ending is not always a node. The Requirements of each parser state which line endings become `Break`.
@@ -345,4 +346,4 @@ A parser limits the nesting depth of the AST that it produces, and states the li
 
 ## Open questions
 
-- **Lines of messages for U+2028 and U+2029:** textlint converts `range` to the line and column of a message, and this conversion counts U+2028 and U+2029 as line endings. For a document with these characters, the line of a message differs from `loc` and from the line that editors show. It is open whether the conversion changes to the definition of this document. Until this is decided, `loc` follows this document and messages keep their conversion. Revisit when a report shows a wrong line in a message. azu decides.
+None.

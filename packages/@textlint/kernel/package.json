@@ -45,8 +45,7 @@
     "@textlint/types": "workspace:*",
     "@textlint/utils": "workspace:*",
     "debug": "catalog:",
-    "fast-equals": "catalog:",
-    "structured-source": "catalog:"
+    "fast-equals": "catalog:"
   },
   "devDependencies": {
     "@textlint/markdown-to-ast": "workspace:*",
