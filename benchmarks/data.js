@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794724566513,
+  "lastUpdate": 1794724578650,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128939,6 +128939,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.3803144492,
             "range": "± 0.008777501999999993",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "8d1429e3bd09aca5f3dca92541cb1b6cb40bcd81",
+          "message": "Merge branch 'claude/project-thread-ocgv4m' into claude/project-thread-ocgv4m-ast-tester",
+          "timestamp": "2026-11-15T06:34:44Z",
+          "tree_id": "f59cf91b0fc70901cb7e926cbd0b3f8b8bb2692a",
+          "url": "https://github.com/textlint/textlint/commit/8d1429e3bd09aca5f3dca92541cb1b6cb40bcd81"
+        },
+        "date": 1794724565077,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22001139702000003,
+            "range": "± 0.15172302400000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.57175721922,
+            "range": "± 0.042451554999999974",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.48603477122000005,
+            "range": "± 0.0054481679999999755",
             "unit": "seconds"
           }
         ]
