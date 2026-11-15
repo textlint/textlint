@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794716579359,
+  "lastUpdate": 1794716881672,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128183,6 +128183,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.44744198630000004,
             "range": "± 0.014597283000000016",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "9e2265a19297d96f9dbf7510588620cb65e20958",
+          "message": "docs: drop current values and require no stack overflow\n\nAddress review: specifications are living documents, so the KPIs no\nlonger record current values. Deeply nested input must not overflow\nthe call stack; record that the parser does not meet this yet and\nhow it could, as a Design open question.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T04:26:52Z",
+          "tree_id": "c79b005b1afe0be34bf3eafa0bcf0e894bd4d2e1",
+          "url": "https://github.com/textlint/textlint/commit/9e2265a19297d96f9dbf7510588620cb65e20958"
+        },
+        "date": 1794716874055,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.1417847713,
+            "range": "± 0.04576580900000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.1386131595000002,
+            "range": "± 0.04742951700000009",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.40475583569999996,
+            "range": "± 0.02608116199999999",
             "unit": "seconds"
           }
         ]
