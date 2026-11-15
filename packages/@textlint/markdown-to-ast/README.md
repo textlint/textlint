@@ -175,6 +175,17 @@ const AST = parse(markdown);
 
 If you want to know real use-case, please see [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
 
+
+### Options
+
+`parse(text, options)` takes these options. All of them are `false` by default.
+
+- `cjkFriendlyEmphasis`: Recognize emphasis, strong emphasis, and strikethrough next to CJK punctuation, as the [CommonMark CJK-friendly Amendments](https://github.com/tats-u/markdown-cjk-friendly/blob/main/specification.md) define. `**強調。**この文` becomes `Strong` and `Str`.
+
+```js
+const AST = parse("**強調。**この文", { cjkFriendlyEmphasis: true });
+```
+
 ## Tests
 
 ```

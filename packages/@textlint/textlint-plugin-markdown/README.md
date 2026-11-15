@@ -41,6 +41,26 @@ For example, if you want to treat [MDX](https://github.com/mdx-js/mdx) as markdo
 ```
 
 
+- `cjkFriendlyEmphasis`: `boolean`
+    - Default: `false`
+    - Recognize emphasis, strong emphasis, and strikethrough next to CJK punctuation, as the [CommonMark CJK-friendly Amendments](https://github.com/tats-u/markdown-cjk-friendly/blob/main/specification.md) define
+    - Enable it when your renderer does the same, such as VitePress and Rspress (`markdown.cjkFriendlyEmphasis`)
+
+For example, `**強調。**この文` is plain text in CommonMark, and it is strong emphasis with this option.
+
+```json5
+{
+    "plugins": {
+        "@textlint/markdown": {
+            "cjkFriendlyEmphasis": true
+        }
+    }
+}
+```
+
+The AST does not record this option.
+A rule whose behavior depends on it has its own option, so enable it in the rule too.
+
 ## Tests
 
     npm test
