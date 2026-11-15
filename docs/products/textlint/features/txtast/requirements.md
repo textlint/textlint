@@ -180,6 +180,9 @@ The character after a line ending is at column 0 of the next line.
 `\n` and `\r\n` are line endings in every format, and `\r\n` is one line ending.
 A format states any other line ending in the Requirements of its parser.
 
+A node may contain line endings in `raw` and `value`. For example, a paragraph of several lines is one `Paragraph`.
+A line ending is not always a node. The Requirements of each parser state which line endings become `Break`.
+
 ##### Tree
 
 - The root is `Document`. Its `range` starts at 0 and covers the whole document text.
@@ -343,5 +346,5 @@ A parser limits the nesting depth of the AST that it produces, and states the li
 
 ## Open questions
 
-- **Line endings that differ between parsers:** Formats count different characters as line endings, and textlint converts offsets to lines for messages with its own definition. It is open whether TxtAST fixes one definition for all formats. Until this is decided, each parser states its line endings, and messages use `range`. Revisit when a report shows a wrong line or column in a message. azu decides.
-- **Statements of the public document that differ from this document:** The public document lists `HtmlBlock` as a parent node and does not describe extension nodes or the position conventions. It is open whether the public document is rewritten in one change or section by section. Until then, this document is the definition. Revisit when this document is merged. azu decides.
+- **Characters that count as line endings differ between parsers:** This is about which characters end a line when `loc` is calculated, not about whether a node may contain line endings. Formats count different characters as line endings, for example a lone `\r` in Markdown, and textlint converts offsets to lines for messages with its own definition. It is open whether TxtAST fixes one definition for all formats. Until this is decided, each parser states its line endings, and messages use `range`. Revisit when a report shows a wrong line or column in a message. azu decides.
+- **Statements of the public document that are out of date:** The public document lists `HtmlBlock` as a parent node, although the type definitions mark the name as deprecated in favor of `Html`. It also does not describe extension nodes or the position conventions. It is open whether the public document is rewritten in one change or section by section. Until then, this document is the definition. Revisit when this document is merged. azu decides.
