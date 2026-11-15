@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794717251176,
+  "lastUpdate": 1794717737567,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128309,6 +128309,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.72808987694,
             "range": "± 0.007599401999999977",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "c488b79f9e98b2cf089b48e97a1dee3683a80bb8",
+          "message": "fix(markdown-to-ast): do not overflow the call stack on deep nesting\n\n- limit the nesting depth to 100 for block containers and inline nodes.\n  The markers beyond the limit are kept as text\n- walk the tree with loops and explicit stacks instead of recursion\n  in the inline finishing and emit phases\n- avoid rescanning delimiters after the limit is reached\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T04:40:39Z",
+          "tree_id": "1d8e7c023b83a314f0bc2373b823aba0c23d0a8e",
+          "url": "https://github.com/textlint/textlint/commit/c488b79f9e98b2cf089b48e97a1dee3683a80bb8"
+        },
+        "date": 1794717725053,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22340928668,
+            "range": "± 0.27599260400000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.4261714044799998,
+            "range": "± 0.06847559100000011",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.43681480388000005,
+            "range": "± 0.02298537500000003",
             "unit": "seconds"
           }
         ]
