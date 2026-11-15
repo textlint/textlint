@@ -78,7 +78,7 @@ If each rule had to parse each format by itself, the same rule would be written 
 - **Filter rule:** A rule that decides which reported errors to ignore, for example inside `<!-- textlint-disable -->` comments.
 - **Preset:** A package that bundles rules for a purpose, such as technical writing.
 - **Plugin:** A package that converts a document format into TxtAST. Markdown and plain text plugins are built in.
-- **TxtAST:** The tree of `TxtNode`s that textlint passes to rules. Every node has `type`, `raw`, `range`, and `loc`. It describes the structure of the markup, and the prose stays in text nodes (`Str`). Node types that are formally part of TxtAST, the generic nodes shared by all formats, use PascalCase (`Str`, `Paragraph`). Other node types, such as Markdown-only nodes passed through from a parser, use lowercase names (`footnoteReference`, `yaml`), so the casing shows whether a rule can rely on a node type across formats. Front matter (`yaml`, `toml`, `json`) and footnotes (`footnoteReference`, `footnoteDefinition`, `footnote`) are not part of CommonMark or the GFM specification, so they are lowercase. TxtAST is defined loosely in [TxtAST interface](../../txtnode.md) and `@textlint/ast-node-types`.
+- **TxtAST:** The tree of nodes that textlint passes to rules. It describes the structure of the markup, and the prose stays in text nodes (`Str`). Every node has `type`, `raw`, `range`, and `loc`. Generic nodes, which all formats share, have PascalCase names (`Str`, `Paragraph`). Extension nodes, which one format adds, have lowercase names (`yaml`, `footnoteReference`), so the casing shows whether a rule can rely on a node type across formats. TxtAST is defined loosely: its [Requirements](features/txtast/requirements.md) fix only what rules rely on across formats.
 - **Message:** An error reported by a rule, with its location as a range in the source.
 - **Formatter:** A package that prints messages, such as `stylish` or `json`.
 
@@ -86,6 +86,7 @@ If each rule had to parse each format by itself, the same rule would be written 
 
 | Feature | Description | Specification |
 | --- | --- | --- |
+| TxtAST | Defines the tree that plugins produce and rules receive | [Requirements](features/txtast/requirements.md) |
 | Markdown parsing | Converts Markdown text into TxtAST for rules | [Requirements](features/markdown-parsing/requirements.md) |
 | Plain text parsing | Converts plain text into TxtAST for rules | Not written |
 | Linting and fixing | Runs rules and filter rules over documents and applies fixes | Not written |
@@ -121,4 +122,3 @@ None, for the same reason.
 ## Open questions
 
 - **Definition of success:** No product-wide outcome is defined, and decisions are made from the development principles instead. Revisit when a product-wide decision cannot be made from the principles. azu decides.
-- **Formal TxtAST specification:** TxtAST is defined loosely. Formalizing it, including which node types belong to TxtAST and which are format-specific, is a goal, but the scope and document are not decided. Until they are, `docs/txtnode.md` and `@textlint/ast-node-types` are the reference. Revisit when the TxtAST specification is started with sdev. azu decides.

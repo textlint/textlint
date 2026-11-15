@@ -9,14 +9,15 @@ It has no third-party dependencies.
 
 Supported syntax:
 
-- CommonMark
-- GFM: tables, strikethrough, task list items, autolink literals, footnotes(`[^1]`)
-- Inline notes(`^[note]`, Pandoc style). The node type is `footnote`
+- [CommonMark 0.31.2](https://spec.commonmark.org/0.31.2/)
+- [GFM](https://github.github.com/gfm/): tables, strikethrough, task list items, and autolink literals
+- Footnotes(`[^1]` and `[^1]: note`) and inline notes(`^[note]`)
 - Front matter: YAML(`---`), TOML(`+++`), JSON(`;;;` or `{`)
 
-The output AST is compatible with the one of the previous remark-based implementation(`remark-parse` + `remark-gfm` + `remark-frontmatter`).
+The parser follows CommonMark for everything CommonMark defines, and GFM for the extensions GFM defines.
+The node of each syntax, its properties, and its range are defined in the [Markdown parsing requirements](https://github.com/textlint/textlint/blob/master/docs/products/textlint/features/markdown-parsing/requirements.md).
 
-Front matter and footnotes are not part of CommonMark/GFM, and their node types are not defined in `@textlint/ast-node-types`. These types are lowercase: `yaml`, `toml`, `json`, `footnoteReference`, `footnoteDefinition`, and `footnote`.
+Front matter and footnotes are not part of CommonMark/GFM, so their nodes are extension nodes with lowercase type names: `yaml`, `toml`, `json`, `footnoteReference`, `footnoteDefinition`, and `footnote`.
 
 The AST consists of `TxtNode`s.
 A `TxtNode` of the AST has following properties:
@@ -25,6 +26,8 @@ A `TxtNode` of the AST has following properties:
 - `range` - Nodes have an index-based location range (array).
 - `raw` - Node have a `raw` text.
 - `value` - Node have a `value` of text.
+
+`raw`, `range`, and `loc` of a node always describe the same span of the text.
 
 The interface are defined in [textlint/txtnode.md](https://github.com/textlint/textlint/blob/master/docs/txtnode.md "textlint/txtnode.md at master · textlint/textlint")
 
@@ -35,11 +38,13 @@ This library is a part of [textlint/textlint](https://github.com/textlint/textli
 ## Design
 
 The parser is written with data-oriented design for performance.
+See the [Markdown parsing design](https://github.com/textlint/textlint/blob/master/docs/products/textlint/features/markdown-parsing/design.md) for details.
 
 - Nodes are stored in flat typed arrays (struct of arrays) and refer to each other by index while parsing
 - Strings are not copied while parsing. `raw` and `value` are sliced from the source text when the AST is emitted
 - `TxtNode` objects are created only once at the end. There is no intermediate AST such as mdast
 - Working buffers are reused between `parse()` calls
+- Parsing time is proportional to the size of the text, including for inputs that repeat unclosed syntax
 
 ### Nesting limit
 
