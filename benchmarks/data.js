@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794722499894,
+  "lastUpdate": 1794722733750,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128603,6 +128603,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.4179837135800001,
             "range": "± 0.015748189000000024",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "cd697d2dfc63ebc5acc8fec8d6718a7c8d353210",
+          "message": "fix(markdown-to-ast): keep shallow pairs after a subtree at the nesting limit\n\n- When a delimiter pair would be deeper than the limit, only the opener and the openers before it are excluded from later searches.\n  An opener after the deep subtree can still make a pair, such as `~b* c~` after 100 nested strong nodes\n- Decide once per parse whether U+0000 was replaced.\n  Comparing the two source strings for every text node took time proportional to the square of the size\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T06:03:47Z",
+          "tree_id": "f8947f04df6951dbe11d63a8c1a3f0491184b9df",
+          "url": "https://github.com/textlint/textlint/commit/cd697d2dfc63ebc5acc8fec8d6718a7c8d353210"
+        },
+        "date": 1794722720262,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21360639384,
+            "range": "± 0.035192292000000014",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6911758620400001,
+            "range": "± 0.03860900199999984",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.54436126744,
+            "range": "± 0.005220354999999954",
             "unit": "seconds"
           }
         ]
