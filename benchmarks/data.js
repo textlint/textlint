@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794748068000,
+  "lastUpdate": 1794748376593,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -130325,6 +130325,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.33851283418,
             "range": "± 0.016079834999999987",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "c9b1d4d8225c166d3f2e845b7b1393975f713e55",
+          "message": "docs(products): keep extensions out of the AST and give rules their own option\n\nRules that depend on CJK-friendly emphasis take their own option, and\nthe writer enables it with the plugin option. Recording the extensions\non Document moves to the alternatives considered, with a condition to\nrevisit it in the open questions. The TxtAST Requirements are unchanged.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJbGt3YiCnRnMuQDFr\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T13:11:26Z",
+          "tree_id": "54847fcfd4f0cd344e9e3bd7e3ca5c8fad490bfc",
+          "url": "https://github.com/textlint/textlint/commit/c9b1d4d8225c166d3f2e845b7b1393975f713e55"
+        },
+        "date": 1794748364133,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.18928142672,
+            "range": "± 0.03475657300000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.38295071812,
+            "range": "± 0.05490469500000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.44345494052,
+            "range": "± 0.006873783999999994",
             "unit": "seconds"
           }
         ]
