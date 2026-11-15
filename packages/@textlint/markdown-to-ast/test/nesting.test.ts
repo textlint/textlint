@@ -102,6 +102,24 @@ describe("nesting", () => {
             assert.strictEqual(countOf(note, "footnote"), MAX_NESTING);
         });
     });
+    describe("after a subtree at the limit", () => {
+        const deep = `${"**".repeat(MAX_NESTING)}x${"**".repeat(MAX_NESTING)}`;
+        it("should parse a shallow strikethrough whose opener is after the deep subtree", () => {
+            // `*a ... ~b*` would be deeper than the limit, so `*` are text. `~b* c~` does not include the deep subtree
+            for (const tilde of ["~", "~~"]) {
+                const AST = parse(`*a ${deep} ${tilde}b* c${tilde}`);
+                assert.strictEqual(countOf(AST, "Strong"), MAX_NESTING);
+                assert.strictEqual(countOf(AST, "Emphasis"), 0);
+                assert.strictEqual(countOf(AST, "Delete"), 1);
+            }
+        });
+        it("should parse a shallow emphasis whose opener is after the deep subtree", () => {
+            const AST = parse(`~a ${deep} *b~ c*`);
+            assert.strictEqual(countOf(AST, "Strong"), MAX_NESTING);
+            assert.strictEqual(countOf(AST, "Delete"), 0);
+            assert.strictEqual(countOf(AST, "Emphasis"), 1);
+        });
+    });
     describe("very deep nesting", () => {
         const N = 100_000;
         const inputs: [string, string][] = [

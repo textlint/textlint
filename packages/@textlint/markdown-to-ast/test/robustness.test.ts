@@ -92,6 +92,7 @@ describe("robustness", () => {
             ["processing instructions", "a <? b\n".repeat(size / 7)],
             ["declarations", "a <!A b\n".repeat(size / 8)],
             ["CDATA", "a <![CDATA[ b\n".repeat(size / 14)],
+            ["text nodes before U+0000", `${"a `x` ".repeat(size / 6)}\0`],
             ["dots in the domain of a URL", `https://a${".".repeat(size)}b`],
             ["dots in the path of a URL", `https://a/${".".repeat(size)}b`],
             ["underscores in the domain of a URL", `www.a${"_".repeat(size)}b`],

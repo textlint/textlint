@@ -113,6 +113,8 @@ let src = "";
  * The replacement keeps the length, so the positions are the same in both.
  */
 let rawSrc = "";
+/** whether `src` is a copy that replaced U+0000 */
+let srcReplaced = false;
 let len = 0;
 let hasCR = false;
 /** line start offsets. `LS[LN]` is a sentinel */
@@ -2321,13 +2323,22 @@ function resolveDelimiters(lo: number): void {
             height = heightBetween(dNode[opener], dNode[closer]) + 1;
             if (height > MAX_NESTING) {
                 // too deep: this closer is just text.
-                // Any opener before this closer would wrap the same deep content, so they are not searched anymore
+                // The opener and any opener before it would wrap the same deep content, so they are not searched anymore.
+                // An opener after it can still make a pair that does not include the deep content
                 found = false;
                 candidate = true;
-                bottomAsterisk = dPrev[closer];
-                bottomUnderscore = dPrev[closer];
-                bottomTilde1 = dPrev[closer];
-                bottomTilde2 = dPrev[closer];
+                if (bottomAsterisk < opener) {
+                    bottomAsterisk = opener;
+                }
+                if (bottomUnderscore < opener) {
+                    bottomUnderscore = opener;
+                }
+                if (bottomTilde1 < opener) {
+                    bottomTilde1 = opener;
+                }
+                if (bottomTilde2 < opener) {
+                    bottomTilde2 = opener;
+                }
             }
         }
         if (found) {
@@ -3642,7 +3653,7 @@ function createTxtNode(i: number, startLine: number, children: AnyNode[] | undef
         case Str:
             return {
                 type,
-                value: nA[i] !== -1 ? side[nA[i]] : src === rawSrc ? raw : src.slice(s, e),
+                value: nA[i] !== -1 ? side[nA[i]] : srcReplaced ? src.slice(s, e) : raw,
                 loc,
                 range,
                 raw
@@ -3754,7 +3765,8 @@ function createTxtNode(i: number, startLine: number, children: AnyNode[] | undef
 export function parseMarkdown(text: string): TxtDocumentNode {
     rawSrc = text;
     // https://spec.commonmark.org/0.31.2/#insecure-characters
-    src = text.indexOf("\0") === -1 ? text : text.split("\0").join("\uFFFD");
+    srcReplaced = text.indexOf("\0") !== -1;
+    src = srcReplaced ? text.split("\0").join("\uFFFD") : text;
     len = text.length;
     hasCR = text.indexOf("\r") !== -1;
     nCount = 0;
