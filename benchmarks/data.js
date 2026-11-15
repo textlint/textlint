@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794717737567,
+  "lastUpdate": 1794717790867,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128351,6 +128351,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.43681480388000005,
             "range": "± 0.02298537500000003",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "84dd7a4ef358021ec2aad94530b14ba90bfbf9dd",
+          "message": "docs: align the nesting limit with the parser\n\nDescribe the limit as implemented in #2188: 100 levels, applied\nseparately to block containers (list items take two levels) and to the\nheight of inline subtrees, with markers beyond it kept as text, linear\ndelimiter search after the limit, and AST walks without recursion.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T04:41:49Z",
+          "tree_id": "96abbe6e74ab592b607ef840ce2b7477fb99378b",
+          "url": "https://github.com/textlint/textlint/commit/84dd7a4ef358021ec2aad94530b14ba90bfbf9dd"
+        },
+        "date": 1794717781479,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.19957101856000004,
+            "range": "± 0.22700652200000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.36465914376,
+            "range": "± 0.05819481800000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.48443676816000003,
+            "range": "± 0.008926241999999973",
             "unit": "seconds"
           }
         ]
