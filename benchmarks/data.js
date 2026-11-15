@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794743843618,
+  "lastUpdate": 1794743848349,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129737,6 +129737,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.37130125740000003,
             "range": "± 0.004409066999999989",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "f8344b7f6407d75f4cfab32e56c61a6e0cf208fb",
+          "message": "Merge remote-tracking branch 'origin/master' into claude/project-thread-00pnxy-text-parser-spec\n\n# Conflicts:\n#\tdocs/products/textlint/features/txtast/requirements.ja.md\n#\tdocs/products/textlint/features/txtast/requirements.md\n#\tpackages/@textlint/text-to-ast/src/plaintext-parser.ts",
+          "timestamp": "2026-11-15T11:55:07Z",
+          "tree_id": "4901ae647caab9c9e5d36c49ab368e093376108e",
+          "url": "https://github.com/textlint/textlint/commit/f8344b7f6407d75f4cfab32e56c61a6e0cf208fb"
+        },
+        "date": 1794743837194,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.1720614186,
+            "range": "± 0.022265465999999984",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.3634259788,
+            "range": "± 0.06138687099999984",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.4338593884,
+            "range": "± 0.019313738999999996",
             "unit": "seconds"
           }
         ]
