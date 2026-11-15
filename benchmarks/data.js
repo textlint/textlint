@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794751101801,
+  "lastUpdate": 1794751207393,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -130703,6 +130703,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.34852138218000006,
             "range": "± 0.046841937",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "84de0e8ccd3b42d251531353f629069e609ef8f4",
+          "message": "docs(blog): make the v16 summary self-explanatory and link the requirements\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T13:58:35Z",
+          "tree_id": "7935cb15a61e7558c5039b2ab1c8e45f85960b44",
+          "url": "https://github.com/textlint/textlint/commit/84de0e8ccd3b42d251531353f629069e609ef8f4"
+        },
+        "date": 1794751194901,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.18472473134,
+            "range": "± 0.07979910900000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.35790424374,
+            "range": "± 0.08043307699999991",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.43840874514,
+            "range": "± 0.012795043999999978",
             "unit": "seconds"
           }
         ]
