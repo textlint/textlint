@@ -40,9 +40,10 @@ function createEndedBRNode({ prevNode, lineBreakText }: { prevNode: TxtNode; lin
                 line: prevNode.loc.end.line,
                 column: prevNode.loc.end.column
             },
+            // The position after a line break is the start of the next line
             end: {
-                line: prevNode.loc.end.line,
-                column: prevNode.loc.end.column + lineBreakText.length
+                line: prevNode.loc.end.line + 1,
+                column: 0
             }
         }
     };
@@ -69,9 +70,10 @@ function createBRNode({
                 line: lineNumber,
                 column: 0
             },
+            // The position after a line break is the start of the next line
             end: {
-                line: lineNumber,
-                column: lineBreak.length
+                line: lineNumber + 1,
+                column: 0
             }
         }
     };

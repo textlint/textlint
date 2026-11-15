@@ -13,17 +13,33 @@ export function isUnist(node: unknown): boolean {
 }
 
 export function test(node: Record<string, unknown>) {
+    assert.doesNotThrow(function () {
+        JSON.parse(JSON.stringify(node));
+    });
+    // Walk with a stack, because the depth of the tree depends on the document
+    const stack: Record<string, unknown>[] = [node];
+    while (stack.length > 0) {
+        const current = stack.pop() as Record<string, unknown>;
+        testNode(current);
+        const children = current.children as Record<string, unknown>[] | null | undefined;
+        if (children !== null && children !== undefined) {
+            for (let i = children.length - 1; i >= 0; i--) {
+                stack.push(children[i]);
+            }
+        }
+    }
+}
+
+/**
+ * Test a node without its descendants
+ */
+export function testNode(node: Record<string, unknown>) {
     assert.strictEqual(typeof node, "object");
     assert.strictEqual(typeof node.type, "string");
     assert.ok((node.type as string).length >= 1);
 
-    assert.doesNotThrow(function () {
-        JSON.parse(JSON.stringify(node));
-    });
-
     if (node.children !== null && node.children !== undefined) {
         assert.ok(Array.isArray(node.children));
-        node.children.forEach(test);
     }
 
     if (node.value !== null && node.value !== undefined) {

@@ -78,7 +78,7 @@ describe("plaintext-parser-test", function () {
                         type: "Break",
                         raw: "\n",
                         range: [4, 5],
-                        loc: { start: { line: 1, column: 4 }, end: { line: 1, column: 5 } }
+                        loc: { start: { line: 1, column: 4 }, end: { line: 2, column: 0 } }
                     }
                 ]
             };
@@ -115,7 +115,7 @@ describe("plaintext-parser-test", function () {
                         type: "Break",
                         raw: "\n",
                         range: [4, 5],
-                        loc: { start: { line: 1, column: 4 }, end: { line: 1, column: 5 } }
+                        loc: { start: { line: 1, column: 4 }, end: { line: 2, column: 0 } }
                     },
                     {
                         type: "Paragraph",
@@ -168,13 +168,13 @@ describe("plaintext-parser-test", function () {
                         type: "Break",
                         raw: "\n",
                         range: [4, 5],
-                        loc: { start: { line: 1, column: 4 }, end: { line: 1, column: 5 } }
+                        loc: { start: { line: 1, column: 4 }, end: { line: 2, column: 0 } }
                     },
                     {
                         type: "Break",
                         raw: "\n",
                         range: [5, 6],
-                        loc: { start: { line: 2, column: 0 }, end: { line: 2, column: 1 } }
+                        loc: { start: { line: 2, column: 0 }, end: { line: 3, column: 0 } }
                     },
                     {
                         type: "Paragraph",

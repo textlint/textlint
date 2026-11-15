@@ -480,6 +480,9 @@ test(AST); // if the AST is invalid, then throw Error
 isTxtAST(AST); // true or false
 ```
 
+`test` checks the common properties of every node, and that `raw`, `range`, and `loc` describe the same span.
+It also checks that a child is inside of its parent and that siblings do not overlap.
+
 :warning: Current `test` function does not check node specific properties.
 For example, `TxtHeaderNode` has `depth` property, but `test` function does not check it.
 
