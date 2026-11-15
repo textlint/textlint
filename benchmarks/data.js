@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794724027656,
+  "lastUpdate": 1794724142139,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128729,6 +128729,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5180758686000001,
             "range": "± 0.026083134000000063",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "0504972ceb0754af1e8ec23124c6ad029f99bb9a",
+          "message": "feat(ast-tester)!: check the conventions between raw, range, and loc\n\nThe tester now rejects an AST in which raw is not the text of range,\nloc is not the position of range, a child is outside of its parent, or\nsiblings overlap. It walks the tree with a stack, so a deep AST does not\noverflow the call stack.\n\n@textlint/text-to-ast sets loc.end of Break to column 0 of the next\nline, as the conventions require.\n\nBREAKING CHANGE: @textlint/ast-tester throws for an AST that violates\nthe position conventions of TxtAST. The loc.end of Break from\n@textlint/text-to-ast changed from a column past the end of the line to\ncolumn 0 of the next line.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T06:25:36Z",
+          "tree_id": "8870a255f13f8d62a1b83db012468a7a36742c68",
+          "url": "https://github.com/textlint/textlint/commit/0504972ceb0754af1e8ec23124c6ad029f99bb9a"
+        },
+        "date": 1794724131136,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17369937380000003,
+            "range": "± 0.04340181300000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.3473023074000001,
+            "range": "± 0.08065477399999987",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.42790774359999995,
+            "range": "± 0.00965855099999996",
             "unit": "seconds"
           }
         ]
