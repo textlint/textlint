@@ -107,6 +107,12 @@ const REFERENCE_TYPES = ["shortcut", "collapsed", "full"];
 // Source and line table
 // ---------------------------------------------------------------------------------------------------------
 let src = "";
+/**
+ * The text as given. `raw` is a slice of it.
+ * `src` is the same text, or the text that replaced U+0000 with U+FFFD if the text includes U+0000.
+ * The replacement keeps the length, so the positions are the same in both.
+ */
+let rawSrc = "";
 let len = 0;
 let hasCR = false;
 /** line start offsets. `LS[LN]` is a sentinel */
@@ -502,8 +508,6 @@ let fIndent = 0;
 let hType = 0;
 /** indented code: end of segments of the last indented line */
 let codeSegEnd = 0;
-/** indented code: it can not continue to next line */
-let codeSingleLine = false;
 let pDefsDone = false;
 // definitions
 let definitions = new Set<string>();
@@ -1122,12 +1126,9 @@ function processLine(li: number): void {
     }
     let matched = i - 1;
     const allMatched = matched === depth;
-    // micromark compatible: new list item is restricted on the line that continues paragraph or indented code.
-    // It affects all list items on the line
-    const interrupt =
-        allMatched && leaf !== -1 && (leafKind === Paragraph || (leafKind === CodeBlock && !fenced && !codeSingleLine));
-    // micromark compatible: indented code can not continue if it starts at the line that closes containers
-    let lazyLine = !allMatched || nKind[cNode[depth]] === List;
+    // A list item that interrupts a paragraph is restricted: it is not empty, and an ordered list starts with 1.
+    // The restriction is only for the first marker of the line: the following markers are in the new container
+    let interrupt = allMatched && leafKind === Paragraph;
 
     // 2. continue the open leaf that is not a paragraph
     if (allMatched && leaf !== -1) {
@@ -1161,9 +1162,7 @@ function processLine(li: number): void {
                 return;
             }
             findNns();
-            if (codeSingleLine) {
-                closeLeaf(0);
-            } else if (indent >= 4) {
+            if (indent >= 4) {
                 advanceOffset(4, true);
                 addLeafLine();
                 codeSegEnd = segN;
@@ -1196,7 +1195,6 @@ function processLine(li: number): void {
             if (!inParagraph && !blank) {
                 startBlock(matched, false);
                 const node = newNode(CodeBlock, ptab ? off + 1 : off, lineEnd);
-                codeSingleLine = lazyLine;
                 advanceOffset(4, true);
                 append(cNode[depth], node);
                 leaf = node;
@@ -1227,7 +1225,7 @@ function processLine(li: number): void {
             }
             pushContainer(newNode(BlockQuote, nns, lineEnd), 0);
             matched = depth;
-            lazyLine = false;
+            interrupt = false;
             continue;
         }
         if (c === 35) {
@@ -1318,15 +1316,10 @@ function processLine(li: number): void {
         } else if (c === 60) {
             // <
             const line = src.slice(nns, lineEnd);
-            const type = htmlBlockType(line, !inParagraph || matched < depth);
+            // HTML block of a complete tag(type 7) can not interrupt a paragraph, including on a lazy continuation line
+            const type = htmlBlockType(line, !inParagraph);
             if (type !== 0) {
-                if (type === 7 && inParagraph) {
-                    // micromark compatible: HTML(complete tag) on a lazy line closes the paragraph,
-                    // but it is still in the containers
-                    closeLeaf(0);
-                } else {
-                    startBlock(matched, false);
-                }
+                startBlock(matched, false);
                 const node = newNode(HtmlBlock, ptab ? off + 1 : off, lineEnd);
                 append(cNode[depth], node);
                 leaf = node;
@@ -1470,7 +1463,7 @@ function processLine(li: number): void {
                     nB[item] = 0;
                     pushContainer(item, markerIndent + padding);
                     matched = depth;
-                    lazyLine = false;
+                    interrupt = false;
                     continue;
                 }
             }
@@ -1546,7 +1539,7 @@ function processLine(li: number): void {
                 }
                 pushContainer(node, 0);
                 matched = depth;
-                lazyLine = false;
+                interrupt = false;
                 continue;
             }
         }
@@ -1678,6 +1671,8 @@ function setupBuf(s0: number, count: number, trim: boolean): void {
     bSeg0 = s0;
     vCache = 0;
     parenTitleFrom = -1;
+    trailFrom = -1;
+    trailTo = -1;
     noHtmlEnd = 0;
     ticksScanned = false;
     if (count === 1) {
@@ -1879,8 +1874,9 @@ function decodeString(value: string): string {
 
 /**
  * decode text in `buf`: escapes, references, and line endings
+ * @param keepSpaces keep the whitespaces before line endings. Titles keep them, texts of paragraphs do not
  */
-function decodeText(s: number, e: number): string {
+function decodeText(s: number, e: number, keepSpaces = false): string {
     let out = "";
     let from = s;
     let i = s;
@@ -1905,7 +1901,7 @@ function decodeText(s: number, e: number): string {
         } else if (c === 10 && bMulti) {
             // remove whitespaces before line ending
             let j = i;
-            while (j > from) {
+            while (!keepSpaces && j > from) {
                 const d = buf.charCodeAt(j - 1);
                 if (d !== 32 && d !== 9) {
                     break;
@@ -2142,7 +2138,7 @@ function parseDefinition(p: number): number {
         if (titleEnd !== -1) {
             const u = skipSpaces(titleEnd, e);
             if (u >= e || buf.charCodeAt(u) === 10) {
-                defTitle = partEnd > partStart ? decodeText(partStart, partEnd) : null;
+                defTitle = partEnd > partStart ? decodeText(partStart, partEnd, true) : null;
                 return u;
             }
         }
@@ -2265,34 +2261,57 @@ function firstDelimiterAfter(lo: number): number {
 }
 
 /**
- * resolve `*` and `_` delimiters in (lo, hi) exclusive
+ * Resolve the delimiters above `lo`: `*`, `_`, and `~`.
+ * The closers are processed in the source order, and each closer takes the nearest opener.
+ * A matched pair removes the delimiters between them, so pairs never cross:
+ * `*a ~~b* c~~` is an emphasis followed by literal `~~`.
  */
-function resolveEmphasis(lo: number, hi: number): void {
+function resolveDelimiters(lo: number): void {
+    // Openers at or before the bottom are not searched. Each kind of closer has its own bottom:
+    // `*`, `_`, `~`, and `~~`
     let bottomAsterisk = lo;
     let bottomUnderscore = lo;
+    let bottomTilde1 = lo;
+    let bottomTilde2 = lo;
     let closer = firstDelimiterAfter(lo);
-    while (closer !== -1 && closer !== hi) {
+    while (closer !== -1) {
         const ch = dCh[closer];
-        if (ch === 126 || !dClose[closer]) {
+        if (!dClose[closer]) {
             closer = dNext[closer];
             continue;
         }
-        const bottom = ch === 42 ? bottomAsterisk : bottomUnderscore;
+        const tilde = ch === 126;
+        const bottom = tilde
+            ? dNum[closer] === 1
+                ? bottomTilde1
+                : bottomTilde2
+            : ch === 42
+            ? bottomAsterisk
+            : bottomUnderscore;
         let opener = dPrev[closer];
         let found = false;
         let candidate = false;
         while (opener !== -1 && opener !== lo && opener !== bottom) {
             if (dCh[opener] === ch && dOpen[opener]) {
-                candidate = true;
-                if (
-                    !(
-                        (dClose[opener] || dOpen[closer]) &&
-                        dNum[closer] % 3 !== 0 &&
-                        (dNum[opener] + dNum[closer]) % 3 === 0
-                    )
-                ) {
-                    found = true;
-                    break;
+                if (tilde) {
+                    // `~` and `~~` match only the same size
+                    if (dNum[opener] === dNum[closer]) {
+                        candidate = true;
+                        found = true;
+                        break;
+                    }
+                } else {
+                    candidate = true;
+                    if (
+                        !(
+                            (dClose[opener] || dOpen[closer]) &&
+                            dNum[closer] % 3 !== 0 &&
+                            (dNum[opener] + dNum[closer]) % 3 === 0
+                        )
+                    ) {
+                        found = true;
+                        break;
+                    }
                 }
             }
             opener = dPrev[opener];
@@ -2304,30 +2323,63 @@ function resolveEmphasis(lo: number, hi: number): void {
                 // too deep: this closer is just text.
                 // Any opener before this closer would wrap the same deep content, so they are not searched anymore
                 found = false;
+                candidate = true;
                 bottomAsterisk = dPrev[closer];
                 bottomUnderscore = dPrev[closer];
+                bottomTilde1 = dPrev[closer];
+                bottomTilde2 = dPrev[closer];
             }
         }
         if (found) {
-            const use = dNum[closer] >= 2 && dNum[opener] >= 2 ? 2 : 1;
             const on = dNode[opener];
             const cn = dNode[closer];
+            let use: number;
+            if (tilde) {
+                use = dNum[closer];
+                const node = newNode(Delete, nStart[on], nEnd[cn]);
+                nD[node] = height;
+                moveBetween(on, cn, node);
+                insertAfter(on, node);
+            } else {
+                use = dNum[closer] >= 2 && dNum[opener] >= 2 ? 2 : 1;
+                nEnd[on] -= use;
+                nStart[cn] += use;
+                const emphasis = newNode(use === 1 ? Emphasis : Strong, nEnd[on], nStart[cn]);
+                nD[emphasis] = height;
+                moveBetween(on, cn, emphasis);
+                insertAfter(on, emphasis);
+            }
             dNum[opener] -= use;
             dNum[closer] -= use;
-            nEnd[on] -= use;
-            nStart[cn] += use;
-            const emphasis = newNode(use === 1 ? Emphasis : Strong, nEnd[on], nStart[cn]);
-            nD[emphasis] = height;
-            moveBetween(on, cn, emphasis);
-            insertAfter(on, emphasis);
             removeDelimitersBetween(opener, closer);
+            // the delimiters between the pair are removed: a bottom there moves to the opener.
+            // The delimiters are numbered in the source order
+            if (bottomAsterisk > opener) {
+                bottomAsterisk = opener;
+            }
+            if (bottomUnderscore > opener) {
+                bottomUnderscore = opener;
+            }
+            if (bottomTilde1 > opener) {
+                bottomTilde1 = opener;
+            }
+            if (bottomTilde2 > opener) {
+                bottomTilde2 = opener;
+            }
             if (dNum[opener] === 0) {
                 unlink(on);
+                const prev = dPrev[opener];
                 if (bottomAsterisk === opener) {
-                    bottomAsterisk = dPrev[opener];
+                    bottomAsterisk = prev;
                 }
                 if (bottomUnderscore === opener) {
-                    bottomUnderscore = dPrev[opener];
+                    bottomUnderscore = prev;
+                }
+                if (bottomTilde1 === opener) {
+                    bottomTilde1 = prev;
+                }
+                if (bottomTilde2 === opener) {
+                    bottomTilde2 = prev;
                 }
                 removeDelimiter(opener);
             }
@@ -2339,83 +2391,40 @@ function resolveEmphasis(lo: number, hi: number): void {
             }
         } else {
             const old = closer;
+            const prev = dPrev[old];
             closer = dNext[closer];
             if (!candidate) {
-                // no opener for this character below here
-                if (ch === 42) {
-                    bottomAsterisk = dPrev[old];
+                // no opener for this kind of closer below here
+                if (!tilde) {
+                    if (ch === 42) {
+                        bottomAsterisk = prev;
+                    } else {
+                        bottomUnderscore = prev;
+                    }
+                } else if (dNum[old] === 1) {
+                    bottomTilde1 = prev;
                 } else {
-                    bottomUnderscore = dPrev[old];
+                    bottomTilde2 = prev;
                 }
             }
             if (!dOpen[old]) {
                 if (bottomAsterisk === old) {
-                    bottomAsterisk = dPrev[old];
+                    bottomAsterisk = prev;
                 }
                 if (bottomUnderscore === old) {
-                    bottomUnderscore = dPrev[old];
+                    bottomUnderscore = prev;
+                }
+                if (bottomTilde1 === old) {
+                    bottomTilde1 = prev;
+                }
+                if (bottomTilde2 === old) {
+                    bottomTilde2 = prev;
                 }
                 removeDelimiter(old);
             }
         }
     }
-    removeDelimitersBetween(lo, hi);
-}
-
-/**
- * resolve delimiters above `bottom`: strikethrough first, then emphasis
- */
-function resolveDelimiters(bottom: number): void {
-    let closer = firstDelimiterAfter(bottom);
-    // openers at or before the floor are not searched. `~` and `~~` have each floor
-    let floor1 = bottom;
-    let floor2 = bottom;
-    while (closer !== -1) {
-        if (dCh[closer] === 126 && dClose[closer]) {
-            const floor = dNum[closer] === 1 ? floor1 : floor2;
-            let opener = dPrev[closer];
-            while (opener !== -1 && opener !== floor) {
-                if (dCh[opener] === 126 && dOpen[opener] && dNum[opener] === dNum[closer]) {
-                    break;
-                }
-                opener = dPrev[opener];
-            }
-            if (opener === -1 || opener === floor) {
-                // no opener for this closer: the later closers do not need to search before this closer
-                if (dNum[closer] === 1) {
-                    floor1 = dPrev[closer];
-                } else {
-                    floor2 = dPrev[closer];
-                }
-            } else {
-                resolveEmphasis(opener, closer);
-                const on = dNode[opener];
-                const cn = dNode[closer];
-                const next = dNext[closer];
-                const height = heightBetween(on, cn) + 1;
-                if (height <= MAX_NESTING) {
-                    const node = newNode(Delete, nStart[on], nEnd[cn]);
-                    nD[node] = height;
-                    moveBetween(on, cn, node);
-                    insertAfter(on, node);
-                    unlink(on);
-                    unlink(cn);
-                    removeDelimiter(opener);
-                } else {
-                    // too deep: `~~` are just text.
-                    // Any opener before this closer would wrap the same deep content, so they are not searched anymore
-                    removeDelimiter(opener);
-                    floor1 = dPrev[closer];
-                    floor2 = dPrev[closer];
-                }
-                removeDelimiter(closer);
-                closer = next;
-                continue;
-            }
-        }
-        closer = dNext[closer];
-    }
-    resolveEmphasis(bottom, -1);
+    removeDelimitersBetween(lo, -1);
 }
 
 /**
@@ -2464,13 +2473,13 @@ function textOfChildren(node: number): string {
 }
 
 // eslint-disable-next-line no-control-regex -- control characters are not allowed in autolink
-const RE_AUTOLINK = /^<([A-Za-z][A-Za-z0-9+.-]{1,31}:[^\s<>\x00-\x20\x7f]*)>/;
+const RE_AUTOLINK = /^<([A-Za-z][A-Za-z0-9+.-]{1,31}:[^<>\x00-\x20\x7f]*)>/;
 const RE_EMAIL_AUTOLINK =
     /^<([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)>/;
 const TAG_NAME = "[A-Za-z][A-Za-z0-9-]*";
-const INLINE_ATTRIBUTE = `(?:\\s+[A-Za-z_:][A-Za-z0-9_.:-]*(?:\\s*=\\s*(?:[^ \\t\\n"'=<>\`]+|'[^']*'|"[^"]*"))?)`;
+const INLINE_ATTRIBUTE = `(?:[ \\t\\n]+[A-Za-z_:][A-Za-z0-9_.:-]*(?:[ \\t\\n]*=[ \\t\\n]*(?:[^ \\t\\n"'=<>\`]+|'[^']*'|"[^"]*"))?)`;
 const RE_HTML_INLINE = new RegExp(
-    `^(?:<${TAG_NAME}${INLINE_ATTRIBUTE}*\\s*/?>|</${TAG_NAME}\\s*>|<!-->|<!--->|<!--[\\s\\S]*?-->|<\\?[\\s\\S]*?\\?>|<![A-Za-z][^>]*>|<!\\[CDATA\\[[\\s\\S]*?\\]\\]>)`
+    `^(?:<${TAG_NAME}${INLINE_ATTRIBUTE}*[ \\t\\n]*/?>|</${TAG_NAME}[ \\t\\n]*>|<!-->|<!--->|<!--[\\s\\S]*?-->|<\\?[\\s\\S]*?\\?>|<![A-Za-z][^>]*>|<!\\[CDATA\\[[\\s\\S]*?\\]\\]>)`
 );
 
 /** code span: start position of the last backtick run of each size in `buf`. It is filled by `scanTicks` */
@@ -2617,9 +2626,31 @@ function scanLiteralPath(p: number, e: number): number {
     return i;
 }
 
+/**
+ * The last scan of `isLiteralTrail`: every position in [trailFrom, trailTo) has the result `trailResult`.
+ * A run of punctuations is scanned once, even if each punctuation asks.
+ */
+let trailFrom = -1;
+let trailTo = -1;
+let trailEnd = -1;
+let trailResult = false;
+
 /** whether [p, ...) is trailing punctuations followed by an end */
 function isLiteralTrail(p: number, e: number): boolean {
+    if (p >= trailFrom && p < trailTo && e === trailEnd) {
+        return trailResult;
+    }
+    const result = scanLiteralTrail(p, e);
+    trailFrom = p;
+    trailEnd = e;
+    trailResult = result;
+    return result;
+}
+
+/** It sets `trailTo`: the position where the scan stopped */
+function scanLiteralTrail(p: number, e: number): boolean {
     let i = p;
+    trailTo = p;
     while (i < e) {
         const c = buf.charCodeAt(i);
         if (
@@ -2637,6 +2668,7 @@ function isLiteralTrail(p: number, e: number): boolean {
             c === 126
         ) {
             i++;
+            trailTo = i;
             continue;
         }
         if (c === 38) {
@@ -2652,6 +2684,7 @@ function isLiteralTrail(p: number, e: number): boolean {
                 return false;
             }
             i = j + 1;
+            trailTo = i;
             continue;
         }
         if (c === 93) {
@@ -2663,6 +2696,7 @@ function isLiteralTrail(p: number, e: number): boolean {
             if (d === 40 || d === 91 || classify(d) === 1) {
                 return true;
             }
+            trailTo = i;
             continue;
         }
         return c === 60 || classify(c) === 1;
@@ -2780,15 +2814,6 @@ function nextEmail(p: number, s0: number, e: number): number {
     return findEmail(p, s0, e);
 }
 
-/** whether the tab at the offset is 1 column width */
-function isSingleColumnTab(offset: number): boolean {
-    let column = 0;
-    for (let i = LS[lineOf(offset)]; i < offset; i++) {
-        column += src.charCodeAt(i) === 9 ? 4 - (column % 4) : 1;
-    }
-    return column % 4 === 3;
-}
-
 function addText(parent: number, s: number, e: number, complex: boolean): number {
     const node = newNode(Str, s, e);
     nA[node] = complex ? 1 : 0;
@@ -2817,8 +2842,6 @@ function parseInline(block: number, kind: number): void {
     ntN = 0;
     let textStart = p;
     let complex = false;
-    let forcedStart = -1;
-    let checkboxText = -1;
     const inTable = kind === TableCell;
 
     // task list item
@@ -2827,35 +2850,21 @@ function parseInline(block: number, kind: number): void {
         if (nKind[item] === ListItem && nFirst[item] === block) {
             const c = buf.charCodeAt(p + 1);
             const d = buf.charCodeAt(p + 3);
-            if (
-                (c === 32 || c === 10 || c === 120 || c === 88 || (c === 9 && isSingleColumnTab(mapPos(p + 1)))) &&
-                (d === 32 || d === 9 || d === 10)
-            ) {
+            if ((c === 32 || c === 9 || c === 10 || c === 120 || c === 88) && (d === 32 || d === 9 || d === 10)) {
                 nA[item] = c === 120 || c === 88 ? 1 : 0;
-                // micromark compatible: the first character of the text after the checkbox is removed
+                // The marker belongs to the list item.
+                // The paragraph starts at the first character after the marker and the following whitespaces
                 let j = p + 3;
-                let tab = false;
-                while (j < e && (buf.charCodeAt(j) === 32 || buf.charCodeAt(j) === 9)) {
-                    if (buf.charCodeAt(j) === 9) {
-                        tab = true;
+                while (j < e) {
+                    const w = buf.charCodeAt(j);
+                    if (w !== 32 && w !== 9 && w !== 10) {
+                        break;
                     }
                     j++;
                 }
-                if (buf.charCodeAt(j) === 10 && j < e) {
-                    if (j - (p + 3) >= 2 && !tab) {
-                        // hard break follows the checkbox
-                        p += 3;
-                    } else {
-                        // whitespaces before the line ending are not text: the line ending is removed
-                        p = j + 1;
-                        checkboxText = p;
-                        forcedStart = segE[bSeg0 + vLineOf(j)] + 1;
-                    }
-                } else {
-                    p += 4;
-                    checkboxText = p;
-                }
+                p = j;
                 textStart = p;
+                nStart[block] = mapPos(p);
             }
         }
     }
@@ -3322,7 +3331,7 @@ function parseInline(block: number, kind: number): void {
                                     q = skipWhitespace(t, e);
                                     if (q < e && buf.charCodeAt(q) === 41) {
                                         url = decodeString(buf.slice(ds, de));
-                                        title = te > ts ? decodeText(ts, te) : null;
+                                        title = te > ts ? decodeText(ts, te, true) : null;
                                         end = q + 1;
                                     }
                                 }
@@ -3477,17 +3486,6 @@ function parseInline(block: number, kind: number): void {
     }
     resolveDelimiters(-1);
     finishInline(block);
-
-    if (checkboxText !== -1) {
-        // The paragraph starts from the text after checkbox if the text is not only a whitespace
-        const first = nFirst[block];
-        if (first !== -1 && nKind[first] === Str && nC[first] === checkboxText) {
-            if (forcedStart !== -1) {
-                nStart[first] = forcedStart;
-            }
-            nStart[block] = nStart[first];
-        }
-    }
 }
 
 /**
@@ -3511,8 +3509,6 @@ function finishInline(root: number): void {
             }
             const s = nStart[c];
             const e = nEnd[c];
-            // keep the position in `buf` for checkbox
-            nC[c] = s;
             if (complex) {
                 nA[c] = addSide(decodeText(s, e));
             } else if (bMulti) {
@@ -3640,11 +3636,17 @@ function createTxtNode(i: number, startLine: number, children: AnyNode[] | undef
         end: { line: endLine + 1, column: e - LS[endLine] }
     };
     const range = [s, e] as const;
-    const raw = src.slice(s, e);
+    const raw = rawSrc.slice(s, e);
     const type = TYPE_NAMES[kind];
     switch (kind) {
         case Str:
-            return { type, value: nA[i] === -1 ? raw : side[nA[i]], loc, range, raw };
+            return {
+                type,
+                value: nA[i] !== -1 ? side[nA[i]] : src === rawSrc ? raw : src.slice(s, e),
+                loc,
+                range,
+                raw
+            };
         case Paragraph:
         case BlockQuote:
         case Emphasis:
@@ -3750,7 +3752,9 @@ function createTxtNode(i: number, startLine: number, children: AnyNode[] | undef
  * `text` should not include BOM.
  */
 export function parseMarkdown(text: string): TxtDocumentNode {
-    src = text;
+    rawSrc = text;
+    // https://spec.commonmark.org/0.31.2/#insecure-characters
+    src = text.indexOf("\0") === -1 ? text : text.split("\0").join("\uFFFD");
     len = text.length;
     hasCR = text.indexOf("\r") !== -1;
     nCount = 0;
@@ -3773,6 +3777,7 @@ export function parseMarkdown(text: string): TxtDocumentNode {
     } finally {
         // release references
         src = "";
+        rawSrc = "";
         buf = "";
         side = [];
     }

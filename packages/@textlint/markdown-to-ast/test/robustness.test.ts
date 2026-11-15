@@ -92,6 +92,11 @@ describe("robustness", () => {
             ["processing instructions", "a <? b\n".repeat(size / 7)],
             ["declarations", "a <!A b\n".repeat(size / 8)],
             ["CDATA", "a <![CDATA[ b\n".repeat(size / 14)],
+            ["dots in the domain of a URL", `https://a${".".repeat(size)}b`],
+            ["dots in the path of a URL", `https://a/${".".repeat(size)}b`],
+            ["underscores in the domain of a URL", `www.a${"_".repeat(size)}b`],
+            ["character references in the path of a URL", `https://a/${"&a;".repeat(size / 3)}b`],
+            ["brackets in the path of a URL", `https://a/${"]".repeat(size)}b`],
             [
                 "backtick runs of different sizes",
                 (() => {
