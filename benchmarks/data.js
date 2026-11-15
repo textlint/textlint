@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794742367800,
+  "lastUpdate": 1794742651629,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129401,6 +129401,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.44680820876,
             "range": "± 0.03601933800000001",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "5b437adab630caddc89b1fdd8df4202015d90ca0",
+          "message": "feat(text-to-ast)!: specify plain text parsing and rewrite the parser as one loop\n\nAdd the Requirements and Design of plain text parsing (English and\nJapanese) and rewrite `@textlint/text-to-ast` so that it maps one to one\nto the node table of the Requirements.\n\n- Every line ending becomes a `Break`, including the line endings at the\n  end of the text. Before, the last one was dropped when the text ended\n  with an empty line or had only line endings\n- A BOM at the start of the text is not part of the AST, as in Markdown\n  and as textlint's SourceCode does\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAHvNYdBUfWCSPWZdBP\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T11:36:07Z",
+          "tree_id": "5c3dbb3ac44effc0246ac8bced5f6c99cc418ec3",
+          "url": "https://github.com/textlint/textlint/commit/5b437adab630caddc89b1fdd8df4202015d90ca0"
+        },
+        "date": 1794742640911,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17186567694000002,
+            "range": "± 0.02192195799999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.3524140453400002,
+            "range": "± 0.03426286500000009",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.43585366434000006,
+            "range": "± 0.023931066",
             "unit": "seconds"
           }
         ]
