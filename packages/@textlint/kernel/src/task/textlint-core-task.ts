@@ -173,21 +173,29 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      */
     startTraverser(sourceCode: TextlintSourceCode) {
         this.emit(TextLintCoreTask.events.start);
-        const promiseQueue: Array<Promise<Array<void>>> = [];
+        const promiseQueue: Array<Promise<unknown>> = [];
         const ruleTypeEmitter = this.ruleTypeEmitter;
+        // `${type}:exit` for each node type, to avoid creating the string for every node
+        const exitTypes = new Map<string, string>();
+        // reuse the descriptor, because `parent` is defined on every node
+        const parentDescriptor: PropertyDescriptor = { value: undefined };
         traverseController.traverse(sourceCode.ast as TxtParentNode, {
             enter(node: AnyTxtNode, parent?: AnyTxtNode) {
-                const type = node.type;
-                Object.defineProperty(node, "parent", { value: parent });
-                if (ruleTypeEmitter.listenerCount(type) > 0) {
-                    const promise = ruleTypeEmitter.emit(type, node);
+                parentDescriptor.value = parent;
+                Object.defineProperty(node, "parent", parentDescriptor);
+                const promise = ruleTypeEmitter.emit(node.type, node);
+                if (promise !== undefined) {
                     promiseQueue.push(promise);
                 }
             },
             leave(node: AnyTxtNode) {
-                const type = `${node.type}:exit`;
-                if (ruleTypeEmitter.listenerCount(type) > 0) {
-                    const promise = ruleTypeEmitter.emit(type, node);
+                let type = exitTypes.get(node.type);
+                if (type === undefined) {
+                    type = `${node.type}:exit`;
+                    exitTypes.set(node.type, type);
+                }
+                const promise = ruleTypeEmitter.emit(type, node);
+                if (promise !== undefined) {
                     promiseQueue.push(promise);
                 }
             }
