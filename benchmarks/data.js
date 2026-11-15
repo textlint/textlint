@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794742806650,
+  "lastUpdate": 1794742996590,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129485,6 +129485,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5553207631,
             "range": "± 0.014486145000000006",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "175615897a6b79988f42e320f775cf5e910a8804",
+          "message": "Merge #2197 (LF, CR, and CRLF only) and drop U+2028 and U+2029 from plain text parsing\n\nU+2028 and U+2029 are characters of a line, as the TxtAST Requirements\nnow define.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAHvNYdBUfWCSPWZdBP\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T11:41:31Z",
+          "tree_id": "ac99e58e5b7c78af0ab9d74901945af899d65e69",
+          "url": "https://github.com/textlint/textlint/commit/175615897a6b79988f42e320f775cf5e910a8804"
+        },
+        "date": 1794742983335,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22630461834,
+            "range": "± 0.05868648399999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.74004466914,
+            "range": "± 0.043013964000000016",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.55157727994,
+            "range": "± 0.004587187000000048",
             "unit": "seconds"
           }
         ]
