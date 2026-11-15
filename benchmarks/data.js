@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794750782678,
+  "lastUpdate": 1794750935000,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -130619,6 +130619,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.55584159244,
             "range": "± 0.014184450000000015",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "20578a659ad7d126d338c211b67b5ff0b4071ea2",
+          "message": "feat: add `textlint --profile` and a performance comparison of two builds\n\n- `textlint --profile` prints where the time of a run goes: phases\n  (startup, load-config, search-files, lint/fix with parse, traverse,\n  rules, filter-rules, post-process, apply-fixes, format, write-files),\n  the parse time of each plugin, the rules, and the slowest files, as\n  Markdown or JSON (`--format json`)\n- `@textlint/kernel` exports `profiler`; it does nothing per node when off\n- `pnpm run compare` builds the base and the head, lints fixed sets of\n  documents with both, and compares the lint results, the CLI run time,\n  the parsers, the traversal, the profiles, and CPU profiles\n- the \"Profile and benchmark\" workflow runs it for pull requests\n- AGENTS.md and a skill tell AI agents to run it for changes on the hot path\n- specifications under docs/products/textlint/features/\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFhDjQv5inahhbbFMD\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T13:53:47Z",
+          "tree_id": "bb667227d16234fcdd05dc6d2f5351925f0b9d21",
+          "url": "https://github.com/textlint/textlint/commit/20578a659ad7d126d338c211b67b5ff0b4071ea2"
+        },
+        "date": 1794750922985,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21625607920000003,
+            "range": "± 0.24254259500000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.3616631996000002,
+            "range": "± 0.06083739399999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.43282575580000004,
+            "range": "± 0.024838897999999998",
             "unit": "seconds"
           }
         ]
