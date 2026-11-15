@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794748376593,
+  "lastUpdate": 1794748769540,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -130367,6 +130367,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.44345494052,
             "range": "± 0.006873783999999994",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "76aa73a59c629327e16d3cea5edcb4b7cb4b426c",
+          "message": "feat(markdown-to-ast): add the cjkFriendlyEmphasis option\n\n`parse(text, { cjkFriendlyEmphasis: true })` decides whether a delimiter\nrun of `*`, `_`, or `~` can open or close by the CommonMark CJK-friendly\nAmendments. The CJK character table is generated from the ranges of the\nspecification (Unicode 18) by tools/generate-cjk.mjs.\n\n@textlint/textlint-plugin-markdown passes its `cjkFriendlyEmphasis`\nplugin option to `parse`. The AST does not record the option.\n\nTests compare 3,142 inputs, including every row of the start and end\nconditions table of the implementers' tips, with markdown-it-cjk-friendly.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJbGt3YiCnRnMuQDFr\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T13:17:46Z",
+          "tree_id": "165b383b20b7551a431dcbf6084250e853b21999",
+          "url": "https://github.com/textlint/textlint/commit/76aa73a59c629327e16d3cea5edcb4b7cb4b426c"
+        },
+        "date": 1794748754889,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21310725472,
+            "range": "± 0.050948196",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6804955053199997,
+            "range": "± 0.08180960299999995",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5110966377199999,
+            "range": "± 0.010595830999999944",
             "unit": "seconds"
           }
         ]
