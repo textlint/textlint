@@ -51,7 +51,7 @@ This post first describes the changes for users who run textlint, and then the c
 <h3 class="anchor anchorTargetStickyNavbar_h6cq" id="faster-markdown-parsing">Faster Markdown parsing<a href="https://textlint.org/textlint/pr-preview/pr-2205/blog/2026/11/15/textlint-16#faster-markdown-parsing" class="hash-link" aria-label="Direct link to Faster Markdown parsing" title="Direct link to Faster Markdown parsing" translate="no">​</a></h3>
 <p>textlint v16 parses Markdown with a new in-house parser instead of remark.
 It supports the same syntax as before: CommonMark, GFM (tables, strikethrough, task list items, autolink literals, footnotes), Pandoc-style inline notes (<code>^[note]</code>), and YAML/TOML/JSON front matter.</p>
-<p>Compared with the remark-based parser (Node.js 22):</p>
+<p>Parsing time with Node.js 22:</p>
 
 
 
@@ -72,35 +72,12 @@ It supports the same syntax as before: CommonMark, GFM (tables, strikethrough, t
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th></th><th>remark-based parser</th><th>v16 parser</th></tr></thead><tbody><tr><td>Parse 3,189 real-world <code>.md</code> files (15.3 MB)</td><td>18,506 ms</td><td>about 400 ms (about 45x faster)</td></tr><tr><td>A table with 20,000 rows</td><td>about 25 s</td><td>about 40 ms</td></tr><tr><td>20,000 <code>[</code> followed by 20,000 <code>]</code></td><td>about 24 s</td><td>about 12 ms</td></tr><tr><td>20,000 <code>[a](</code></td><td>about 11 s</td><td>about 33 ms</td></tr><tr><td>1,000 nested lists</td><td>about 24 s</td><td>about 0.9 s</td></tr><tr><td>Nesting deeper than 100 levels</td><td>can throw <code>RangeError</code></td><td>lints the document</td></tr><tr><td>Third-party packages installed by <code>@textlint/markdown-to-ast</code></td><td>96 (7.5 MB)</td><td>0</td></tr></tbody></table>
+<table><thead><tr><th>Documents</th><th>Before</th><th>v16</th></tr></thead><tbody><tr><td><a href="https://github.com/asciidwango/js-primer" target="_blank" rel="noopener noreferrer" class="">js-primer</a> (88 <code>.md</code> files, 1.4 MB)</td><td>1,070 ms (v15.8.0)</td><td>18 ms (about 58x faster)</td></tr><tr><td>3,189 real-world <code>.md</code> files (15.3 MB)</td><td>18,506 ms (remark-based parser)</td><td>about 400 ms (about 45x faster)</td></tr></tbody></table>
+<p>Inputs that took tens of seconds, such as a table with 20,000 rows, are parsed in milliseconds, and documents nested deeper than 100 levels are linted instead of throwing <code>RangeError</code>.
+<code>@textlint/markdown-to-ast</code> has no third-party dependencies, instead of 96 packages (7.5 MB).</p>
 <p><code>textlint</code> installs 59 third-party packages in production, instead of 139 in v15.8.0 (-80).
 The new parser, the in-house formatter helpers (<a href="https://github.com/textlint/textlint/pull/2183" target="_blank" rel="noopener noreferrer" class="">#2183</a>), the removal of unused dependencies (<a href="https://github.com/textlint/textlint/pull/2184" target="_blank" rel="noopener noreferrer" class="">#2184</a>), and the in-house line table of the kernel (<a href="https://github.com/textlint/textlint/pull/2199" target="_blank" rel="noopener noreferrer" class="">#2199</a>) removed them.</p>
-<p>The textlint CLI also finishes faster. The time is the median of 5 runs on projects of the integration tests:</p>
+<p>How much faster the textlint CLI finishes depends on how much of the time rules take:</p>
 
 
 
@@ -121,10 +98,16 @@ The new parser, the in-house formatter helpers (<a href="https://github.com/text
 
 
 
-<table><thead><tr><th>Project</th><th>remark-based parser</th><th>v16 parser</th></tr></thead><tbody><tr><td>webpack-book (62 files, 489 KB)</td><td>1,448 ms</td><td>949 ms (-34%)</td></tr><tr><td>magi-hacker (5 files, 5.5 KB)</td><td>632 ms</td><td>505 ms (-20%)</td></tr></tbody></table>
-<p>The improvement depends on how much of the time rules take. For projects whose rules load a large dictionary, such as kuromoji, the CLI is about 5% faster.</p>
+
+
+
+
+
+<table><thead><tr><th>Project</th><th>Before</th><th>v16</th></tr></thead><tbody><tr><td>webpack-book (62 files, 489 KB)</td><td>1,448 ms (remark-based parser)</td><td>949 ms (-34%)</td></tr><tr><td>magi-hacker (5 files, 5.5 KB)</td><td>632 ms (remark-based parser)</td><td>505 ms (-20%)</td></tr><tr><td>js-primer (60 files, with its own rules)</td><td>18.7 s (v15.8.0)</td><td>18.9 s (no change)</td></tr></tbody></table>
+<p>In js-primer, almost all of the time is spent in rules, such as the morphological analysis of Japanese text, so a faster parser does not change the total.</p>
 <p>Rules report the same errors for most documents.
 A few edge cases follow CommonMark and GitHub more closely. For example, when a document starts with <code>---</code> that is not a front matter fence, the lists in the document are now recognized.
+Another example is a footnote definition followed by link reference definitions without a blank line. The following lines are now part of the footnote, the same as micromark and the latest remark-gfm, so add a blank line after the footnote definition.
 See <a href="https://textlint.org/textlint/pr-preview/pr-2205/blog/2026/11/15/textlint-16#new-markdown-parser" class="">New Markdown parser</a> for the details.</p>
 <p><a href="https://github.com/textlint/textlint/pull/2188" target="_blank" rel="noopener noreferrer" class="">#2188</a></p>
 <h3 class="anchor anchorTargetStickyNavbar_h6cq" id="front-matter-node-type-is-yaml">Front matter node type is <code>yaml</code><a href="https://textlint.org/textlint/pr-preview/pr-2205/blog/2026/11/15/textlint-16#front-matter-node-type-is-yaml" class="hash-link" aria-label="Direct link to front-matter-node-type-is-yaml" title="Direct link to front-matter-node-type-is-yaml" translate="no">​</a></h3>
@@ -160,7 +143,7 @@ The default is <code>metadata</code>, the same behavior as before.</p>
 The new <code>cjkFriendlyEmphasis</code> option parses emphasis, strong emphasis, and strikethrough with the <a href="https://github.com/tats-u/markdown-cjk-friendly" target="_blank" rel="noopener noreferrer" class="">CommonMark CJK-friendly Amendments</a>, the same as VitePress and Rspress.
 It is disabled by default. Enable it when your documents are rendered with these rules.</p>
 <div class="language-json codeBlockContainer_HXxJ theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_EOvw"><pre tabindex="0" class="prism-code language-json codeBlock_q9OZ thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_oa09"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">"plugins"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token property" style="color:#36acaa">"@textlint/markdown"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            </span><span class="token property" style="color:#36acaa">"cjkFriendlyEmphasis"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">true</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
-<p>The AST does not record this option. A rule whose fixes depend on it, such as <code>ja-space-around-strong</code>, has its own <code>cjkFriendlyEmphasis</code> option, so enable both.</p>
+<p>The AST does not record this option. A rule whose fixes depend on it needs its own <code>cjkFriendlyEmphasis</code> option, so enable both. For example, <code>ja-space-around-strong</code> and <code>ja-space-around-emphasis</code> of <code>textlint-rule-preset-ja-spacing</code> add the option in <a href="https://github.com/textlint-ja/textlint-rule-preset-ja-spacing/pull/144" target="_blank" rel="noopener noreferrer" class="">textlint-ja/textlint-rule-preset-ja-spacing#144</a>.</p>
 <p><a href="https://github.com/textlint/textlint/pull/2203" target="_blank" rel="noopener noreferrer" class="">#2203</a></p>
 <h3 class="anchor anchorTargetStickyNavbar_h6cq" id="bug-fixes">Bug Fixes<a href="https://textlint.org/textlint/pr-preview/pr-2205/blog/2026/11/15/textlint-16#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h3>
 <ul>
