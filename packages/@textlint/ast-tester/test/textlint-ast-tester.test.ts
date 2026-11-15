@@ -126,6 +126,23 @@ describe("@textlint/ast-tester", function () {
             AST.children[1].loc.start = { line: 1, column: 3 };
             assert.throws(() => test(AST), /invalid range: range should not overlap with the previous sibling/);
         });
+        it("should accept a lone CR as a line ending or as a character, but not both in one tree", () => {
+            const createCRAST = (rootEnd: object, child: { start: object; end: object }) => ({
+                type: "Document",
+                raw: "a\rb",
+                range: [0, 3],
+                loc: { start: { line: 1, column: 0 }, end: rootEnd },
+                children: [{ type: "Str", raw: "b", value: "b", range: [2, 3], loc: child }]
+            });
+            const asLineEnding = { start: { line: 2, column: 0 }, end: { line: 2, column: 1 } };
+            const asCharacter = { start: { line: 1, column: 2 }, end: { line: 1, column: 3 } };
+            test(createCRAST({ line: 2, column: 1 }, asLineEnding));
+            test(createCRAST({ line: 1, column: 3 }, asCharacter));
+            assert.throws(
+                () => test(createCRAST({ line: 2, column: 1 }, asCharacter)),
+                /invalid loc: loc.start should be the position of range\[0\]/
+            );
+        });
         it("should  throw", function () {
             assert.throws(function () {
                 test({

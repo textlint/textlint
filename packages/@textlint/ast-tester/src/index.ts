@@ -200,6 +200,9 @@ function testPositions(root: PositionedNode) {
     const starts = lineStartsOf(text, false);
     // If the text has a lone `\r`, the format decides whether it is a line ending
     const startsWithCR = /\r(?!\n)/.test(text) ? lineStartsOf(text, true) : starts;
+    // One definition of line endings has to match every position of the tree
+    let matchesWithoutCR = true;
+    let matchesWithCR = true;
     const testLocOf = (node: PositionedNode, name: "start" | "end") => {
         const actual = node.loc[name];
         if (!isPosition(origin) || !isPosition(actual)) {
@@ -207,12 +210,11 @@ function testPositions(root: PositionedNode) {
         }
         const offset = node.range[name === "start" ? 0 : 1] - base;
         const expected = positionOf(starts, offset, origin);
-        if (actual.line === expected.line && actual.column === expected.column) {
-            return;
-        }
-        const expectedWithCR = positionOf(startsWithCR, offset, origin);
+        const expectedWithCR = starts === startsWithCR ? expected : positionOf(startsWithCR, offset, origin);
+        matchesWithoutCR = matchesWithoutCR && actual.line === expected.line && actual.column === expected.column;
+        matchesWithCR = matchesWithCR && actual.line === expectedWithCR.line && actual.column === expectedWithCR.column;
         check(
-            actual.line === expectedWithCR.line && actual.column === expectedWithCR.column,
+            matchesWithoutCR || matchesWithCR,
             node,
             `invalid loc: loc.${name} should be the position of range[${
                 name === "start" ? 0 : 1
