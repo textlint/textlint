@@ -6,17 +6,15 @@ This library is a part of [textlint/textlint](https://github.com/textlint/textli
 
 Markdown version: [@textlint/markdown-to-ast](https://github.com/textlint/textlint/tree/master/packages/@textlint/markdown-to-ast "textlint/markdown-to-ast")
 
-The AST consists of `TxtNode`s.
-A `TxtNode` of the AST has following properties:
+The AST uses four node types of [TxtAST](https://github.com/textlint/textlint/blob/master/docs/txtnode.md "textlint/txtnode.md at master · textlint/textlint"):
 
-- `loc` - Nodes have line and column-based location info.
-- `range` - Nodes have an index-based location range (array).
-- `raw` - Node have a `raw` text.
-- `value` - Node have a `value` of text.
+- `Document` - The whole text
+- `Paragraph` - A line that is not empty. It has one `Str`
+- `Str` - The text of the line, without the line ending
+- `Break` - A line ending (LF, CR, or CRLF). It is a child of `Document`
 
-The interface are defined in [textlint/txtnode.md](https://github.com/textlint/textlint/blob/master/docs/txtnode.md "textlint/txtnode.md at master · textlint/textlint")
-
-This library is a part of [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
+Every node has `type`, `raw`, `range`, and `loc`, and `Str` has `value`.
+A BOM at the start of the text is not part of the AST.
 
 ## Installation
 
@@ -38,6 +36,7 @@ console.log(JSON.stringify(AST, null, 4));
 /*
 {
     "type": "Document",
+    "raw": "This is a text\nParse text to AST",
     "range": [
         0,
         32
@@ -74,6 +73,7 @@ console.log(JSON.stringify(AST, null, 4));
                 {
                     "type": "Str",
                     "raw": "This is a text",
+                    "value": "This is a text",
                     "range": [
                         0,
                         14
@@ -104,8 +104,8 @@ console.log(JSON.stringify(AST, null, 4));
                     "column": 14
                 },
                 "end": {
-                    "line": 1,
-                    "column": 15
+                    "line": 2,
+                    "column": 0
                 }
             }
         },
@@ -130,6 +130,7 @@ console.log(JSON.stringify(AST, null, 4));
                 {
                     "type": "Str",
                     "raw": "Parse text to AST",
+                    "value": "Parse text to AST",
                     "range": [
                         15,
                         32
