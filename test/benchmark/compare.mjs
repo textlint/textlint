@@ -19,6 +19,8 @@ const SET_NAMES = ["small", "medium", "large", "huge"];
 const SMALL_RUNS = 10;
 // The number of runs of the in-process benchmarks for each run of the CLI
 const MICRO_RUNS_FACTOR = 2;
+// the in-process benchmarks run in this many rounds, the base and the head in turns
+const MICRO_ROUNDS = 3;
 const MAX_ROWS = 50;
 const TOP_ROWS = 15;
 const CLI_MARK = { slower: 1.3, faster: 0.77 };
@@ -235,20 +237,80 @@ const cpuProfile = (args, name, label, set, outDir) => {
     return { file: path.join(dir, fileName), stdout: result.stdout };
 };
 
-const microBench = (root, set, mode, label, outDir) => {
-    const args = [
-        path.join(BENCHMARK_DIR, "micro.mjs"),
-        "--build",
-        root,
-        "--dir",
-        set.dir,
-        "--mode",
-        mode,
-        "--runs",
-        String(set.runs * MICRO_RUNS_FACTOR)
-    ];
-    const { file, stdout } = cpuProfile(["--expose-gc", ...args], mode, label, set, outDir);
-    return { result: JSON.parse(stdout), cpuProfile: file };
+const microArgs = (root, set, mode, runs) => [
+    path.join(BENCHMARK_DIR, "micro.mjs"),
+    "--build",
+    root,
+    "--dir",
+    set.dir,
+    "--mode",
+    mode,
+    "--runs",
+    String(runs)
+];
+
+/**
+ * Merge the stats of the rounds of a build.
+ * The min is the min of all runs, and the median is the median of the medians of the rounds.
+ */
+const mergeStats = (rounds) => {
+    const medians = rounds.map((stats) => stats.median).sort((a, b) => a - b);
+    return {
+        median: medians[Math.floor(medians.length / 2)],
+        min: Math.min(...rounds.map((stats) => stats.min)),
+        max: Math.max(...rounds.map((stats) => stats.max)),
+        runs: rounds.reduce((sum, stats) => sum + stats.runs, 0),
+        repeat: rounds[0].repeat
+    };
+};
+const mergeMicroResults = (results, mode) => {
+    if (mode === "parse") {
+        const parsers = {};
+        for (const id of Object.keys(results[0].parsers)) {
+            parsers[id] = mergeStats(results.map((result) => result.parsers[id]));
+        }
+        return { ...results[0], parsers };
+    }
+    return { ...results[0], kernel: { traverse: mergeStats(results.map((result) => result.kernel.traverse)) } };
+};
+
+/**
+ * Measure a mode of the base and the head in MICRO_ROUNDS rounds, base and head in turns, each in a new process,
+ * so a change of the machine during the measurement affects both builds.
+ * The measuring processes do not record a CPU profile, because the sampling adds noise;
+ * one more process for each build records it.
+ */
+const microBench = (roots, set, mode, outDir) => {
+    const runsPerRound = Math.max(1, Math.ceil((set.runs * MICRO_RUNS_FACTOR) / MICRO_ROUNDS));
+    const results = { base: [], head: [] };
+    for (let round = 0; round < MICRO_ROUNDS; round++) {
+        for (const label of ["base", "head"]) {
+            const { stdout } = run(
+                process.execPath,
+                ["--expose-gc", ...microArgs(roots[label], set, mode, runsPerRound)],
+                {
+                    cwd: set.dir,
+                    label: `the ${mode} benchmark of ${label}`
+                }
+            );
+            results[label].push(JSON.parse(stdout));
+        }
+    }
+    const cpuProfiles = {};
+    for (const label of ["base", "head"]) {
+        cpuProfiles[label] = cpuProfile(
+            ["--expose-gc", ...microArgs(roots[label], set, mode, 1)],
+            mode,
+            label,
+            set,
+            outDir
+        ).file;
+    }
+    return {
+        base: mergeMicroResults(results.base, mode),
+        head: mergeMicroResults(results.head, mode),
+        cpuProfiles
+    };
 };
 
 const shellQuote = (value) => `'${String(value).replace(/'/g, `'\\''`)}'`;
@@ -427,12 +489,10 @@ const compareSet = (set, roots, outDir) => {
         const cpu = { base: {}, head: {} };
         for (const mode of ["parse", "traverse"]) {
             log(`measuring ${mode} on ${set.name}`);
-            // the base and the head in turns, so a change of the machine affects both
-            const base = microBench(roots.base, set, mode, "base", outDir);
-            const head = microBench(roots.head, set, mode, "head", outDir);
-            micro[mode] = { base: base.result, head: head.result };
-            cpu.base[mode] = summarizeCpuProfile(base.cpuProfile, roots.base);
-            cpu.head[mode] = summarizeCpuProfile(head.cpuProfile, roots.head);
+            const { base, head, cpuProfiles } = microBench(roots, set, mode, outDir);
+            micro[mode] = { base, head };
+            cpu.base[mode] = summarizeCpuProfile(cpuProfiles.base, roots.base);
+            cpu.head[mode] = summarizeCpuProfile(cpuProfiles.head, roots.head);
         }
         for (const label of ["base", "head"]) {
             log(`recording a CPU profile of the CLI of the ${label} on ${set.name}`);

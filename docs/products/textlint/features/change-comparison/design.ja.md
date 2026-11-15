@@ -41,7 +41,7 @@
 3. **1 回の Lint。** 各ビルドについて、スクリプトはセットのディレクトリでビルドの CLI を 1 回実行します。
    `node <build>/packages/textlint/bin/textlint.js --config <head>/test/benchmark/.textlintrc.jtf-style.json --rules-base-directory <build>/test/benchmark/node_modules <set> --format json --output-file <tmp>/results.json --profile`
    標準出力がプロファイル、ファイルが Lint 結果なので、1 回の実行で両方が得られます。ビルドの `--help` が `--profile` を挙げないときは、このオプションを省き、そのビルドのプロファイルは `null` です。両方のビルドがヘッドの設定と、それぞれがインストールしたルールを使います。
-4. **プロセス内ベンチマーク。** `parse`、続いて `traverse` について、スクリプトは `node --cpu-prof --expose-gc micro.mjs --build <build> --dir <set> --mode <mode>` をベース、ヘッドの順に実行します。比較の途中でマシンの状態が変わっても、両方に影響するようにするためです。CPU プロファイルは残します。
+4. **プロセス内ベンチマーク。** `parse`、続いて `traverse` について、スクリプトは `node --expose-gc micro.mjs --build <build> --dir <set> --mode <mode>` を 3 ラウンド、各ラウンドでベース、ヘッドの順に、それぞれ新しいプロセスで実行します。比較の途中でマシンの状態が変わっても、両方に影響するようにするためです。実行回数はラウンドに分けます。比べるのはすべてのラウンドでもっとも速い実行で、中央値は各ラウンドの中央値の中央値です。サンプリングがノイズになるので、これらのプロセスは CPU プロファイルを記録しません。各ビルドについて、`--cpu-prof` 付きで 1 回だけ実行するプロセスをもう 1 つ起動して記録します。
 5. **CLI の CPU プロファイル。** スクリプトは各ビルドの CLI を `node --cpu-prof` でもう 1 回、`--profile` なしで実行します。
 6. **CLI の実行時間。** `hyperfine` が `PATH` にあれば、スクリプトは手順 3 の 2 つのコマンドから `--profile` を除き `--output-file /dev/null` にしたもので、`hyperfine --ignore-failure --warmup 1 --runs <n> --export-json <tmp>/time.json` を実行します。ベースのすべての実行のあとにヘッドのすべての実行が続きます。ルールがエラーを報告すると終了ステータスが 1 になるので `--ignore-failure` が必要です。各引数はシェル向けにクォートします。hyperfine 1.x と 2.x の JSON を読めます。
 7. **差。** スクリプトは結果を比べ（データモデルを参照）、Markdown を標準出力と `compare.md` に、`compare.json` と `cpuprofiles/` を出力ディレクトリに書きます。
@@ -68,8 +68,8 @@ sequenceDiagram
         Script->>Git: sparse fetch --depth 1 commit（セットごとに 1 回）
         Script->>Base: textlint --profile --format json --output-file
         Script->>Head: textlint --profile --format json --output-file
-        Script->>Base: micro.mjs parse / traverse（--cpu-prof）
-        Script->>Head: micro.mjs parse / traverse（--cpu-prof）
+        Script->>Base: micro.mjs parse / traverse（3 ラウンド、続いて --cpu-prof）
+        Script->>Head: micro.mjs parse / traverse（3 ラウンド、続いて --cpu-prof）
         Script->>Base: textlint（--cpu-prof）
         Script->>Head: textlint（--cpu-prof）
         Script->>HF: ベースの実行、続いてヘッドの実行

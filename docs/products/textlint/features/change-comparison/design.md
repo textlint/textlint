@@ -41,7 +41,7 @@ The main flow of `compare.mjs` is:
 3. **Lint once.** For each build, the script runs the CLI of the build once in the directory of the set:
    `node <build>/packages/textlint/bin/textlint.js --config <head>/test/benchmark/.textlintrc.jtf-style.json --rules-base-directory <build>/test/benchmark/node_modules <set> --format json --output-file <tmp>/results.json --profile`.
    The standard output is the profile and the file has the lint results, so one run gives both. When `--help` of the build does not list `--profile`, the option is left out and the profile of that build is `null`. Both builds use the configuration of the head and their own installed rules.
-4. **In-process benchmarks.** For `parse` and then `traverse`, the script runs `node --cpu-prof --expose-gc micro.mjs --build <build> --dir <set> --mode <mode>` for the base and then for the head, so a change of the machine during the comparison affects both. The CPU profile is kept.
+4. **In-process benchmarks.** For `parse` and then `traverse`, the script runs `node --expose-gc micro.mjs --build <build> --dir <set> --mode <mode>` in 3 rounds, the base and then the head in each round, each in a new process, so a change of the machine during the comparison affects both. The runs are split among the rounds. The fastest run of all rounds is compared, and the median is the median of the medians of the rounds. These processes do not record a CPU profile, because the sampling adds noise; one more process with `--cpu-prof` and one run records it for each build.
 5. **CPU profile of the CLI.** The script runs the CLI of each build once more with `node --cpu-prof`, without `--profile`.
 6. **Run time of the CLI.** When `hyperfine` is on `PATH`, the script runs `hyperfine --ignore-failure --warmup 1 --runs <n> --export-json <tmp>/time.json` with the two commands of step 3 without `--profile` and with `--output-file /dev/null`: first all runs of the base, then all runs of the head. `--ignore-failure` is needed because the exit status is 1 when a rule reports an error. Each argument is quoted for the shell. The JSON of hyperfine 1.x and 2.x is read.
 7. **Differences.** The script compares the results (see Data model), and writes Markdown to the standard output and `compare.md`, `compare.json`, and `cpuprofiles/` to the output directory.
@@ -68,8 +68,8 @@ sequenceDiagram
         Script->>Git: sparse fetch --depth 1 commit (once per set)
         Script->>Base: textlint --profile --format json --output-file
         Script->>Head: textlint --profile --format json --output-file
-        Script->>Base: micro.mjs parse / traverse (--cpu-prof)
-        Script->>Head: micro.mjs parse / traverse (--cpu-prof)
+        Script->>Base: micro.mjs parse / traverse (3 rounds, then --cpu-prof)
+        Script->>Head: micro.mjs parse / traverse (3 rounds, then --cpu-prof)
         Script->>Base: textlint (--cpu-prof)
         Script->>Head: textlint (--cpu-prof)
         Script->>HF: base runs, then head runs
