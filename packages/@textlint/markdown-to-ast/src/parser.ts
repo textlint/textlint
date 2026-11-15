@@ -1276,7 +1276,13 @@ function processLine(li: number): void {
                 j++;
             }
             const size = j - nns;
-            if (size >= 3 && (c === 126 || src.indexOf("`", j) === -1 || src.indexOf("`", j) >= lineEnd)) {
+            // the info string of backtick fence can not contain backticks
+            let fence = size >= 3;
+            if (fence && c === 96) {
+                const tick = src.indexOf("`", j);
+                fence = tick === -1 || tick >= lineEnd;
+            }
+            if (fence) {
                 startBlock(matched, false);
                 const node = newNode(CodeBlock, nns, lineEnd);
                 // info
@@ -1671,6 +1677,9 @@ let vCache = 0;
 function setupBuf(s0: number, count: number, trim: boolean): void {
     bSeg0 = s0;
     vCache = 0;
+    parenTitleFrom = -1;
+    noHtmlEnd = 0;
+    ticksScanned = false;
     if (count === 1) {
         bMulti = false;
         buf = src;
@@ -1911,23 +1920,6 @@ function decodeText(s: number, e: number): string {
     return out + buf.slice(from, e);
 }
 
-/** `buf` slice with original line endings. whitespaces after line endings are removed */
-export function sliceBuf(s: number, e: number): string {
-    const value = buf.slice(s, e);
-    if (!bMulti || !hasCR || value.indexOf("\n") === -1) {
-        return value;
-    }
-    let out = "";
-    let from = s;
-    for (let i = s; i < e; i++) {
-        if (buf.charCodeAt(i) === 10) {
-            out += buf.slice(from, i) + eolOfBuf(i);
-            from = i + 1;
-        }
-    }
-    return out + buf.slice(from, e);
-}
-
 /**
  * `buf` slice with original line endings and leading whitespaces of lines.
  * @param skip max count of leading whitespaces to remove
@@ -1961,6 +1953,12 @@ let defUrl = "";
 let defTitle: string | null = null;
 let partStart = 0;
 let partEnd = 0;
+/**
+ * Cache of the last scan of a title in parentheses in `buf`: the scan from `parenTitleFrom` found `)` at
+ * `parenTitleEnd`(-1: not found). `(` does not close a title, so many `(` would scan the same range again and again.
+ */
+let parenTitleFrom = -1;
+let parenTitleEnd = -1;
 
 /**
  * scan link label from `[`.
@@ -2066,9 +2064,17 @@ function scanTitle(p: number, e: number): number {
         return -1;
     }
     let i = p + 1;
+    if (open === 40 && parenTitleFrom !== -1 && i >= parenTitleFrom && (parenTitleEnd === -1 || i <= parenTitleEnd)) {
+        // The previous scan started before here and passed this position: the result is the same
+        i = parenTitleEnd === -1 ? e : parenTitleEnd;
+    }
     while (i < e) {
         const c = buf.charCodeAt(i);
         if (c === close) {
+            if (open === 40) {
+                parenTitleFrom = p + 1;
+                parenTitleEnd = i;
+            }
             partStart = p + 1;
             partEnd = i;
             return i + 1;
@@ -2080,6 +2086,10 @@ function scanTitle(p: number, e: number): number {
             }
         }
         i++;
+    }
+    if (open === 40) {
+        parenTitleFrom = p + 1;
+        parenTitleEnd = -1;
     }
     return -1;
 }
@@ -2463,6 +2473,61 @@ const RE_HTML_INLINE = new RegExp(
     `^(?:<${TAG_NAME}${INLINE_ATTRIBUTE}*\\s*/?>|</${TAG_NAME}\\s*>|<!-->|<!--->|<!--[\\s\\S]*?-->|<\\?[\\s\\S]*?\\?>|<![A-Za-z][^>]*>|<!\\[CDATA\\[[\\s\\S]*?\\]\\]>)`
 );
 
+/** code span: start position of the last backtick run of each size in `buf`. It is filled by `scanTicks` */
+const tickLast = new Map<number, number>();
+let ticksScanned = false;
+
+/**
+ * Record the last backtick run of each size in [p, e).
+ * An opening run without the closing run of the same size is found without scanning the rest of the block.
+ */
+function scanTicks(p: number, e: number): void {
+    ticksScanned = true;
+    tickLast.clear();
+    let i = p;
+    for (;;) {
+        i = buf.indexOf("`", i);
+        if (i === -1 || i >= e) {
+            return;
+        }
+        let j = i + 1;
+        while (j < e && buf.charCodeAt(j) === 96) {
+            j++;
+        }
+        tickLast.set(j - i, i);
+        i = j;
+    }
+}
+
+/**
+ * Raw HTML that needs a terminator: 1: `<?`, 2: `<!--`, 4: `<![CDATA[`, 8: `<!A`.
+ * Once the terminator of a kind is not found in `buf`, the kind is not searched again.
+ */
+let noHtmlEnd = 0;
+
+function htmlTerminatorKind(p: number): number {
+    const c = buf.charCodeAt(p + 1);
+    if (c === 63) {
+        return 1;
+    }
+    if (c !== 33) {
+        return 0;
+    }
+    const d = buf.charCodeAt(p + 2);
+    if (d === 45) {
+        if (buf.charCodeAt(p + 3) !== 45) {
+            return 0;
+        }
+        // `<!-->` and `<!--->` are comments by themselves
+        const f = buf.charCodeAt(p + 4);
+        return f === 62 || (f === 45 && buf.charCodeAt(p + 5) === 62) ? 0 : 2;
+    }
+    if (d === 91) {
+        return buf.startsWith("<![CDATA[", p) ? 4 : 0;
+    }
+    return isAlpha(d) ? 8 : 0;
+}
+
 // GFM autolink literal
 let literalEnd = 0;
 
@@ -2754,7 +2819,6 @@ function parseInline(block: number, kind: number): void {
     let complex = false;
     let forcedStart = -1;
     let checkboxText = -1;
-    let noCodeCloser = 0;
     const inTable = kind === TableCell;
 
     // task list item
@@ -2909,7 +2973,12 @@ function parseInline(block: number, kind: number): void {
                 const size = q - p;
                 let closeStart = -1;
                 let closeEnd = -1;
-                if (size > 30 || (noCodeCloser & (1 << size)) === 0) {
+                if (!ticksScanned) {
+                    scanTicks(p, e);
+                }
+                const lastTick = tickLast.get(size);
+                if (lastTick !== undefined && lastTick >= q) {
+                    // a closing run exists: this search always succeeds
                     let i = q;
                     while (i < e) {
                         i = buf.indexOf("`", i);
@@ -2926,9 +2995,6 @@ function parseInline(block: number, kind: number): void {
                             break;
                         }
                         i = j;
-                    }
-                    if (closeStart === -1 && size <= 30) {
-                        noCodeCloser |= 1 << size;
                     }
                 }
                 if (closeStart === -1) {
@@ -3017,8 +3083,12 @@ function parseInline(block: number, kind: number): void {
                         break;
                     }
                 }
-                if (isAlpha(next) || next === 47 || next === 33 || next === 63) {
+                const terminator = next === 33 || next === 63 ? htmlTerminatorKind(p) : 0;
+                if ((isAlpha(next) || next === 47 || next === 33 || next === 63) && (noHtmlEnd & terminator) === 0) {
                     m = RE_HTML_INLINE.exec(rest);
+                    if (m === null) {
+                        noHtmlEnd |= terminator;
+                    }
                     if (m !== null && p + m[0].length <= e) {
                         if (p > textStart) {
                             addText(block, textStart, p, complex);
@@ -3421,10 +3491,7 @@ function parseInline(block: number, kind: number): void {
 }
 
 /**
- * merge adjacent Str, compute value of Str, and convert positions to offsets of `src`
- */
-/**
- * Merge adjacent Str nodes and map positions in `buf` to positions in the source.
+ * Merge adjacent Str nodes, compute `value` of Str, and map positions in `buf` to offsets in `src`.
  * It walks the tree with parent links instead of recursion, because the nesting depth depends on the input.
  */
 function finishInline(root: number): void {
