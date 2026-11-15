@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794724142139,
+  "lastUpdate": 1794724165646,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128771,6 +128771,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.42790774359999995,
             "range": "± 0.00965855099999996",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "a4d33bf76e69455559f9a32643978b4e18d583ae",
+          "message": "docs(txtast): state that a node may contain line endings\n\nClarify two open questions after the review: the line ending question is\nabout which characters end a line for loc, and the public document is the\none that is out of date about HtmlBlock.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T06:27:28Z",
+          "tree_id": "3d619ee62f38da9edaec15192e3d898ce84e9c20",
+          "url": "https://github.com/textlint/textlint/commit/a4d33bf76e69455559f9a32643978b4e18d583ae"
+        },
+        "date": 1794724149869,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23765870894000005,
+            "range": "± 0.17857551900000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6673684507400002,
+            "range": "± 0.0634064299999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5207265087399999,
+            "range": "± 0.01391905800000004",
             "unit": "seconds"
           }
         ]
