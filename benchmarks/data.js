@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794746942509,
+  "lastUpdate": 1794747660793,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -130157,6 +130157,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5505407243,
             "range": "± 0.00985174099999997",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "2f209350927ecd966e54e766e645fb468611ae03",
+          "message": "docs(products): specify the CJK-friendly emphasis extension\n\nAdd the cjkFriendlyEmphasis option of @textlint/markdown-to-ast and\n@textlint/textlint-plugin-markdown to the Markdown parsing Requirements\nand Design, and define the `extensions` property of `Document` in the\nTxtAST Requirements so that rules can read which parser extensions\nwere on.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJbGt3YiCnRnMuQDFr\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T12:59:32Z",
+          "tree_id": "52d4c1ad03250e81b5f685cbe7502ecf183a5e2f",
+          "url": "https://github.com/textlint/textlint/commit/2f209350927ecd966e54e766e645fb468611ae03"
+        },
+        "date": 1794747650979,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.1996543108,
+            "range": "± 0.263024777",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.2016103557999998,
+            "range": "± 0.040678618000000055",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.3658303706,
+            "range": "± 0.007025015000000023",
             "unit": "seconds"
           }
         ]
