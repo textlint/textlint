@@ -25,7 +25,7 @@ textlint therefore provides the common machinery, and the checks themselves are 
 
 ### Problems to solve
 
-- Writers want mechanical checks on the structure of their writing, such as whether each paragraph has one topic sentence, how headings and lists are organized, and how long each sentence is, and on the terminology they use, without reviewing every line by hand. They also want to run the checks in CI. Checks on spacing or on how the markup is written, which a Markdown linter covers, are a different concern. textlint can run them, but it is not built for them.
+- Writers want to check the structure and terminology of their writing mechanically, and run the checks in CI. Structure means things such as paragraphs, headings, lists, and sentence length. Checks on spacing or on how the markup is written, which a Markdown linter covers, are a different concern. textlint can run them, but it is not built for them.
 - Checking documents as plain strings produces false positives on markup: a code span, a URL, or a quotation should not be checked like a sentence, and even "the number of characters" differs between Markdown and plain text.
 - Rule authors want to write a check once and run it on any document format, without parsing each format by themselves.
 
