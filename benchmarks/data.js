@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794721817471,
+  "lastUpdate": 1794722499894,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128561,6 +128561,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.4392527632,
             "range": "± 0.019898352000000008",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "8963559ad6cad40c745673d62ee25bf15587a757",
+          "message": "docs(products): add TxtAST requirements and detail Markdown parsing\n\n- Add the TxtAST Requirements: common properties, position conventions, generic nodes with required properties, and extension nodes with lowercase names\n- Rewrite the Markdown parsing Requirements: the specifications to follow and their order, the node, properties, and range of each syntax with links to CommonMark 0.31.2 and GFM, syntax that textlint defines, and limits\n- Rewrite the Markdown parsing Design as the intended state: preparation, node pool, block phase, inline phase, emit phase, state between calls, and how time and depth are bounded\n- Link the TxtAST Requirements from the Product and remove the resolved open question\n- Align the package README with the Requirements\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T06:00:17Z",
+          "tree_id": "e97a0745ccf36c29d05d0e1237c57c8122722b01",
+          "url": "https://github.com/textlint/textlint/commit/8963559ad6cad40c745673d62ee25bf15587a757"
+        },
+        "date": 1794722489307,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.16871558278,
+            "range": "± 0.048430536000000024",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.39419472198,
+            "range": "± 0.07019532599999989",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.4179837135800001,
+            "range": "± 0.015748189000000024",
             "unit": "seconds"
           }
         ]
