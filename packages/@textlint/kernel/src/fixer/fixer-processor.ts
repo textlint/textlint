@@ -12,6 +12,7 @@ import _debug from "debug";
 import { applyFixesToSourceCode } from "@textlint/source-code-fixer";
 import { invariant } from "../util/invariant.js";
 import { parseByPlugin } from "../util/parse-by-plugin.js";
+import { profiler } from "../profile/profiler.js";
 
 const debug = _debug("textlint:fixer-processor");
 
@@ -26,14 +27,17 @@ export interface FixerProcessorProcessArgs {
 export default class FixerProcessor {
     private processor: TextlintPluginProcessor;
     private messageProcessManager: MessageProcessManager;
+    private pluginId: string | undefined;
 
     /**
      * @param {Processor} processor
      * @param {MessageProcessManager} messageProcessManager
+     * @param {string} [pluginId] the id of the plugin of the processor, for the profiler
      */
-    constructor(processor: TextlintPluginProcessor, messageProcessManager: MessageProcessManager) {
+    constructor(processor: TextlintPluginProcessor, messageProcessManager: MessageProcessManager, pluginId?: string) {
         this.processor = processor;
         this.messageProcessManager = messageProcessManager;
+        this.pluginId = pluginId;
     }
 
     /**
@@ -68,11 +72,15 @@ export default class FixerProcessor {
         // apply fixes to sourceText sequentially
         let sourceText = sourceCode.text;
         for (const ruleDescriptor of ruleDescriptors.fixableDescriptors) {
-            const parseResult = await parseByPlugin({
-                preProcess,
-                sourceText,
-                filePath: sourceCode.filePath
-            });
+            const parse = () =>
+                parseByPlugin({
+                    preProcess,
+                    sourceText,
+                    filePath: sourceCode.filePath
+                });
+            const parseResult = profiler.enabled
+                ? await profiler.measureAsync("parse", this.pluginId, parse, sourceCode.filePath)
+                : await parse();
             if (parseResult instanceof Error) {
                 // --fix can not report error as lint error
                 // Because fix's result has output content, It makes confuse user.
@@ -94,16 +102,28 @@ export default class FixerProcessor {
             });
 
             const messages = await TaskRunner.process(task);
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const result = await postProcess(messages as any, sourceCode.filePath);
-            const filteredResult = {
+            const processMessages = async () => {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                messages: this.messageProcessManager.process(result.messages as any),
-                filePath: result.filePath ? result.filePath : `<Unknown{sourceCode.ext}>`
+                const result = await postProcess(messages as any, sourceCode.filePath);
+                return {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    messages: this.messageProcessManager.process(result.messages as any),
+                    filePath: result.filePath ? result.filePath : `<Unknown{sourceCode.ext}>`
+                };
             };
+            const filteredResult = profiler.enabled
+                ? await profiler.measureAsync("post-process", undefined, processMessages, sourceCode.filePath)
+                : await processMessages();
             // TODO: should be removed resultFilePath
             resultFilePath = filteredResult.filePath;
-            const applied = applyFixesToSourceCode(newSourceCode, filteredResult.messages);
+            const applied = profiler.enabled
+                ? profiler.measure(
+                      "apply-fixes",
+                      undefined,
+                      () => applyFixesToSourceCode(newSourceCode, filteredResult.messages),
+                      sourceCode.filePath
+                  )
+                : applyFixesToSourceCode(newSourceCode, filteredResult.messages);
             // add messages
             Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
             Array.prototype.push.apply(remainingMessages, applied.remainingMessages);

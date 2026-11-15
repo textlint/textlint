@@ -20,6 +20,7 @@ import { isTxtAST } from "@textlint/ast-tester";
 import _debug from "debug";
 import { parseByPlugin } from "./util/parse-by-plugin.js";
 import { createDummyTextLintResult } from "./util/createDummyTextLintResult.js";
+import { profiler } from "./profile/profiler.js";
 
 const debug = _debug("textlint:kernel");
 
@@ -143,11 +144,15 @@ export class TextlintKernel {
             typeof preProcess === "function" && typeof postProcess === "function",
             `${plugin.id} processor should implements {preProcess, postProcess}`
         );
-        const preProcessResult = await parseByPlugin({
-            preProcess,
-            sourceText: text,
-            filePath
-        });
+        const parse = () =>
+            parseByPlugin({
+                preProcess,
+                sourceText: text,
+                filePath
+            });
+        const preProcessResult = profiler.enabled
+            ? await profiler.measureAsync("parse", plugin.id, parse, filePath)
+            : await parse();
         if (preProcessResult instanceof Error) {
             return createDummyTextLintResult(
                 `Failed to parse text by plugin: ${plugin.id}
@@ -227,7 +232,10 @@ See https://textlint.org/docs/plugin.html`
             typeof preProcess === "function" && typeof postProcess === "function",
             `${plugin.id} processor should implements {preProcess, postProcess}`
         );
-        const preProcessResult = await Promise.resolve(preProcess(text, filePath));
+        const parse = () => Promise.resolve(preProcess(text, filePath));
+        const preProcessResult = profiler.enabled
+            ? await profiler.measureAsync("parse", plugin.id, parse, filePath)
+            : await parse();
         // { text, ast } or ast
         const isParsedObject = isPluginParsedObject(preProcessResult);
         const textForAST = isParsedObject ? preProcessResult.text : text;
@@ -251,7 +259,7 @@ See https://textlint.org/docs/plugin.html`
             filePath
         });
         debug("process file %s", filePath);
-        const fixerProcessor = new FixerProcessor(processor, this.messageProcessManager);
+        const fixerProcessor = new FixerProcessor(processor, this.messageProcessManager, plugin.id);
         return await fixerProcessor
             .process({
                 config: this.config,

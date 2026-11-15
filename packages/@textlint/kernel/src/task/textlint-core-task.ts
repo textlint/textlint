@@ -4,6 +4,7 @@ import { TextlintRuleErrorImpl } from "../context/TextlintRuleErrorImpl.js";
 import { EventEmitter, PromiseEventEmitter } from "./promise-event-emitter.js";
 import { resolveLocation, resolveFixCommandLocation, resolveSuggestionsLocation } from "../core/source-location.js";
 import timing from "../util/timing.js";
+import { profiler } from "../profile/profiler.js";
 import { invariant } from "../util/invariant.js";
 import MessageType from "../shared/type/MessageType.js";
 import { AnyTxtNode, TxtParentNode } from "@textlint/ast-node-types";
@@ -179,6 +180,9 @@ export default abstract class TextLintCoreTask extends EventEmitter {
         const exitTypes = new Map<string, string>();
         // reuse the descriptor, because `parent` is defined on every node
         const parentDescriptor: PropertyDescriptor = { value: undefined };
+        const profiling = profiler.enabled;
+        const traverseStart = profiling ? performance.now() : 0;
+        const listenerTimeStart = profiling ? profiler.listenerTime : 0;
         traverseController.traverse(sourceCode.ast as TxtParentNode, {
             enter(node: AnyTxtNode, parent?: AnyTxtNode) {
                 parentDescriptor.value = parent;
@@ -200,6 +204,16 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                 }
             }
         });
+        if (profiling) {
+            // the time of the traversal and the dispatch, without the time of the listeners
+            const listenerTime = profiler.listenerTime - listenerTimeStart;
+            profiler.record(
+                "traverse",
+                undefined,
+                Math.max(0, performance.now() - traverseStart - listenerTime),
+                sourceCode.filePath
+            );
+        }
         Promise.all(promiseQueue)
             .then(() => {
                 this.emit(TextLintCoreTask.events.complete);
@@ -270,11 +284,13 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                       ruleOptions
                   );
         const types = Object.keys(ruleObject);
+        const profileType = ruleContext instanceof TextlintRuleContextImpl ? "rule" : "filter-rule";
         types.forEach((nodeType) => {
-            this.ruleTypeEmitter.on(
-                nodeType,
-                timing.enabled ? timing.time(ruleContext.id, ruleObject[nodeType]) : ruleObject[nodeType]!
-            );
+            let listener = timing.enabled ? timing.time(ruleContext.id, ruleObject[nodeType]) : ruleObject[nodeType]!;
+            if (profiler.enabled) {
+                listener = profiler.wrapListener(profileType, ruleContext.id, ruleContext.getFilePath(), listener);
+            }
+            this.ruleTypeEmitter.on(nodeType, listener);
         });
     }
 }

@@ -106,3 +106,6 @@ tsconfig.*.tsbuildinfo
 
 # sdev downloads its binary here (see bin/sdev)
 /.sdev/
+
+# Output of test/benchmark/compare.mjs
+compare-result/

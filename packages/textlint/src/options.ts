@@ -45,6 +45,7 @@ export type CliOptions = {
     outputFile: string;
     experimental: boolean;
     mcp: boolean;
+    profile: boolean;
     _: string[];
 };
 export const options = optionator({
@@ -98,6 +99,14 @@ export const options = optionator({
             type: "Boolean",
             default: false,
             description: "Outputs debugging information."
+        },
+        {
+            option: "profile",
+            type: "Boolean",
+            default: false,
+            description:
+                "Print where the time of the run is spent: phases, parsers, rules, and files. It is printed as Markdown, or as JSON with --format json, instead of the results.",
+            example: "textlint --profile docs/"
         },
         {
             option: "print-config",

@@ -8,6 +8,7 @@
     "ci:versionup:minor": "lerna version minor --no-push --no-git-tag-version --yes && pnpm run commit-version",
     "ci:versionup:patch": "lerna version patch --no-push --no-git-tag-version --yes && pnpm run commit-version",
     "clean": "pnpm -r run clean",
+    "compare": "node test/benchmark/compare.mjs",
     "commit-version": "git add . && git commit -m \"chore(release): v`node -p 'require(\"./lerna.json\").version'`\"",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "lint": "oxlint --type-aware",

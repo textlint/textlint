@@ -41,6 +41,7 @@ Options:
   --fix                       Automatically fix problems
   --dry-run                   Enable dry-run mode for --fix. Only show result, don't change the file.
   --debug                     Outputs debugging information
+  --profile                   Print where the time of the run is spent instead of the results. - default: false
   --print-config              Print the config object to stdout
   -v, --version               Outputs the version number.
 
@@ -120,6 +121,39 @@ $ textlint --cache --cache-strategy content README.md
 
 If you want to clear the cache, you can use the `--no-cache` option or just remove `--cache` option.
 
+
+## Profile
+
+`--profile` prints where the time of a run is spent, instead of the lint results:
+the phases of the run (starting textlint, loading the configuration, searching files, parsing, traversing the AST, running rules, formatting), the parse time of each plugin, the slowest rules, and the slowest files.
+
+```sh
+$ npx textlint --profile docs/
+## textlint profile
+
+Total: 340.04 ms, 5 files
+
+### Phases
+
+| Phase | Time (ms) | % | Count |
+| --- | ---: | ---: | ---: |
+| startup | 177.36 | 52.2% | 1 |
+| load-config | 46.64 | 13.7% | 1 |
+| search-files | 8.45 | 2.5% | 1 |
+| lint | 78.21 | 23.0% | 1 |
+| ↳ parse | 7.76 | 2.3% | 5 |
+| ↳ traverse | 10.27 | 3.0% | 5 |
+| ↳ rules | 25.25 | 7.4% | 8967 |
+| ↳ post-process | 0.26 | 0.1% | 5 |
+| format | 26.78 | 7.9% | 1 |
+...
+```
+
+- The summary is Markdown. With `--format json`, it is JSON and has all rules.
+- With `--output-file`, the lint results are written to the file, and the summary is printed to stdout.
+- The exit status is the same as without `--profile`.
+- Phases with `↳` are sums over the files, because textlint lints files concurrently.
+- While profiling, rule handlers run one by one, so that the time of a rule does not include the time of other rules. The run can be slower than usual.
 
 ## Exit Code
 

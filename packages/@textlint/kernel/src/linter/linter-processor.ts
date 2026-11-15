@@ -7,6 +7,7 @@ import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface.j
 import MessageProcessManager from "../messages/MessageProcessManager.js";
 import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor/index.js";
 import { invariant } from "../util/invariant.js";
+import { profiler } from "../profile/profiler.js";
 import type { TextlintSourceCode, TextlintPluginProcessor, TextlintResult } from "@textlint/types";
 
 export interface LinterProcessorArgs {
@@ -53,10 +54,16 @@ export default class LinterProcessor {
             configBaseDir
         });
         const messages = await TaskRunner.process(task);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const result = await postProcess(messages as any, sourceCode.filePath);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        result.messages = this.messageProcessManager.process(result.messages as any);
+        const processMessages = async () => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const result = await postProcess(messages as any, sourceCode.filePath);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            result.messages = this.messageProcessManager.process(result.messages as any);
+            return result;
+        };
+        const result = profiler.enabled
+            ? await profiler.measureAsync("post-process", undefined, processMessages, sourceCode.filePath)
+            : await processMessages();
         if (result.filePath == null) {
             result.filePath = `<Unknown{sourceCode.ext}>`;
         }

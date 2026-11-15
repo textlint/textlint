@@ -93,6 +93,8 @@ textlint でも動かせますが、そのために作られてはいません�
 | 設定の読み込み | `.textlintrc` を探し、ルール、プリセット、フィルタールール、プラグインを読み込む | 未作成 |
 | 結果の出力 | フォーマッターで結果を出力する | 未作成 |
 | MCP サーバー | Model Context Protocol を通じて AI エージェントに Lint を提供する | 未作成 |
+| パフォーマンスプロファイル | 実行の時間がどこに使われたかを、フェーズ、パーサー、ルール、ファイルごとに示す | [Requirements](features/performance-profile/requirements.ja.md) |
+| 変更の比較 | 2 つのビルドの Lint 結果と性能を、固定した文書で、ローカルと CI で比較する | [Requirements](features/change-comparison/requirements.ja.md) |
 
 ## 成功の定義
 
