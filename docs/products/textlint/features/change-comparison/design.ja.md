@@ -46,7 +46,7 @@
 6. **CLI の実行時間。** `hyperfine` が `PATH` にあれば、スクリプトは手順 3 の 2 つのコマンドから `--profile` を除き `--output-file /dev/null` にしたもので、`hyperfine --ignore-failure --warmup 1 --runs <n> --export-json <tmp>/time.json` を実行します。ベースのすべての実行のあとにヘッドのすべての実行が続きます。ルールがエラーを報告すると終了ステータスが 1 になるので `--ignore-failure` が必要です。各引数はシェル向けにクォートします。hyperfine 1.x と 2.x の JSON を読めます。
 7. **差。** スクリプトは結果を比べ（データモデルを参照）、Markdown を標準出力と `compare.md` に、`compare.json` と `cpuprofiles/` を出力ディレクトリに書きます。
 
-`micro.mjs` はセットの Markdown ファイルを決まった順で読みます。`parse` モードでは、すべてをビルドの `@textlint/markdown-to-ast` で、続いて `@textlint/text-to-ast` でパースします。`traverse` モードでは、すべてを一度パースし、ビルドのカーネルで、`preProcess` がパース済みの木を返すプラグインと、`ASTNodeTypes` のすべてのノードの種類（exit の種類を含む）を空の関数で購読するルールを使って、それぞれを Lint します。そのため時間は、パースを除いた、トラバース、振り分け、ファイルごとのカーネルの処理です。各測定は 1 回のウォームアップのあと `runs × 2` 回実行し、各実行の前に `gc()` を呼びます。1 回の実行は、ウォームアップから求めた回数だけ処理を繰り返して 200 ms 以上かけ、その時間を回数で割ります。小さなセットを数ミリ秒で測らないためです。マシンのノイズは実行を遅くするだけなので、スクリプトはもっとも速い実行を比べます。
+`micro.mjs` はセットの Markdown ファイルを決まった順で読みます。`parse` モードでは、すべてをビルドの `@textlint/markdown-to-ast` で、続いて `@textlint/text-to-ast` でパースします。`traverse` モードでは、すべてを一度パースし、ビルドのカーネルで、`preProcess` がパース済みの木を返すプラグインと、`ASTNodeTypes` と、パース済みの木にある `yaml` などのすべてのノードの種類（exit の種類を含む）を空の関数で購読するルールを使って、それぞれを Lint します。そのため時間は、パースを除いた、トラバース、振り分け、ファイルごとのカーネルの処理です。各測定は 1 回のウォームアップのあと `runs × 2` 回実行し、各実行の前に `gc()` を呼びます。1 回の実行は、ウォームアップから求めた回数だけ処理を繰り返して 200 ms 以上かけ、その時間を回数で割ります。小さなセットを数ミリ秒で測らないためです。マシンのノイズは実行を遅くするだけなので、スクリプトはもっとも速い実行を比べます。
 
 ビルドの失敗、セットのダウンロードの失敗、終了ステータスが 0 と 1 以外の Lint の実行は、ビルドかセットを示すメッセージとともに、終了ステータス 2 でスクリプトを止めます。そのときスクリプトは出力を書きません。
 
@@ -152,7 +152,7 @@ pnpm run compare --render <compare.json> [--render <compare.json>]...
 
 `.github/workflows/profile-benchmark.yml`：
 
-- `on: pull_request` と `paths`：`packages/**`、`test/benchmark/**`、`package.json`、`pnpm-lock.yaml`、`pnpm-workspace.yaml`、ワークフローのファイル、`!**/*.md`。
+- `on: pull_request` と `paths`：`packages/**`、`test/benchmark/**`、`package.json`、`pnpm-lock.yaml`、`pnpm-workspace.yaml`、ワークフローのファイル、`!**/*.md`、続いて `test/benchmark/examples/**`。小さなセットの Markdown ファイルの変更でもワークフローを実行するためです（後のフィルターが優先されます）。
 - ワークフローの `permissions: contents: read`。どのステップも `secrets` を使わない。
 - ジョブ `compare` は `strategy.matrix.set: [small, medium, large, huge]` と `fail-fast: false` を持ち、`ubuntu-latest`、`timeout-minutes: 30` で動く。各ジョブの名前はセット。
 - ステップ：`persist-credentials: false` と `fetch-depth: 0`（ベースのコミットが必要）でのチェックアウト、pnpm、`.node-version` の Node.js、`sudo apt-get install -y hyperfine`、`pnpm install --frozen-lockfile`、`--base "$BASE_SHA" --set "$SET" --out-dir "compare-result-$SET"` でのスクリプト、そして出力ディレクトリをアーティファクト `profile-benchmark-<set>` としてアップロード。

@@ -70,6 +70,8 @@
 
 レポートは `textlint` パッケージの `src/profile/profile-report.ts` が作ります。`createProfileReport()` が集計をフェーズ、パーサー、ルール、ファイルにまとめ、`formatProfileReportAsMarkdown()` と `formatProfileReportAsJSON()` が出力します。
 合計時間は、レポートを作るときの `performance.now()` です。
+ファイル数は種類 `file` の集計の数、つまりカーネルが処理したファイルの数です。`--cache` がスキップしたファイルには集計がありません。`--stdin` では 1 です。
+プロファイル中は、`showEmptyRuleWarning()` は標準出力ではなく標準エラー出力に書きます。
 
 ## アーキテクチャとシーケンス図
 

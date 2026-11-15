@@ -14,9 +14,15 @@ const targetFile = path.join(__dirname, "fixtures/todo.md");
 describe("cli --profile", () => {
     const originLog = Logger.log;
     const originWrite = Logger.write;
+    const originError = Logger.error;
     let output: string[] = [];
+    let errors: string[] = [];
     beforeEach(() => {
         output = [];
+        errors = [];
+        Logger.error = (...message: unknown[]) => {
+            errors.push(message.join(" "));
+        };
         Logger.log = (...message: unknown[]) => {
             output.push(message.join(" "));
         };
@@ -27,6 +33,7 @@ describe("cli --profile", () => {
     afterEach(() => {
         Logger.log = originLog;
         Logger.write = originWrite;
+        Logger.error = originError;
     });
 
     it("prints the summary as Markdown instead of the results", async () => {
@@ -99,6 +106,38 @@ describe("cli --profile", () => {
         assert.ok(names.includes("fix"), names.join(","));
         assert.ok(names.includes("apply-fixes"), names.join(","));
         assert.ok(!names.includes("write-files"), names.join(","));
+    });
+
+    it("prints the warning of no rules to the standard error, and only JSON to the standard output", async () => {
+        const dir = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-profile-"));
+        try {
+            const config = path.join(dir, ".textlintrc.json");
+            fs.writeFileSync(config, JSON.stringify({ rules: {} }));
+            const exitStatus = await cli.execute(`--profile --format json --config ${config} ${targetFile}`);
+            assert.strictEqual(exitStatus, 1);
+            assert.strictEqual(output.length, 1);
+            assert.ok("phases" in JSON.parse(output[0]));
+            assert.match(errors.join("\n"), /No rules found/);
+        } finally {
+            fs.rmSync(dir, { recursive: true, force: true });
+        }
+    });
+
+    it("does not count the files that --cache skips", async () => {
+        const dir = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-profile-"));
+        try {
+            const file = path.join(dir, "ok.md");
+            fs.writeFileSync(file, "This is a text.\n");
+            const cacheLocation = path.join(dir, ".textlintcache");
+            const args = `--profile --format json --cache --cache-location ${cacheLocation} --cache-strategy content --rule textlint-rule-no-todo ${file}`;
+            await cli.execute(args);
+            assert.strictEqual(JSON.parse(output[0]).files, 1);
+            output = [];
+            await cli.execute(args);
+            assert.strictEqual(JSON.parse(output[0]).files, 0);
+        } finally {
+            fs.rmSync(dir, { recursive: true, force: true });
+        }
     });
 
     it("prints the results and records nothing without --profile", async () => {

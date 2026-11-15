@@ -119,11 +119,23 @@ if (values.mode === "parse") {
         }
     }
     const plugin = { Processor: PreparsedProcessor };
+    // The node types in the trees, including the types that are not in ASTNodeTypes, such as yaml
+    const nodeTypes = new Set(Object.values(ASTNodeTypes));
+    const collectTypes = (node) => {
+        nodeTypes.add(node.type);
+        nodeTypes.add(`${node.type}:exit`);
+        for (const child of node.children ?? []) {
+            collectTypes(child);
+        }
+    };
+    for (const ast of asts.values()) {
+        collectTypes(ast);
+    }
     // A rule that listens to every node type and its exit, and does nothing
     const noop = () => {
         const listener = () => {};
         const listeners = {};
-        for (const type of Object.values(ASTNodeTypes)) {
+        for (const type of nodeTypes) {
             listeners[type] = listener;
         }
         return listeners;

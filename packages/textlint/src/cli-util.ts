@@ -3,8 +3,8 @@ import type { CliOptions } from "./options.js";
 import path from "node:path";
 import fs from "node:fs";
 
-export const showEmptyRuleWarning = () => {
-    Logger.log(`
+export const showEmptyRuleWarning = (log: (message: string) => void = Logger.log) => {
+    log(`
 == No rules found, textlint hasn’t done anything ==
 
 Possible reasons:

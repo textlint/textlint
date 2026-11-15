@@ -68,11 +68,13 @@ const printResultsOrSkip = (output: string, cliOptions: CliOptions): boolean => 
     }
     return printResults(output, cliOptions);
 };
-const printProfile = (cliOptions: CliOptions, files: number) => {
-    const report = createProfileReport(profiler.getEntries(), {
+const printProfile = (cliOptions: CliOptions, isStdin: boolean) => {
+    const entries = profiler.getEntries();
+    const report = createProfileReport(entries, {
         // performance.now() is the time since the start of the process
         total: performance.now(),
-        files
+        // count the files that the kernel processed: files that --cache skips are not counted
+        files: isStdin ? 1 : entries.filter((entry) => entry.type === "file").length
     });
     const cwd = process.cwd();
     Logger.write(
@@ -172,30 +174,28 @@ export const cli = {
     async executeWithOptions(executeOptions: ExecuteOptions): Promise<number> {
         const cliOptions = executeOptions.cliOptions;
         if (!cliOptions.profile) {
-            return this._executeWithOptions(executeOptions, () => {});
+            return this._executeWithOptions(executeOptions);
         }
         profiler.enable();
         // the time from the start of the process until the CLI starts to lint
         profiler.record("startup", undefined, performance.now());
-        let files = 0;
         try {
-            return await this._executeWithOptions(executeOptions, (count) => {
-                files = count;
-            });
+            return await this._executeWithOptions(executeOptions);
         } finally {
-            printProfile(cliOptions, files);
+            printProfile(cliOptions, isStdinExecution(executeOptions));
             profiler.disable();
         }
     },
 
-    async _executeWithOptions(executeOptions: ExecuteOptions, onResults: (fileCount: number) => void): Promise<number> {
+    async _executeWithOptions(executeOptions: ExecuteOptions): Promise<number> {
         const cliOptions = executeOptions.cliOptions;
         // cli > textlintrc
         // if cli and textlintrc have same option, cli option is prior.
         const descriptor = await profiler.measureAsync("load-config", undefined, () => loadDescriptor(cliOptions));
         const hasRuleAtLeastOne = descriptor.rule.lintableDescriptors.length > 0;
         if (!hasRuleAtLeastOne) {
-            showEmptyRuleWarning();
+            // the summary of --profile is on the standard output, so the warning goes to the standard error
+            showEmptyRuleWarning(cliOptions.profile ? Logger.error : Logger.log);
             return Promise.resolve(1);
         }
         const linter = createLinter({
@@ -214,7 +214,6 @@ export const cli = {
                     ? [await linter.fixText(executeOptions.text, executeOptions.stdinFilename)]
                     : await linter.fixFiles(executeOptions.files);
                 debug("fix results: %j", results);
-                onResults(results.length);
                 const fixer = new TextLintFixer();
                 const formatter = await loadFixerFormatter({
                     formatterName: cliOptions.format,
@@ -247,7 +246,6 @@ export const cli = {
                     ? [await linter.lintText(executeOptions.text, executeOptions.stdinFilename)]
                     : await linter.lintFiles(executeOptions.files);
                 debug("lint results: %j", results);
-                onResults(results.length);
                 const formatter = await loadLinterFormatter({
                     formatterName: cliOptions.format,
                     color: cliOptions.color,

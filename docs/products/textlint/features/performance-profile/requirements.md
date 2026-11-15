@@ -167,6 +167,14 @@ Characters that would break a table or control a terminal are escaped or removed
 
 The summary is printed to the standard output with what was recorded until the failure, and the error follows on the standard error.
 
+##### No rules are configured
+
+The warning that no rules are found goes to the standard error, so the standard output has only the summary, which a JSON parser can read. The exit status is 1, as without `--profile`.
+
+##### `--cache` skips files
+
+A file that `--cache` skips is not counted in the number of the linted files, because it is not parsed or linted.
+
 ### Cost of the profile
 
 **Overview:** The profile costs almost nothing when it is off, and stays close to a normal run when it is on.

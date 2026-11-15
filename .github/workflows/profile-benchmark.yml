@@ -15,6 +15,8 @@ on:
       - "pnpm-workspace.yaml"
       - ".github/workflows/profile-benchmark.yml"
       - "!**/*.md"
+      # the documents of the small set are Markdown, and the order of the filters matters
+      - "test/benchmark/examples/**"
 permissions:
   contents: read
 concurrency:

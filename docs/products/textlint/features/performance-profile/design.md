@@ -70,6 +70,8 @@ The exit status is decided by the results as without `--profile`.
 
 The report is made by `src/profile/profile-report.ts` of the `textlint` package: `createProfileReport()` turns the totals into phases, parsers, rules, and files, and `formatProfileReportAsMarkdown()` and `formatProfileReportAsJSON()` print it.
 The total time is `performance.now()` when the report is made.
+The number of files is the number of `file` totals, that is, the files that the kernel processed; a file that `--cache` skips has none. With `--stdin`, it is 1.
+While profiling, `showEmptyRuleWarning()` writes to the standard error instead of the standard output.
 
 ## Architecture and sequence diagrams
 
