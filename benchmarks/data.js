@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794718426322,
+  "lastUpdate": 1794721817471,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128519,6 +128519,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.38397324562,
             "range": "± 0.00786595200000001",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "0c8420c2523790e04f1f8b55ab9191207a75fa3f",
+          "message": "fix(markdown-to-ast): follow CommonMark and GFM where the parser differed\n\nBlock structure:\n\n- A list item that is empty, or an ordered list that does not start with 1, is rejected only when it would interrupt a paragraph\n- A complete HTML tag (HTML block type 7) does not interrupt a paragraph, even on a lazy continuation line\n- The paragraph of a task list item starts after the marker and the following whitespaces, regardless of its first child\n\nInline structure:\n\n- `*`, `_`, and `~` delimiters are resolved in one pass in the source order, so crossing pairs give the pair that closes first\n- Whitespaces in a raw HTML tag are spaces, tabs, and line endings only\n- An autolink rejects only ASCII control characters, space, `<`, and `>`\n- A link title keeps the whitespaces before a line ending\n- U+0000 is replaced with U+FFFD in values. `raw` keeps the original text\n\nPerformance:\n\n- Trailing punctuation of a literal autolink is scanned once for a run of punctuations.\n  `https://a` + 64,000 dots + `b` took about 10 seconds\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T05:48:48Z",
+          "tree_id": "f9c386b14a79b22dc45eb0e4bc4f35e5dfc4de19",
+          "url": "https://github.com/textlint/textlint/commit/0c8420c2523790e04f1f8b55ab9191207a75fa3f"
+        },
+        "date": 1794721806346,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22153249179999998,
+            "range": "± 0.25874561400000007",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.3688796414000002,
+            "range": "± 0.03590542600000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.4392527632,
+            "range": "± 0.019898352000000008",
             "unit": "seconds"
           }
         ]
