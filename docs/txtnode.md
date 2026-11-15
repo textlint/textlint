@@ -161,8 +161,8 @@ These types are defined in [`@textlint/ast-node-types`](https://github.com/textl
 | ASTNodeTypes.HeaderExit         | TxtHeaderNode(TxtParentNode)        |                                             |
 | ASTNodeTypes.CodeBlock          | TxtCodeBlockNode                    | Code Block Node                             |
 | ASTNodeTypes.CodeBlockExit      | TxtCodeBlockNode                    |                                             |
-| ASTNodeTypes.HtmlBlock          | TxtHtmlBlockNode(TxtParentNode)     | HTML Block Node                             |
-| ASTNodeTypes.HtmlBlockExit      | TxtHtmlBlockNode(TxtParentNode)     |                                             |
+| ASTNodeTypes.HtmlBlock          | TxtHtmlNode                         | Deprecated. Use `Html` instead              |
+| ASTNodeTypes.HtmlBlockExit      | TxtHtmlNode                         |                                             |
 | ASTNodeTypes.Link               | TxtLinkNode(TxtParentNode)          | Link Node                                   |
 | ASTNodeTypes.LinkExit           | TxtLinkNode(TxtParentNode)          |                                             |
 | ASTNodeTypes.LinkReference      | TxtLinkReferenceNode(TxtParentNode) | Link Reference Node(`[link][1]`)            |
@@ -189,7 +189,7 @@ These types are defined in [`@textlint/ast-node-types`](https://github.com/textl
 | ASTNodeTypes.StrExit            | TxtStrNode                          |                                             |
 | ASTNodeTypes.Code               | TxtCodeNode                         | Inline Code Node                            |
 | ASTNodeTypes.CodeExit           | TxtCodeNode                         |                                             |
-| ASTNodeTypes.Html               | TxtHtmlNode                         | Inline HTML Node                            |
+| ASTNodeTypes.Html               | TxtHtmlNode                         | HTML Node, as a block or inline             |
 | ASTNodeTypes.HtmlExit           | TxtHtmlNode                         |                                             |
 | ASTNodeTypes.Table              | TxtTableNode                        | Table Node. textlint 13+                    |
 | ASTNodeTypes.TableExit          | TxtTableNode                        |                                             |
