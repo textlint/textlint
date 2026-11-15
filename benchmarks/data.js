@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794750665462,
+  "lastUpdate": 1794750782678,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -130577,6 +130577,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.43394913994000006,
             "range": "± 0.01279839399999999",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "26c8a197526124b75c26359e90f51e070aa2425c",
+          "message": "docs(blog): add textlint v16.0.0 release post\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T13:50:55Z",
+          "tree_id": "5b86aaf0316a72f4f4cbff23d51d25bf31329c04",
+          "url": "https://github.com/textlint/textlint/commit/26c8a197526124b75c26359e90f51e070aa2425c"
+        },
+        "date": 1794750769210,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22526692584000002,
+            "range": "± 0.043095260000000024",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.77367124624,
+            "range": "± 0.03554196300000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.55584159244,
+            "range": "± 0.014184450000000015",
             "unit": "seconds"
           }
         ]
