@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794717790867,
+  "lastUpdate": 1794718134244,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128393,6 +128393,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.48443676816000003,
             "range": "± 0.008926241999999973",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "07149865f1b30eba71d42630704fc7d53d5b194d",
+          "message": "docs: add sdev and the Markdown parsing specification (#2192)\n\n<!-- claude-projects-attribution: {\"github_login\":\"azu\"} -->\n_Requested by **azu** · [project\nthread](https://claude.ai/code/project/chan_01WwDWq4F69cv9Kmg6AeSy8j?thread=cmsg_01WwDWq4F69cv9Kmg6AeSy8j3BUWQoAobrNqTf8Vg4ro6m)_\n\n## Summary\n\nAdd [sdev](https://github.com/azu/sdev) to textlint, and write the first\nspecification with it: Markdown parsing, which is the basis for choosing\nthe in-house parser of #2188 over #2187.\n\n- **sdev:** `bin/sdev` (the same generated launcher as secretlint,\npinned to sdev v0.6.2 with SHA-256 for every target), `sdev.toml`\n(`language = \"en\"`, `translations = [\"ja\"]`), `AGENTS.md`, `CLAUDE.md`\n(imports AGENTS.md), and `/.sdev/` in `.gitignore`.\n- **Placement and lint:** specifications live under sdev's default\n`docs/products/`. The Docusaurus docs plugin excludes `products/**`, so\nthey are not published on textlint.org. A new `sdev lint` CI job checks\nlinks and reference directions.\n- **Documents:** `product.md`,\n`features/markdown-parsing/requirements.md`, and\n`features/markdown-parsing/design.md`, each with a `.ja.md` version.\n- **Docs fixes:** two broken links in existing docs (`docs/rule.md`\nanchor, and `docs/faq/exit-status.md` pointing to a file that no longer\nexists).\n\nThe Design describes the parser of #2188 (including its nesting limit,\nc488b79), so it matches the code once #2188 is merged.\n\n### Decisions recorded in the documents\n\n- textlint checks the structure and terminology of writing. Spacing and\nmarkup-style checks are a separate concern.\n- Node types in `@textlint/ast-node-types` use PascalCase, and other\nnode types use lowercase. Front matter and footnotes are not part of\nCommonMark or GFM, so `Yaml`, `Toml`, `Json`, and `FootnoteReference`\nbecome `yaml`, `toml`, `json`, and `footnoteReference` (implemented in\n#2188).\n- Parsing must not overflow the call stack on deeply nested input.\nNesting beyond a fixed limit (100 levels for block containers and 100\nfor inline nodes) stays as text. Recursion is allowed where its depth is\nbounded (implemented in #2188).\n\n### How the documents are written\n\nThe documents follow `./bin/sdev help documents`, `requirements`,\n`design`, `scenarios`, and `brownfield`. They describe the decided\npurpose, behavior, and method, not the history or the current\nimplementation status. Comparisons with the remark-based parser and\nmeasured results are kept here instead of in the Design.\n\n## Verification results (not in the documents)\n\nMeasured with the built `markdown-to-ast` of master (c443fc8) and #2188\n(c7ff9ef) on Node.js 22.\n\n**Same AST as the remark-based parser** (whole ASTs including `range`,\n`loc`, `raw`), from #2188's description:\n\n| Corpus | Identical |\n| --- | --- |\n| Fixtures of `@textlint/markdown-to-ast` | 227 / 227 |\n| CommonMark 0.31.2 spec examples | 652 / 652 |\n| GFM spec examples and extension tests | 702 / 702 |\n| Real-world `.md` files | 2,852 / 2,852 |\n| Markdown files of this repository | 403 / 403 |\n\n**Differential fuzzing.** 30,000 random inputs made of Markdown tokens\ndiffered in 224 cases (0.75%). Neither implementation threw, and `raw\n=== text.slice(range)` held for both. For the 128 cases where the block\nstructure differed, compared with cmark-gfm: #2188 matched in 84, master\nin 8, neither in 31. The differences:\n\n- An unclosed front matter fence (for example a leading `---` thematic\nbreak) made master stop recognizing lists in the whole document.\n- After a task list checkbox and a line ending, master gave the\nparagraph a `loc` that did not match its `range`.\n- A table header after a tab-indented paragraph line starts a table on\n#2188, as on cmark-gfm.\n- An unclosed fenced code or HTML block at the end of a list item no\nlonger overlaps the next item.\n- A few `range` values with trailing whitespace inside nested containers\nwith tabs differ; the cause is not understood.\n\n**Pathological inputs.**\n\n| Input | master | #2188 |\n| --- | --- | --- |\n| Table with 20,000 rows | 25,328 ms | 37 ms |\n| 20,000 `[` + `a` + 20,000 `]` | 23,627 ms | 12 ms |\n| 20,000 `[a](` | 10,838 ms | 33 ms |\n| 1,000 nested lists | 23,945 ms | 916 ms |\n| 1,500 nested lists | 69,552 ms | 3,024 ms |\n\n5,000 nested block quotes and 20,000 nested `*` threw `RangeError:\nMaximum call stack size exceeded` on both before the nesting limit. With\nthe limit (#2188 c488b79), 100,000 nested inputs parse in 10–200 ms\nwithout throwing, as reported in #2188.\n\n**Other checks.** The sources of #2188's `markdown-to-ast` import\nnothing but `@textlint/ast-node-types` and use no Node.js modules. No\nuse of the hidden `position` property was found in the `textlint`,\n`textlint-ja`, and `textlint-rule` organizations. GitHub code search\nfound no rule reading `FootnoteReference`; `Yaml` appears in some rules'\nlists of node types to skip, which the v16 release notes call out.\n\n**History of the parser choice.** `markdown-to-ast` was built on\n`commonmark` 0.15 (5fe82d614), which gave only the start positions of\nblocks, so `raw` and end positions were rebuilt by rendering back to\nMarkdown (e79ab4678). It moved to `mdast` 0.3 on 2015-02-15 (f6bbd54dc,\n89583faaa) and was released as 3.0.0. `FootnoteReference` came from #767\n(textlint 12), when extension node names were PascalCase; #1033 later\nremoved it from `ast-node-types`.\n\n## Basis of the documents\n\n- **Confirmed in code or tests:** supported syntax, node types, BOM\nhandling, the disabled GFM autolink literal transforms, and the\nscenarios in the Requirements.\n- **Reasons taken from existing documents:** the reason for disabling\nautolink literal transforms (remarkjs/remark-gfm#16), the compatibility\nresults (#2188), and the micromark-direct results (#2187).\n- **Reasons taken from azu's past talks and articles about textlint**\n(not linked from the documents, as azu asked): parse the markup but not\nthe natural language, why natural language rules cannot be official, the\npluggable architecture, opt-in rules, the rule organizations, parsers\nclose to the core, running in browsers, checking with real-world\ncorpora.\n- **Based on azu's answers:** only the parsing part is needed; following\nCommonMark is maintainable; parse broadly so meaningful syntax becomes\nnodes; speed matters; TxtAST is language-agnostic; the node naming rule;\nno stack overflow, with a nesting limit; structure and terminology are\nthe scope; no current values in living documents.\n- **Left as open questions:** definition of success and formal TxtAST\nspecification (Product); a numeric speed target and CJK-friendly\nemphasis (#2113) (Requirements and Design).\n\n## Checks\n\n- `./bin/sdev lint` passes locally and in CI: 30 documents (6\ndirection-checked), 0 violations.\n- The PR preview shows no spec pages on the website (the spec URL\nreturns 404).\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-11-15T13:47:10+09:00",
+          "tree_id": "4a1b459ef697f8f1b0a60140f42ee94727d0035b",
+          "url": "https://github.com/textlint/textlint/commit/07149865f1b30eba71d42630704fc7d53d5b194d"
+        },
+        "date": 1794718121657,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25097689866,
+            "range": "± 0.20263979999999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.92516505126,
+            "range": "± 0.14883468599999983",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7300761328600001,
+            "range": "± 0.01926908599999999",
             "unit": "seconds"
           }
         ]
