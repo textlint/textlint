@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794751207393,
+  "lastUpdate": 1794751276980,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -130745,6 +130745,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.43840874514,
             "range": "± 0.012795043999999978",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "3e9309c0e95149aa8c901d06af67f4fd7def4928",
+          "message": "docs(blog): explain that the v16 AST changes come from the new specifications\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T13:58:52Z",
+          "tree_id": "3643df90db838f1da10a9c51e904b1678b81bbe1",
+          "url": "https://github.com/textlint/textlint/commit/3e9309c0e95149aa8c901d06af67f4fd7def4928"
+        },
+        "date": 1794751264733,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17912578160000003,
+            "range": "± 0.066717208",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.348935344,
+            "range": "± 0.06457738300000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.4294172420000001,
+            "range": "± 0.00248537400000004",
             "unit": "seconds"
           }
         ]
