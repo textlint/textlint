@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794745607130,
+  "lastUpdate": 1794745719698,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129947,6 +129947,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.48010163005999995,
             "range": "± 0.014987870000000014",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "51ac0447ca6e7ed79b8eaee5663f7fd845595a9b",
+          "message": "fix(ast-traverse): read the visitor at each call and return null from current() before traverse\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGR3BDvRtSTfYjuR1i\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T12:27:29Z",
+          "tree_id": "089b853ecdc52ec3448f644387a69418aa0a8113",
+          "url": "https://github.com/textlint/textlint/commit/51ac0447ca6e7ed79b8eaee5663f7fd845595a9b"
+        },
+        "date": 1794745710932,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.18953550766,
+            "range": "± 0.261998398",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.09823085966,
+            "range": "± 0.041276684999999924",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.33955746406000004,
+            "range": "± 0.01894395400000004",
             "unit": "seconds"
           }
         ]
