@@ -31,7 +31,7 @@ interface TxtNode {
     readonly type: string;
     readonly raw: string;
     readonly range: TxtNodeRange;
-    readonly loc: TxtNodeLineLocation;
+    readonly loc: TxtNodeLocation;
     // parent is runtime information
     // Not need in AST
     // For example, top Root Node like `Document` has not parent.
@@ -42,7 +42,7 @@ interface TxtNode {
 /**
  * Location
  */
-interface TxtNodeLineLocation {
+interface TxtNodeLocation {
     readonly start: TxtNodePosition;
     readonly end: TxtNodePosition;
 }
@@ -67,10 +67,10 @@ export type TxtNodeRange = readonly [startIndex: number, endIndex: number];
 `TxtNode` **must** have these properties.
 
 - `type`: type of Node
-- `raw`: raw value of Node
+- `raw`: source text of Node. It is the text of `range`
     - if you want to get raw value, please use `getSource(<node>)` instead of it..
-- `loc`: location object
-- `range`: location info array like `[startIndex, endIndex]`
+- `loc`: location object. `start` and `end` are the positions of `range[0]` and `range[1]`
+- `range`: location info array like `[startIndex, endIndex]`. `endIndex` is exclusive
 - `parent`: (optional) parent node of this node.
     - It is attached in runtime
     - Parser user ignore this property
@@ -95,7 +95,7 @@ interface TxtTextNode extends TxtNode {
 
 `TxtTextNode` **must** have these properties.
 
-- `value`: the value of inline node.
+- `value`: the content of the node without the markup. It may differ from `raw`.
 
 Example: `Str` node is a `TxtTextNode`.
 
@@ -138,71 +138,67 @@ You can get Node type for Type name by `TypeofTxtNode` in TypeScript.
 // In TypeScript
 import { ASTNodeTypes } from "@textlint/ast-node-types";
 
-const nodeType = TypeofTxtNode<ASTNodeTypes.Str>; // TxtTextNode
+import type { TypeofTxtNode } from "@textlint/ast-node-types";
+
+type NodeType = TypeofTxtNode<ASTNodeTypes.Str>; // TxtStrNode
 ```
 
 ### All node types
 
 These types are defined in [`@textlint/ast-node-types`](https://github.com/textlint/textlint/tree/master/packages/%40textlint/ast-node-types).
+They are shared by all formats, and their names are PascalCase.
 
-| Type name                       | Node type                           | Description                                 |
-|---------------------------------|-------------------------------------|---------------------------------------------|
-| ASTNodeTypes.Document           | TxtDocumentNode(TxtParentNode)      | Root Node                                   |
-| ASTNodeTypes.DocumentExit       | TxtDocumentNode(TxtParentNode)      |                                             |
-| ASTNodeTypes.Paragraph          | TxtParagraphNode(TxtParentNode)     | Paragraph Node                              |
-| ASTNodeTypes.ParagraphExit      | TxtParagraphNode(TxtParentNode)     |                                             |
-| ASTNodeTypes.BlockQuote         | TxtBlockQuoteNode(TxtParentNode)    | > Block Quote Node                          |
-| ASTNodeTypes.BlockQuoteExit     | TxtBlockQuoteNode(TxtParentNode)    |                                             |
-| ASTNodeTypes.List               | TxtListNode(TxtParentNode)          | List Node                                   |
-| ASTNodeTypes.ListExit           | TxtListNode(TxtParentNode)          |                                             |
-| ASTNodeTypes.ListItem           | TxtListItemNode(TxtParentNode)      | List (each) item Node                       |
-| ASTNodeTypes.ListItemExit       | TxtListItemNode(TxtParentNode)      |                                             |
-| ASTNodeTypes.Header             | TxtHeaderNode(TxtParentNode)        | # Header Node                               |
-| ASTNodeTypes.HeaderExit         | TxtHeaderNode(TxtParentNode)        |                                             |
-| ASTNodeTypes.CodeBlock          | TxtCodeBlockNode                    | Code Block Node                             |
-| ASTNodeTypes.CodeBlockExit      | TxtCodeBlockNode                    |                                             |
-| ASTNodeTypes.HtmlBlock          | TxtHtmlNode                         | Deprecated. Use `Html` instead              |
-| ASTNodeTypes.HtmlBlockExit      | TxtHtmlNode                         |                                             |
-| ASTNodeTypes.Link               | TxtLinkNode(TxtParentNode)          | Link Node                                   |
-| ASTNodeTypes.LinkExit           | TxtLinkNode(TxtParentNode)          |                                             |
-| ASTNodeTypes.LinkReference      | TxtLinkReferenceNode(TxtParentNode) | Link Reference Node(`[link][1]`)            |
-| ASTNodeTypes.LinkReferenceExit  | TxtLinkReferenceNode(TxtParentNode) |                                             |
-| ASTNodeTypes.Delete             | TxtDeleteNode(TxtParentNode)        | Delete Node(`~Str~`)                        |
-| ASTNodeTypes.DeleteExit         | TxtDeleteNode(TxtParentNode)        |                                             |
-| ASTNodeTypes.Emphasis           | TxtEmphasisNode(TxtParentNode)      | Emphasis(`*Str*`)                           |
-| ASTNodeTypes.EmphasisExit       | TxtEmphasisNode(TxtParentNode)      |                                             |
-| ASTNodeTypes.Strong             | TxtStrongNode(TxtParentNode)        | Strong Node(`**Str**`)                      |
-| ASTNodeTypes.StrongExit         | TxtStrongNode(TxtParentNode)        |                                             |
-| ASTNodeTypes.Break              | TxtBreakNode                        | Hard Break Node(`Str<space><space>`)        |
-| ASTNodeTypes.BreakExit          | TxtBreakNode                        |                                             |
-| ASTNodeTypes.Image              | TxtImageNode                        | Image Node                                  |
-| ASTNodeTypes.ImageExit          | TxtImageNode                        |                                             |
-| ASTNodeTypes.ImageReference     | TxtImageReferenceNode               | Image Reference Node(`![alt][1]`)           |
-| ASTNodeTypes.ImageReferenceExit | TxtImageReferenceNode               |                                             |
-| ASTNodeTypes.Definition         | TxtDefinitionNode                   | Definition Node(`[1]: https://example.com`) |
-| ASTNodeTypes.DefinitionExit     | TxtDefinitionNode                   |                                             |
-| ASTNodeTypes.HorizontalRule     | TxtHorizontalRuleNode               | Horizontal Node(`---`)                      |
-| ASTNodeTypes.HorizontalRuleExit | TxtHorizontalRuleNode               |                                             |
-| ASTNodeTypes.Comment            | TxtCommentNode                      | Comment Node                                |
-| ASTNodeTypes.CommentExit        | TxtCommentNode                      |                                             |
-| ASTNodeTypes.Str                | TxtStrNode                          | Str Node                                    |
-| ASTNodeTypes.StrExit            | TxtStrNode                          |                                             |
-| ASTNodeTypes.Code               | TxtCodeNode                         | Inline Code Node                            |
-| ASTNodeTypes.CodeExit           | TxtCodeNode                         |                                             |
-| ASTNodeTypes.Html               | TxtHtmlNode                         | HTML Node, as a block or inline             |
-| ASTNodeTypes.HtmlExit           | TxtHtmlNode                         |                                             |
-| ASTNodeTypes.Table              | TxtTableNode                        | Table Node. textlint 13+                    |
-| ASTNodeTypes.TableExit          | TxtTableNode                        |                                             |
-| ASTNodeTypes.TableRow           | TxtTableRowNode                     | Table row Node. textlint 13+                |
-| ASTNodeTypes.TableRowExit       | TxtTableRowNode                     |                                             |
-| ASTNodeTypes.TableCell          | TxtTableCellNode                    | Table cell Node. textlint 13+               |
-| ASTNodeTypes.TableCellExit      | TxtTableCellNode                    |                                             |
+Block nodes:
+
+| Type name                   | Node type                           | Description                                 |
+|-----------------------------|-------------------------------------|---------------------------------------------|
+| ASTNodeTypes.Document       | TxtDocumentNode(TxtParentNode)      | Root Node                                   |
+| ASTNodeTypes.Paragraph      | TxtParagraphNode(TxtParentNode)     | Paragraph Node                              |
+| ASTNodeTypes.Header         | TxtHeaderNode(TxtParentNode)        | # Header Node                               |
+| ASTNodeTypes.BlockQuote     | TxtBlockQuoteNode(TxtParentNode)    | > Block Quote Node                          |
+| ASTNodeTypes.List           | TxtListNode(TxtParentNode)          | List Node                                   |
+| ASTNodeTypes.ListItem       | TxtListItemNode(TxtParentNode)      | List (each) item Node                       |
+| ASTNodeTypes.CodeBlock      | TxtCodeBlockNode(TxtTextNode)       | Code Block Node                             |
+| ASTNodeTypes.HorizontalRule | TxtHorizontalRuleNode               | Horizontal Node(`---`)                      |
+| ASTNodeTypes.Html           | TxtHtmlNode(TxtTextNode)            | HTML Node, as a block or inline             |
+| ASTNodeTypes.Comment        | TxtCommentNode(TxtTextNode)         | Comment Node                                |
+| ASTNodeTypes.Table          | TxtTableNode(TxtParentNode)         | Table Node. textlint 13+                    |
+| ASTNodeTypes.TableRow       | TxtTableRowNode(TxtParentNode)      | Table row Node. textlint 13+                |
+| ASTNodeTypes.TableCell      | TxtTableCellNode(TxtParentNode)     | Table cell Node. textlint 13+               |
+| ASTNodeTypes.Definition     | TxtDefinitionNode                   | Definition Node(`[1]: https://example.com`) |
+
+Inline nodes:
+
+| Type name                   | Node type                           | Description                                 |
+|-----------------------------|-------------------------------------|---------------------------------------------|
+| ASTNodeTypes.Str            | TxtStrNode(TxtTextNode)             | Str Node. The text that rules check         |
+| ASTNodeTypes.Break          | TxtBreakNode                        | Hard Break Node(`Str<space><space>`)        |
+| ASTNodeTypes.Emphasis       | TxtEmphasisNode(TxtParentNode)      | Emphasis(`*Str*`)                           |
+| ASTNodeTypes.Strong         | TxtStrongNode(TxtParentNode)        | Strong Node(`**Str**`)                      |
+| ASTNodeTypes.Delete         | TxtDeleteNode(TxtParentNode)        | Delete Node(`~Str~`)                        |
+| ASTNodeTypes.Code           | TxtCodeNode(TxtTextNode)            | Inline Code Node                            |
+| ASTNodeTypes.Link           | TxtLinkNode(TxtParentNode)          | Link Node                                   |
+| ASTNodeTypes.Image          | TxtImageNode                        | Image Node                                  |
+| ASTNodeTypes.LinkReference  | TxtLinkReferenceNode(TxtParentNode) | Link Reference Node(`[link][1]`)            |
+| ASTNodeTypes.ImageReference | TxtImageReferenceNode               | Image Reference Node(`![alt][1]`)           |
 
 > 📝Note
 > `LinkReference`, `ImageReference` and `Definition` are introduced in textlint [v14.5.0](https://github.com/textlint/textlint/releases/tag/v14.5.0).
 
+Each type has an exit type, such as `ASTNodeTypes.ParagraphExit` (`"Paragraph:exit"`).
+A rule uses the exit type to handle a node after its children. The node is the same.
+
+#### Deprecated names
+
+These names remain in `ASTNodeTypes` for compatibility, but parsers do not produce them.
+
+| Deprecated name           | Use instead             |
+|---------------------------|-------------------------|
+| ASTNodeTypes.HtmlBlock    | ASTNodeTypes.Html       |
+| ASTNodeTypes.ReferenceDef | ASTNodeTypes.Definition |
+
 Some node have additional properties.
-For example, `TxtHeaderNode` has `level` property.
+For example, `TxtHeaderNode` has `depth` property.
 
 ```ts
 export interface TxtHeaderNode extends TxtParentNode {
@@ -217,13 +213,20 @@ For more details, see [`@textlint/ast-node-types`](https://github.com/textlint/t
 - [`@textlint/ast-node-types/src/NodeType.ts`](https://github.com/textlint/textlint/tree/master/packages/%40textlint/ast-node-types/src/NodeType.ts).
 
 These type are based on HTML tag and Markdown syntax.
-Other plugin has defined other node type that is not defined in `@textlint/ast-node-types`, but you can specify it as just a string.
+
+### Node types of a format
+
+A format can add its own node types for structures that the types above do not cover.
+The name of such a node type starts with a lowercase letter, so you can tell from the name whether a node type is shared by all formats.
+For example, the Markdown parser produces `yaml` for front matter and `footnoteReference` for a footnote reference.
+
+These node types are not defined in `@textlint/ast-node-types`, but a rule can specify them as just a string.
 
 ```js
-// A rule can treat "Example" node type
+// A rule can treat "yaml" node type
 export default () => {
     return {
-        ["Example"](node) {
+        ["yaml"](node) {
             // do something
         }
     };
@@ -233,7 +236,9 @@ export default () => {
 ### Minimal node property
 
 TxtAST allow to extend node property.
-But, Following node **should** have some properties.
+The type definitions of `@textlint/ast-node-types` define the properties of each node type.
+A property that is optional in the type definitions may be absent, `undefined`, or `null`.
+Every other property is required. The following nodes have required properties.
 
 #### `Header`
 
@@ -247,6 +252,17 @@ But, Following node **should** have some properties.
 #### `Image`
 
 - `url`: image url
+
+#### `Definition`
+
+- `identifier`: normalized form of `label`. A reference and its definition have the same `identifier`
+- `label`: label as written in the document
+- `url`: url of the definition
+
+#### `LinkReference` and `ImageReference`
+
+- `identifier` and `label`: same as `Definition`
+- `referenceType`: `"full"`, `"collapsed"`, or `"shortcut"`
 
 ## Built-in Parser
 
@@ -316,6 +332,13 @@ export default function(context) {
 This is for compatibility with JavaScript AST.
 
 - [Why do `line` of location in JavaScript AST(ESTree) start with 1 and not 0?](https://gist.github.com/azu/8866b2cb9b7a933e01fe "Why do `line` of location in JavaScript AST(ESTree) start with 1 and not 0?")
+
+`loc` and `range` describe the same span.
+
+- `raw` is the text from `range[0]` to `range[1]`.
+- `loc.start` is the line and column of `range[0]`, and `loc.end` is the line and column of `range[1]`.
+- The character after a line ending is at column 0 of the next line. If a node ends right after a line ending, `loc.end` is on the next line.
+- The `range` of a child is inside the `range` of its parent, and siblings do not overlap.
 
 **Important Note:**
 
@@ -427,8 +450,8 @@ Illustration
     - have `children`, but not have `value`
 - Paragraph is a `TxtParentNode` and type is Paragraph
     - have `children`, but not have `value`
-- *Emphasis* is a `TxtTextNode` and type is Emphasis
-    - have `value`
+- *Emphasis* is a `TxtParentNode` and type is Emphasis
+    - have `children`, but not have `value`
 - "text" is a `TxtTextNode` and type is Str
     - have `value`
 
@@ -458,6 +481,6 @@ isTxtAST(AST); // true or false
 ```
 
 :warning: Current `test` function does not check node specific properties.
-For example, `TxtHeaderNode` has `level` property, but `test` function does not check it.
+For example, `TxtHeaderNode` has `depth` property, but `test` function does not check it.
 
 - Issue: [ast-tester should validate individual Node type · Issue #1009 · textlint/textlint](https://github.com/textlint/textlint/issues/1009)
