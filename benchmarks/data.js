@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794751731235,
+  "lastUpdate": 1794751822726,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -130997,6 +130997,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.50188778624,
             "range": "± 0.011789842999999967",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "511c089d84c7f1b5d54a145d2d83bc37313a9da4",
+          "message": "docs(blog): measure js-primer and link the ja-spacing option PR\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T14:08:46Z",
+          "tree_id": "c492136aa1c8be09c98bfb1e11cae0fd6319ea74",
+          "url": "https://github.com/textlint/textlint/commit/511c089d84c7f1b5d54a145d2d83bc37313a9da4"
+        },
+        "date": 1794751810863,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.18532064696,
+            "range": "± 0.04155703300000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.3829009493600002,
+            "range": "± 0.023168606000000036",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.44470561336000003,
+            "range": "± 0.0075945179999999946",
             "unit": "seconds"
           }
         ]
