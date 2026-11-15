@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794752132790,
+  "lastUpdate": 1794752173158,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -131081,6 +131081,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.43520575944000006,
             "range": "± 0.009321921999999982",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "a6f9a437f8dcd190afee2a9f43770cd321a3fe50",
+          "message": "perf(benchmark): measure base and head in rounds, without CPU profiling\n\nRuns of micro.mjs for the same code differed by up to 0.75x-1.17x, because the base\nand the head ran one after another under --cpu-prof. Now they run in 3 rounds, in turns,\nwithout --cpu-prof; one extra process records the CPU profile. Comparing HEAD with\nitself now gives 0.92x-1.06x on small and medium.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFhDjQv5inahhbbFMD\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T14:14:28Z",
+          "tree_id": "528ed2b81592d3d54132344c2f6a3cdff0c740a1",
+          "url": "https://github.com/textlint/textlint/commit/a6f9a437f8dcd190afee2a9f43770cd321a3fe50"
+        },
+        "date": 1794752156944,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20528868022000002,
+            "range": "± 0.04051558599999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6581554182200002,
+            "range": "± 0.0771347990000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5100420514200001,
+            "range": "± 0.008386801",
             "unit": "seconds"
           }
         ]
