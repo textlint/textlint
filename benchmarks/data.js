@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794743276015,
+  "lastUpdate": 1794743399759,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129569,6 +129569,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.3372097891,
             "range": "± 0.02357588500000002",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "c877cd489f7eddcb1b5002edd524c280deffce60",
+          "message": "feat(kernel)!: count the lines of messages by LF, CR, and CRLF\n\ntextlint converted range to the line and column of a message with\nstructured-source, which counts U+2028 and U+2029 as line endings.\nThe kernel has its own line table now. It counts a line by LF, CR, and\nCRLF, which is the definition of loc in TxtAST, so the line of a message\nagrees with loc of a node.\n\nThe table is created when a conversion is requested for the first time.\nThe structured-source dependency is removed.\n\nBREAKING CHANGE: for a document that has U+2028 or U+2029, the line and\ncolumn of messages, and the results of rangeToLocation, locationToRange,\npositionToIndex, and indexToPosition of TextlintSourceCode change.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T11:47:10Z",
+          "tree_id": "95b14a20c550d3990e2134c442c6a96e535b6874",
+          "url": "https://github.com/textlint/textlint/commit/c877cd489f7eddcb1b5002edd524c280deffce60"
+        },
+        "date": 1794743386094,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23132895632,
+            "range": "± 0.044628312",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.8176161279200003,
+            "range": "± 0.17785530399999994",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.59247617372,
+            "range": "± 0.015495075999999997",
             "unit": "seconds"
           }
         ]
