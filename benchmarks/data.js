@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794741404109,
+  "lastUpdate": 1794741456620,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129107,6 +129107,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.4404974434400001,
             "range": "± 0.010169256999999987",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "58ec0ab25c2fd5e526e61e48c7ecfa738b178bc1",
+          "message": "Merge remote-tracking branch 'origin/master' into claude/project-thread-ocgv4m-ast-tester\n\n# Conflicts:\n#\tdocs/products/textlint/features/txtast/requirements.ja.md\n#\tdocs/products/textlint/features/txtast/requirements.md",
+          "timestamp": "2026-11-15T11:15:51Z",
+          "tree_id": "42cfff7ee7ab499c24332aa68fa91d74dbea093e",
+          "url": "https://github.com/textlint/textlint/commit/58ec0ab25c2fd5e526e61e48c7ecfa738b178bc1"
+        },
+        "date": 1794741443335,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22111016140000003,
+            "range": "± 0.04455727399999995",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7669920182000003,
+            "range": "± 0.17807425899999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5614630214000002,
+            "range": "± 0.01187480800000007",
             "unit": "seconds"
           }
         ]
