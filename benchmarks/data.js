@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794743848349,
+  "lastUpdate": 1794744110651,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129779,6 +129779,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.4338593884,
             "range": "± 0.019313738999999996",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e0ce5f24bfd9b5c673194388651773d5681d8eae",
+          "message": "feat(text-to-ast)!: specify plain text parsing and rewrite the parser as one loop (#2198)\n\n<!-- claude-projects-attribution: {\"github_login\":\"azu\"} -->\n_Requested by **azu** · [project\nthread](https://claude.ai/code/project/chan_01WwDWq4F69cv9Kmg6AeSy8j?thread=cmsg_01WwDWq4F69cv9Kmg6AeSy8j7gBw8QbSxTSq8zVDiFQR7X)_\n\n> [!NOTE]\n> Builds on #2197 (lines of `loc` counted by LF, CR, and CRLF in every\nformat), which is merged. In the tables below, \"#2197\" is the plain text\nparser on master now, and \"before #2197\" is the one in v15.\n\n## Summary\n\nWrite down what the plain text parser does, and rewrite\n`@textlint/text-to-ast` so that the code maps one to one to the\nspecification. The parser is the smallest TxtAST parser, so it is kept\nsimple enough to be read as an example next to the specification.\n\n- One paragraph = one line is kept (decided by azu in the thread). Lines\nare not joined into paragraphs separated by empty lines\n- The parser is one loop that finds line endings (LF, CR, CRLF) with one\nregular expression and creates each node once. No intermediate array of\nlines, no `reduce`, no special case for the last line. U+2028 and U+2029\nare characters of the line, as the TxtAST Requirements define\n\n## Specifications\n\nReviewing the specifications is the main way to review this PR. Both\nhave English and Japanese versions.\n\n| Document | Content |\n| --- | --- |\n| `docs/products/textlint/features/plain-text-parsing/requirements.md`\n(new) | User stories, KPIs, line endings, the node table (`Document`,\n`Paragraph`, `Str`, `Break`), empty text, text that ends with a line\nending, BOM, file extensions of the plugin, security |\n| `docs/products/textlint/features/plain-text-parsing/design.md` (new) |\nPreparation, the line loop, positions, node shape, the plugin interface,\nalternatives |\n| `docs/products/textlint/product.md` | Links the new Requirements from\nthe feature list |\n\nDecisions written there:\n\n- A paragraph is one line, because plain text has no rule for which\nlines form a paragraph\n- `Break` is a child of `Document`, and every line ending becomes a\n`Break`\n- `value` of `Str` equals `raw`\n- A BOM is removed before parsing, as Markdown does\n- The AST is at most three levels deep\n\n## Breaking changes\n\nBoth are AST changes for unusual texts. Every other text gives the same\nAST as master.\n\n- **Line endings at the end of the text**: every line ending is a\n`Break` now. Before, the last line ending was dropped when the text\nended with an empty line (`a\\n\\n` gave one `Break`, now two) or when the\ntext had only line endings (`\\n` gave no `Break`, now one)\n- **BOM**: a text that starts with U+FEFF gives the same AST as the text\nwithout it. Before, the BOM was in the first `Str` and every offset was\none larger. textlint's `SourceCode` removes the BOM from the text that\nrules see, so those offsets pointed one character after the intended\nposition\n\n## Results\n\n| | before #2197 | #2197 (master) | This PR |\n| --- | --- | --- | --- |\n| Parse time: 3,214 `.md`/`.txt` files of this repository and its\n`node_modules`, 15.7MB, parsed as plain text (median of 5 runs, each the\nmedian of 15 loops) | about 134 ms | about 125 ms | about 101 ms |\n\n- The machine was noisy (single runs varied by ±25%), so take the\nnumbers as \"not slower, somewhat faster\" (about 20%). A version that\nused `indexOf(\"\\n\")` was about 2.4x faster, but it only finds LF. A loop\nthat checks each character code was slower than the regular expression,\nso the regular expression was kept\n- Time is proportional to the size: 100,000 lines → 400,000 lines takes\n147 ms → 568 ms\n\n### Compatibility with master\n\nThe AST was deep-compared with master's parser, including `range`,\n`loc`, and `raw`.\n\n| Corpus | Identical |\n| --- | --- |\n| 3,214 real-world files | 3,152. The other 62 are 1 file with a BOM and\n61 files that end with an empty line |\n| 30,000 random inputs of `a`, `あ`, spaces, tabs, LF, CR, CRLF, U+2028,\nU+2029, and BOM | All differences are the two breaking changes above\n(compared after removing the BOM for the old parser) |\n\n## Test plan\n\n- [x] `pnpm run test` for the whole repository, after merging master\n(4f109f0)\n- [x] `./bin/sdev lint`\n- [x] `packages/@textlint/text-to-ast`: 23 tests.\n`test/conformance.test.ts` (new) follows the Requirements, and runs\n`@textlint/ast-tester` on every text of up to 4 parts made of letters,\nspaces, tabs, LF, CR, CRLF, U+2028, U+2029, and a surrogate pair\n- [x] `@textlint/ast-tester` accepts the AST of all 3,214 corpus files\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01TSdrAHvNYdBUfWCSPWZdBP\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-11-15T12:00:12Z",
+          "tree_id": "4901ae647caab9c9e5d36c49ab368e093376108e",
+          "url": "https://github.com/textlint/textlint/commit/e0ce5f24bfd9b5c673194388651773d5681d8eae"
+        },
+        "date": 1794744096766,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2091966232,
+            "range": "± 0.03683845399999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6292078371999998,
+            "range": "± 0.07452377099999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5015639353999999,
+            "range": "± 0.010012927999999921",
             "unit": "seconds"
           }
         ]
