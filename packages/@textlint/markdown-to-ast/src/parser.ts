@@ -154,33 +154,6 @@ function buildLines(): void {
     LN = n;
 }
 
-/**
- * Rebuild the line table for `loc`.
- * CommonMark defines the lines of the block structure: LF, CR, and CRLF end a line.
- * `loc` counts lines as textlint does for messages: U+2028 and U+2029 also end a line.
- * It is called after the block and inline phases, and only when the text has these characters.
- */
-function buildLocLines(): void {
-    let n = 0;
-    let lines = LS;
-    lines[n++] = 0;
-    for (let i = 0; i < len; i++) {
-        const c = src.charCodeAt(i);
-        if (c === 10 || c === 13 || c === 0x2028 || c === 0x2029) {
-            if (c === 13 && src.charCodeAt(i + 1) === 10) {
-                i++;
-            }
-            if (n + 2 > lines.length) {
-                lines = growInt32(lines);
-            }
-            lines[n++] = i + 1;
-        }
-    }
-    lines[n] = 0x7fffffff;
-    LS = lines;
-    LN = n;
-}
-
 function growInt32(a: Int32Array<ArrayBuffer>): Int32Array<ArrayBuffer> {
     const b = new Int32Array(a.length * 2);
     b.set(a);
@@ -3811,9 +3784,6 @@ export function parseMarkdown(text: string): TxtDocumentNode {
         buildLines();
         parseBlocks();
         parseInlines();
-        if (text.indexOf("\u2028") !== -1 || text.indexOf("\u2029") !== -1) {
-            buildLocLines();
-        }
         lineCache = 0;
         return emit(0) as TxtDocumentNode;
     } finally {

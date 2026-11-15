@@ -136,7 +136,6 @@ Because one pass handles all three characters, pairs never cross.
 The emit phase walks the pool once from `Document` and creates the `TxtNode` objects.
 A node is a plain object with its properties in a fixed order per kind.
 `raw` is sliced from the original text, and `loc` comes from the line table.
-When the text has U+2028 or U+2029, the line table is rebuilt before the emit phase so that these characters also end a line. They end a line for `loc` and not for the block structure, and most documents do not have them, so the block phase keeps its own table.
 Nodes are visited in source order, so the line lookup for a start offset continues from the line of the previous node instead of searching the table.
 
 Nodes are created eagerly and completely.

@@ -15,8 +15,8 @@ const assertInvariants = (text: string) => {
     const lineStarts = [0];
     for (let i = 0; i < text.length; i++) {
         const ch = text.charCodeAt(i);
-        // `loc` counts a line by LF, CR, CRLF, U+2028, and U+2029
-        if (ch === 10 || ch === 0x2028 || ch === 0x2029 || (ch === 13 && text.charCodeAt(i + 1) !== 10)) {
+        // `loc` counts a line by LF, CR, and CRLF
+        if (ch === 10 || (ch === 13 && text.charCodeAt(i + 1) !== 10)) {
             lineStarts.push(i + 1);
         }
     }
