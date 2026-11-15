@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794744195795,
+  "lastUpdate": 1794745529269,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129863,6 +129863,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.34548922864000003,
             "range": "± 0.032334766000000015",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "106cf219087bc1acdc1ebb0962d71dcf5ce253fd",
+          "message": "feat!: require Node.js 22.12.0 or later\n\nNode.js 22.12.0 enables require(esm) by default. CommonJS code can\nrequire() the ESM-only built-in plugins without dynamic import().\n\nBREAKING CHANGE: textlint requires Node.js 22.12.0 or later.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T12:23:35Z",
+          "tree_id": "433344efc401d80857da3b8b8282662162e3f619",
+          "url": "https://github.com/textlint/textlint/commit/106cf219087bc1acdc1ebb0962d71dcf5ce253fd"
+        },
+        "date": 1794745515687,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22282919724,
+            "range": "± 0.05564166400000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7413108622400002,
+            "range": "± 0.05964201099999977",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.56016844724,
+            "range": "± 0.022276982000000056",
             "unit": "seconds"
           }
         ]
