@@ -80,11 +80,21 @@ The [security considerations of the Requirements](requirements.md#security-consi
 Parsing time stays close to proportional to the input size because no phase backtracks over the input.
 Inline parsing uses the CommonMark delimiter and bracket stack algorithms, which handle unclosed brackets and delimiters without rescanning them, and the block phase visits each line once per open container.
 
-Nesting depth is decided by the document, so the parser bounds it with one fixed limit for containers and inline nesting.
-When a block quote, list item, or inline delimiter would open beyond the limit, the parser does not open it and keeps the rest of that line as text in the current node.
-This bounds both the call stack and the time that deeply nested lists take, which otherwise grows faster than linear with the depth.
-With the depth bounded, recursion is fine, and processing does not need explicit stacks to avoid overflowing the call stack.
-The limit is a constant in the parser, chosen far above the nesting of real-world documents, and the parser has a test at the limit.
+Nesting depth is decided by the document, so the parser bounds it with a fixed limit of 100 levels (`MAX_NESTING`), applied separately to blocks and to inlines.
+
+For blocks, the stack of open containers below `Document` never grows beyond the limit.
+A block quote and a footnote definition each take one level, and a list item takes two (`List` and `ListItem`), so lists nest up to 50 levels.
+When a container would go beyond the limit, it is not opened, and its marker is handled as ordinary text of the current container, such as a paragraph or its continuation.
+
+For inlines, the limit applies to the height of the inline subtree, not to the number of delimiters.
+`Emphasis`, `Strong`, `Delete`, `Link`, `LinkReference`, and `footnote` each add one level.
+A delimiter or bracket pair that would make a node higher than the limit is not matched, and its markers stay text, so the inner 100 levels are kept and the outer markers become text.
+`Image` does not count, because its children are not kept.
+Once the limit is reached, the delimiter search does not rescan the remaining delimiters, so deep inputs stay linear.
+
+Because blocks and inlines are limited separately, the deepest AST is about `Document`, 100 container levels, a `Paragraph` or `TableCell`, 100 inline levels, and `Str`.
+The tree walks whose depth follows the AST, such as finishing inlines, collecting image alt text, and the emit phase, use parent links or an explicit stack instead of recursion.
+Recursion remains only where its depth is bounded.
 
 If `parse` throws for any other reason, the next `parse()` call resets the pool, so a failure does not affect later documents.
 

@@ -181,7 +181,7 @@ None. Parsing runs locally and does not use any network service.
 textlint runs on documents from untrusted contributors in CI, so a crafted or unusual document must not stall parsing.
 Parsing time must stay close to proportional to the input size, including for long tables, many unclosed brackets, and deeply nested lists.
 Parsing must not overflow the call stack, however deeply blocks or inline delimiters are nested, and `parse` returns an AST instead of throwing `RangeError: Maximum call stack size exceeded`.
-Nesting deeper than a fixed limit is not parsed as structure: the deeper part stays as text in the innermost node within the limit. The limit is deep enough that real-world documents do not reach it, so only crafted or broken documents get an AST that differs from their written structure.
+Nesting deeper than a fixed limit is not parsed as structure: the markers that would go beyond the limit stay as text. The limit is deep enough that real-world documents do not reach it, so only crafted or broken documents get an AST that differs from their written structure.
 
 ## Open questions
 
