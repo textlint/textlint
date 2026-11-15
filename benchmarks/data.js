@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794752301550,
+  "lastUpdate": 1794752511524,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -131165,6 +131165,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.4826869639200001,
             "range": "± 0.010286611000000001",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "f15a16d02108396188a2dc8ed28d62c97c675c05",
+          "message": "docs(blog): link the v16.0.0 release notes from the release post\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T14:20:41Z",
+          "tree_id": "8c97aa36135c78fb9db96797dbd94e39c28ba13b",
+          "url": "https://github.com/textlint/textlint/commit/f15a16d02108396188a2dc8ed28d62c97c675c05"
+        },
+        "date": 1794752501087,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.13443556392000003,
+            "range": "± 0.028731142999999987",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.0134376457200003,
+            "range": "± 0.04022876600000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.31054613791999996,
+            "range": "± 0.011853530000000001",
             "unit": "seconds"
           }
         ]
