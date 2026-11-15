@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794743399759,
+  "lastUpdate": 1794743534841,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -129611,6 +129611,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.59247617372,
             "range": "± 0.015495075999999997",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "a26809a3d7b18c7d31ef7b91d6f65582a86d830a",
+          "message": "docs(kernel): state that the table of lines is cached\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ4Eam2etn6cv93JJv\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T11:50:26Z",
+          "tree_id": "46c59433e58a5a161f0242e7d53a5b8c1358fd76",
+          "url": "https://github.com/textlint/textlint/commit/a26809a3d7b18c7d31ef7b91d6f65582a86d830a"
+        },
+        "date": 1794743520676,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22960663772000003,
+            "range": "± 0.04220000700000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.78519668452,
+            "range": "± 0.038291329999999846",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.56763637732,
+            "range": "± 0.006197969000000025",
             "unit": "seconds"
           }
         ]
