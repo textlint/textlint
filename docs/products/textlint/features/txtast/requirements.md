@@ -308,6 +308,7 @@ A rule that does not handle an extension node is not called for it, and neither 
 The Requirements of each parser list the keys of `syntaxExtensions` and their values, as they list extension nodes.
 An extension is one change to how a format is recognized that a user turns on with an option, such as [CJK-friendly emphasis](../markdown-parsing/requirements.md#extensions) in Markdown.
 It is not an extension node: an extension node is a node type, and a key of `syntaxExtensions` names an option.
+Only an option that changes how the syntax is recognized is a key. An option that does not change the AST, and syntax that is always recognized, such as front matter, are not keys. An option that changes the shape of the AST without changing how the syntax is recognized is not a key either, and the Requirements of its parser decide where it is recorded.
 
 ##### Why the AST records it
 
