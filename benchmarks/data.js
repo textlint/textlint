@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794702371902,
+  "lastUpdate": 1794702386834,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -127973,6 +127973,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.3992067057,
             "range": "± 0.011025039999999986",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "be8e5af846b4060ff755505f84aeb860b1cdecdc",
+          "message": "docs: keep terminology checks in the Product's scope\n\nTerminology checks are part of what textlint is for, together with\nstructural checks. Only spacing checks are described as secondary.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T00:24:56Z",
+          "tree_id": "1734334b4e29da8b585a30e1399a564c0d639422",
+          "url": "https://github.com/textlint/textlint/commit/be8e5af846b4060ff755505f84aeb860b1cdecdc"
+        },
+        "date": 1794702372521,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17276525469999998,
+            "range": "± 0.025664963000000013",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.5028947443,
+            "range": "± 0.02396535600000016",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5531151123000001,
+            "range": "± 0.007322567000000002",
             "unit": "seconds"
           }
         ]
