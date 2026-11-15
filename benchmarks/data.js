@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794702565776,
+  "lastUpdate": 1794716498391,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128099,6 +128099,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.6045014376,
             "range": "± 0.033940941999999974",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "0549530928f09d696d01e59a58443562eaf02bdb",
+          "message": "docs: name non-standard node types in lowercase\n\nFront matter and footnotes are not part of CommonMark or the GFM\nspecification and are not in ASTNodeTypes, so azu decided that Yaml,\nToml, Json, and FootnoteReference become yaml, toml, json, and\nfootnoteReference in the in-house parser. Remove the open question\nand record the rename in the Design's compatibility section.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T04:19:46Z",
+          "tree_id": "e4a3e15ca84b92e28e250685789ef28a208fe89a",
+          "url": "https://github.com/textlint/textlint/commit/0549530928f09d696d01e59a58443562eaf02bdb"
+        },
+        "date": 1794716485539,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.26238994952,
+            "range": "± 0.201038435",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.99196276992,
+            "range": "± 0.027015686999999566",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.75132673912,
+            "range": "± 0.010899604999999979",
             "unit": "seconds"
           }
         ]
