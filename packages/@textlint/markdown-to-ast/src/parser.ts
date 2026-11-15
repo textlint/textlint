@@ -3864,11 +3864,25 @@ function createTxtNode(i: number, startLine: number, children: AnyNode[] | undef
 }
 
 /**
+ * Options of `parse`.
+ * Each option enables an extension that changes how a syntax is recognized.
+ */
+export type ParseOptions = {
+    /**
+     * Recognize emphasis, strong emphasis, and strikethrough next to CJK punctuation,
+     * as the CommonMark CJK-friendly Amendments define.
+     * https://github.com/tats-u/markdown-cjk-friendly/blob/main/specification.md
+     * @default false
+     */
+    cjkFriendlyEmphasis?: boolean;
+};
+
+/**
  * Parse Markdown text to TxtAST.
  * `text` should not include BOM.
  */
-export function parseMarkdown(text: string, cjkFriendlyEmphasis = false): TxtDocumentNode {
-    cjkFriendly = cjkFriendlyEmphasis;
+export function parseMarkdown(text: string, options: ParseOptions = {}): TxtDocumentNode {
+    cjkFriendly = options.cjkFriendlyEmphasis === true;
     rawSrc = text;
     // https://spec.commonmark.org/0.31.2/#insecure-characters
     srcReplaced = text.indexOf("\0") !== -1;
