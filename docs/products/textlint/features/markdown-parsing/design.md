@@ -129,6 +129,19 @@ When a link is made, the delimiters inside it are resolved first, and earlier `[
 They are resolved in one pass in source order: each closer takes the nearest opener that it can match, the pair becomes `Emphasis`, `Strong`, or `Delete`, and the delimiters between the pair are removed.
 Because one pass handles all three characters, pairs never cross.
 
+**CJK-friendly emphasis.** When `cjkFriendlyEmphasis` is on, only the decision of whether a run can open or close changes, so the delimiter stack and its resolution are shared with the default.
+The decision uses the characters around the run as code points.
+Before the run, the parser reads one code point, joining a surrogate pair. When it is a non-emoji general-use variation selector (U+FE00 to U+FE0E), the parser also reads the code point before it, because the specification classifies a character and its variation selector as one sequence.
+After the run, it reads one code point.
+The order of the checks follows the [tips for implementers](https://github.com/tats-u/markdown-cjk-friendly/blob/main/implementers-tips.md).
+
+1. When either side is whitespace, the result does not depend on CJK characters, and the parser decides as CommonMark does.
+2. For `_`, the result does not depend on CJK characters either. The parser decides as CommonMark does, with the base character of a variation sequence as the character before the run.
+3. For `*` and `~`, the parser checks whether either side is a CJK character. A run is left-flanking when it is not followed by whitespace and either it is not followed by punctuation, it is preceded by whitespace or punctuation, or either side is CJK. A run is right-flanking in the mirrored way. Before the run, an ideographic variation selector and a CJK ambiguous punctuation sequence also count as CJK.
+
+Whether a character is CJK is decided by a table of code point ranges, searched by binary search.
+The table is generated from the ranges that the specification publishes, so it already excludes emoji, and the parser does not need East Asian Width data at run time.
+
 **Finish.** After the scan, adjacent text is merged into one `Str`, buffer positions are mapped to source offsets, and values that need decoding are stored in the side table.
 
 ### Emit phase
@@ -138,6 +151,9 @@ A node is a plain object with its properties in a fixed order per kind.
 `raw` is sliced from the original text, and `loc` comes from the line table.
 Nodes are visited in source order, so the line lookup for a start offset continues from the line of the previous node instead of searching the table.
 
+When an extension is on, `Document` gets `extensions` as its last property, with a key for each extension that is on.
+When none is on, the parser does not add the property, so the object is the same as without options.
+
 Nodes are created eagerly and completely.
 A rule may read any property of any node, and a plain object keeps the AST serializable, as TxtAST requires.
 
@@ -146,6 +162,7 @@ A rule may read any property of any node, and a plain object keeps the AST seria
 The pool, the line table, and the stacks are module-level and are reused by the next `parse` call, so a call does not allocate them again.
 Every call resets the counters at its start and sets all fields of a node when it allocates the node, so a call never reads data of a previous document.
 The definitions and the side table are created per call.
+The options are read at the start of each call into a module-level flag, so a call never uses the options of a previous call.
 When `parse` returns or throws, the references to the text are released.
 
 ## Architecture and sequence diagrams
@@ -161,8 +178,15 @@ None of them is exposed.
 
 ## APIs and interfaces
 
-`parse(text: string): TxtDocumentNode` is the only function, and `Syntax` re-exports `ASTNodeTypes`.
-`parse` has no options and does not throw for any text.
+`parse(text: string, options?: ParseOptions): TxtDocumentNode` is the only function, and `Syntax` re-exports `ASTNodeTypes`.
+`ParseOptions` is exported as a type, and has `cjkFriendlyEmphasis?: boolean`.
+`parse` does not throw for any text or options.
+
+`@textlint/textlint-plugin-markdown` reads `cjkFriendlyEmphasis` from its plugin options and passes it to `parse`, and passes no other plugin option.
+The processor keeps the options, so the parse after a fix uses the same options as the first parse.
+
+`TxtDocumentNode` in `@textlint/ast-node-types` has `extensions?: { readonly [name: string]: unknown }`, as the [TxtAST Requirements](../txtast/requirements.md#document-extensions) define.
+A rule reads it as `node.extensions?.cjkFriendlyEmphasis === true` in its `Document` handler, or from the root through `parent`.
 
 Nodes have only the common properties of TxtAST and the properties of their node type.
 
@@ -171,6 +195,7 @@ Nodes have only the common properties of TxtAST and the properties of their node
 None. The package has no third-party runtime dependencies.
 The parser uses only ECMAScript built-ins (typed arrays, strings, and regular expressions with Unicode property escapes) and no Node.js modules, so it runs in browsers as it is, as the [Requirements](requirements.md#parse-without-a-server) ask.
 The named character reference table is generated from the [WHATWG entities.json](https://html.spec.whatwg.org/entities.json) by a script in the package and committed as source, so no data is fetched at run time.
+The table of CJK characters is generated in the same way from the [ranges of the CJK-friendly specification](https://github.com/tats-u/markdown-cjk-friendly/blob/main/ranges.md).
 
 ## Data handling
 
@@ -202,6 +227,8 @@ For these, the parser remembers the result of the scan for the current buffer.
 | Link title in parentheses | The range that the last scan covered and where it ended |
 | Trailing punctuation of an autolink literal | The run that the last scan covered and its result |
 
+For CJK-friendly emphasis, a delimiter run reads at most two code points before it and one after it, and the table lookup takes a fixed number of steps, so the extension adds a constant amount of work per run.
+
 ### Bounded depth
 
 Nesting depth is decided by the document, so the parser bounds it with a fixed limit of 100 levels, applied separately to blocks and to inlines.
@@ -228,6 +255,9 @@ If `parse` throws, the next `parse` call resets the shared state, so a failure d
 ## Deployment notes
 
 A change to node types, node properties, or positions breaks rules that depend on them, so such a change is released only in a major version, with the changes listed in the release notes.
+
+An extension is off by default and does not change the AST without options, so adding one is released in a minor version.
+A change to how an extension recognizes text, such as a new revision of the CJK-friendly specification, changes the AST of documents that use it, so it is released in a major version.
 
 ## Alternatives considered
 
@@ -261,6 +291,42 @@ The saving is small compared with the time of a whole lint run.
 Resolving `~` in its own pass is simple, because strikethrough has no rule of three.
 It was not chosen because two passes let pairs cross, and the result then depends on which pass runs first instead of on the source order.
 
+### Use remark with remark-cjk-friendly
+
+[#2113](https://github.com/textlint/textlint/pull/2113) adds CJK-friendly emphasis through remark plugins.
+It was not chosen because the parser no longer uses remark, for the reasons under [Use remark](#use-remark).
+
+### Give the option to each rule
+
+A rule such as ja-space-around-strong could take its own option, as [textlint-rule-preset-ja-spacing#144](https://github.com/textlint-ja/textlint-rule-preset-ja-spacing/pull/144) does with `cjkFriendly`.
+It was not chosen because the writer then sets the same choice in the plugin and in every rule, and a rule whose option disagrees with the parser fixes text against a recognition that the AST does not have.
+
+### Add settings that every rule can read
+
+textlint has no settings that are shared by all rules, and rules cannot read plugin options.
+Adding shared settings changes the configuration and the kernel for one flag, and the setting would still have to agree with the parser.
+Recording the extension on the AST keeps one source: the parser that produced the AST.
+
+### Record each extension as its own property of `Document`
+
+`Document.cjkFriendlyEmphasis` is shorter to read.
+It was not chosen because each extension would add a property to the root, and a rule could not tell how the document was parsed from one place.
+
+### Record extensions that are off as `false`
+
+Writing `{ "cjkFriendlyEmphasis": false }` for every document states the default.
+It was not chosen because it changes the AST of every document, while a rule checks `=== true` either way.
+
+### Record extensions as an array of names
+
+`["cjkFriendlyEmphasis"]` is also serializable.
+An object was chosen because a rule reads one key without searching, and a future extension can have a value other than `true`.
+
+### Decide CJK characters with East Asian Width data
+
+A package such as `get-east-asian-width` gives the width of each code point, as markdown-it-cjk-friendly uses it.
+It was not chosen because it adds a runtime dependency, and the specification publishes the resulting ranges, which already exclude emoji.
+
 ### Recurse over the tree
 
 Recursive walks are shorter to write, and the nesting limit bounds their depth.
@@ -268,4 +334,4 @@ They were not chosen because the safety of the parser would then depend on the v
 
 ## Open questions
 
-- **CJK-friendly emphasis:** textlint/textlint#2113 proposes an opt-in option that recognizes emphasis next to CJK punctuation. With this design it is implemented in the inline phase, where a delimiter run decides whether it can open or close, following the [markdown-cjk-friendly specification](https://github.com/tats-u/markdown-cjk-friendly), and `parse` takes an options argument. Until the Requirements decide it, `parse` has no options. Revisit when the Requirements include it. azu decides with the PR author.
+None.
