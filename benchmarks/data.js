@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794716881672,
+  "lastUpdate": 1794717126514,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -128225,6 +128225,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.40475583569999996,
             "range": "± 0.02608116199999999",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "4ce99d3175da3ea132e480a26566cfe83f5ae8c3",
+          "message": "docs: describe the intended state, following the sdev guides\n\nSpecifications describe decided purposes, behavior, and methods, and\nGit keeps the past. Remove comparisons with the previous parser, the\nhistory of the parser choice, and measured results from the Design;\nthey stay in the PR description. Specify explicit stacks for processing\nwhose depth follows the document's nesting, give every open question a\nrevisit condition, and make the stable-AST scenario observable.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJ7NM2UE8W1rkwEGRS\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-15T04:30:39Z",
+          "tree_id": "6155fec17bf9b0dfe53be64eec1be4a452831bc9",
+          "url": "https://github.com/textlint/textlint/commit/4ce99d3175da3ea132e480a26566cfe83f5ae8c3"
+        },
+        "date": 1794717115212,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17362933788,
+            "range": "± 0.025785639",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.50454569328,
+            "range": "± 0.039613953000000146",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.55652177508,
+            "range": "± 0.015825599000000024",
             "unit": "seconds"
           }
         ]
