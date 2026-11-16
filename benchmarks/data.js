@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794841515543,
+  "lastUpdate": 1794841640420,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132425,6 +132425,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.36474929978000004,
             "range": "± 0.009609315999999979",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "1edd2771544e1f131a38da1707f18a70e517fd15",
+          "message": "fix(utils): split key paths without backtracking regular expressions\n\n`splitKeyToPresetSubRule` used regular expressions with nested lazy\nquantifiers, which take polynomial time on some long inputs.\nReplace them with `indexOf`-based parsing that returns the same result,\nincluding keys that contain line terminators.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAH94GZW6c2Q3zF8eei\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T15:05:34Z",
+          "tree_id": "8302d3a699e8d86340a44a61ad1646bf904396ed",
+          "url": "https://github.com/textlint/textlint/commit/1edd2771544e1f131a38da1707f18a70e517fd15"
+        },
+        "date": 1794841629600,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.19698145092,
+            "range": "± 0.24662588900000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.2135859331199998,
+            "range": "± 0.07510124200000012",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.32739034452,
+            "range": "± 0.008162166000000026",
             "unit": "seconds"
           }
         ]
