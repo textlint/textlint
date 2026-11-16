@@ -158,6 +158,9 @@ const result = await linter.scanFilePath("README.md");
 if (result.status === "ok") {
     const lintResult = await linter.lintText("README content", "README.md");
     console.log(lintResult);
+}
+```
+
 ## Testing
 
 You can use [textlint-tester](https://www.npmjs.com/package/textlint-tester) for testing your custom rule.
