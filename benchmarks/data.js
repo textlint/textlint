@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794838124023,
+  "lastUpdate": 1794838226939,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132005,6 +132005,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.44603396660000005,
             "range": "± 0.017259073999999985",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "6149519c98a41a44a7667512a8370e0d2ff1e604",
+          "message": "perf(fixer-formatter): copy align-columns.ts from linter-formatter\n\nThe helper is a copy of @textlint/linter-formatter, and a test checks that\nthey are the same.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAEv6bYrkagdkTtx26P\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T14:08:51Z",
+          "tree_id": "d91d7c20df9b5e14731cd719e4cf67ccac8de87a",
+          "url": "https://github.com/textlint/textlint/commit/6149519c98a41a44a7667512a8370e0d2ff1e604"
+        },
+        "date": 1794838214705,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.18473720336000002,
+            "range": "± 0.05051214700000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.3977935621600004,
+            "range": "± 0.04418502199999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.44641462596000003,
+            "range": "± 0.014083237000000026",
             "unit": "seconds"
           }
         ]
