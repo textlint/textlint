@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794829846748,
+  "lastUpdate": 1794830142463,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -131585,6 +131585,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.43433523376000005,
             "range": "± 0.02867691099999997",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ac03ac5b1b5d8c1ba11f831e5be409bf34e3f3f5",
+          "message": "fix(textlint-scripts): install only one runtime transpiler hook per process (#2211)\n\n<!-- claude-projects-attribution: {\"github_login\":\"azu\"} -->\n_Requested by **azu** · [project\nthread](https://claude.ai/code/project/chan_01WwDWq4F69cv9Kmg6AeSy8j?thread=cmsg_01WwDWq4F69cv9Kmg6AeSy8jDNjPBJiVooH5nT4S9FvkH1)_\n\n## Summary\n\n`textlint-scripts test` now works when `--require\ntextlint-scripts/register-ts` is also set, for example in `.mocharc.*`\nfor IDE support.\n`babel-register` and `ts-node-register` share a small `registerOnce`\nhelper, so only the first register in a process installs a hook and\nlater ones are ignored.\n\nThis is a fresh implementation of the idea in #2209 by @haranishi, who\nis credited as a co-author.\n\n## Problem\n\n`textlint-scripts test` runs Mocha with `--require\nconfigs/babel-register.js`.\nMocha merges `require` from the command line and `.mocharc.*`, so a user\nconfig with `textlint-scripts/register-ts` installs ts-node as well.\nBoth hooks handle `.ts`, and ts-node type-checks the JavaScript emitted\nby Babel:\n\n```\n$ cd packages/textlint-scripts/examples/example-ts\n$ echo '{\"require\":[\"textlint-scripts/register-ts\"]}' > .mocharc.json\n$ npm test\n Exception during run: test/index.test.ts:5:33 - error TS7006: Parameter 'e' implicitly has an 'any' type.\n5 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }\n```\n\nThe reverse order (`mocha --require textlint-scripts/register-ts\n--require textlint-scripts/register`) also fails on master, with\n`ERR_MODULE_NOT_FOUND`.\n\nRequiring the same register twice (the literal example in #781) no\nlonger fails on current Mocha, because Node's module cache already\ndedupes it. The remaining failure is the mix of Babel and ts-node.\n\n## Changes\n\n- Add `configs/register-once.js`. It keeps a flag on\n`globalThis[Symbol.for(\"textlint-scripts/register\")]`, so it also works\nwhen textlint-scripts is loaded from different paths. The flag is set\nafter the register succeeds, so a failed register still throws on the\nnext attempt.\n- Use it from `configs/babel-register.js` and\n`configs/ts-node-register.js`.\n- README: document that the first register wins. With `textlint-scripts\ntest`, Babel is used and `tsc` still type-checks the code before Mocha\nruns. Plain `mocha` with `.mocharc.*` keeps using ts-node.\n\nCompared with #2209, the guard lives in one helper instead of being\ncopied into both files, the README explains which register wins, and the\ntests are a fast unit test plus end-to-end cases that reproduce the real\nsetup.\n\n## Scope: other loaders and newer Node APIs\n\nA flag on `globalThis` is enough for the two textlint-scripts registers.\nMocha loads every `--require` in the same process, and with `--parallel`\neach worker is a separate process that installs its own hook (`npm test\n-- --require textlint-scripts/register-ts --parallel` passes).\n\nThe flag does not see loaders outside textlint-scripts. Checked on Node\n22.23 with `examples/example-ts`:\n\n| Setup | Result |\n| --- | --- |\n| `textlint-scripts test` + `--require tsx/cjs` / `--import tsx` /\n`esbuild-register` | Pass (no type-check, so double transpile is\nharmless) |\n| `textlint-scripts test` + `--require ts-node/register` (direct, not\nvia textlint-scripts) | TS7006, same as before |\n| `mocha --require tsx/cjs --require textlint-scripts/register-ts` |\nTS7006 |\n| A `module.registerHooks()` loader that transpiles `.ts`, then\n`textlint-scripts/register-ts` | TS7022 |\n| Node's built-in type stripping (on by default in Node 22.18+/24/25) |\nDoes not add `.ts` to `require.extensions`, so no conflict with Babel |\n\nOnly ts-node is sensitive: it type-checks whatever source the previous\nhook produced. Hooks installed by `module.registerHooks()` leave no\ntrace in `require.extensions`, so there is no reliable way to detect\n\"another loader already handles `.ts`\". This PR keeps the scope to\ntextlint-scripts' own registers.\n\nA follow-up could make `register-ts` use a transpile-only loader (e.g.\ntsx) instead of ts-node, which removes this class of conflicts.\n`textlint-scripts test` already type-checks with `tsc`, and ts-node's\nlatest release is 10.9.2 (2023-12-08). That changes behavior for\n`register-ts` users, so it is left for a separate PR.\n\n## Testing\n\n- `test/register-once.test.js`: the first register wins, and a failed\nregister is retried.\n- `test/test-example.js` in `examples/example-ts`, both fail on master\nand pass with this change:\n- `npm test -- --require textlint-scripts/register-ts` (Babel, then\nts-node; TS7006 on master)\n- `npx mocha --require textlint-scripts/register-ts --require\ntextlint-scripts/register` (ts-node, then Babel; `ERR_MODULE_NOT_FOUND`\non master)\n- Checked by hand that `textlint-scripts test` and plain `mocha` both\npass in `examples/example-ts` with `.mocharc.json` requiring\n`textlint-scripts/register-ts`.\n- `pnpm --filter textlint-scripts run test`, `pnpm run lint` and\n`./bin/sdev lint` pass.\n\nfix #781\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01TSdrAEvHzznDXU11HWumgL\n\nCo-authored-by: Ikki Nishihara\n<223786623+haranishi@users.noreply.github.com>\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-11-16T20:53:57+09:00",
+          "tree_id": "9d034187dee6a46ac23a82e8e03b7cd8b0d58251",
+          "url": "https://github.com/textlint/textlint/commit/ac03ac5b1b5d8c1ba11f831e5be409bf34e3f3f5"
+        },
+        "date": 1794830125849,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20604128146000003,
+            "range": "± 0.03722138",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6781094216599999,
+            "range": "± 0.09756047400000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.53005984786,
+            "range": "± 0.10611977699999997",
             "unit": "seconds"
           }
         ]
