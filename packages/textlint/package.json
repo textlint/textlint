@@ -65,7 +65,6 @@
     "glob": "catalog:",
     "optionator": "catalog:",
     "path-to-glob-pattern": "catalog:",
-    "read-package-up": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {

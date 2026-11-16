@@ -6,6 +6,7 @@ import { existsSync } from "node:fs";
 import { TextlintMessageSchema } from "./schemas.js";
 import { TextlintKernelDescriptor } from "@textlint/kernel";
 import debug from "debug";
+import { getTextlintVersion } from "../util/package-json.js";
 
 const mcpDebug = debug("textlint:mcp");
 
@@ -93,8 +94,7 @@ const validateInputAndReturnError = (value: string, fieldName: string, errorType
 };
 
 export const setupServer = async (options: McpServerOptions = {}): Promise<McpServer> => {
-    const { readPackageUpSync } = await import("read-package-up");
-    const version = readPackageUpSync({ cwd: __dirname })?.packageJson.version ?? "unknown";
+    const version = getTextlintVersion();
 
     if (options.debug) {
         mcpDebug("Setting up MCP server with options: %j", options);
