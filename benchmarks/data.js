@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794828210894,
+  "lastUpdate": 1794828564519,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -131375,6 +131375,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.31872592310000003,
             "range": "± 0.015938171",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "d5b8d3294f1657178b790481fc9a127ed1fad5a9",
+          "message": "fix(textlint-scripts): install only one runtime transpiler hook per process\n\n`textlint-scripts test` requires babel-register. When users also require\n`textlint-scripts/register-ts` (e.g. in `.mocharc.*` for IDE support),\nts-node type-checks the JavaScript emitted by Babel and fails with\n\"TS7006: Parameter 'e' implicitly has an 'any' type\".\n\nShare a `registerOnce` helper between babel-register and ts-node-register.\nThe first register wins and later ones are ignored. The flag is kept on\n`globalThis` so it works even when textlint-scripts is loaded from\ndifferent paths.\n\nfix #781\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAEvHzznDXU11HWumgL\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T11:28:00Z",
+          "tree_id": "656f83049add0d4bbc92b4d8f7ce218f690b0dbb",
+          "url": "https://github.com/textlint/textlint/commit/d5b8d3294f1657178b790481fc9a127ed1fad5a9"
+        },
+        "date": 1794828554774,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17447864448,
+            "range": "± 0.14731603699999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.1619240128800001,
+            "range": "± 0.03903946899999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.35981108828,
+            "range": "± 0.014054111999999952",
             "unit": "seconds"
           }
         ]
