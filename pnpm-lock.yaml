@@ -153,9 +153,6 @@ catalogs:
     react-dom:
       specifier: ^19.3.1
       version: 19.3.1
-    read-package-up:
-      specifier: ^11.0.0
-      version: 11.0.0
     rimraf:
       specifier: ^6.1.4
       version: 6.1.4
@@ -964,9 +961,6 @@ importers:
       path-to-glob-pattern:
         specifier: 'catalog:'
         version: 2.0.1
-      read-package-up:
-        specifier: 'catalog:'
-        version: 11.0.0
       zod:
         specifier: 'catalog:'
         version: 4.6.7

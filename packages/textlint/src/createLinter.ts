@@ -17,6 +17,7 @@ import { Logger } from "./util/logger.js";
 import { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
 import { separateByAvailability } from "./util/separate-by-availability.js";
+import { getTextlintVersion } from "./util/package-json.js";
 
 const debug = debug0("textlint:createTextlint");
 
@@ -51,8 +52,7 @@ export type CreateLinterOptions = {
 };
 const createHashForDescriptor = async (descriptor: TextlintKernelDescriptor): Promise<string> => {
     try {
-        const { readPackageUpSync } = await import("read-package-up");
-        const version = readPackageUpSync({ cwd: __dirname })?.packageJson.version ?? "unknown";
+        const version = getTextlintVersion();
         const toString = JSON.stringify(descriptor.toJSON());
         const md5 = crypto.createHash("md5");
         return md5.update(`${version}-${toString}`, "utf8").digest("hex");

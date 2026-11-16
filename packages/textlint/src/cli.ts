@@ -12,6 +12,7 @@ import { printResults, showEmptyRuleWarning } from "./cli-util.js";
 import { loadFixerFormatter, loadLinterFormatter } from "./formatter.js";
 import type { McpServerOptions } from "./mcp/server.js";
 import { profiler } from "@textlint/kernel";
+import { getTextlintVersion } from "./util/package-json.js";
 import {
     createProfileReport,
     formatProfileReportAsJSON,
@@ -97,8 +98,7 @@ export const cli = {
     async execute(args: string | Array<string>, text?: string): Promise<number> {
         let currentOptions;
         // version from package.json
-        const { readPackageUpSync } = await import("read-package-up");
-        const version = readPackageUpSync({ cwd: __dirname })?.packageJson.version ?? "unknown";
+        const version = getTextlintVersion();
         try {
             currentOptions = options.parse(args);
         } catch (error) {

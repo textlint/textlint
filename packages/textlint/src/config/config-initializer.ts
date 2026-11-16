@@ -5,6 +5,7 @@ import { TextlintPackageNamePrefix } from "@textlint/utils";
 import fs from "node:fs";
 import path from "node:path";
 import { Logger } from "../util/logger.js";
+import { readClosestPackageJson } from "../util/package-json.js";
 
 const isFile = (filePath: string) => {
     try {
@@ -20,30 +21,26 @@ const isFile = (filePath: string) => {
  * @returns {Promise.<Array.<String>>}
  */
 const getTextlintDependencyNames = async (dir: string): Promise<Array<string>> => {
-    const { readPackageUp } = await import("read-package-up");
-    return readPackageUp({
-        cwd: dir
-    })
-        .then((result) => {
-            const pkg = result?.packageJson;
-            const dependencies = pkg?.dependencies ?? {};
-            const devDependencies = pkg?.devDependencies ?? {};
-            const mergedDependencies = Object.assign({}, dependencies, devDependencies);
-            const pkgNames = Object.keys(mergedDependencies);
-            return pkgNames.filter((pkgName) => {
-                const ruleOrFilterOrPlugin =
-                    pkgName.indexOf(TextlintPackageNamePrefix.filterRule) !== -1 ||
-                    pkgName.indexOf(TextlintPackageNamePrefix.rule) !== -1 ||
-                    pkgName.indexOf(TextlintPackageNamePrefix.plugin) !== -1;
-                if (pkgName === "textlint-rule-helper") {
-                    return false;
-                }
-                return ruleOrFilterOrPlugin;
-            });
-        })
-        .catch(() => {
-            return [];
+    try {
+        const pkg = readClosestPackageJson(dir);
+        const dependencies = pkg?.dependencies ?? {};
+        const devDependencies = pkg?.devDependencies ?? {};
+        const optionalDependencies = pkg?.optionalDependencies ?? {};
+        const mergedDependencies = Object.assign({}, dependencies, devDependencies, optionalDependencies);
+        const pkgNames = Object.keys(mergedDependencies);
+        return pkgNames.filter((pkgName) => {
+            const ruleOrFilterOrPlugin =
+                pkgName.indexOf(TextlintPackageNamePrefix.filterRule) !== -1 ||
+                pkgName.indexOf(TextlintPackageNamePrefix.rule) !== -1 ||
+                pkgName.indexOf(TextlintPackageNamePrefix.plugin) !== -1;
+            if (pkgName === "textlint-rule-helper") {
+                return false;
+            }
+            return ruleOrFilterOrPlugin;
         });
+    } catch {
+        return [];
+    }
 };
 
 /**
