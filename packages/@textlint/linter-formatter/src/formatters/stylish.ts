@@ -14,6 +14,22 @@ import { alignColumns } from "../helper/align-columns.js";
 //------------------------------------------------------------------------------
 
 /**
+ * Create a function that returns the same text as `styleText(format, text)`.
+ * `styleText` checks the output stream on every call. The created function checks it once,
+ * and puts the text between the codes that `styleText` puts around a text.
+ * A text that has an escape sequence is passed to `styleText`, because it may treat the sequences in the text.
+ */
+function createStyler(format: Parameters<typeof styleText>[0]): (text: string) => string {
+    const placeholder = "\u0000";
+    const parts = styleText(format, placeholder).split(placeholder);
+    if (parts.length !== 2) {
+        return (text) => styleText(format, text);
+    }
+    const [open, close] = parts;
+    return (text) => (text.includes("\u001b") ? styleText(format, text) : open + text + close);
+}
+
+/**
  * Given a word and a count, append an s if count is not one.
  * @param {string} word A word in its singular form.
  * @param {int} count A number controlling whether word should be pluralized.
@@ -39,6 +55,12 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     let infos = 0;
     let summaryColor = "yellow" as "yellow" | "red";
     const greenColor = "green";
+    // `styleText` checks the output stream on every call, so the texts that are the same for all messages are styled once
+    const fixableIconText = styleText([greenColor, "bold"], "\u2713 ");
+    const errorText = styleText("red", "error");
+    const warningText = styleText("yellow", "warning");
+    const infoText = styleText("green", "info");
+    const gray = createStyler("gray");
 
     results.forEach(function (result) {
         const messages = result.messages;
@@ -54,24 +76,24 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
             messages.map(function (message) {
                 let messageType;
                 // fixable
-                const fixableIcon = message.fix ? styleText([greenColor, "bold"], "\u2713 ") : "";
+                const fixableIcon = message.fix ? fixableIconText : "";
                 if (message.fix) {
                     totalFixable++;
                 }
                 const fatal = (message as { fatal?: boolean }).fatal;
                 if (fatal || message.severity === 2) {
-                    messageType = fixableIcon + styleText("red", "error");
+                    messageType = fixableIcon + errorText;
                     summaryColor = "red";
                     errors++;
                 } else if (message.severity === 1) {
-                    messageType = fixableIcon + styleText("yellow", "warning");
+                    messageType = fixableIcon + warningText;
                     warnings++;
                 } else if (message.severity === 3) {
-                    messageType = fixableIcon + styleText("green", "info");
+                    messageType = fixableIcon + infoText;
                     infos++;
                 } else {
                     // fallback for other severity levels
-                    messageType = fixableIcon + styleText("yellow", "warning");
+                    messageType = fixableIcon + warningText;
                     warnings++;
                 }
 
@@ -81,7 +103,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
                     message.column || 0,
                     messageType,
                     message.message.replace(/\.$/, ""),
-                    styleText("gray", message.ruleId || "")
+                    gray(message.ruleId || "")
                 ];
             }),
             ["", "r", "l"]
@@ -89,7 +111,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
             .split("\n")
             .map(function (el: string) {
                 return el.replace(/(\d+)\s+(\d+)/, function (_, p1, p2) {
-                    return styleText("gray", `${p1}:${p2}`);
+                    return gray(`${p1}:${p2}`);
                 });
             })
             .join("\n")}\n\n`;

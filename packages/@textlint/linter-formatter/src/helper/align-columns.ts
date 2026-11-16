@@ -5,7 +5,11 @@ import { stringWidth } from "./string-width.js";
  * The width of the longest line of the text
  */
 const maxLineWidth = (text: string): number => {
-    return Math.max(...stripVTControlCharacters(text).split("\n").map(stringWidth));
+    const plainText = stripVTControlCharacters(text);
+    if (!plainText.includes("\n")) {
+        return stringWidth(plainText);
+    }
+    return Math.max(...plainText.split("\n").map(stringWidth));
 };
 
 /**
@@ -21,17 +25,31 @@ const maxLineWidth = (text: string): number => {
  */
 export const alignColumns = (rows: (string | number)[][], align: string[] = []): string => {
     const textRows = rows.map((row) => row.map((cell) => String(cell)));
+    // The width of each cell is used for the width of the column and for the padding, so it is measured once.
+    // The same text often appears in many rows, such as a rule id, so the width of a text is kept during this call.
+    const widthByText = new Map<string, number>();
+    const widthOf = (cell: string): number => {
+        let width = widthByText.get(cell);
+        if (width === undefined) {
+            width = maxLineWidth(cell);
+            widthByText.set(cell, width);
+        }
+        return width;
+    };
     const columnWidths: number[] = [];
-    for (const row of textRows) {
-        row.forEach((cell, index) => {
-            columnWidths[index] = Math.max(columnWidths[index] ?? 0, maxLineWidth(cell));
+    const cellWidths = textRows.map((row) => {
+        return row.map((cell, index) => {
+            const width = widthOf(cell);
+            columnWidths[index] = Math.max(columnWidths[index] ?? 0, width);
+            return width;
         });
-    }
+    });
     return textRows
-        .map((row) => {
+        .map((row, rowIndex) => {
+            const widths = cellWidths[rowIndex];
             return row
                 .map((cell, index) => {
-                    const space = " ".repeat(Math.max(columnWidths[index] - maxLineWidth(cell), 0));
+                    const space = " ".repeat(Math.max(columnWidths[index] - widths[index], 0));
                     return align[index] === "r" ? space + cell : cell + space;
                 })
                 .join("  ")
