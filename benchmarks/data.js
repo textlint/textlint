@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794840863586,
+  "lastUpdate": 1794841515543,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132383,6 +132383,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.43387444243999995,
             "range": "± 0.015281796000000014",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "cf3fb2fc007011662f438b97d34ca0ee4e264221",
+          "message": "refactor(textlint): remove read-package-up dependency\n\ntextlint used read-package-up only to read its own version and, for\n`--init`, the dependency names in the closest package.json. Replace it\nwith a small helper that walks up the directories and parses\npackage.json. This removes 21 packages (about 3.4 MB) from\n`npm install textlint`.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAExdetCSJuCdNL6jaD\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T15:03:38Z",
+          "tree_id": "1a0bd912bd0288442a08bb8f7dc265cc937e4fd0",
+          "url": "https://github.com/textlint/textlint/commit/cf3fb2fc007011662f438b97d34ca0ee4e264221"
+        },
+        "date": 1794841503300,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.18469682058,
+            "range": "± 0.09133311200000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.35045502658,
+            "range": "± 0.021476891000000053",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.36474929978000004,
+            "range": "± 0.009609315999999979",
             "unit": "seconds"
           }
         ]
