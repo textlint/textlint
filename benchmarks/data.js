@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794752989291,
+  "lastUpdate": 1794828142795,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -131291,6 +131291,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.45515446716,
             "range": "± 0.012730971000000035",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "b25d025@akita-pu.ac.jp",
+            "name": "Ikki Nishihara",
+            "username": "haranishi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "32531b81d3b2930786c7979b6f420572f47321ba",
+          "message": "docs: fix broken example links and code block (#2210)\n\n## Summary\n\nFix the three broken `examples/` links reported by Docusaurus in\n`docs/migration-to-v15.md` and close the unclosed TypeScript code block\nin `docs/use-as-modules.md`.\n\n## Changes\n\n| File | Problem | Fix |\n| --- | --- | --- |\n| `docs/migration-to-v15.md` | Relative links\n`../examples/use-as-module/`, `../examples/use-as-ts-module/`, and\n`../examples/` point outside `docs/` and are reported as broken links by\n`docusaurus build` (`pnpm run website`) | Point to\n`https://github.com/textlint/textlint/tree/master/examples/...`,\nmatching `docs/CONTRIBUTING.md` |\n| `docs/use-as-modules.md` | The `## Want to know the file path is\nlintable or not` code block opens `if (result.status === \"ok\") {` and a\n```` ```ts ```` fence without closing either, causing the `## Testing`\nsection to render inside the code block | Add the missing closing `}`\nand ```` ``` ```` fence before `## Testing` |\n\n## Testing\n\n- `pnpm --filter textlint-website run build`: completes with zero broken\nlink warnings.\n- `pnpm run test:docs`: passes.\n- `./bin/sdev lint`: passes with 0 violations.\n\nAI assistance: this patch and description were prepared with AI\nassistance.",
+          "timestamp": "2026-11-16T11:20:40Z",
+          "tree_id": "02a6a55fd704c44f01d4a9292db404d6f3dd6c1e",
+          "url": "https://github.com/textlint/textlint/commit/32531b81d3b2930786c7979b6f420572f47321ba"
+        },
+        "date": 1794828129365,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21751048388000002,
+            "range": "± 0.048209328999999995",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.72032237188,
+            "range": "± 0.08173010299999994",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.55510092068,
+            "range": "± 0.030070816000000056",
             "unit": "seconds"
           }
         ]
