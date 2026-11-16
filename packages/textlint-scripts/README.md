@@ -60,6 +60,10 @@ mocha --require textlint-scripts/register "test/**/*.js"
 mocha --require textlint-scripts/register-ts "test/**/*.ts"
 ``` 
 
+Only the first register in a process takes effect, and later ones are ignored.
+For example, `textlint-scripts test` uses `textlint-scripts/register`, so `--require textlint-scripts/register-ts` in your `.mocharc.*` is ignored by `textlint-scripts test` and used only when you run `mocha` directly.
+`textlint-scripts test` still type-checks your code with `tsc` before running the tests.
+
 ## Changelog
 
 See [Releases page](https://github.com/textlint/textlint/releases).

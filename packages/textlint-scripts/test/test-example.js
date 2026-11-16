@@ -23,3 +23,8 @@ for (const example of examples) {
     exec("npm run build", { cwd: example });
     exec("npm test", { cwd: example });
 }
+
+// `textlint-scripts test` requires babel-register.
+// Adding register-ts (e.g. via `.mocharc.*` for IDE) must not install a second `.ts` hook.
+// https://github.com/textlint/textlint/issues/781
+exec("npm test -- --require textlint-scripts/register-ts", { cwd: exampleTsDir });
