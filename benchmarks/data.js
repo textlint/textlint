@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794840223016,
+  "lastUpdate": 1794840752337,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132299,6 +132299,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.33442399966,
             "range": "± 0.007378089000000032",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bf38dfbc91520d76722fd9fff6b259c690216623",
+          "message": "chore(deps): update textlint-rule-preset-jtf-style to 3.1.0 and its dependencies (#2216)\n\n<!-- claude-projects-attribution: {\"github_login\":\"azu\"} -->\n_Requested by **azu** · [project\nthread](https://claude.ai/code/project/chan_01WwDWq4F69cv9Kmg6AeSy8j?thread=cmsg_01WwDWq4F69cv9Kmg6AeSy8jBJmwn8j7oWL9QLRCH3yH6A)_\n\n## Summary\n\nThe Profile and benchmark workflow lints with\n`textlint-rule-preset-jtf-style`, and the rules take most of the run\ntime, so kernel changes are hard to see in the numbers. This updates the\npreset and the rule dependencies to the faster versions that were just\npublished.\n\n- `textlint-rule-preset-jtf-style`: `^3.0.3` → `^3.1.0` (catalog; used\nby `packages/textlint` tests, `test/benchmark`, `examples/preset`,\n`examples/perf`)\n- `textlint-rule-helper`: `^2.5.0` → `^2.6.0` (catalog)\n- `textlint-util-to-string`: 3.3.4 → 3.3.5 (lockfile, transitive)\n- `match-index`: 1.0.3 → 1.0.4 (lockfile, transitive through jtf-style)\n- `textlint-rule-prh` 6.1.0 drops out of the lockfile because jtf-style\n3.1.0 no longer depends on it\n- Remove `match-index` and `analyze-desumasu-dearu` from the\ndevDependencies of `textlint-tester`: nothing in the package imports\nthem (their catalog entries go away with them)\n- Add `match-index` to `minimumReleaseAgeExclude`, since the textlint\nmaintainers publish it, `textlint-*` does not match it, and the lockfile\nnow resolves the 1.0.4 published today\n\nNo published package changes its runtime dependencies: these are\ndevDependencies only.\n\n## Benchmark\n\nFrom the Profile and benchmark workflow of this PR\n([run](https://github.com/textlint/textlint/actions/runs/43886564472),\nbase = master `451407d`). The lint results are identical in every set.\n\n| Set | CLI median (base → head) | `--profile` rules phase (base → head)\n| Messages |\n| --- | ---: | ---: | ---: |\n| small (5 files) | 403.69 → 336.18 ms (0.83x) | 45.62 → 19.82 ms\n(0.43x) | 2 → 2 |\n| medium (js-primer, 88 files) | 1130.99 → 500.22 ms (0.44x) | 812.30 →\n175.94 ms (0.22x) | 894 → 894 |\n| large (MDN ja web/javascript, 1037 files) | 4800.88 → 1604.09 ms\n(0.33x) | 4022.30 → 875.16 ms (0.22x) | 15798 → 15798 |\n| huge (MDN ja, 10362 files) | 36016.62 → 10082.96 ms (0.28x) | 32125.79\n→ 6344.58 ms (0.20x) | 175883 → 175883 |\n\nThe parser and traverse rows stay between 0.98x and 1.02x, as expected,\nsince this PR does not change any code of textlint.\n\nAfter this, the rules take a smaller share of a run, so the Profile and\nbenchmark workflow shows changes to the kernel, the parsers, and the\ntraversal more clearly.\n\n## Test\n\n- `packages/textlint`: 196 tests pass\n- `packages/textlint-tester`: 68 tests pass\n- `examples/preset`: `pnpm test` passes\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01TSdrAFXAVfmVqMnrYWF8u3\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-11-16T14:50:55Z",
+          "tree_id": "1c692166b79f8614ce04179f8b130e4248f69b30",
+          "url": "https://github.com/textlint/textlint/commit/bf38dfbc91520d76722fd9fff6b259c690216623"
+        },
+        "date": 1794840740338,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.19923905282,
+            "range": "± 0.13149206100000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.43101119702,
+            "range": "± 0.06424853600000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.39543693622000003,
+            "range": "± 0.015253568999999967",
             "unit": "seconds"
           }
         ]
