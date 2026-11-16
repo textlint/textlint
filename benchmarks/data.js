@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794839136539,
+  "lastUpdate": 1794839539704,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132215,6 +132215,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.36698655948000003,
             "range": "± 0.017026123999999976",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "868ca997420541b5b70163a98fd4b06118b11c58",
+          "message": "chore(deps): update textlint-rule-preset-jtf-style to 3.1.0 and its dependencies\n\nUpdate textlint-rule-preset-jtf-style to ^3.1.0, textlint-rule-helper to ^2.6.0,\nand match-index to ^1.0.4, and update textlint-util-to-string to 3.3.5 in the lockfile.\nExclude match-index from minimumReleaseAge because the textlint maintainers publish it.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFXAVfmVqMnrYWF8u3\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T14:28:35Z",
+          "tree_id": "0b00705ae392c76b25f315f953dc965c3561d738",
+          "url": "https://github.com/textlint/textlint/commit/868ca997420541b5b70163a98fd4b06118b11c58"
+        },
+        "date": 1794839527573,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17735532612,
+            "range": "± 0.04630598600000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.3675431139199998,
+            "range": "± 0.04218933800000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.38708323412,
+            "range": "± 0.006901861999999981",
             "unit": "seconds"
           }
         ]
