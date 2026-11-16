@@ -58,6 +58,24 @@ describe("@textlint/fixer-formatter-test", function () {
                 /Could not find formatter constructor/
             );
         });
+
+        it.each(["custom-formatter.js", "./custom-formatter.js"])(
+            "should load a custom formatter from a relative file path (%s)",
+            async function (formatterName) {
+                const fixturesDir = path.join(__dirname, "fixtures");
+                const originalCwd = process.cwd();
+                try {
+                    process.chdir(fixturesDir);
+                    const formatter = await loadFormatter({
+                        formatterName,
+                        getSource: () => "custom-fixer-output"
+                    });
+                    assert.strictEqual(formatter.format(results), "custom-fixer-output");
+                } finally {
+                    process.chdir(originalCwd);
+                }
+            }
+        );
     });
 
     describe("getFormatterList", function () {

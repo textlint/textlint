@@ -143,6 +143,23 @@ describe("@textlint/linter-formatter-test", function () {
             });
             assert.strictEqual(formatter.format(createResults(fooFile)), "in-memory text");
         });
+        it.each(["get-source-formatter.js", "./get-source-formatter.js"])(
+            "should load a custom formatter from a relative file path (%s)",
+            async function (formatterName) {
+                const fixturesDir = path.join(__dirname, "fixtures");
+                const originalCwd = process.cwd();
+                try {
+                    process.chdir(fixturesDir);
+                    const formatter = await loadFormatter({
+                        formatterName,
+                        getSource: () => "in-memory text"
+                    });
+                    assert.strictEqual(formatter.format(createResults(fooFile)), "in-memory text");
+                } finally {
+                    process.chdir(originalCwd);
+                }
+            }
+        );
     });
 
     describe("getFormatterList", function () {

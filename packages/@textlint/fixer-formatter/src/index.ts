@@ -93,10 +93,9 @@ export async function loadFormatter(config: FormatterConfig) {
     }
     let formatter: FormatterFunction;
     let formatterPath;
-    if (fs.existsSync(formatterName)) {
-        formatterPath = formatterName;
-    } else if (fs.existsSync(path.resolve(process.cwd(), formatterName))) {
-        formatterPath = path.resolve(process.cwd(), formatterName);
+    const localFormatterPath = path.resolve(process.cwd(), formatterName);
+    if (fs.existsSync(localFormatterPath)) {
+        formatterPath = localFormatterPath;
     } else {
         const pkgPath =
             tryResolve(`textlint-formatter-${formatterName}`, {
