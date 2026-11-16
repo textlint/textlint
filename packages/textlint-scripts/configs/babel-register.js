@@ -6,10 +6,15 @@
  */
 const fs = require("fs");
 const paths = require("../configs/paths");
-const useTypeScript = fs.existsSync(paths.appTsConfig);
-const babelConfig = require("./babel.config");
-require("@babel/register")({
-    plugins: babelConfig.plugins,
-    presets: babelConfig.presets,
-    extensions: useTypeScript ? [".es6", ".es", ".jsx", ".js", ".mjs", ".ts"] : [".es6", ".es", ".jsx", ".js", ".mjs"]
+const registerOnce = require("./register-once");
+registerOnce("babel", () => {
+    const useTypeScript = fs.existsSync(paths.appTsConfig);
+    const babelConfig = require("./babel.config");
+    require("@babel/register")({
+        plugins: babelConfig.plugins,
+        presets: babelConfig.presets,
+        extensions: useTypeScript
+            ? [".es6", ".es", ".jsx", ".js", ".mjs", ".ts"]
+            : [".es6", ".es", ".jsx", ".js", ".mjs"]
+    });
 });
