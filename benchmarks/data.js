@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794838226939,
+  "lastUpdate": 1794838783484,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132047,6 +132047,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.44641462596000003,
             "range": "± 0.014083237000000026",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "553cb1dfc18de9484360e1da4114aebafeb65e36",
+          "message": "feat(kernel): let a rule create its listeners once with `createOnce`\n\nA rule function can have a `createOnce` property. The kernel calls\n`createOnce(context, options)` one time for each rule entry and reuses\nthe returned listeners for every file, instead of calling the rule\nfunction with a new context for every file.\n\n- The context is shared by all files. `report`, `getSource`,\n  `getFilePath`, and `getConfigBaseDir` refer to the file being\n  traversed, and throw outside a traversal.\n- Listeners must be synchronous; a listener that returns a thenable\n  fails the lint with the rule id.\n- Rules reset per-file state in the `Document` listener, so no new\n  hooks are added.\n- Created rules are kept per kernel in WeakMaps keyed by the rule\n  entry object, separately for lint and fix.\n\nAdds the requirements and design under docs/products and a section to\ndocs/rule.md.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJPC6NC1mAPmjSMjAa\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T14:18:12Z",
+          "tree_id": "06d66fdd3473648e337d673617289a4c467b9ae4",
+          "url": "https://github.com/textlint/textlint/commit/553cb1dfc18de9484360e1da4114aebafeb65e36"
+        },
+        "date": 1794838771472,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20790316708,
+            "range": "± 0.18887585700000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.3234476450800003,
+            "range": "± 0.027244317000000073",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.42973895848000004,
+            "range": "± 0.010536080000000003",
             "unit": "seconds"
           }
         ]
