@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794838998967,
+  "lastUpdate": 1794839047356,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132131,6 +132131,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.40167637970000003,
             "range": "± 0.016883725000000016",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "6969e2ce7fdb36d7e197da388db6ab401a542e59",
+          "message": "fix(kernel): consume the rejection of an async listener of a createOnce rule\n\nThe lint already fails with the synchronous-listener error, but the\nlistener's Promise could reject later (e.g. report after an await) and\nleave an unhandled rejection.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJPC6NC1mAPmjSMjAa\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T14:22:37Z",
+          "tree_id": "c752b1de052913726da2d4cd4234365f3e8c7e9c",
+          "url": "https://github.com/textlint/textlint/commit/6969e2ce7fdb36d7e197da388db6ab401a542e59"
+        },
+        "date": 1794839036270,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17677008901999997,
+            "range": "± 0.01891923000000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.36057164442,
+            "range": "± 0.08276258800000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.43318414182,
+            "range": "± 0.013334169000000007",
             "unit": "seconds"
           }
         ]
