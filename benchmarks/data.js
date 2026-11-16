@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794839539704,
+  "lastUpdate": 1794840223016,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132257,6 +132257,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.38708323412,
             "range": "± 0.006901861999999981",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "fb826d2a4821167cd7033edc2e8279ee2af7233a",
+          "message": "chore(textlint-tester): remove unused match-index and analyze-desumasu-dearu\n\nNo test or source of textlint-tester imports them.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFXAVfmVqMnrYWF8u3\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T14:42:19Z",
+          "tree_id": "1c692166b79f8614ce04179f8b130e4248f69b30",
+          "url": "https://github.com/textlint/textlint/commit/fb826d2a4821167cd7033edc2e8279ee2af7233a"
+        },
+        "date": 1794840211989,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.16418867446,
+            "range": "± 0.028658552000000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.32454621666,
+            "range": "± 0.12776968899999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.33442399966,
+            "range": "± 0.007378089000000032",
             "unit": "seconds"
           }
         ]
