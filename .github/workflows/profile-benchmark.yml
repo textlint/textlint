@@ -1,0 +1,103 @@
+name: Profile and benchmark
+# Profile and benchmark the base and the head of a pull request on fixed sets of documents.
+# One job runs for each set, and the summary job puts the results of all sets in one job summary.
+# See docs/products/textlint/features/change-comparison/
+#
+# This workflow runs the code of the pull request, including a pull request from a fork.
+# Do not change it to pull_request_target, and do not give it secrets or write permissions.
+on:
+  pull_request:
+    paths:
+      - "packages/**"
+      - "test/benchmark/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".github/workflows/profile-benchmark.yml"
+      - "!**/*.md"
+      # the documents of the small set are Markdown, and the order of the filters matters
+      - "test/benchmark/examples/**"
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  compare:
+    name: "${{ matrix.set }}"
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        set: [small, medium, large, huge]
+    steps:
+      - name: checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # the base commit is needed for its worktree
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - name: setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+      - name: Install hyperfine
+        run: sudo apt-get update && sudo apt-get install -y hyperfine
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Profile and benchmark the base and the head
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          SET: ${{ matrix.set }}
+        # The Markdown goes to the log; the summary job puts all sets in the job summary
+        run: node test/benchmark/compare.mjs --base "$BASE_SHA" --set "$SET" --out-dir "compare-result-$SET"
+      - name: Upload the result
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: profile-benchmark-${{ matrix.set }}
+          path: compare-result-${{ matrix.set }}/
+          if-no-files-found: error
+  summary:
+    name: summary
+    needs: compare
+    # Show the sets that finished, even when a set failed
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+      - name: Download the results
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          pattern: profile-benchmark-*
+          path: results
+      - name: Put all sets in the job summary
+        run: |
+          shopt -s nullglob
+          args=()
+          for file in results/profile-benchmark-*/compare.json; do
+            args+=(--render "$file")
+          done
+          if [ "${#args[@]}" -eq 0 ]; then
+            echo "No set has a result. See the jobs of the sets." >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          node test/benchmark/compare.mjs "${args[@]}" >> "$GITHUB_STEP_SUMMARY"
+          missing=()
+          for set in small medium large huge; do
+            [ -f "results/profile-benchmark-$set/compare.json" ] || missing+=("$set")
+          done
+          if [ "${#missing[@]}" -gt 0 ]; then
+            printf "\n⚠️ No result for: %s. See the jobs of these sets.\n" "${missing[*]}" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "The CPU profiles are in the artifacts profile-benchmark-<set> (open them in the Performance panel of Chrome DevTools)." >> "$GITHUB_STEP_SUMMARY"

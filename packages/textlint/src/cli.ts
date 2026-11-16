@@ -11,6 +11,12 @@ import { SeverityLevel } from "./shared/type/SeverityLevel.js";
 import { printResults, showEmptyRuleWarning } from "./cli-util.js";
 import { loadFixerFormatter, loadLinterFormatter } from "./formatter.js";
 import { connectStdioMcpServer, type McpServerOptions } from "./mcp/server.js";
+import { profiler } from "@textlint/kernel";
+import {
+    createProfileReport,
+    formatProfileReportAsJSON,
+    formatProfileReportAsMarkdown
+} from "./profile/profile-report.js";
 
 const debug = debug0("textlint:cli");
 type StdinExecuteOption = {
@@ -51,6 +57,31 @@ const loadDescriptor = async (cliOptions: CliOptions) => {
     const mergedDescriptor = cliDescriptor.concat(textlintrcDescriptor);
     debug("mergedDescriptor: %j", mergedDescriptor);
     return mergedDescriptor;
+};
+/**
+ * With --profile, the standard output has the summary of the profile instead of the results.
+ * The results are written only to --output-file.
+ */
+const printResultsOrSkip = (output: string, cliOptions: CliOptions): boolean => {
+    if (cliOptions.profile && !cliOptions.outputFile) {
+        return true;
+    }
+    return printResults(output, cliOptions);
+};
+const printProfile = (cliOptions: CliOptions, isStdin: boolean) => {
+    const entries = profiler.getEntries();
+    const report = createProfileReport(entries, {
+        // performance.now() is the time since the start of the process
+        total: performance.now(),
+        // count the files that the kernel processed: files that --cache skips are not counted
+        files: isStdin ? 1 : entries.filter((entry) => entry.type === "file").length
+    });
+    const cwd = process.cwd();
+    Logger.write(
+        cliOptions.format === "json"
+            ? formatProfileReportAsJSON(report, { cwd })
+            : formatProfileReportAsMarkdown(report, { cwd })
+    );
 };
 /**
  * Encapsulates all CLI behavior for eslint. Makes it easier to test as well as
@@ -142,12 +173,29 @@ export const cli = {
      */
     async executeWithOptions(executeOptions: ExecuteOptions): Promise<number> {
         const cliOptions = executeOptions.cliOptions;
+        if (!cliOptions.profile) {
+            return this._executeWithOptions(executeOptions);
+        }
+        profiler.enable();
+        // the time from the start of the process until the CLI starts to lint
+        profiler.record("startup", undefined, performance.now());
+        try {
+            return await this._executeWithOptions(executeOptions);
+        } finally {
+            printProfile(cliOptions, isStdinExecution(executeOptions));
+            profiler.disable();
+        }
+    },
+
+    async _executeWithOptions(executeOptions: ExecuteOptions): Promise<number> {
+        const cliOptions = executeOptions.cliOptions;
         // cli > textlintrc
         // if cli and textlintrc have same option, cli option is prior.
-        const descriptor = await loadDescriptor(cliOptions);
+        const descriptor = await profiler.measureAsync("load-config", undefined, () => loadDescriptor(cliOptions));
         const hasRuleAtLeastOne = descriptor.rule.lintableDescriptors.length > 0;
         if (!hasRuleAtLeastOne) {
-            showEmptyRuleWarning();
+            // the summary of --profile is on the standard output, so the warning goes to the standard error
+            showEmptyRuleWarning(cliOptions.profile ? Logger.error : Logger.log);
             return Promise.resolve(1);
         }
         const linter = createLinter({
@@ -172,15 +220,15 @@ export const cli = {
                     color: cliOptions.color,
                     getSource: getStdinSource(executeOptions)
                 });
-                const output = formatter.format(results);
+                const output = profiler.measure("format", undefined, () => formatter.format(results));
                 // --dry-run
                 if (cliOptions.dryRun) {
                     debug("Enable dry-run mode");
-                    return printResults(output, cliOptions) ? Promise.resolve(0) : Promise.resolve(2);
+                    return printResultsOrSkip(output, cliOptions) ? Promise.resolve(0) : Promise.resolve(2);
                 }
                 // modify file and return exit status
-                await fixer.write(results);
-                if (printResults(output, cliOptions)) {
+                await profiler.measureAsync("write-files", undefined, () => fixer.write(results));
+                if (printResultsOrSkip(output, cliOptions)) {
                     if (cliOptions.outputFile) {
                         return 0; // if --output-file option is specified, exit status is always 0
                     }
@@ -203,8 +251,8 @@ export const cli = {
                     color: cliOptions.color,
                     getSource: getStdinSource(executeOptions)
                 });
-                const output = formatter.format(results);
-                if (printResults(output, cliOptions)) {
+                const output = profiler.measure("format", undefined, () => formatter.format(results));
+                if (printResultsOrSkip(output, cliOptions)) {
                     if (cliOptions.outputFile) {
                         return 0; // if --output-file option is specified, exit status is always 0
                     }

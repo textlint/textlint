@@ -25,3 +25,6 @@ export {
 export type { TextlintResult, TextlintFixResult, TextlintMessageFixCommand, TextlintMessage } from "@textlint/types";
 // TextlintRuleSeverityLevel Key
 export { TextlintRuleSeverityLevelKeys } from "./context/TextlintRuleSeverityLevelKeys.js";
+// Profiler
+export { profiler, TextlintProfiler } from "./profile/profiler.js";
+export type { TextlintProfileEntry } from "./profile/profiler.js";

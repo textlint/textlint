@@ -1,0 +1,23 @@
+{
+    "medium": {
+        "repository": "https://github.com/asciidwango/js-primer",
+        "commit": "6c1a17c246baaf0f6ae573a6947acddef6f6b5f9",
+        "label": "v7.0.0",
+        "path": "source",
+        "runs": 10
+    },
+    "large": {
+        "repository": "https://github.com/mdn/translated-content",
+        "commit": "9c47047bc8d72a1a900f6f807edbcca072618ae1",
+        "label": "main 2026-11-15",
+        "path": "files/ja/web/javascript",
+        "runs": 5
+    },
+    "huge": {
+        "repository": "https://github.com/mdn/translated-content",
+        "commit": "9c47047bc8d72a1a900f6f807edbcca072618ae1",
+        "label": "main 2026-11-15",
+        "path": "files/ja",
+        "runs": 3
+    }
+}

@@ -9,6 +9,7 @@ Read [CONTRIBUTING.md](docs/CONTRIBUTING.md) for setup, commit message format, a
 - Install and build: `pnpm install` and `pnpm run build`
 - Test: `pnpm run test` (lint, project references, and package tests)
 - Write code, comments, commit messages, issues, and pull requests in English
+- Performance: `textlint --profile <files>` shows where the time of a run goes (phases, parsers, rules, files). `pnpm run compare` (`--set small,medium` for a quick check) builds `master` and the working tree, lints fixed sets of documents with both, and prints the differences of the lint results, the CLI run time, the parsers, the traversal, and the CPU profiles. When a change touches a parser, the kernel, or other code that runs for every file or node, follow [the performance skill](.claude/skills/performance-check/SKILL.md) and paste the Markdown output into the description of the pull request
 
 ## Specification placement
 

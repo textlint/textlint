@@ -848,6 +848,8 @@ max-ten                         |    13.246 |     7.5%
 no-start-duplicated-conjunction |     5.911 |     3.4%
 ```
 
+`textlint --profile` shows the time of each rule together with the time of parsing and traversing the AST. See [CLI](./cli.md#profile).
+
 
 ## Implementation Notes :memo:
 

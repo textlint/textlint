@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintKernel, TextlintKernelDescriptor, TextlintResult } from "@textlint/kernel";
+import { profiler, TextlintKernel, TextlintKernelDescriptor, TextlintResult } from "@textlint/kernel";
 import {
     searchFiles,
     scanFilePath,
@@ -96,10 +96,12 @@ export const createLinter = (options: CreateLinterOptions) => {
             const patterns = pathsToGlobPatterns(filesOrGlobs, {
                 extensions: options.descriptor.availableExtensions
             });
-            const searchResult = await searchFiles(patterns, {
-                cwd,
-                ignoreFilePath: options.ignoreFilePath
-            });
+            const searchResult = await profiler.measureAsync("search-files", undefined, () =>
+                searchFiles(patterns, {
+                    cwd,
+                    ignoreFilePath: options.ignoreFilePath
+                })
+            );
             if (!searchResult.ok) {
                 debug(
                     "Failed to search files with patterns: %j. Reason: %s",
@@ -115,16 +117,18 @@ export const createLinter = (options: CreateLinterOptions) => {
             debug("Available extensions: %j", options.descriptor.availableExtensions);
             debug("Process files: %j", availableFiles);
             debug("No Process files that are un-support extensions: %j", unAvailableFiles);
-            const results = await executeFileBackerManager.process(availableFiles, async (filePath: string) => {
-                const absoluteFilePath = path.resolve(process.cwd(), filePath);
-                const fileContent = await fs.readFile(filePath, "utf-8");
-                const kernelOptions = {
-                    ext: path.extname(filePath),
-                    filePath: absoluteFilePath,
-                    ...baseOptions
-                };
-                return kernel.lintText(fileContent, kernelOptions);
-            });
+            const results = await profiler.measureAsync("lint", undefined, () =>
+                executeFileBackerManager.process(availableFiles, async (filePath: string) => {
+                    const absoluteFilePath = path.resolve(process.cwd(), filePath);
+                    const fileContent = await fs.readFile(filePath, "utf-8");
+                    const kernelOptions = {
+                        ext: path.extname(filePath),
+                        filePath: absoluteFilePath,
+                        ...baseOptions
+                    };
+                    return kernel.lintText(fileContent, kernelOptions);
+                })
+            );
             return results;
         },
         /**
@@ -140,7 +144,7 @@ export const createLinter = (options: CreateLinterOptions) => {
                 filePath,
                 ...baseOptions
             };
-            return kernel.lintText(text, kernelOptions);
+            return profiler.measureAsync("lint", undefined, () => kernel.lintText(text, kernelOptions));
         },
         /**
          * Lint files and fix them
@@ -153,10 +157,12 @@ export const createLinter = (options: CreateLinterOptions) => {
             const patterns = pathsToGlobPatterns(fileOrGlobs, {
                 extensions: options.descriptor.availableExtensions
             });
-            const searchResult = await searchFiles(patterns, {
-                cwd,
-                ignoreFilePath: options.ignoreFilePath
-            });
+            const searchResult = await profiler.measureAsync("search-files", undefined, () =>
+                searchFiles(patterns, {
+                    cwd,
+                    ignoreFilePath: options.ignoreFilePath
+                })
+            );
             if (!searchResult.ok) {
                 debug(
                     "Failed to search files with patterns: %j. Reason: %s",
@@ -172,16 +178,18 @@ export const createLinter = (options: CreateLinterOptions) => {
             debug("Available extensions: %j", options.descriptor.availableExtensions);
             debug("Process files: %j", availableFiles);
             debug("No Process files that are un-support extensions: %j", unAvailableFiles);
-            const results = await executeFileBackerManager.process(availableFiles, async (filePath: string) => {
-                const absoluteFilePath = path.resolve(process.cwd(), filePath);
-                const fileContent = await fs.readFile(filePath, "utf-8");
-                const kernelOptions = {
-                    ext: path.extname(filePath),
-                    filePath: absoluteFilePath,
-                    ...baseOptions
-                };
-                return kernel.fixText(fileContent, kernelOptions);
-            });
+            const results = await profiler.measureAsync("fix", undefined, () =>
+                executeFileBackerManager.process(availableFiles, async (filePath: string) => {
+                    const absoluteFilePath = path.resolve(process.cwd(), filePath);
+                    const fileContent = await fs.readFile(filePath, "utf-8");
+                    const kernelOptions = {
+                        ext: path.extname(filePath),
+                        filePath: absoluteFilePath,
+                        ...baseOptions
+                    };
+                    return kernel.fixText(fileContent, kernelOptions);
+                })
+            );
             return results;
         },
         /**
@@ -197,7 +205,7 @@ export const createLinter = (options: CreateLinterOptions) => {
                 filePath,
                 ...baseOptions
             };
-            return kernel.fixText(text, kernelOptions);
+            return profiler.measureAsync("fix", undefined, () => kernel.fixText(text, kernelOptions));
         },
         /**
          * Scan file path and return scan result
