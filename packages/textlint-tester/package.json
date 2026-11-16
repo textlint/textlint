@@ -47,8 +47,6 @@
     "devDependencies": {
         "@types/mocha": "catalog:",
         "@types/node": "catalog:",
-        "analyze-desumasu-dearu": "catalog:",
-        "match-index": "catalog:",
         "mocha": "catalog:",
         "rimraf": "catalog:",
         "textlint-plugin-html": "catalog:",
