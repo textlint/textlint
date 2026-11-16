@@ -25,7 +25,8 @@ const getTextlintDependencyNames = async (dir: string): Promise<Array<string>> =
         const pkg = readClosestPackageJson(dir);
         const dependencies = pkg?.dependencies ?? {};
         const devDependencies = pkg?.devDependencies ?? {};
-        const mergedDependencies = Object.assign({}, dependencies, devDependencies);
+        const optionalDependencies = pkg?.optionalDependencies ?? {};
+        const mergedDependencies = Object.assign({}, dependencies, devDependencies, optionalDependencies);
         const pkgNames = Object.keys(mergedDependencies);
         return pkgNames.filter((pkgName) => {
             const ruleOrFilterOrPlugin =

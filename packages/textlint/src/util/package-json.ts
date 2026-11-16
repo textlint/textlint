@@ -5,6 +5,15 @@ type PackageJson = {
     version?: string;
     dependencies?: Record<string, string>;
     devDependencies?: Record<string, string>;
+    optionalDependencies?: Record<string, string>;
+};
+
+const isFile = (filePath: string): boolean => {
+    try {
+        return fs.statSync(filePath).isFile();
+    } catch {
+        return false;
+    }
 };
 
 /**
@@ -16,14 +25,9 @@ export const readClosestPackageJson = (cwd: string): PackageJson | undefined => 
     let directory = path.resolve(cwd);
     while (true) {
         const filePath = path.join(directory, "package.json");
-        let content: string | undefined;
-        try {
-            content = fs.readFileSync(filePath, "utf-8");
-        } catch {
-            // not found or not readable: go to the parent directory
-        }
-        if (content !== undefined) {
-            return JSON.parse(content) as PackageJson;
+        if (isFile(filePath)) {
+            // Throw if the closest package.json cannot be read or parsed
+            return JSON.parse(fs.readFileSync(filePath, "utf-8")) as PackageJson;
         }
         const parentDirectory = path.dirname(directory);
         if (parentDirectory === directory) {

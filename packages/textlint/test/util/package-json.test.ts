@@ -27,6 +27,12 @@ describe("package-json", () => {
             fs.writeFileSync(path.join(nestedDir, "package.json"), JSON.stringify({ name: "nested" }));
             assert.deepStrictEqual(readClosestPackageJson(nestedDir), { name: "nested" });
         });
+        it("should skip a directory named package.json", () => {
+            fs.writeFileSync(path.join(tmpDir, "package.json"), JSON.stringify({ name: "root" }));
+            const nestedDir = path.join(tmpDir, "nested");
+            fs.mkdirSync(path.join(nestedDir, "package.json"), { recursive: true });
+            assert.deepStrictEqual(readClosestPackageJson(nestedDir), { name: "root" });
+        });
         it("should throw if the closest package.json is invalid", () => {
             fs.writeFileSync(path.join(tmpDir, "package.json"), "{");
             assert.throws(() => readClosestPackageJson(tmpDir));

@@ -50,6 +50,21 @@ describe("config-initializer-test", function () {
             });
         });
     });
+    describe("when package.json has textlint-rule-* packages in optionalDependencies", function () {
+        it("should create new file with the packages", async function () {
+            fs.writeFileSync(
+                path.join(configDir, "package.json"),
+                JSON.stringify({ optionalDependencies: { "textlint-rule-no-todo": "*" } })
+            );
+            const exitStatus = await createConfigFile({
+                dir: configDir,
+                verbose: false
+            });
+            assert.strictEqual(exitStatus, 0);
+            const config = JSON.parse(fs.readFileSync(path.join(configDir, ".textlintrc.json"), "utf-8"));
+            assert.deepEqual(config.rules, { "no-todo": true });
+        });
+    });
     describe("when .textlintrc is not existed", function () {
         it("should create new file", function () {
             return createConfigFile({
