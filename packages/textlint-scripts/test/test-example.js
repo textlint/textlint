@@ -23,3 +23,14 @@ for (const example of examples) {
     exec("npm run build", { cwd: example });
     exec("npm test", { cwd: example });
 }
+
+// Verify duplicate register flags do not fail (https://github.com/textlint/textlint/issues/781)
+exec("npm test -- --require textlint-scripts/register", { cwd: exampleDir });
+exec("npm test -- --require textlint-scripts/register-ts", { cwd: exampleTsDir });
+exec('npx mocha --require textlint-scripts/register-ts --require textlint-scripts/register-ts "test/**/*.{js,ts}"', {
+    cwd: exampleTsDir
+});
+exec(
+    "node -e \"const p = require.resolve('textlint-scripts/configs/ts-node-register'); require(p); delete require.cache[p]; require(p); require('./src/index.ts');\"",
+    { cwd: exampleTsDir }
+);
