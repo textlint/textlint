@@ -69,9 +69,6 @@ catalogs:
     ajv:
       specifier: ^8.20.0
       version: 8.20.0
-    analyze-desumasu-dearu:
-      specifier: ^4.0.1
-      version: 4.0.1
     babel-plugin-static-fs:
       specifier: ^3.0.0
       version: 3.0.0
@@ -114,9 +111,6 @@ catalogs:
     lint-staged:
       specifier: ^16.4.0
       version: 16.4.0
-    match-index:
-      specifier: ^1.0.4
-      version: 1.0.4
     mocha:
       specifier: ^11.8.0
       version: 11.8.0
@@ -1128,12 +1122,6 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 24.19.2
-      analyze-desumasu-dearu:
-        specifier: 'catalog:'
-        version: 4.0.1
-      match-index:
-        specifier: 'catalog:'
-        version: 1.0.4
       mocha:
         specifier: 'catalog:'
         version: 11.8.0
@@ -3949,9 +3937,6 @@ packages:
 
   analyze-desumasu-dearu@3.1.0:
     resolution: {integrity: sha512-ruXUutHdqhfLtZwuk9WflH50kJUZfiF2iui+Mk3JrEGW/v/MkQf1JTjAudKuUEccry86BrDuqaDXWrEG/6h30g==}
-
-  analyze-desumasu-dearu@4.0.1:
-    resolution: {integrity: sha512-lnQYEs+jXrtRJcgLCDrNwOqHziYv5adxpElkt8QMKwLxg1m5X6n6XGi/un7zg20Bcg9eFiXSGElt0bBWA3wHEg==}
 
   analyze-desumasu-dearu@5.0.2:
     resolution: {integrity: sha512-3PUxFk790GpQkME//hwiJellbtKMiAFX/CyA93etmAo5FujJ+5GKVXW+NU9v2MfF07iWcXsrNMbGW5/vVpqWwA==}
@@ -14048,10 +14033,6 @@ snapshots:
       array-find: 1.0.0
       kuromojin: 1.5.1
       object.assign: 4.1.7
-
-  analyze-desumasu-dearu@4.0.1:
-    dependencies:
-      kuromojin: 2.1.1
 
   analyze-desumasu-dearu@5.0.2:
     dependencies:
