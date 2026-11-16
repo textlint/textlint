@@ -89,6 +89,7 @@ textlint でも動かせますが、そのために作られてはいません�
 | TxtAST | プラグインが作り、ルールが受け取る木を定義する | [Requirements](features/txtast/requirements.ja.md) |
 | Markdown のパース | Markdown のテキストをルール向けの TxtAST に変換する | [Requirements](features/markdown-parsing/requirements.ja.md) |
 | プレーンテキストのパース | プレーンテキストをルール向けの TxtAST に変換する | [Requirements](features/plain-text-parsing/requirements.ja.md) |
+| ルールのテスト | `textlint-scripts test` でルールパッケージのテストを実行する | [Requirements](features/rule-testing/requirements.ja.md) |
 | Lint と修正 | ルールとフィルタールールを文書に対して実行し、修正を適用する | 未作成 |
 | 設定の読み込み | `.textlintrc` を探し、ルール、プリセット、フィルタールール、プラグインを読み込む | 未作成 |
 | 結果の出力 | フォーマッターで結果を出力する | 未作成 |

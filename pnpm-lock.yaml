@@ -1043,18 +1043,12 @@ importers:
       cross-spawn:
         specifier: 'catalog:'
         version: 7.0.6
-      mocha:
-        specifier: 'catalog:'
-        version: 11.8.0
       pkg-to-readme:
         specifier: 'catalog:'
         version: 3.0.1
       textlint-tester:
         specifier: workspace:*
         version: link:../textlint-tester
-      ts-node:
-        specifier: '*'
-        version: 10.9.2(@types/node@24.19.2)(typescript@5.8.3)
       typescript:
         specifier: '*'
         version: 5.8.3
@@ -1097,9 +1091,6 @@ importers:
       textlint-scripts:
         specifier: workspace:*
         version: link:../..
-      ts-node:
-        specifier: 'catalog:'
-        version: 10.9.2(@types/node@24.19.2)(typescript@5.8.3)
       typescript:
         specifier: 'catalog:'
         version: 5.8.3

@@ -2,7 +2,7 @@
  * Transpile by babel in runtime
  *
  * Note: This register does not type-check
- * Please use --require textlint-scripts/register-ts instead of it
+ * `textlint-scripts test` type-checks TypeScript with `tsc` before running tests
  */
 const fs = require("fs");
 const paths = require("../configs/paths");

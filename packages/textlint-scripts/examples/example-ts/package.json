@@ -17,7 +17,6 @@
     "@textlint/types": "workspace:*",
     "@types/node": "catalog:",
     "textlint-scripts": "workspace:*",
-    "ts-node": "catalog:",
     "typescript": "catalog:"
   }
 }

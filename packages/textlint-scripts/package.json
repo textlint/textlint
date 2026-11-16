@@ -32,7 +32,7 @@
     ],
     "scripts": {
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
-        "test": "mocha"
+        "test": "node --test --test-reporter=spec \"test/*.js\""
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,css}": [
@@ -54,7 +54,6 @@
         "babel-plugin-static-fs": "catalog:",
         "confirmer": "catalog:",
         "cross-spawn": "catalog:",
-        "mocha": "catalog:",
         "pkg-to-readme": "catalog:",
         "textlint-tester": "workspace:*"
     },
@@ -63,13 +62,9 @@
         "prettier": "catalog:"
     },
     "peerDependencies": {
-        "ts-node": "*",
         "typescript": "*"
     },
     "peerDependenciesMeta": {
-        "ts-node": {
-            "optional": true
-        },
         "typescript": {
             "optional": true
         }

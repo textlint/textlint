@@ -89,6 +89,7 @@ If each rule had to parse each format by itself, the same rule would be written 
 | TxtAST | Defines the tree that plugins produce and rules receive | [Requirements](features/txtast/requirements.md) |
 | Markdown parsing | Converts Markdown text into TxtAST for rules | [Requirements](features/markdown-parsing/requirements.md) |
 | Plain text parsing | Converts plain text into TxtAST for rules | [Requirements](features/plain-text-parsing/requirements.md) |
+| Rule testing | Runs the tests of a rule package with `textlint-scripts test` | [Requirements](features/rule-testing/requirements.md) |
 | Linting and fixing | Runs rules and filter rules over documents and applies fixes | Not written |
 | Configuration loading | Finds `.textlintrc` and loads rules, presets, filter rules, and plugins | Not written |
 | Result output | Prints results with a formatter | Not written |
