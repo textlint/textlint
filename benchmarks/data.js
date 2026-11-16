@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794837733342,
+  "lastUpdate": 1794837879984,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -131921,6 +131921,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.45010108838,
             "range": "± 0.008340039000000021",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "c12f0a579bc40003495abd27ec91dc3f965e2186",
+          "message": "perf(linter-formatter): measure each cell once in the stylish formatter\n\nThe stylish formatter took 4.7 s to format 175,883 messages.\n\n- `alignColumns` measured the width of every cell twice, and each measure\n  stripped the escape sequences twice. It measures a cell once, and keeps\n  the width of a text during the call, because the same texts (rule id,\n  message, \"error\") appear in many rows. The check mark of a fixable\n  message made every such cell go through the emoji pattern.\n- `styleText` checks the output stream on every call. The stylish\n  formatter styles the texts that are the same for all messages once, and\n  gets the codes of \"gray\" once.\n\nThe output is the same.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAEv6bYrkagdkTtx26P\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T14:03:10Z",
+          "tree_id": "a7431e724c2c10154349bef90779a798aa53739c",
+          "url": "https://github.com/textlint/textlint/commit/c12f0a579bc40003495abd27ec91dc3f965e2186"
+        },
+        "date": 1794837870067,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.14798362596,
+            "range": "± 0.035436546999999985",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.1253462689600002,
+            "range": "± 0.052338307999999945",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.3570005727600001,
+            "range": "± 0.03574947900000003",
             "unit": "seconds"
           }
         ]
