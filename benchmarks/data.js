@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794841733480,
+  "lastUpdate": 1794841954352,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132509,6 +132509,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.38304542622,
             "range": "± 0.004096072000000006",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "5fef96efae52d75e1cf39b6e6505e3e49223718a",
+          "message": "fix(textlint): keep read-package-up behavior for --init\n\n- Stop at an existing package.json even if it cannot be read, instead\n  of reading a parent package.json\n- Include optionalDependencies, which read-package-up merged into\n  dependencies through normalize-package-data\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAExdetCSJuCdNL6jaD\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T15:09:59Z",
+          "tree_id": "2aca5dae63dd6c78993124ed9219b090e287dd89",
+          "url": "https://github.com/textlint/textlint/commit/5fef96efae52d75e1cf39b6e6505e3e49223718a"
+        },
+        "date": 1794841942622,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.18209287881999997,
+            "range": "± 0.064326138",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.36189063502,
+            "range": "± 0.07825063500000007",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.38158034061999996,
+            "range": "± 0.06652066900000003",
             "unit": "seconds"
           }
         ]
