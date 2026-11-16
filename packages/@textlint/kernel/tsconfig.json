@@ -18,9 +18,6 @@
       "path": "../ast-tester"
     },
     {
-      "path": "../ast-traverse"
-    },
-    {
       "path": "../feature-flag"
     },
     {

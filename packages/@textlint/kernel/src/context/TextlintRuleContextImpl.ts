@@ -15,6 +15,8 @@ import { createPaddingLocator } from "./TextlintRulePaddingLocator.js";
 import { invariant } from "../util/invariant.js";
 
 const ruleFixer = new TextlintRuleContextFixCommandGeneratorImpl();
+// The value of `context.Syntax`. Same as `TextlintSourceCode#getSyntax()`.
+const Syntax = ASTNodeTypes;
 
 /**
  * Rule context object is passed to each rule as `context`
@@ -71,7 +73,8 @@ export class TextlintRuleContextImpl implements TextlintRuleContext {
      * @type {ASTNodeTypes}
      */
     get Syntax(): typeof ASTNodeTypes {
-        return this._sourceCode.getSyntax();
+        // Rules read it for each node, so return it without calling `getSyntax()` of the source code
+        return Syntax;
     }
 
     /**

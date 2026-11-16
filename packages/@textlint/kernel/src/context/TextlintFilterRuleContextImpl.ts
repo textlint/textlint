@@ -10,6 +10,9 @@ import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl.js";
 import { createPaddingLocator } from "./TextlintRulePaddingLocator.js";
 import { invariant } from "../util/invariant.js";
 
+// The value of `context.Syntax`. Same as `TextlintSourceCode#getSyntax()`.
+const Syntax = ASTNodeTypes;
+
 /**
  * Rule context object is passed to each rule as `context`
  * @param {string} ruleId
@@ -62,7 +65,8 @@ export class TextlintFilterRuleContextImpl implements TextlintFilterRuleContext 
      * @type {TextLintNodeType}
      */
     get Syntax(): typeof ASTNodeTypes {
-        return this._sourceCode.getSyntax();
+        // Rules read it for each node, so return it without calling `getSyntax()` of the source code
+        return Syntax;
     }
 
     /**
