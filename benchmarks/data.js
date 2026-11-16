@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794828967299,
+  "lastUpdate": 1794829749896,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -131501,6 +131501,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5177313547800001,
             "range": "± 0.03179889700000005",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f48155e6b2226311491fed3e3e0b9cdd4b91014d",
+          "message": "feat: add `textlint --profile` and a performance comparison of two builds in CI (#2206)\n\n<!-- claude-projects-attribution: {\"github_login\":\"azu\"} -->\n_Requested by **azu** · [project\nthread](https://claude.ai/code/project/chan_01WwDWq4F69cv9Kmg6AeSy8j?thread=cmsg_01WwDWq4F69cv9Kmg6AeSy8jDpqwzPA3aZR5ar58xRQyJB)_\n\n## Summary\n\ntextlint does several heavy kinds of work per file (parsing, traversing\nthe AST and dispatching to rule listeners, the rules themselves), so a\nsingle run time does not show which part a change affected. This PR\nmakes each part visible, locally and in CI, following the setup of\nsecretlint (`--profile` + `pnpm run compare` + the \"Profile and\nbenchmark\" workflow).\n\n1. **`textlint --profile`** (new CLI option, `profiler` exported from\n`@textlint/kernel`)\n- Prints Markdown (or JSON with `--format json`) instead of the results:\nphases (`startup`, `load-config`, `search-files`, `lint`/`fix` →\n`parse`, `traverse`, `rules`, `filter-rules`, `post-process`,\n`apply-fixes`, `format`, `write-files`), parse time per plugin, top\nrules, slowest files.\n- `--output-file` still gets the results; the exit status is unchanged.\n- Off by default: the kernel checks `profiler.enabled` once per file and\nper listener, nothing per node.\n- Rule time uses the same serialized measurement as `TIMING=1` (now a\nshared `createSerialListenerRunner`), but a listener runs at once when\nno async listener is pending, so sync rules keep their order and\n`traverse` excludes listener time.\n2. **`pnpm run compare`** (`test/benchmark/compare.mjs`, `micro.mjs`,\n`compare-sets.json`; Node built-ins only)\n- Builds the base (worktree of `origin/master` or `--base`) and the\nhead, and on fixed sets — small (`test/benchmark/examples`), medium\n(js-primer v7.0.0, 88 files), large (MDN ja `web/javascript`, 1,037\nfiles), huge (MDN ja, 10,362 files), fetched by commit with sparse\nshallow fetch — compares:\n     - lint results (added / removed messages)\n     - CLI run time (hyperfine, median; marked at 1.3x / 0.77x)\n- each parser (`@textlint/markdown-to-ast`, `@textlint/text-to-ast`) and\nthe kernel traversal + dispatch on pre-parsed trees with a no-op rule\nlistening to every node type (in-process, fastest run; marked at 1.1x /\n0.91x, not below 1 ms)\n- `--profile` of both builds side by side, and CPU time per package /\nfunction from `--cpu-prof` of the CLI, the parsers, and the traversal\n- Writes `compare.md`, `compare.json`, and `cpuprofiles/*.cpuprofile`\n(open in Chrome DevTools).\n3. **CI**: `.github/workflows/profile-benchmark.yml` runs it for PRs\ntouching packages, one job per set plus a summary job that puts all sets\ninto the job summary; artifacts keep the JSON and CPU profiles.\n`pull_request` only, `contents: read`, no secrets, `persist-credentials:\nfalse`, SHA-pinned actions (actionlint clean). It never fails because of\na difference.\n4. **AI guidance**: a line in `AGENTS.md` and\n`.claude/skills/performance-check/SKILL.md` (when to run it, quick vs.\nfinal sets, how to read the output, report the Markdown in the PR, don't\ncall changes within thresholds improvements).\n5. **Specs**: `docs/products/textlint/features/performance-profile/` and\n`change-comparison/` (Requirements + Design, en/ja), product feature\nlist updated. User docs: `docs/cli.md` (Profile section),\n`docs/rule.md`.\n\n## Decisions to review\n\n- `--profile` is a built-in CLI option (chosen by azu in the thread)\nrather than a dev-only script.\n- The comparison uses `preset-jtf-style` (regex-based) so textlint's own\nwork stays visible; `preset-ja-technical-writing` spends ~80% in rules\n(morphological analysis) on js-primer.\n- The base without `--profile` (current master) shows only the head\nprofile; everything else is compared.\n- Thresholds are an open question in the Requirements.\n\n## Verification\n\n- `pnpm run test:packages`, `pnpm run lint`, `test:projectReferences`,\n`./bin/sdev lint` pass. New tests: kernel profiler, profile report, CLI\n`--profile` (Markdown, JSON, `--output-file`, `--fix --dry-run`, off by\ndefault).\n- `pnpm run type-check` has pre-existing errors in test files only; none\nin the changed files.\n- `pnpm run compare` against `origin/master` (this branch only adds the\nprofiler) on a 4 vCPU cloud machine, Node.js 22.23.4, all sets in ~8.5\nmin. Lint results identical on every set; e.g.\n\n| Set | CLI | markdown-to-ast | text-to-ast | traverse + dispatch |\n| --- | ---: | ---: | ---: | ---: |\n| medium | 1.11x | 1.00x | 1.01x | 1.01x |\n| large | 1.02x | 0.98x | 0.94x | 0.96x |\n| huge | 1.05x | 0.93x | 0.99x | 0.94x |\n\n(no marks; CLI differences are within the noise seen between runs of the\nsame code, 0.90x–1.11x on medium)\n- `--profile` on js-primer with jtf-style: parse 67 ms, traverse 84 ms,\nrules 816 ms of 1.44 s.\n- The CI workflow itself runs for the first time on this PR.\n\n---\n_Generated by [Claude\nCode](https://claude.ai/code/session_01TSdrAFhDjQv5inahhbbFMD)_\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-11-16T11:47:40Z",
+          "tree_id": "0cfd4aca1cc5de3ff15acff2bdde6d3dc7f813d2",
+          "url": "https://github.com/textlint/textlint/commit/f48155e6b2226311491fed3e3e0b9cdd4b91014d"
+        },
+        "date": 1794829736288,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17816269335999999,
+            "range": "± 0.032803341999999985",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.42693854456,
+            "range": "± 0.06719217399999988",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.43788858616000004,
+            "range": "± 0.019712167000000003",
             "unit": "seconds"
           }
         ]
