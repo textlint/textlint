@@ -254,6 +254,8 @@ API users can pass in-memory text with <code>loadFormatter({ formatterName, getS
 <li class=""><code>@textlint/ast-node-types</code>: the children types include <code>Definition</code>, <code>LinkReference</code>, and <code>ImageReference</code> <a href="https://github.com/textlint/textlint/pull/2196" target="_blank" rel="noopener noreferrer" class="">#2196</a></li>
 <li class="">Removed unused dependencies <a href="https://github.com/textlint/textlint/pull/2184" target="_blank" rel="noopener noreferrer" class="">#2184</a></li>
 </ul>
+<h2 class="anchor anchorTargetStickyNavbar_h6cq" id="full-changelog">Full Changelog<a href="https://textlint.org/textlint/pr-preview/pr-2206/blog/2026/11/15/textlint-16#full-changelog" class="hash-link" aria-label="Direct link to Full Changelog" title="Direct link to Full Changelog" translate="no">​</a></h2>
+<p>See the <a href="https://github.com/textlint/textlint/releases/tag/v16.0.0" target="_blank" rel="noopener noreferrer" class="">release notes of v16.0.0</a> for all changes, and <a href="https://github.com/textlint/textlint/compare/v15.8.0...v16.0.0" target="_blank" rel="noopener noreferrer" class="">v15.8.0...v16.0.0</a> for all commits.</p>
 <h2 class="anchor anchorTargetStickyNavbar_h6cq" id="thanks">Thanks<a href="https://textlint.org/textlint/pr-preview/pr-2206/blog/2026/11/15/textlint-16#thanks" class="hash-link" aria-label="Direct link to Thanks" title="Direct link to Thanks" translate="no">​</a></h2>
 <p>Thanks to all contributors and sponsors.</p>]]></content:encoded>
         </item>
