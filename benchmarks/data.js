@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794841640420,
+  "lastUpdate": 1794841733480,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132467,6 +132467,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.32739034452,
             "range": "± 0.008162166000000026",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "c37dac137e353b7174f74f2e16df0f896b93a5e1",
+          "message": "perf(textlint): load the MCP server only when --mcp is used\n\ncli.ts imported mcp/server.js statically, so every CLI run loaded the\nMCP SDK and zod even without `--mcp`. Import it dynamically in the\n`--mcp` branch. On a local run, `textlint --version` went from about\n300 ms to about 150 ms.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAExdetCSJuCdNL6jaD\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T15:07:05Z",
+          "tree_id": "3468bea7658315483d782b71b13dad66fee8254b",
+          "url": "https://github.com/textlint/textlint/commit/c37dac137e353b7174f74f2e16df0f896b93a5e1"
+        },
+        "date": 1794841718911,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22180608482000003,
+            "range": "± 0.03689847399999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.58760878342,
+            "range": "± 0.021873851999999916",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.38304542622,
+            "range": "± 0.004096072000000006",
             "unit": "seconds"
           }
         ]
