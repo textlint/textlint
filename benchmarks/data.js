@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794831058374,
+  "lastUpdate": 1794831066847,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -131795,6 +131795,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5829169878000001,
             "range": "± 0.017147930000000033",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "d3732ac9922e9a91ca9e1c8a327689f48b8a8a01",
+          "message": "feat(textlint-scripts)!: run tests with node:test instead of Mocha\n\n`textlint-scripts test` runs test files with the Node.js test runner.\nBabel still transpiles test and source files on the fly, and `tsc`\nstill type-checks TypeScript projects before the tests run.\n\n- Add `configs/node-test-globals.js`, which defines Mocha-style globals\n  (`describe`, `it`, hooks, `done` callbacks, `this.skip()`) with\n  `node:test`. `textlint-tester` uses these globals.\n- Report an error thrown in a suite function as a failing test, because\n  `node --test` on Node.js 22 and 24 exits with code 0 in that case.\n- Fail when no test file is found, like Mocha.\n- Warn when `.mocharc.*` or `test/mocha.opts` exists. They are not read.\n- Remove `mocha` from dependencies and `ts-node` from peerDependencies.\n  `register-ts` is now the same as `register` (Babel, no type-check).\n- Add Requirements and Design for rule testing.\n\nBREAKING CHANGE: `textlint-scripts test` no longer uses Mocha. Mocha CLI\noptions and `.mocharc.*` are not read; pass Node.js test runner options\nsuch as `--test-timeout` instead. `textlint-scripts/register-ts` no\nlonger uses ts-node and does not type-check.\n\nRefs #1545\nRefs #781\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFJym1zyy5je8trvtf\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T12:09:24Z",
+          "tree_id": "a696fe1fb69cde6e2bb1bc9dd4cad617084b65de",
+          "url": "https://github.com/textlint/textlint/commit/d3732ac9922e9a91ca9e1c8a327689f48b8a8a01"
+        },
+        "date": 1794831054589,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23163362703999998,
+            "range": "± 0.29827389099999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.37446978004,
+            "range": "± 0.0679977329999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.43504034864,
+            "range": "± 0.007231719000000025",
             "unit": "seconds"
           }
         ]
