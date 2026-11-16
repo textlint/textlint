@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794837879984,
+  "lastUpdate": 1794838124023,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -131963,6 +131963,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.3570005727600001,
             "range": "± 0.03574947900000003",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "99787b83282b36e1e1a642e87accd2250af1fbf7",
+          "message": "fix(kernel): do not read inherited properties while looking for child nodes\n\nCheck that the property is an own property before reading its value,\nso that a getter of an inherited property is not called.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAEv6bYrkagdkTtx26P\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T14:07:15Z",
+          "tree_id": "9a18fbd0cda6affa3befa63b8d0866d9f17c5113",
+          "url": "https://github.com/textlint/textlint/commit/99787b83282b36e1e1a642e87accd2250af1fbf7"
+        },
+        "date": 1794838112948,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17991195740000002,
+            "range": "± 0.03784391000000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.3880881102,
+            "range": "± 0.053789450000000016",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.44603396660000005,
+            "range": "± 0.017259073999999985",
             "unit": "seconds"
           }
         ]
