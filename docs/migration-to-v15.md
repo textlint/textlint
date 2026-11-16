@@ -507,8 +507,8 @@ After migrating, ensure your code works by:
 As part of the v15 release, all documentation has been updated to remove references to the deprecated APIs:
 
 - [`docs/use-as-modules.md`](./use-as-modules.md) - Updated to focus on the new APIs only
-- [`examples/use-as-module/`](../examples/use-as-module/) - Examples using the new APIs
-- [`examples/use-as-ts-module/`](../examples/use-as-ts-module/) - TypeScript examples
+- [`examples/use-as-module/`](https://github.com/textlint/textlint/tree/master/examples/use-as-module) - Examples using the new APIs
+- [`examples/use-as-ts-module/`](https://github.com/textlint/textlint/tree/master/examples/use-as-ts-module) - TypeScript examples
 
 All deprecated API documentation has been consolidated into this migration guide to preserve the information for users who need to migrate their code.
 
@@ -516,7 +516,7 @@ All deprecated API documentation has been consolidated into this migration guide
 
 If you encounter issues during migration:
 
-1. **Check the examples**: The [`examples/`](../examples/) directory contains working examples using the new APIs
+1. **Check the examples**: The [`examples/`](https://github.com/textlint/textlint/tree/master/examples) directory contains working examples using the new APIs
 2. **Read the API documentation**: [`docs/use-as-modules.md`](./use-as-modules.md) provides comprehensive API documentation
 3. **Open an issue**: If you find migration issues, please [open an issue on GitHub](https://github.com/textlint/textlint/issues)
 
