@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794833921809,
+  "lastUpdate": 1794837733342,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -131879,6 +131879,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5558084624400002,
             "range": "± 0.016714494999999996",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "c9a50fcc8725ef40ba7df541b564c3677192f57f",
+          "message": "perf(kernel): find child nodes without creating an array of keys\n\n`Object.keys(node)` created an array for every node of the AST.\n`for...in` with `hasOwnProperty` visits the same properties in the same\norder without the array. Child nodes are pushed in order and then\nreversed in the work list.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAEv6bYrkagdkTtx26P\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T13:47:39Z",
+          "tree_id": "808e2f28adb14851811982f459ad47aea70d4a91",
+          "url": "https://github.com/textlint/textlint/commit/c9a50fcc8725ef40ba7df541b564c3677192f57f"
+        },
+        "date": 1794837721444,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17819809318,
+            "range": "± 0.034044878",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.42197110018,
+            "range": "± 0.09761250100000018",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.45010108838,
+            "range": "± 0.008340039000000021",
             "unit": "seconds"
           }
         ]
