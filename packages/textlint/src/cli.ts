@@ -10,7 +10,7 @@ import { createLinter, TextlintFileSearchError } from "./createLinter.js";
 import { SeverityLevel } from "./shared/type/SeverityLevel.js";
 import { printResults, showEmptyRuleWarning } from "./cli-util.js";
 import { loadFixerFormatter, loadLinterFormatter } from "./formatter.js";
-import { connectStdioMcpServer, type McpServerOptions } from "./mcp/server.js";
+import type { McpServerOptions } from "./mcp/server.js";
 import { profiler } from "@textlint/kernel";
 import {
     createProfileReport,
@@ -129,6 +129,9 @@ export const cli = {
                 cwd: process.cwd()
             };
 
+            // Load the MCP server only when `--mcp` is used.
+            // The MCP SDK and zod take a large part of the startup time of the CLI.
+            const { connectStdioMcpServer } = await import("./mcp/server.js");
             const mcpServerHandle = await connectStdioMcpServer(mcpOptions);
             const closeMcpServer = () => {
                 void mcpServerHandle.close().finally(() => {
