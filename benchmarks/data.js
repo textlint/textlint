@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794830260694,
+  "lastUpdate": 1794830910430,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -131669,6 +131669,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.5647188705,
             "range": "± 0.01930534100000003",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3e5c98fa65201ad4650e935166cb63a1ccc8cf5a",
+          "message": "v16.1.0 (#2212)\n\n<!-- Release notes generated using configuration in .github/release.yml\nat master -->\n\n## What's Changed\n### Features\n* feat: add `textlint --profile` and a performance comparison of two\nbuilds in CI by @azu in https://github.com/textlint/textlint/pull/2206\n### Bug Fixes\n* fix(textlint-scripts): install only one runtime transpiler hook per\nprocess by @azu in https://github.com/textlint/textlint/pull/2211\n### Documentation\n* docs(blog): link the v16.0.0 release notes from the release post by\n@azu in https://github.com/textlint/textlint/pull/2207\n* docs: fix broken example links and code block by @haranishi in\nhttps://github.com/textlint/textlint/pull/2210\n\n## New Contributors\n* @haranishi made their first contribution in\nhttps://github.com/textlint/textlint/pull/2210\n\n**Full Changelog**:\nhttps://github.com/textlint/textlint/compare/v16.0.0...v16.1.0\n\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T12:06:58Z",
+          "tree_id": "bc4d6322499f6901540eed9d58d8b843ef73d8b2",
+          "url": "https://github.com/textlint/textlint/commit/3e5c98fa65201ad4650e935166cb63a1ccc8cf5a"
+        },
+        "date": 1794830898516,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17692409706,
+            "range": "± 0.03177975399999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.39123195166,
+            "range": "± 0.046707926000000066",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.44469890326000006,
+            "range": "± 0.025672099999999975",
             "unit": "seconds"
           }
         ]
