@@ -111,7 +111,17 @@ describe("traversal of the AST", () => {
                 processor() {
                     return {
                         // the root node has the own properties of the AST, and inherits `inherited`
-                        preProcess: () => Object.assign(Object.create({ inherited }), createAst()),
+                        preProcess: () => {
+                            const prototype = { inherited };
+                            // an inherited getter is not called
+                            Object.defineProperty(prototype, "inheritedGetter", {
+                                enumerable: true,
+                                get() {
+                                    throw new Error("inheritedGetter is called");
+                                }
+                            });
+                            return Object.assign(Object.create(prototype), createAst());
+                        },
                         postProcess: (messages: unknown[], filePath?: string) => ({ messages, filePath })
                     };
                 }

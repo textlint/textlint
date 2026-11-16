@@ -264,8 +264,12 @@ export default abstract class TextLintCoreTask extends EventEmitter {
             const record = node as unknown as Record<string, unknown>;
             const childrenStart = worklist.length;
             for (const key in record) {
+                // check it before reading the value, not to call a getter of an inherited property
+                if (!hasOwnProperty.call(record, key)) {
+                    continue;
+                }
                 const value = record[key];
-                if (value === null || typeof value !== "object" || !hasOwnProperty.call(record, key)) {
+                if (value === null || typeof value !== "object") {
                     continue;
                 }
                 if (Array.isArray(value)) {
