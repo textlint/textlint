@@ -99,6 +99,43 @@ describe("traversal of the AST", () => {
         ]);
     });
 
+    it("should not visit a node in an inherited property", async () => {
+        const visited: string[] = [];
+        const inherited = { type: "Inherited", raw: "", value: "", range: [0, 0], loc: createAst().loc };
+        const plugin: TextlintPluginCreator = {
+            Processor: class {
+                availableExtensions() {
+                    return [".test"];
+                }
+
+                processor() {
+                    return {
+                        // the root node has the own properties of the AST, and inherits `inherited`
+                        preProcess: () => Object.assign(Object.create({ inherited }), createAst()),
+                        postProcess: (messages: unknown[], filePath?: string) => ({ messages, filePath })
+                    };
+                }
+            }
+        } as unknown as TextlintPluginCreator;
+        const rule: TextlintRuleReporter = () => ({
+            Document(node) {
+                visited.push(node.type);
+            },
+            Paragraph(node) {
+                visited.push(node.type);
+            },
+            Inherited(node) {
+                visited.push(node.type);
+            }
+        });
+        await new TextlintKernel().lintText(TEXT, {
+            ext: ".test",
+            plugins: [{ pluginId: "test", plugin }],
+            rules: [{ ruleId: "visited", rule }]
+        });
+        assert.deepStrictEqual(visited, ["Document", "Paragraph"]);
+    });
+
     it("should set the parent of each node, and `null` to the parent of the root node", async () => {
         const parents: string[] = [];
         const rule: TextlintRuleReporter = () => ({

@@ -48,6 +48,8 @@ type NodeTypeListeners = {
  */
 const LEAVE = {} as AnyTxtNode;
 
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+
 /**
  * Same as `isNode` of `@textlint/ast-traverse`
  */
@@ -256,16 +258,18 @@ export default abstract class TextLintCoreTask extends EventEmitter {
             }
             worklist.push(LEAVE);
             ancestors.push(node);
-            // push the child nodes in reverse order, to visit them in order
+            // Push the child nodes, and then reverse them in the work list, to visit them in order.
+            // `for...in` with `hasOwn` visits the same properties in the same order as `Object.keys`,
+            // without creating an array of the keys for every node.
             const record = node as unknown as Record<string, unknown>;
-            const keys = Object.keys(node);
-            for (let k = keys.length - 1; k >= 0; k--) {
-                const value = record[keys[k]];
-                if (value === null || typeof value !== "object") {
+            const childrenStart = worklist.length;
+            for (const key in record) {
+                const value = record[key];
+                if (value === null || typeof value !== "object" || !hasOwnProperty.call(record, key)) {
                     continue;
                 }
                 if (Array.isArray(value)) {
-                    for (let i = value.length - 1; i >= 0; i--) {
+                    for (let i = 0; i < value.length; i++) {
                         const child = value[i];
                         if (child !== null && typeof child === "object" && isTxtNode(child)) {
                             worklist.push(child);
@@ -274,6 +278,11 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                 } else if (isTxtNode(value)) {
                     worklist.push(value);
                 }
+            }
+            for (let i = childrenStart, j = worklist.length - 1; i < j; i++, j--) {
+                const child = worklist[i];
+                worklist[i] = worklist[j];
+                worklist[j] = child;
             }
         }
         if (profiling) {
