@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794831066847,
+  "lastUpdate": 1794833921809,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -131837,6 +131837,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.43504034864,
             "range": "± 0.007231719000000025",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "373257c59c9869313a110ecb1c68857914e1c366",
+          "message": "perf(kernel): call rule listeners directly while traversing the AST\n\nThe kernel traversed the AST with `@textlint/ast-traverse` and called the\nlisteners of the rules through `PromiseEventEmitter` for every node.\nTraverse the AST in the kernel instead, and look up the listeners of a node\ntype once per file, so that a node costs one Map lookup and a loop over an\narray of listeners.\n\nThe order of the traversal, `parent` of each node (`null` for the root),\nthe order of the listeners, calling a listener once for an event, and the\nhandling of promises are the same.\n\n`context.Syntax` returns `ASTNodeTypes` without calling\n`sourceCode.getSyntax()`, because rules read it for each node.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAEv6bYrkagdkTtx26P\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T12:47:28Z",
+          "tree_id": "dd7a0aedec22edf5362ee79571d06638772d23e9",
+          "url": "https://github.com/textlint/textlint/commit/373257c59c9869313a110ecb1c68857914e1c366"
+        },
+        "date": 1794833907215,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.25510446744000004,
+            "range": "± 0.22729168000000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.7169603814399998,
+            "range": "± 0.06165993600000008",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5558084624400002,
+            "range": "± 0.016714494999999996",
             "unit": "seconds"
           }
         ]
