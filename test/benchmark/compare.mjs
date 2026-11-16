@@ -598,38 +598,52 @@ const renderProfiles = (profiles) => {
     const lines = [];
     const phaseNames = [...new Set([...(base?.phases ?? []), ...head.phases].map((phase) => phase.name))];
     const phaseOf = (profile, name) => profile?.phases.find((phase) => phase.name === name);
-    lines.push(
-        table(
-            ["Phase", "Base (ms)", "Head (ms)", "Ratio"],
-            phaseNames.map((name) => {
-                const b = phaseOf(base, name);
-                const h = phaseOf(head, name);
-                const depth = (h ?? b).depth;
-                return [
-                    `${depth > 0 ? "↳ " : ""}${name}`,
-                    fmt(b?.time),
-                    fmt(h?.time),
-                    b && h && Math.max(b.time, h.time) >= 1 ? fmtRatio(h.time / b.time) : "-"
-                ];
-            })
-        )
-    );
-    if (!base) {
+    const phaseName = (phase) => `${phase.depth > 0 ? "↳ " : ""}${phase.name}`;
+    if (base) {
+        lines.push(
+            table(
+                ["Phase", "Base (ms)", "Head (ms)", "Ratio"],
+                phaseNames.map((name) => {
+                    const b = phaseOf(base, name);
+                    const h = phaseOf(head, name);
+                    return [
+                        phaseName(h ?? b),
+                        fmt(b?.time),
+                        fmt(h?.time),
+                        b && h && Math.max(b.time, h.time) >= 1 ? fmtRatio(h.time / b.time) : "-"
+                    ];
+                })
+            )
+        );
+    } else {
+        // the base was built before --profile existed: show the head only, without empty columns
         lines.push("The base has no `--profile`, so only the profile of the head is shown.");
+        lines.push(
+            table(
+                ["Phase", "Head (ms)", "%"],
+                head.phases.map((phase) => [phaseName(phase), fmt(phase.time), `${phase.percent.toFixed(1)}%`])
+            )
+        );
     }
     const ruleOf = (profile, id) => profile?.rules.find((rule) => rule.id === id);
+    const topRules = head.rules.slice(0, 10);
     lines.push(
-        `Top ${Math.min(10, head.rules.length)} rules of the head:\n\n${table(
-            ["Rule", "Base (ms)", "Head (ms)", "Calls (head)"],
-            head.rules
-                .slice(0, 10)
-                .map((rule) => [
-                    escapeCell(rule.id),
-                    fmt(ruleOf(base, rule.id)?.time),
-                    fmt(rule.time),
-                    String(rule.count)
-                ])
-        )}`
+        `Top ${topRules.length} rules of the head:\n\n${
+            base
+                ? table(
+                      ["Rule", "Base (ms)", "Head (ms)", "Calls (head)"],
+                      topRules.map((rule) => [
+                          escapeCell(rule.id),
+                          fmt(ruleOf(base, rule.id)?.time),
+                          fmt(rule.time),
+                          String(rule.count)
+                      ])
+                  )
+                : table(
+                      ["Rule", "Time (ms)", "Calls"],
+                      topRules.map((rule) => [escapeCell(rule.id), fmt(rule.time), String(rule.count)])
+                  )
+        }`
     );
     if (head.slowestFiles.length > 0) {
         lines.push(
@@ -726,7 +740,8 @@ const renderSet = (set) => {
     if (removed) parts.push(removed);
     if (added) parts.push(added);
     const details = [
-        ["Profile (`--profile`, one run)", renderProfiles(set.profiles)],
+        // Markdown is not parsed in <summary>, so it uses HTML
+        ["Profile (<code>--profile</code>, one run)", renderProfiles(set.profiles)],
         ["CPU profile of the CLI", renderCpu(set.cpu, "cli")],
         ["CPU profile of the parsers", renderCpu(set.cpu, "parse")],
         ["CPU profile of the kernel with a no-op rule", renderCpu(set.cpu, "traverse")]
@@ -742,10 +757,10 @@ const renderSet = (set) => {
 const renderMarkdown = (result) => {
     const parts = [
         "## Profile and benchmark: base vs head",
-        `Base: ${commitLink(REPOSITORY, result.base.commit)} (\`${escapeCell(result.base.ref)}\`), head: ${commitLink(
-            REPOSITORY,
-            result.head.commit
-        )}${result.head.dirty ? " with uncommitted changes" : ""}`
+        `Base: ${commitLink(REPOSITORY, result.base.commit)}${
+            // CI passes the commit itself as the ref, which would only repeat the link
+            result.base.ref === result.base.commit ? "" : ` (\`${escapeCell(result.base.ref)}\`)`
+        }, head: ${commitLink(REPOSITORY, result.head.commit)}${result.head.dirty ? " with uncommitted changes" : ""}`
     ];
     if (result.sets.length > 1) {
         parts.push(

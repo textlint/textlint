@@ -119,13 +119,13 @@ Messages are compared as multisets of the file, the line, the column, the rule i
 
 A CPU profile is summarized by self time. A sample belongs to a package of this repository when its file is under `<build>/packages/` (`workspace: true`), to a dependency by the path after the last `node_modules/`, to `(node)` for `node:` modules, and to `(garbage collector)`, `(program)`, `(idle)`, or `(native)` when it has no URL.
 
-The Markdown output starts with the heading "Profile and benchmark: base vs head" and the linked commits of the base and the head. With more than one set, a table follows with one row for each set: the verdict, the CLI ratio, and the number of messages. Then a line explains the thresholds. Then it has, for each set, in this order:
+The Markdown output starts with the heading "Profile and benchmark: base vs head" and the linked commits of the base and the head; the ref of the base follows its link unless it is the commit itself. The titles of the collapsed sections use HTML (`<code>`), because GitHub does not parse Markdown in `<summary>`. With more than one set, a table follows with one row for each set: the verdict, the CLI ratio, and the number of messages. Then a line explains the thresholds. Then it has, for each set, in this order:
 
 1. A heading with the set, the linked commit and label, and the number of files.
 2. One line that says what changed: `✅ No change in lint results` with the CLI ratio, or `⚠️ Changed:` with the list of what changed (lint results, a marked parser, traverse, or the CLI).
 3. A table of the base, the head, and the change: the CLI run time, each parser, the traversal, and the number of messages.
 4. Only when they differ: the removed and the added messages, at most 50 rows each.
-5. Collapsed sections: the profile of the base and the head side by side (phases, top 10 rules, slowest files), and for the CLI, the parsers, and the traversal the top 15 packages by self time with the base, the head, and the ratio, and the top 15 functions of the head.
+5. Collapsed sections: the profile of the base and the head side by side (phases, top 10 rules, slowest files; when the base has no `--profile`, the head only, without empty base columns), and for the CLI, the parsers, and the traversal the top 15 packages by self time with the base, the head, and the ratio, and the top 15 functions of the head.
 
 The CPU profiles are `cpuprofiles/<set>-<base|head>-<cli|parse|traverse>.cpuprofile`.
 
