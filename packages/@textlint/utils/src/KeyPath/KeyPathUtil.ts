@@ -1,26 +1,86 @@
-// @org/preset/@org/rule
-const patternOrgXOrg = /^(@.*?\/.*?)\/(@.*?\/.*?)$/;
-// @org/preset/rule
-const patternOrgXRule = /^(@.*?\/.*?)\/(.*?)$/;
-// preset/@org/rule
-const patternPresetXOrg = /^(.*?)\/(@.*?)$/;
-// preset/rule
-const patternPresetXRule = /^([^@].*?)\/(.*?)$/;
-
+// A key path is split without regular expressions.
+// Nested lazy quantifiers such as /^(@.*?\/.*?)\/(@.*?\/.*?)$/ take polynomial time on some inputs.
+// Each pattern below keeps the result of the regular expression it replaces, including that `.` does not match a line terminator.
+const LINE_TERMINATOR = /[\n\r\u2028\u2029]/;
+type PresetSubRule = { preset: string; rule: string };
+const splitAt = (name: string, index: number): PresetSubRule => {
+    return { preset: name.slice(0, index), rule: name.slice(index + 1) };
+};
 /**
- * pattern list of key path
+ * @org/preset/@org/rule
+ * /^(@.*?\/.*?)\/(@.*?\/.*?)$/
  */
-const patternList = [patternOrgXOrg, patternOrgXRule, patternPresetXOrg, patternPresetXRule];
+const matchOrgXOrg = (name: string): PresetSubRule | null => {
+    if (name.charAt(0) !== "@") {
+        return null;
+    }
+    const orgSlash = name.indexOf("/", 1);
+    if (orgSlash === -1) {
+        return null;
+    }
+    const separator = name.indexOf("/@", orgSlash + 1);
+    // the rule part needs a "/" after "@"
+    if (separator === -1 || name.lastIndexOf("/") < separator + 2) {
+        return null;
+    }
+    return splitAt(name, separator);
+};
+/**
+ * @org/preset/rule
+ * /^(@.*?\/.*?)\/(.*?)$/
+ */
+const matchOrgXRule = (name: string): PresetSubRule | null => {
+    if (name.charAt(0) !== "@") {
+        return null;
+    }
+    const orgSlash = name.indexOf("/", 1);
+    if (orgSlash === -1) {
+        return null;
+    }
+    const separator = name.indexOf("/", orgSlash + 1);
+    if (separator === -1) {
+        return null;
+    }
+    return splitAt(name, separator);
+};
+/**
+ * preset/@org/rule
+ * /^(.*?)\/(@.*?)$/
+ */
+const matchPresetXOrg = (name: string): PresetSubRule | null => {
+    const separator = name.indexOf("/@");
+    if (separator === -1) {
+        return null;
+    }
+    return splitAt(name, separator);
+};
+/**
+ * preset/rule
+ * /^([^@].*?)\/(.*?)$/
+ */
+const matchPresetXRule = (name: string): PresetSubRule | null => {
+    if (name.length === 0 || name.charAt(0) === "@") {
+        return null;
+    }
+    const separator = name.indexOf("/", 1);
+    if (separator === -1) {
+        return null;
+    }
+    return splitAt(name, separator);
+};
 /**
  * split "preset/rule" string to {preset, rule}
  */
 export const splitKeyToPresetSubRule = (name: string): { preset: string | null; rule: string } => {
-    for (const pattern of patternList) {
-        const result = name.match(pattern);
-        if (!result) {
-            continue;
+    // `.` in the patterns does not match a line terminator.
+    // Only the first character of "preset/rule" can be a line terminator, because it is matched by [^@]
+    if (!LINE_TERMINATOR.test(name.slice(1))) {
+        const result = LINE_TERMINATOR.test(name.charAt(0))
+            ? matchPresetXRule(name)
+            : matchOrgXOrg(name) ?? matchOrgXRule(name) ?? matchPresetXOrg(name) ?? matchPresetXRule(name);
+        if (result) {
+            return result;
         }
-        return { preset: result[1], rule: result[2] };
     }
     // Other case is a single rule
     // @org/rule or rule

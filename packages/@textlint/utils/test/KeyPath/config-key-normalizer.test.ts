@@ -37,6 +37,33 @@ describe("config-key-normalizer", function () {
             assert.deepStrictEqual(splitKeyToPresetSubRule("@org/rule"), { preset: null, rule: "@org/rule" });
             assert.deepStrictEqual(splitKeyToPresetSubRule("rule"), { preset: null, rule: "rule" });
         });
+        it("should split at the first separator", () => {
+            assert.deepStrictEqual(splitKeyToPresetSubRule("@org/preset/@org/rule/x"), {
+                preset: "@org/preset",
+                rule: "@org/rule/x",
+            });
+            assert.deepStrictEqual(splitKeyToPresetSubRule("@org/preset/rule/x"), {
+                preset: "@org/preset",
+                rule: "rule/x",
+            });
+            assert.deepStrictEqual(splitKeyToPresetSubRule("@org/@rule"), { preset: "@org", rule: "@rule" });
+            assert.deepStrictEqual(splitKeyToPresetSubRule("preset/rule/x"), { preset: "preset", rule: "rule/x" });
+        });
+        it("should not split a key that includes a line terminator", () => {
+            assert.deepStrictEqual(splitKeyToPresetSubRule("preset/\nrule"), { preset: null, rule: "preset/\nrule" });
+            assert.deepStrictEqual(splitKeyToPresetSubRule("@org/preset/rule\u2028"), {
+                preset: null,
+                rule: "@org/preset/rule\u2028",
+            });
+            // the first character of "preset/rule" can be a line terminator
+            assert.deepStrictEqual(splitKeyToPresetSubRule("\npreset/rule"), { preset: "\npreset", rule: "rule" });
+        });
+        it("should split a long key in linear time", () => {
+            const name = `@${"/@".repeat(1000)}\n`;
+            const start = performance.now();
+            assert.deepStrictEqual(splitKeyToPresetSubRule(name), { preset: null, rule: name });
+            assert.ok(performance.now() - start < 100);
+        });
     });
     describe("preset and rule", () => {
         const patterns = [
