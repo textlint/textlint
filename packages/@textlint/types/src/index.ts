@@ -37,6 +37,7 @@ export type {
 export type { TextlintRuleOptions } from "./Rule/TextlintRuleOptions.js";
 export type {
     TextlintRuleReporter,
+    TextlintRuleCreateOnce,
     TextlintFixableRuleModule,
     TextlintRuleModule,
     TextlintRuleReportHandler,

@@ -13,6 +13,7 @@ import { applyFixesToSourceCode } from "@textlint/source-code-fixer";
 import { invariant } from "../util/invariant.js";
 import { parseByPlugin } from "../util/parse-by-plugin.js";
 import { profiler } from "../profile/profiler.js";
+import type { OnceRuleStore } from "../task/once-rule.js";
 
 const debug = _debug("textlint:fixer-processor");
 
@@ -22,6 +23,7 @@ export interface FixerProcessorProcessArgs {
     ruleDescriptors: TextlintRuleDescriptors;
     filterRules: TextlintFilterRuleDescriptors;
     sourceCode: TextlintSourceCode;
+    onceRuleStore?: OnceRuleStore;
 }
 
 export default class FixerProcessor {
@@ -54,7 +56,8 @@ export default class FixerProcessor {
         configBaseDir,
         ruleDescriptors,
         filterRules,
-        sourceCode
+        sourceCode,
+        onceRuleStore
     }: FixerProcessorProcessArgs): Promise<TextlintFixResult> {
         invariant(sourceCode);
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
@@ -98,7 +101,8 @@ export default class FixerProcessor {
                 fixableRuleDescriptor: ruleDescriptor,
                 filterRuleDescriptors: filterRules,
                 sourceCode: newSourceCode,
-                configBaseDir
+                configBaseDir,
+                onceRuleStore
             });
 
             const messages = await TaskRunner.process(task);

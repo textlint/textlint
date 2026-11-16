@@ -850,6 +850,46 @@ no-start-duplicated-conjunction |     5.911 |     3.4%
 
 `textlint --profile` shows the time of each rule together with the time of parsing and traversing the AST. See [CLI](./cli.md#profile).
 
+### Create the rule once with `createOnce`
+
+textlint calls a rule function for every file, with a new `context`, and the rule returns new listeners each time.
+When a run lints thousands of files, creating the rules and collecting their garbage becomes a visible part of the run.
+A rule function can have a `createOnce` property. textlint calls `createOnce(context, options)` one time for each rule entry and calls the returned listeners for every file.
+
+```js
+const createOnce = (context, options) => {
+    const { Syntax, RuleError, report } = context;
+    let count;
+    return {
+        // `Document` is the root of every file, so it runs first for every file
+        [Syntax.Document]() {
+            count = 0;
+        },
+        [Syntax.Header]() {
+            count++;
+        },
+        [`${Syntax.Document}:exit`](node) {
+            if (count > 10) {
+                report(node, new RuleError("Too many headers"));
+            }
+        }
+    };
+};
+// textlint versions without `createOnce` call this function for every file
+const rule = (context, options) => createOnce(context, options);
+rule.createOnce = createOnce;
+module.exports = rule;
+```
+
+A rule with `createOnce` must follow these rules:
+
+- Reset the state of a file in the `Document` listener. The listeners are the same functions for every file.
+- The listeners must be synchronous. A listener that returns a Promise fails the lint, because the context refers to the file being linted and the files are linted at the same time. Use a rule function without `createOnce` for an asynchronous rule.
+- `context.report`, `context.getSource`, `context.getFilePath`, and `context.getConfigBaseDir` refer to the file being linted, so call them in the listeners, not in the body of `createOnce`. `context.Syntax`, `context.RuleError`, `context.fixer`, `context.locator`, `context.id`, and `context.severity` can be used anywhere.
+
+For a fixable rule, set `createOnce` on both `linter` and `fixer`.
+textlint creates a rule once for each rule entry: the same rule with the same options. A program that passes new rule objects to `TextlintKernel` for every text creates the rule for every text.
+
 
 ## Implementation Notes :memo:
 

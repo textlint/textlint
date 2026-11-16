@@ -3,6 +3,7 @@
 import FixerProcessor from "./fixer/fixer-processor.js";
 // parallel
 import LinterProcessor from "./linter/linter-processor.js";
+import { OnceRuleStore } from "./task/once-rule.js";
 // message process manager
 import MessageProcessManager from "./messages/MessageProcessManager.js";
 import filterIgnoredProcess from "./messages/filter-ignored-process.js";
@@ -70,6 +71,9 @@ export class TextlintKernel {
         this.messageProcessManager.add(filterSeverityProcess(this.config));
         this.messageProcessManager.add(sortMessageProcess);
     }
+
+    // the rules that `createOnce` created, kept for each rule entry while the kernel lints with it
+    private onceRuleStore = new OnceRuleStore();
 
     /**
      * lint text by registered rules.
@@ -194,7 +198,8 @@ See https://textlint.org/docs/plugin.html`
                 ruleDescriptors: descriptor.rule,
                 filterRuleDescriptors: descriptor.filterRule,
                 sourceCode,
-                configBaseDir
+                configBaseDir,
+                onceRuleStore: this.onceRuleStore
             })
             .catch((error) => {
                 error.message = addingAtFileNameToError(filePath, error.message);
@@ -266,7 +271,8 @@ See https://textlint.org/docs/plugin.html`
                 ruleDescriptors: descriptor.rule,
                 filterRules: descriptor.filterRule,
                 sourceCode,
-                configBaseDir
+                configBaseDir,
+                onceRuleStore: this.onceRuleStore
             })
             .catch((error) => {
                 error.message = addingAtFileNameToError(filePath, error.message);

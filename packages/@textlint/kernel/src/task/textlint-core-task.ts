@@ -27,6 +27,7 @@ import { normalizeTextlintKeyPath } from "@textlint/utils";
 import { TextlintRuleContextImpl } from "../context/TextlintRuleContextImpl.js";
 import _debug from "debug";
 import { Controller as TraverseController } from "@textlint/ast-traverse";
+import type { OnceRule, OnceRuleFile } from "./once-rule.js";
 
 const traverseController = new TraverseController();
 const debug = _debug("textlint:core-task");
@@ -80,6 +81,8 @@ export interface LintReportedMessage {
  */
 export default abstract class TextLintCoreTask extends EventEmitter {
     private ruleTypeEmitter: RuleTypeEmitter;
+    // the rules created by `createOnce` and the file that they refer to during the traversal
+    private onceRules: Array<{ rule: OnceRule; file: OnceRuleFile }> = [];
 
     static get events() {
         return {
@@ -175,14 +178,45 @@ export default abstract class TextLintCoreTask extends EventEmitter {
     startTraverser(sourceCode: TextlintSourceCode) {
         this.emit(TextLintCoreTask.events.start);
         const promiseQueue: Array<Promise<unknown>> = [];
+        const profiling = profiler.enabled;
+        const traverseStart = profiling ? performance.now() : 0;
+        const listenerTimeStart = profiling ? profiler.listenerTime : 0;
+        // the context of a rule created once refers to this file during the traversal.
+        // The listeners of such a rule are synchronous, so they run during the traversal.
+        const onceRules = this.onceRules;
+        const previousFiles = onceRules.map(({ rule, file }) => rule.bind(file));
+        try {
+            this.traverse(sourceCode, promiseQueue);
+        } finally {
+            for (let i = onceRules.length - 1; i >= 0; i--) {
+                onceRules[i]!.rule.bind(previousFiles[i]);
+            }
+        }
+        if (profiling) {
+            // the time of the traversal and the dispatch, without the time of the listeners
+            const listenerTime = profiler.listenerTime - listenerTimeStart;
+            profiler.record(
+                "traverse",
+                undefined,
+                Math.max(0, performance.now() - traverseStart - listenerTime),
+                sourceCode.filePath
+            );
+        }
+        Promise.all(promiseQueue)
+            .then(() => {
+                this.emit(TextLintCoreTask.events.complete);
+            })
+            .catch((error) => {
+                this.emit(TextLintCoreTask.events.error, error);
+            });
+    }
+
+    private traverse(sourceCode: TextlintSourceCode, promiseQueue: Array<Promise<unknown>>) {
         const ruleTypeEmitter = this.ruleTypeEmitter;
         // `${type}:exit` for each node type, to avoid creating the string for every node
         const exitTypes = new Map<string, string>();
         // reuse the descriptor, because `parent` is defined on every node
         const parentDescriptor: PropertyDescriptor = { value: undefined };
-        const profiling = profiler.enabled;
-        const traverseStart = profiling ? performance.now() : 0;
-        const listenerTimeStart = profiling ? profiler.listenerTime : 0;
         traverseController.traverse(sourceCode.ast as TxtParentNode, {
             enter(node: AnyTxtNode, parent?: AnyTxtNode) {
                 parentDescriptor.value = parent;
@@ -204,23 +238,39 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                 }
             }
         });
-        if (profiling) {
-            // the time of the traversal and the dispatch, without the time of the listeners
-            const listenerTime = profiler.listenerTime - listenerTimeStart;
-            profiler.record(
-                "traverse",
-                undefined,
-                Math.max(0, performance.now() - traverseStart - listenerTime),
-                sourceCode.filePath
-            );
+    }
+
+    /**
+     * add the listeners of a rule that `createOnce` created.
+     * The context of the rule refers to `file` while this task traverses.
+     */
+    addOnceRule(rule: OnceRule, file: OnceRuleFile): void {
+        this.onceRules.push({ rule, file });
+        const measuring = timing.enabled || profiler.enabled;
+        const ruleId = rule.context.id;
+        for (const [nodeType, onceListener] of rule.listeners) {
+            if (!measuring) {
+                this.ruleTypeEmitter.on(nodeType, onceListener as (...args: unknown[]) => void);
+                continue;
+            }
+            // a measured listener can wait for an asynchronous listener of another rule,
+            // and run after the traversal. Bind the file for each call.
+            let listener = (node: unknown) => {
+                const previous = rule.bind(file);
+                try {
+                    onceListener(node);
+                } finally {
+                    rule.bind(previous);
+                }
+            };
+            if (timing.enabled) {
+                listener = timing.time(ruleId, listener);
+            }
+            if (profiler.enabled) {
+                listener = profiler.wrapListener("rule", ruleId, file.sourceCode.getFilePath(), listener);
+            }
+            this.ruleTypeEmitter.on(nodeType, listener as (...args: unknown[]) => void);
         }
-        Promise.all(promiseQueue)
-            .then(() => {
-                this.emit(TextLintCoreTask.events.complete);
-            })
-            .catch((error) => {
-                this.emit(TextLintCoreTask.events.error, error);
-            });
     }
 
     /**

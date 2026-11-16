@@ -2,6 +2,7 @@
 "use strict";
 import LinterTask from "../task/linter-task.js";
 import TaskRunner from "../task/task-runner.js";
+import type { OnceRuleStore } from "../task/once-rule.js";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface.js";
 
 import MessageProcessManager from "../messages/MessageProcessManager.js";
@@ -16,6 +17,7 @@ export interface LinterProcessorArgs {
     ruleDescriptors: TextlintRuleDescriptors;
     filterRuleDescriptors: TextlintFilterRuleDescriptors;
     sourceCode: TextlintSourceCode;
+    onceRuleStore?: OnceRuleStore;
 }
 
 export default class LinterProcessor {
@@ -39,7 +41,8 @@ export default class LinterProcessor {
         configBaseDir,
         ruleDescriptors,
         filterRuleDescriptors,
-        sourceCode
+        sourceCode,
+        onceRuleStore
     }: LinterProcessorArgs): Promise<TextlintResult> {
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
         invariant(
@@ -51,7 +54,8 @@ export default class LinterProcessor {
             ruleDescriptors,
             filterRuleDescriptors,
             sourceCode,
-            configBaseDir
+            configBaseDir,
+            onceRuleStore
         });
         const messages = await TaskRunner.process(task);
         const processMessages = async () => {

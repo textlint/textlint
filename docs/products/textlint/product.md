@@ -95,6 +95,7 @@ If each rule had to parse each format by itself, the same rule would be written 
 | MCP server | Exposes linting to AI agents through the Model Context Protocol | Not written |
 | Performance profile | Shows where the time of a run goes: phases, parsers, rules, and files | [Requirements](features/performance-profile/requirements.md) |
 | Change comparison | Compares the lint results and the performance of two builds on fixed documents, locally and in CI | [Requirements](features/change-comparison/requirements.md) |
+| Rule creation once | Lets a rule create its listeners one time and reuse them for every file | [Requirements](features/rule-create-once/requirements.md) |
 
 ## Definition of success
 

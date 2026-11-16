@@ -6,6 +6,7 @@ import { TextlintFilterRuleDescriptors, TextlintFixableRuleDescriptor } from "..
 import type { TextlintSourceCode } from "@textlint/types";
 import { getSeverity } from "../shared/rule-severity.js";
 import { TextlintFilterRuleContextImpl } from "../context/TextlintFilterRuleContextImpl.js";
+import { hasCreateOnce, OnceRule, OnceRuleStore } from "./once-rule.js";
 import { TextlintRuleContextImpl } from "../context/TextlintRuleContextImpl.js";
 import _debug from "debug";
 
@@ -17,6 +18,7 @@ export interface TextLintCoreTaskArgs {
     filterRuleDescriptors: TextlintFilterRuleDescriptors;
     sourceCode: TextlintSourceCode;
     configBaseDir?: string;
+    onceRuleStore?: OnceRuleStore;
 }
 
 export default class TextLintCoreTask extends CoreTask {
@@ -25,15 +27,18 @@ export default class TextLintCoreTask extends CoreTask {
     filterRuleDescriptors: TextlintFilterRuleDescriptors;
     sourceCode: TextlintSourceCode;
     configBaseDir?: string;
+    onceRuleStore?: OnceRuleStore;
 
     constructor({
         config,
         configBaseDir,
         fixableRuleDescriptor,
         filterRuleDescriptors,
-        sourceCode
+        sourceCode,
+        onceRuleStore
     }: TextLintCoreTaskArgs) {
         super();
+        this.onceRuleStore = onceRuleStore;
         this.config = config;
         this.configBaseDir = configBaseDir;
         this.fixableRuleDescriptor = fixableRuleDescriptor;
@@ -53,6 +58,29 @@ export default class TextLintCoreTask extends CoreTask {
         const ignoreReport = this.createShouldIgnore();
         // setup "rules" field by using a single fixerRule
         debug("fixerRule", this.fixableRuleDescriptor);
+        const fixableRuleDescriptor = this.fixableRuleDescriptor;
+        const fixer = fixableRuleDescriptor.fixer;
+        if (this.onceRuleStore !== undefined && hasCreateOnce(fixer)) {
+            const ruleOptions = fixableRuleDescriptor.normalizedOptions;
+            const onceRule = this.onceRuleStore.get(
+                "fix",
+                fixableRuleDescriptor.toKernel(),
+                () =>
+                    new OnceRule({
+                        ruleId: fixableRuleDescriptor.id,
+                        severityLevel: getSeverity(ruleOptions),
+                        createOnce: fixer.createOnce,
+                        ruleOptions
+                    })
+            );
+            this.addOnceRule(onceRule, { sourceCode, report, configBaseDir: this.configBaseDir });
+        } else {
+            this.addFixerRule(sourceCode, report);
+        }
+        this.addFilterRules(sourceCode, ignoreReport);
+    }
+
+    private addFixerRule(sourceCode: TextlintSourceCode, report: ReturnType<CoreTask["createReporter"]>) {
         const ruleContext = new TextlintRuleContextImpl({
             ruleId: this.fixableRuleDescriptor.id,
             severityLevel: getSeverity(this.fixableRuleDescriptor.normalizedOptions),
@@ -65,6 +93,9 @@ export default class TextLintCoreTask extends CoreTask {
             ruleContext,
             this.fixableRuleDescriptor.normalizedOptions
         );
+    }
+
+    private addFilterRules(sourceCode: TextlintSourceCode, ignoreReport: ReturnType<CoreTask["createShouldIgnore"]>) {
         // setup "filters" field
         debug("filterRules", this.filterRuleDescriptors);
         this.filterRuleDescriptors.descriptors.forEach((filterRuleDescriptor) => {

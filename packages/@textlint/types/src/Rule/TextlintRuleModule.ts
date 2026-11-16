@@ -21,8 +21,27 @@ export type TextlintRuleReportHandler = { [P in ASTNodeTypes]?: (node: TypeofTxt
 
 /**
  * Textlint rule reporter function
+ *
+ * textlint calls it for every file with a new context.
+ * When it has `createOnce`, textlint calls `createOnce` one time instead, and uses the returned listeners for every file.
  */
-export type TextlintRuleReporter<T extends object = object> = (
+export type TextlintRuleReporter<T extends object = object> = ((
+    context: Readonly<TextlintRuleContext>,
+    options?: TextlintRuleOptions<T>
+) => TextlintRuleReportHandler) & {
+    createOnce?: TextlintRuleCreateOnce<T>;
+};
+
+/**
+ * `createOnce` of a rule function.
+ *
+ * textlint calls it one time for a rule entry, and calls the returned listeners for every file.
+ * The context is the same object for every file. `report`, `getSource`, `getFilePath`, and `getConfigBaseDir`
+ * refer to the file being linted, so they can be called only in the listeners.
+ * The listeners must be synchronous: returning a Promise is an error.
+ * Reset the state of a file in the `Document` listener, which runs first for every file.
+ */
+export type TextlintRuleCreateOnce<T extends object = object> = (
     context: Readonly<TextlintRuleContext>,
     options?: TextlintRuleOptions<T>
 ) => TextlintRuleReportHandler;

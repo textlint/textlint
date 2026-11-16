@@ -7,6 +7,7 @@ import type { TextlintSourceCode } from "@textlint/types";
 import { getSeverity } from "../shared/rule-severity.js";
 import { TextlintRuleContextImpl } from "../context/TextlintRuleContextImpl.js";
 import { TextlintFilterRuleContextImpl } from "../context/TextlintFilterRuleContextImpl.js";
+import { hasCreateOnce, OnceRule, OnceRuleStore } from "./once-rule.js";
 
 export interface TextLintCoreTaskArgs {
     config: TextlintKernelConstructorOptions;
@@ -14,6 +15,7 @@ export interface TextLintCoreTaskArgs {
     filterRuleDescriptors: TextlintFilterRuleDescriptors;
     sourceCode: TextlintSourceCode;
     configBaseDir?: string;
+    onceRuleStore?: OnceRuleStore;
 }
 
 export default class TextLintCoreTask extends CoreTask {
@@ -22,9 +24,18 @@ export default class TextLintCoreTask extends CoreTask {
     filterRuleDescriptors: TextlintFilterRuleDescriptors;
     sourceCode: TextlintSourceCode;
     configBaseDir?: string;
+    onceRuleStore?: OnceRuleStore;
 
-    constructor({ config, configBaseDir, ruleDescriptors, filterRuleDescriptors, sourceCode }: TextLintCoreTaskArgs) {
+    constructor({
+        config,
+        configBaseDir,
+        ruleDescriptors,
+        filterRuleDescriptors,
+        sourceCode,
+        onceRuleStore
+    }: TextLintCoreTaskArgs) {
         super();
+        this.onceRuleStore = onceRuleStore;
         this.config = config;
         this.configBaseDir = configBaseDir;
         this.ruleDescriptors = ruleDescriptors;
@@ -47,6 +58,22 @@ export default class TextLintCoreTask extends CoreTask {
         // see https://github.com/textlint/textlint/issues/219
         this.ruleDescriptors.lintableDescriptors.forEach((ruleDescriptor) => {
             const ruleOptions = ruleDescriptor.normalizedOptions;
+            const linter = ruleDescriptor.linter;
+            if (this.onceRuleStore !== undefined && hasCreateOnce(linter)) {
+                const onceRule = this.onceRuleStore.get(
+                    "lint",
+                    ruleDescriptor.toKernel(),
+                    () =>
+                        new OnceRule({
+                            ruleId: ruleDescriptor.id,
+                            severityLevel: getSeverity(ruleOptions),
+                            createOnce: linter.createOnce,
+                            ruleOptions
+                        })
+                );
+                this.addOnceRule(onceRule, { sourceCode, report, configBaseDir: this.configBaseDir });
+                return;
+            }
             const ruleContext = new TextlintRuleContextImpl({
                 ruleId: ruleDescriptor.id,
                 severityLevel: getSeverity(ruleOptions),
@@ -54,7 +81,7 @@ export default class TextLintCoreTask extends CoreTask {
                 report,
                 configBaseDir: this.configBaseDir
             });
-            this.tryToAddListenRule(ruleDescriptor.linter, ruleContext, ruleOptions);
+            this.tryToAddListenRule(linter, ruleContext, ruleOptions);
         });
         // setup "filters" field
         this.filterRuleDescriptors.descriptors.forEach((filterDescriptor) => {

@@ -95,6 +95,7 @@ textlint でも動かせますが、そのために作られてはいません�
 | MCP サーバー | Model Context Protocol を通じて AI エージェントに Lint を提供する | 未作成 |
 | パフォーマンスプロファイル | 実行の時間がどこに使われたかを、フェーズ、パーサー、ルール、ファイルごとに示す | [Requirements](features/performance-profile/requirements.ja.md) |
 | 変更の比較 | 2 つのビルドの Lint 結果と性能を、固定した文書で、ローカルと CI で比較する | [Requirements](features/change-comparison/requirements.ja.md) |
+| ルールの 1 回生成 | ルールがリスナーを 1 回だけ作り、すべてのファイルで使い回せるようにする | [Requirements](features/rule-create-once/requirements.ja.md) |
 
 ## 成功の定義
 
