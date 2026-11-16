@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794828941618,
+  "lastUpdate": 1794828967299,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -131459,6 +131459,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.43572971138000005,
             "range": "± 0.011410257000000035",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "4565a3ef1b6d8887e7b37184287e3ea6823b8069",
+          "message": "fix(benchmark): improve how the comparison renders on GitHub\n\n- Use <code> in <summary>, where GitHub does not parse Markdown backquotes\n- Without --profile in the base, show the head profile without empty base columns\n- Do not repeat the base commit as its ref (CI passes the SHA)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFhDjQv5inahhbbFMD\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-16T11:34:22Z",
+          "tree_id": "185317407f5ab3e55b8be9f7cc229222b292a21f",
+          "url": "https://github.com/textlint/textlint/commit/4565a3ef1b6d8887e7b37184287e3ea6823b8069"
+        },
+        "date": 1794828950741,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20201844878000003,
+            "range": "± 0.04154186200000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.66532050458,
+            "range": "± 0.06870503900000013",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.5177313547800001,
+            "range": "± 0.03179889700000005",
             "unit": "seconds"
           }
         ]
