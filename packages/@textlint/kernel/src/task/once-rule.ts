@@ -88,6 +88,9 @@ export class OnceRule {
                     result !== null &&
                     typeof (result as { then?: unknown }).then === "function"
                 ) {
+                    // the lint fails with the error below; consume the rejection of the listener,
+                    // which can fail later when it reports after the traversal
+                    Promise.resolve(result).catch(() => undefined);
                     throw new Error(
                         `Rule '${ruleId}' returned a Promise from the '${type}' listener. The listeners of a rule with createOnce must be synchronous. Use the rule function without createOnce for an asynchronous rule.`
                     );

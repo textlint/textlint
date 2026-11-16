@@ -207,6 +207,29 @@ describe("createOnce", () => {
         });
     });
 
+    it("does not leave an unhandled rejection when an async listener reports after an await", async () => {
+        const kernel = new TextlintKernel();
+        const unhandled: unknown[] = [];
+        const onUnhandled = (reason: unknown) => unhandled.push(reason);
+        process.on("unhandledRejection", onUnhandled);
+        try {
+            const rule = defineRule((context) => {
+                return {
+                    async [context.Syntax.Str](node) {
+                        await Promise.resolve();
+                        context.report(node, new context.RuleError("late"));
+                    }
+                };
+            });
+            await assert.rejects(lint(kernel, "text", "/a.md", [{ ruleId: "async-rule", rule }]));
+            // let the listener resume and the rejection be tracked
+            await new Promise((resolve) => setTimeout(resolve, 10));
+            assert.deepStrictEqual(unhandled, []);
+        } finally {
+            process.off("unhandledRejection", onUnhandled);
+        }
+    });
+
     it("calls the rule function for every file when it does not have createOnce", async () => {
         const kernel = new TextlintKernel();
         let count = 0;
