@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794881472973,
+  "lastUpdate": 1794881758333,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132845,6 +132845,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.28282247054000004,
             "range": "± 0.009786983000000027",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "2829878a0b51f31b17ccf894c1d945a572791c14",
+          "message": "fix(benchmark): reject --runs that is not a positive integer\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAHYvTeGftHu55PuH86\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-17T02:14:42Z",
+          "tree_id": "009b83d52be2eb334239d24f483da26160a9a507",
+          "url": "https://github.com/textlint/textlint/commit/2829878a0b51f31b17ccf894c1d945a572791c14"
+        },
+        "date": 1794881747841,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.15898667332,
+            "range": "± 0.07617525300000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.1088030039199999,
+            "range": "± 0.044420122000000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.25453160072000003,
+            "range": "± 0.061581058999999966",
             "unit": "seconds"
           }
         ]
