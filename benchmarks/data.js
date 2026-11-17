@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794881758333,
+  "lastUpdate": 1794883134356,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132887,6 +132887,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.25453160072000003,
             "range": "± 0.061581058999999966",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "40dfbd5717cde381f871c3ba11e065b86ca2a221",
+          "message": "perf(textlint): lint a few files at a time and read each file when its turn comes\n\nlintFiles and fixFiles started reading and linting all files at once, so the contents\nand the syntax trees of all files were in memory at the same time.\n\n- ExecuteFileBackerManager processes at most 8 files at the same time, in the order of the files\n- a file is read with readFileSync when its turn comes\n- searchFiles uses globSync\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAHYvTeGftHu55PuH86\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-17T02:37:08Z",
+          "tree_id": "5f896b39660843b1a1006d374dfe4cf57ae311c7",
+          "url": "https://github.com/textlint/textlint/commit/40dfbd5717cde381f871c3ba11e065b86ca2a221"
+        },
+        "date": 1794883120522,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23652821959999998,
+            "range": "± 0.07932988899999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.6754587657999997,
+            "range": "± 0.036062054999999926",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.37262093139999997,
+            "range": "± 0.012030083999999996",
             "unit": "seconds"
           }
         ]
