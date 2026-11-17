@@ -73,6 +73,9 @@
 ファイル数は種類 `file` の集計の数、つまりカーネルが処理したファイルの数です。`--cache` がスキップしたファイルには集計がありません。`--stdin` では 1 です。
 プロファイル中は、`showEmptyRuleWarning()` は標準出力ではなく標準エラー出力に書きます。
 
+`textlint` パッケージの `ExecuteFileBackerManager` は、プロファイラーが有効な間はファイルを 1 つずつ処理します。
+`measureAsync` はファイルのフェーズを `await` をまたいで測ります。複数のファイルを処理していると、その間にほかのファイルの処理が走り、そのフェーズの時間に数えられてしまいます。
+
 ## アーキテクチャとシーケンス図
 
 ```mermaid
@@ -86,7 +89,7 @@ sequenceDiagram
     CLI->>P: measure(load-config)
     CLI->>Linter: lintFiles()
     Linter->>P: measure(search-files), measure(lint)
-    loop 各ファイル（並行）
+    loop 各ファイル（1 つずつ）
         Kernel->>P: measure(parse, プラグイン ID)
         Task->>P: リスナーを包む（ルール ID）
         Task->>P: record(traverse)

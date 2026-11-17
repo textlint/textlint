@@ -73,6 +73,9 @@ The total time is `performance.now()` when the report is made.
 The number of files is the number of `file` totals, that is, the files that the kernel processed; a file that `--cache` skips has none. With `--stdin`, it is 1.
 While profiling, `showEmptyRuleWarning()` writes to the standard error instead of the standard output.
 
+`ExecuteFileBackerManager` of the `textlint` package processes one file at a time while the profiler is enabled.
+`measureAsync` measures a phase of a file across `await`; with several files in process, the work of the other files runs in that period and would be counted for the phase.
+
 ## Architecture and sequence diagrams
 
 ```mermaid
@@ -86,7 +89,7 @@ sequenceDiagram
     CLI->>P: measure(load-config)
     CLI->>Linter: lintFiles()
     Linter->>P: measure(search-files), measure(lint)
-    loop each file (concurrently)
+    loop each file (one at a time)
         Kernel->>P: measure(parse, plugin id)
         Task->>P: wrap listeners (rule id)
         Task->>P: record(traverse)

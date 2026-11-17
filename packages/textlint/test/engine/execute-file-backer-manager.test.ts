@@ -2,6 +2,7 @@
 "use strict";
 import { describe, it } from "vitest";
 import * as assert from "node:assert";
+import { profiler } from "@textlint/kernel";
 import type { TextlintResult } from "@textlint/kernel";
 import { ExecuteFileBackerManager } from "../../src/engine/execute-file-backer-manager.js";
 import { AbstractBacker } from "../../src/engine/execute-file-backers/abstruct-backer.js";
@@ -42,6 +43,24 @@ describe("engine/execute-file-backer-manager", function () {
             `${maxRunning} files at the same time: a rule that waits for I/O needs more than one`
         );
         assert.ok(maxRunning < files.length, `${maxRunning} files at the same time: all files`);
+    });
+    it("should process one file at a time while the profile is on", async function () {
+        const manager = new ExecuteFileBackerManager();
+        let running = 0;
+        let maxRunning = 0;
+        profiler.enable();
+        try {
+            await manager.process(files, async (filePath): Promise<TextlintResult> => {
+                running++;
+                maxRunning = Math.max(maxRunning, running);
+                await nextTick();
+                running--;
+                return { filePath, messages: [] };
+            });
+        } finally {
+            profiler.disable();
+        }
+        assert.strictEqual(maxRunning, 1);
     });
     it("should put the files that a backer does not execute after the executed files", async function () {
         const didExecuteFiles: string[] = [];

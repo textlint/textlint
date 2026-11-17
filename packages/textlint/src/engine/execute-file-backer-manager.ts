@@ -1,5 +1,5 @@
 import { AbstractBacker } from "./execute-file-backers/abstruct-backer.js";
-import { TextlintResult } from "@textlint/kernel";
+import { profiler, TextlintResult } from "@textlint/kernel";
 
 /**
  * The number of files in process at the same time.
@@ -8,6 +8,12 @@ import { TextlintResult } from "@textlint/kernel";
  * It is more than one, so a rule that waits for I/O, such as a network request, waits for some files at the same time.
  */
 const MAX_CONCURRENT_FILES = 8;
+/**
+ * The number of files in process at the same time while the profile is on.
+ * The profile measures the phases of a file across `await`.
+ * With more than one file, the time of a phase would include the work of the other files.
+ */
+const MAX_CONCURRENT_FILES_ON_PROFILE = 1;
 
 export class ExecuteFileBackerManager {
     private _backers: AbstractBacker[];
@@ -41,6 +47,7 @@ export class ExecuteFileBackerManager {
      * process `messages` with registered processes
      *
      * At most MAX_CONCURRENT_FILES files are in process at the same time, in the order of `files`.
+     * While the profile is on, one file is in process at a time.
      * The results have the executed files in the order of `files`, and then the un-executed files.
      */
     async process<R extends TextlintResult>(
@@ -82,9 +89,8 @@ export class ExecuteFileBackerManager {
                 }
             }
         };
-        await Promise.all(
-            Array.from({ length: Math.min(MAX_CONCURRENT_FILES, executeFiles.length) }, executeNextFiles)
-        );
+        const maxConcurrentFiles = profiler.enabled ? MAX_CONCURRENT_FILES_ON_PROFILE : MAX_CONCURRENT_FILES;
+        await Promise.all(Array.from({ length: Math.min(maxConcurrentFiles, executeFiles.length) }, executeNextFiles));
         // wait all resolved, and call afterAll
         this._backers.forEach((backer) => {
             backer.afterAll();
