@@ -36,15 +36,20 @@
 
 `compare.mjs` の主な流れは次のとおりです。
 
-1. **ビルド。** ヘッドは作業ツリーです。`--no-build` がなければ、スクリプトはそこで `pnpm --filter "./packages/**" run build` を実行します。Web サイトはビルドしません。ベースはコミットです。スクリプトは `--base`（デフォルトは `origin/master`、リモートのブランチがなければ `master`）を解決し、キャッシュディレクトリに `git worktree add` で detached なワークツリーを作ります。そこで `pnpm install --frozen-lockfile` と同じビルドを実行し、マーカーを書きます。マーカーのある同じコミットのワークツリーは再利用します。
-2. **セット。** small のセットはヘッドの `test/benchmark/examples` です。ほかのセットでは、スクリプトはキャッシュディレクトリにディレクトリを作り、`git init`、`git sparse-checkout set --no-cone /<path>/**`、`git fetch --depth 1 --filter=blob:none origin <commit>`、`git checkout FETCH_HEAD` を実行して、パスの文書だけをダウンロードし、マーカーを書きます。マーカーのあるディレクトリは再利用します。`--set` はカンマ区切りでセットを選び、デフォルトはすべてのセットです。
-3. **1 回の Lint。** 各ビルドについて、スクリプトはセットのディレクトリでビルドの CLI を 1 回実行します。
+1. **準備。** ヘッドのビルド、ベースのビルド、セットのダウンロードは互いに依存しないので、スクリプトはこれらを同時に実行し、すべての完了を待ちます。
+2. **ビルド。** ヘッドは作業ツリーです。`--no-build` がなければ、スクリプトはそこで `pnpm --filter "./packages/**" run build` を実行します。Web サイトはビルドしません。ベースはコミットです。スクリプトは `--base`（デフォルトは `origin/master`、リモートのブランチがなければ `master`）を解決し、キャッシュディレクトリに `git worktree add` で detached なワークツリーを作ります。そこで `pnpm install --frozen-lockfile` と同じビルドを実行し、マーカーを書きます。マーカーのある同じコミットのワークツリーは再利用します。
+3. **セット。** small のセットはヘッドの `test/benchmark/examples` です。ほかのセットでは、スクリプトはキャッシュディレクトリにディレクトリを作り、`git init`、`git sparse-checkout set --no-cone /<path>/**`、`git fetch --depth 1 --filter=blob:none origin <commit>`、`git checkout FETCH_HEAD` を実行して、パスの文書だけをダウンロードし、マーカーを書きます。マーカーのあるディレクトリは再利用します。`--set` はカンマ区切りでセットを選び、デフォルトはすべてのセットです。
+4. **1 回の Lint。** 各ビルドについて、スクリプトはセットのディレクトリでビルドの CLI を 1 回実行します。
    `node <build>/packages/textlint/bin/textlint.js --config <head>/test/benchmark/.textlintrc.jtf-style.json --rules-base-directory <build>/test/benchmark/node_modules <set> --format json --output-file <tmp>/results.json --profile`
    標準出力がプロファイル、ファイルが Lint 結果なので、1 回の実行で両方が得られます。ビルドの `--help` が `--profile` を挙げないときは、このオプションを省き、そのビルドのプロファイルは `null` です。両方のビルドがヘッドの設定と、それぞれがインストールしたルールを使います。
-4. **プロセス内ベンチマーク。** `parse`、続いて `traverse` について、スクリプトは `node --expose-gc micro.mjs --build <build> --dir <set> --mode <mode>` を 3 ラウンド、各ラウンドでベース、ヘッドの順に、それぞれ新しいプロセスで実行します。比較の途中でマシンの状態が変わっても、両方に影響するようにするためです。実行回数はラウンドに分けます。比べるのはすべてのラウンドでもっとも速い実行で、中央値は各ラウンドの中央値の中央値です。サンプリングがノイズになるので、これらのプロセスは CPU プロファイルを記録しません。各ビルドについて、`--cpu-prof` 付きで 1 回だけ実行するプロセスをもう 1 つ起動して記録します。
-5. **CLI の CPU プロファイル。** スクリプトは各ビルドの CLI を `node --cpu-prof` でもう 1 回、`--profile` なしで実行します。
-6. **CLI の実行時間。** `hyperfine` が `PATH` にあれば、スクリプトは手順 3 の 2 つのコマンドから `--profile` を除き `--output-file /dev/null` にしたもので、`hyperfine --ignore-failure --warmup 1 --runs <n> --export-json <tmp>/time.json` を実行します。ベースのすべての実行のあとにヘッドのすべての実行が続きます。ルールがエラーを報告すると終了ステータスが 1 になるので `--ignore-failure` が必要です。各引数はシェル向けにクォートします。hyperfine 1.x と 2.x の JSON を読めます。
-7. **差。** スクリプトは結果を比べ（データモデルを参照）、Markdown を標準出力と `compare.md` に、`compare.json` と `cpuprofiles/` を出力ディレクトリに書きます。
+5. **CPU プロファイル。** スクリプトは各ビルドの CLI を `node --cpu-prof` でもう 1 回、`--profile` なしで、`--output-file` を null デバイスにして実行します。また、各ビルドの `micro.mjs` を `parse` と `traverse` について、`--cpu-prof` 付きで 1 回だけ実行します。サンプリングがノイズになるので、時間を測るプロセスは CPU プロファイルを記録しません。
+6. **プロセス内ベンチマーク。** `parse`、続いて `traverse` について、スクリプトは `node --expose-gc micro.mjs --build <build> --dir <set> --mode <mode>` を 3 ラウンド、各ラウンドでベース、ヘッドの順に、それぞれ新しいプロセスで実行します。比較の途中でマシンの状態が変わっても、両方に影響するようにするためです。実行回数はラウンドに分けます。比べるのはすべてのラウンドでもっとも速い実行で、中央値は各ラウンドの中央値の中央値です。
+7. **CLI の実行時間。** スクリプトは手順 5 のコマンドから `--cpu-prof` を除いたものを `<n>` ラウンド実行し、各プロセスの経過時間を測ります。1 つのラウンドでベースとヘッドを実行し、次のラウンドでは逆の順で実行します。ルールがエラーを報告すると終了ステータスが 1 になるので、1 は失敗として扱いません。手順 4 と 5 の実行が両方のビルドで同じファイルを読んでいるので、ウォームアップの実行はありません。
+8. **差。** スクリプトは結果を比べ（データモデルを参照）、Markdown を標準出力と `compare.md` に、`compare.json` と `cpuprofiles/` を出力ディレクトリに書きます。
+
+手順 4 と 5 の実行は時間を測らないので、スクリプトはこれらを同時に実行します。同時に動かすプロセスの数はマシンの CPU の数の半分です（1 つのプロセスが 1 つの CPU を使い、ガベージコレクターがさらに使います）。手順 6 と 7 の実行は時間を測るので、それらのあとに、1 プロセスずつ実行します。
+
+`--measure` は手順 4 から 7 で実行するものを選びます。`cli` は Lint、CLI の CPU プロファイル、CLI の実行時間です。`in-process` はプロセス内ベンチマークとその CPU プロファイルです。デフォルトは両方です。測らなかったものは結果で `null` になります。
 
 `micro.mjs` はセットの Markdown ファイルを決まった順で読みます。`parse` モードでは、すべてをビルドの `@textlint/markdown-to-ast` で、続いて `@textlint/text-to-ast` でパースします。`traverse` モードでは、すべてを一度パースし、ビルドのカーネルで、`preProcess` がパース済みの木を返すプラグインと、`ASTNodeTypes` と、パース済みの木にある `yaml` などのすべてのノードの種類（exit の種類を含む）を空の関数で購読するルールを使って、それぞれを Lint します。そのため時間は、パースを除いた、トラバース、振り分け、ファイルごとのカーネルの処理です。各測定は 1 回のウォームアップのあと `runs × 2` 回実行し、各実行の前に `gc()` を呼びます。1 回の実行は、ウォームアップから求めた回数だけ処理を繰り返して 200 ms 以上かけ、その時間を回数で割ります。小さなセットを数ミリ秒で測らないためです。マシンのノイズは実行を遅くするだけなので、スクリプトはもっとも速い実行を比べます。
 
@@ -59,25 +64,35 @@ sequenceDiagram
     participant Git
     participant Base as ベースのビルド
     participant Head as ヘッドのビルド
-    participant HF as hyperfine
-    Dev->>Script: pnpm run compare [--base ref] [--set names]
-    Script->>Head: pnpm build（packages）
-    Script->>Git: worktree add base（キャッシュ）
-    Script->>Base: pnpm install、pnpm build（packages）
-    loop 各セット
+    Dev->>Script: pnpm run compare [--base ref] [--set names] [--measure names]
+    par 準備
+        Script->>Head: pnpm build（packages）
+    and
+        Script->>Git: worktree add base（キャッシュ）
+        Script->>Base: pnpm install、pnpm build（packages）
+    and
         Script->>Git: sparse fetch --depth 1 commit（セットごとに 1 回）
-        Script->>Base: textlint --profile --format json --output-file
-        Script->>Head: textlint --profile --format json --output-file
-        Script->>Base: micro.mjs parse / traverse（3 ラウンド、続いて --cpu-prof）
-        Script->>Head: micro.mjs parse / traverse（3 ラウンド、続いて --cpu-prof）
-        Script->>Base: textlint（--cpu-prof）
-        Script->>Head: textlint（--cpu-prof）
-        Script->>HF: ベースの実行、続いてヘッドの実行
+    end
+    loop 各セット
+        par 時間を測らない実行
+            Script->>Base: textlint --profile --format json --output-file
+            Script->>Head: textlint --profile --format json --output-file
+            Script->>Base: textlint（--cpu-prof）、micro.mjs parse / traverse（--cpu-prof）
+            Script->>Head: textlint（--cpu-prof）、micro.mjs parse / traverse（--cpu-prof）
+        end
+        loop 3 ラウンド、parse、続いて traverse
+            Script->>Base: micro.mjs
+            Script->>Head: micro.mjs
+        end
+        loop 実行回数
+            Script->>Base: textlint（時間を測る）
+            Script->>Head: textlint（時間を測る）
+        end
     end
     Script-->>Dev: Markdown（標準出力）、compare.md、compare.json、cpuprofiles/
 ```
 
-CI では、各セットがマトリクスの 1 つのジョブです。各ジョブが両方のビルドを作ります。ジョブ間でビルドを共有すると、パッケージとその `node_modules` をアーティファクトとしてアップロードすることになり、すべてのジョブが 1 つのビルドジョブを待つためです。
+CI では、各セットがマトリクスの 1 つのジョブで、huge のセットは `--measure cli` と `--measure in-process` の 2 つのジョブです。各ジョブが両方のビルドを作ります。ジョブ間でビルドを共有すると、パッケージとその `node_modules` をアーティファクトとしてアップロードすることになり、すべてのジョブが 1 つのビルドジョブを待つためです。
 
 ## データモデルと ER 図
 
@@ -95,12 +110,15 @@ type SetResult = {
     commit: string | null;
     label: string | null;
     files: number; // セットの Markdown ファイル数
-    messages: { base: number; head: number; added: Message[]; removed: Message[] };
-    time: Compared<CliStats> | null; // hyperfine がないとき null
-    parsers: ({ id: string } & Compared<MicroStats>)[]; // "@textlint/markdown-to-ast"、"@textlint/text-to-ast"
-    traverse: Compared<MicroStats>;
-    profiles: { base: TextlintProfileReport | null; head: TextlintProfileReport | null };
-    cpu: Record<"base" | "head", Record<"cli" | "parse" | "traverse", CpuSummary>>;
+    // null：比較が CLI を測らなかった
+    messages: { base: number; head: number; added: Message[]; removed: Message[] } | null;
+    time: Compared<CliStats> | null;
+    profiles: { base: TextlintProfileReport | null; head: TextlintProfileReport | null } | null;
+    // null：比較がプロセス内ベンチマークを測らなかった
+    parsers: ({ id: string } & Compared<MicroStats>)[] | null; // "@textlint/markdown-to-ast"、"@textlint/text-to-ast"
+    traverse: Compared<MicroStats> | null;
+    // 比較が測らなかったものはキーがない
+    cpu: Record<"base" | "head", Partial<Record<"cli" | "parse" | "traverse", CpuSummary>>>;
 };
 type Message = { file: string; line: number; column: number; ruleId: string; message: string }; // file はセットからの相対パス
 type Compared<S> = { base: S; head: S; ratio: number; mark: "slower" | "faster" | null };
@@ -122,8 +140,8 @@ CPU プロファイルは self time でまとめます。サンプルは、フ�
 Markdown の出力は、見出し「Profile and benchmark: base vs head」と、ベースとヘッドのリンク付きのコミットから始まります。ベースの ref は、コミットそのものでなければリンクのあとに付けます。GitHub は `<summary>` の中の Markdown を解釈しないので、折りたたんだセクションの見出しは HTML（`<code>`）を使います。セットが複数あれば、各セットの判定、CLI の比、メッセージ数の行を持つ表が続きます。次にしきい値を説明する行があります。そして各セットについて、次の順で持ちます。
 
 1. セット、リンク付きのコミットとラベル、ファイル数の見出し。
-2. 何が変わったかを示す 1 行。CLI の比を伴う `✅ No change in lint results`、または変わったもの（Lint 結果、印の付いたパーサー、traverse、CLI）を並べた `⚠️ Changed:`。
-3. ベース、ヘッド、変化の表。CLI の実行時間、各パーサー、トラバース、メッセージ数。
+2. 何が変わったかを示す 1 行。CLI の比を伴う `✅ No change in lint results`、または変わったもの（Lint 結果、印の付いたパーサー、traverse、CLI）を並べた `⚠️ Changed:`。CLI を測らなかったときは、この行がそう示し、Lint 結果が同じだとは示さない。
+3. ベース、ヘッド、変化の表。CLI の実行時間、各パーサー、トラバース、メッセージ数。測ったものだけが行を持つ。
 4. 異なるときだけ：削除されたメッセージと追加されたメッセージ。それぞれ最大 50 行。
 5. 折りたたんだセクション：ベースとヘッドのプロファイルを並べたもの（フェーズ、上位 10 ルール、遅いファイル。ベースに `--profile` がなければ、空のベースの列を持たないヘッドだけの表）と、CLI、パーサー、トラバースそれぞれの、self time の上位 15 パッケージ（ベース、ヘッド、比）とヘッドの上位 15 関数。
 
@@ -134,17 +152,18 @@ CPU プロファイルは `cpuprofiles/<set>-<base|head>-<cli|parse|traverse>.cp
 ### コマンド
 
 ```
-pnpm run compare [--base <ref>] [--set small,medium,large,huge] [--runs <n>] [--out-dir <dir>] [--cache-dir <dir>] [--no-build]
+pnpm run compare [--base <ref>] [--set small,medium,large,huge] [--measure cli,in-process] [--runs <n>] [--out-dir <dir>] [--cache-dir <dir>] [--no-build]
 pnpm run compare --render <compare.json> [--render <compare.json>]...
 ```
 
 - `--base`：Git の ref かコミット。デフォルトは `origin/master`、なければ `master`。
 - `--set`：セット。デフォルトはすべて。
+- `--measure`：測るもの。`cli`、`in-process`、またはその両方。デフォルトは両方。
 - `--runs`：すべてのセットでの CLI の実行回数。プロセス内ベンチマークはその 2 倍実行する。
 - `--out-dir`：`compare.md`、`compare.json`、`cpuprofiles/` を書く場所。デフォルトはカレントディレクトリの `compare-result` で、`.gitignore` に含まれる。
 - `--cache-dir`：ベースのワークツリーとセットを置く場所。デフォルトは `$XDG_CACHE_HOME/textlint-compare`、または `~/.cache/textlint-compare`。リポジトリの外なので、ビルド、リポジトリの Lint、pnpm のワークスペースからは見えない。
 - `--no-build`：ヘッドをビルドしない（ビルド済み）。
-- `--render`：以前の JSON の出力を 1 つの比較として Markdown で出力し、ビルドも Lint もしない。出力は同じベースとヘッドのコミットを持たなければならない。
+- `--render`：以前の JSON の出力を 1 つの比較として Markdown で出力し、ビルドも Lint もしない。出力は同じベースとヘッドのコミットを持たなければならない。同じセットで測ったものが違う出力は、1 つのセットになる。
 
 終了ステータス：差にかかわらず比較を書けたら 0、実行できなければ 2。
 
@@ -154,10 +173,10 @@ pnpm run compare --render <compare.json> [--render <compare.json>]...
 
 - `on: pull_request` と `paths`：`packages/**`、`test/benchmark/**`、`package.json`、`pnpm-lock.yaml`、`pnpm-workspace.yaml`、ワークフローのファイル、`!**/*.md`、続いて `test/benchmark/examples/**`。小さなセットの Markdown ファイルの変更でもワークフローを実行するためです（後のフィルターが優先されます）。
 - ワークフローの `permissions: contents: read`。どのステップも `secrets` を使わない。
-- ジョブ `compare` は `strategy.matrix.set: [small, medium, large, huge]` と `fail-fast: false` を持ち、`ubuntu-latest`、`timeout-minutes: 30` で動く。各ジョブの名前はセット。
-- ステップ：`persist-credentials: false` と `fetch-depth: 0`（ベースのコミットが必要）でのチェックアウト、pnpm、`.node-version` の Node.js、`sudo apt-get install -y hyperfine`、`pnpm install --frozen-lockfile`、`--base "$BASE_SHA" --set "$SET" --out-dir "compare-result-$SET"` でのスクリプト、そして出力ディレクトリをアーティファクト `profile-benchmark-<set>` としてアップロード。
-- ジョブ `summary` は、セットのジョブのどれかが失敗しても、それらのあとに実行される。アーティファクトをダウンロードし、すべての `compare.json` での `--render` の Markdown を `$GITHUB_STEP_SUMMARY` に追記する。結果のないセットがあればそう示す。
-- ベースのコミットは `github.event.pull_request.base.sha` から、セットはマトリクスから、環境変数を通して渡す。
+- ジョブ `compare` は `strategy.matrix.include` と `fail-fast: false` を持ち、`ubuntu-latest`、`timeout-minutes: 30` で動く。マトリクスは、両方を測る `small`、`medium`、`large` と、2 つの `huge` を持つ。`huge` は `cli`（結果は `huge-cli`）と `in-process`（結果は `huge-in-process`）。各ジョブの名前はセットで、`huge` では測るものが続く。
+- ステップ：`persist-credentials: false` で履歴なしのチェックアウト、`git fetch --no-tags --depth=1 origin "$BASE_SHA"`（ベースのコミットは必要で、その履歴は不要）、pnpm、`.node-version` の Node.js、`pnpm install --frozen-lockfile`、`--base "$BASE_SHA" --set "$SET" --measure "$MEASURE" --out-dir "compare-result-$RESULT"` でのスクリプト、そして出力ディレクトリをアーティファクト `profile-benchmark-<result>` としてアップロード。
+- ジョブ `summary` は、セットのジョブのどれかが失敗しても、それらのあとに実行される。アーティファクトをダウンロードし、すべての `compare.json` での `--render` の Markdown を `$GITHUB_STEP_SUMMARY` に追記する。結果のないマトリクスのジョブがあればそう示す。
+- ベースのコミットは `github.event.pull_request.base.sha` から、セット、測るもの、結果の名前はマトリクスから、環境変数を通して渡す。
 - アクションはコミット SHA で固定し、バージョンをコメントに書く。
 
 ### AI エージェント向けの指示
@@ -168,7 +187,6 @@ pnpm run compare --render <compare.json> [--render <compare.json>]...
 
 - **GitHub Actions**：ワークフローを実行し、リポジトリの保持期間の間アーティファクトを残す。デフォルトの読み取り専用の `GITHUB_TOKEN` 以外のトークンは使わず、スクリプトもそれを使わない。
 - **GitHub（HTTPS の git）**：セットは、部分的、sparse、shallow な fetch でコミットを指定して取得する。GitHub は公開リポジトリのコミットに対してこれを許す。fetch の失敗は終了ステータス 2 でスクリプトを止める。
-- **hyperfine**：CI では apt でインストールする。ローカルでは任意。
 
 ## データの扱い
 
@@ -215,6 +233,14 @@ CI ジョブは読み取り専用の `GITHUB_TOKEN` を持ち、シークレッ�
 ### 1 回ビルドしてジョブ間でビルドを共有する
 
 各ジョブのビルドを省けますが、アーティファクトがパッケージとその `node_modules` を持つことになり、ジョブが 1 つのビルドジョブを待ちます。ジョブは並行して動くので選びませんでした。
+
+### CLI の実行時間に hyperfine を使う
+
+hyperfine は、ベースのすべての実行のあとにヘッドのすべての実行を行い、それぞれにウォームアップの実行を 1 回加えました。2 つのまとまりの間でマシンの状態が変わると、ビルドの差に見えました。また、CI はすべてのジョブでこのツールをインストールしました。スクリプトでプロセスの時間を測れば、ビルドを交互に実行でき、ツールも不要です。
+
+### huge のセットを 1 つのジョブで比べる
+
+ほかの変更のあとも、huge のセットでは、時間を測る実行と準備がジョブの時間の半分より多くを使います。時間を測るプロセスを同時に実行するとノイズが増えます。2 つのジョブにすれば、時間を測る実行はどれもそのマシンで単独で動きます。代わりに、両方のビルドを作るジョブが 1 つ増えます。
 
 ### CI でセットをキャッシュする
 

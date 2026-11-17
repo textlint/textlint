@@ -1,6 +1,7 @@
 name: Profile and benchmark
 # Profile and benchmark the base and the head of a pull request on fixed sets of documents.
 # One job runs for each set, and the summary job puts the results of all sets in one job summary.
+# The huge set has two jobs, one for the CLI and one for the in-process benchmarks, because it takes the longest.
 # See docs/products/textlint/features/change-comparison/
 #
 # This workflow runs the code of the pull request, including a pull request from a fork.
@@ -24,41 +25,49 @@ concurrency:
   cancel-in-progress: true
 jobs:
   compare:
-    name: "${{ matrix.set }}"
+    name: "${{ matrix.set }}${{ matrix.measure != 'cli,in-process' && format(' ({0})', matrix.measure) || '' }}"
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
-        set: [small, medium, large, huge]
+        include:
+          - { set: small, measure: "cli,in-process", result: small }
+          - { set: medium, measure: "cli,in-process", result: medium }
+          - { set: large, measure: "cli,in-process", result: large }
+          - { set: huge, measure: cli, result: huge-cli }
+          - { set: huge, measure: in-process, result: huge-in-process }
     steps:
       - name: checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          # the base commit is needed for its worktree
-          fetch-depth: 0
           persist-credentials: false
+      - name: Fetch the base commit
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        # the base commit is needed for its worktree, and its history is not
+        run: git fetch --no-tags --depth=1 origin "$BASE_SHA"
       - name: Install pnpm
         uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
       - name: setup Node
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .node-version
-      - name: Install hyperfine
-        run: sudo apt-get update && sudo apt-get install -y hyperfine
       - name: Install
         run: pnpm install --frozen-lockfile
       - name: Profile and benchmark the base and the head
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           SET: ${{ matrix.set }}
+          MEASURE: ${{ matrix.measure }}
+          RESULT: ${{ matrix.result }}
         # The Markdown goes to the log; the summary job puts all sets in the job summary
-        run: node test/benchmark/compare.mjs --base "$BASE_SHA" --set "$SET" --out-dir "compare-result-$SET"
+        run: node test/benchmark/compare.mjs --base "$BASE_SHA" --set "$SET" --measure "$MEASURE" --out-dir "compare-result-$RESULT"
       - name: Upload the result
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: profile-benchmark-${{ matrix.set }}
-          path: compare-result-${{ matrix.set }}/
+          name: profile-benchmark-${{ matrix.result }}
+          path: compare-result-${{ matrix.result }}/
           if-no-files-found: error
   summary:
     name: summary
@@ -94,10 +103,10 @@ jobs:
           fi
           node test/benchmark/compare.mjs "${args[@]}" >> "$GITHUB_STEP_SUMMARY"
           missing=()
-          for set in small medium large huge; do
-            [ -f "results/profile-benchmark-$set/compare.json" ] || missing+=("$set")
+          for result in small medium large huge-cli huge-in-process; do
+            [ -f "results/profile-benchmark-$result/compare.json" ] || missing+=("$result")
           done
           if [ "${#missing[@]}" -gt 0 ]; then
-            printf "\n⚠️ No result for: %s. See the jobs of these sets.\n" "${missing[*]}" >> "$GITHUB_STEP_SUMMARY"
+            printf "\n⚠️ No result for: %s. See these jobs.\n" "${missing[*]}" >> "$GITHUB_STEP_SUMMARY"
           fi
           echo "The CPU profiles are in the artifacts profile-benchmark-<set> (open them in the Performance panel of Chrome DevTools)." >> "$GITHUB_STEP_SUMMARY"

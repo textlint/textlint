@@ -1,14 +1,14 @@
 // Compare two builds of textlint, the base and the head, on fixed sets of documents.
 // See docs/products/textlint/features/change-comparison/
 //
-// Usage: pnpm run compare [--base <ref>] [--set small,medium,large,huge] [--runs <n>] [--out-dir <dir>]
-//                         [--cache-dir <dir>] [--no-build] [--render <compare.json>]...
+// Usage: pnpm run compare [--base <ref>] [--set small,medium,large,huge] [--measure cli,in-process] [--runs <n>]
+//                         [--out-dir <dir>] [--cache-dir <dir>] [--no-build] [--render <compare.json>]...
 //
 // It uses only the built-in modules of Node.js, so it runs on a fresh checkout and compares any two commits.
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { spawnSync } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { parseArgs } from "node:util";
 import { fileURLToPath } from "node:url";
 
@@ -16,6 +16,9 @@ const HEAD_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..
 const BENCHMARK_DIR = path.join(HEAD_ROOT, "test/benchmark");
 const CONFIG_FILE = path.join(BENCHMARK_DIR, ".textlintrc.jtf-style.json");
 const SET_NAMES = ["small", "medium", "large", "huge"];
+// What a comparison measures: the CLI (lint results, profile, CPU profile, run time),
+// and the in-process benchmarks (parsers, traversal, and their CPU profiles)
+const MEASURE_NAMES = ["cli", "in-process"];
 const SMALL_RUNS = 10;
 // The number of runs of the in-process benchmarks for each run of the CLI
 const MICRO_RUNS_FACTOR = 2;
@@ -53,9 +56,67 @@ const run = (command, args, options = {}) => {
     }
     return result;
 };
+/**
+ * `run` without blocking, for the commands that run at the same time as others.
+ * Only preparation and runs that are not timed use it.
+ */
+const children = new Set();
+const runAsync = (command, args, options = {}) =>
+    new Promise((resolve, reject) => {
+        const child = spawn(command, args, {
+            cwd: options.cwd ?? HEAD_ROOT,
+            stdio: ["ignore", "pipe", "pipe"],
+            env: { ...process.env, ...options.env }
+        });
+        children.add(child);
+        const stdout = [];
+        const stderr = [];
+        child.stdout.on("data", (chunk) => stdout.push(chunk));
+        child.stderr.on("data", (chunk) => stderr.push(chunk));
+        child.on("error", (error) => {
+            children.delete(child);
+            reject(new CompareError(`${command} ${args.join(" ")} failed: ${error.message}`));
+        });
+        child.on("close", (status) => {
+            children.delete(child);
+            const result = {
+                status,
+                stdout: Buffer.concat(stdout).toString("utf-8"),
+                stderr: Buffer.concat(stderr).toString("utf-8")
+            };
+            if ((options.okStatuses ?? [0]).includes(status)) {
+                resolve(result);
+                return;
+            }
+            reject(
+                new CompareError(
+                    `${options.label ?? command} failed with the exit status ${status}: ${command} ${args.join(" ")}\n${
+                        result.stderr
+                    }`
+                )
+            );
+        });
+    });
+/**
+ * Run the tasks, at most `limit` at the same time, and return their results in the order of the tasks.
+ */
+const runPool = async (tasks, limit) => {
+    const results = [];
+    let next = 0;
+    const worker = async () => {
+        while (next < tasks.length) {
+            const index = next++;
+            results[index] = await tasks[index]();
+        }
+    };
+    await Promise.all(Array.from({ length: Math.max(1, Math.min(limit, tasks.length)) }, worker));
+    return results;
+};
+// A run that is not timed takes one CPU and the garbage collector uses more, so half of the CPUs run at the same time
+const UNTIMED_CONCURRENCY = Math.max(1, Math.floor(os.availableParallelism() / 2));
 const log = (message) => process.stderr.write(`[compare] ${message}\n`);
 const git = (args, cwd = HEAD_ROOT) => run("git", args, { cwd }).stdout.trim();
-const hasCommand = (command) => spawnSync(command, ["--version"], { stdio: "ignore" }).status === 0;
+const gitAsync = async (args, cwd = HEAD_ROOT) => (await runAsync("git", args, { cwd })).stdout.trim();
 
 // ---------------------------------------------------------------------------
 // Builds
@@ -77,7 +138,7 @@ const defaultBase = () => {
  * Hold a lock directory while preparing an entry of the cache.
  * A lock of a running process stops this comparison; a stale lock is reported and not removed.
  */
-const withLock = (entry, fn) => {
+const withLock = async (entry, fn) => {
     const lock = `${entry}.lock`;
     fs.mkdirSync(path.dirname(lock), { recursive: true });
     try {
@@ -89,24 +150,27 @@ const withLock = (entry, fn) => {
     }
     fs.writeFileSync(path.join(lock, "pid"), String(process.pid));
     try {
-        return fn();
+        return await fn();
     } finally {
         fs.rmSync(lock, { recursive: true, force: true });
     }
 };
 
-const buildPackages = (root, label) => {
+const buildPackages = async (root, label) => {
     log(`building ${label}`);
-    run("pnpm", ["--filter", "./packages/**", "run", "build"], { cwd: root, label: `the build of ${label}` });
+    await runAsync("pnpm", ["--filter", "./packages/**", "run", "build"], {
+        cwd: root,
+        label: `the build of ${label}`
+    });
 };
 
-const prepareBase = (commit, cacheDir) => {
+const prepareBase = async (commit, cacheDir) => {
     const dir = path.join(cacheDir, `base-${commit}`);
     const marker = path.join(dir, ".compare-built");
     if (fs.existsSync(marker)) {
         return dir;
     }
-    return withLock(dir, () => {
+    return withLock(dir, async () => {
         if (fs.existsSync(marker)) {
             return dir;
         }
@@ -116,10 +180,10 @@ const prepareBase = (commit, cacheDir) => {
         }
         spawnSync("git", ["worktree", "prune"], { cwd: HEAD_ROOT, stdio: "ignore" });
         log(`creating a worktree of the base ${commit.slice(0, 12)}`);
-        git(["worktree", "add", "--detach", dir, commit]);
+        await gitAsync(["worktree", "add", "--detach", dir, commit]);
         log("installing the dependencies of the base");
-        run("pnpm", ["install", "--frozen-lockfile"], { cwd: dir, label: "pnpm install of the base" });
-        buildPackages(dir, "the base");
+        await runAsync("pnpm", ["install", "--frozen-lockfile"], { cwd: dir, label: "pnpm install of the base" });
+        await buildPackages(dir, "the base");
         fs.writeFileSync(marker, commit);
         return dir;
     });
@@ -136,7 +200,7 @@ const supportsProfile = (root) => {
 
 const loadSets = () => JSON.parse(fs.readFileSync(path.join(BENCHMARK_DIR, "compare-sets.json"), "utf-8"));
 
-const prepareSet = (name, sets, cacheDir) => {
+const prepareSet = async (name, sets, cacheDir) => {
     if (name === "small") {
         return {
             name,
@@ -154,18 +218,18 @@ const prepareSet = (name, sets, cacheDir) => {
     const dir = path.join(cacheDir, "sets", `${name}-${set.commit}`);
     const marker = path.join(dir, ".compare-ready");
     if (!fs.existsSync(marker)) {
-        withLock(dir, () => {
+        await withLock(dir, async () => {
             if (fs.existsSync(marker)) {
                 return;
             }
             fs.rmSync(dir, { recursive: true, force: true });
             fs.mkdirSync(dir, { recursive: true });
             log(`downloading ${set.repository} ${set.commit.slice(0, 12)} (${set.path})`);
-            git(["init", "--quiet"], dir);
-            git(["remote", "add", "origin", set.repository], dir);
-            git(["sparse-checkout", "set", "--no-cone", `/${set.path}/**`], dir);
-            git(["fetch", "--quiet", "--depth", "1", "--filter=blob:none", "origin", set.commit], dir);
-            git(["checkout", "--quiet", "FETCH_HEAD"], dir);
+            await gitAsync(["init", "--quiet"], dir);
+            await gitAsync(["remote", "add", "origin", set.repository], dir);
+            await gitAsync(["sparse-checkout", "set", "--no-cone", `/${set.path}/**`], dir);
+            await gitAsync(["fetch", "--quiet", "--depth", "1", "--filter=blob:none", "origin", set.commit], dir);
+            await gitAsync(["checkout", "--quiet", "FETCH_HEAD"], dir);
             fs.writeFileSync(marker, set.commit);
         });
     }
@@ -209,7 +273,7 @@ const cliArgs = (root, set) => [
 /**
  * Lint the set once. It returns the lint results and, when the build has --profile, its profile.
  */
-const lintOnce = (root, set, label, tmpDir) => {
+const lintOnce = async (root, set, label, tmpDir) => {
     const resultsFile = path.join(tmpDir, `results-${label}.json`);
     const withProfile = supportsProfile(root);
     const args = [...cliArgs(root, set), "--format", "json", "--output-file", resultsFile];
@@ -217,7 +281,11 @@ const lintOnce = (root, set, label, tmpDir) => {
         args.push("--profile");
     }
     // 0: no error, 1: errors are found
-    const result = run(process.execPath, args, { cwd: set.dir, okStatuses: [0, 1], label: `the lint of ${label}` });
+    const result = await runAsync(process.execPath, args, {
+        cwd: set.dir,
+        okStatuses: [0, 1],
+        label: `the lint of ${label}`
+    });
     const results = JSON.parse(fs.readFileSync(resultsFile, "utf-8"));
     return {
         results,
@@ -225,16 +293,16 @@ const lintOnce = (root, set, label, tmpDir) => {
     };
 };
 
-const cpuProfile = (args, name, label, set, outDir) => {
+const cpuProfile = async (args, name, label, set, outDir) => {
     const dir = path.join(outDir, "cpuprofiles");
     fs.mkdirSync(dir, { recursive: true });
     const fileName = `${set.name}-${label}-${name}.cpuprofile`;
-    const result = run(process.execPath, ["--cpu-prof", "--cpu-prof-dir", dir, "--cpu-prof-name", fileName, ...args], {
+    await runAsync(process.execPath, ["--cpu-prof", "--cpu-prof-dir", dir, "--cpu-prof-name", fileName, ...args], {
         cwd: set.dir,
         okStatuses: [0, 1],
         label: `the ${name} run of ${label}`
     });
-    return { file: path.join(dir, fileName), stdout: result.stdout };
+    return path.join(dir, fileName);
 };
 
 const microArgs = (root, set, mode, runs) => [
@@ -276,11 +344,10 @@ const mergeMicroResults = (results, mode) => {
 
 /**
  * Measure a mode of the base and the head in MICRO_ROUNDS rounds, base and head in turns, each in a new process,
- * so a change of the machine during the measurement affects both builds.
- * The measuring processes do not record a CPU profile, because the sampling adds noise;
- * one more process for each build records it.
+ * one process at a time, so a change of the machine during the measurement affects both builds.
+ * The measuring processes do not record a CPU profile, because the sampling adds noise.
  */
-const microBench = (roots, set, mode, outDir) => {
+const microBench = (roots, set, mode) => {
     const runsPerRound = Math.max(1, Math.ceil((set.runs * MICRO_RUNS_FACTOR) / MICRO_ROUNDS));
     const results = { base: [], head: [] };
     for (let round = 0; round < MICRO_ROUNDS; round++) {
@@ -296,55 +363,48 @@ const microBench = (roots, set, mode, outDir) => {
             results[label].push(JSON.parse(stdout));
         }
     }
-    const cpuProfiles = {};
-    for (const label of ["base", "head"]) {
-        cpuProfiles[label] = cpuProfile(
-            ["--expose-gc", ...microArgs(roots[label], set, mode, 1)],
-            mode,
-            label,
-            set,
-            outDir
-        ).file;
-    }
     return {
         base: mergeMicroResults(results.base, mode),
-        head: mergeMicroResults(results.head, mode),
-        cpuProfiles
+        head: mergeMicroResults(results.head, mode)
     };
 };
 
-const shellQuote = (value) => `'${String(value).replace(/'/g, `'\\''`)}'`;
+const cliStats = (times) => {
+    const sorted = [...times].sort((a, b) => a - b);
+    const middle = Math.floor(sorted.length / 2);
+    const mean = sorted.reduce((sum, time) => sum + time, 0) / sorted.length;
+    return {
+        median: sorted.length % 2 === 1 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2,
+        mean,
+        stddev:
+            sorted.length > 1
+                ? Math.sqrt(sorted.reduce((sum, time) => sum + (time - mean) ** 2, 0) / (sorted.length - 1))
+                : 0,
+        runs: sorted.length
+    };
+};
 
-const measureCliTime = (roots, set, tmpDir, runs) => {
-    if (!hasCommand("hyperfine")) {
-        return null;
-    }
-    const exportFile = path.join(tmpDir, "time.json");
-    const commands = ["base", "head"].map((label) =>
-        [process.execPath, ...cliArgs(roots[label], set), "--format", "json", "--output-file", "/dev/null"]
-            .map(shellQuote)
-            .join(" ")
-    );
+/**
+ * Measure the run time of the CLI in `runs` rounds, one process at a time.
+ * Each round runs the base and the head, and the next round runs them in the other order,
+ * so a change of the machine during the measurement affects both builds.
+ * No run warms up: the runs for the profile and the CPU profile before it read the same files with both builds.
+ */
+const measureCliTime = (roots, set, runs) => {
     log(`measuring the run time of the CLI on ${set.name} (${runs} runs of each build)`);
-    run(
-        "hyperfine",
-        ["--ignore-failure", "--warmup", "1", "--runs", String(runs), "--export-json", exportFile, ...commands],
-        {
-            cwd: set.dir,
-            label: "hyperfine"
+    const times = { base: [], head: [] };
+    for (let round = 0; round < runs; round++) {
+        for (const label of round % 2 === 0 ? ["base", "head"] : ["head", "base"]) {
+            const start = performance.now();
+            run(process.execPath, [...cliArgs(roots[label], set), "--format", "json", "--output-file", os.devNull], {
+                cwd: set.dir,
+                okStatuses: [0, 1],
+                label: `the timed run of ${label}`
+            });
+            times[label].push(performance.now() - start);
         }
-    );
-    const [base, head] = JSON.parse(fs.readFileSync(exportFile, "utf-8")).results.map((result) => {
-        // hyperfine 1.x has the numbers at the top level, and 2.x in summary.time_wall_clock
-        const wallClock = result.summary?.time_wall_clock ?? { ...result, count: result.times?.length };
-        return {
-            median: wallClock.median * 1000,
-            mean: wallClock.mean * 1000,
-            stddev: (wallClock.stddev ?? 0) * 1000,
-            runs: wallClock.count ?? runs
-        };
-    });
-    return withRatio(base, head, CLI_MARK);
+    }
+    return withRatio(cliStats(times.base), cliStats(times.head), CLI_MARK);
 };
 
 /**
@@ -473,68 +533,136 @@ const summarizeCpuProfile = (file, root) => {
 // ---------------------------------------------------------------------------
 // One set
 
-const compareSet = (set, roots, outDir) => {
+/**
+ * Compare the base and the head on a set.
+ * `measure` selects what is measured; what is not measured is `null` in the result (and absent in `cpu`).
+ */
+const compareSet = async (set, roots, outDir, measure) => {
     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "textlint-compare-"));
+    const labels = ["base", "head"];
+    const withCli = measure.includes("cli");
+    const withInProcess = measure.includes("in-process");
     try {
-        log(`linting ${set.name} with the base and the head`);
-        const lint = {
-            base: lintOnce(roots.base, set, "base", tmpDir),
-            head: lintOnce(roots.head, set, "head", tmpDir)
-        };
-        const messages = {
-            base: flattenResults(lint.base.results, set.dir),
-            head: flattenResults(lint.head.results, set.dir)
-        };
-        const micro = {};
-        const cpu = { base: {}, head: {} };
-        for (const mode of ["parse", "traverse"]) {
-            log(`measuring ${mode} on ${set.name}`);
-            const { base, head, cpuProfiles } = microBench(roots, set, mode, outDir);
-            micro[mode] = { base, head };
-            cpu.base[mode] = summarizeCpuProfile(cpuProfiles.base, roots.base);
-            cpu.head[mode] = summarizeCpuProfile(cpuProfiles.head, roots.head);
+        // The runs that are not timed come first and run at the same time: the lint with the profile and the CPU profiles
+        const lint = {};
+        const cpuFiles = { base: {}, head: {} };
+        const untimed = [];
+        if (withCli) {
+            for (const label of labels) {
+                untimed.push(async () => {
+                    lint[label] = await lintOnce(roots[label], set, label, tmpDir);
+                });
+            }
+            for (const label of labels) {
+                untimed.push(async () => {
+                    cpuFiles[label].cli = await cpuProfile(
+                        [...cliArgs(roots[label], set), "--format", "json", "--output-file", os.devNull],
+                        "cli",
+                        label,
+                        set,
+                        outDir
+                    );
+                });
+            }
         }
-        for (const label of ["base", "head"]) {
-            log(`recording a CPU profile of the CLI of the ${label} on ${set.name}`);
-            const { file } = cpuProfile(
-                [...cliArgs(roots[label], set), "--format", "json", "--output-file", "/dev/null"],
-                "cli",
-                label,
-                set,
-                outDir
-            );
-            cpu[label].cli = summarizeCpuProfile(file, roots[label]);
+        if (withInProcess) {
+            for (const mode of ["traverse", "parse"]) {
+                for (const label of labels) {
+                    untimed.push(async () => {
+                        cpuFiles[label][mode] = await cpuProfile(
+                            ["--expose-gc", ...microArgs(roots[label], set, mode, 1)],
+                            mode,
+                            label,
+                            set,
+                            outDir
+                        );
+                    });
+                }
+            }
         }
-        const parsers = Object.keys(micro.parse.head.parsers).map((id) => ({
-            id,
-            ...withRatio(micro.parse.base.parsers[id], micro.parse.head.parsers[id], MICRO_MARK, "min")
-        }));
-        const traverse = withRatio(
-            micro.traverse.base.kernel.traverse,
-            micro.traverse.head.kernel.traverse,
-            MICRO_MARK,
-            "min"
+        log(
+            `${withCli ? "linting" : "running"} ${set.name} with the base and the head, and recording the CPU profiles`
         );
-        return {
+        await runPool(untimed, UNTIMED_CONCURRENCY);
+        const cpu = { base: {}, head: {} };
+        for (const label of labels) {
+            // in the order of the output
+            for (const kind of ["cli", "parse", "traverse"]) {
+                if (cpuFiles[label][kind]) {
+                    cpu[label][kind] = summarizeCpuProfile(cpuFiles[label][kind], roots[label]);
+                }
+            }
+        }
+        const result = {
             name: set.name,
             repository: set.repository,
             commit: set.commit,
             label: set.label,
             files: countMarkdownFiles(set.dir),
-            messages: {
+            messages: null,
+            time: null,
+            parsers: null,
+            traverse: null,
+            profiles: null,
+            cpu
+        };
+        if (withCli) {
+            const messages = {
+                base: flattenResults(lint.base.results, set.dir),
+                head: flattenResults(lint.head.results, set.dir)
+            };
+            result.messages = {
                 base: messages.base.length,
                 head: messages.head.length,
                 ...diffMessages(messages.base, messages.head)
-            },
-            time: measureCliTime(roots, set, tmpDir, set.runs),
-            parsers,
-            traverse,
-            profiles: { base: lint.base.profile, head: lint.head.profile },
-            cpu
-        };
+            };
+            result.profiles = { base: lint.base.profile, head: lint.head.profile };
+        }
+        // The timed runs: one process at a time
+        if (withInProcess) {
+            const micro = {};
+            for (const mode of ["parse", "traverse"]) {
+                log(`measuring ${mode} on ${set.name}`);
+                micro[mode] = microBench(roots, set, mode);
+            }
+            result.parsers = Object.keys(micro.parse.head.parsers).map((id) => ({
+                id,
+                ...withRatio(micro.parse.base.parsers[id], micro.parse.head.parsers[id], MICRO_MARK, "min")
+            }));
+            result.traverse = withRatio(
+                micro.traverse.base.kernel.traverse,
+                micro.traverse.head.kernel.traverse,
+                MICRO_MARK,
+                "min"
+            );
+        }
+        if (withCli) {
+            result.time = measureCliTime(roots, set, set.runs);
+        }
+        return result;
     } finally {
         fs.rmSync(tmpDir, { recursive: true, force: true });
     }
+};
+
+/**
+ * The results of one set from comparisons that measured different things, as one result.
+ */
+const mergeSetResults = (results) => {
+    const byName = new Map();
+    for (const result of results) {
+        const merged = byName.get(result.name);
+        if (!merged) {
+            byName.set(result.name, { ...result, cpu: { base: { ...result.cpu.base }, head: { ...result.cpu.head } } });
+            continue;
+        }
+        for (const key of ["messages", "time", "parsers", "traverse", "profiles"]) {
+            merged[key] ??= result[key];
+        }
+        Object.assign(merged.cpu.base, result.cpu.base);
+        Object.assign(merged.cpu.head, result.cpu.head);
+    }
+    return [...byName.values()];
 };
 
 // ---------------------------------------------------------------------------
@@ -566,15 +694,15 @@ const commitLink = (repository, commit) =>
  */
 const changesOf = (set) => {
     const changes = [];
-    if (set.messages.added.length > 0 || set.messages.removed.length > 0) {
+    if (set.messages && (set.messages.added.length > 0 || set.messages.removed.length > 0)) {
         changes.push(`lint results (+${set.messages.added.length} −${set.messages.removed.length})`);
     }
-    for (const parser of set.parsers) {
+    for (const parser of set.parsers ?? []) {
         if (parser.mark) {
             changes.push(`${parser.id} ${parser.mark} (${fmtRatio(parser.ratio)})`);
         }
     }
-    if (set.traverse.mark) {
+    if (set.traverse?.mark) {
         changes.push(`traverse ${set.traverse.mark} (${fmtRatio(set.traverse.ratio)})`);
     }
     if (set.time?.mark) {
@@ -584,14 +712,18 @@ const changesOf = (set) => {
 };
 const verdictOf = (set) => {
     const changes = changesOf(set);
+    // a comparison that did not measure the CLI has no lint results, and must not say that they are the same
+    const missing = set.messages ? "" : " (lint results and CLI: not measured)";
     if (changes.length === 0) {
-        return `✅ No change in lint results${set.time ? `, CLI ${fmtRatio(set.time.ratio)}` : ""}`;
+        return set.messages
+            ? `✅ No change in lint results${set.time ? `, CLI ${fmtRatio(set.time.ratio)}` : ""}`
+            : `✅ No marked change${missing}`;
     }
-    return `⚠️ Changed: ${changes.join(", ")}`;
+    return `⚠️ Changed: ${changes.join(", ")}${missing}`;
 };
 
 const renderProfiles = (profiles) => {
-    const { base, head } = profiles;
+    const { base, head } = profiles ?? {};
     if (!head) {
         return "";
     }
@@ -659,6 +791,9 @@ const renderProfiles = (profiles) => {
 const renderCpu = (cpu, kind) => {
     const base = cpu.base[kind];
     const head = cpu.head[kind];
+    if (!base || !head) {
+        return "";
+    }
     const basePackage = (name) => base.packages.find((entry) => entry.name === name);
     const packages = table(
         ["Package", "Base (ms)", "Head (ms)", "Ratio"],
@@ -706,37 +841,43 @@ const renderSet = (set) => {
         ? `${set.repository} at ${commitLink(set.repository, set.commit)} (${escapeCell(set.label)})`
         : "`test/benchmark/examples`";
     const parts = [`### ${set.name}: ${source}, ${set.files} files`, verdictOf(set)];
-    const summaryRows = [
-        set.time
-            ? [
-                  "CLI run time (median, ms)",
-                  fmt(set.time.base.median),
-                  fmt(set.time.head.median),
-                  `${fmtRatio(set.time.ratio)}${markText(set.time.mark)}`
-              ]
-            : ["CLI run time (median, ms)", "-", "-", "not measured: hyperfine is not installed"],
-        ...set.parsers.map((parser) => [
+    // only what the comparison measured has a row
+    const summaryRows = [];
+    if (set.time) {
+        summaryRows.push([
+            "CLI run time (median, ms)",
+            fmt(set.time.base.median),
+            fmt(set.time.head.median),
+            `${fmtRatio(set.time.ratio)}${markText(set.time.mark)}`
+        ]);
+    }
+    for (const parser of set.parsers ?? []) {
+        summaryRows.push([
             `parse: ${parser.id} (min, ms)`,
             fmt(parser.base.min),
             fmt(parser.head.min),
             `${fmtRatio(parser.ratio)}${markText(parser.mark)}`
-        ]),
-        [
+        ]);
+    }
+    if (set.traverse) {
+        summaryRows.push([
             "traverse + dispatch with a no-op rule (min, ms)",
             fmt(set.traverse.base.min),
             fmt(set.traverse.head.min),
             `${fmtRatio(set.traverse.ratio)}${markText(set.traverse.mark)}`
-        ],
-        [
+        ]);
+    }
+    if (set.messages) {
+        summaryRows.push([
             "messages",
             String(set.messages.base),
             String(set.messages.head),
             set.messages.base === set.messages.head ? "" : `${set.messages.head - set.messages.base}`
-        ]
-    ];
+        ]);
+    }
     parts.push(table(["", "Base", "Head", "Change"], summaryRows));
-    const removed = renderMessages("Removed messages", set.messages.removed);
-    const added = renderMessages("Added messages", set.messages.added);
+    const removed = renderMessages("Removed messages", set.messages?.removed ?? []);
+    const added = renderMessages("Added messages", set.messages?.added ?? []);
     if (removed) parts.push(removed);
     if (added) parts.push(added);
     const details = [
@@ -770,14 +911,14 @@ const renderMarkdown = (result) => {
                     set.name,
                     verdictOf(set),
                     set.time ? fmtRatio(set.time.ratio) : "-",
-                    `${set.messages.base} → ${set.messages.head}`
+                    set.messages ? `${set.messages.base} → ${set.messages.head}` : "-"
                 ]),
                 2
             )
         );
     }
     parts.push(
-        `CLI: the median of runs; ${CLI_MARK.slower}x or more is marked slower, ${CLI_MARK.faster}x or less faster. Parsers and traverse: the fastest of runs in one process; ${MICRO_MARK.slower}x and ${MICRO_MARK.faster}x. Times of \`--profile\` and the CPU profiles come from one run and are for reading.`
+        `CLI: the median of runs, the base and the head in turns; ${CLI_MARK.slower}x or more is marked slower, ${CLI_MARK.faster}x or less faster. Parsers and traverse: the fastest of runs in one process; ${MICRO_MARK.slower}x and ${MICRO_MARK.faster}x. Times of \`--profile\` and the CPU profiles come from one run and are for reading.`
     );
     for (const set of result.sets) {
         parts.push(renderSet(set));
@@ -788,11 +929,12 @@ const renderMarkdown = (result) => {
 // ---------------------------------------------------------------------------
 // Main
 
-const main = () => {
+const main = async () => {
     const { values } = parseArgs({
         options: {
             base: { type: "string" },
             set: { type: "string", default: SET_NAMES.join(",") },
+            measure: { type: "string", default: MEASURE_NAMES.join(",") },
             runs: { type: "string" },
             "out-dir": { type: "string", default: path.join(process.cwd(), "compare-result") },
             "cache-dir": {
@@ -812,7 +954,8 @@ const main = () => {
             }
         }
         const order = (a, b) => SET_NAMES.indexOf(a.name) - SET_NAMES.indexOf(b.name);
-        process.stdout.write(renderMarkdown({ ...first, sets: results.flatMap((result) => result.sets).sort(order) }));
+        const sets = mergeSetResults(results.flatMap((result) => result.sets)).sort(order);
+        process.stdout.write(renderMarkdown({ ...first, sets }));
         return;
     }
     const outDir = path.resolve(values["out-dir"]);
@@ -834,19 +977,47 @@ const main = () => {
             throw new CompareError(`Unknown set: ${name}. Sets: ${SET_NAMES.join(", ")}`);
         }
     }
-    if (!values["no-build"]) {
-        buildPackages(HEAD_ROOT, "the head");
+    const measure = values.measure
+        .split(",")
+        .map((name) => name.trim())
+        .filter(Boolean);
+    for (const name of measure) {
+        if (!MEASURE_NAMES.includes(name)) {
+            throw new CompareError(`Unknown measurement: ${name}. Measurements: ${MEASURE_NAMES.join(", ")}`);
+        }
     }
-    const roots = { base: prepareBase(baseCommit, cacheDir), head: HEAD_ROOT };
-    const preparedSets = names.map((name) => {
-        const set = prepareSet(name, sets, cacheDir);
-        return values.runs ? { ...set, runs: Number(values.runs) } : set;
-    });
+    if (measure.length === 0) {
+        throw new CompareError(`Nothing to measure. Measurements: ${MEASURE_NAMES.join(", ")}`);
+    }
+    // The head build, the base build, and the download of the sets do not depend on each other, so they run at the same time
+    const prepareSets = async () => {
+        const prepared = [];
+        for (const name of names) {
+            const set = await prepareSet(name, sets, cacheDir);
+            prepared.push(values.runs ? { ...set, runs: Number(values.runs) } : set);
+        }
+        return prepared;
+    };
+    // Wait for all of them also when one fails, so each releases its lock of the cache
+    const prepared = await Promise.allSettled([
+        prepareBase(baseCommit, cacheDir),
+        prepareSets(),
+        values["no-build"] ? undefined : buildPackages(HEAD_ROOT, "the head")
+    ]);
+    const failed = prepared.find((entry) => entry.status === "rejected");
+    if (failed) {
+        throw failed.reason;
+    }
+    const [baseRoot, preparedSets] = prepared.map((entry) => entry.value);
+    const roots = { base: baseRoot, head: HEAD_ROOT };
     const result = {
         base: { ref: baseRef, commit: baseCommit },
         head,
-        sets: preparedSets.map((set) => compareSet(set, roots, outDir))
+        sets: []
     };
+    for (const set of preparedSets) {
+        result.sets.push(await compareSet(set, roots, outDir, measure));
+    }
     const markdown = renderMarkdown(result);
     fs.writeFileSync(path.join(outDir, "compare.json"), `${JSON.stringify(result, null, 2)}\n`);
     fs.writeFileSync(path.join(outDir, "compare.md"), markdown);
@@ -855,8 +1026,12 @@ const main = () => {
 };
 
 try {
-    main();
+    await main();
 } catch (error) {
+    // the commands that still run at the same time as the failed one
+    for (const child of children) {
+        child.kill();
+    }
     if (error instanceof CompareError) {
         process.stderr.write(`[compare] ${error.message}\n`);
         process.exit(2);

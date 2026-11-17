@@ -30,9 +30,9 @@ For a function-level view, use the CPU profiles that `pnpm run compare` writes, 
 pnpm run compare --set small,medium      # quick check, a few minutes
 pnpm run compare                         # all sets, before opening the pull request
 pnpm run compare --base <ref> --no-build # another base, head already built
+pnpm run compare --set huge --measure cli # only the CLI (lint results, profile, run time); in-process is the parsers and the traversal
 ```
 
-It needs `hyperfine` on `PATH` for the CLI run time; without it, the other numbers are still compared.
 Outputs are in `compare-result/`: `compare.md` (also printed), `compare.json`, and `cpuprofiles/<set>-<base|head>-<cli|parse|traverse>.cpuprofile`, which Chrome DevTools opens (Performance panel, "Load profile").
 
 Read the output in this order:

@@ -36,15 +36,20 @@ Both scripts use only the built-in modules of Node.js and the packages of the bu
 
 The main flow of `compare.mjs` is:
 
-1. **Builds.** The head is the working tree. The script runs `pnpm --filter "./packages/**" run build` in it unless `--no-build` is given; the website is not built. The base is a commit: the script resolves `--base` (default `origin/master`, or `master` when there is no remote branch) and creates a detached worktree of it in the cache directory with `git worktree add`. It runs `pnpm install --frozen-lockfile` and the same build there, and writes a marker. A worktree of the same commit with the marker is reused.
-2. **Sets.** The small set is `test/benchmark/examples` of the head. For another set, the script creates a directory in the cache directory, runs `git init`, `git sparse-checkout set --no-cone /<path>/**`, `git fetch --depth 1 --filter=blob:none origin <commit>`, and `git checkout FETCH_HEAD`, so only the documents of the path are downloaded, and writes a marker. A directory with the marker is reused. `--set` selects the sets, separated by commas; the default is all sets.
-3. **Lint once.** For each build, the script runs the CLI of the build once in the directory of the set:
+1. **Preparation.** The build of the head, the build of the base, and the download of the sets do not depend on each other, so the script runs them at the same time and waits for all of them.
+2. **Builds.** The head is the working tree. The script runs `pnpm --filter "./packages/**" run build` in it unless `--no-build` is given; the website is not built. The base is a commit: the script resolves `--base` (default `origin/master`, or `master` when there is no remote branch) and creates a detached worktree of it in the cache directory with `git worktree add`. It runs `pnpm install --frozen-lockfile` and the same build there, and writes a marker. A worktree of the same commit with the marker is reused.
+3. **Sets.** The small set is `test/benchmark/examples` of the head. For another set, the script creates a directory in the cache directory, runs `git init`, `git sparse-checkout set --no-cone /<path>/**`, `git fetch --depth 1 --filter=blob:none origin <commit>`, and `git checkout FETCH_HEAD`, so only the documents of the path are downloaded, and writes a marker. A directory with the marker is reused. `--set` selects the sets, separated by commas; the default is all sets.
+4. **Lint once.** For each build, the script runs the CLI of the build once in the directory of the set:
    `node <build>/packages/textlint/bin/textlint.js --config <head>/test/benchmark/.textlintrc.jtf-style.json --rules-base-directory <build>/test/benchmark/node_modules <set> --format json --output-file <tmp>/results.json --profile`.
    The standard output is the profile and the file has the lint results, so one run gives both. When `--help` of the build does not list `--profile`, the option is left out and the profile of that build is `null`. Both builds use the configuration of the head and their own installed rules.
-4. **In-process benchmarks.** For `parse` and then `traverse`, the script runs `node --expose-gc micro.mjs --build <build> --dir <set> --mode <mode>` in 3 rounds, the base and then the head in each round, each in a new process, so a change of the machine during the comparison affects both. The runs are split among the rounds. The fastest run of all rounds is compared, and the median is the median of the medians of the rounds. These processes do not record a CPU profile, because the sampling adds noise; one more process with `--cpu-prof` and one run records it for each build.
-5. **CPU profile of the CLI.** The script runs the CLI of each build once more with `node --cpu-prof`, without `--profile`.
-6. **Run time of the CLI.** When `hyperfine` is on `PATH`, the script runs `hyperfine --ignore-failure --warmup 1 --runs <n> --export-json <tmp>/time.json` with the two commands of step 3 without `--profile` and with `--output-file /dev/null`: first all runs of the base, then all runs of the head. `--ignore-failure` is needed because the exit status is 1 when a rule reports an error. Each argument is quoted for the shell. The JSON of hyperfine 1.x and 2.x is read.
-7. **Differences.** The script compares the results (see Data model), and writes Markdown to the standard output and `compare.md`, `compare.json`, and `cpuprofiles/` to the output directory.
+5. **CPU profiles.** The script runs the CLI of each build once more with `node --cpu-prof`, without `--profile` and with `--output-file` set to the null device, and `micro.mjs` of each build with `--cpu-prof` and one run for `parse` and for `traverse`. The processes that are timed do not record a CPU profile, because the sampling adds noise.
+6. **In-process benchmarks.** For `parse` and then `traverse`, the script runs `node --expose-gc micro.mjs --build <build> --dir <set> --mode <mode>` in 3 rounds, the base and then the head in each round, each in a new process, so a change of the machine during the comparison affects both. The runs are split among the rounds. The fastest run of all rounds is compared, and the median is the median of the medians of the rounds.
+7. **Run time of the CLI.** The script runs the command of step 5 without `--cpu-prof` in `<n>` rounds and takes the wall-clock time of each process. A round runs the base and the head, and the next round runs them in the other order. The exit status 1 is not a failure, because it is the status when a rule reports an error. No run warms up, because the runs of steps 4 and 5 have read the same files with both builds.
+8. **Differences.** The script compares the results (see Data model), and writes Markdown to the standard output and `compare.md`, `compare.json`, and `cpuprofiles/` to the output directory.
+
+The runs of steps 4 and 5 are not timed, so the script runs them at the same time, as many processes as half of the CPUs of the machine (a process uses one CPU and the garbage collector uses more). The runs of steps 6 and 7 are timed, so they come after them and run one process at a time.
+
+`--measure` selects what steps 4 to 7 run: `cli` is the lint, the CPU profile of the CLI, and the run time of the CLI; `in-process` is the in-process benchmarks and their CPU profiles. The default is both. What is not measured is `null` in the result.
 
 `micro.mjs` reads the Markdown files of the set in a fixed order. In `parse` mode, it parses all of them with `@textlint/markdown-to-ast` and then with `@textlint/text-to-ast` of the build. In `traverse` mode, it parses all of them once, and lints each with the kernel of the build, a plugin whose `preProcess` returns the parsed tree, and a rule that listens to every node type of `ASTNodeTypes` and every node type in the parsed trees, such as `yaml` (including the exit types) with an empty function; so the time is the traversal, the dispatch, and the work of the kernel for a file, without parsing. Each measurement runs once to warm up and then `runs × 2` times, calling `gc()` before each run. A run repeats the work until it takes at least 200 ms, as many times as the warm-up says, and its time is divided by that number, so a small set is not measured by a few milliseconds. The script compares the fastest run, because the noise of a machine only makes a run slower.
 
@@ -59,25 +64,35 @@ sequenceDiagram
     participant Git
     participant Base as Base build
     participant Head as Head build
-    participant HF as hyperfine
-    Dev->>Script: pnpm run compare [--base ref] [--set names]
-    Script->>Head: pnpm build (packages)
-    Script->>Git: worktree add base (cache)
-    Script->>Base: pnpm install, pnpm build (packages)
-    loop each set
+    Dev->>Script: pnpm run compare [--base ref] [--set names] [--measure names]
+    par preparation
+        Script->>Head: pnpm build (packages)
+    and
+        Script->>Git: worktree add base (cache)
+        Script->>Base: pnpm install, pnpm build (packages)
+    and
         Script->>Git: sparse fetch --depth 1 commit (once per set)
-        Script->>Base: textlint --profile --format json --output-file
-        Script->>Head: textlint --profile --format json --output-file
-        Script->>Base: micro.mjs parse / traverse (3 rounds, then --cpu-prof)
-        Script->>Head: micro.mjs parse / traverse (3 rounds, then --cpu-prof)
-        Script->>Base: textlint (--cpu-prof)
-        Script->>Head: textlint (--cpu-prof)
-        Script->>HF: base runs, then head runs
+    end
+    loop each set
+        par not timed
+            Script->>Base: textlint --profile --format json --output-file
+            Script->>Head: textlint --profile --format json --output-file
+            Script->>Base: textlint (--cpu-prof), micro.mjs parse / traverse (--cpu-prof)
+            Script->>Head: textlint (--cpu-prof), micro.mjs parse / traverse (--cpu-prof)
+        end
+        loop 3 rounds, parse and then traverse
+            Script->>Base: micro.mjs
+            Script->>Head: micro.mjs
+        end
+        loop runs
+            Script->>Base: textlint (timed)
+            Script->>Head: textlint (timed)
+        end
     end
     Script-->>Dev: Markdown (stdout), compare.md, compare.json, cpuprofiles/
 ```
 
-In CI, each set is one job of a matrix. Each job builds both builds, because sharing a build between jobs would mean uploading the packages and their `node_modules` as an artifact, and every job would wait for one build job.
+In CI, each set is one job of a matrix, and the huge set is two jobs: one with `--measure cli` and one with `--measure in-process`. Each job builds both builds, because sharing a build between jobs would mean uploading the packages and their `node_modules` as an artifact, and every job would wait for one build job.
 
 ## Data model and ER diagrams
 
@@ -95,12 +110,15 @@ type SetResult = {
     commit: string | null;
     label: string | null;
     files: number; // Markdown files of the set
-    messages: { base: number; head: number; added: Message[]; removed: Message[] };
-    time: Compared<CliStats> | null; // null when hyperfine is not installed
-    parsers: ({ id: string } & Compared<MicroStats>)[]; // "@textlint/markdown-to-ast", "@textlint/text-to-ast"
-    traverse: Compared<MicroStats>;
-    profiles: { base: TextlintProfileReport | null; head: TextlintProfileReport | null };
-    cpu: Record<"base" | "head", Record<"cli" | "parse" | "traverse", CpuSummary>>;
+    // null: the comparison did not measure the CLI
+    messages: { base: number; head: number; added: Message[]; removed: Message[] } | null;
+    time: Compared<CliStats> | null;
+    profiles: { base: TextlintProfileReport | null; head: TextlintProfileReport | null } | null;
+    // null: the comparison did not measure the in-process benchmarks
+    parsers: ({ id: string } & Compared<MicroStats>)[] | null; // "@textlint/markdown-to-ast", "@textlint/text-to-ast"
+    traverse: Compared<MicroStats> | null;
+    // a key is absent when the comparison did not measure it
+    cpu: Record<"base" | "head", Partial<Record<"cli" | "parse" | "traverse", CpuSummary>>>;
 };
 type Message = { file: string; line: number; column: number; ruleId: string; message: string }; // file is relative to the set
 type Compared<S> = { base: S; head: S; ratio: number; mark: "slower" | "faster" | null };
@@ -122,8 +140,8 @@ A CPU profile is summarized by self time. A sample belongs to a package of this 
 The Markdown output starts with the heading "Profile and benchmark: base vs head" and the linked commits of the base and the head; the ref of the base follows its link unless it is the commit itself. The titles of the collapsed sections use HTML (`<code>`), because GitHub does not parse Markdown in `<summary>`. With more than one set, a table follows with one row for each set: the verdict, the CLI ratio, and the number of messages. Then a line explains the thresholds. Then it has, for each set, in this order:
 
 1. A heading with the set, the linked commit and label, and the number of files.
-2. One line that says what changed: `✅ No change in lint results` with the CLI ratio, or `⚠️ Changed:` with the list of what changed (lint results, a marked parser, traverse, or the CLI).
-3. A table of the base, the head, and the change: the CLI run time, each parser, the traversal, and the number of messages.
+2. One line that says what changed: `✅ No change in lint results` with the CLI ratio, or `⚠️ Changed:` with the list of what changed (lint results, a marked parser, traverse, or the CLI). When the CLI was not measured, the line says so and does not say that the lint results are the same.
+3. A table of the base, the head, and the change: the CLI run time, each parser, the traversal, and the number of messages. Only what was measured has a row.
 4. Only when they differ: the removed and the added messages, at most 50 rows each.
 5. Collapsed sections: the profile of the base and the head side by side (phases, top 10 rules, slowest files; when the base has no `--profile`, the head only, without empty base columns), and for the CLI, the parsers, and the traversal the top 15 packages by self time with the base, the head, and the ratio, and the top 15 functions of the head.
 
@@ -134,17 +152,18 @@ The CPU profiles are `cpuprofiles/<set>-<base|head>-<cli|parse|traverse>.cpuprof
 ### Command
 
 ```
-pnpm run compare [--base <ref>] [--set small,medium,large,huge] [--runs <n>] [--out-dir <dir>] [--cache-dir <dir>] [--no-build]
+pnpm run compare [--base <ref>] [--set small,medium,large,huge] [--measure cli,in-process] [--runs <n>] [--out-dir <dir>] [--cache-dir <dir>] [--no-build]
 pnpm run compare --render <compare.json> [--render <compare.json>]...
 ```
 
 - `--base`: a Git ref or commit. Default: `origin/master`, else `master`.
 - `--set`: the sets. Default: all.
+- `--measure`: what to measure, `cli`, `in-process`, or both. Default: both.
 - `--runs`: the runs of the CLI for every set; the in-process benchmarks run twice as many.
 - `--out-dir`: where `compare.md`, `compare.json`, and `cpuprofiles/` are written. Default: `compare-result` in the current directory, which `.gitignore` lists.
 - `--cache-dir`: where the base worktrees and the sets are kept. Default: `$XDG_CACHE_HOME/textlint-compare`, or `~/.cache/textlint-compare`. It is outside the repository, so the build, the lint of the repository, and the pnpm workspace do not see it.
 - `--no-build`: do not build the head (it is already built).
-- `--render`: print the Markdown of earlier JSON outputs as one comparison, and build or lint nothing. The outputs must have the same base and head commits.
+- `--render`: print the Markdown of earlier JSON outputs as one comparison, and build or lint nothing. The outputs must have the same base and head commits. Outputs of the same set that measured different things become one set.
 
 Exit status: 0 when the comparison is written, whatever the differences are; 2 when it can not run.
 
@@ -154,10 +173,10 @@ Exit status: 0 when the comparison is written, whatever the differences are; 2 w
 
 - `on: pull_request` with `paths`: `packages/**`, `test/benchmark/**`, `package.json`, `pnpm-lock.yaml`, `pnpm-workspace.yaml`, the workflow file, `!**/*.md`, and then `test/benchmark/examples/**`, so a change of the Markdown files of the small set runs the workflow (a later filter wins).
 - `permissions: contents: read` for the workflow. No step uses `secrets`.
-- The job `compare` with `strategy.matrix.set: [small, medium, large, huge]` and `fail-fast: false`, on `ubuntu-latest`, `timeout-minutes: 30`. The name of each job is the set.
-- Steps: checkout with `persist-credentials: false` and `fetch-depth: 0` (the base commit is needed); pnpm; Node.js from `.node-version`; `sudo apt-get install -y hyperfine`; `pnpm install --frozen-lockfile`; the script with `--base "$BASE_SHA" --set "$SET" --out-dir "compare-result-$SET"`; then the output directory uploaded as the artifact `profile-benchmark-<set>`.
-- The job `summary` runs after the jobs of the sets, also when one of them failed. It downloads the artifacts and appends the Markdown of `--render` with all `compare.json` to `$GITHUB_STEP_SUMMARY`. It says so when a set has no result.
-- The base commit comes from `github.event.pull_request.base.sha` and the set from the matrix, through environment variables.
+- The job `compare` with `strategy.matrix.include` and `fail-fast: false`, on `ubuntu-latest`, `timeout-minutes: 30`. The matrix has `small`, `medium`, and `large` with both measurements, and `huge` twice: `cli` (result `huge-cli`) and `in-process` (result `huge-in-process`). The name of each job is the set, followed by the measurement for `huge`.
+- Steps: checkout with `persist-credentials: false` and without the history; `git fetch --no-tags --depth=1 origin "$BASE_SHA"` (the base commit is needed, and its history is not); pnpm; Node.js from `.node-version`; `pnpm install --frozen-lockfile`; the script with `--base "$BASE_SHA" --set "$SET" --measure "$MEASURE" --out-dir "compare-result-$RESULT"`; then the output directory uploaded as the artifact `profile-benchmark-<result>`.
+- The job `summary` runs after the jobs of the sets, also when one of them failed. It downloads the artifacts and appends the Markdown of `--render` with all `compare.json` to `$GITHUB_STEP_SUMMARY`. It says so when a job of the matrix has no result.
+- The base commit comes from `github.event.pull_request.base.sha`, and the set, the measurement, and the name of the result from the matrix, through environment variables.
 - Actions are pinned by commit SHA with the version in a comment.
 
 ### Instruction for AI agents
@@ -168,7 +187,6 @@ Exit status: 0 when the comparison is written, whatever the differences are; 2 w
 
 - **GitHub Actions**: runs the workflow and keeps the artifacts for the retention period of the repository. No token other than the default read-only `GITHUB_TOKEN` is used, and the script does not use it.
 - **GitHub (git over HTTPS)**: the sets are fetched by commit with a partial, sparse, shallow fetch, which GitHub allows for a commit of a public repository. A fetch failure stops the script with the exit status 2.
-- **hyperfine**: installed with apt in CI. Optional locally.
 
 ## Data handling
 
@@ -215,6 +233,14 @@ They are the rules that many Japanese projects use, but the morphological analys
 ### Building once and sharing the builds between the jobs
 
 It saves the build in each job, but the artifact would have the packages and their `node_modules`, and the jobs would wait for one build job. Not chosen, because the jobs run in parallel.
+
+### hyperfine for the run time of the CLI
+
+hyperfine ran all runs of the base and then all runs of the head, with one more run of each to warm up. A change of the machine between the two blocks looked like a difference of the builds, and CI installed the tool in every job. Timing the processes in the script runs the builds in turns and needs no tool.
+
+### One job for the huge set
+
+After the other changes, the timed runs and the preparation of the huge set still take more than half of the time of the job, and running timed processes at the same time adds noise. Two jobs keep every timed run alone on its machine. The cost is one more job that builds both builds.
 
 ### Caching the sets in CI
 

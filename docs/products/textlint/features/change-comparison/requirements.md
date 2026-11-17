@@ -120,7 +120,7 @@ None. No metric is defined for this feature.
 
 **Overview:** Builds or uses two builds of textlint, runs both on the same set of documents, and writes the differences.
 
-**Input:** The base (a Git ref, `master` by default), the head (the working tree by default), and the sets of documents.
+**Input:** The base (a Git ref, `master` by default), the head (the working tree by default), the sets of documents, and what to measure (the CLI, the benchmarks without the CLI, or both; both by default).
 
 **Output:** Markdown on the standard output, and JSON, Markdown, and CPU profiles in an output directory.
 
@@ -131,11 +131,15 @@ None. No metric is defined for this feature.
 | Item | Source | Why |
 | --- | --- | --- |
 | Lint results | The JSON results of the CLI of each build | A change on the hot path must not change what the rules report, unless it is meant to. The same documents give the same results in each run, so a difference is a change of the code |
-| Run time of the CLI | Each build runs several times, one build after the other | It is the time that a user sees. It changes between runs, so only a large ratio is marked |
+| Run time of the CLI | Each build runs several times, the base and the head in turns | It is the time that a user sees. It changes between runs, so only a large ratio is marked |
 | Time of each parser | Each built-in parser parses all documents of the set in one process, several times | The parse time without the rest of the CLI. It is less noisy than the CLI, so a smaller ratio is marked |
 | Time of the traversal | The kernel lints all documents with a rule that listens to every node type and does nothing, in one process, several times. The parse time is subtracted | The cost of walking the tree and calling listeners, without the cost of the rules |
 | Profile | [Performance profile](../performance-profile/requirements.md) of one run of each build | Where the time of a run goes, side by side. It comes from one run, so it is shown for reading and does not decide what changed |
 | CPU time of each package | A CPU profile of one run of the CLI of each build | Whether the time moved between textlint, the rules, and other dependencies |
+
+The runs that are timed (the CLI, the parsers, and the traversal) run one at a time, the base and the head in turns, so a change of the machine during the comparison affects both builds.
+The preparation (the builds and the download of the sets) and the runs that are not timed (the profile and the CPU profiles) run at the same time as each other, before the timed runs, so the comparison takes less time and the timed runs are not disturbed.
+A comparison that measures only the CLI or only the benchmarks without the CLI shows what it measured, and does not say that the lint results are the same when it did not compare them.
 
 The output starts with what changed, so a reader sees at a glance whether anything changed, and then shows the details.
 When the base does not have `--profile`, the profile of the base is shown as missing and the other items are compared.
@@ -170,10 +174,6 @@ A time below 1 ms is not marked, because it is too short to tell a change from n
 
 The script stops and prints which build failed. No partial comparison is written.
 
-##### The run time of the CLI can not be measured
-
-The tool that measures the run time is not on the machine. The script compares the other items, and it says that the run time of the CLI was not measured.
-
 ### CI job
 
 **Overview:** Runs the comparison script for a pull request and puts the output in the job summary.
@@ -185,7 +185,7 @@ The tool that measures the run time is not on the machine. The script compares t
 #### Applicable conditions
 
 The job runs the code of the pull request without any secret of the repository and with permission only to read the repository, so the code of a pull request from a fork can not get a secret or change the repository.
-The base is the base commit of the pull request. CI compares each set in its own job, so the sets run in parallel, and a set that can not run does not hide the results of the other sets. One more job puts the results of all sets in one job summary.
+The base is the base commit of the pull request. CI compares each set in its own job, so the sets run in parallel, and a set that can not run does not hide the results of the other sets. The set of about 10,000 documents takes the longest, so two jobs compare it: one measures the CLI, and the other the parsers and the traversal. One more job puts the results of all sets in one job summary, and shows the two results of that set as one set.
 The job does not fail because of a difference. It fails only if the comparison can not run.
 
 #### Exceptional behavior
@@ -223,7 +223,7 @@ None is collected. The result has file paths of public repositories and the mess
 - **GitHub Actions**
   - **Related user stories:** Notice a large change in a pull request from someone else; Read the comparison from an AI agent
   - **Reason for dependency:** It runs the comparison for each pull request and keeps the JSON output and the CPU profiles as artifacts
-  - **Contractual and usage decisions:** The jobs use the hosted runners that the other checks of the repository use. The comparison builds two builds in each of four jobs, so it adds runner time to a pull request that changes a package
+  - **Contractual and usage decisions:** The jobs use the hosted runners that the other checks of the repository use. The comparison builds two builds in each of five jobs, so it adds runner time to a pull request that changes a package
 - **GitHub**
   - **Related user stories:** Measure on a large set of documents
   - **Reason for dependency:** The sets other than small are public repositories on GitHub, downloaded at their fixed commits
