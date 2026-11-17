@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794842434159,
+  "lastUpdate": 1794880738849,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132719,6 +132719,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.22261062346,
             "range": "± 0.013573719000000012",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "df809808531f2226c5277e455bab298f43d82ff7",
+          "message": "v16.1.1 (#2220)\n\n<!-- Release notes generated using configuration in .github/release.yml\nat master -->\n\n## What's Changed\n### Bug Fixes\n* fix(utils): split key paths without backtracking regular expressions\nby @azu in https://github.com/textlint/textlint/pull/2217\n### Refactoring\n* perf(linter-formatter): measure each cell once in the stylish\nformatter by @azu in https://github.com/textlint/textlint/pull/2214\n* perf(textlint): load the MCP server only when --mcp is used by @azu in\nhttps://github.com/textlint/textlint/pull/2219\n\n### Dependency Updates\n* chore(deps): update textlint-rule-preset-jtf-style to 3.1.0 and its\ndependencies by @azu in https://github.com/textlint/textlint/pull/2216\n* refactor(textlint): remove read-package-up dependency by @azu in\nhttps://github.com/textlint/textlint/pull/2218\n\n\n**Full Changelog**:\nhttps://github.com/textlint/textlint/compare/v16.1.0...v16.1.1\n\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-17T10:57:42+09:00",
+          "tree_id": "28aadb20a9811275db4d6870914b600fb6378fba",
+          "url": "https://github.com/textlint/textlint/commit/df809808531f2226c5277e455bab298f43d82ff7"
+        },
+        "date": 1794880729977,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.14735406763999997,
+            "range": "± 0.03642361499999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.0040883360400001,
+            "range": "± 0.05663029000000008",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.22783930583999998,
+            "range": "± 0.006052115999999996",
             "unit": "seconds"
           }
         ]
