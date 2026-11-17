@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794885102427,
+  "lastUpdate": 1794886406894,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132971,6 +132971,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.21707272388,
             "range": "± 0.007280020999999998",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0b7b1203f179d176ffda425d654e3d155a2ab9ae",
+          "message": "perf(textlint): lint a few files at a time and read each file when its turn comes (#2222)",
+          "timestamp": "2026-11-17T12:31:59+09:00",
+          "tree_id": "5683fdf14b54831f20d0ceff06c2ada012e682fe",
+          "url": "https://github.com/textlint/textlint/commit/0b7b1203f179d176ffda425d654e3d155a2ab9ae"
+        },
+        "date": 1794886394513,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17851363708,
+            "range": "± 0.03357257500000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.24556434128,
+            "range": "± 0.043924485999999874",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.28191522407999997,
+            "range": "± 0.008311030999999969",
             "unit": "seconds"
           }
         ]
