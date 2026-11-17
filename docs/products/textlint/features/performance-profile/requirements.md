@@ -138,7 +138,9 @@ With `--output-file`, the lint results are written to the file as without `--pro
 | write-files | Writing fixed files, with `--fix` and without `--dry-run` | Once |
 
 A phase that runs in another phase is shown under it with `depth` 1. The time of lint includes the phases in it and the time when the files are read.
-textlint lints the files concurrently, so the phases in lint are sums of the times of each file, not periods of the wall clock.
+The phases in lint are sums of the times of each file.
+To keep the time of one file out of another, textlint lints the files one at a time while the profile is on.
+This changes the order in which the work of the files is done, but not the messages of the run.
 
 ##### Time of a rule
 

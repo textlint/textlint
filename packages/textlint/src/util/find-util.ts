@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import debug0 from "debug";
 import path from "node:path";
-import { glob } from "glob";
+import { globSync } from "glob";
 import { pathToGlobPattern } from "path-to-glob-pattern";
 
 const debug = debug0("textlint:find-util");
@@ -76,7 +76,7 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
     // Glob support file path, we can pass file path directly
     // https://github.com/azu/node-glob-example
     // TODO: add pathsToGlobPatterns here
-    const files = await glob(patterns, {
+    const files = globSync(patterns, {
         cwd,
         absolute: true,
         nodir: true,
@@ -91,7 +91,7 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
         };
     }
     // If ignore file is matched and result is empty, it should be ignored
-    const filesWithoutIgnoreFiles = await glob(patterns, {
+    const filesWithoutIgnoreFiles = globSync(patterns, {
         cwd,
         absolute: true,
         nodir: true,

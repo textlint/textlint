@@ -12,7 +12,7 @@ import { ExecuteFileBackerManager } from "./engine/execute-file-backer-manager.j
 import { CacheBacker } from "./engine/execute-file-backers/cache-backer.js";
 import path from "node:path";
 import crypto from "node:crypto";
-import fs from "node:fs/promises";
+import fs from "node:fs";
 import { Logger } from "./util/logger.js";
 import { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
@@ -120,7 +120,9 @@ export const createLinter = (options: CreateLinterOptions) => {
             const results = await profiler.measureAsync("lint", undefined, () =>
                 executeFileBackerManager.process(availableFiles, async (filePath: string) => {
                     const absoluteFilePath = path.resolve(process.cwd(), filePath);
-                    const fileContent = await fs.readFile(filePath, "utf-8");
+                    // The files are processed a few at a time, and reading a file when its turn comes
+                    // takes less time with the synchronous API than through the thread pool
+                    const fileContent = fs.readFileSync(filePath, "utf-8");
                     const kernelOptions = {
                         ext: path.extname(filePath),
                         filePath: absoluteFilePath,
@@ -181,7 +183,9 @@ export const createLinter = (options: CreateLinterOptions) => {
             const results = await profiler.measureAsync("fix", undefined, () =>
                 executeFileBackerManager.process(availableFiles, async (filePath: string) => {
                     const absoluteFilePath = path.resolve(process.cwd(), filePath);
-                    const fileContent = await fs.readFile(filePath, "utf-8");
+                    // The files are processed a few at a time, and reading a file when its turn comes
+                    // takes less time with the synchronous API than through the thread pool
+                    const fileContent = fs.readFileSync(filePath, "utf-8");
                     const kernelOptions = {
                         ext: path.extname(filePath),
                         filePath: absoluteFilePath,
