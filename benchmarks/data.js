@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794886477109,
+  "lastUpdate": 1794886755781,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -133055,6 +133055,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.27593129338000005,
             "range": "± 0.007671358999999989",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "4ba610a1ad1ba07adb405750500f92b4e6d3df50",
+          "message": "docs(products): add the specification of listener trigger characters\n\nA rule declares the characters that a node must have for a listener to be called,\nand the kernel finds the listeners to call with one pass over the text of the node.\nRequirements and Design only; no implementation.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAHYvTeGftHu55PuH86\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-17T03:37:36Z",
+          "tree_id": "bf46144f98aae7f369b50091e264f1518fd40405",
+          "url": "https://github.com/textlint/textlint/commit/4ba610a1ad1ba07adb405750500f92b4e6d3df50"
+        },
+        "date": 1794886741825,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.21293650248,
+            "range": "± 0.036703658",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.5484226974800002,
+            "range": "± 0.07823339699999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.34829200448000003,
+            "range": "± 0.007978274000000007",
             "unit": "seconds"
           }
         ]
