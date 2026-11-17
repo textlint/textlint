@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794886755781,
+  "lastUpdate": 1794928057509,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -133097,6 +133097,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.34829200448000003,
             "range": "± 0.007978274000000007",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "a1673aff9f788a7998cc20dbc0d83fde59e32e67",
+          "message": "chore(deps): update textlint-rule-preset-ja-technical-writing to v12 in the benchmark\n\nThe benchmark used textlint-rule-preset-ja-technical-writing 7.0.0, whose\nrules depend on sentence-splitter 3.2.3. Rule authors have since moved to\nsentence-splitter 5.1.0, which is about 30 times faster at splitting\nsentences, so the benchmark measured costs that current users no longer pay.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAHYvTeGftHu55PuH86\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-17T15:06:08Z",
+          "tree_id": "94b9c5a6727d27ca557a6fd3a56e811c2875d11a",
+          "url": "https://github.com/textlint/textlint/commit/a1673aff9f788a7998cc20dbc0d83fde59e32e67"
+        },
+        "date": 1794928044645,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17955080184000002,
+            "range": "± 0.03996332",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.1138744104399998,
+            "range": "± 0.07588446999999987",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.27010300883999994,
+            "range": "± 0.016540520999999975",
             "unit": "seconds"
           }
         ]
