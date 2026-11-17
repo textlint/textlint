@@ -977,6 +977,9 @@ const main = async () => {
             throw new CompareError(`Unknown set: ${name}. Sets: ${SET_NAMES.join(", ")}`);
         }
     }
+    if (values.runs !== undefined && !(Number.isInteger(Number(values.runs)) && Number(values.runs) >= 1)) {
+        throw new CompareError(`--runs must be a positive integer: ${values.runs}`);
+    }
     const measure = values.measure
         .split(",")
         .map((name) => name.trim())
