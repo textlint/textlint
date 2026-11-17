@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794880845147,
+  "lastUpdate": 1794881472973,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132803,6 +132803,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.35880260358,
             "range": "± 0.01572450799999997",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "fe6e28e2741a6766ea5b9622015b68b3c55a7216",
+          "message": "ci(benchmark): halve the time of the huge set of Profile and benchmark\n\n- compare.mjs prepares the head build, the base build, and the sets at the same time\n- the runs that are not timed (profile, CPU profiles) run at the same time, before the timed runs\n- the script times the CLI itself, the base and the head in turns, so hyperfine is not installed\n- --measure cli,in-process selects what to measure, and --render merges the results of a set\n- CI compares the huge set in two jobs, and fetches only the base commit\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAHYvTeGftHu55PuH86\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-17T02:09:44Z",
+          "tree_id": "f189d08f07572e0a9f4d25995aa4164c1cc7b030",
+          "url": "https://github.com/textlint/textlint/commit/fe6e28e2741a6766ea5b9622015b68b3c55a7216"
+        },
+        "date": 1794881461792,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22573047974,
+            "range": "± 0.273459023",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.2514375221399998,
+            "range": "± 0.02432773900000007",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.28282247054000004,
+            "range": "± 0.009786983000000027",
             "unit": "seconds"
           }
         ]
