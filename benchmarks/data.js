@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794883134356,
+  "lastUpdate": 1794885102427,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -132929,6 +132929,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.37262093139999997,
             "range": "± 0.012030083999999996",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "e9c78bf23f36c86159d36e5993a9cd2a005027d5",
+          "message": "fix(textlint): lint one file at a time while the profile is on\n\nThe profile measures parse and post-process of a file across await.\nWith several files in process, the work of the other files was counted for these phases.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAHYvTeGftHu55PuH86\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-17T03:10:33Z",
+          "tree_id": "5683fdf14b54831f20d0ceff06c2ada012e682fe",
+          "url": "https://github.com/textlint/textlint/commit/e9c78bf23f36c86159d36e5993a9cd2a005027d5"
+        },
+        "date": 1794885093564,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.13765096348,
+            "range": "± 0.04642196500000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.95116512608,
+            "range": "± 0.02520504899999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.21707272388,
+            "range": "± 0.007280020999999998",
             "unit": "seconds"
           }
         ]
