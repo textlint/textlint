@@ -62,7 +62,7 @@ catalog:
   prettier: "^2.8.1"
   prh: "^5.4.4"
   prism-react-renderer: "^2.4.1"
-  rc-config-loader: "^4.1.4"
+  rc-config-loader: "^4.2.0"
   react: "^19.3.1"
   react-dom: "^19.3.1"
   rimraf: "^6.1.4"
