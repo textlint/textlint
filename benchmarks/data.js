@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794998976155,
+  "lastUpdate": 1794999183930,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -133727,6 +133727,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.31304449596,
             "range": "± 0.008050008999999969",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "f889e5609aeaba4ae46b4f992a38247b61806338",
+          "message": "docs: recommend --profile for measuring rule performance\n\nAdd --profile to the CLI options in README, and show how to use it to\nfind slow rules and files. In docs/rule.md, recommend --profile first,\nand keep TIMING=1 for when the results are also needed or textlint is\nused through the Node.js API.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAHF8PJ1F4QtRS4FYxE\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-18T10:51:29Z",
+          "tree_id": "331c6a2bcbcb3c5d3a689c533bd8c993f451f334",
+          "url": "https://github.com/textlint/textlint/commit/f889e5609aeaba4ae46b4f992a38247b61806338"
+        },
+        "date": 1794999173056,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20192613452000002,
+            "range": "± 0.248589395",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.0034579723200001,
+            "range": "± 0.060521201999999885",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.25280320551999996,
+            "range": "± 0.006509507999999969",
             "unit": "seconds"
           }
         ]
