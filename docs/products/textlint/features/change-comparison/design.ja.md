@@ -28,11 +28,12 @@
 
 - `test/benchmark/compare.mjs`：比較スクリプト。非公開のベンチマークパッケージの中にあり、small のセット（`examples/`）と Lint の設定（`.textlintrc.jtf-style.json`）の隣に置く。ルートの `package.json` は `"compare": "node test/benchmark/compare.mjs"` を持つ。
 - `test/benchmark/micro.mjs`：1 つのビルドのプロセス内ベンチマーク。パーサーと、パース済みの木に対するカーネル。
+- `test/benchmark/gc-observer.cjs`：CLI の実行が読み込み、そのガベージコレクションを記録するスクリプト。
 - `test/benchmark/compare-sets.json`：small 以外のセット。それぞれリポジトリ、コミット、ラベル、リポジトリ内のパス、実行回数を持つ。
 - `.github/workflows/profile-benchmark.yml`：CI ワークフロー。
 - `.claude/skills/performance-check/SKILL.md` と `AGENTS.md` の 1 行：AI エージェント向けの指示。
 
-どちらのスクリプトも Node.js の組み込みモジュールと、測るビルドのパッケージだけを使います。そのため新しいチェックアウトで動き、同じファイルでどのコミットも測れます。
+スクリプトは Node.js の組み込みモジュールと、測るビルドのパッケージだけを使います。そのため新しいチェックアウトで動き、同じファイルでどのコミットも測れます。
 
 `compare.mjs` の主な流れは次のとおりです。
 
@@ -44,7 +45,8 @@
 4. **プロセス内ベンチマーク。** `parse`、続いて `traverse` について、スクリプトは `node --expose-gc micro.mjs --build <build> --dir <set> --mode <mode>` を 3 ラウンド、各ラウンドでベース、ヘッドの順に、それぞれ新しいプロセスで実行します。比較の途中でマシンの状態が変わっても、両方に影響するようにするためです。実行回数はラウンドに分けます。比べるのはすべてのラウンドでもっとも速い実行で、中央値は各ラウンドの中央値の中央値です。サンプリングがノイズになるので、これらのプロセスは CPU プロファイルを記録しません。各ビルドについて、`--cpu-prof` 付きで 1 回だけ実行するプロセスをもう 1 つ起動して記録します。
 5. **CLI の CPU プロファイル。** スクリプトは各ビルドの CLI を `node --cpu-prof` でもう 1 回、`--profile` なしで実行します。
 6. **CLI の実行時間。** `hyperfine` が `PATH` にあれば、スクリプトは手順 3 の 2 つのコマンドから `--profile` を除き `--output-file /dev/null` にしたもので、`hyperfine --ignore-failure --warmup 1 --runs <n> --export-json <tmp>/time.json` を実行します。ベースのすべての実行のあとにヘッドのすべての実行が続きます。ルールがエラーを報告すると終了ステータスが 1 になるので `--ignore-failure` が必要です。各引数はシェル向けにクォートします。hyperfine 1.x と 2.x の JSON を読めます。
-7. **差。** スクリプトは結果を比べ（データモデルを参照）、Markdown を標準出力と `compare.md` に、`compare.json` と `cpuprofiles/` を出力ディレクトリに書きます。
+7. **ガベージコレクション。** スクリプトは手順 6 のコマンドを `node --require <head>/test/benchmark/gc-observer.cjs` と環境変数 `GC_OBSERVER_OUTPUT=<tmp>/gc.json` 付きで、各ビルドについて CLI の実行回数と同じ回数、ベース、ヘッドの順に交互に実行します。マシンの状態が変わっても、両方に影響するようにするためです。`gc-observer.cjs` はどちらのビルドでもヘッドのファイルです。これは `PerformanceObserver`（`node:perf_hooks`）の `gc` のエントリーを監視し、プロセスが終了する前にイベントループを数回まわして待ちます。Node.js はエントリーをあとのターンでオブザーバーに渡すので、待たないと CLI の最後の処理のコレクションが失われるためです。そのあと、オブザーバーがまだ受け取っていないエントリーを取り出して、マイナーコレクション（scavenge、minor mark-sweep）とメジャーコレクション（そのほかの種類）それぞれの回数と合計の duration をファイルに書きます。エントリーの duration は、コレクションがメインスレッドを止めた時間です。手順 6 とは別に実行するので、オブザーバーは比べる実行時間を変えません。合計が中央値の実行が、そのビルドを代表します。
+8. **差。** スクリプトは結果を比べ（データモデルを参照）、Markdown を標準出力と `compare.md` に、`compare.json` と `cpuprofiles/` を出力ディレクトリに書きます。
 
 `micro.mjs` はセットの Markdown ファイルを決まった順で読みます。`parse` モードでは、すべてをビルドの `@textlint/markdown-to-ast` で、続いて `@textlint/text-to-ast` でパースします。`traverse` モードでは、すべてを一度パースし、ビルドのカーネルで、`preProcess` がパース済みの木を返すプラグインと、`ASTNodeTypes` と、パース済みの木にある `yaml` などのすべてのノードの種類（exit の種類を含む）を空の関数で購読するルールを使って、それぞれを Lint します。そのため時間は、パースを除いた、トラバース、振り分け、ファイルごとのカーネルの処理です。各測定は 1 回のウォームアップのあと `runs × 2` 回実行し、各実行の前に `gc()` を呼びます。1 回の実行は、ウォームアップから求めた回数だけ処理を繰り返して 200 ms 以上かけ、その時間を回数で割ります。小さなセットを数ミリ秒で測らないためです。マシンのノイズは実行を遅くするだけなので、スクリプトはもっとも速い実行を比べます。
 
@@ -73,6 +75,8 @@ sequenceDiagram
         Script->>Base: textlint（--cpu-prof）
         Script->>Head: textlint（--cpu-prof）
         Script->>HF: ベースの実行、続いてヘッドの実行
+        Script->>Base: textlint (--require gc-observer.cjs)、ヘッドと交互
+        Script->>Head: textlint (--require gc-observer.cjs)
     end
     Script-->>Dev: Markdown（標準出力）、compare.md、compare.json、cpuprofiles/
 ```
@@ -97,6 +101,7 @@ type SetResult = {
     files: number; // セットの Markdown ファイル数
     messages: { base: number; head: number; added: Message[]; removed: Message[] };
     time: Compared<CliStats> | null; // hyperfine がないとき null
+    gc: Compared<GcStats>; // CLI の 1 回の実行のガベージコレクション
     parsers: ({ id: string } & Compared<MicroStats>)[]; // "@textlint/markdown-to-ast"、"@textlint/text-to-ast"
     traverse: Compared<MicroStats>;
     profiles: { base: TextlintProfileReport | null; head: TextlintProfileReport | null };
@@ -106,6 +111,14 @@ type Message = { file: string; line: number; column: number; ruleId: string; mes
 type Compared<S> = { base: S; head: S; ratio: number; mark: "slower" | "faster" | null };
 type CliStats = { median: number; mean: number; stddev: number; runs: number }; // ミリ秒
 type MicroStats = { median: number; min: number; max: number; runs: number; repeat: number }; // 1 回の繰り返しのミリ秒
+type GcStats = {
+    median: number; // 1 回の実行の停止時間（ミリ秒）。実行の中央値、最小値、最大値
+    min: number;
+    max: number;
+    runs: number;
+    minor: { count: number; time: number }; // 停止時間が中央値の実行のもの
+    major: { count: number; time: number };
+};
 type CpuSummary = {
     total: number; // サンプルのミリ秒
     packages: { name: string; workspace: boolean; time: number }[];
@@ -115,15 +128,15 @@ type CpuSummary = {
 
 メッセージは、ファイル、行、列、ルール ID、メッセージの多重集合として比べます。
 
-`ratio` はヘッドをベースで割ったものです。CLI では中央値、パーサーとトラバースでは最小値を使います。`mark` は、CLI では `ratio >= 1.3` で `slower`、`ratio <= 0.77` で `faster`、パーサーとトラバースでは `1.1` と `0.91` で、それ以外は `null` です。両方の時間が 1 ms 未満の比較には印を付けません。
+`ratio` はヘッドをベースで割ったものです。CLI とガベージコレクションの停止時間では中央値、パーサーとトラバースでは最小値を使います。`mark` は、CLI では `ratio >= 1.3` で `slower`、`ratio <= 0.77` で `faster`、パーサーとトラバースでは `1.1` と `0.91` で、それ以外は `null` です。両方の時間が 1 ms 未満の比較には印を付けません。ガベージコレクションの停止時間では、比は `1.3` と `0.77` で、両方の停止時間が 10 ms 未満の比較には印を付けず、Markdown は印を longer と shorter と呼びます。
 
 CPU プロファイルは self time でまとめます。サンプルは、ファイルが `<build>/packages/` の下にあればこのリポジトリのパッケージ（`workspace: true`）、最後の `node_modules/` のあとのパスで依存のパッケージ、`node:` のモジュールなら `(node)`、URL がなければ `(garbage collector)`、`(program)`、`(idle)`、`(native)` に属します。
 
 Markdown の出力は、見出し「Profile and benchmark: base vs head」と、ベースとヘッドのリンク付きのコミットから始まります。ベースの ref は、コミットそのものでなければリンクのあとに付けます。GitHub は `<summary>` の中の Markdown を解釈しないので、折りたたんだセクションの見出しは HTML（`<code>`）を使います。セットが複数あれば、各セットの判定、CLI の比、メッセージ数の行を持つ表が続きます。次にしきい値を説明する行があります。そして各セットについて、次の順で持ちます。
 
 1. セット、リンク付きのコミットとラベル、ファイル数の見出し。
-2. 何が変わったかを示す 1 行。CLI の比を伴う `✅ No change in lint results`、または変わったもの（Lint 結果、印の付いたパーサー、traverse、CLI）を並べた `⚠️ Changed:`。
-3. ベース、ヘッド、変化の表。CLI の実行時間、各パーサー、トラバース、メッセージ数。
+2. 何が変わったかを示す 1 行。CLI の比を伴う `✅ No change in lint results`、変わったもの（Lint 結果、印の付いたパーサー、traverse、CLI、ガベージコレクションの停止時間）を並べた `⚠️ Changed:`、または Lint 結果が同じですべての印が faster か shorter のときに同じ一覧を並べた `✅ Improved:`。警告の記号を、見るべき変化だけに付けるためです。
+3. ベース、ヘッド、変化の表。CLI の実行時間、ガベージコレクションの停止時間とマイナー、メジャーのコレクションの回数、各パーサー、トラバース、メッセージ数。ガベージコレクションを測らなかった版のスクリプトの結果は、その行なしで描画します。
 4. 異なるときだけ：削除されたメッセージと追加されたメッセージ。それぞれ最大 50 行。
 5. 折りたたんだセクション：ベースとヘッドのプロファイルを並べたもの（フェーズ、上位 10 ルール、遅いファイル。ベースに `--profile` がなければ、空のベースの列を持たないヘッドだけの表）と、CLI、パーサー、トラバースそれぞれの、self time の上位 15 パッケージ（ベース、ヘッド、比）とヘッドの上位 15 関数。
 
@@ -162,7 +175,7 @@ pnpm run compare --render <compare.json> [--render <compare.json>]...
 
 ### AI エージェント向けの指示
 
-`AGENTS.md` は、クイックリファレンスに `textlint --profile`、`pnpm run compare`、スキルを示す 1 行を持ちます。スキル `.claude/skills/performance-check/SKILL.md` は、使う場面（パーサー、カーネル、トラバース、CLI、それらの依存の変更）、1 回の実行のプロファイルの取り方、素早い確認と最終確認に使うセット、出力の読み方（まず Lint 結果、次にパーサーとトラバース、次に CLI、最後に CPU プロファイル）、報告の仕方（Markdown を貼り、しきい値の範囲の変化を改善と呼ばない）を伝えます。
+`AGENTS.md` は、クイックリファレンスに `textlint --profile`、`pnpm run compare`、スキルを示す 1 行を持ちます。スキル `.claude/skills/performance-check/SKILL.md` は、使う場面（パーサー、カーネル、トラバース、CLI、それらの依存の変更）、1 回の実行のプロファイルの取り方、素早い確認と最終確認に使うセット、出力の読み方（まず Lint 結果、次にパーサーとトラバース、次に CLI とそのガベージコレクションの停止時間、最後に CPU プロファイル）、報告の仕方（Markdown を貼り、しきい値の範囲の変化を改善と呼ばない）を伝えます。
 
 ## 外部サービスとの連携
 
@@ -203,6 +216,14 @@ CI ジョブは読み取り専用の `GITHUB_TOKEN` を持ち、シークレッ�
 ### CLI の実行時間だけ
 
 共有のマシンでは CLI の実行時間は実行ごとに 10% 以上変わり、その大半をルールが使うので、パーサーやカーネルの変化が隠れます。プロセス内ベンチマークは、CLI のほかの部分を除いてそれらを測ります。
+
+### CPU プロファイルや `--trace-gc` からガベージコレクションを得る
+
+CLI の CPU プロファイルは `(garbage collector)` のサンプルを持ちますが、1 回の実行から得るもので、サンプリング自体が負荷になります。`--trace-gc` はすべてのコレクションを出力しますが、人が読むためのテキストで、V8 が形式を変えられます。`PerformanceObserver` は Node.js のドキュメントにある API で、同じ duration を数値で得られます。
+
+### ガベージコレクションの停止時間が長くなったらチェックを失敗させる
+
+オブジェクトを長く生かすコードは、構文だけでなく V8 のメモリの確保の仕方で決まるので、Lint のルールでは見つけられません。しきい値で CI を失敗させると、ノイズでも失敗します。比較は時間と同じように変化に印を付け、人が判断します。
 
 ### Lint からパースを引いてトラバースとする
 

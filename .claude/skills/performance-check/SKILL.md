@@ -40,7 +40,8 @@ Read the output in this order:
 1. **Lint results.** "Removed messages" and "Added messages" must be empty unless the change is meant to change what rules report. Explain every difference.
 2. **Parsers** (`parse: @textlint/markdown-to-ast`, `parse: @textlint/text-to-ast`) and **traverse + dispatch with a no-op rule**: in-process medians, the most stable numbers. Marked at 1.1x slower / 0.91x faster.
 3. **CLI run time**: what users see; noisy, marked at 1.3x / 0.77x.
-4. **CPU profiles**: which package (✱ = this repository) and which functions moved between base and head.
+4. **GC pause of the CLI**: the time that garbage collections stop one run, and how many minor and major collections it has; marked at 1.3x longer / 0.77x shorter, from 10 ms. A longer pause with about the same number of minor collections means that objects live longer, not that more is allocated: look for what keeps a file's tree or text reachable after the file is done (a cache, a list of results, files in process at the same time), and for functions assigned to a property of an object that is created for every file or rule (`this.f = () => {}` is allocated in the old generation; return it from a function instead, as `TextlintRuleContextImpl` does). `node --trace-gc-nvp` shows the promoted bytes of each collection.
+5. **CPU profiles**: which package (✱ = this repository) and which functions moved between base and head.
 
 ## 3. Report
 

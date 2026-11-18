@@ -26,6 +26,9 @@ const TOP_ROWS = 15;
 const CLI_MARK = { slower: 1.3, faster: 0.77 };
 const MICRO_MARK = { slower: 1.1, faster: 0.91 };
 const MIN_MARKED_MS = 1;
+// The pause of garbage collection of the CLI: a run with a few collections changes more between runs
+const GC_MARK = { slower: 1.3, faster: 0.77 };
+const MIN_MARKED_GC_MS = 10;
 
 class CompareError extends Error {}
 
@@ -348,14 +351,63 @@ const measureCliTime = (roots, set, tmpDir, runs) => {
 };
 
 /**
+ * Measure the pause of garbage collection of the CLI: the base and the head in turns, each run in a new process
+ * that loads gc-observer.cjs. The run with the median pause stands for a build.
+ * The run time of the CLI does not show it: a pause is a few percent of a run, less than the noise of the run time.
+ */
+const measureGc = (roots, set, tmpDir, runs) => {
+    log(`measuring the garbage collection of the CLI on ${set.name} (${runs} runs of each build)`);
+    const outputFile = path.join(tmpDir, "gc.json");
+    const results = { base: [], head: [] };
+    for (let i = 0; i < runs; i++) {
+        for (const label of ["base", "head"]) {
+            fs.rmSync(outputFile, { force: true });
+            run(
+                process.execPath,
+                [
+                    "--require",
+                    path.join(BENCHMARK_DIR, "gc-observer.cjs"),
+                    ...cliArgs(roots[label], set),
+                    "--format",
+                    "json",
+                    "--output-file",
+                    "/dev/null"
+                ],
+                {
+                    cwd: set.dir,
+                    okStatuses: [0, 1],
+                    label: `the garbage collection run of ${label}`,
+                    env: { GC_OBSERVER_OUTPUT: outputFile }
+                }
+            );
+            results[label].push(JSON.parse(fs.readFileSync(outputFile, "utf-8")));
+        }
+    }
+    const summarize = (stats) => {
+        const sorted = [...stats].sort((a, b) => a.total.time - b.total.time);
+        const median = sorted[Math.floor(sorted.length / 2)];
+        return {
+            median: median.total.time,
+            min: sorted[0].total.time,
+            max: sorted[sorted.length - 1].total.time,
+            runs: sorted.length,
+            // of the run with the median pause
+            minor: median.minor,
+            major: median.major
+        };
+    };
+    return withRatio(summarize(results.base), summarize(results.head), GC_MARK, "median", MIN_MARKED_GC_MS);
+};
+
+/**
  * The ratio of the head to the base, and its mark.
  * `key` is the statistic to compare: the median for the CLI, and the minimum for the in-process benchmarks,
  * because noise of a machine only makes a run slower.
  */
-const withRatio = (base, head, marks, key = "median") => {
+const withRatio = (base, head, marks, key = "median", minMarked = MIN_MARKED_MS) => {
     const ratio = base[key] > 0 ? head[key] / base[key] : 1;
-    // a time below 1 ms is too short to tell a change from noise
-    const measurable = Math.max(base[key], head[key]) >= MIN_MARKED_MS;
+    // a time below `minMarked` is too short to tell a change from noise
+    const measurable = Math.max(base[key], head[key]) >= minMarked;
     const mark = !measurable ? null : ratio >= marks.slower ? "slower" : ratio <= marks.faster ? "faster" : null;
     return { base, head, ratio, mark };
 };
@@ -527,6 +579,7 @@ const compareSet = (set, roots, outDir) => {
                 ...diffMessages(messages.base, messages.head)
             },
             time: measureCliTime(roots, set, tmpDir, set.runs),
+            gc: measureGc(roots, set, tmpDir, set.runs),
             parsers,
             traverse,
             profiles: { base: lint.base.profile, head: lint.head.profile },
@@ -561,24 +614,45 @@ const table = (headers, rows, leftColumns = 1) =>
 const commitLink = (repository, commit) =>
     commit ? `[\`${commit.slice(0, 12)}\`](${repository}/commit/${commit})` : "-";
 
+// a pause is longer or shorter, and a longer pause is the one to look at
+const GC_MARK_TEXT = { slower: "longer", faster: "shorter" };
+const gcMarkText = (mark) => (mark === "slower" ? " ⚠️ longer" : mark === "faster" ? " shorter" : "");
+const fmtGc = (stats) => `${fmt(stats.median)} (${stats.minor.count} minor, ${stats.major.count} major)`;
+
 /**
- * What changed in a set, for the verdict
+ * What changed in a set, for the verdict.
+ * `warn` is true for a change to look at: other lint results, or a slower time or a longer pause.
  */
 const changesOf = (set) => {
     const changes = [];
     if (set.messages.added.length > 0 || set.messages.removed.length > 0) {
-        changes.push(`lint results (+${set.messages.added.length} −${set.messages.removed.length})`);
+        changes.push({
+            text: `lint results (+${set.messages.added.length} −${set.messages.removed.length})`,
+            warn: true
+        });
     }
     for (const parser of set.parsers) {
         if (parser.mark) {
-            changes.push(`${parser.id} ${parser.mark} (${fmtRatio(parser.ratio)})`);
+            changes.push({
+                text: `${parser.id} ${parser.mark} (${fmtRatio(parser.ratio)})`,
+                warn: parser.mark === "slower"
+            });
         }
     }
     if (set.traverse.mark) {
-        changes.push(`traverse ${set.traverse.mark} (${fmtRatio(set.traverse.ratio)})`);
+        changes.push({
+            text: `traverse ${set.traverse.mark} (${fmtRatio(set.traverse.ratio)})`,
+            warn: set.traverse.mark === "slower"
+        });
     }
     if (set.time?.mark) {
-        changes.push(`CLI ${set.time.mark} (${fmtRatio(set.time.ratio)})`);
+        changes.push({ text: `CLI ${set.time.mark} (${fmtRatio(set.time.ratio)})`, warn: set.time.mark === "slower" });
+    }
+    if (set.gc?.mark) {
+        changes.push({
+            text: `GC pause ${GC_MARK_TEXT[set.gc.mark]} (${fmtRatio(set.gc.ratio)})`,
+            warn: set.gc.mark === "slower"
+        });
     }
     return changes;
 };
@@ -587,7 +661,9 @@ const verdictOf = (set) => {
     if (changes.length === 0) {
         return `✅ No change in lint results${set.time ? `, CLI ${fmtRatio(set.time.ratio)}` : ""}`;
     }
-    return `⚠️ Changed: ${changes.join(", ")}`;
+    const list = changes.map((change) => change.text).join(", ");
+    // only faster times and shorter pauses: not a warning
+    return changes.some((change) => change.warn) ? `⚠️ Changed: ${list}` : `✅ Improved: ${list}`;
 };
 
 const renderProfiles = (profiles) => {
@@ -715,6 +791,17 @@ const renderSet = (set) => {
                   `${fmtRatio(set.time.ratio)}${markText(set.time.mark)}`
               ]
             : ["CLI run time (median, ms)", "-", "-", "not measured: hyperfine is not installed"],
+        // a result of a version before the garbage collection was measured has no `gc`
+        ...(set.gc
+            ? [
+                  [
+                      "GC pause of the CLI (median, ms)",
+                      fmtGc(set.gc.base),
+                      fmtGc(set.gc.head),
+                      `${fmtRatio(set.gc.ratio)}${gcMarkText(set.gc.mark)}`
+                  ]
+              ]
+            : []),
         ...set.parsers.map((parser) => [
             `parse: ${parser.id} (min, ms)`,
             fmt(parser.base.min),
@@ -777,7 +864,7 @@ const renderMarkdown = (result) => {
         );
     }
     parts.push(
-        `CLI: the median of runs; ${CLI_MARK.slower}x or more is marked slower, ${CLI_MARK.faster}x or less faster. Parsers and traverse: the fastest of runs in one process; ${MICRO_MARK.slower}x and ${MICRO_MARK.faster}x. Times of \`--profile\` and the CPU profiles come from one run and are for reading.`
+        `CLI: the median of runs; ${CLI_MARK.slower}x or more is marked slower, ${CLI_MARK.faster}x or less faster. Parsers and traverse: the fastest of runs in one process; ${MICRO_MARK.slower}x and ${MICRO_MARK.faster}x. GC pause: the garbage collections of one run of the CLI, the median of runs; ${GC_MARK.slower}x or more is marked longer, ${GC_MARK.faster}x or less shorter, from ${MIN_MARKED_GC_MS} ms. Times of \`--profile\` and the CPU profiles come from one run and are for reading.`
     );
     for (const set of result.sets) {
         parts.push(renderSet(set));
