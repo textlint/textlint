@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794978706826,
+  "lastUpdate": 1794995959940,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -133475,6 +133475,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.2918583900400001,
             "range": "± 0.006694748000000028",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "b08c6cdcb18dafc5a43734820f5e967b672af980",
+          "message": "feat(benchmark): compare the pause of garbage collection of the CLI\n\npnpm run compare runs the CLI of the base and the head with a script that\nrecords the garbage collections of the process, and shows the median pause\nand the numbers of minor and major collections. A ratio of 1.3 or more, or\n0.77 or less, is marked from 10 ms.\n\nThe run time of the CLI hides such a change in its noise, and the in-process\nbenchmarks of the parsers and the traversal do not show it.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFXJS42mWg9Kp2AMzE\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-18T09:57:43Z",
+          "tree_id": "e79f2733d5d1cd88aa80bc7fd9e3e74231b29763",
+          "url": "https://github.com/textlint/textlint/commit/b08c6cdcb18dafc5a43734820f5e967b672af980"
+        },
+        "date": 1794995947317,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.18243095668000003,
+            "range": "± 0.19806089200000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.9542063800800001,
+            "range": "± 0.03600022800000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.24234719108000005,
+            "range": "± 0.007305495999999995",
             "unit": "seconds"
           }
         ]
