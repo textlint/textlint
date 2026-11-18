@@ -5,10 +5,26 @@ import type {
     TextlintRuleSeverityLevel,
     TextlintSourceCode
 } from "@textlint/types";
-import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
+import { ASTNodeTypes } from "@textlint/ast-node-types";
 import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl.js";
 import { createPaddingLocator } from "./TextlintRulePaddingLocator.js";
 import { invariant } from "../util/invariant.js";
+import { createGetConfigBaseDir, createGetFilePath, createGetSource } from "./TextlintRuleContextImpl.js";
+
+// See the comment in TextlintRuleContextImpl.ts: the functions of a context are returned from factories,
+// so V8 does not allocate them in the old generation.
+const createShouldIgnore = (
+    ruleId: string,
+    ignoreReport: TextlintFilterRuleShouldIgnoreFunction
+): TextlintFilterRuleContext["shouldIgnore"] => {
+    return (range: [startIndex: number, endIndex: number], optional = {}) => {
+        invariant(
+            Array.isArray(range) && typeof range[0] === "number" && typeof range[1] === "number",
+            "shouldIgnore([number, number]); accept range."
+        );
+        ignoreReport({ ruleId, range, optional });
+    };
+};
 
 /**
  * Rule context object is passed to each rule as `context`
@@ -29,19 +45,19 @@ export interface TextlintFilterRuleContextArgs {
 
 export class TextlintFilterRuleContextImpl implements TextlintFilterRuleContext {
     private _ruleId: string;
-    private _ignoreReport: TextlintFilterRuleShouldIgnoreFunction;
     private _sourceCode: TextlintSourceCode;
-    private _configBaseDir?: string;
     private _severityLevel: TextlintRuleSeverityLevel;
     public locator: TextlintRulePaddingLocator;
 
     constructor(args: TextlintFilterRuleContextArgs) {
         this._ruleId = args.ruleId;
         this._sourceCode = args.sourceCode;
-        this._ignoreReport = args.ignoreReport;
         this.locator = createPaddingLocator();
-        this._configBaseDir = args.configBaseDir;
         this._severityLevel = args.severityLevel;
+        this.shouldIgnore = createShouldIgnore(args.ruleId, args.ignoreReport);
+        this.getFilePath = createGetFilePath(args.sourceCode);
+        this.getSource = createGetSource(args.sourceCode);
+        this.getConfigBaseDir = createGetConfigBaseDir(args.configBaseDir);
         Object.freeze(this);
     }
 
@@ -73,13 +89,7 @@ export class TextlintFilterRuleContextImpl implements TextlintFilterRuleContext 
         return TextlintRuleErrorImpl;
     }
 
-    shouldIgnore = (range: [startIndex: number, endIndex: number], optional = {}) => {
-        invariant(
-            Array.isArray(range) && typeof range[0] === "number" && typeof range[1] === "number",
-            "shouldIgnore([number, number]); accept range."
-        );
-        this._ignoreReport({ ruleId: this._ruleId, range, optional });
-    };
+    shouldIgnore: TextlintFilterRuleContext["shouldIgnore"];
 
     /**
      * Not use
@@ -94,9 +104,7 @@ export class TextlintFilterRuleContextImpl implements TextlintFilterRuleContext 
     /**
      * get file path current processing.
      */
-    getFilePath = () => {
-        return this._sourceCode.getFilePath();
-    };
+    getFilePath: TextlintFilterRuleContext["getFilePath"];
 
     /**
      * Gets the source code for the given node.
@@ -105,9 +113,7 @@ export class TextlintFilterRuleContextImpl implements TextlintFilterRuleContext 
      * @param {int=} afterCount The number of characters after the node to retrieve.
      * @returns {string} The text representing the AST node.
      */
-    getSource = (node?: TxtNode, beforeCount?: number, afterCount?: number): string => {
-        return this._sourceCode.getSource(node, beforeCount, afterCount);
-    };
+    getSource: TextlintFilterRuleContext["getSource"];
 
     /**
      * get config base directory path
@@ -122,7 +128,5 @@ export class TextlintFilterRuleContextImpl implements TextlintFilterRuleContext 
      * You can use it for resolving relative path from config dir.
      * @returns {string|undefined}
      */
-    getConfigBaseDir = () => {
-        return this._configBaseDir;
-    };
+    getConfigBaseDir: TextlintFilterRuleContext["getConfigBaseDir"];
 }
