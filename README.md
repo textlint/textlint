@@ -161,7 +161,7 @@ $ npx textlint "docs/**"
 ```
 
 To find out which rules or files make textlint slow, use `--profile`.
-It prints the time of each phase, parser, rule, and file instead of the lint results.
+It prints the time of each phase, parser, rule, and file instead of the lint results. See [Profile](./docs/cli.md#profile) for how to read it.
 
 ```sh
 $ npx textlint --profile "docs/**"

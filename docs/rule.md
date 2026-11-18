@@ -832,7 +832,7 @@ If the update **does not** contain a breaking change on your rule, update as *mi
 
 Use `textlint --profile` to measure the performance of rules.
 It prints the time of each rule and the number of calls of its handlers, together with the time of parsing, traversing the AST, and each file, instead of the lint results.
-See [CLI](./cli.md#profile) for details.
+See [CLI](./cli.md#profile) for an example output and how to read it.
 
 The time of a rule alone does not show whether the rule makes textlint slow.
 Compare it with the time of parsing and traversing the AST in the same output.
