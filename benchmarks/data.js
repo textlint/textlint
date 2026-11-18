@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794999337239,
+  "lastUpdate": 1794999607808,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -133895,6 +133895,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.29355117868,
             "range": "± 0.013012849999999965",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "133670d7d89af0455556b1ea4e34f97d345d1f0b",
+          "message": "docs: recommend --profile for measuring rule performance (#2229)\n\n<!-- claude-projects-attribution: {\"github_login\":\"azu\"} -->\n_Requested by **azu** · [project\nthread](https://claude.ai/code/project/chan_01WwDWq4F69cv9Kmg6AeSy8j?thread=cmsg_01WwDWq4F69cv9Kmg6AeSy8j1CecC8xFHvAZ5xmJYRcF5m)_\n\n## Summary\n\n`--profile` (#2206) is documented in `docs/cli.md`, but README does not\nlist it, the example in `docs/cli.md` is cut after the phases, and the\n\"Rule Performance\" section of `docs/rule.md` still recommends `TIMING=1`\nfirst.\n\n- README: add `--profile` to the CLI options and a short example for\nfinding slow rules and files.\n- docs/cli.md: replace the example with a full output from\n`examples/perf` (17 files, jtf-style, max-ten, spellcheck-tech-word,\nprh, ...), and add \"Reading the profile\":\n- what `Total`, `%`, `Count`, and `Calls` mean, and what each phase\ncovers\n  - how to tell whether the rules or the parsers decide the time\n- one-time work such as loading a dictionary is counted for the rule\nthat loads it first and for the file being linted at that time (in the\nexample, `max-ten` about 1 s, and the small `md/variables.md` is the\nslowest file; without `max-ten`, `no-mix-dearu-desumasu` takes the\nloading instead)\n- docs/rule.md: recommend `textlint --profile` for measuring rules, and\nkeep `TIMING=1` as a subsection for the cases where it is still useful:\n  - it prints the table after the lint results instead of replacing them\n- it works when textlint is used through the Node.js API\n(`createLinter`) or other tools that do not pass `--profile`\n\n## Checked\n\n- The example output and the numbers in \"Reading the profile\" are from\n`npx textlint --profile md/` in `examples/perf`, built from master. The\n`max-ten` and `no-mix-dearu-desumasu` claims were checked by running a\nsingle file and by disabling `max-ten`.\n- `TIMING=1 node script.mjs` with `createLinter().lintFiles()` prints\nthe rule table.\n- No conflict with #2228 (it touches only the badge at the top of\nREADME).\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01TSdrAHF8PJ1F4QtRS4FYxE\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-11-18T10:58:25Z",
+          "tree_id": "57727e16f6ffe366ea065ea650ab33164acbfa4d",
+          "url": "https://github.com/textlint/textlint/commit/133670d7d89af0455556b1ea4e34f97d345d1f0b"
+        },
+        "date": 1794999592094,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23791784816000003,
+            "range": "± 0.02940230200000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.4628288409599999,
+            "range": "± 0.053488371000000035",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.38509846616,
+            "range": "± 0.007229933999999993",
             "unit": "seconds"
           }
         ]
