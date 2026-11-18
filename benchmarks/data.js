@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794996105450,
+  "lastUpdate": 1794996719511,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -133559,6 +133559,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.3123562354,
             "range": "± 0.02145059399999999",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "2614fcd570993ff97b69d736703a4a4730ea6ebb",
+          "message": "feat(benchmark): show a faster or shorter result without the warning sign\n\nA set where the lint results are the same and every mark is faster or\nshorter gets \"✅ Improved:\" with the list of the marks. \"⚠️ Changed:\" is\nfor other lint results, a slower time, or a longer pause.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFXJS42mWg9Kp2AMzE\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-18T10:10:29Z",
+          "tree_id": "3cea0ab00ee5f8ffcf43281bfcf006f16df89e8d",
+          "url": "https://github.com/textlint/textlint/commit/2614fcd570993ff97b69d736703a4a4730ea6ebb"
+        },
+        "date": 1794996707139,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.19560490874000003,
+            "range": "± 0.14918853700000007",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.10472496014,
+            "range": "± 0.04988822099999979",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.28050186734000004,
+            "range": "± 0.009985602999999954",
             "unit": "seconds"
           }
         ]
