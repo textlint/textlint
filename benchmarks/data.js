@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794958896470,
+  "lastUpdate": 1794961976411,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -133349,6 +133349,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.2833760082600001,
             "range": "± 0.005467776000000035",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "e0bfe755a979c44e2a85bf01339d6e6d5915518a",
+          "message": "perf(textlint): start the next file when the files in process wait\n\nEight files were in process at the same time. With rules that do not wait for\nI/O, the files only took turns at every await, so the ASTs of eight files\nstayed alive longer and the minor GC copied them.\n\nNow a file is in process at a time, and another file starts only when the\nevent loop continues, which means that the files in process wait for I/O or a\ntimer. At most eight files are in process at the same time, as before.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFXJS42mWg9Kp2AMzE\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-18T00:28:47Z",
+          "tree_id": "75fed315c9b53dd520ea58df6354a5143e4008bf",
+          "url": "https://github.com/textlint/textlint/commit/e0bfe755a979c44e2a85bf01339d6e6d5915518a"
+        },
+        "date": 1794961962346,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.26943300344,
+            "range": "± 0.264278404",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.3840208358400001,
+            "range": "± 0.0313700429999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.36416638504000004,
+            "range": "± 0.01447599300000002",
             "unit": "seconds"
           }
         ]
