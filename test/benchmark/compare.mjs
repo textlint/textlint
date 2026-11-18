@@ -620,26 +620,39 @@ const gcMarkText = (mark) => (mark === "slower" ? " ⚠️ longer" : mark === "f
 const fmtGc = (stats) => `${fmt(stats.median)} (${stats.minor.count} minor, ${stats.major.count} major)`;
 
 /**
- * What changed in a set, for the verdict
+ * What changed in a set, for the verdict.
+ * `warn` is true for a change to look at: other lint results, or a slower time or a longer pause.
  */
 const changesOf = (set) => {
     const changes = [];
     if (set.messages.added.length > 0 || set.messages.removed.length > 0) {
-        changes.push(`lint results (+${set.messages.added.length} −${set.messages.removed.length})`);
+        changes.push({
+            text: `lint results (+${set.messages.added.length} −${set.messages.removed.length})`,
+            warn: true
+        });
     }
     for (const parser of set.parsers) {
         if (parser.mark) {
-            changes.push(`${parser.id} ${parser.mark} (${fmtRatio(parser.ratio)})`);
+            changes.push({
+                text: `${parser.id} ${parser.mark} (${fmtRatio(parser.ratio)})`,
+                warn: parser.mark === "slower"
+            });
         }
     }
     if (set.traverse.mark) {
-        changes.push(`traverse ${set.traverse.mark} (${fmtRatio(set.traverse.ratio)})`);
+        changes.push({
+            text: `traverse ${set.traverse.mark} (${fmtRatio(set.traverse.ratio)})`,
+            warn: set.traverse.mark === "slower"
+        });
     }
     if (set.time?.mark) {
-        changes.push(`CLI ${set.time.mark} (${fmtRatio(set.time.ratio)})`);
+        changes.push({ text: `CLI ${set.time.mark} (${fmtRatio(set.time.ratio)})`, warn: set.time.mark === "slower" });
     }
     if (set.gc?.mark) {
-        changes.push(`GC pause ${GC_MARK_TEXT[set.gc.mark]} (${fmtRatio(set.gc.ratio)})`);
+        changes.push({
+            text: `GC pause ${GC_MARK_TEXT[set.gc.mark]} (${fmtRatio(set.gc.ratio)})`,
+            warn: set.gc.mark === "slower"
+        });
     }
     return changes;
 };
@@ -648,7 +661,9 @@ const verdictOf = (set) => {
     if (changes.length === 0) {
         return `✅ No change in lint results${set.time ? `, CLI ${fmtRatio(set.time.ratio)}` : ""}`;
     }
-    return `⚠️ Changed: ${changes.join(", ")}`;
+    const list = changes.map((change) => change.text).join(", ");
+    // only faster times and shorter pauses: not a warning
+    return changes.some((change) => change.warn) ? `⚠️ Changed: ${list}` : `✅ Improved: ${list}`;
 };
 
 const renderProfiles = (profiles) => {
