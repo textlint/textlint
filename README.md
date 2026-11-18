@@ -111,6 +111,7 @@ Options:
   --fix                       Automatically fix problems
   --dry-run                   Enable dry-run mode for --fix. Only show result, don't change the file.
   --debug                     Outputs debugging information
+  --profile                   Print where the time of the run is spent instead of the results. - default: false
   --print-config              Print the config object to stdout
   -v, --version               Outputs the version number.
 
@@ -151,6 +152,13 @@ Make sure that you enclose any glob parameter you pass in quotes.
 
 ```sh
 $ npx textlint "docs/**"
+```
+
+To find out which rules or files make textlint slow, use `--profile`.
+It prints the time of each phase, parser, rule, and file instead of the lint results. See [Profile](./docs/cli.md#profile) for how to read it.
+
+```sh
+$ npx textlint --profile "docs/**"
 ```
 
 For more details, see [CLI](./docs/cli.md) documentation.

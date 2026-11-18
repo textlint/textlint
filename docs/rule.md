@@ -830,15 +830,20 @@ If the update **does not** contain a breaking change on your rule, update as *mi
 
 ### Rule Performance
 
-textlint has a built-in method to track performance of individual rules.
-Setting the `TIMING=1` environment variable will trigger the display.
-It show their individual running time and relative performance impact as a percentage of total rule processing time.
+Use `textlint --profile` to measure the performance of rules.
+It prints the time of each rule and the number of calls of its handlers, together with the time of parsing, traversing the AST, and each file, instead of the lint results.
+See [CLI](./cli.md#profile) for an example output and how to read it.
 
-When `TIMING=1` is set, textlint runs rule handlers one by one so that the time of each rule does not include the time of other rules.
-Therefore, the total running time may be longer than usual. Use it only for profiling.
+The time of a rule alone does not show whether the rule makes textlint slow.
+Compare it with the time of parsing and traversing the AST in the same output.
+
+#### `TIMING=1`
+
+The `TIMING=1` environment variable prints a table of the ten slowest rules at exit, after the lint results.
+Unlike `--profile`, it does not replace the results, and it also works when textlint is used through the Node.js API or other tools that do not pass `--profile`.
 
 ```
-$ TIMING=1 textlint README.md
+$ TIMING=1 npx textlint README.md
 Rule                            | Time (ms) | Relative
 :-------------------------------|----------:|--------:
 spellcheck-tech-word            |   124.277 |    70.7%
@@ -848,7 +853,8 @@ max-ten                         |    13.246 |     7.5%
 no-start-duplicated-conjunction |     5.911 |     3.4%
 ```
 
-`textlint --profile` shows the time of each rule together with the time of parsing and traversing the AST. See [CLI](./cli.md#profile).
+With both `--profile` and `TIMING=1`, textlint runs rule handlers one by one so that the time of each rule does not include the time of other rules.
+Therefore, the total running time may be longer than usual. Use them only for profiling.
 
 
 ## Implementation Notes :memo:
