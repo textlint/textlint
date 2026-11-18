@@ -11,12 +11,6 @@
 
 textlint is similar to [ESLint](http://eslint.org/ "ESLint"), but it's for use with natural language.
 
-<!-- textlint-disable -->
-
-[![GitHub Actions Build Status](https://github.com/textlint/textlint/workflows/CI/badge.svg)](https://github.com/textlint/textlint/actions?workflow=CI)
-
-<!-- textlint-enable -->
-
 ## Website
 
 - Online demo
