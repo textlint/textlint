@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794996719511,
+  "lastUpdate": 1794997629868,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -133601,6 +133601,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.28050186734000004,
             "range": "± 0.009985602999999954",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "720d894af184278c67f50a1e1dc8ae9875107368",
+          "message": "perf(kernel, textlint): reduce the GC time by keeping the AST of a file short-lived (#2227)\n\n<!-- claude-projects-attribution: {\"github_login\":\"azu\"} -->\n_Requested by **azu** · [project\nthread](https://claude.ai/code/project/chan_01WwDWq4F69cv9Kmg6AeSy8j?thread=cmsg_01WwDWq4F69cv9Kmg6AeSy8jKZM8cgT5Tds7x1TFkpJahF)_\n\n## Summary\n\nCPU profiles of a textlint run show \"(garbage collector)\" at about 10%\nof the time. This pull request removes two causes in textlint itself,\nand adds the pause of garbage collection to `pnpm run compare` so that\nthe \"Profile and benchmark\" job shows it when a later change brings such\na cause back. With `preset-jtf-style` on MDN ja (`files/ja`, 10,362\nMarkdown files), the pause time of the minor GC goes from about 470 ms\nto about 210 ms, the major GCs from 7 to 3, and the largest heap after a\nGC from about 270 MB to about 200 MB. The lint results are the same.\n\nThe time of the minor GC (Scavenge) depends on the objects that are\nalive when it runs, not on how much was allocated. In both causes, the\nAST and the text of a file stayed alive longer than the lint of the\nfile.\n\n### 1. The functions of a rule context were allocated in the old\ngeneration (`@textlint/kernel`)\n\nV8 allocates a function literal that is assigned to a property\n(`this.report = () => {}`) in the old generation, because such a\nfunction is usually long-lived. The class properties `report`,\n`getSource`, `getFilePath`, `getConfigBaseDir` of\n`TextlintRuleContextImpl` (and `shouldIgnore` of\n`TextlintFilterRuleContextImpl`) compile to such assignments, and a\ncontext is created for every rule and every file.\n\nSo each file left functions in the old generation. They are garbage\nafter the file, but a minor GC does not collect the old generation, and\nthey point to the context, the source code, and the AST of the file.\nEvery minor GC had to treat these as alive and move them to the old\ngeneration, until the next major GC.\n\nIt can be checked with `node --allow-natives-syntax`:\n\n```js\nclass Context { constructor(src) { this.src = src; this.get = () => this.src; } }\n%InYoungGeneration(new Context({}).get); // false\n```\n\nWith a rule that has no listener at all (`() => ({})`), the minor GC of\n`kernel.lintText` over MDN ja took 205-237 ms, against 27 ms without a\nrule.\n\nThe functions are now returned from factory functions. V8 allocates a\nreturned function in the young generation, and the functions do not use\n`this`, so `const { report, getSource } = context` works as before.\n\n### 2. Eight files were in process at the same time (`textlint`)\n\n`lintFiles` kept eight files in process (#2222). With rules that do not\nwait for I/O, the files only took turns at every `await`, so eight ASTs\nwere alive during the lint of each file.\n\nNow a file is in process at a time, and another file starts only when\nthe callback of `setImmediate` runs. Promise callbacks run before the\nevent loop continues, so when that callback runs, every file in process\nwaits for something that the event loop brings (I/O of a rule, a timer).\nAt most eight files are in process at the same time, as before, and when\nthe files stop waiting (for example after a rule loaded its dictionary)\nthe files are in process one at a time again.\n\n### 3. The comparison shows the pause of garbage collection\n(`test/benchmark`)\n\nNeither cause was visible in `pnpm run compare`: the pause is a few\npercent of a run, less than the noise of the run time of the CLI, and\nthe in-process benchmarks of the parsers and the traversal do not show\nit. The \"(garbage collector)\" row of the CPU profile comes from one run\nand is not stable either: in the CI run of 2614fcd on the huge set it\nwas 601.93 → 598.09 ms (0.99x), while the new row measured 0.36x. A lint\nrule can not find such code either, because it depends on how V8\nallocates.\n\n`compare.mjs` now runs the CLI of the base and the head in turns with\n`node --require test/benchmark/gc-observer.cjs`, which records the `gc`\nentries of `PerformanceObserver`, and adds one row: the median pause of\na run and the numbers of minor and major collections. A ratio of 1.3 or\nmore is marked `⚠️ longer`, and 0.77 or less `shorter`, when the pause\nis 10 ms or more. As for the other rows, CI shows the mark and does not\nfail.\n\nThe line that says what changed in a set now uses the warning sign only\nfor a change to look at: `⚠️ Changed:` for other lint results, a slower\ntime, or a longer pause, and `✅ Improved:` when the lint results are the\nsame and every mark is faster or shorter. Before, a faster result also\ngot `⚠️ Changed:`.\n\nThe specifications\n(`docs/products/textlint/features/change-comparison/`, English and\nJapanese) and the performance-check skill are updated with the code.\n\n## Measurements\n\n4 CPUs, Node.js 22.23.5. Base: dd7a24c (the commit of master that this\nbranch starts from). Head: 2614fcd.\n\n### GC of the CLI on MDN ja\n\nCLI with `--format json --output-file`, run in `files/ja`, pause time on\nthe main thread summed from `node --trace-gc`, 3 runs of each build, the\nbase and the head in turns.\n\n| Rules | | master | this branch |\n| --- | --- | ---: | ---: |\n| one rule with an empty `Str` listener | minor GC | 95-97 times,\n242-263 ms | 104-105 times, 80-86 ms |\n| | major GC | 9-10 times, 23-31 ms | 2 times, 3-4 ms |\n| | largest heap after a GC | 103-108 MB | 59 MB |\n| `preset-jtf-style` | minor GC | 279-281 times, 454-493 ms | 293-294\ntimes, 198-227 ms |\n| | major GC | 7 times, 18-19 ms | 3 times, 10-13 ms |\n| | largest heap after a GC | 269-278 MB | 200-203 MB |\n\nThe kernel change alone (this branch with the\n`execute-file-backer-manager.js` of master, 2 runs): `preset-jtf-style`\n455-472 ms of minor GC, the no-op rule 89-92 ms. So the no-op rule needs\nonly the kernel change, and `preset-jtf-style` needs both.\n\nThe JSON output of the CLI is identical between master and this branch\nfor `preset-jtf-style`.\n\n`preset-ja-technical-writing` on js-primer does not change (minor GC\nabout 1.3 s, CLI 15.7-16.5 s on both): there the allocation of kuromoji\ndecides the GC time.\n\n### `pnpm run compare --base dd7a24c --set small,medium,large`\n\n| Set | Result | CLI | Messages |\n| --- | --- | ---: | ---: |\n| small | ✅ No change in lint results, CLI 1.01x | 1.01x | 2 → 2 |\n| medium | ✅ Improved: GC pause shorter (0.60x) | 1.04x | 894 → 894 |\n| large | ✅ Improved: GC pause shorter (0.52x) | 0.98x | 15798 → 15798 |\n\n| Set | | Base | Head | Change |\n| --- | --- | ---: | ---: | ---: |\n| small | CLI run time (median, ms) | 168.51 | 170.85 | 1.01x |\n| | GC pause of the CLI (median, ms) | 7.71 (9 minor, 2 major) | 7.15 (8\nminor, 2 major) | 0.93x |\n| medium | CLI run time (median, ms) | 472.45 | 490.18 | 1.04x |\n| | GC pause of the CLI (median, ms) | 42.72 (19 minor, 2 major) | 25.72\n(20 minor, 2 major) | 0.60x shorter |\n| large | CLI run time (median, ms) | 1171.59 | 1142.89 | 0.98x |\n| | GC pause of the CLI (median, ms) | 84.49 (46 minor, 6 major) | 44.26\n(50 minor, 2 major) | 0.52x shorter |\n\nThe run time of the CLI is within noise: GC is a few percent of a run\nand this removes a part of it.\n\nWith the base and the head swapped, the lines are `⚠️ Changed: GC pause\nlonger`. With this branch as both the base and the head (`--base HEAD`,\nat b08c6cd), nothing is marked: GC pause small 0.84x (below 10 ms),\nmedium 0.95x, large 1.02x.\n\n### CI (the \"Profile and benchmark\" job of 2614fcd, base 4d7cf7a)\n\nhuge (10,362 files): `✅ Improved: GC pause shorter (0.36x)`, GC pause\n451.52 ms (280 minor, 14 major) → 164.62 ms (293 minor, 6 major), CLI\n7969.86 → 7778.69 ms (0.98x).\n\n## Tests\n\n- `ExecuteFileBackerManager`: one file at a time when the files do not\nwait for the event loop, more than one when they wait, one at a time\nagain after they stop waiting, and a failing backer rejects.\n- `pnpm test` of `@textlint/kernel` (218 tests) and `textlint` (210\ntests) pass, `pnpm run lint` and `./bin/sdev lint` pass.\n- `gc-observer.cjs`: 10 forced collections in the last callback of a\nprocess are all recorded.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01TSdrAFXJS42mWg9Kp2AMzE\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-11-18T19:25:44+09:00",
+          "tree_id": "1f458432c86445ecec4febb91587de7352e682fe",
+          "url": "https://github.com/textlint/textlint/commit/720d894af184278c67f50a1e1dc8ae9875107368"
+        },
+        "date": 1794997617777,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.18226761000000002,
+            "range": "± 0.033055325999999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.135729602,
+            "range": "± 0.026541967",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.301430636,
+            "range": "± 0.01207604499999998",
             "unit": "seconds"
           }
         ]
