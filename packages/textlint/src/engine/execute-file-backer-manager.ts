@@ -2,10 +2,12 @@ import { AbstractBacker } from "./execute-file-backers/abstruct-backer.js";
 import { profiler, TextlintResult } from "@textlint/kernel";
 
 /**
- * The number of files in process at the same time.
+ * The maximum number of files in process at the same time.
  * Linting uses one thread, so more files at the same time do not finish earlier;
- * they only keep more file contents and syntax trees in memory.
- * It is more than one, so a rule that waits for I/O, such as a network request, waits for some files at the same time.
+ * they only keep more file contents and syntax trees alive, and the garbage collector has to copy them.
+ * So the next file starts when the file in process is finished.
+ * Only when the files in process wait for something outside JavaScript, such as a network request of a rule,
+ * another file starts, up to this number.
  */
 const MAX_CONCURRENT_FILES = 8;
 /**
@@ -46,7 +48,9 @@ export class ExecuteFileBackerManager {
     /**
      * process `messages` with registered processes
      *
-     * At most MAX_CONCURRENT_FILES files are in process at the same time, in the order of `files`.
+     * A file is in process at a time, in the order of `files`.
+     * While the files in process wait for something outside JavaScript, another file starts,
+     * and at most MAX_CONCURRENT_FILES files are in process at the same time.
      * While the profile is on, one file is in process at a time.
      * The results have the executed files in the order of `files`, and then the un-executed files.
      */
@@ -73,24 +77,70 @@ export class ExecuteFileBackerManager {
         const results = new Array<R>(executeFiles.length);
         let nextIndex = 0;
         let failed = false;
-        const executeNextFiles = async () => {
-            while (!failed && nextIndex < executeFiles.length) {
+        const maxConcurrentFiles = profiler.enabled ? MAX_CONCURRENT_FILES_ON_PROFILE : MAX_CONCURRENT_FILES;
+        await new Promise<void>((resolve, reject) => {
+            let inProcess = 0;
+            let waitingCheck: NodeJS.Immediate | undefined;
+            const hasNextFile = () => !failed && nextIndex < executeFiles.length;
+            const startNextFile = () => {
                 const index = nextIndex++;
-                try {
-                    const result = await executeFile(executeFiles[index]);
-                    this._backers.forEach((backer) => {
-                        backer.didExecute({ result });
-                    });
-                    results[index] = result;
-                } catch (error) {
+                inProcess++;
+                const onError = (error: unknown) => {
                     // do not start the next files when a file fails
                     failed = true;
-                    throw error;
+                    clearImmediate(waitingCheck);
+                    reject(error);
+                };
+                try {
+                    executeFile(executeFiles[index])
+                        .then((result) => {
+                            this._backers.forEach((backer) => {
+                                backer.didExecute({ result });
+                            });
+                            results[index] = result;
+                            inProcess--;
+                            onFinishFile();
+                        })
+                        .catch(onError);
+                } catch (error) {
+                    onError(error);
                 }
-            }
-        };
-        const maxConcurrentFiles = profiler.enabled ? MAX_CONCURRENT_FILES_ON_PROFILE : MAX_CONCURRENT_FILES;
-        await Promise.all(Array.from({ length: Math.min(maxConcurrentFiles, executeFiles.length) }, executeNextFiles));
+            };
+            /**
+             * Promise callbacks run before the event loop continues.
+             * So when the callback of setImmediate is called, every file in process waits for something
+             * that the event loop brings, such as I/O or a timer. Then another file can use the waiting time.
+             * When no file waits, the callback is not called until all files are finished,
+             * and the files are processed one after another.
+             */
+            const checkWaitingLater = () => {
+                if (waitingCheck !== undefined || !hasNextFile() || inProcess >= maxConcurrentFiles) {
+                    return;
+                }
+                waitingCheck = setImmediate(() => {
+                    waitingCheck = undefined;
+                    if (hasNextFile() && inProcess < maxConcurrentFiles) {
+                        startNextFile();
+                        checkWaitingLater();
+                    }
+                });
+            };
+            const onFinishFile = () => {
+                if (failed) {
+                    return;
+                }
+                if (hasNextFile()) {
+                    if (inProcess === 0) {
+                        startNextFile();
+                    }
+                    checkWaitingLater();
+                } else if (inProcess === 0) {
+                    clearImmediate(waitingCheck);
+                    resolve();
+                }
+            };
+            onFinishFile();
+        });
         // wait all resolved, and call afterAll
         this._backers.forEach((backer) => {
             backer.afterAll();

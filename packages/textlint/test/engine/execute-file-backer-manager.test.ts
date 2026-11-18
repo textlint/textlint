@@ -44,6 +44,46 @@ describe("engine/execute-file-backer-manager", function () {
         );
         assert.ok(maxRunning < files.length, `${maxRunning} files at the same time: all files`);
     });
+    it("should process one file at a time when the files do not wait for the event loop", async function () {
+        const manager = new ExecuteFileBackerManager();
+        let running = 0;
+        let maxRunning = 0;
+        const results = await manager.process(files, async (filePath): Promise<TextlintResult> => {
+            running++;
+            maxRunning = Math.max(maxRunning, running);
+            // promises that are already resolved, like a rule that does not wait for I/O
+            await Promise.resolve();
+            await Promise.resolve();
+            running--;
+            return { filePath, messages: [] };
+        });
+        assert.strictEqual(results.length, files.length);
+        assert.strictEqual(maxRunning, 1);
+    });
+    it("should process one file at a time again after the files stop waiting", async function () {
+        const manager = new ExecuteFileBackerManager();
+        let running = 0;
+        const runningOfLaterFiles: number[] = [];
+        await manager.process(files, async (filePath): Promise<TextlintResult> => {
+            running++;
+            const index = files.indexOf(filePath);
+            if (index < 20) {
+                // the first files wait, like a rule that loads a dictionary at the first time
+                await nextTick();
+            } else {
+                await Promise.resolve();
+                if (index >= 50) {
+                    runningOfLaterFiles.push(running);
+                }
+            }
+            running--;
+            return { filePath, messages: [] };
+        });
+        assert.deepStrictEqual(
+            runningOfLaterFiles,
+            runningOfLaterFiles.map(() => 1)
+        );
+    });
     it("should process one file at a time while the profile is on", async function () {
         const manager = new ExecuteFileBackerManager();
         let running = 0;
@@ -92,6 +132,24 @@ describe("engine/execute-file-backer-manager", function () {
         );
         assert.deepStrictEqual(didExecuteFiles, executed);
         assert.strictEqual(afterAllCount, 1);
+    });
+    it("should reject when a backer fails", async function () {
+        class FailBacker extends AbstractBacker {
+            shouldExecute() {
+                return true;
+            }
+            didExecute() {
+                throw new Error("failed to save");
+            }
+            afterAll() {}
+        }
+        const manager = new ExecuteFileBackerManager([new FailBacker()]);
+        await assert.rejects(
+            manager.process(files, async (filePath): Promise<TextlintResult> => {
+                return { filePath, messages: [] };
+            }),
+            /failed to save/
+        );
     });
     it("should reject and start no more files when a file fails", async function () {
         const manager = new ExecuteFileBackerManager();
