@@ -4,7 +4,7 @@
 
 ## About this document
 
-The change comparison runs two builds of textlint, the base (such as `master`) and the head (a pull request), on the same documents, and shows the differences: the lint results, the run time of the CLI, the time of each parser and of the traversal, the profile of each build, and where the CPU time goes.
+The change comparison runs two builds of textlint, the base (such as `master`) and the head (a pull request), on the same documents, and shows the differences: the lint results, the run time of the CLI, the pause of garbage collection, the time of each parser and of the traversal, the profile of each build, and where the CPU time goes.
 It lets the author, an AI agent, and a reviewer see the effect of a change to a parser, the kernel, or another part on the hot path before the change is merged.
 One script does the comparison. A developer and an AI agent run it locally, and CI runs the same script for each pull request and puts its output in the job summary.
 The parent Product is [textlint](../../product.md). The phases, parsers, and rules of a run come from [Performance profile](../performance-profile/requirements.md).
@@ -43,6 +43,12 @@ Scenario: When the head changes the lint results, the output lists the changed m
 - Given: The head changes a parser so that a rule reports a message at another column.
 - When: The developer runs the comparison script.
 - Then: The output says that the lint results changed, and lists the removed and the added messages with the rule id, the file, the line, the column, and the message.
+
+Scenario: When the head makes objects live longer, the output marks the pause of garbage collection
+
+- Given: The head changes the kernel so that the tree of a file stays in memory after the file is linted, and the run time of the CLI changes less than its noise.
+- When: The developer runs the comparison script with the large set.
+- Then: The output says that the pause of garbage collection of the CLI got longer, and shows the pause and the number of collections of the base and the head with their ratio.
 
 Scenario: When the head does not change the lint, the output says that nothing changed
 
@@ -96,7 +102,7 @@ Scenario: When the comparison finishes, the JSON has the base, the head, and the
 
 - Given: The comparison has run.
 - When: The agent reads the JSON output.
-- Then: The JSON has the commits of the base and the head, the set of documents, the lint results that only one build has, the run times, the times of the parsers and the traversal, the profile of each build, and the CPU time of each package.
+- Then: The JSON has the commits of the base and the head, the set of documents, the lint results that only one build has, the run times, the pauses of garbage collection, the times of the parsers and the traversal, the profile of each build, and the CPU time of each package.
 
 ### Measure on a large set of documents
 
@@ -132,6 +138,7 @@ None. No metric is defined for this feature.
 | --- | --- | --- |
 | Lint results | The JSON results of the CLI of each build | A change on the hot path must not change what the rules report, unless it is meant to. The same documents give the same results in each run, so a difference is a change of the code |
 | Run time of the CLI | Each build runs several times, one build after the other | It is the time that a user sees. It changes between runs, so only a large ratio is marked |
+| Pause of garbage collection | Each build runs the CLI several times, the base and the head in turns, and the garbage collections of each run are recorded: their number and the time that they stop the run | Code that makes objects live longer makes the collections longer. They are a few percent of a run, less than the noise of the run time of the CLI, and the parsers and the traversal alone do not show them |
 | Time of each parser | Each built-in parser parses all documents of the set in one process, several times | The parse time without the rest of the CLI. It is less noisy than the CLI, so a smaller ratio is marked |
 | Time of the traversal | The kernel lints all documents with a rule that listens to every node type and does nothing, in one process, several times. The parse time is subtracted | The cost of walking the tree and calling listeners, without the cost of the rules |
 | Profile | [Performance profile](../performance-profile/requirements.md) of one run of each build | Where the time of a run goes, side by side. It comes from one run, so it is shown for reading and does not decide what changed |
@@ -163,6 +170,7 @@ The script shows the time of each build and the ratio of the head to the base: t
 For the CLI, a ratio of 1.3 or more, or 0.77 or less, is marked as a large change, because the run time of a process on a shared machine changes by more than 10% between runs.
 For the parsers and the traversal, which run in one process after warm-up, a ratio of 1.1 or more, or 0.91 or less, is marked.
 A time below 1 ms is not marked, because it is too short to tell a change from noise.
+For the pause of garbage collection, the median of the runs is compared, and a ratio of 1.3 or more, or 0.77 or less, is marked, as for the CLI. A pause below 10 ms is not marked, because a run with a few collections changes by more than that ratio between runs.
 
 #### Exceptional behavior
 
@@ -200,13 +208,13 @@ The job fails with the error, and the other checks of the pull request are not a
 
 #### Applicable conditions
 
-The instruction tells the agent which set to use for a quick check and which for a final check, how to find the slow part with `--profile` and the CPU profiles, and not to call a difference within the thresholds an improvement.
+The instruction tells the agent which set to use for a quick check and which for a final check, how to find the slow part with `--profile` and the CPU profiles, what a longer pause of garbage collection means, and not to call a difference within the thresholds an improvement.
 
 ## Data requirements
 
 ### Required data
 
-- **Comparison result:** the commits of the base and the head, the sets, the lint results that differ, the run times, the times of the parsers and the traversal, the profiles, and the CPU time of each package and function. It is written for each run and is kept as an artifact of CI for the retention period of the repository.
+- **Comparison result:** the commits of the base and the head, the sets, the lint results that differ, the run times, the pauses and the numbers of garbage collections, the times of the parsers and the traversal, the profiles, and the CPU time of each package and function. It is written for each run and is kept as an artifact of CI for the retention period of the repository.
 - **CPU profiles:** one for the CLI, the parsers, and the traversal of each build and set.
 - **Downloaded documents:** the files of a set at its fixed commit, kept on the machine to be reused.
 
@@ -236,4 +244,4 @@ A job that has a secret or write access, such as one that comments on the pull r
 
 ## Open questions
 
-- **Thresholds:** The ratios that mark a change (1.3 for the CLI, 1.1 for the parsers and the traversal) are chosen from the noise of runs on shared machines. Interim treatment: use them as they are. Revisit when CI marks changes that do not reproduce, or misses changes that do. azu decides.
+- **Thresholds:** The ratios that mark a change (1.3 for the CLI and the pause of garbage collection, 1.1 for the parsers and the traversal) and the shortest pause that is marked (10 ms) are chosen from the noise of runs on shared machines. Interim treatment: use them as they are. Revisit when CI marks changes that do not reproduce, or misses changes that do. azu decides.
