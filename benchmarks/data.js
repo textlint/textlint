@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794995959940,
+  "lastUpdate": 1794996105450,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -133517,6 +133517,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.24234719108000005,
             "range": "± 0.007305495999999995",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "dd340e3b3310037e6b8781db57ad23fbff3ce5a4",
+          "message": "fix(benchmark): record the garbage collections of the last work of the CLI\n\nNode.js passes a gc entry to the observer in a later turn of the event loop,\nso the collections of the last callback were lost. The observer now waits\na few turns before a natural exit.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFXJS42mWg9Kp2AMzE\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-18T10:00:11Z",
+          "tree_id": "0e4582d8ff1f13573bd1a0ccedf24108ca53e936",
+          "url": "https://github.com/textlint/textlint/commit/dd340e3b3310037e6b8781db57ad23fbff3ce5a4"
+        },
+        "date": 1794996090521,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.2409771456,
+            "range": "± 0.301897963",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.2096450806,
+            "range": "± 0.06432939700000007",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.3123562354,
+            "range": "± 0.02145059399999999",
             "unit": "seconds"
           }
         ]
