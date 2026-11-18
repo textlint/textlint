@@ -25,6 +25,18 @@ if (outputFile) {
     };
     const observer = new PerformanceObserver((list) => add(list.getEntries()));
     observer.observe({ entryTypes: ["gc"] });
+    // Node.js passes an entry to the observer in a later turn of the event loop, so the collections of the last
+    // work of the process (such as formatting the results) would be lost. Before a natural exit, wait a few turns once.
+    const DRAIN_TURNS = 3;
+    process.once("beforeExit", () => {
+        let turns = 0;
+        const next = () => {
+            if (++turns < DRAIN_TURNS) {
+                setImmediate(next);
+            }
+        };
+        setImmediate(next);
+    });
     process.on("exit", () => {
         // the entries that the observer has not been called with yet
         add(observer.takeRecords());
