@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794997760146,
+  "lastUpdate": 1794998976155,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -133685,6 +133685,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.35762514662000006,
             "range": "± 0.01439512100000001",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "2a7553ec78930aea1b1bfab1ab6cc9a265c2e80e",
+          "message": "docs(README): remove the CI badge\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFL4jyAbJFENo8hpuy\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-18T10:47:58Z",
+          "tree_id": "05a192015528e4c42c97840c0a8d0d34eb0c774f",
+          "url": "https://github.com/textlint/textlint/commit/2a7553ec78930aea1b1bfab1ab6cc9a265c2e80e"
+        },
+        "date": 1794998961477,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20181311256,
+            "range": "± 0.04923180199999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.26091325916,
+            "range": "± 0.024722689999999936",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.31304449596,
+            "range": "± 0.008050008999999969",
             "unit": "seconds"
           }
         ]
