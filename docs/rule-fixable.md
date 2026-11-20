@@ -32,52 +32,63 @@ export default {
 };
 ```
 
-**fixer** does lint and found error
+## Replace a thumbs-up emoji with a shortcode
 
-If you'd like textlint to attempt to fix the problem you're reporting, you can do so by specifying the fix object when using `context.report()`.
-The fixer object, that you can use to apply a fix. For example:
+This rule reports each plain 👍 in a text node and fixes it to `:+1:`. It uses `Intl.Segmenter` to read one visible character at a time, so a skin-tone variant such as 👍🏽 stays intact. The segment offsets and lengths are measured in UTF-16 code units. Pass them to the locator and fixer relative to the start of the text node.
 
-The fixer object has the following methods:
+Save the rule as `prefer-plus-one-shortcode.mjs`.
 
 ```js
-// TODO: more reasonable example
-const reporter = (context) => {
-    // `context.fixer`
-    const { Syntax, RuleError, fixer, report, getSource } = context;
+const segmenter = new Intl.Segmenter(undefined, { granularity: "grapheme" });
+
+function reporter(context) {
+    const { Syntax, RuleError, fixer, report, getSource, locator } = context;
     return {
         [Syntax.Str](node) {
-            const text = getSource(node);
-            // "You fix this"
-            //      ^^^
-            const matchRegexp = /\bfix\b/;
-            if (!matchRegexp.test(text)) {
-                return;
+            for (const { segment, index } of segmenter.segment(getSource(node))) {
+                if (segment !== "👍") {
+                    continue;
+                }
+                const range = [index, index + segment.length];
+                report(
+                    node,
+                    new RuleError("Use :+1: for the thumbs-up emoji.", {
+                        padding: locator.range(range),
+                        fix: fixer.replaceTextRange(range, ":+1:")
+                    })
+                );
             }
-            // found "fixable" error
-            const index = text.search(matchRegexp);
-            const length = "fix".length;
-            const replace = fixer.replaceTextRange([index, index + length], "fixed");
-            report(
-                node,
-                new RuleError("Replaced", {
-                    // "You fix this"
-                    //      ^ index
-                    index,
-                    // "You fix this"
-                    //      ^^^
-                    //     fixed
-                    fix: replace
-                })
-            );
         }
     };
-};
-export default {
-    linter: reporter,
-    // This rule has fixer.
-    fixer: reporter
-};
+}
+
+export default { linter: reporter, fixer: reporter };
 ```
+
+Save this test as `prefer-plus-one-shortcode.test.mjs` next to the rule. The emoji before the two thumbs-up characters takes two UTF-16 code units, so the first replacement starts at offset 3.
+
+```js
+import textlintTester from "textlint-tester";
+import rule from "./prefer-plus-one-shortcode.mjs";
+
+const { default: TextLintTester } = textlintTester;
+const tester = new TextLintTester();
+tester.run("prefer-plus-one-shortcode", rule, {
+    valid: [":+1:", "👍🏽"],
+    invalid: [
+        {
+            text: "😀 👍👍",
+            output: "😀 :+1::+1:",
+            errors: [
+                { message: "Use :+1: for the thumbs-up emoji.", range: [3, 5] },
+                { message: "Use :+1: for the thumbs-up emoji.", range: [5, 7] }
+            ]
+        }
+    ]
+});
+```
+
+After installing the test dependencies, run `npx mocha prefer-plus-one-shortcode.test.mjs`. [Test dependencies](./rule.md#manually-installation)
 
 The `context.fixer.` object has the following methods:
 
