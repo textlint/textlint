@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795112931603,
+  "lastUpdate": 1795225329316,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -134021,6 +134021,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.21868470058000003,
             "range": "± 0.007533576000000014",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2b63f905476a38b3e5d651d029b60453e8662fb0",
+          "message": "v16.1.2 (#2231)\n\n<!-- Release notes generated using configuration in .github/release.yml\nat master -->\n\n## What's Changed\n### Documentation\n* docs(README): remove the CI badge by @azu in\nhttps://github.com/textlint/textlint/pull/2228\n* docs: recommend --profile for measuring rule performance by @azu in\nhttps://github.com/textlint/textlint/pull/2229\n### Refactoring\n* perf(textlint): lint a few files at a time and read each file when its\nturn comes by @azu in https://github.com/textlint/textlint/pull/2222\n* perf(kernel, textlint): reduce the GC time by keeping the AST of a\nfile short-lived by @azu in\nhttps://github.com/textlint/textlint/pull/2227\n### Dependency Updates\n* chore(deps): update textlint-rule-preset-ja-technical-writing to v12\nin the benchmark by @azu in\nhttps://github.com/textlint/textlint/pull/2224\n* chore(deps): update dependency rc-config-loader to ^4.2.0 by\n@renovate[bot] in https://github.com/textlint/textlint/pull/2226\n\n\n**Full Changelog**:\nhttps://github.com/textlint/textlint/compare/v16.1.1...v16.1.2\n\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-21T01:40:26Z",
+          "tree_id": "c9fbe7500207f27f66194f23149e3b4f0ae2a528",
+          "url": "https://github.com/textlint/textlint/commit/2b63f905476a38b3e5d651d029b60453e8662fb0"
+        },
+        "date": 1795225316262,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22482849126000004,
+            "range": "± 0.22507213500000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 1.1430802324600002,
+            "range": "± 0.02913058099999999",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.29836113906,
+            "range": "± 0.009422861000000005",
             "unit": "seconds"
           }
         ]
