@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795255306485,
+  "lastUpdate": 1795258787508,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -134189,6 +134189,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.2506875074,
             "range": "± 0.011265636999999995",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "44c5ec184d919e3256cd0d1796bc07051aa6e66f",
+          "message": "chore(deps): update kuromojin to 3.1.0 (#2232)\n\n<!-- claude-projects-attribution: {\"github_login\":\"azu\"} -->\n_Requested by **azu** · [project\nthread](https://claude.ai/code/project/chan_01WwDWq4F69cv9Kmg6AeSy8j?thread=cmsg_01WwDWq4F69cv9Kmg6AeSy8j9ipc8UnYBvj1vjMQ68vosu)_\n\n## Summary\n\nUpdate kuromojin from 3.0.1 to\n[3.1.0](https://github.com/textlint/kuromojin/releases/tag/v3.1.0) in\nthe lockfile. kuromojin is not a dependency of any textlint package; it\ncomes in through the rules of\n`textlint-rule-preset-ja-technical-writing` in `test/benchmark` (all\n`kuromojin@^3`), which `bench:technical-writing` of the CI benchmark job\nruns.\n\n- Only `pnpm-lock.yaml` and the catalog in `pnpm-workspace.yaml` change.\nkuromojin 3.1.0 has no dependencies, so `kuromoji@0.1.2`, `lru_map`,\n`@kvs/*`, and their dependencies are removed from the lockfile.\n- `examples/perf` used `textlint-rule-max-ten` 2.0.4 and\n`textlint-rule-no-mix-dearu-desumasu` 3.0.3 from the catalog, which\ndepend on kuromojin 2.x / 1.x. The catalog is updated to `^5.0.0` /\n`^6.0.4` (only `examples/perf` uses these entries), so the repository\nnow has only `kuromojin@3.1.0` and no `kuromoji`.\n- The lockfile was edited for kuromojin only, so that other packages are\nnot re-resolved. `pnpm install --frozen-lockfile` passes and `pnpm why\nkuromojin -r` shows `3.1.0` for every `^3` dependent.\n\n## Lint results\n\n`--format json` of `.textlintrc.technical-writing.json` on both sets:\nthe messages are identical between 3.0.1 and 3.1.0.\n\n| Set | Files | Messages | Identical |\n| --- | ---: | ---: | --- |\n| small (`test/benchmark/examples`) | 5 | 5 | yes |\n| medium (js-primer v7.0.0 `source/`) | 105 | 850 | yes |\n| large (MDN ja `files/ja/web/javascript`) | 1,037 | 12,420 | yes |\n| huge (MDN ja `files/ja`) | 10,363 | 114,764 | yes |\n| `examples/perf` (its own `.textlintrc`, rules updated) | 5 | 29 | yes\n|\n\n## Performance\n\n`textlint --config test/benchmark/.textlintrc.technical-writing.json\n--format json --output-file /dev/null <set>`, master (3.0.1) and this\nbranch (3.1.0) in turns, median of runs. Linux, 4 CPUs, Node.js\nv22.23.5.\n\n| Set | Runs | Run time 3.0.1 | Run time 3.1.0 | Ratio | Max RSS 3.0.1 |\nMax RSS 3.1.0 | Ratio |\n| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |\n| small | 10 | 1.51 s | 0.65 s | 0.43x | 404 MB | 144 MB | 0.36x |\n| medium | 7 | 25.27 s | 6.65 s | 0.26x | 787 MB | 314 MB | 0.40x |\n| large | 3 | 123.59 s | 23.79 s | 0.19x | 1,020 MB | 308 MB | 0.30x |\n| huge | 2 | 1,081.03 s | 171.56 s | 0.16x | 1,509 MB | 1,110 MB | 0.74x\n|\n\nThe sets are those of `test/benchmark/compare-sets.json`. `pnpm run\nperf` (`examples/perf`, median of 5 runs): 1,835 ms → 689 ms.\n\nRule times of `--profile` on medium (one run each):\n\n| Rule | 3.0.1 (ms) | 3.1.0 (ms) | Ratio |\n| --- | ---: | ---: | ---: |\n| ja-technical-writing/max-ten | 3891 | 608 | 0.16x |\n| ja-technical-writing/no-doubled-conjunctive-particle-ga | 2877 | 131 |\n0.05x |\n| ja-technical-writing/no-double-negative-ja | 2761 | 1056 | 0.38x |\n| ja-technical-writing/ja-no-redundant-expression | 2514 | 590 | 0.23x |\n| ja-technical-writing/no-doubled-joshi | 1909 | 480 | 0.25x |\n| ja-technical-writing/no-doubled-conjunction | 1656 | 247 | 0.15x |\n| ja-technical-writing/ja-no-abusage | 988 | 726 | 0.73x |\n| ja-technical-writing/ja-no-weak-phrase | 597 | 340 | 0.57x |\n| ja-technical-writing/ja-unnatural-alphabet | 462 | 356 | 0.77x |\n| ja-technical-writing/sentence-length | 341 | 261 | 0.77x |\n| ja-technical-writing/no-exclamation-question-mark | 308 | 235 | 0.76x\n|\n| ja-technical-writing/no-unmatched-pair | 268 | 203 | 0.76x |\n| all rules | 19624 | 5763 | 0.29x |\n\n`pnpm run compare` was not run: it lints with\n`.textlintrc.jtf-style.json`, whose rules do not use kuromojin, and no\ntextlint package changes.\n\n## Test plan\n\n- [x] `pnpm install --frozen-lockfile`\n- [x] Identical lint results on small, medium, large, and huge with\n`preset-ja-technical-writing`\n- [x] `pnpm run perf` with identical lint results\n- [ ] CI\n\nhttps://claude.ai/code/session_01TSdrAFQPx7KPRu3zHKGYFx\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-11-21T19:58:20+09:00",
+          "tree_id": "963d413f0da00756cffcbe2dd5fdcc56a0d545a2",
+          "url": "https://github.com/textlint/textlint/commit/44c5ec184d919e3256cd0d1796bc07051aa6e66f"
+        },
+        "date": 1795258774847,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.19533342498000003,
+            "range": "± 0.06729651700000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.6488695123800001,
+            "range": "± 0.024183222999999976",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.30250039817999996,
+            "range": "± 0.007163849",
             "unit": "seconds"
           }
         ]
