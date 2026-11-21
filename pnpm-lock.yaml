@@ -574,9 +574,6 @@ importers:
       '@textlint/ast-tester':
         specifier: workspace:*
         version: link:../ast-tester
-      '@textlint/ast-traverse':
-        specifier: workspace:*
-        version: link:../ast-traverse
       '@textlint/feature-flag':
         specifier: workspace:*
         version: link:../feature-flag
