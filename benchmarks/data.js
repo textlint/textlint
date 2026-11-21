@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795252107469,
+  "lastUpdate": 1795255306485,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -134147,6 +134147,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.2945435912,
             "range": "± 0.009516715000000009",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "cbefe5b4dae66a86f4e89bed2cf19d2016153687",
+          "message": "chore(deps): update max-ten and no-mix-dearu-desumasu in examples/perf\n\nexamples/perf used textlint-rule-max-ten 2.0.4 and\ntextlint-rule-no-mix-dearu-desumasu 3.0.3 from the catalog, which depend\non kuromojin 2.x and 1.x. Update the catalog to max-ten ^5.0.0 and\nno-mix-dearu-desumasu ^6.0.4 so that the repository has only kuromojin\n3.1.0. The lint results of examples/perf are the same (29 messages).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFQPx7KPRu3zHKGYFx\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-21T10:00:23Z",
+          "tree_id": "963d413f0da00756cffcbe2dd5fdcc56a0d545a2",
+          "url": "https://github.com/textlint/textlint/commit/cbefe5b4dae66a86f4e89bed2cf19d2016153687"
+        },
+        "date": 1795255295522,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.17299104059999998,
+            "range": "± 0.10911407499999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.5346463964000001,
+            "range": "± 0.015492842999999978",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.2506875074,
+            "range": "± 0.011265636999999995",
             "unit": "seconds"
           }
         ]
