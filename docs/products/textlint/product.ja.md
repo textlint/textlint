@@ -95,6 +95,7 @@ textlint でも動かせますが、そのために作られてはいません�
 | MCP サーバー | Model Context Protocol を通じて AI エージェントに Lint を提供する | 未作成 |
 | パフォーマンスプロファイル | 実行の時間がどこに使われたかを、フェーズ、パーサー、ルール、ファイルごとに示す | [Requirements](features/performance-profile/requirements.ja.md) |
 | 変更の比較 | 2 つのビルドの Lint 結果と性能を、固定した文書で、ローカルと CI で比較する | [Requirements](features/change-comparison/requirements.ja.md) |
+| リスナーのトリガー文字 | ノードに必要な文字をルールが宣言し、textlint がそのノードでだけリスナーを呼ぶ | [Requirements](features/listener-trigger-characters/requirements.ja.md) |
 
 ## 成功の定義
 

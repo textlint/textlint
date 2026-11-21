@@ -95,6 +95,7 @@ If each rule had to parse each format by itself, the same rule would be written 
 | MCP server | Exposes linting to AI agents through the Model Context Protocol | Not written |
 | Performance profile | Shows where the time of a run goes: phases, parsers, rules, and files | [Requirements](features/performance-profile/requirements.md) |
 | Change comparison | Compares the lint results and the performance of two builds on fixed documents, locally and in CI | [Requirements](features/change-comparison/requirements.md) |
+| Listener trigger characters | Lets a rule declare the characters that a node must have, so that textlint calls a listener only for those nodes | [Requirements](features/listener-trigger-characters/requirements.md) |
 
 ## Definition of success
 
