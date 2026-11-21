@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795225372877,
+  "lastUpdate": 1795252107469,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -134105,6 +134105,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.23236084310000002,
             "range": "± 0.016170772",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "a39cc0927223262313b9fc25b0508e96d3b9cead",
+          "message": "chore(deps): update kuromojin to 3.1.0 in the benchmark\n\nThe rules of textlint-rule-preset-ja-technical-writing in test/benchmark\ndepend on kuromojin ^3. Update the lockfile from 3.0.1 to 3.1.0, which\nloads the dictionary faster and uses less memory. Only the lockfile\nchanges; kuromojin 3.1.0 has no dependencies, so kuromoji, lru_map, and\n@kvs/* are removed from it.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAFQPx7KPRu3zHKGYFx\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-21T09:07:00Z",
+          "tree_id": "a1164ff32faf5366f104a733068181cd3525ac29",
+          "url": "https://github.com/textlint/textlint/commit/a39cc0927223262313b9fc25b0508e96d3b9cead"
+        },
+        "date": 1795252095873,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20974689880000005,
+            "range": "± 0.19344096300000005",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.6231837308,
+            "range": "± 0.02227673600000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.2945435912,
+            "range": "± 0.009516715000000009",
             "unit": "seconds"
           }
         ]
