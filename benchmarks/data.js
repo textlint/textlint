@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795418654339,
+  "lastUpdate": 1795432422707,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -134651,6 +134651,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.22826733018,
             "range": "± 0.012766814999999987",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "2d25b4a8efef7cbb3ffbf3b1818c626c1da3fcc9",
+          "message": "docs(blog): replace the tables of the changes with lists\n\nKeep the summary table and the table of updating only textlint or only\nthe rules. Describe the releases that changed the numbers, the changes of\ntextlint, and the numbers of kuromojin as lists.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGGBrsEKGNtvvdWQaQ\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-23T11:12:23Z",
+          "tree_id": "60cf10e8168bbbc84fd9f7cbed3dda3d0c714008",
+          "url": "https://github.com/textlint/textlint/commit/2d25b4a8efef7cbb3ffbf3b1818c626c1da3fcc9"
+        },
+        "date": 1795432411548,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.15654194468000002,
+            "range": "± 0.03595525300000002",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.5197198642799999,
+            "range": "± 0.04688461499999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.25106485688,
+            "range": "± 0.025447338999999985",
             "unit": "seconds"
           }
         ]
