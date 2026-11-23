@@ -54,25 +54,11 @@ The following chart shows the run time for each install date.
 
 ![The run time of the textlint CLI for each install date. preset-jtf-style on MDN Web Docs in Japanese: 75.5, 29.2, 8.7, 8.5, 7.4, and 7.2 seconds. preset-ja-technical-writing on js-primer: 40.6, 19.3, 18.9, 18.4, 4.3, and 4.1 seconds. preset-ja-technical-writing on web/javascript of MDN Web Docs in Japanese: 150, 95.8, 96.7, 93.5, 16.0, and 15.3 seconds.](./assets/2026-11-23-textlint-performance.png)
 
-| Install date | textlint | Rule packages that changed | `jtf-style`, MDN | `ja-technical-writing`, js-primer | `ja-technical-writing`, MDN `web/javascript` |
-| --- | --- | --- | ---: | ---: | ---: |
-| 2026-11-08 | 15.8.0 | `preset-jtf-style` 3.0.3, `preset-ja-technical-writing` 12.0.2, `kuromojin` 3.0.1, `sentence-splitter` 5.0.1 | 75.5 s | 40.6 s | 149.9 s |
-| 2026-11-15 | 16.0.0 | `sentence-splitter` 5.1.0 | 29.2 s | 19.3 s | 95.8 s |
-| 2026-11-16 | 16.1.0 | `preset-jtf-style` 3.1.0, `match-index` 1.0.4, `textlint-rule-helper` 2.6.0 | 8.69 s | 18.9 s | 96.7 s |
-| 2026-11-18 | 16.1.1 | `kuromojin` 3.0.2 | 8.49 s | 18.4 s | 93.5 s |
-| 2026-11-21 | 16.1.2 | `kuromojin` 3.1.0 | 7.43 s | 4.25 s | 16.0 s |
-| 2026-11-23 | 16.1.3 | `preset-ja-technical-writing` 12.1.0 | 7.17 s | 4.10 s | 15.3 s |
+Three sets of releases made most of the difference.
 
-The peak memory changed as follows.
-
-| Install date | `jtf-style`, MDN | `ja-technical-writing`, js-primer | `ja-technical-writing`, MDN `web/javascript` |
-| --- | ---: | ---: | ---: |
-| 2026-11-08 | 1,022 MB | 905 MB | 2,555 MB |
-| 2026-11-15 | 944 MB | 896 MB | 2,470 MB |
-| 2026-11-16 | 1,008 MB | 893 MB | 2,473 MB |
-| 2026-11-18 | 955 MB | 881 MB | 2,482 MB |
-| 2026-11-21 | 475 MB | 309 MB | 324 MB |
-| 2026-11-23 | 475 MB | 290 MB | 313 MB |
+- **2026-11-15: textlint 16.0.0 and sentence-splitter 5.1.0.** Both have a new parser. `jtf-style` on MDN went from 75.5 s to 29.2 s, and `ja-technical-writing` on js-primer went from 40.6 s to 19.3 s.
+- **2026-11-16: `preset-jtf-style` 3.1.0, with match-index 1.0.4 and textlint-rule-helper 2.6.0.** `jtf-style` on MDN went from 29.2 s to 8.69 s.
+- **2026-11-21: kuromojin 3.1.0 and textlint 16.1.2.** `ja-technical-writing` went from 18.4 s to 4.25 s on js-primer, and from 93.5 s to 16.0 s on MDN `web/javascript`. The peak memory went from 2,482 MB to 324 MB there, and from 955 MB to 475 MB for `jtf-style` on MDN, which does not use kuromojin.
 
 ### textlint and the rules both matter
 
@@ -95,22 +81,31 @@ So updating only textlint is not enough. Update your rules too.
 
 We started with textlint itself.
 
-| Version | Change | Effect |
-| --- | --- | --- |
-| 16.0.0 | A new Markdown parser without third-party dependencies ([#2188](https://github.com/textlint/textlint/pull/2188)) | Parsing js-primer: 1,070 ms → 18 ms |
-| 16.0.0 | Less work for each node when calling rules ([#2202](https://github.com/textlint/textlint/pull/2202)) | Lint of 2,691 files with a rule that does nothing: 696 ms → about 490 ms |
-| 16.1.1 | The `stylish` formatter measures each cell once ([#2214](https://github.com/textlint/textlint/pull/2214)) | Formatting 175,883 messages: 4.7 s → 0.66 s |
-| 16.1.1 | The MCP server is loaded only with `--mcp` ([#2219](https://github.com/textlint/textlint/pull/2219)) | `textlint --version`: 300 ms → about 150 ms |
-| 16.1.1 | `read-package-up` is replaced with a small helper ([#2218](https://github.com/textlint/textlint/pull/2218)) | 21 fewer installed packages (about 3.4 MB) |
-| 16.1.2 | At most 8 files are in process at the same time, and a file is read when its turn comes ([#2222](https://github.com/textlint/textlint/pull/2222)) | MDN: 7.78 s → 6.67 s, peak memory 980 MB → 713 MB |
-| 16.1.2 | The AST of a file is released soon after the lint of the file ([#2227](https://github.com/textlint/textlint/pull/2227)) | MDN: pause of the minor GC about 470 ms → about 210 ms |
-| 16.1.3 | `--fix` parses a file again only after a fix ([#2233](https://github.com/textlint/textlint/pull/2233)) | `--fix --dry-run` on MDN: 33.2 s → 18.4 s |
+Each number is the measurement in the pull request, with `preset-jtf-style` where rules are used.
 
-Each effect is the measurement in the pull request, with `preset-jtf-style` where rules are used.
+### Parsing and calling rules (16.0.0)
 
-Some of these were not about algorithms.
-In [#2227](https://github.com/textlint/textlint/pull/2227), the cause was where V8 allocates a function: a function that is assigned to a property in a constructor was allocated in the old generation, and it kept the AST of each file alive until the next major GC.
+- A new Markdown parser without third-party dependencies. Parsing js-primer went from 1,070 ms to 18 ms ([#2188](https://github.com/textlint/textlint/pull/2188)).
+- Less work for each node when calling rules. A lint of 2,691 files with a rule that does nothing went from 696 ms to about 490 ms ([#2202](https://github.com/textlint/textlint/pull/2202)).
+
+### Output and startup (16.1.1)
+
+- The `stylish` formatter measures each cell once. Formatting 175,883 messages went from 4.7 s to 0.66 s ([#2214](https://github.com/textlint/textlint/pull/2214)).
+- The MCP server is loaded only with `--mcp`. `textlint --version` went from 300 ms to about 150 ms ([#2219](https://github.com/textlint/textlint/pull/2219)).
+- `read-package-up` is replaced with a small helper, so 21 fewer packages (about 3.4 MB) are installed ([#2218](https://github.com/textlint/textlint/pull/2218)).
+
+### Memory (16.1.2)
+
+- At most 8 files are in process at the same time, and a file is read when its turn comes. MDN went from 7.78 s to 6.67 s, and the peak memory from 980 MB to 713 MB ([#2222](https://github.com/textlint/textlint/pull/2222)).
+- The AST of a file is released soon after the lint of the file. The pause of the minor GC on MDN went from about 470 ms to about 210 ms ([#2227](https://github.com/textlint/textlint/pull/2227)).
+
+The second one was not about algorithms.
+The cause was where V8 allocates a function: a function that is assigned to a property in a constructor was allocated in the old generation, and it kept the AST of each file alive until the next major GC.
 We found it by measuring the garbage collection, not by reading the code.
+
+### `--fix` (16.1.3)
+
+- `--fix` parses a file again only after a fix. `--fix --dry-run` on MDN went from 33.2 s to 18.4 s ([#2233](https://github.com/textlint/textlint/pull/2233)).
 
 ## What we changed in rules and libraries
 
@@ -135,14 +130,12 @@ Many Japanese rules use it, and it took about 70% of a run with `preset-ja-techn
 kuromojin 3.1.0 has its own analyzer and its own dictionary file, instead of kuromoji.js.
 The tokens are compatible with the ones of kuromoji.js.
 
-| | 3.0.2 | 3.1.0 | Reduction |
-| --- | ---: | ---: | ---: |
-| Load of the dictionary | 440 ms | 51 ms | 88% |
-| Analysis of each line of js-primer | 2,206 ms | 167 ms | 92% |
-| Memory after the load | 182 MB | 27.2 MB | 85% |
-| Installed size with dependencies | 47.7 MB | 5.10 MB | 89% |
+Compared with 3.0.2, the [v3.1.0 release notes](https://github.com/textlint/kuromojin/releases/tag/v3.1.0) report the following.
 
-The table is from the [v3.1.0 release notes](https://github.com/textlint/kuromojin/releases/tag/v3.1.0).
+- Load of the dictionary: 440 ms → 51 ms
+- Analysis of each line of js-primer: 2,206 ms → 167 ms
+- Memory after the load: 182 MB → 27.2 MB
+- Installed size with dependencies: 47.7 MB → 5.10 MB
 
 We did not start from the implementation.
 First we wrote several prototypes to see how much could be removed, and set the goal to remove 80% of the time.
