@@ -1,6 +1,6 @@
 // MIT © 2017 azu
 "use strict";
-import type { TextlintMessage } from "@textlint/types";
+import type { TextlintMessage, TextlintRuleModule, TextlintRuleReporter } from "@textlint/types";
 import { describe, it } from "vitest";
 import { TextlintKernel } from "../src/textlint-kernel.js";
 import { errorRule } from "./helper/ErrorRule.js";
@@ -358,6 +358,56 @@ describe("textlint-kernel", () => {
                 assert.strictEqual(result.messages.length, 1);
                 result.messages.forEach((message) => assertMessage(message));
             });
+        });
+        it("should give each rule the text that the rules before it fixed", async () => {
+            const kernel = new TextlintKernel();
+            const { plugin } = createPluginStub();
+            // a rule that reports the text of the document, and replaces `from` with `to` when the text starts with it
+            const createReplaceRule = (from: string, to: string): TextlintRuleModule => {
+                const reporter: TextlintRuleReporter = (context) => {
+                    const { Syntax, RuleError, report, fixer, getSource } = context;
+                    return {
+                        [Syntax.Document](node) {
+                            const text = getSource(node);
+                            const range = [0, from.length] as const;
+                            report(
+                                node,
+                                new RuleError(`text: ${text}`, {
+                                    fix: text.startsWith(from) ? fixer.replaceTextRange(range, to) : undefined
+                                })
+                            );
+                        }
+                    };
+                };
+                return { linter: reporter, fixer: reporter };
+            };
+            const result = await kernel.fixText("a text", {
+                filePath: "/path/to/file.md",
+                ext: ".md",
+                plugins: [{ pluginId: "markdown", plugin }],
+                rules: [
+                    { ruleId: "no-fix-1", rule: createReplaceRule("x", "y") },
+                    { ruleId: "a-to-b", rule: createReplaceRule("a", "b") },
+                    { ruleId: "no-fix-2", rule: createReplaceRule("x", "y") },
+                    { ruleId: "b-to-c", rule: createReplaceRule("b", "c") },
+                    { ruleId: "no-fix-3", rule: createReplaceRule("x", "y") }
+                ]
+            });
+            assert.strictEqual(result.output, "c text");
+            assert.deepStrictEqual(
+                result.messages.map((message) => [message.ruleId, message.message]),
+                [
+                    ["no-fix-1", "text: a text"],
+                    ["a-to-b", "text: a text"],
+                    ["no-fix-2", "text: b text"],
+                    ["b-to-c", "text: b text"],
+                    ["no-fix-3", "text: c text"]
+                ]
+            );
+            assert.deepStrictEqual(
+                result.applyingMessages.map((message) => message.ruleId),
+                ["a-to-b", "b-to-c"]
+            );
         });
         it("should pass pluginOptions to plugin", () => {
             const kernel = new TextlintKernel();
