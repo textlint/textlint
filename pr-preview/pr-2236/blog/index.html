@@ -12,8 +12,8 @@
 <link rel="search" type="application/opensearchdescription+xml" title="textlint" href="/textlint/pr-preview/pr-2236/opensearch.xml">
 
 <script src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/textlint/pr-preview/pr-2236/assets/css/styles.15dadf87.css">
-<script src="/textlint/pr-preview/pr-2236/assets/js/runtime~main.dff23df5.js" defer="defer"></script>
-<script src="/textlint/pr-preview/pr-2236/assets/js/main.4ff74845.js" defer="defer"></script>
+<script src="/textlint/pr-preview/pr-2236/assets/js/runtime~main.687bff55.js" defer="defer"></script>
+<script src="/textlint/pr-preview/pr-2236/assets/js/main.4430b022.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -23,38 +23,14 @@
 In our benchmarks, a lint that took 75.5 seconds now takes 7.2 seconds, and uses less than half of the memory.</p>
 <p>Your configuration and your rules do not need to change.
 Update textlint and your rules to get the improvements.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Rules and documents</th><th style="text-align:right">2026-11-08</th><th style="text-align:right">2026-11-23</th><th style="text-align:right">Time</th></tr></thead><tbody><tr><td><code>preset-jtf-style</code> on the Japanese translation of MDN Web Docs (10,452 files)</td><td style="text-align:right">75.5 s, 1,022 MB</td><td style="text-align:right">7.17 s, 475 MB</td><td style="text-align:right">10.5x faster</td></tr><tr><td><code>preset-ja-technical-writing</code> on js-primer (105 files)</td><td style="text-align:right">40.6 s, 905 MB</td><td style="text-align:right">4.10 s, 290 MB</td><td style="text-align:right">9.9x faster</td></tr><tr><td><code>preset-ja-technical-writing</code> on <code>web/javascript</code> of MDN Web Docs in Japanese (1,043 files)</td><td style="text-align:right">149.9 s, 2,555 MB</td><td style="text-align:right">15.3 s, 313 MB</td><td style="text-align:right">9.8x faster</td></tr></tbody></table>
-<p>Each column is the state of <code>npm install</code> on that day: textlint 15.8.0 on 2026-11-08, and textlint 16.1.3 on 2026-11-23.
-The values are the run time of the textlint CLI and the largest memory of the process (peak RSS).
+<p><img decoding="async" loading="lazy" alt="The run time of the textlint CLI for each install date. preset-jtf-style on MDN Web Docs in Japanese: 75.5, 29.2, 8.7, 8.5, 7.4, and 7.2 seconds. preset-ja-technical-writing on js-primer: 40.6, 19.3, 18.9, 18.4, 4.3, and 4.1 seconds. preset-ja-technical-writing on web/javascript of MDN Web Docs in Japanese: 150, 95.8, 96.7, 93.5, 16.0, and 15.3 seconds." src="/textlint/pr-preview/pr-2236/assets/images/2026-11-23-textlint-performance-3f38fd0578050be5015fb46eaacd6887.png" width="2320" height="652" class="img_Xroe"></p>
+<p>Each bar is the state of <code>npm install</code> on that day: textlint 15.8.0 on 2026-11-08, and textlint 16.1.3 on 2026-11-23.</p>
+<ul>
+<li class=""><code>preset-jtf-style</code> on the Japanese translation of MDN Web Docs (10,452 files): 75.5 s → 7.17 s, and the peak memory 1,022 MB → 475 MB.</li>
+<li class=""><code>preset-ja-technical-writing</code> on js-primer (105 files): 40.6 s → 4.10 s, and 905 MB → 290 MB.</li>
+<li class=""><code>preset-ja-technical-writing</code> on <code>web/javascript</code> of MDN Web Docs in Japanese (1,043 files): 149.9 s → 15.3 s, and 2,555 MB → 313 MB.</li>
+</ul>
+<p>The values are the run time of the textlint CLI and the largest memory of the process (peak RSS).
 <a href="#how-we-measured" class="">How we measured</a> describes the details.</p>
 <p>This post describes why we worked on performance, how the numbers changed, what we changed, and how we keep textlint from getting slower.</p>
 <h2 class="anchor anchorTargetStickyNavbar_h6cq" id="why-performance-matters-now">Why performance matters now<a href="#why-performance-matters-now" class="hash-link" aria-label="Direct link to Why performance matters now" title="Direct link to Why performance matters now" translate="no">​</a></h2>
@@ -80,9 +56,7 @@ So we set one condition for this work: <strong>existing rules and configurations
 <p>The only steps you need are in <a href="#how-to-update" class="">How to update</a>.
 textlint v16 requires Node.js 22.12.0 or later, as the <a href="https://textlint.org/blog/2026/11/15/textlint-16/" target="_blank" rel="noopener noreferrer" class="">v16.0.0 release post</a> describes.</p>
 <h2 class="anchor anchorTargetStickyNavbar_h6cq" id="how-the-numbers-changed">How the numbers changed<a href="#how-the-numbers-changed" class="hash-link" aria-label="Direct link to How the numbers changed" title="Direct link to How the numbers changed" translate="no">​</a></h2>
-<p>The following chart shows the run time for each install date.</p>
-<p><img decoding="async" loading="lazy" alt="The run time of the textlint CLI for each install date. preset-jtf-style on MDN Web Docs in Japanese: 75.5, 29.2, 8.7, 8.5, 7.4, and 7.2 seconds. preset-ja-technical-writing on js-primer: 40.6, 19.3, 18.9, 18.4, 4.3, and 4.1 seconds. preset-ja-technical-writing on web/javascript of MDN Web Docs in Japanese: 150, 95.8, 96.7, 93.5, 16.0, and 15.3 seconds." src="/textlint/pr-preview/pr-2236/assets/images/2026-11-23-textlint-performance-3f38fd0578050be5015fb46eaacd6887.png" width="2320" height="652" class="img_Xroe"></p>
-<p>Three sets of releases made most of the difference.</p>
+<p>Three sets of releases made most of the difference in the chart at the top.</p>
 <ul>
 <li class=""><strong>2026-11-15: textlint 16.0.0 and sentence-splitter 5.1.0.</strong> Both have a new parser. <code>jtf-style</code> on MDN went from 75.5 s to 29.2 s, and <code>ja-technical-writing</code> on js-primer went from 40.6 s to 19.3 s.</li>
 <li class=""><strong>2026-11-16: <code>preset-jtf-style</code> 3.1.0, with match-index 1.0.4 and textlint-rule-helper 2.6.0.</strong> <code>jtf-style</code> on MDN went from 29.2 s to 8.69 s.</li>
