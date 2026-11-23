@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795258787508,
+  "lastUpdate": 1795409862915,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -134231,6 +134231,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.30250039817999996,
             "range": "± 0.007163849",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "4a8026e582bd0643d83dba5e4b4940898267cb2c",
+          "message": "perf(kernel, source-code-fixer): parse a file again only after a rule fixes it\n\nTo fix a file, the kernel parsed the text once for every fixable rule,\neven when no rule before had changed the text. Now the rules use the same\nAST until a rule fixes the text, as the rules of a lint share an AST.\n\napplyFixesToSourceCode split the text into an array of characters and\nspliced it for each fix. It now joins slices of the text.\n\nThe comparison (pnpm run compare) also runs the CLI with --fix --dry-run:\nit compares the run time and the fixed text of each file.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAEFYrTD2aCmDYL2F61\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-23T04:56:35Z",
+          "tree_id": "ccb854a7bd17fbc66e776c6fd23f1f297eacc951",
+          "url": "https://github.com/textlint/textlint/commit/4a8026e582bd0643d83dba5e4b4940898267cb2c"
+        },
+        "date": 1795409853607,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.14414553412000003,
+            "range": "± 0.02554331400000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.46558904932,
+            "range": "± 0.03771963900000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.22436024712,
+            "range": "± 0.024046663999999995",
             "unit": "seconds"
           }
         ]
