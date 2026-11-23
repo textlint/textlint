@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795411751459,
+  "lastUpdate": 1795411779391,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -134441,6 +134441,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.23536945312000004,
             "range": "± 0.055795619000000046",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a114a9a5b43c663f53c262949fc9a14cdf7f3a2d",
+          "message": "v16.1.3 (#2234)\n\n<!-- Release notes generated using configuration in .github/release.yml\nat master -->\n\n## What's Changed\n### Refactoring\n* perf(kernel, source-code-fixer): make --fix about 0.55x by parsing a\nfile again only after a fix by @azu in\nhttps://github.com/textlint/textlint/pull/2233\n### Dependency Updates\n* chore(deps): update kuromojin to 3.1.0 by @azu in\nhttps://github.com/textlint/textlint/pull/2232\n\n\n**Full Changelog**:\nhttps://github.com/textlint/textlint/compare/v16.1.2...v16.1.3\n\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-23T05:28:00Z",
+          "tree_id": "bec36ca0313c4136f2498fe67e345cd55c50923f",
+          "url": "https://github.com/textlint/textlint/commit/a114a9a5b43c663f53c262949fc9a14cdf7f3a2d"
+        },
+        "date": 1795411764626,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22444634588000004,
+            "range": "± 0.049680433999999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.7650791372800001,
+            "range": "± 0.025732788999999978",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.36312636808,
+            "range": "± 0.01597325500000002",
             "unit": "seconds"
           }
         ]
