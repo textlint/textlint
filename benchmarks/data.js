@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795410050761,
+  "lastUpdate": 1795411240131,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -134315,6 +134315,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.21675396358000004,
             "range": "± 0.007002489000000001",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f5e709df3985125c9c1b9479a41058c03bd4059a",
+          "message": "perf(kernel, source-code-fixer): make --fix about 0.55x by parsing a file again only after a fix (#2233)\n\n<!-- claude-projects-attribution: {\"github_login\":\"azu\"} -->\n_Requested by **azu** · [project\nthread](https://claude.ai/code/project/chan_01WwDWq4F69cv9Kmg6AeSy8j?thread=cmsg_01WwDWq4F69cv9Kmg6AeSy8j8t7Qgb36V4xbPfiG4NZEYC)_\n\n## Summary\n\n`textlint --fix` took about 4.5 times as long as a lint of the same\nfiles (33.2 s and 7.7 s for the Japanese translation of MDN with\n`preset-jtf-style`). About 80% of the CPU time was in textlint itself\nand 4% in the rules. This pull request makes `--fix` about 0.55x of that\ntime, with the same output, and adds `--fix` to `pnpm run compare` so\nthat a change of this path is seen.\n\n## Changes\n\n- **`@textlint/kernel`**: to fix a file, the kernel runs the fixable\nrules one after another, and it parsed the text again for every rule.\nNow the rules use the same AST until a rule fixes the text, and the text\nis parsed again only after a fix. The rules of a lint already share one\nAST.\n- **`@textlint/source-code-fixer`**: `applyFixesToSourceCode` split the\ntext into an array of characters and called `splice` for each fix. It\nnow joins slices of the text. A fix whose range ends before its start\nstill inserts its text at the start of the range; when that start is\nafter a fix that is already applied, the fix is now left in\n`remainingMessages` instead of being inserted into the changed text.\n- **`pnpm run compare`**: runs the CLI with `--fix --dry-run` for the\nbase and the head in turns, and shows the run time (marked at 1.3x /\n0.77x, as the CLI) and the files whose fixed text differs. The\nspecification of the change comparison (English and Japanese) and the\nperformance-check skill are updated.\n- A test of the kernel checks that each rule gets the text that the\nrules before it fixed. It passes on `master` too.\n\n## Not changed\n\n- The order of the rules and of the fixes, and the results of `--fix`.\n- A rule that changes the AST: with `--fix`, the next rule now sees the\nchanged AST until a rule fixes the text, as with a lint.\n\n## Results\n\n`pnpm run compare` on 4 CPUs, Node.js 22.23.5. Base: 44c5ec1 (`master`).\nThe run time of the lint, the parsers, and the traversal are within the\nnoise.\n\n### small: `test/benchmark/examples`, 5 files\n\n✅ No change in lint results, CLI 0.95x\n\n|  | Base | Head | Change |\n| --- | ---: | ---: | ---: |\n| CLI run time (median, ms) | 194.82 | 185.72 | 0.95x |\n| GC pause of the CLI (median, ms) | 8.22 (9 minor, 2 major) | 7.95 (8\nminor, 2 major) | 0.97x |\n| CLI run time with `--fix --dry-run` (median, ms) | 244.82 | 193.54 |\n0.79x |\n| parse: @textlint/markdown-to-ast (min, ms) | 0.41 | 0.42 | 1.01x |\n| parse: @textlint/text-to-ast (min, ms) | 0.08 | 0.07 | 0.94x |\n| traverse + dispatch with a no-op rule (min, ms) | 0.39 | 0.30 | 0.77x\n|\n| messages | 2 | 2 |  |\n| files fixed by `--fix` | 1 | 1 |  |\n\n### medium: https://github.com/asciidwango/js-primer at\n[`6c1a17c246ba`](https://github.com/asciidwango/js-primer/commit/6c1a17c246baaf0f6ae573a6947acddef6f6b5f9)\n(v7.0.0), 88 files\n\n✅ Improved: CLI with --fix faster (0.53x)\n\n|  | Base | Head | Change |\n| --- | ---: | ---: | ---: |\n| CLI run time (median, ms) | 509.30 | 499.51 | 0.98x |\n| GC pause of the CLI (median, ms) | 28.60 (22 minor, 2 major) | 25.85\n(19 minor, 2 major) | 0.90x |\n| CLI run time with `--fix --dry-run` (median, ms) | 1505.20 | 794.31 |\n0.53x faster |\n| parse: @textlint/markdown-to-ast (min, ms) | 19.81 | 20.35 | 1.03x |\n| parse: @textlint/text-to-ast (min, ms) | 3.81 | 3.83 | 1.01x |\n| traverse + dispatch with a no-op rule (min, ms) | 13.43 | 13.28 |\n0.99x |\n| messages | 894 | 894 |  |\n| files fixed by `--fix` | 41 | 41 |  |\n\n### large: https://github.com/mdn/translated-content at\n[`9c47047bc8d7`](https://github.com/mdn/translated-content/commit/9c47047bc8d72a1a900f6f807edbcca072618ae1)\n(main 2026-11-15), 1037 files\n\n✅ Improved: CLI with --fix faster (0.55x)\n\n|  | Base | Head | Change |\n| --- | ---: | ---: | ---: |\n| CLI run time (median, ms) | 1218.96 | 1263.33 | 1.04x |\n| GC pause of the CLI (median, ms) | 44.35 (48 minor, 2 major) | 45.11\n(50 minor, 2 major) | 1.02x |\n| CLI run time with `--fix --dry-run` (median, ms) | 5153.45 | 2830.61 |\n0.55x faster |\n| parse: @textlint/markdown-to-ast (min, ms) | 68.35 | 68.24 | 1.00x |\n| parse: @textlint/text-to-ast (min, ms) | 17.82 | 17.64 | 0.99x |\n| traverse + dispatch with a no-op rule (min, ms) | 79.45 | 78.78 |\n0.99x |\n| messages | 15798 | 15798 |  |\n| files fixed by `--fix` | 979 | 979 |  |\n\n### huge: https://github.com/mdn/translated-content at\n[`9c47047bc8d7`](https://github.com/mdn/translated-content/commit/9c47047bc8d72a1a900f6f807edbcca072618ae1)\n(main 2026-11-15), 10362 files\n\n✅ Improved: CLI with --fix faster (0.55x)\n\n|  | Base | Head | Change |\n| --- | ---: | ---: | ---: |\n| CLI run time (median, ms) | 7654.56 | 7471.82 | 0.98x |\n| GC pause of the CLI (median, ms) | 223.65 (293 minor, 6 major) |\n222.78 (292 minor, 6 major) | 1.00x |\n| CLI run time with `--fix --dry-run` (median, ms) | 33229.75 | 18409.85\n| 0.55x faster |\n| parse: @textlint/markdown-to-ast (min, ms) | 588.31 | 611.52 | 1.04x |\n| parse: @textlint/text-to-ast (min, ms) | 167.31 | 164.18 | 0.98x |\n| traverse + dispatch with a no-op rule (min, ms) | 663.91 | 665.47 |\n1.00x |\n| messages | 175883 | 175883 |  |\n| files fixed by `--fix` | 9307 | 9307 |  |\n\nThe output of `--fix --dry-run --format json` is also byte-identical\nbetween the base and the head with `preset-ja-technical-writing` on\njs-primer (88 files) and on the JavaScript documentation of MDN (1,037\nfiles).\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_\n\n---------\n\nCo-authored-by: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-11-23T14:19:03+09:00",
+          "tree_id": "de55557240f5a6c2d542c3bb15098bf5ea400aa1",
+          "url": "https://github.com/textlint/textlint/commit/f5e709df3985125c9c1b9479a41058c03bd4059a"
+        },
+        "date": 1795411225724,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22120824190000002,
+            "range": "± 0.056521473000000044",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.7617111601000002,
+            "range": "± 0.03665431199999991",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.3666979319,
+            "range": "± 0.008995742000000029",
             "unit": "seconds"
           }
         ]
