@@ -11,10 +11,10 @@ Update textlint and your rules to get the improvements.
 
 ![The run time of the textlint CLI for each install date. preset-jtf-style on MDN Web Docs in Japanese: 75.5, 29.2, 8.7, 8.5, 7.4, and 7.2 seconds. preset-ja-technical-writing on js-primer: 40.6, 19.3, 18.9, 18.4, 4.3, and 4.1 seconds. preset-ja-technical-writing on web/javascript of MDN Web Docs in Japanese: 150, 95.8, 96.7, 93.5, 16.0, and 15.3 seconds.](./assets/2026-11-23-textlint-performance.png)
 
-Each bar is the state of `npm install` on that day: textlint 15.8.0 on 2026-11-08, and textlint 16.1.3 on 2026-11-23.
+Each bar is the run time with the versions of textlint and the rules that `npm install` installed on that day: textlint 15.8.0 on 2026-11-08, and textlint 16.1.3 on 2026-11-23.
 
-- `preset-jtf-style` on the Japanese translation of MDN Web Docs (10,452 files): 75.5 s → 7.17 s, and the peak memory 1,022 MB → 475 MB.
-- `preset-ja-technical-writing` on js-primer (105 files): 40.6 s → 4.10 s, and 905 MB → 290 MB.
+- [`preset-jtf-style`](https://github.com/textlint-ja/textlint-rule-preset-JTF-style) on the Japanese translation of MDN Web Docs (10,452 files): 75.5 s → 7.17 s, and the peak memory 1,022 MB → 475 MB.
+- [`preset-ja-technical-writing`](https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing) on js-primer (105 files): 40.6 s → 4.10 s, and 905 MB → 290 MB.
 - `preset-ja-technical-writing` on `web/javascript` of MDN Web Docs in Japanese (1,043 files): 149.9 s → 15.3 s, and 2,555 MB → 313 MB.
 
 The values are the run time of the textlint CLI and the largest memory of the process (peak RSS).
@@ -96,9 +96,9 @@ Each number is the measurement in the pull request, with `preset-jtf-style` wher
 - At most 8 files are in process at the same time, and a file is read when its turn comes. MDN went from 7.78 s to 6.67 s, and the peak memory from 980 MB to 713 MB ([#2222](https://github.com/textlint/textlint/pull/2222)).
 - The AST of a file is released soon after the lint of the file. The pause of the minor GC on MDN went from about 470 ms to about 210 ms ([#2227](https://github.com/textlint/textlint/pull/2227)).
 
-The second one was not about algorithms.
+We could not find the cause of the second one by reading the code.
+So we profiled the garbage collection to see where the problem was.
 The cause was where V8 allocates a function: a function that is assigned to a property in a constructor was allocated in the old generation, and it kept the AST of each file alive until the next major GC.
-We found it by measuring the garbage collection, not by reading the code.
 
 ### `--fix` (16.1.3)
 
@@ -124,7 +124,7 @@ Many rules use it, such as `sentence-length` and `max-ten`.
 [kuromojin](https://github.com/textlint/kuromojin) analyzes Japanese text into words.
 Many Japanese rules use it, and it took about 70% of a run with `preset-ja-technical-writing`.
 
-kuromojin 3.1.0 has its own analyzer and its own dictionary file, instead of kuromoji.js.
+kuromojin 3.1.0 no longer depends on [kuromoji.js](https://github.com/takuyaa/kuromoji.js): it includes the analysis as its own analyzer and its own dictionary file.
 The tokens are compatible with the ones of kuromoji.js.
 
 Compared with 3.0.2, the [v3.1.0 release notes](https://github.com/textlint/kuromojin/releases/tag/v3.1.0) report the following.
@@ -135,9 +135,12 @@ Compared with 3.0.2, the [v3.1.0 release notes](https://github.com/textlint/kuro
 - Installed size with dependencies: 47.7 MB → 5.10 MB
 
 We did not start from the implementation.
-First we wrote several prototypes to see how much could be removed, and set the goal to remove 80% of the time.
-Then we wrote the requirements and the design of the analyzer, the dictionary format, and the [dictionary versions](https://github.com/textlint/kuromojin#dictionary-versions) as specifications, and implemented them.
-The dictionary does not change within a major version, so the lint results do not change when words are added later.
+We knew that kuromojin took a large part of the time of the rules, so first we wrote several prototypes to see how much could be removed.
+The first prototype removed about 60%, and we also measured a run where the analysis costs nothing, to know the upper limit.
+Then we set a rough goal to remove 80% of the time.
+After that, we wrote the requirements and the design of the analyzer, the dictionary format, and the dictionary versions as [specifications](https://github.com/textlint/kuromojin/tree/master/docs/products/kuromojin), and implemented them.
+For example, a new word in the dictionary changes the tokens, and so the lint results.
+So the [specification of the dictionary versions](https://github.com/textlint/kuromojin/blob/master/docs/products/kuromojin/features/dictionary-versions/requirements.md) keeps the dictionary the same within a major version, and uses a newer dictionary only when the `dictionaryVersion` option is given.
 
 ### preset-jtf-style 3.1.0 and shared helpers
 
@@ -243,7 +246,7 @@ The lint results are as follows.
 
 textlint lints files one by one in one thread.
 To handle many more files, textlint needs something more fundamental, such as linting files in parallel.
-It is hard for a linter whose rules are all added from outside: a rule may keep state across files, and each thread has to load the rules and their dictionaries again.
+It is hard for a linter whose rules are all added from outside: each thread has to load the rules and their dictionaries again.
 We do not know the best design yet.
 
 If you have a large set of documents, please tell us the output of `textlint --profile` in [GitHub Discussions](https://github.com/textlint/textlint/discussions).
