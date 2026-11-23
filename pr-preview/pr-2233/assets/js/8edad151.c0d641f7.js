@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunktextlint_website=globalThis.webpackChunktextlint_website||[]).push([[6504],{5824:t=>{t.exports=JSON.parse('{"metadata":{"permalink":"/textlint/pr-preview/pr-2233/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":8,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
