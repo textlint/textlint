@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795433785179,
+  "lastUpdate": 1795433858824,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -134735,6 +134735,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.37778948304,
             "range": "± 0.010929509000000004",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "a321c9bad722b84eadab867e4da3712c5b3717c4",
+          "message": "docs(blog): make the text of the chart larger\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGGBrsEKGNtvvdWQaQ\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-23T11:35:29Z",
+          "tree_id": "c93d0afbcf9d214a16465db3c93cc65fc119b7b0",
+          "url": "https://github.com/textlint/textlint/commit/a321c9bad722b84eadab867e4da3712c5b3717c4"
+        },
+        "date": 1795433843344,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22381835388,
+            "range": "± 0.040514809999999984",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.76583999808,
+            "range": "± 0.03946384999999997",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.3626391224800001,
+            "range": "± 0.013698704000000006",
             "unit": "seconds"
           }
         ]
