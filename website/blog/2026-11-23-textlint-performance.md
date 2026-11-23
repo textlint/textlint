@@ -1,5 +1,5 @@
 ---
-title: textlint is about 10 times faster than two weeks ago
+title: Performance improvements in textlint and its rules
 authors: azu
 ---
 
