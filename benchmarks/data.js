@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795409862915,
+  "lastUpdate": 1795410050761,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -134273,6 +134273,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.22436024712,
             "range": "± 0.024046663999999995",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "cec66c19a5e5f99903960815ba6263b8582ec070",
+          "message": "chore(benchmark): pass a compare function to sort\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAEFYrTD2aCmDYL2F61\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-23T04:59:44Z",
+          "tree_id": "de55557240f5a6c2d542c3bb15098bf5ea400aa1",
+          "url": "https://github.com/textlint/textlint/commit/cec66c19a5e5f99903960815ba6263b8582ec070"
+        },
+        "date": 1795410041339,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.13652280578,
+            "range": "± 0.026920144000000007",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.46145318138,
+            "range": "± 0.039588776999999964",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.21675396358000004,
+            "range": "± 0.007002489000000001",
             "unit": "seconds"
           }
         ]
