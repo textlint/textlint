@@ -76,117 +76,12 @@ textlint v16 requires Node.js 22.12.0 or later, as the <a href="https://textlint
 <h2 class="anchor anchorTargetStickyNavbar_h6cq" id="how-the-numbers-changed">How the numbers changed<a href="https://textlint.org/textlint/pr-preview/pr-2236/blog/2026/11/23/textlint-performance#how-the-numbers-changed" class="hash-link" aria-label="Direct link to How the numbers changed" title="Direct link to How the numbers changed" translate="no">​</a></h2>
 <p>The following chart shows the run time for each install date.</p>
 <p><img decoding="async" loading="lazy" alt="The run time of the textlint CLI for each install date. preset-jtf-style on MDN Web Docs in Japanese: 75.5, 29.2, 8.7, 8.5, 7.4, and 7.2 seconds. preset-ja-technical-writing on js-primer: 40.6, 19.3, 18.9, 18.4, 4.3, and 4.1 seconds. preset-ja-technical-writing on web/javascript of MDN Web Docs in Japanese: 150, 95.8, 96.7, 93.5, 16.0, and 15.3 seconds." src="https://textlint.org/textlint/pr-preview/pr-2236/assets/images/2026-11-23-textlint-performance-3f38fd0578050be5015fb46eaacd6887.png" width="2320" height="652" class="img_Xroe"></p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Install date</th><th>textlint</th><th>Rule packages that changed</th><th style="text-align:right"><code>jtf-style</code>, MDN</th><th style="text-align:right"><code>ja-technical-writing</code>, js-primer</th><th style="text-align:right"><code>ja-technical-writing</code>, MDN <code>web/javascript</code></th></tr></thead><tbody><tr><td>2026-11-08</td><td>15.8.0</td><td><code>preset-jtf-style</code> 3.0.3, <code>preset-ja-technical-writing</code> 12.0.2, <code>kuromojin</code> 3.0.1, <code>sentence-splitter</code> 5.0.1</td><td style="text-align:right">75.5 s</td><td style="text-align:right">40.6 s</td><td style="text-align:right">149.9 s</td></tr><tr><td>2026-11-15</td><td>16.0.0</td><td><code>sentence-splitter</code> 5.1.0</td><td style="text-align:right">29.2 s</td><td style="text-align:right">19.3 s</td><td style="text-align:right">95.8 s</td></tr><tr><td>2026-11-16</td><td>16.1.0</td><td><code>preset-jtf-style</code> 3.1.0, <code>match-index</code> 1.0.4, <code>textlint-rule-helper</code> 2.6.0</td><td style="text-align:right">8.69 s</td><td style="text-align:right">18.9 s</td><td style="text-align:right">96.7 s</td></tr><tr><td>2026-11-18</td><td>16.1.1</td><td><code>kuromojin</code> 3.0.2</td><td style="text-align:right">8.49 s</td><td style="text-align:right">18.4 s</td><td style="text-align:right">93.5 s</td></tr><tr><td>2026-11-21</td><td>16.1.2</td><td><code>kuromojin</code> 3.1.0</td><td style="text-align:right">7.43 s</td><td style="text-align:right">4.25 s</td><td style="text-align:right">16.0 s</td></tr><tr><td>2026-11-23</td><td>16.1.3</td><td><code>preset-ja-technical-writing</code> 12.1.0</td><td style="text-align:right">7.17 s</td><td style="text-align:right">4.10 s</td><td style="text-align:right">15.3 s</td></tr></tbody></table>
-<p>The peak memory changed as follows.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Install date</th><th style="text-align:right"><code>jtf-style</code>, MDN</th><th style="text-align:right"><code>ja-technical-writing</code>, js-primer</th><th style="text-align:right"><code>ja-technical-writing</code>, MDN <code>web/javascript</code></th></tr></thead><tbody><tr><td>2026-11-08</td><td style="text-align:right">1,022 MB</td><td style="text-align:right">905 MB</td><td style="text-align:right">2,555 MB</td></tr><tr><td>2026-11-15</td><td style="text-align:right">944 MB</td><td style="text-align:right">896 MB</td><td style="text-align:right">2,470 MB</td></tr><tr><td>2026-11-16</td><td style="text-align:right">1,008 MB</td><td style="text-align:right">893 MB</td><td style="text-align:right">2,473 MB</td></tr><tr><td>2026-11-18</td><td style="text-align:right">955 MB</td><td style="text-align:right">881 MB</td><td style="text-align:right">2,482 MB</td></tr><tr><td>2026-11-21</td><td style="text-align:right">475 MB</td><td style="text-align:right">309 MB</td><td style="text-align:right">324 MB</td></tr><tr><td>2026-11-23</td><td style="text-align:right">475 MB</td><td style="text-align:right">290 MB</td><td style="text-align:right">313 MB</td></tr></tbody></table>
+<p>Three sets of releases made most of the difference.</p>
+<ul>
+<li class=""><strong>2026-11-15: textlint 16.0.0 and sentence-splitter 5.1.0.</strong> Both have a new parser. <code>jtf-style</code> on MDN went from 75.5 s to 29.2 s, and <code>ja-technical-writing</code> on js-primer went from 40.6 s to 19.3 s.</li>
+<li class=""><strong>2026-11-16: <code>preset-jtf-style</code> 3.1.0, with match-index 1.0.4 and textlint-rule-helper 2.6.0.</strong> <code>jtf-style</code> on MDN went from 29.2 s to 8.69 s.</li>
+<li class=""><strong>2026-11-21: kuromojin 3.1.0 and textlint 16.1.2.</strong> <code>ja-technical-writing</code> went from 18.4 s to 4.25 s on js-primer, and from 93.5 s to 16.0 s on MDN <code>web/javascript</code>. The peak memory went from 2,482 MB to 324 MB there, and from 955 MB to 475 MB for <code>jtf-style</code> on MDN, which does not use kuromojin.</li>
+</ul>
 <h3 class="anchor anchorTargetStickyNavbar_h6cq" id="textlint-and-the-rules-both-matter">textlint and the rules both matter<a href="https://textlint.org/textlint/pr-preview/pr-2236/blog/2026/11/23/textlint-performance#textlint-and-the-rules-both-matter" class="hash-link" aria-label="Direct link to textlint and the rules both matter" title="Direct link to textlint and the rules both matter" translate="no">​</a></h3>
 <p>Which update matters depends on the rules.
 The following table updates only textlint, or only the rules.</p>
@@ -228,61 +123,30 @@ The following table updates only textlint, or only the rules.</p>
 <p>So updating only textlint is not enough. Update your rules too.</p>
 <h2 class="anchor anchorTargetStickyNavbar_h6cq" id="what-we-changed-in-textlint">What we changed in textlint<a href="https://textlint.org/textlint/pr-preview/pr-2236/blog/2026/11/23/textlint-performance#what-we-changed-in-textlint" class="hash-link" aria-label="Direct link to What we changed in textlint" title="Direct link to What we changed in textlint" translate="no">​</a></h2>
 <p>We started with textlint itself.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Version</th><th>Change</th><th>Effect</th></tr></thead><tbody><tr><td>16.0.0</td><td>A new Markdown parser without third-party dependencies (<a href="https://github.com/textlint/textlint/pull/2188" target="_blank" rel="noopener noreferrer" class="">#2188</a>)</td><td>Parsing js-primer: 1,070 ms → 18 ms</td></tr><tr><td>16.0.0</td><td>Less work for each node when calling rules (<a href="https://github.com/textlint/textlint/pull/2202" target="_blank" rel="noopener noreferrer" class="">#2202</a>)</td><td>Lint of 2,691 files with a rule that does nothing: 696 ms → about 490 ms</td></tr><tr><td>16.1.1</td><td>The <code>stylish</code> formatter measures each cell once (<a href="https://github.com/textlint/textlint/pull/2214" target="_blank" rel="noopener noreferrer" class="">#2214</a>)</td><td>Formatting 175,883 messages: 4.7 s → 0.66 s</td></tr><tr><td>16.1.1</td><td>The MCP server is loaded only with <code>--mcp</code> (<a href="https://github.com/textlint/textlint/pull/2219" target="_blank" rel="noopener noreferrer" class="">#2219</a>)</td><td><code>textlint --version</code>: 300 ms → about 150 ms</td></tr><tr><td>16.1.1</td><td><code>read-package-up</code> is replaced with a small helper (<a href="https://github.com/textlint/textlint/pull/2218" target="_blank" rel="noopener noreferrer" class="">#2218</a>)</td><td>21 fewer installed packages (about 3.4 MB)</td></tr><tr><td>16.1.2</td><td>At most 8 files are in process at the same time, and a file is read when its turn comes (<a href="https://github.com/textlint/textlint/pull/2222" target="_blank" rel="noopener noreferrer" class="">#2222</a>)</td><td>MDN: 7.78 s → 6.67 s, peak memory 980 MB → 713 MB</td></tr><tr><td>16.1.2</td><td>The AST of a file is released soon after the lint of the file (<a href="https://github.com/textlint/textlint/pull/2227" target="_blank" rel="noopener noreferrer" class="">#2227</a>)</td><td>MDN: pause of the minor GC about 470 ms → about 210 ms</td></tr><tr><td>16.1.3</td><td><code>--fix</code> parses a file again only after a fix (<a href="https://github.com/textlint/textlint/pull/2233" target="_blank" rel="noopener noreferrer" class="">#2233</a>)</td><td><code>--fix --dry-run</code> on MDN: 33.2 s → 18.4 s</td></tr></tbody></table>
-<p>Each effect is the measurement in the pull request, with <code>preset-jtf-style</code> where rules are used.</p>
-<p>Some of these were not about algorithms.
-In <a href="https://github.com/textlint/textlint/pull/2227" target="_blank" rel="noopener noreferrer" class="">#2227</a>, the cause was where V8 allocates a function: a function that is assigned to a property in a constructor was allocated in the old generation, and it kept the AST of each file alive until the next major GC.
+<p>Each number is the measurement in the pull request, with <code>preset-jtf-style</code> where rules are used.</p>
+<h3 class="anchor anchorTargetStickyNavbar_h6cq" id="parsing-and-calling-rules-1600">Parsing and calling rules (16.0.0)<a href="https://textlint.org/textlint/pr-preview/pr-2236/blog/2026/11/23/textlint-performance#parsing-and-calling-rules-1600" class="hash-link" aria-label="Direct link to Parsing and calling rules (16.0.0)" title="Direct link to Parsing and calling rules (16.0.0)" translate="no">​</a></h3>
+<ul>
+<li class="">A new Markdown parser without third-party dependencies. Parsing js-primer went from 1,070 ms to 18 ms (<a href="https://github.com/textlint/textlint/pull/2188" target="_blank" rel="noopener noreferrer" class="">#2188</a>).</li>
+<li class="">Less work for each node when calling rules. A lint of 2,691 files with a rule that does nothing went from 696 ms to about 490 ms (<a href="https://github.com/textlint/textlint/pull/2202" target="_blank" rel="noopener noreferrer" class="">#2202</a>).</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_h6cq" id="output-and-startup-1611">Output and startup (16.1.1)<a href="https://textlint.org/textlint/pr-preview/pr-2236/blog/2026/11/23/textlint-performance#output-and-startup-1611" class="hash-link" aria-label="Direct link to Output and startup (16.1.1)" title="Direct link to Output and startup (16.1.1)" translate="no">​</a></h3>
+<ul>
+<li class="">The <code>stylish</code> formatter measures each cell once. Formatting 175,883 messages went from 4.7 s to 0.66 s (<a href="https://github.com/textlint/textlint/pull/2214" target="_blank" rel="noopener noreferrer" class="">#2214</a>).</li>
+<li class="">The MCP server is loaded only with <code>--mcp</code>. <code>textlint --version</code> went from 300 ms to about 150 ms (<a href="https://github.com/textlint/textlint/pull/2219" target="_blank" rel="noopener noreferrer" class="">#2219</a>).</li>
+<li class=""><code>read-package-up</code> is replaced with a small helper, so 21 fewer packages (about 3.4 MB) are installed (<a href="https://github.com/textlint/textlint/pull/2218" target="_blank" rel="noopener noreferrer" class="">#2218</a>).</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_h6cq" id="memory-1612">Memory (16.1.2)<a href="https://textlint.org/textlint/pr-preview/pr-2236/blog/2026/11/23/textlint-performance#memory-1612" class="hash-link" aria-label="Direct link to Memory (16.1.2)" title="Direct link to Memory (16.1.2)" translate="no">​</a></h3>
+<ul>
+<li class="">At most 8 files are in process at the same time, and a file is read when its turn comes. MDN went from 7.78 s to 6.67 s, and the peak memory from 980 MB to 713 MB (<a href="https://github.com/textlint/textlint/pull/2222" target="_blank" rel="noopener noreferrer" class="">#2222</a>).</li>
+<li class="">The AST of a file is released soon after the lint of the file. The pause of the minor GC on MDN went from about 470 ms to about 210 ms (<a href="https://github.com/textlint/textlint/pull/2227" target="_blank" rel="noopener noreferrer" class="">#2227</a>).</li>
+</ul>
+<p>The second one was not about algorithms.
+The cause was where V8 allocates a function: a function that is assigned to a property in a constructor was allocated in the old generation, and it kept the AST of each file alive until the next major GC.
 We found it by measuring the garbage collection, not by reading the code.</p>
+<h3 class="anchor anchorTargetStickyNavbar_h6cq" id="--fix-1613"><code>--fix</code> (16.1.3)<a href="https://textlint.org/textlint/pr-preview/pr-2236/blog/2026/11/23/textlint-performance#--fix-1613" class="hash-link" aria-label="Direct link to --fix-1613" title="Direct link to --fix-1613" translate="no">​</a></h3>
+<ul>
+<li class=""><code>--fix</code> parses a file again only after a fix. <code>--fix --dry-run</code> on MDN went from 33.2 s to 18.4 s (<a href="https://github.com/textlint/textlint/pull/2233" target="_blank" rel="noopener noreferrer" class="">#2233</a>).</li>
+</ul>
 <h2 class="anchor anchorTargetStickyNavbar_h6cq" id="what-we-changed-in-rules-and-libraries">What we changed in rules and libraries<a href="https://textlint.org/textlint/pr-preview/pr-2236/blog/2026/11/23/textlint-performance#what-we-changed-in-rules-and-libraries" class="hash-link" aria-label="Direct link to What we changed in rules and libraries" title="Direct link to What we changed in rules and libraries" translate="no">​</a></h2>
 <p>After the changes of textlint, the rules took most of the remaining time.
 So we profiled the rules, and improved the libraries that many rules share.</p>
@@ -299,43 +163,13 @@ Many rules use it, such as <code>sentence-length</code> and <code>max-ten</code>
 Many Japanese rules use it, and it took about 70% of a run with <code>preset-ja-technical-writing</code>.</p>
 <p>kuromojin 3.1.0 has its own analyzer and its own dictionary file, instead of kuromoji.js.
 The tokens are compatible with the ones of kuromoji.js.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th></th><th style="text-align:right">3.0.2</th><th style="text-align:right">3.1.0</th><th style="text-align:right">Reduction</th></tr></thead><tbody><tr><td>Load of the dictionary</td><td style="text-align:right">440 ms</td><td style="text-align:right">51 ms</td><td style="text-align:right">88%</td></tr><tr><td>Analysis of each line of js-primer</td><td style="text-align:right">2,206 ms</td><td style="text-align:right">167 ms</td><td style="text-align:right">92%</td></tr><tr><td>Memory after the load</td><td style="text-align:right">182 MB</td><td style="text-align:right">27.2 MB</td><td style="text-align:right">85%</td></tr><tr><td>Installed size with dependencies</td><td style="text-align:right">47.7 MB</td><td style="text-align:right">5.10 MB</td><td style="text-align:right">89%</td></tr></tbody></table>
-<p>The table is from the <a href="https://github.com/textlint/kuromojin/releases/tag/v3.1.0" target="_blank" rel="noopener noreferrer" class="">v3.1.0 release notes</a>.</p>
+<p>Compared with 3.0.2, the <a href="https://github.com/textlint/kuromojin/releases/tag/v3.1.0" target="_blank" rel="noopener noreferrer" class="">v3.1.0 release notes</a> report the following.</p>
+<ul>
+<li class="">Load of the dictionary: 440 ms → 51 ms</li>
+<li class="">Analysis of each line of js-primer: 2,206 ms → 167 ms</li>
+<li class="">Memory after the load: 182 MB → 27.2 MB</li>
+<li class="">Installed size with dependencies: 47.7 MB → 5.10 MB</li>
+</ul>
 <p>We did not start from the implementation.
 First we wrote several prototypes to see how much could be removed, and set the goal to remove 80% of the time.
 Then we wrote the requirements and the design of the analyzer, the dictionary format, and the <a href="https://github.com/textlint/kuromojin#dictionary-versions" target="_blank" rel="noopener noreferrer" class="">dictionary versions</a> as specifications, and implemented them.
