@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795434635301,
+  "lastUpdate": 1795435659897,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -134903,6 +134903,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.37419195705999997,
             "range": "± 0.01527677700000002",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "6d86f67873b9c609bbfbb7318591adee7b403e9e",
+          "message": "docs(blog): apply the review of the Japanese post to the English post\n\nExplain the bars of the chart, link the presets, kuromoji.js, and the\nspecification of the dictionary versions, describe how the kuromojin goal\nwas set, and remove the sentence about rules that keep state across files.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGGBrsEKGNtvvdWQaQ\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-23T12:06:14Z",
+          "tree_id": "63e5f14d6ab63655da0c6961ee9f8212dcc71c5b",
+          "url": "https://github.com/textlint/textlint/commit/6d86f67873b9c609bbfbb7318591adee7b403e9e"
+        },
+        "date": 1795435649020,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20012669940000002,
+            "range": "± 0.272927081",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.5084069426,
+            "range": "± 0.01194505400000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.2462350152,
+            "range": "± 0.0067151320000000125",
             "unit": "seconds"
           }
         ]
