@@ -254,7 +254,7 @@ The lint results are as follows.
 textlint lints files one by one in one thread.
 To handle many more files, textlint needs something more fundamental, such as linting files in parallel.
 It is hard for a linter whose rules are all added from outside: a rule may keep state across files, and each thread has to load the rules and their dictionaries again.
-We do not know the best design yet, and we will write the specification before the implementation.
+We do not know the best design yet.
 
 If you have a large set of documents, please tell us the output of `textlint --profile` in [GitHub Discussions](https://github.com/textlint/textlint/discussions).
 If textlint helps your work, you can support the development through [GitHub Sponsors](https://github.com/sponsors/azu).
