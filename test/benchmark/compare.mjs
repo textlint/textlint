@@ -5,6 +5,7 @@
 //                         [--cache-dir <dir>] [--no-build] [--render <compare.json>]...
 //
 // It uses only the built-in modules of Node.js, so it runs on a fresh checkout and compares any two commits.
+import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -400,6 +401,64 @@ const measureGc = (roots, set, tmpDir, runs) => {
 };
 
 /**
+ * Fix the set without writing the files (`--fix --dry-run`): the base and the head in turns, each run in a new process.
+ * The first run of a build writes its results, and they are compared by the fixed text of each file.
+ * A lint does not show this path: to fix, the kernel runs the fixable rules one after another on the text
+ * that the rules before fixed, and applies their fixes.
+ */
+const measureFix = (roots, set, tmpDir, runs) => {
+    log(`measuring the run time of the CLI with --fix --dry-run on ${set.name} (${runs} runs of each build)`);
+    const times = { base: [], head: [] };
+    const outputs = {};
+    for (let i = 0; i < runs; i++) {
+        for (const label of ["base", "head"]) {
+            const resultsFile = i === 0 ? path.join(tmpDir, `fix-${label}.json`) : "/dev/null";
+            const start = performance.now();
+            run(
+                process.execPath,
+                [...cliArgs(roots[label], set), "--fix", "--dry-run", "--format", "json", "--output-file", resultsFile],
+                { cwd: set.dir, label: `the fix of ${label}` }
+            );
+            times[label].push(performance.now() - start);
+            if (i === 0) {
+                outputs[label] = fixedTexts(JSON.parse(fs.readFileSync(resultsFile, "utf-8")), set.dir);
+                fs.rmSync(resultsFile, { force: true });
+            }
+        }
+    }
+    const summarize = (values) => {
+        const sorted = [...values].sort((a, b) => a - b);
+        return {
+            median: sorted[Math.floor(sorted.length / 2)],
+            min: sorted[0],
+            max: sorted[sorted.length - 1],
+            runs: sorted.length
+        };
+    };
+    const files = [...new Set([...outputs.base.keys(), ...outputs.head.keys()])].sort();
+    return {
+        ...withRatio(summarize(times.base), summarize(times.head), CLI_MARK),
+        fixedFiles: { base: countFixed(outputs.base), head: countFixed(outputs.head) },
+        changedFiles: files.filter((file) => outputs.base.get(file)?.hash !== outputs.head.get(file)?.hash)
+    };
+};
+/**
+ * The fixed text of each file of the results of `--fix`, as a hash, and if a fix was applied to the file.
+ * The results of a large set have the text of every file, so only the hashes are kept.
+ */
+const fixedTexts = (results, dir) =>
+    new Map(
+        results.map((result) => [
+            path.relative(dir, result.filePath).split(path.sep).join("/"),
+            {
+                hash: crypto.createHash("sha256").update(result.output).digest("hex"),
+                fixed: result.applyingMessages.length > 0
+            }
+        ])
+    );
+const countFixed = (outputs) => [...outputs.values()].filter((output) => output.fixed).length;
+
+/**
  * The ratio of the head to the base, and its mark.
  * `key` is the statistic to compare: the median for the CLI, and the minimum for the in-process benchmarks,
  * because noise of a machine only makes a run slower.
@@ -580,6 +639,7 @@ const compareSet = (set, roots, outDir) => {
             },
             time: measureCliTime(roots, set, tmpDir, set.runs),
             gc: measureGc(roots, set, tmpDir, set.runs),
+            fix: measureFix(roots, set, tmpDir, set.runs),
             parsers,
             traverse,
             profiles: { base: lint.base.profile, head: lint.head.profile },
@@ -652,6 +712,15 @@ const changesOf = (set) => {
         changes.push({
             text: `GC pause ${GC_MARK_TEXT[set.gc.mark]} (${fmtRatio(set.gc.ratio)})`,
             warn: set.gc.mark === "slower"
+        });
+    }
+    if (set.fix?.changedFiles.length > 0) {
+        changes.push({ text: `fixed text (${set.fix.changedFiles.length} files)`, warn: true });
+    }
+    if (set.fix?.mark) {
+        changes.push({
+            text: `CLI with --fix ${set.fix.mark} (${fmtRatio(set.fix.ratio)})`,
+            warn: set.fix.mark === "slower"
         });
     }
     return changes;
@@ -802,6 +871,17 @@ const renderSet = (set) => {
                   ]
               ]
             : []),
+        // a result of a version before `--fix` was measured has no `fix`
+        ...(set.fix
+            ? [
+                  [
+                      "CLI run time with `--fix --dry-run` (median, ms)",
+                      fmt(set.fix.base.median),
+                      fmt(set.fix.head.median),
+                      `${fmtRatio(set.fix.ratio)}${markText(set.fix.mark)}`
+                  ]
+              ]
+            : []),
         ...set.parsers.map((parser) => [
             `parse: ${parser.id} (min, ms)`,
             fmt(parser.base.min),
@@ -819,13 +899,33 @@ const renderSet = (set) => {
             String(set.messages.base),
             String(set.messages.head),
             set.messages.base === set.messages.head ? "" : `${set.messages.head - set.messages.base}`
-        ]
+        ],
+        ...(set.fix
+            ? [
+                  [
+                      "files fixed by `--fix`",
+                      String(set.fix.fixedFiles.base),
+                      String(set.fix.fixedFiles.head),
+                      set.fix.changedFiles.length === 0
+                          ? ""
+                          : `⚠️ ${set.fix.changedFiles.length} files with another fixed text`
+                  ]
+              ]
+            : [])
     ];
     parts.push(table(["", "Base", "Head", "Change"], summaryRows));
     const removed = renderMessages("Removed messages", set.messages.removed);
     const added = renderMessages("Added messages", set.messages.added);
     if (removed) parts.push(removed);
     if (added) parts.push(added);
+    if (set.fix?.changedFiles.length > 0) {
+        const files = set.fix.changedFiles.slice(0, MAX_ROWS).map((file) => `- \`${escapeCell(file)}\``);
+        const more =
+            set.fix.changedFiles.length > MAX_ROWS
+                ? `\n\n${set.fix.changedFiles.length - MAX_ROWS} more in the JSON output.`
+                : "";
+        parts.push(`Files with another fixed text (${set.fix.changedFiles.length}):\n\n${files.join("\n")}${more}`);
+    }
     const details = [
         // Markdown is not parsed in <summary>, so it uses HTML
         ["Profile (<code>--profile</code>, one run)", renderProfiles(set.profiles)],
@@ -864,7 +964,7 @@ const renderMarkdown = (result) => {
         );
     }
     parts.push(
-        `CLI: the median of runs; ${CLI_MARK.slower}x or more is marked slower, ${CLI_MARK.faster}x or less faster. Parsers and traverse: the fastest of runs in one process; ${MICRO_MARK.slower}x and ${MICRO_MARK.faster}x. GC pause: the garbage collections of one run of the CLI, the median of runs; ${GC_MARK.slower}x or more is marked longer, ${GC_MARK.faster}x or less shorter, from ${MIN_MARKED_GC_MS} ms. Times of \`--profile\` and the CPU profiles come from one run and are for reading.`
+        `CLI, and CLI with \`--fix --dry-run\`: the median of runs; ${CLI_MARK.slower}x or more is marked slower, ${CLI_MARK.faster}x or less faster. Parsers and traverse: the fastest of runs in one process; ${MICRO_MARK.slower}x and ${MICRO_MARK.faster}x. GC pause: the garbage collections of one run of the CLI, the median of runs; ${GC_MARK.slower}x or more is marked longer, ${GC_MARK.faster}x or less shorter, from ${MIN_MARKED_GC_MS} ms. Times of \`--profile\` and the CPU profiles come from one run and are for reading.`
     );
     for (const set of result.sets) {
         parts.push(renderSet(set));

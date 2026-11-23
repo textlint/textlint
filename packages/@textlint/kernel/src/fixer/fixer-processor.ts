@@ -2,6 +2,7 @@
 "use strict";
 
 import type { TextlintFixResult, TextlintMessage, TextlintPluginProcessor, TextlintSourceCode } from "@textlint/types";
+import type { TxtNode } from "@textlint/ast-node-types";
 import FixerTask from "../task/fixer-task.js";
 import TaskRunner from "../task/task-runner.js";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface.js";
@@ -71,20 +72,27 @@ export default class FixerProcessor {
         const originalMessages: TextlintMessage[] = [];
         // apply fixes to sourceText sequentially
         let sourceText = sourceCode.text;
+        // The parse result of `sourceText`.
+        // While the rules do not fix the text, the next rule uses the same AST, as the rules of a lint share an AST.
+        // It is parsed again only after a rule fixed the text.
+        let parseResult: { text: string; ast: TxtNode } | undefined;
         for (const ruleDescriptor of ruleDescriptors.fixableDescriptors) {
-            const parse = () =>
-                parseByPlugin({
-                    preProcess,
-                    sourceText,
-                    filePath: sourceCode.filePath
-                });
-            const parseResult = profiler.enabled
-                ? await profiler.measureAsync("parse", this.pluginId, parse, sourceCode.filePath)
-                : await parse();
-            if (parseResult instanceof Error) {
-                // --fix can not report error as lint error
-                // Because fix's result has output content, It makes confuse user.
-                throw parseResult;
+            if (parseResult === undefined) {
+                const parse = () =>
+                    parseByPlugin({
+                        preProcess,
+                        sourceText,
+                        filePath: sourceCode.filePath
+                    });
+                const newParseResult = profiler.enabled
+                    ? await profiler.measureAsync("parse", this.pluginId, parse, sourceCode.filePath)
+                    : await parse();
+                if (newParseResult instanceof Error) {
+                    // --fix can not report error as lint error
+                    // Because fix's result has output content, It makes confuse user.
+                    throw newParseResult;
+                }
+                parseResult = newParseResult;
             }
             const newSourceCode = new TextlintSourceCodeImpl({
                 text: parseResult.text,
@@ -134,6 +142,7 @@ export default class FixerProcessor {
             }
             // if fixed, use fixed text at next
             sourceText = applied.output;
+            parseResult = undefined;
         }
         debug(`Finish Processing: ${resultFilePath}`);
         debug(`applyingMessages: ${applyingMessages.length}`);

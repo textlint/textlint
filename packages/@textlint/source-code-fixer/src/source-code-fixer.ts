@@ -96,8 +96,11 @@ export function applyFixesToSourceCode(
             return b.fix.range[1] - a.fix.range[1] || b.fix.range[0] - a.fix.range[0];
         });
 
-        // split into array of characters for easier manipulation
-        const chars = text.split(""); // range is code-unit based
+        // The fixes are applied from the end of the text to its start.
+        // `parts` has the fixed text after `tail` in reverse order, and the text before `tail` is not changed yet.
+        // range is code-unit based
+        const parts: string[] = [];
+        let tail = text.length;
 
         fixes.forEach((problem) => {
             // pickup fix range
@@ -106,7 +109,8 @@ export function applyFixesToSourceCode(
             const end = fix.range[1];
             let insertionText = fix.text;
 
-            if (end <= lastFixPos) {
+            // `start <= lastFixPos` is always true when `start <= end`
+            if (end <= lastFixPos && start <= lastFixPos) {
                 if (start < 0) {
                     // Remove BOM.
                     prefix = "";
@@ -118,12 +122,15 @@ export function applyFixesToSourceCode(
                     insertionText = insertionText.slice(1);
                 }
 
-                const replacedChars = chars.splice(start, end - start, insertionText);
+                // a range that ends before its start replaces nothing
+                const replacedEnd = Math.max(start, end);
+                parts.push(text.slice(replacedEnd, tail), insertionText);
+                tail = start;
                 lastFixPos = start;
                 const copyOfMessage = clone(problem);
                 copyOfMessage.fix = {
                     range: [start, start + insertionText.length],
-                    text: replacedChars.join("")
+                    text: text.slice(start, replacedEnd)
                 };
                 applyingMessages.push(copyOfMessage);
             } else {
@@ -131,12 +138,13 @@ export function applyFixesToSourceCode(
             }
         });
 
+        parts.push(text.slice(0, tail));
         return {
             fixed: true,
             messages: cloneMessages, // have order
             applyingMessages: applyingMessages.reverse(), // have order
             remainingMessages: remainingMessages.sort(compareMessagesByLocation), // have not order
-            output: prefix + chars.join("")
+            output: prefix + parts.reverse().join("")
         };
     } else {
         debug("No fixes to apply");
