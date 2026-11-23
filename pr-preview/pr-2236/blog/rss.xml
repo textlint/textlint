@@ -9,7 +9,7 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[textlint is about 10 times faster than two weeks ago]]></title>
+            <title><![CDATA[Performance improvements in textlint and its rules]]></title>
             <link>https://textlint.org/textlint/pr-preview/pr-2236/blog/2026/11/23/textlint-performance</link>
             <guid>https://textlint.org/textlint/pr-preview/pr-2236/blog/2026/11/23/textlint-performance</guid>
             <pubDate>Mon, 23 Nov 2026 00:00:00 GMT</pubDate>

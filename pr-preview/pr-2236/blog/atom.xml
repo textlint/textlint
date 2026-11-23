@@ -8,7 +8,7 @@
     <subtitle>textlint Blog</subtitle>
     <icon>https://textlint.org/textlint/pr-preview/pr-2236/img/textlint-icon_256x256.png</icon>
     <entry>
-        <title type="html"><![CDATA[textlint is about 10 times faster than two weeks ago]]></title>
+        <title type="html"><![CDATA[Performance improvements in textlint and its rules]]></title>
         <id>https://textlint.org/textlint/pr-preview/pr-2236/blog/2026/11/23/textlint-performance</id>
         <link href="https://textlint.org/textlint/pr-preview/pr-2236/blog/2026/11/23/textlint-performance"/>
         <updated>2026-11-23T00:00:00.000Z</updated>
