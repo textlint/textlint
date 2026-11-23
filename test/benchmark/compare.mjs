@@ -435,7 +435,9 @@ const measureFix = (roots, set, tmpDir, runs) => {
             runs: sorted.length
         };
     };
-    const files = [...new Set([...outputs.base.keys(), ...outputs.head.keys()])].sort();
+    const files = [...new Set([...outputs.base.keys(), ...outputs.head.keys()])].sort((a, b) =>
+        a < b ? -1 : a > b ? 1 : 0
+    );
     return {
         ...withRatio(summarize(times.base), summarize(times.head), CLI_MARK),
         fixedFiles: { base: countFixed(outputs.base), head: countFixed(outputs.head) },
