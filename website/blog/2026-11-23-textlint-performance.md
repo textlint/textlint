@@ -30,7 +30,7 @@ We chose this freedom of rules over speed.
 
 Two things changed.
 
-- **Documents are growing faster than before.** AI agents write documents as well as code: specifications, design documents, and guides. textlint itself is now developed with [specifications](https://github.com/textlint/textlint/blob/master/docs/products/textlint/product.md) that are written first.
+- **Documents are growing faster than before.** AI agents write documents as well as code, and more text is written in the life cycle of development: specifications, design documents, and guides.
 - **A linter gives the same result for the same text.** People and AI agents run it after every edit, so the time of a lint is paid many times a day.
 
 When the number of documents grows, a linter that takes a minute is not run after every edit.
