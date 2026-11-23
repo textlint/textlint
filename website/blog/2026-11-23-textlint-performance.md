@@ -9,13 +9,14 @@ In our benchmarks, a lint that took 75.5 seconds now takes 7.2 seconds, and uses
 Your configuration and your rules do not need to change.
 Update textlint and your rules to get the improvements.
 
-| Rules and documents | 2026-11-08 | 2026-11-23 | Time |
-| --- | ---: | ---: | ---: |
-| `preset-jtf-style` on the Japanese translation of MDN Web Docs (10,452 files) | 75.5 s, 1,022 MB | 7.17 s, 475 MB | 10.5x faster |
-| `preset-ja-technical-writing` on js-primer (105 files) | 40.6 s, 905 MB | 4.10 s, 290 MB | 9.9x faster |
-| `preset-ja-technical-writing` on `web/javascript` of MDN Web Docs in Japanese (1,043 files) | 149.9 s, 2,555 MB | 15.3 s, 313 MB | 9.8x faster |
+![The run time of the textlint CLI for each install date. preset-jtf-style on MDN Web Docs in Japanese: 75.5, 29.2, 8.7, 8.5, 7.4, and 7.2 seconds. preset-ja-technical-writing on js-primer: 40.6, 19.3, 18.9, 18.4, 4.3, and 4.1 seconds. preset-ja-technical-writing on web/javascript of MDN Web Docs in Japanese: 150, 95.8, 96.7, 93.5, 16.0, and 15.3 seconds.](./assets/2026-11-23-textlint-performance.png)
 
-Each column is the state of `npm install` on that day: textlint 15.8.0 on 2026-11-08, and textlint 16.1.3 on 2026-11-23.
+Each bar is the state of `npm install` on that day: textlint 15.8.0 on 2026-11-08, and textlint 16.1.3 on 2026-11-23.
+
+- `preset-jtf-style` on the Japanese translation of MDN Web Docs (10,452 files): 75.5 s → 7.17 s, and the peak memory 1,022 MB → 475 MB.
+- `preset-ja-technical-writing` on js-primer (105 files): 40.6 s → 4.10 s, and 905 MB → 290 MB.
+- `preset-ja-technical-writing` on `web/javascript` of MDN Web Docs in Japanese (1,043 files): 149.9 s → 15.3 s, and 2,555 MB → 313 MB.
+
 The values are the run time of the textlint CLI and the largest memory of the process (peak RSS).
 [How we measured](#how-we-measured) describes the details.
 
@@ -50,11 +51,7 @@ textlint v16 requires Node.js 22.12.0 or later, as the [v16.0.0 release post](ht
 
 ## How the numbers changed
 
-The following chart shows the run time for each install date.
-
-![The run time of the textlint CLI for each install date. preset-jtf-style on MDN Web Docs in Japanese: 75.5, 29.2, 8.7, 8.5, 7.4, and 7.2 seconds. preset-ja-technical-writing on js-primer: 40.6, 19.3, 18.9, 18.4, 4.3, and 4.1 seconds. preset-ja-technical-writing on web/javascript of MDN Web Docs in Japanese: 150, 95.8, 96.7, 93.5, 16.0, and 15.3 seconds.](./assets/2026-11-23-textlint-performance.png)
-
-Three sets of releases made most of the difference.
+Three sets of releases made most of the difference in the chart at the top.
 
 - **2026-11-15: textlint 16.0.0 and sentence-splitter 5.1.0.** Both have a new parser. `jtf-style` on MDN went from 75.5 s to 29.2 s, and `ja-technical-writing` on js-primer went from 40.6 s to 19.3 s.
 - **2026-11-16: `preset-jtf-style` 3.1.0, with match-index 1.0.4 and textlint-rule-helper 2.6.0.** `jtf-style` on MDN went from 29.2 s to 8.69 s.
