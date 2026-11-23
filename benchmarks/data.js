@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795434483643,
+  "lastUpdate": 1795434635301,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -134861,6 +134861,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.36493839710000003,
             "range": "± 0.004180903000000014",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "ac95e1689a05111b19d4293e9b44c7d5470d37a0",
+          "message": "docs(blog): label the chart with the install dates again\n\nThe bars also include the updates of the rules, so the versions of\ntextlint alone do not describe them.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAGGBrsEKGNtvvdWQaQ\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-23T11:48:48Z",
+          "tree_id": "dc3f61f2c69dbe554ea111739bc1e62898534acc",
+          "url": "https://github.com/textlint/textlint/commit/ac95e1689a05111b19d4293e9b44c7d5470d37a0"
+        },
+        "date": 1795434619609,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22557199366000003,
+            "range": "± 0.047644293000000004",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.7833664176600001,
+            "range": "± 0.03380188499999992",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.37419195705999997,
+            "range": "± 0.01527677700000002",
             "unit": "seconds"
           }
         ]
