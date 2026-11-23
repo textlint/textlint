@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795411240131,
+  "lastUpdate": 1795411500819,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -134357,6 +134357,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.3666979319,
             "range": "± 0.008995742000000029",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "committer": {
+            "email": "noreply@anthropic.com",
+            "name": "Claude",
+            "username": "claude"
+          },
+          "distinct": true,
+          "id": "14ceaf0e8cf079799b6b3279a38c4588d3a386f1",
+          "message": "docs: explain the fixer API in the fixable rule guide\n\nDescribe what linter and fixer are, how a fix is reported, the ranges of\ncontext.fixer, and how textlint --fix applies the fixes.\nReplace the placeholder example with a small rule and its test.\n\nFixes #169\n\nCo-authored-by: haranishi <223786623+haranishi@users.noreply.github.com>\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01TSdrAJrg5hkrCk7REUDVzh\nCo-authored-by: azu <azu@users.noreply.github.com>",
+          "timestamp": "2026-11-23T05:23:04Z",
+          "tree_id": "862fc6ed4bbc855d09105756de46e10cb131de2e",
+          "url": "https://github.com/textlint/textlint/commit/14ceaf0e8cf079799b6b3279a38c4588d3a386f1"
+        },
+        "date": 1795411486059,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.23972746974000003,
+            "range": "± 0.07268425100000003",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.79800218834,
+            "range": "± 0.03667454700000006",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.37121498694,
+            "range": "± 0.012831757",
             "unit": "seconds"
           }
         ]
