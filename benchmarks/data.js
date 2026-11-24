@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795435924795,
+  "lastUpdate": 1795520516233,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -134987,6 +134987,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.36046608166000005,
             "range": "± 0.007843327999999983",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ee4e52fc47679dbae6beebc6610d79c85b0c47ba",
+          "message": "chore(deps): update pkgdeps/automerge-gate action to v5.0.6",
+          "timestamp": "2026-11-24T11:40:13Z",
+          "tree_id": "88ff6dd65e156f5cdb1412676fc69aee74927926",
+          "url": "https://github.com/textlint/textlint/commit/ee4e52fc47679dbae6beebc6610d79c85b0c47ba"
+        },
+        "date": 1795520501245,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22406982376,
+            "range": "± 0.04186265699999997",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.7671789085600002,
+            "range": "± 0.02580564799999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.36292600576000006,
+            "range": "± 0.007744134999999985",
             "unit": "seconds"
           }
         ]
