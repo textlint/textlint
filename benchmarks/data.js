@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795636695138,
+  "lastUpdate": 1795636775254,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -135197,6 +135197,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.23630055444000003,
             "range": "± 0.020387437000000008",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "591607f9c2cb8d68248eb0fbd761f751ebad72d9",
+          "message": "chore(deps): update dependency textlint-rule-preset-ja-technical-writing to ^12.1.0",
+          "timestamp": "2026-11-25T19:58:02Z",
+          "tree_id": "92d4b27d35029cc3b9124593885d88eda05e2e04",
+          "url": "https://github.com/textlint/textlint/commit/591607f9c2cb8d68248eb0fbd761f751ebad72d9"
+        },
+        "date": 1795636760255,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.20246653254,
+            "range": "± 0.04116953699999998",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.67599936634,
+            "range": "± 0.04755277999999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.31587351854,
+            "range": "± 0.011140070000000002",
             "unit": "seconds"
           }
         ]
