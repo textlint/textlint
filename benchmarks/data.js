@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795560407778,
+  "lastUpdate": 1795575738682,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -135071,6 +135071,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.28219047496000005,
             "range": "± 0.008334730000000012",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "df19a9470308c14f9e6618c1a0d7d24db3698d0c",
+          "message": "chore(deps): update pkgdeps/automerge-gate action to v5.1.0 (#2237)\n\nThis PR contains the following updates:\n\n| Package | Type | Update | Change |\n|---|---|---|---|\n|\n[pkgdeps/automerge-gate](https://redirect.github.com/pkgdeps/automerge-gate)\n| action | minor | `v5.0.5` → `v5.1.0` |\n\n---\n\n### Release Notes\n\n<details>\n<summary>pkgdeps/automerge-gate</summary>\n\n###\n[`v5.1.0`](https://redirect.github.com/pkgdeps/automerge-gate/releases/tag/v5.1.0)\n\n[Compare\nSource](https://redirect.github.com/pkgdeps/automerge-gate/compare/v5.0.6...v5.1.0)\n\n#### Highlights\n\n##### Gate pull requests in a GitHub stack\n(`poll-on-stacked-pull-requests`)\n\nPrivate mode now works with [stacked pull\nrequests](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/merging-stacked-pull-requests).\nBefore this release, the required check of a pull request in a stack\nstayed at `Expected`, so the stack could not merge. Enabling auto-merge\non a stack does not deliver `pull_request.auto_merge_enabled` to GitHub\nActions, so private mode never received merge intent\n([#&#8203;46](https://redirect.github.com/pkgdeps/automerge-gate/issues/46)).\n\nWith the new input on, every pull request in a stack polls when it joins\nthe stack (`stacked`) and on every push, without waiting for merge\nintent. Pull requests outside a stack keep the usual private-mode\nbehaviour.\n\n> \\[!NOTE]\n> This is a workaround based on an experiment on 2026-11-17, not on\ndocumented GitHub behaviour. If GitHub starts delivering\n`auto_merge_enabled` for stacks, this input will no longer be needed and\nmay be deprecated.\n\n##### How to enable\n\nAdd `stacked` to the activity types and turn the input on:\n\n```yaml\non:\n  pull_request:\n    types: [opened, synchronize, reopened, auto_merge_enabled, stacked]\n  pull_request_review:\n    types: [submitted]\n\njobs:\n  gate:\n    # ...\n    steps:\n      - uses: pkgdeps/automerge-gate@v5.1.0\n        with:\n          gate-mode: 'private'\n          poll-on-stacked-pull-requests: 'true'\n```\n\n- `stacked` is required. `opened` never carries the stack, because a\npull request joins a stack after it is created.\n- Then enable auto-merge on the stack as usual. The stack merges once\nthe gate has written `success` on each pull request.\n- A pull request in a stack gets `success` without merge intent, and\nevery push holds a runner until its checks finish, the same as public\nmode.\n- The input accepts only `'true'` or `'false'` (default `'false'`) and\nis ignored in public mode.\n\nSee [Stacked pull\nrequests](https://redirect.github.com/pkgdeps/automerge-gate#stacked-pull-requests)\nin the README.\n\n#### Behaviour changes\n\n- **Unsupported events now fail the job.** Started by anything other\nthan `pull_request` or `pull_request_review` (`push`,\n`pull_request_target`, `merge_group`, ...), the gate used to log a\nwarning and succeed, which in public mode looked like a passing required\ncheck. It now fails. Check your `on:` block if the gate workflow listens\nto other events.\n- **Rate limits are reported as rate limits.** When GitHub refuses to\nlist workflow runs because of a rate limit, the error says so instead of\nreporting a missing `actions: read` permission.\n- **The `state` output is `skipped` on skip.** In private mode, a\nskipped run now sets `state: skipped` and the count outputs to `0`, as\nthe README already documented.\n- The step summary shows the `gate-mode` row in both modes.\n\n#### Documentation\n\nThe current behaviour is now written as specifications under\n[`docs/products/automerge-gate/`](https://redirect.github.com/pkgdeps/automerge-gate/tree/main/docs/products/automerge-gate)\n(English, with Japanese translations).\n\n#### What's Changed\n\n- docs: introduce sdev and write current-state specifications by\n[@&#8203;azu](https://redirect.github.com/azu) in\n[#&#8203;55](https://redirect.github.com/pkgdeps/automerge-gate/pull/55)\n- fix: fail on unsupported events and report rate limits as rate limits\nby [@&#8203;azu](https://redirect.github.com/azu) in\n[#&#8203;56](https://redirect.github.com/pkgdeps/automerge-gate/pull/56)\n- feat: add poll-on-stacked-pull-requests to poll PRs in a stack without\nmerge intent by [@&#8203;azu](https://redirect.github.com/azu) in\n[#&#8203;54](https://redirect.github.com/pkgdeps/automerge-gate/pull/54)\n\n**Full Changelog**:\n<https://github.com/pkgdeps/automerge-gate/compare/v5.0.6...v5.1.0>\n\n***\n\n*Generated by [Claude Code](https://claude.ai/code)*\n\n###\n[`v5.0.6`](https://redirect.github.com/pkgdeps/automerge-gate/releases/tag/v5.0.6)\n\n[Compare\nSource](https://redirect.github.com/pkgdeps/automerge-gate/compare/v5.0.5...v5.0.6)\n\n#### What's Changed\n\n- ci: comment the release link on the merged release PR by\n[@&#8203;azu](https://redirect.github.com/azu) in\n[#&#8203;49](https://redirect.github.com/pkgdeps/automerge-gate/pull/49)\n- ci: run test-self in public mode so fork PRs can pass by\n[@&#8203;azu](https://redirect.github.com/azu) in\n[#&#8203;52](https://redirect.github.com/pkgdeps/automerge-gate/pull/52)\n- fix: list check runs for the ref in one paginated call by\n[@&#8203;Sixeight](https://redirect.github.com/Sixeight) in\n[#&#8203;51](https://redirect.github.com/pkgdeps/automerge-gate/pull/51)\n\n#### New Contributors\n\n- [@&#8203;Sixeight](https://redirect.github.com/Sixeight) made their\nfirst contribution in\n[#&#8203;51](https://redirect.github.com/pkgdeps/automerge-gate/pull/51)\n\n**Full Changelog**:\n<https://github.com/pkgdeps/automerge-gate/compare/v5.0.5...v5.0.6>\n\n</details>\n\n---\n\n### Configuration\n\n📅 **Schedule**: (in timezone Asia/Tokyo)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n🚦 **Automerge**: Enabled.\n\n♻ **Rebasing**: Whenever PR is behind base branch, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won't be reminded about this update\nagain.\n\n---\n\n- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/textlint/textlint).\n\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0NC4yNTcuMyIsInVwZGF0ZWRJblZlciI6IjQ0LjI1Ny4zIiwidGFyZ2V0QnJhbmNoIjoibWFzdGVyIiwibGFiZWxzIjpbIlR5cGU6IENJIl19-->\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2026-11-25T03:00:39Z",
+          "tree_id": "0f1ec60591dd741bf0c020b38e9e5dd3df221fe6",
+          "url": "https://github.com/textlint/textlint/commit/df19a9470308c14f9e6618c1a0d7d24db3698d0c"
+        },
+        "date": 1795575724293,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.22415661674000004,
+            "range": "± 0.043928091999999946",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.7775103361400001,
+            "range": "± 0.02633639199999993",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.36990411434000003,
+            "range": "± 0.011714394000000017",
             "unit": "seconds"
           }
         ]
