@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795654156857,
+  "lastUpdate": 1795675464351,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -135323,6 +135323,48 @@ window.BENCHMARK_DATA = {
             "name": "npm run bench:jtf-style",
             "value": 0.36377375434000003,
             "range": "± 0.00846604099999998",
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f23c50ce111c9a63d3fe5d7f496e7083baf5b5c8",
+          "message": "chore(deps): update dependency textlint-rule-max-ten to ^5.0.1",
+          "timestamp": "2026-11-26T06:43:05Z",
+          "tree_id": "5669b17ca7c9def263d900ac0975f0d81fa7eb0a",
+          "url": "https://github.com/textlint/textlint/commit/f23c50ce111c9a63d3fe5d7f496e7083baf5b5c8"
+        },
+        "date": 1795675454178,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 0.19571044192000003,
+            "range": "± 0.03262843500000001",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 0.5781721965200001,
+            "range": "± 0.04384637999999996",
+            "unit": "seconds"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.27189588512,
+            "range": "± 0.027740437000000007",
             "unit": "seconds"
           }
         ]
