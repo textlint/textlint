@@ -175,8 +175,8 @@ catalogs:
       specifier: ^1.0.3
       version: 1.0.3
     textlint-rule-max-ten:
-      specifier: ^5.0.0
-      version: 5.0.0
+      specifier: ^5.0.1
+      version: 5.0.1
     textlint-rule-no-mix-dearu-desumasu:
       specifier: ^6.0.4
       version: 6.0.4
@@ -349,7 +349,7 @@ importers:
         version: link:../../packages/textlint
       textlint-rule-max-ten:
         specifier: 'catalog:'
-        version: 5.0.0
+        version: 5.0.1
       textlint-rule-no-mix-dearu-desumasu:
         specifier: 'catalog:'
         version: 6.0.4
@@ -8923,9 +8923,6 @@ packages:
 
   textlint-rule-max-number-of-lines@1.0.3:
     resolution: {integrity: sha512-IDFoRxs5J/4OZkkdVxAQR5GJqEZb9QzvOhKG+OSeRqLMP2Ujx3wCLjx2JQmJfAM3TJBRkAeqADM0HmDD+1pT6A==}
-
-  textlint-rule-max-ten@5.0.0:
-    resolution: {integrity: sha512-EWOvbEa3Ukxz0+GAUEJ91DYFSC3IkyJ10dBcsU6VlL33k1BvTRoFr3m26w6upnXJffXQUI70Etn39I++2duyhA==}
 
   textlint-rule-max-ten@5.0.1:
     resolution: {integrity: sha512-G15kd67NJHoJXhyivKcdlEETkZKrX3h8MzLJJCXSc02jSNLKcmvdY18sRJokYuVlLDuST6lUDUJ2aROwcXABWQ==}
@@ -20048,13 +20045,6 @@ snapshots:
   textlint-rule-max-number-of-lines@1.0.3:
     dependencies:
       object-assign: 4.1.1
-
-  textlint-rule-max-ten@5.0.0:
-    dependencies:
-      kuromojin: 3.1.0
-      sentence-splitter: 5.1.0
-      textlint-rule-helper: 2.6.0
-      textlint-util-to-string: 3.3.5
 
   textlint-rule-max-ten@5.0.1:
     dependencies:
