@@ -39,7 +39,6 @@
   "dependencies": {
     "@textlint/ast-node-types": "workspace:*",
     "@textlint/ast-tester": "workspace:*",
-    "@textlint/ast-traverse": "workspace:*",
     "@textlint/feature-flag": "workspace:*",
     "@textlint/source-code-fixer": "workspace:*",
     "@textlint/types": "workspace:*",

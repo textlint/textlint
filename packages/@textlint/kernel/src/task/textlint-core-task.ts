@@ -1,13 +1,13 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintRuleErrorImpl } from "../context/TextlintRuleErrorImpl.js";
-import { EventEmitter, PromiseEventEmitter } from "./promise-event-emitter.js";
+import { EventEmitter } from "./promise-event-emitter.js";
 import { resolveLocation, resolveFixCommandLocation, resolveSuggestionsLocation } from "../core/source-location.js";
 import timing from "../util/timing.js";
 import { profiler } from "../profile/profiler.js";
 import { invariant } from "../util/invariant.js";
 import MessageType from "../shared/type/MessageType.js";
-import { AnyTxtNode, TxtParentNode } from "@textlint/ast-node-types";
+import type { AnyTxtNode } from "@textlint/ast-node-types";
 import type {
     TextlintFilterRuleContext,
     TextlintFilterRuleOptions,
@@ -26,12 +26,50 @@ import type {
 import { normalizeTextlintKeyPath } from "@textlint/utils";
 import { TextlintRuleContextImpl } from "../context/TextlintRuleContextImpl.js";
 import _debug from "debug";
-import { Controller as TraverseController } from "@textlint/ast-traverse";
 
-const traverseController = new TraverseController();
 const debug = _debug("textlint:core-task");
 
-class RuleTypeEmitter extends PromiseEventEmitter {}
+/**
+ * A listener of a rule or a filter rule for a node type, or for `${type}:exit`
+ */
+type RuleListener = (node: AnyTxtNode) => void | Promise<void>;
+
+/**
+ * The listeners of a node type: `enter` for the type, and `exit` for `${type}:exit`
+ */
+type NodeTypeListeners = {
+    readonly enter: readonly RuleListener[] | undefined;
+    readonly exit: readonly RuleListener[] | undefined;
+};
+
+/**
+ * Put in the work list of the traversal after the children of a node:
+ * when it is popped, all the children of the node have been visited.
+ */
+const LEAVE = {} as AnyTxtNode;
+
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+
+/**
+ * Same as `isNode` of `@textlint/ast-traverse`
+ */
+const isTxtNode = (value: object): value is AnyTxtNode => {
+    return typeof (value as AnyTxtNode).type === "string" || typeof (value as { t?: unknown }).t === "string";
+};
+
+/**
+ * Call each listener with the node, and add the promises that the listeners return to `promises`
+ */
+const callListeners = (listeners: readonly RuleListener[], node: AnyTxtNode, promises: Promise<unknown>[]) => {
+    for (let i = 0; i < listeners.length; i++) {
+        // call it as a function, not as a method of the array, so that `this` in the listener is not the array
+        const listener = listeners[i];
+        const result = listener(node);
+        if (result != null && typeof (result as PromiseLike<void>).then === "function") {
+            promises.push(result);
+        }
+    }
+};
 
 export interface IgnoreReportedMessage {
     ruleId: string;
@@ -79,7 +117,11 @@ export interface LintReportedMessage {
  * You can observe task and receive "message" event that is TextLintMessage.
  */
 export default abstract class TextLintCoreTask extends EventEmitter {
-    private ruleTypeEmitter: RuleTypeEmitter;
+    /**
+     * The listeners of the rules by event name: a node type or `${type}:exit`.
+     * The listeners are called in the order they are added, and a listener is added once for an event.
+     */
+    private ruleListeners: Map<string, RuleListener[]>;
 
     static get events() {
         return {
@@ -96,7 +138,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
 
     constructor() {
         super();
-        this.ruleTypeEmitter = new RuleTypeEmitter();
+        this.ruleListeners = new Map();
     }
 
     abstract start(): void;
@@ -175,35 +217,78 @@ export default abstract class TextLintCoreTask extends EventEmitter {
     startTraverser(sourceCode: TextlintSourceCode) {
         this.emit(TextLintCoreTask.events.start);
         const promiseQueue: Array<Promise<unknown>> = [];
-        const ruleTypeEmitter = this.ruleTypeEmitter;
-        // `${type}:exit` for each node type, to avoid creating the string for every node
-        const exitTypes = new Map<string, string>();
+        const ruleListeners = this.ruleListeners;
+        // the listeners of each node type, to look up one Map for a node and not to create `${type}:exit` for every node
+        const listenersByType = new Map<string, NodeTypeListeners>();
+        const getListeners = (type: string): NodeTypeListeners => {
+            let listeners = listenersByType.get(type);
+            if (listeners === undefined) {
+                listeners = { enter: ruleListeners.get(type), exit: ruleListeners.get(`${type}:exit`) };
+                listenersByType.set(type, listeners);
+            }
+            return listeners;
+        };
         // reuse the descriptor, because `parent` is defined on every node
         const parentDescriptor: PropertyDescriptor = { value: undefined };
         const profiling = profiler.enabled;
         const traverseStart = profiling ? performance.now() : 0;
         const listenerTimeStart = profiling ? profiler.listenerTime : 0;
-        traverseController.traverse(sourceCode.ast as TxtParentNode, {
-            enter(node: AnyTxtNode, parent?: AnyTxtNode) {
-                parentDescriptor.value = parent;
-                Object.defineProperty(node, "parent", parentDescriptor);
-                const promise = ruleTypeEmitter.emit(node.type, node);
-                if (promise !== undefined) {
-                    promiseQueue.push(promise);
+        // Depth-first traversal in the same order as `@textlint/ast-traverse`.
+        // The work list is a stack of the nodes to visit, and `LEAVE` marks the end of the children of the last node of `ancestors`.
+        // Child nodes are the nodes in any property of a node, and in any array in a property of a node.
+        const worklist: AnyTxtNode[] = [sourceCode.ast];
+        const ancestors: AnyTxtNode[] = [];
+        while (worklist.length > 0) {
+            const node = worklist.pop() as AnyTxtNode;
+            if (node === LEAVE) {
+                const leftNode = ancestors.pop() as AnyTxtNode;
+                // look up the listeners again, in case a listener has changed the type of the node
+                const exitListeners = getListeners(leftNode.type).exit;
+                if (exitListeners !== undefined) {
+                    callListeners(exitListeners, leftNode, promiseQueue);
                 }
-            },
-            leave(node: AnyTxtNode) {
-                let type = exitTypes.get(node.type);
-                if (type === undefined) {
-                    type = `${node.type}:exit`;
-                    exitTypes.set(node.type, type);
+                continue;
+            }
+            // the root node has `null` as the parent, as `@textlint/ast-traverse` gives
+            parentDescriptor.value = ancestors.length > 0 ? ancestors[ancestors.length - 1] : null;
+            Object.defineProperty(node, "parent", parentDescriptor);
+            const enterListeners = getListeners(node.type).enter;
+            if (enterListeners !== undefined) {
+                callListeners(enterListeners, node, promiseQueue);
+            }
+            worklist.push(LEAVE);
+            ancestors.push(node);
+            // Push the child nodes, and then reverse them in the work list, to visit them in order.
+            // `for...in` with `hasOwn` visits the same properties in the same order as `Object.keys`,
+            // without creating an array of the keys for every node.
+            const record = node as unknown as Record<string, unknown>;
+            const childrenStart = worklist.length;
+            for (const key in record) {
+                // check it before reading the value, not to call a getter of an inherited property
+                if (!hasOwnProperty.call(record, key)) {
+                    continue;
                 }
-                const promise = ruleTypeEmitter.emit(type, node);
-                if (promise !== undefined) {
-                    promiseQueue.push(promise);
+                const value = record[key];
+                if (value === null || typeof value !== "object") {
+                    continue;
+                }
+                if (Array.isArray(value)) {
+                    for (let i = 0; i < value.length; i++) {
+                        const child = value[i];
+                        if (child !== null && typeof child === "object" && isTxtNode(child)) {
+                            worklist.push(child);
+                        }
+                    }
+                } else if (isTxtNode(value)) {
+                    worklist.push(value);
                 }
             }
-        });
+            for (let i = childrenStart, j = worklist.length - 1; i < j; i++, j--) {
+                const child = worklist[i];
+                worklist[i] = worklist[j];
+                worklist[j] = child;
+            }
+        }
         if (profiling) {
             // the time of the traversal and the dispatch, without the time of the listeners
             const listenerTime = profiler.listenerTime - listenerTimeStart;
@@ -290,7 +375,12 @@ export default abstract class TextLintCoreTask extends EventEmitter {
             if (profiler.enabled) {
                 listener = profiler.wrapListener(profileType, ruleContext.id, ruleContext.getFilePath(), listener);
             }
-            this.ruleTypeEmitter.on(nodeType, listener);
+            const listeners = this.ruleListeners.get(nodeType);
+            if (listeners === undefined) {
+                this.ruleListeners.set(nodeType, [listener as RuleListener]);
+            } else if (!listeners.includes(listener as RuleListener)) {
+                listeners.push(listener as RuleListener);
+            }
         });
     }
 }
