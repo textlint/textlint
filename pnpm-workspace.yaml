@@ -34,7 +34,7 @@ catalog:
   "@monorepo-utils/workspaces-to-typescript-project-references": "^2.11.0"
   "@types/debug": "^4.1.13"
   "@types/mocha": "^9.1.1"
-  "@types/node": "^24.19.2"
+  "@types/node": "^24.19.4"
   "@types/react": "^18.3.32"
   ajv: "^8.20.0"
   babel-plugin-static-fs: "^3.0.0"
