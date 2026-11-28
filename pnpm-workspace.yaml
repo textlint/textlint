@@ -35,7 +35,7 @@ catalog:
   "@types/debug": "^4.1.13"
   "@types/mocha": "^9.1.1"
   "@types/node": "^24.19.2"
-  "@types/react": "^18.3.31"
+  "@types/react": "^18.3.32"
   ajv: "^8.20.0"
   babel-plugin-static-fs: "^3.0.0"
   chai: "^4.5.0"
