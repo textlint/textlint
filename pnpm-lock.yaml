@@ -64,8 +64,8 @@ catalogs:
       specifier: ^24.19.2
       version: 24.19.2
     '@types/react':
-      specifier: ^18.3.31
-      version: 18.3.31
+      specifier: ^18.3.32
+      version: 18.3.32
     ajv:
       specifier: ^8.20.0
       version: 8.20.0
@@ -817,7 +817,7 @@ importers:
         version: 24.19.2
       '@types/react':
         specifier: 'catalog:'
-        version: 18.3.31
+        version: 18.3.32
       rimraf:
         specifier: 'catalog:'
         version: 6.1.4
@@ -848,7 +848,7 @@ importers:
         version: 24.19.2
       '@types/react':
         specifier: 'catalog:'
-        version: 18.3.31
+        version: 18.3.32
       rimraf:
         specifier: 'catalog:'
         version: 6.1.4
@@ -3754,8 +3754,8 @@ packages:
   '@types/react-router@5.1.20':
     resolution: {integrity: sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==}
 
-  '@types/react@18.3.31':
-    resolution: {integrity: sha512-vfEqpXTvwT91yhmwdfouStN2hSKwTvyRs8qpLfADyrq/kxDw0hZM7Wk9Ug1FELj8hIby+S/+kQCSRFF32nv2Qw==}
+  '@types/react@18.3.32':
+    resolution: {integrity: sha512-hKTeN+STHjfr2eS1uLImPsGpmIQD5SD8DUTQ+14zSne5CTwRpYh25ggOKG/pFIs2r0JmNYrSv4ZqIL07ipSvOA==}
 
   '@types/react@19.1.8':
     resolution: {integrity: sha512-AwAfQ2Wa5bCx9WP8nZL2uMZWod7J7/JSplxbTmBQ5ms6QpqNYm672H0Vu9ZVKVngQ+ii4R/byguVEUZQyeg44g==}
@@ -13839,7 +13839,7 @@ snapshots:
       '@types/history': 4.7.11
       '@types/react': 19.1.8
 
-  '@types/react@18.3.31':
+  '@types/react@18.3.32':
     dependencies:
       '@types/prop-types': 15.7.15
       csstype: 3.2.3
